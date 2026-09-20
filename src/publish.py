@@ -204,12 +204,37 @@ def _set_secret(name: str, value: str) -> bool:
 
 def publish_reel(video: Path, content: dict, cfg: dict, test: bool = False,
                  dry_run: bool = False) -> dict:
-    """Run the resumable flow. In test/dry-run mode stops before media_publish."""
+    """Publish the reel.
+
+    Route note: `graph.instagram.com` (Instagram-Login tokens) has no resumable upload —
+    POST /{ig-id}/media demands `video_url`. We therefore park the locally built MP4 on an
+    anonymous public host and hand Instagram the URL, falling back to the resumable flow
+    only if the account ever gains a Facebook-Login route that supports it.
+    """
     if dry_run:
         return {"skipped": "dry-run"}
     account = resolve_account()
     ig_id = str(account["id"])
     caption = caption_for(content, cfg)
+
+    from . import upload_host
+    url, host = upload_host.publicize(video)
+    if url:
+        try:
+            container = create_container_url(ig_id, caption, url)
+            cid = container["id"]
+            status = wait_finished(cid)
+            if test:
+                print(f"[publish] TEST mode: container {cid} ready ({status}), not publishing")
+                return {"test": True, "container_id": cid, "status": status, "host": host}
+            media_id = media_publish(ig_id, cid)
+            return {"media_id": media_id, "container_id": cid, "caption": caption,
+                    "ig_id": ig_id, "status": status, "host": host, "video_url": url}
+        except PermissionError:
+            raise
+        except Exception as exc:  # noqa: BLE001
+            print(f"[publish] hosted-url route failed ({exc}); trying resumable")
+
     container = create_container(ig_id, caption, test=test)
     cid, uri = container["id"], container["uri"]
     upload(uri, video)
@@ -220,6 +245,25 @@ def publish_reel(video: Path, content: dict, cfg: dict, test: bool = False,
     media_id = media_publish(ig_id, cid)
     return {"media_id": media_id, "container_id": cid, "caption": caption,
             "ig_id": ig_id, "status": status}
+
+
+def create_container_url(ig_id: str, caption: str, video_url: str) -> dict:
+    """Hosted-URL container — the only route Instagram-Login tokens accept."""
+    r = requests.post(f"{GRAPH}/{ig_id}/media",
+                      params={"access_token": _token()},
+                      data={"media_type": "REELS", "video_url": video_url,
+                            "caption": caption},
+                      timeout=120)
+    if r.status_code == 401:
+        raise PermissionError("401 TOKEN DEAD")
+    if r.status_code >= 400:
+        raise RuntimeError(f"container create (url) failed {r.status_code}: "
+                           f"{_redact(r.text[:400])}")
+    data = r.json()
+    if not data.get("id"):
+        raise RuntimeError(f"unexpected body: {_redact(str(data)[:300])}")
+    _container_cache[ig_id] = data
+    return data
 
 
 def main():

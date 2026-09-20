@@ -40,8 +40,12 @@ def _start_trending(cfg) -> tuple:
     return t, box
 
 
-def scheduler_check(cfg, strategy, memory, offline=False) -> tuple:
-    """Returns (should_post, reason)."""
+def scheduler_check(cfg, strategy, memory, offline=False, force=False) -> tuple:
+    """Returns (should_post, reason).
+
+    force=True (workflow_dispatch, or BEAST_FORCE_POST=1) skips the warmup off-day rule
+    and the +/-35min window, but NEVER the one-post-per-day idempotency check.
+    """
     today = config.today_utc()
     if offline:
         return True, "offline"
@@ -52,9 +56,11 @@ def scheduler_check(cfg, strategy, memory, offline=False) -> tuple:
         in_warmup = today <= config.date.fromisoformat(str(warmup_until))
     except Exception:  # noqa: BLE001
         in_warmup = False
-    if in_warmup:
+    if in_warmup and not force:
         if today.toordinal() % 2 != 0:
             return False, f"warmup (until {warmup_until}) — off day"
+    if force:
+        return True, "forced (manual dispatch)"
     target = strategy.get("next_post_hour") or "15:00"
     try:
         hh, mm = (int(x) for x in target.split(":"))
@@ -94,21 +100,26 @@ def run(dry_run=False, offline=False) -> int:
     try:
         if not offline:
             llm.wake()
-            import pinterest
+            from . import pinterest
             pinterest.wake()
             music.wake(cfg["music"]["trending_api"])
         step("services_awake")
 
         trending_thread, box = (None, None)
+        tone = config.env("BEAST_JITTER_SECONDS")
         if not offline:
             trending_thread, box = _start_trending(cfg)
-            jitter = random.uniform(0, 1200)
-            step("jitter_start", {"seconds": round(jitter, 1)})
+        jitter = float(tone) if tone is not None else random.uniform(0, 1200)
+        step("jitter_start", {"seconds": round(jitter, 1)})
+        if jitter > 0:
             time.sleep(jitter)
+        if trending_thread is not None:
             trending_thread.join(timeout=30)
-            step("trending_joined", {"error": bool(box.error)})
+        step("trending_joined", {"error": bool(box and box.error)})
 
-        ok, reason = scheduler_check(cfg, strategy, memory, offline=offline)
+        force = (config.env("GITHUB_EVENT_NAME") == "workflow_dispatch"
+                 or config.env("BEAST_FORCE_POST") == "1")
+        ok, reason = scheduler_check(cfg, strategy, memory, offline=offline, force=force)
         step("scheduler", {"post": ok, "reason": reason})
         if not ok:
             log["result"] = "skipped"

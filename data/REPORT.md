@@ -1,6 +1,6 @@
 # Beast Engine — weekly brain report
 
-Generated: 2026-09-20T19:56:55+00:00
+Generated: 2026-09-20T20:52:35+00:00
 
 Posts scored this cycle: **10**
 Weighted mean score: **0.0832**
@@ -11,7 +11,7 @@ Weighted mean score: **0.0832**
 | value | adj | n |
 |---|---|---|
 | hard_truth | 0.0952 | 2 |
-| fear_warning | 0.0898 | 1 |
+| fear_warning | 0.0897 | 1 |
 | pain_callout | 0.0886 | 1 |
 | transformation_promise | 0.0835 | 1 |
 | secret_reveal | 0.0826 | 1 |

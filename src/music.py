@@ -142,13 +142,21 @@ def pixabay_urls(query: str, limit: int = 12) -> list:
         return []
 
 
-def internet_archive_urls(query: str, limit: int = 3) -> list:
-    """Fallback source: official Internet Archive API -> first .mp3 per identifier."""
+def internet_archive_urls(query: str, collection: str | None = None, limit: int = 3) -> list:
+    """Fallback source: official Internet Archive API -> first .mp3 per identifier.
+
+    `collection` is appended to the query so an instrument/genre hint (e.g. `phonk`)
+    can be ANDed with a mood phrase. Results are the search's own ordering (relevance),
+    which is what we want — do not sort them.
+    """
     out = []
+    full = f"({query}) AND mediatype:audio"
+    if collection:
+        full = f"({query}) AND ({collection}) AND mediatype:audio"
     try:
         r = requests.get("https://archive.org/advancedsearch.php",
-                         params={"q": f"{query} AND mediatype:audio", "fl[]": "identifier",
-                                 "rows": 20, "output": "json"},
+                         params={"q": full, "fl[]": "identifier", "rows": 20,
+                                 "output": "json"},
                          headers={"User-Agent": UA}, timeout=60)
         if r.status_code != 200:
             return []
@@ -172,6 +180,34 @@ def internet_archive_urls(query: str, limit: int = 3) -> list:
     except Exception:  # noqa: BLE001
         return out
     return out
+
+
+INSTRUMENT_HINTS = (
+    "piano", "phonk", "trap", "drone", "strings", "cinematic", "lofi", "beat", "guitar",
+)
+
+
+def instrument_of(mood_search: str) -> str:
+    """Pull a genre/instrument hint out of the mood phrase ('sad emotional piano')."""
+    low = (mood_search or "").lower()
+    for hint in INSTRUMENT_HINTS:
+        if hint in low:
+            return hint
+    return ""
+
+
+def _download_direct(url: str, out_path) -> bool:
+    """Fetch an already-public media URL ourselves (no third-party service needed)."""
+    try:
+        r = requests.get(url, headers={"User-Agent": UA}, timeout=180, stream=True)
+        if r.status_code != 200:
+            return False
+        with Path(out_path).open("wb") as fh:
+            for chunk in r.iter_content(65536):
+                fh.write(chunk)
+        return Path(out_path).stat().st_size > 10240
+    except Exception:  # noqa: BLE001
+        return False
 
 
 # --------------------------------------------------------- provider chain
@@ -199,47 +235,63 @@ def _acquire(api: str, url: str, title: str, artist: str) -> bytes | None:
 
 def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_mp3, track_wav,
                            duration_s: float):
-    """Returns (True, meta) on success. Never raises."""
+    """Returns (True, meta) on success. Never raises.
+
+    Candidates are tried in order. Each one is first pushed through the user's audio
+    service (POST /v1/download) and fetched from /v1/file/reels/<name>; if that service
+    cannot take a URL we already have a direct public URL, so we fall back to fetching it
+    ourselves rather than losing the track entirely.
+    """
     music = cfg["music"]
     api = music["trending_api"]
     mood = content.get("mood") or "dark_ambient"
     genre = (trending_ref or {}).get("genre") or ""
     styles = config.load_trending_styles()
-    query_parts = [music["mood_search"].get(mood, "dark ambient")]
+    mood_search = music["mood_search"].get(mood, "dark ambient")
+    query_parts = [mood_search]
     query_parts.append(music.get("genre_hint", {}).get(genre, ""))
     if styles:
         query_parts.append(random.choice(styles))
-    query = " ".join(p.strip() for p in query_parts if p and p.strip())
+    full_query = " ".join(p.strip() for p in query_parts if p and p.strip())
 
     used_urls = {u.get("url") if isinstance(u, dict) else str(u)
                  for u in memory.get("used_track_urls", [])}
 
-    candidates = [u for u in pixabay_urls(query) if u not in used_urls]
-    source = "pixabay"
+    candidates = [(u, "pixabay") for u in pixabay_urls(full_query)]
     if not candidates:
-        candidates = [u for u in internet_archive_urls(query) if u not in used_urls]
-        source = "archive"
+        hint = instrument_of(mood_search)
+        term = f'"{hint}"' if hint else mood_search
+        candidates += [(u, "archive") for u in internet_archive_urls(term, hint or None)]
+        if not candidates and hint:
+            candidates += [(u, "archive") for u in internet_archive_urls(mood_search)]
+    candidates = [(u, s) for (u, s) in candidates if u not in used_urls]
     random.shuffle(candidates)
 
-    title = (trending_ref or {}).get("title") or query
+    title = (trending_ref or {}).get("title") or full_query
     artist = (trending_ref or {}).get("artist") or "free-license"
 
-    for url in candidates[:3]:
+    for url, source in candidates[:4]:
+        got = None
         raw = _acquire(api, url, title, artist)
-        if not raw:
+        if raw:
+            tmp = config.OUTPUTS / "track_dl.bin"
+            tmp.write_bytes(raw)
+            for cand in (tmp, config.OUTPUTS / "track_dl.webm"):
+                if cand.exists() and to_mp3(cand, track_mp3):
+                    got = "service"
+                    break
+        if not got:
+            tmp = config.OUTPUTS / "track_direct.bin"
+            if _download_direct(url, tmp) and to_mp3(tmp, track_mp3):
+                got = "direct"
+        if not got:
             continue
-        tmp = config.OUTPUTS / "track_dl.bin"
-        tmp.write_bytes(raw)
-        if not to_mp3(tmp, track_mp3):          # server may have stored a non-mp3 container
-            tmp.rename(config.OUTPUTS / "track_dl.webm")
-            if not to_mp3(config.OUTPUTS / "track_dl.webm", track_mp3):
-                continue
         if not has_audio_stream(track_mp3) or ffprobe_duration(track_mp3) < 5:
             continue
         if not to_wav(track_mp3, track_wav):
             continue
         return True, {"music_source": "trending_free", "url": url, "source_site": source,
-                      "query": query, "trending_ref": trending_ref}
+                      "acquired_via": got, "query": full_query, "trending_ref": trending_ref}
     return False, {}
 
 

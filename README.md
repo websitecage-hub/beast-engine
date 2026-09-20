@@ -57,16 +57,40 @@ During warmup (8 days after build) the machine posts every *other* day, then dai
 Cron fires three slots a day (13:30 / 15:00 / 16:30 UTC) but only the learned slot
 actually posts — that is how hour-learning works on a static schedule.
 
+## How publishing actually works (important)
+
+The token route in use is `graph.instagram.com` (Instagram-Login): `POST /{ig-id}/media`
+there **only accepts `video_url`** — it has no resumable-upload support. The resumable
+flow (`upload_type=resumable` + `rupload.instagram.com`) exists only on the
+Facebook-Login `graph.facebook.com` route.
+
+So the engine publishes like this:
+
+1. build the reel locally on the runner,
+2. park the MP4 on an anonymous public host (`litterbox.catbox.moe`, 72h, fallback `uguu.se`),
+3. hand Instagram the URL as `video_url`, poll `status_code` until `FINISHED`,
+4. `POST /{ig-id}/media_publish` → media id.
+
+`src/publish.py` still implements the full resumable flow and falls back to it
+automatically if the hosted-URL route ever fails. Container `video_url` fetching is
+time-sensitive, so the container is created immediately after upload.
+
 ## Music is fully automatic
 
 The trending engine picks the day's sound direction from
 `/v1/trending/self-improvement`; the engine then resolves a free-license direct MP3
-(Pixabay Music, fallback Internet Archive) and acquires it through your audio service,
-then beat-syncs the reel to it. Nobody touches it.
+(Pixabay Music first, Internet Archive fallback) and acquires it through your audio
+service, then beat-syncs the reel to it. Nobody touches it.
+
+Pixabay now serves a Cloudflare 403 to datacenter IPs, so in practice the Internet
+Archive branch — searched with an instrument/genre hint derived from the mood
+(`dark phonk beat` → `phonk`) — is the one that lands tracks like
+`…PHONK TYPE BEAT.mp3`. Two safety nets still apply: the engine can fetch an
+already-public MP3 directly, and the last resort is a synthesized dark ambient drone.
 
 Optional: drop owned tracks into `assets/audio/` and register them in
 `assets/audio/manifest.json` (`[{"file","moods":[...],"energy":0.8}]`) — they become the
-fallback library tier. If everything fails, the engine synthesizes a dark ambient drone.
+fallback library tier.
 
 ## Steering (30 seconds a week, optional)
 
