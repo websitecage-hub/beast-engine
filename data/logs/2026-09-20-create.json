@@ -89,5 +89,242 @@
     "result": {
       "skipped": "dry-run"
     }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-20T20:07:08.308821+00:00",
+    "dry_run": false,
+    "offline": true,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.0
+      },
+      {
+        "step": "scheduler",
+        "t": 0.0,
+        "post": true,
+        "reason": "offline"
+      },
+      {
+        "step": "duration",
+        "t": 0.0,
+        "seconds": 10.85
+      },
+      {
+        "step": "generated",
+        "t": 0.0,
+        "hook": "You were not built for comfort",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 11.71,
+        "source": "bundled"
+      },
+      {
+        "step": "music",
+        "t": 22.75,
+        "source": "drone"
+      },
+      {
+        "step": "built",
+        "t": 44.55,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "width": 1080,
+          "height": 1920,
+          "duration": 10.866667,
+          "size_mb": 0.34,
+          "has_video": true,
+          "has_audio": true,
+          "pix_fmt": "yuv420p",
+          "codec": "h264",
+          "faststart": true,
+          "problems": [],
+          "beats": [
+            0.23076923076923078,
+            0.6923076923076923,
+            1.1538461538461537,
+            1.6153846153846154,
+            2.076923076923077,
+            2.5384615384615388,
+            3.0000000000000004,
+            3.461538461538462,
+            3.923076923076924,
+            4.384615384615385,
+            4.846153846153847,
+            5.307692307692308,
+            5.76923076923077,
+            6.230769230769232,
+            6.692307692307693,
+            7.153846153846155,
+            7.615384615384617,
+            8.076923076923078,
+            8.53846153846154,
+            9.000000000000002,
+            9.461538461538463,
+            9.923076923076925,
+            10.384615384615387,
+            10.846153846153848
+          ]
+        }
+      },
+      {
+        "step": "published",
+        "t": 44.55,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-20T20:11:25.659608+00:00",
+    "dry_run": false,
+    "offline": true,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.0
+      },
+      {
+        "step": "scheduler",
+        "t": 0.0,
+        "post": true,
+        "reason": "offline"
+      },
+      {
+        "step": "duration",
+        "t": 0.0,
+        "seconds": 12.91
+      },
+      {
+        "step": "generated",
+        "t": 0.0,
+        "hook": "You were not built for comfort",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 13.46,
+        "source": "bundled"
+      },
+      {
+        "step": "music",
+        "t": 24.92,
+        "source": "drone"
+      },
+      {
+        "step": "built",
+        "t": 119.08,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "width": 1080,
+          "height": 1920,
+          "duration": 12.9,
+          "size_mb": 0.54,
+          "has_video": true,
+          "has_audio": true,
+          "pix_fmt": "yuv420p",
+          "codec": "h264",
+          "faststart": true,
+          "problems": [],
+          "beats": [
+            0.23076923076923078,
+            0.6923076923076923,
+            1.1538461538461537,
+            1.6153846153846154,
+            2.076923076923077,
+            2.5384615384615388,
+            3.0000000000000004,
+            3.461538461538462,
+            3.923076923076924,
+            4.384615384615385,
+            4.846153846153847,
+            5.307692307692308,
+            5.76923076923077,
+            6.230769230769232,
+            6.692307692307693,
+            7.153846153846155,
+            7.615384615384617,
+            8.076923076923078,
+            8.53846153846154,
+            9.000000000000002,
+            9.461538461538463,
+            9.923076923076925,
+            10.384615384615387,
+            10.846153846153848
+          ],
+          "stamps": [
+            {
+              "index": 0,
+              "t": 0.5,
+              "kind": "hook",
+              "text": "You were not built for comfort",
+              "visible": true
+            },
+            {
+              "index": 1,
+              "t": 3.96,
+              "kind": "body",
+              "text": "Comfort is a slow death",
+              "visible": true
+            },
+            {
+              "index": 2,
+              "t": 6.27,
+              "kind": "body",
+              "text": "Discipline is the only way out",
+              "visible": true
+            },
+            {
+              "index": 3,
+              "t": 8.58,
+              "kind": "body",
+              "text": "Nobody is coming to save you",
+              "visible": true
+            },
+            {
+              "index": 4,
+              "t": 10.83,
+              "kind": "closer",
+              "text": "Become the beast",
+              "visible": true
+            }
+          ]
+        }
+      },
+      {
+        "step": "published",
+        "t": 119.08,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-20T20:16:26.967865+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "failed",
+        "t": 0.73,
+        "error": "No module named 'pinterest'"
+      }
+    ],
+    "errors": [
+      "No module named 'pinterest'"
+    ]
   }
 ]

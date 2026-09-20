@@ -1,0 +1,45 @@
+name: health
+
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  secrets: write
+
+concurrency:
+  group: beast-health
+  cancel-in-progress: false
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Health pass
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python src/run_health.py
+      - name: Commit state
+        if: always()
+        run: |
+          git config user.name "beast-engine[bot]"
+          git config user.email "beast-engine[bot]@users.noreply.github.com"
+          git pull --rebase --autostash || true
+          git add data/ || true
+          git commit -m "health: state update" || echo "nothing to commit"
+          git push || (git pull --rebase --autostash && git push) || echo "push failed, next run recovers"

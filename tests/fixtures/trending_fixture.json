@@ -1,0 +1,9 @@
+{
+  "results": [
+    {"title": "Slowed Phonk Drift", "artist": "Kordhell", "trend_score": 91, "confidence": 0.86, "sources": ["itunes", "deezer"], "category": "song:rap"},
+    {"title": "Midnight Discipline", "artist": "Ghostemane", "trend_score": 74, "confidence": 0.62, "sources": ["deezer"], "category": "song:trap"},
+    {"title": "Emotional Piano Loop", "artist": "Blume", "trend_score": 55, "confidence": 0.44, "sources": ["itunes"], "category": "song:rnb"},
+    {"title": "Iron Silence", "artist": "Unknown", "trend_score": 40, "confidence": 0.5, "sources": ["itunes"], "category": "song:edm"},
+    {"title": "Low Confidence Filler", "artist": "Nobody", "trend_score": 12, "confidence": 0.21, "sources": [], "category": "song:pop"}
+  ]
+}

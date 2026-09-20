@@ -1,0 +1,44 @@
+name: learn
+
+on:
+  schedule:
+    - cron: "0 18 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: beast-learn
+  cancel-in-progress: false
+
+jobs:
+  learn:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Learn from performance
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python src/run_learn.py
+      - name: Commit state
+        if: always()
+        run: |
+          git config user.name "beast-engine[bot]"
+          git config user.email "beast-engine[bot]@users.noreply.github.com"
+          git pull --rebase --autostash || true
+          git add data/ || true
+          git commit -m "learn: state update" || echo "nothing to commit"
+          git push || (git pull --rebase --autostash && git push) || echo "push failed, next run recovers"
