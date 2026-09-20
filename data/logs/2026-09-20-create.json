@@ -1,0 +1,93 @@
+[
+  {
+    "workflow": "create",
+    "started": "2026-09-20T19:56:56.331142+00:00",
+    "dry_run": false,
+    "offline": true,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.0
+      },
+      {
+        "step": "scheduler",
+        "t": 0.0,
+        "post": true,
+        "reason": "offline"
+      },
+      {
+        "step": "duration",
+        "t": 0.0,
+        "seconds": 10.66
+      },
+      {
+        "step": "generated",
+        "t": 0.0,
+        "hook": "You were not built for comfort",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 11.85,
+        "source": "bundled"
+      },
+      {
+        "step": "music",
+        "t": 14.26,
+        "source": "drone"
+      },
+      {
+        "step": "built",
+        "t": 35.19,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "width": 1080,
+          "height": 1920,
+          "duration": 10.666667,
+          "size_mb": 0.34,
+          "has_video": true,
+          "has_audio": true,
+          "pix_fmt": "yuv420p",
+          "codec": "h264",
+          "faststart": true,
+          "problems": [],
+          "beats": [
+            0.23076923076923078,
+            0.6923076923076923,
+            1.1538461538461537,
+            1.6153846153846154,
+            2.076923076923077,
+            2.5384615384615388,
+            3.0000000000000004,
+            3.461538461538462,
+            3.923076923076924,
+            4.384615384615385,
+            4.846153846153847,
+            5.307692307692308,
+            5.76923076923077,
+            6.230769230769232,
+            6.692307692307693,
+            7.153846153846155,
+            7.615384615384617,
+            8.076923076923078,
+            8.53846153846154,
+            9.000000000000002,
+            9.461538461538463,
+            9.923076923076925,
+            10.384615384615387
+          ]
+        }
+      },
+      {
+        "step": "published",
+        "t": 35.19,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  }
+]

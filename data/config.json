@@ -1,0 +1,46 @@
+{
+  "brand": {
+    "name": "Unleash The Beast",
+    "handle": "unleashthe.b",
+    "voice": "Dark, direct, no fluff. Short brutal sentences. Second person ('you'). Never preachy, never emoji, never hashtags in on-screen text.",
+    "hook_examples": ["Nobody warns you about this", "Why you can never love yourself", "Every man should see this", "You're not lazy. You're afraid."]
+  },
+  "archetypes": ["pain_callout","secret_reveal","hard_truth","challenge_dare","identity_shift","fear_warning","contrarian","transformation_promise"],
+  "topics": ["discipline","loneliness","confidence","conversations","focus","pain","self_respect","purpose","rejection","silence"],
+  "moods": ["aggressive_phonk","melancholic_piano","epic_cinematic","dark_ambient","stoic_minimal"],
+  "bg_types": {
+    "dark_gym": ["dark gym silhouette", "moody gym night"],
+    "city_rain_night": ["city rain night neon", "dark city street rain"],
+    "lone_figure": ["lone man walking dark", "silhouette man shadow"],
+    "wolf_dark": ["dark wolf moon", "wolf black aesthetic"],
+    "smoke_shadow": ["dark smoke aesthetic", "black smoke background"],
+    "mountain_dark": ["dark mountains fog", "lonely mountain night"],
+    "ocean_storm": ["dark ocean storm", "rough sea night"]
+  },
+  "mood_fallback_bpm": {"aggressive_phonk": 130, "melancholic_piano": 70, "epic_cinematic": 90, "dark_ambient": 60, "stoic_minimal": 75},
+  "music": {
+    "trending_api": "https://audi0-scraper.onrender.com",
+    "trending_niche": "self-improvement",
+    "trending_fallback_niche": "motivation",
+    "min_confidence": 0.5,
+    "mood_search": {
+      "aggressive_phonk": "dark phonk beat",
+      "melancholic_piano": "sad emotional piano",
+      "epic_cinematic": "epic dark cinematic",
+      "dark_ambient": "dark ambient drone",
+      "stoic_minimal": "minimal dark piano"
+    },
+    "genre_hint": {"rap":" dark phonk","hip-hop":" dark phonk","trap":" dark phonk","edm":" dark trap","pop":" emotional","rock":" cinematic","rnb":" moody","lofi":" lofi dark"}
+  },
+  "posting_slots_utc": ["13:30", "15:00", "16:30"],
+  "reel": {"min_s": 8, "max_s": 14, "fps": 30, "w": 1080, "h": 1920},
+  "explore_rate": 0.2,
+  "cta_every_n_posts": 5,
+  "cta_line": "The full system is in my ebook — link in bio.",
+  "hashtag_pools": {
+    "broad": ["#motivation","#discipline","#mindset","#selfimprovement","#grind"],
+    "medium": ["#stoicism","#masculinity","#selfdevelopment","#mentality","#dailymotivation","#growth"],
+    "niche": ["#unleashthebeast","#innerwork","#becomelion","#disciplinedmind","#quietgrind","#ironmind"]
+  },
+  "font_path": "assets/fonts/Anton-Regular.ttf"
+}

@@ -1,0 +1,25 @@
+{
+  "weights": {
+    "archetype": {"pain_callout": 1.0, "secret_reveal": 1.0, "hard_truth": 1.0, "challenge_dare": 1.0, "identity_shift": 1.0, "fear_warning": 1.0, "contrarian": 1.0, "transformation_promise": 1.0},
+    "topic": {"discipline": 1.0, "loneliness": 1.0, "confidence": 1.0, "conversations": 1.0, "focus": 1.0, "pain": 1.0, "self_respect": 1.0, "purpose": 1.0, "rejection": 1.0, "silence": 1.0},
+    "mood": {"aggressive_phonk": 1.0, "melancholic_piano": 1.0, "epic_cinematic": 1.0, "dark_ambient": 1.0, "stoic_minimal": 1.0},
+    "bg_type": {"dark_gym": 1.0, "city_rain_night": 1.0, "lone_figure": 1.0, "wolf_dark": 1.0, "smoke_shadow": 1.0, "mountain_dark": 1.0, "ocean_storm": 1.0}
+  },
+  "n": {
+    "archetype": {"pain_callout": 0, "secret_reveal": 0, "hard_truth": 0, "challenge_dare": 0, "identity_shift": 0, "fear_warning": 0, "contrarian": 0, "transformation_promise": 0},
+    "topic": {"discipline": 0, "loneliness": 0, "confidence": 0, "conversations": 0, "focus": 0, "pain": 0, "self_respect": 0, "purpose": 0, "rejection": 0, "silence": 0},
+    "mood": {"aggressive_phonk": 0, "melancholic_piano": 0, "epic_cinematic": 0, "dark_ambient": 0, "stoic_minimal": 0},
+    "bg_type": {"dark_gym": 0, "city_rain_night": 0, "lone_figure": 0, "wolf_dark": 0, "smoke_shadow": 0, "mountain_dark": 0, "ocean_storm": 0}
+  },
+  "adj": {
+    "archetype": {"pain_callout": null, "secret_reveal": null, "hard_truth": null, "challenge_dare": null, "identity_shift": null, "fear_warning": null, "contrarian": null, "transformation_promise": null},
+    "topic": {"discipline": null, "loneliness": null, "confidence": null, "conversations": null, "focus": null, "pain": null, "self_respect": null, "purpose": null, "rejection": null, "silence": null},
+    "mood": {"aggressive_phonk": null, "melancholic_piano": null, "epic_cinematic": null, "dark_ambient": null, "stoic_minimal": null},
+    "bg_type": {"dark_gym": null, "city_rain_night": null, "lone_figure": null, "wolf_dark": null, "smoke_shadow": null, "mountain_dark": null, "ocean_storm": null}
+  },
+  "hour_scores": {"13:30": null, "15:00": null, "16:30": null},
+  "next_post_hour": "15:00",
+  "warmup_until": "2026-09-28",
+  "experiments": [],
+  "last_updated": null
+}
