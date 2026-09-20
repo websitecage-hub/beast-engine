@@ -326,5 +326,152 @@
     "errors": [
       "No module named 'pinterest'"
     ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-20T20:37:11.630957+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.77
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.78,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.17,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.17,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.17,
+        "seconds": 9.05
+      },
+      {
+        "step": "generated",
+        "t": 62.17,
+        "hook": "Your future self hates you",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 87.43,
+        "source": "pinterest"
+      },
+      {
+        "step": "music",
+        "t": 89.92,
+        "source": "drone"
+      },
+      {
+        "step": "built",
+        "t": 185.38,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.066667,
+          "size_mb": 3.85,
+          "has_video": true,
+          "has_audio": true,
+          "pix_fmt": "yuv420p",
+          "codec": "h264",
+          "faststart": true,
+          "problems": [],
+          "beats": [
+            0.23076923076923078,
+            0.6923076923076923,
+            1.1538461538461537,
+            1.6153846153846154,
+            2.076923076923077,
+            2.5384615384615388,
+            3.0000000000000004,
+            3.461538461538462,
+            3.923076923076924,
+            4.384615384615385,
+            4.846153846153847,
+            5.307692307692308,
+            5.76923076923077,
+            6.230769230769232,
+            6.692307692307693,
+            7.153846153846155,
+            7.615384615384617,
+            8.076923076923078,
+            8.53846153846154,
+            9.000000000000002
+          ],
+          "stamps": [
+            {
+              "index": 0,
+              "t": 0.5,
+              "kind": "hook",
+              "text": "Your future self hates you",
+              "visible": true
+            },
+            {
+              "index": 1,
+              "t": 3.5,
+              "kind": "body",
+              "text": "You promised change last month",
+              "visible": true
+            },
+            {
+              "index": 2,
+              "t": 4.88,
+              "kind": "body",
+              "text": "You did nothing",
+              "visible": true
+            },
+            {
+              "index": 3,
+              "t": 6.27,
+              "kind": "body",
+              "text": "He pays for it",
+              "visible": true
+            },
+            {
+              "index": 4,
+              "t": 7.74,
+              "kind": "closer",
+              "text": "Stop betraying him daily",
+              "visible": true
+            }
+          ]
+        }
+      },
+      {
+        "step": "published",
+        "t": 285.55,
+        "media_id": "18116512901101357",
+        "container_id": "17910001560538210",
+        "caption": "Your future self hates you\n\nYou promised change last month\nYou did nothing\n\n#motivation #discipline #grind #dailymotivation #masculinity #mentality #selfdevelopment #growth #stoicism #ironmind #disciplinedmind #innerwork #becomelion #unleashthebeast #quietgrind #shadowforged #voidkingprotocol",
+        "ig_id": "35157222637226667",
+        "status": "FINISHED",
+        "host": "uguu",
+        "video_url": "https://n.uguu.se/TkAaDStr.mp4"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "media_id": "18116512901101357",
+      "container_id": "17910001560538210",
+      "caption": "Your future self hates you\n\nYou promised change last month\nYou did nothing\n\n#motivation #discipline #grind #dailymotivation #masculinity #mentality #selfdevelopment #growth #stoicism #ironmind #disciplinedmind #innerwork #becomelion #unleashthebeast #quietgrind #shadowforged #voidkingprotocol",
+      "ig_id": "35157222637226667",
+      "status": "FINISHED",
+      "host": "uguu",
+      "video_url": "https://n.uguu.se/TkAaDStr.mp4"
+    }
   }
 ]
