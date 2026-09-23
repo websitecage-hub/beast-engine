@@ -65,13 +65,47 @@ def test_dedup_rejects_near_duplicate():
     near = "You were not built for comfort."          # ratio ~0.98
     assert generate._similar(dup, near) > generate.DEDUP_RATIO
     banned = [dup]
-    cand = {"hook": near, "archetype": "hard_truth", "topic": "discipline"}
+    cand = {"quote": near, "scene": "dark gym", "archetype": "hard_truth",
+            "topic": "discipline"}
     assert generate._dedup_ok(cand, banned, set()) is False
-    fresh = {"hook": "The mirror is not your friend", "archetype": "hard_truth",
-             "topic": "discipline"}
+    fresh = {"quote": "The mirror is not your friend", "scene": "dark gym",
+             "archetype": "hard_truth", "topic": "discipline"}
     assert generate._dedup_ok(fresh, banned, set()) is True
     # (archetype, topic) used in the last 7 days is rejected too
     assert generate._dedup_ok(fresh, [], {("hard_truth", "discipline")}) is False
+
+
+def test_quote_schema_validation():
+    cfg = config.load_config()
+    good = {"quote": "A man with soft fists shouldn't sharpen his tongue",
+            "attribution": "Dad", "scene": "boxer shadow boxing night",
+            "archetype": "hard_truth", "topic": "discipline",
+            "mood": "aggressive_phonk", "bg_type": "dark_gym"}
+    assert generate._valid(good, cfg) is True
+    assert generate._valid({**good, "scene": ""}, cfg) is False        # scene required
+    assert generate._valid({**good, "quote": "too short"}, cfg) is False
+    assert generate._valid({**good, "mood": "nope"}, cfg) is False
+
+
+def test_quote_wrapping_balances_lines():
+    from src import build_video
+    lines = build_video.quote_lines({"quote":
+        "The moment you are disturbed by insult or pleased by praise, you are still a slave."})
+    assert 2 <= len(lines) <= 4
+    assert lines[0].startswith("\u201c") and lines[-1].endswith("\u201d")
+    # no orphan single-word line (the old greedy wrapper produced "...by / you / ...")
+    assert all(len(l.split()) >= 2 for l in lines)
+    lens = [len(l) for l in lines]
+    assert max(lens) - min(lens) <= 16, f"lines badly unbalanced: {lines}"
+
+
+def test_reveal_map_is_cumulative_and_covers_reel():
+    from src import build_video
+    states = build_video.reveal_map(["a b", "c d", "e f"], [0.8, 1.6, 2.4, 3.2, 4.0], 10.0)
+    assert [s["count"] for s in states] == [1, 2, 3]
+    assert states[0]["start"] <= 0.8 and states[-1]["end"] == 10.0
+    for a, b in zip(states, states[1:]):
+        assert b["start"] >= a["start"] + 0.9          # readable holds
 
 
 # --------------------------------------------------------------- analyzer

@@ -109,7 +109,8 @@ def run(dry_run=False, offline=False) -> int:
         tone = config.env("BEAST_JITTER_SECONDS")
         if not offline:
             trending_thread, box = _start_trending(cfg)
-        jitter = float(tone) if tone is not None else random.uniform(0, 1200)
+        jitter = 0.0 if offline else (float(tone) if tone is not None
+                                      else random.uniform(0, 1200))
         step("jitter_start", {"seconds": round(jitter, 1)})
         if jitter > 0:
             time.sleep(jitter)
@@ -141,7 +142,8 @@ def run(dry_run=False, offline=False) -> int:
         step("background", {"source": bg_source})
 
         ok_music, mmeta = music.acquire(cfg, content, strategy, memory,
-                                        content.get("trending_ref"), duration, dry_run=dry_run)
+                                        content.get("trending_ref"), duration, dry_run=dry_run,
+                                        offline=offline)
         if not ok_music:
             raise RuntimeError("music provider chain exhausted (even drone failed)")
         content["music_source"] = mmeta.get("music_source", "")

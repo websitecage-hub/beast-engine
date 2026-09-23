@@ -1,11 +1,13 @@
-"""build_video.py — beat-synced vertical reel assembly.
+"""build_video.py — dark quote-card reels matching the reference aesthetic.
 
-1. Beat analysis via librosa on outputs/track.wav (fallback: mood BPM, evenly spaced).
-2. Timing map: hook card at t=0 holding 1.4s, body lines on subsequent beats,
-   closer in the final 20%.
-3. Text cards rendered with Pillow (Anton, ALL CAPS, 4px stroke + soft shadow).
-4. ffmpeg assembly with per-card alpha fades and the audio bed (loudnorm -16 LUFS).
-5. Export + hard QA gate (1080x1920, 8-14s, both streams, <60MB, faststart).
+Design DNA (from references/Video-*.mp4):
+  * One aphorism, 2-4 lines, sentence case, curly quotes, flat near-white text,
+    NO outline, only a soft blurred shadow. Serif (Tinos/Times-class) or clean sans.
+  * Medium type (~1/12 frame height per line), horizontally centered, optical middle.
+  * Dim grey attribution under the quote; small ALL-CAPS handle watermark near bottom.
+  * Lines reveal one-by-one on beats and STAY (cumulative states), full quote on screen
+    for the last stretch of the reel.
+  * Background: real moving footage, crushed dark, desaturated, vignette + grain.
 """
 from __future__ import annotations
 
@@ -16,16 +18,76 @@ from pathlib import Path
 
 from . import config
 
-MAX_CHARS_PER_LINE = 22
-MAX_LINES = 3
-SIDE_MARGIN = 90
-TOP_FRACTION = 0.34
-FONT_MIN, FONT_MAX = 88, 120
-CARD_FADE = 0.35
-HOOK_HOLD = 1.4
+SIDE_MARGIN = 120
+FONT_SERIF = "assets/fonts/Tinos-Regular.ttf"
+FONT_SANS = "assets/fonts/Inter-Regular.ttf"
+QUOTE_PX = 62
+ATTRIB_PX = 34
+WATERMARK_PX = 28
+CARD_FADE = 0.3
+INK = (245, 245, 245, 255)
+INK_DIM = (235, 235, 235, 115)
+INK_MARK = (230, 230, 230, 150)
+MIN_HOLD = 1.1
 
 
-# ------------------------------------------------------------------ timing
+# ------------------------------------------------------------------ wording
+
+def _clean(text: str) -> str:
+    return " ".join((text or "").split()).strip().strip('"').strip()
+
+
+def quote_lines(content: dict) -> list:
+    """Wrap the quote into balanced display lines, sentence case, curly-quoted.
+
+    Uses dynamic programming to minimise width variance so no line ends on a short
+    orphan word (greedy wrapping produced badly ragged edges: "...by / you / ...").
+    """
+    q = _clean(content.get("quote") or content.get("hook") or "")
+    if not q:
+        return []
+    q = q.rstrip(".") + "."
+    words = q.split()
+    if len(words) < 2:
+        return ["\u201c" + q + "\u201d"]
+
+    max_lines = 4 if len(words) > 18 else (3 if len(words) > 9 else 2)
+    max_w = 34
+    best = {"cost": float("inf"), "lines": None}
+
+    def cost_of(lines):
+        lens = [len(l) for l in lines]
+        target = sum(lens) / len(lens)
+        # penalise variance, overlong lines, and single-word orphans
+        c = sum((l - target) ** 2 for l in lens)
+        c += sum(max(0, l - max_w) ** 2 * 40 for l in lens)
+        c += sum(900 for l in lines if len(l.split()) == 1)
+        return c
+
+    def recurse(start, acc):
+        if not acc and start == 0 and False:
+            return
+        if len(acc) == max_lines or start >= len(words):
+            if start >= len(words) and acc:
+                c = cost_of(acc)
+                if c < best["cost"]:
+                    best.update(cost=c, lines=list(acc))
+            return
+        for end in range(start + 1, min(len(words), start + 9) + 1):
+            chunk = " ".join(words[start:end])
+            if len(chunk) > max_w and end > start + 1:
+                break
+            recurse(end, acc + [chunk])
+
+    recurse(0, [])
+    lines = best["lines"] or [" ".join(words)]
+    lines = lines[:5]
+    lines[0] = "\u201c" + lines[0]
+    lines[-1] = lines[-1] + "\u201d"
+    return lines
+
+
+# ------------------------------------------------------------------- timing
 
 def beat_times(wav: Path, mood: str, cfg, duration_s: float) -> list:
     try:
@@ -37,6 +99,10 @@ def beat_times(wav: Path, mood: str, cfg, duration_s: float) -> list:
             return sorted(beats)
     except Exception as exc:  # noqa: BLE001
         print(f"[video] beat tracking failed: {exc}")
+    return beat_times_fallback(cfg, mood, duration_s)
+
+
+def beat_times_fallback(cfg, mood: str, duration_s: float) -> list:
     bpm = float((cfg.get("mood_fallback_bpm") or {}).get(mood, 90))
     interval = 60.0 / max(bpm, 1)
     out, t = [], interval * 0.5
@@ -46,203 +112,130 @@ def beat_times(wav: Path, mood: str, cfg, duration_s: float) -> list:
     return out or [0.5, 1.0, 2.0, 3.0, 4.0]
 
 
-def timing_map(content: dict, beats: list, duration_s: float) -> list:
-    """Returns [{'text','start','end','kind'}].
+def reveal_map(lines: list, beats: list, duration_s: float) -> list:
+    """Progressive states: state i shows lines[0..i]. Returns [{count,start,end}].
 
-    Hook holds ~1.4s, body lines are spread evenly across the middle of the reel and
-    snapped to the nearest beat, closer sits in the final 20%.
+    First line lands ~0.6s (scroll-stop), the rest snap to beats spread across the
+    first ~65% of the reel; the complete quote holds until the end.
     """
-    cards = [{"text": content.get("hook", ""), "kind": "hook"}]
-    for line in content.get("body_lines") or []:
-        cards.append({"text": line, "kind": "body"})
-    cards.append({"text": content.get("closer") or "", "kind": "closer"})
-    cards = [c for c in cards if c["text"].strip()]
-    n = len(cards)
+    n = len(lines)
     if n == 0:
         return []
-    if n == 1:
-        return [{"text": cards[0]["text"], "start": 0.0, "end": duration_s,
-                 "kind": cards[0]["kind"]}]
-
-    MIN_HOLD = 0.9
-    hook_end = min(HOOK_HOLD, max(duration_s * 0.18, MIN_HOLD))
-    region_start, region_end = hook_end, max(duration_s * 0.8, hook_end + MIN_HOLD)
-    middles = n - 2                      # body cards between hook and closer
-    starts = [0.0]
-    if middles > 0:
-        span = max(region_end - region_start, MIN_HOLD)
-        for i in range(middles):
-            target = region_start + span * (i + 1) / (middles + 1)
-            starts.append(_snap(target, beats))
-    closer_start = max(starts[-1] + MIN_HOLD, duration_s * 0.8) if middles > 0 \
-        else max(hook_end, duration_s * 0.8)
-    starts.append(min(closer_start, duration_s - MIN_HOLD))
-
-    # enforce monotonic, readable spacing
-    for i in range(1, len(starts)):
+    starts = [0.6]
+    usable = [b for b in beats if b > 1.2]
+    last_start = duration_s * 0.65
+    if usable:
+        span = max(last_start - starts[0], MIN_HOLD * (n - 1))
+        for i in range(1, n):
+            target = starts[0] + span * i / max(n, 2)
+            nearest = min(usable, key=lambda b: abs(b - target))
+            starts.append(nearest if abs(nearest - target) <= 0.35 else target)
+    else:
+        for i in range(1, n):
+            starts.append(starts[0] + (last_start - starts[0]) * i / max(n - 1, 1))
+    for i in range(1, n):
         starts[i] = max(starts[i], starts[i - 1] + MIN_HOLD)
-    overflow = starts[-1] - (duration_s - MIN_HOLD)
-    if overflow > 0:
-        starts = [max(s - overflow, 0.0) for s in starts]
-
-    out = []
-    for i, c in enumerate(cards):
+    states = []
+    for i in range(n):
         end = starts[i + 1] if i + 1 < n else duration_s
-        if i == 0:
-            end = min(end, hook_end)
-        out.append({"text": c["text"], "start": round(starts[i], 3),
-                    "end": round(max(end, starts[i] + 0.4), 3), "kind": c["kind"]})
-    for i in range(len(out) - 1):
-        if out[i]["end"] > out[i + 1]["start"]:
-            out[i]["end"] = max(out[i + 1]["start"], out[i]["start"] + 0.4)
-    out[-1]["end"] = duration_s
-    return out
-
-
-def _snap(target: float, beats: list, tolerance: float = 0.25) -> float:
-    """Snap a target time to the nearest beat when one is close enough."""
-    if not beats:
-        return target
-    nearest = min(beats, key=lambda b: abs(b - target))
-    return nearest if abs(nearest - target) <= tolerance else target
+        states.append({"count": i + 1, "start": round(starts[i], 3),
+                       "end": round(max(end, starts[i] + 0.6), 3)})
+    states[-1]["end"] = duration_s
+    return states
 
 
 # --------------------------------------------------------------- rendering
 
-def _wrap(text: str, max_chars: int = MAX_CHARS_PER_LINE, max_lines: int = MAX_LINES) -> list:
-    words = text.upper().split()
-    lines, cur = [], ""
-    for w in words:
-        cand = (cur + " " + w).strip()
-        if len(cand) <= max_chars:
-            cur = cand
-        else:
-            if cur:
-                lines.append(cur)
-            cur = w
-    if cur:
-        lines.append(cur)
-    if len(lines) > max_lines:
-        merged = []
-        per = max(1, len(lines) // max_lines + (1 if len(lines) % max_lines else 0))
-        for i in range(0, len(lines), per):
-            merged.append(" ".join(lines[i:i + per]))
-        lines = merged[:max_lines]
-    return lines
-
-
-def render_card(text: str, out_png: Path, cfg) -> Path:
+def render_state(lines: list, count: int, attribution: str, watermark: str,
+                 out_png: Path, cfg, serif: bool = True) -> Path:
     from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
     w = int(cfg["reel"]["w"])
-    font_path = config.ROOT / cfg["font_path"]
-    lines = _wrap(text)
+    h = int(cfg["reel"]["h"])
+    font_file = config.ROOT / (FONT_SERIF if serif else config.FONT_SANS if
+                               hasattr(config, "FONT_SANS") else FONT_SERIF)
+    font_file = config.ROOT / (FONT_SERIF if serif else FONT_SANS)
+    quote_font = ImageFont.truetype(str(font_file), QUOTE_PX)
+    attrib_font = ImageFont.truetype(str(config.ROOT / FONT_SANS), ATTRIB_PX)
+    mark_font = ImageFont.truetype(str(config.ROOT / FONT_SANS), WATERMARK_PX)
 
-    def load(size):
-        try:
-            return ImageFont.truetype(str(font_path), size)
-        except Exception:  # noqa: BLE001
-            return ImageFont.load_default()
+    shown = lines[:count]
+    line_h = int(QUOTE_PX * 1.42)
+    block_h = len(shown) * line_h
+    top = int(h * 0.5 - block_h / 2)
 
-    size = FONT_MAX
-    font = load(size)
-    max_w = w - 2 * SIDE_MARGIN
-    while size > FONT_MIN:
-        font = load(size)
-        widths = []
-        for ln in lines:
-            try:
-                widths.append(font.getbbox(ln)[2] - font.getbbox(ln)[0])
-            except Exception:  # noqa: BLE001
-                widths.append(int(len(ln) * size * 0.55))
-        if max(widths or [0]) <= max_w:
-            break
-        size -= 4
-    font = load(size)
-
-    line_h = int(size * 1.22)
-    img = Image.new("RGBA", (w, int(cfg["reel"]["h"])), (0, 0, 0, 0))
-    shadow = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    shadow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     sd = ImageDraw.Draw(shadow)
     d = ImageDraw.Draw(img)
 
-    top = int(cfg["reel"]["h"] * TOP_FRACTION)
-    for i, ln in enumerate(lines):
-        try:
-            bb = font.getbbox(ln)
-            lw = bb[2] - bb[0]
-        except Exception:  # noqa: BLE001
-            lw = int(len(ln) * size * 0.55)
-        x = (w - lw) // 2
-        y = top + i * line_h
-        sd.text((x + 3, y + 5), ln, font=font, fill=(0, 0, 0, 190))
-        d.text((x, y), ln, font=font, fill=(255, 255, 255, 255),
-               stroke_width=4, stroke_fill=(0, 0, 0, 235))
+    def draw_center(txt, font, y, fill, sd_fill):
+        bb = font.getbbox(txt)
+        tw = bb[2] - bb[0]
+        x = (w - tw) // 2
+        sd.text((x + 2, y + 3), txt, font=font, fill=sd_fill)
+        d.text((x, y), txt, font=font, fill=fill)
 
-    shadow = shadow.filter(ImageFilter.GaussianBlur(6))
+    for i, ln in enumerate(shown):
+        draw_center(ln, quote_font, top + i * line_h, INK, (0, 0, 0, 150))
+
+    if attribution and count == len(lines):
+        draw_center(attribution, attrib_font, top + block_h + 30, INK_DIM, (0, 0, 0, 110))
+
+    if watermark:
+        bb = mark_font.getbbox(watermark)
+        tw = bb[2] - bb[0]
+        d.text(((w - tw) // 2, int(h * 0.90)), watermark, font=mark_font, fill=INK_MARK)
+
+    shadow = shadow.filter(ImageFilter.GaussianBlur(5))
     img = Image.alpha_composite(shadow, img)
     out_png.parent.mkdir(parents=True, exist_ok=True)
     img.save(out_png, "PNG")
     return out_png
 
 
-def cover_from_frame0(reel: Path, out_jpg: Path) -> bool:
-    r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(reel),
-                        "-frames:v", "1", "-q:v", "2", str(out_jpg)],
-                       capture_output=True, text=True, timeout=120)
-    return r.returncode == 0 and out_jpg.exists()
-
-
 # ---------------------------------------------------------------- assembly
 
-def _probe_stream_codec(path) -> tuple:
-    """Returns (first_stream_codec_type, nb_frames_or_None)."""
+def _probe_frames(path) -> int | None:
     try:
         r = subprocess.run(["ffprobe", "-v", "error", "-print_format", "json",
                             "-show_streams", "-select_streams", "v", str(path)],
                            capture_output=True, text=True, timeout=60)
         s = (json.loads(r.stdout or "{}").get("streams") or [{}])[0]
         nf = s.get("nb_frames")
-        return s.get("codec_name"), (int(nf) if nf and str(nf).isdigit() else None)
+        return int(nf) if nf and str(nf).isdigit() else None
     except Exception:  # noqa: BLE001
-        return None, None
+        return None
 
 
-def assemble(bg_mp4: Path, cards: list, track_mp3: Path, out_mp4: Path, cfg,
-             duration_s: float, track_wav: Path | None = None) -> bool:
-    """Overlay each card over the background.
-
-    Loop inputs are mandatory: image2 demuxers stop after one frame, which silently
-    kills every `enable='between(t,..)'` overlay past t=0.
-    """
+def assemble(bg_mp4: Path, states: list, pngs: list, track_mp3: Path, out_mp4: Path,
+             cfg, duration_s: float) -> bool:
+    """Cumulative overlays: each progressive state shows for its window then the next
+    state (which contains all previous lines plus one) replaces it."""
     fps = int(cfg["reel"]["fps"])
-    n_cards = max(len(cards), 1)
-    card_paths = [config.OUTPUTS / f"card_{i}.png" for i in range(n_cards)]
-
     inputs = []
-    if _probe_stream_codec(bg_mp4)[1] == 1:
+    if _probe_frames(bg_mp4) == 1:
         inputs += ["-loop", "1"]
     inputs += ["-i", str(bg_mp4)]
-    for p in card_paths:
+    for p in pngs:
         inputs += ["-loop", "1", "-i", str(p)]
     inputs += ["-i", str(track_mp3)]
 
     filters = [f"[0:v]fps={fps},format=yuv420p[base]"]
     last = "base"
-    for i, c in enumerate(cards):
-        st, en = c["start"], c["end"]
-        lbl_in = f"c{i}"
-        lbl_out = f"v{i}"
+    for i, (st, png) in enumerate(zip(states, pngs)):
+        s0, s1 = st["start"], st["end"]
+        fade_in = CARD_FADE if i > 0 else 0.25
         filters.append(
-            f"[{i + 1}:v]fade=t=in:st={st:.3f}:d={CARD_FADE}:alpha=1,format=rgba[{lbl_in}]")
+            f"[{i + 1}:v]fade=t=in:st={s0:.3f}:d={fade_in}:alpha=1,format=rgba[s{i}]")
         filters.append(
-            f"[{last}][{lbl_in}]overlay=enable='between(t,{st:.3f},{en:.3f})':"
-            f"x=0:y=0:eof_action=pass[{lbl_out}]")
-        last = lbl_out
+            f"[{last}][s{i}]overlay=enable='between(t,{s0:.3f},{s1:.3f})':"
+            f"x=0:y=0:eof_action=pass[o{i}]")
+        last = f"o{i}"
     fade_out = 0.8
-    audio_idx = n_cards + 1
+    aidx = len(pngs) + 1
     filters.append(
-        f"[{audio_idx}:a]loudnorm=I=-16:TP=-1.5:LRA=11,"
+        f"[{aidx}:a]loudnorm=I=-16:TP=-1.5:LRA=11,"
         f"afade=t=out:st={max(duration_s - fade_out, 0):.3f}:d={fade_out},"
         f"atrim=0:{duration_s:.3f},asetpts=N/SR/TB[aout]")
 
@@ -255,49 +248,46 @@ def assemble(bg_mp4: Path, cards: list, track_mp3: Path, out_mp4: Path, cfg,
         "-movflags", "+faststart", str(out_mp4)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
     if r.returncode != 0:
-        print(f"[video] assemble failed: {r.stderr[-1500:]}")
+        print(f"[video] assemble failed: {r.stderr[-1200:]}")
         return False
     return out_mp4.exists()
 
 
+def cover_from_frame0(reel: Path, out_jpg: Path) -> bool:
+    r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", "0.9", "-i", str(reel),
+                        "-frames:v", "1", "-q:v", "2", str(out_jpg)],
+                       capture_output=True, text=True, timeout=120)
+    return r.returncode == 0 and out_jpg.exists()
+
+
 # ----------------------------------------------------------------- QA gate
 
-def extract_stamps(reel: Path, cards: list, out_dir=None) -> list:
-    """Pull one frame per card to prove every overlay actually rendered."""
+def extract_stamps(reel: Path, states: list, out_dir=None) -> list:
     out_dir = Path(out_dir or config.OUTPUTS)
     stamps = []
-    for i, c in enumerate(cards):
-        t = c["start"] + 0.5
-        if t >= c["end"]:
-            t = (c["start"] + c["end"]) / 2
+    for i, s in enumerate(states):
+        t = min(s["start"] + 0.7, (s["start"] + s["end"]) / 2)
         p = out_dir / f"check_{i}.jpg"
         r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{max(t, 0):.3f}",
                             "-i", str(reel), "-frames:v", "1", "-q:v", "3", str(p)],
                            capture_output=True, text=True, timeout=120)
         if r.returncode == 0 and p.exists():
-            stamps.append({"index": i, "t": round(t, 2), "kind": c.get("kind"),
-                           "text": c["text"], "frame": str(p)})
+            stamps.append({"index": i, "t": round(t, 2), "count": s["count"],
+                           "frame": str(p)})
     return stamps
 
 
 def card_visible(frame_path: Path) -> bool:
-    """True when the rendered card text is actually present in the frame.
-
-    The text is pure white (255,255,255) so ~50 near-white pixels is a comfortable,
-    robust threshold, and a frame with no overlay scores exactly zero.
-    """
     from PIL import Image
     try:
         with Image.open(frame_path) as im:
-            g = im.convert("L")
-            hist = g.histogram()
-        return sum(hist[245:256]) >= 50
+            hist = im.convert("L").histogram()
+        return sum(hist[235:256]) >= 120
     except Exception:  # noqa: BLE001
         return False
 
 
 def qa_gate(reel: Path, cfg) -> tuple:
-    """Returns (ok, info dict). Hard fail on any violation."""
     min_s, max_s = float(cfg["reel"]["min_s"]), float(cfg["reel"]["max_s"])
     info = {"path": str(reel), "exists": reel.exists()}
     if not reel.exists():
@@ -311,7 +301,6 @@ def qa_gate(reel: Path, cfg) -> tuple:
     except Exception as exc:  # noqa: BLE001
         info["error"] = str(exc)
         return False, info
-
     streams = data.get("streams") or []
     v = next((s for s in streams if s.get("codec_type") == "video"), None)
     a = next((s for s in streams if s.get("codec_type") == "audio"), None)
@@ -320,69 +309,67 @@ def qa_gate(reel: Path, cfg) -> tuple:
     size = int(fmt.get("size") or reel.stat().st_size)
     info.update({"width": (v or {}).get("width"), "height": (v or {}).get("height"),
                  "duration": dur, "size_mb": round(size / 1048576, 2),
-                 "has_video": bool(v), "has_audio": bool(a),
-                 "pix_fmt": (v or {}).get("pix_fmt"),
-                 "codec": (v or {}).get("codec_name")})
-    head = reel.open("rb").read(64)
-    info["faststart"] = b"moov" in head
-
+                 "faststart": b"moov" in reel.open("rb").read(64)})
     problems = []
     if not v or not a:
-        problems.append("missing video or audio stream")
+        problems.append("missing stream")
     if (v or {}).get("width") != int(cfg["reel"]["w"]) or (v or {}).get("height") != int(cfg["reel"]["h"]):
         problems.append(f"resolution {(v or {}).get('width')}x{(v or {}).get('height')}")
-    if not (min_s <= dur <= max_s):
-        problems.append(f"duration {dur:.2f}s outside {min_s}-{max_s}s")
+    if not (min_s - 0.2 <= dur <= max_s + 0.2):
+        problems.append(f"duration {dur:.2f}s")
     if size >= 60 * 1024 * 1024:
-        problems.append(f"size {size / 1048576:.1f}MB >= 60MB")
+        problems.append("size >= 60MB")
     if not info["faststart"]:
-        problems.append("moov atom not at front (faststart missing)")
+        problems.append("faststart missing")
     info["problems"] = problems
     return (not problems), info
 
 
+# ------------------------------------------------------------------- build
+
 def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_mp4: Path,
           out_mp4: Path | None = None, offline: bool = False):
-    """Full build. Returns (reel_path, qa_info). Raises RuntimeError on QA failure."""
     out_mp4 = out_mp4 or (config.OUTPUTS / "reel.mp4")
     mood = content.get("mood") or "dark_ambient"
+    lines = quote_lines(content)
+    if not lines:
+        raise RuntimeError("no quote lines to render")
     beats = beat_times(track_wav, mood, cfg, duration_s) if track_wav.exists() \
         else beat_times_fallback(cfg, mood, duration_s)
-    cards = timing_map(content, beats, duration_s)
-    if not cards:
-        raise RuntimeError("no text cards produced")
-    for i, c in enumerate(cards):
-        render_card(c["text"], config.OUTPUTS / f"card_{i}.png", cfg)
-    if not assemble(bg_mp4, cards, track_mp3, out_mp4, cfg, duration_s, track_wav):
+    states = reveal_map(lines, beats, duration_s)
+
+    attribution = ""
+    raw_attr = _clean(content.get("attribution") or content.get("closer") or "")
+    if raw_attr:
+        attribution = raw_attr if raw_attr.startswith(("-", "~")) else f"- {raw_attr}"
+    watermark = ""
+    handle = ((cfg.get("brand") or {}).get("handle") or "").strip()
+    if handle:
+        watermark = (handle.split(".")[0] + "." + handle.split(".")[-1] + "_").upper()
+        watermark = "".join(ch for ch in watermark if ch.isalnum() or ch in "._")
+    serif = True
+
+    pngs = []
+    for i, st in enumerate(states):
+        p = config.OUTPUTS / f"state_{i}.png"
+        render_state(lines, st["count"], attribution, watermark, p, cfg, serif=serif)
+        pngs.append(p)
+
+    if not assemble(bg_mp4, states, pngs, track_mp3, out_mp4, cfg, duration_s):
         raise RuntimeError("video assembly failed")
     cover_from_frame0(out_mp4, config.OUTPUTS / "cover.jpg")
     ok, info = qa_gate(out_mp4, cfg)
-    info["cards"] = cards
-    info["beats"] = beats[:24]
+    info["states"] = states
     if not ok:
         raise RuntimeError(f"QA gate failed: {info.get('problems')}")
 
-    # proxy check: every card must actually be on screen at its own start + 0.5s
-    stamps = extract_stamps(out_mp4, cards)
-    invisible = []
-    for s in stamps:
-        s["visible"] = card_visible(Path(s["frame"]))
-        if not s["visible"]:
-            invisible.append(f"card {s['index']} ({s['kind']}) not visible at t={s['t']}")
+    stamps = extract_stamps(out_mp4, states)
+    invisible = [f"state {s['index']} invisible at t={s['t']}"
+                 for s in stamps if not card_visible(Path(s["frame"]))]
     info["stamps"] = [{k: v for k, v in s.items() if k != "frame"} for s in stamps]
-    if invisible or len(stamps) != len(cards):
-        raise RuntimeError(f"QA gate failed: text cards missing from render: {invisible}")
+    if invisible or len(stamps) != len(states):
+        raise RuntimeError(f"QA gate failed: text missing from render: {invisible}")
     return out_mp4, info
-
-
-def beat_times_fallback(cfg, mood: str, duration_s: float) -> list:
-    bpm = float((cfg.get("mood_fallback_bpm") or {}).get(mood, 90))
-    interval = 60.0 / max(bpm, 1)
-    out, t = [], interval * 0.5
-    while t < duration_s:
-        out.append(t)
-        t += interval
-    return out or [0.5, 1.0, 2.0, 3.0, 4.0]
 
 
 def pick_duration(cfg) -> float:

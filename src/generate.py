@@ -13,13 +13,21 @@ from datetime import timedelta
 from . import config, llm
 
 SYSTEM_PROMPT = (
-    "You are the content strategist for an Instagram account about masculine "
-    "self-transformation, brand: Unleash The Beast. Voice: dark, direct, brutal "
-    "short sentences, second person, no fluff, no emoji, no hashtags. You write "
-    "on-screen text for 8–14 second reels: a HOOK (max 8 words), 2–4 BODY LINES "
-    "(max 10 words each), and a CLOSER (max 8 words). Themes: pain, discipline, "
-    "silence, becoming dangerous, self-respect, focus, rejection. Never cliché. "
-    "Never 'rise and grind' energy. Return ONLY valid JSON."
+    "You are the writer for an Instagram dark-motivation account: Unleash The Beast. "
+    "You write QUOTE CARDS in the style of stoic/sigma reels: ONE aphorism per reel, "
+    "12-30 words total, sentence case, wrapped naturally into 2-4 display lines, "
+    "framed by typographic double quotes. Examples of the exact style: "
+    "\"The moment you are disturbed by insult or pleased by praise, you are still a slave.\" "
+    "- Marcus Aurelius | \"In a fight, muscles mean nothing if your heart's not ready to bleed.\" "
+    "| \"A man with soft fists shouldn't sharpen his tongue.\" | \"discipline >>> motivation\". "
+    "Voice: dark, direct, second person or universal truth, no fluff, no emoji, no hashtags, "
+    "never 'rise and grind' cliches, no exclamation marks, never preachy. "
+    "Optionally attach a short attribution (a stoic philosopher, a fighter, 'your future self', "
+    "'Dad', or omit) ONLY if it strengthens the line - never invent fake quotes by living celebrities. "
+    "Also choose a SCENE: a 3-8 word English search query for moody vertical VIDEO footage that "
+    "visually embodies the quote's metaphor (e.g. 'hooded man shadow boxing dark gym night', "
+    "'lone runner fog road dawn', 'tiger behind cage bars dark', 'night city rain streetlamp'). "
+    "The footage is the metaphor; the quote is the punchline. Return ONLY valid JSON."
 )
 
 DEDUP_RATIO = 0.7
@@ -27,13 +35,13 @@ HOOK_WINDOW_DAYS = 90
 PAIR_WINDOW_DAYS = 7
 
 OFFLINE_CONTENT = {
-    "hook": "You were not built for comfort",
-    "body_lines": ["Comfort is a slow death", "Discipline is the only way out", "Nobody is coming to save you"],
-    "closer": "Become the beast",
+    "quote": "The moment you are disturbed by insult or pleased by praise, you are still a slave.",
+    "attribution": "Marcus Aurelius",
+    "scene": "lone hooded man walking foggy road night",
     "archetype": "hard_truth",
     "topic": "discipline",
     "mood": "aggressive_phonk",
-    "bg_type": "dark_gym",
+    "bg_type": "lone_figure",
     "rationale": "offline fixture",
     "exploit": True,
 }
@@ -87,27 +95,31 @@ def build_user_prompt(cfg, strategy, memory, directives) -> str:
     styles = config.load_trending_styles()
     style_pick = random.choice(styles) if styles else ""
     return json.dumps({
-        "task": "Write exactly 10 distinct reel concepts.",
+        "task": "Write exactly 10 distinct quote-card concepts.",
         "strategy_lean": lean,
         "archetypes": cfg["archetypes"],
         "topics": cfg["topics"],
         "moods": cfg["moods"],
         "bg_types": list(cfg["bg_types"].keys()),
         "style_reference_hooks": refs,
-        "banned_hooks_do_not_reuse": past,
+        "banned_quotes_do_not_reuse": past,
         "current_vibe_note": style_pick,
         "weekly_directives": directives or "none",
         "rules": [
-            "hook max 8 words, body_lines 2-4 items max 10 words each, closer max 8 words",
-            "no emoji, no hashtags, no cliche, no 'rise and grind'",
+            "quote: one aphorism, 12-30 words, sentence case, ends with period, no emoji",
+            "attribution: short string or empty",
+            "scene: 3-8 word query for moody dark vertical video footage matching the metaphor",
+            "every candidate needs a DIFFERENT scene concept",
             "exploit the strategy_lean values unless you have a strong reason not to",
         ],
         "output_schema": {
             "candidates": [{
-                "hook": "string", "body_lines": ["string"], "closer": "string",
+                "quote": "string with quotes omitted (engine adds them)",
+                "attribution": "string or empty",
+                "scene": "string",
                 "archetype": "one of archetypes", "topic": "one of topics",
                 "mood": "one of moods", "bg_type": "one of bg_types",
-                "rationale": "why this will stop the scroll",
+                "rationale": "why this quote + scene pairing stops the scroll",
             }]
         },
     }, ensure_ascii=False)
@@ -116,10 +128,12 @@ def build_user_prompt(cfg, strategy, memory, directives) -> str:
 def judge(candidates: list) -> list:
     """Score each candidate 1-10. Returns list of {index, score, reason}."""
     payload = json.dumps({
-        "task": "Score each reel concept for Instagram Reels in the masculine self-transformation niche.",
-        "score_dimensions": ["hook strength", "scroll-stop power", "share-worthiness", "brand fit"],
-        "candidates": [{"index": i, "hook": c.get("hook"), "body_lines": c.get("body_lines"),
-                        "closer": c.get("closer")} for i, c in enumerate(candidates)],
+        "task": "Score each dark-motivation quote card for Instagram Reels.",
+        "score_dimensions": ["quote strength", "scroll-stop power", "share-worthiness",
+                             "brand fit", "how well the scene footage embodies the metaphor"],
+        "candidates": [{"index": i, "quote": c.get("quote"),
+                        "attribution": c.get("attribution"), "scene": c.get("scene")}
+                       for i, c in enumerate(candidates)],
         "output_schema": {"scores": [{"index": 0, "score": 1, "reason": "string"}]},
     }, ensure_ascii=False)
     try:
@@ -142,7 +156,10 @@ def judge(candidates: list) -> list:
 
 
 def _valid(cand: dict, cfg) -> bool:
-    if not cand.get("hook"):
+    quote = _clean_q(cand.get("quote") or cand.get("hook"))
+    if not quote or not (6 <= len(quote.split()) <= 45):
+        return False
+    if not (cand.get("scene") or "").strip():
         return False
     if cand.get("archetype") not in cfg["archetypes"]:
         return False
@@ -152,14 +169,16 @@ def _valid(cand: dict, cfg) -> bool:
         return False
     if cand.get("bg_type") not in cfg["bg_types"]:
         return False
-    lines = cand.get("body_lines")
-    if not isinstance(lines, list) or not (2 <= len(lines) <= 4):
-        return False
     return True
 
 
+def _clean_q(text) -> str:
+    return " ".join(str(text or "").split()).strip().strip('"').strip("'").strip()
+
+
 def _dedup_ok(cand: dict, banned: list, recent_pairs: set) -> bool:
-    if any(_similar(cand["hook"], b) > DEDUP_RATIO for b in banned):
+    quote = _clean_q(cand.get("quote") or cand.get("hook"))
+    if any(_similar(quote, b) > DEDUP_RATIO for b in banned):
         return False
     if (cand.get("archetype"), cand.get("topic")) in recent_pairs:
         return False
@@ -194,9 +213,11 @@ def _hashtags(cfg, memory) -> list:
     return out[:28]
 
 
-def _build_caption(cfg, winner: dict, body_lines: list, include_cta: bool) -> str:
-    lines = [winner["hook"], "", ] + list(body_lines[:2])
-    caption = "\n".join(lines)
+def _build_caption(cfg, quote: str, attribution: str, include_cta: bool) -> str:
+    parts = [quote]
+    if attribution:
+        parts += ["", attribution]
+    caption = "\n".join(parts)
     if include_cta:
         caption += "\n\n" + cfg["cta_line"]
     return caption[:2200]
@@ -211,14 +232,11 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
     if offline:
         winner = dict(OFFLINE_CONTENT)
         content = dict(winner)
-        content["caption"] = "You were not built for comfort\n\nComfort is a slow death\nDiscipline is the only way out"
-        content["hashtags"] = ["#motivation", "#discipline", "#mindset", "#stoicism",
-                               "#masculinity", "#selfimprovement", "#quietgrind", "#ironmind"]
         content["include_cta"] = False
         content["bg_source"] = "bundled"
         content["music_source"] = "drone"
         content["trending_ref"] = {"title": "", "artist": "", "genre": "", "trend_score": None}
-        content["hook"] = winner["hook"]
+        content["caption"] = (content["quote"] + "\n\n- " + content["attribution"])
         content["exploit"] = True
         config.save_content(content)
         return content
@@ -261,16 +279,18 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
         exploit = True
 
     include_cta = (memory.get("post_counter", 0) + 1) % int(cfg.get("cta_every_n_posts", 5)) == 0
-    body_lines = list(winner.get("body_lines") or [])[:4]
+    quote = _clean_q(winner.get("quote") or winner.get("hook"))
+    attribution = _clean_q(winner.get("attribution"))
     content = {
-        "hook": winner["hook"],
-        "body_lines": body_lines,
-        "closer": winner.get("closer", ""),
+        "quote": quote,
+        "attribution": attribution,
+        "scene": _clean_q(winner.get("scene")),
+        "hook": quote,                      # keep the hook key for captions/logs
         "archetype": winner["archetype"],
         "topic": winner["topic"],
         "mood": winner["mood"],
         "bg_type": winner["bg_type"],
-        "caption": _build_caption(cfg, winner, body_lines, include_cta),
+        "caption": _build_caption(cfg, quote, attribution, include_cta),
         "hashtags": _hashtags(cfg, memory),
         "include_cta": include_cta,
         "exploit": exploit,
@@ -282,15 +302,17 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
 
     if not dry_run and not offline:
         memory.setdefault("used_hooks", []).append({
-            "hook": content["hook"], "date": config.today_utc().isoformat(),
+            "hook": quote, "date": config.today_utc().isoformat(),
             "archetype": content["archetype"], "topic": content["topic"],
         })
         memory.setdefault("candidate_log", []).append({
             "date": config.today_utc().isoformat(),
-            "candidates": [{"hook": c.get("hook"), "archetype": c.get("archetype"),
-                            "topic": c.get("topic"), "mood": c.get("mood")} for c in candidates],
+            "candidates": [{"quote": c.get("quote") or c.get("hook"),
+                            "archetype": c.get("archetype"),
+                            "topic": c.get("topic"), "mood": c.get("mood"),
+                            "scene": c.get("scene")} for c in candidates],
             "scores": scores,
-            "winner": content["hook"],
+            "winner": quote,
         })
         config.save_memory(memory)
 

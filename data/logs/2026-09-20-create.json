@@ -473,5 +473,405 @@
       "host": "uguu",
       "video_url": "https://n.uguu.se/TkAaDStr.mp4"
     }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-20T20:52:36.372360+00:00",
+    "dry_run": false,
+    "offline": true,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.0
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.0,
+        "seconds": 785.6
+      },
+      {
+        "step": "trending_joined",
+        "t": 785.64,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 785.64,
+        "post": true,
+        "reason": "offline"
+      },
+      {
+        "step": "duration",
+        "t": 785.64,
+        "seconds": 9.7
+      },
+      {
+        "step": "generated",
+        "t": 785.66,
+        "hook": "You were not built for comfort",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 795.87,
+        "source": "bundled"
+      },
+      {
+        "step": "music",
+        "t": 808.01,
+        "source": "trending_free"
+      },
+      {
+        "step": "built",
+        "t": 905.61,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.7,
+          "size_mb": 0.45,
+          "has_video": true,
+          "has_audio": true,
+          "pix_fmt": "yuv420p",
+          "codec": "h264",
+          "faststart": true,
+          "problems": [],
+          "beats": [
+            0.4876190476190476,
+            1.1377777777777778,
+            1.8343764172335602,
+            2.5309750566893423,
+            3.297233560090703,
+            4.017052154195011,
+            4.713650793650793,
+            5.456689342403628,
+            6.199727891156463,
+            6.919546485260771,
+            7.662585034013605,
+            8.382403628117913,
+            9.102222222222222
+          ],
+          "stamps": [
+            {
+              "index": 0,
+              "t": 0.5,
+              "kind": "hook",
+              "text": "You were not built for comfort",
+              "visible": true
+            },
+            {
+              "index": 1,
+              "t": 3.49,
+              "kind": "body",
+              "text": "Comfort is a slow death",
+              "visible": true
+            },
+            {
+              "index": 2,
+              "t": 5.21,
+              "kind": "body",
+              "text": "Discipline is the only way out",
+              "visible": true
+            },
+            {
+              "index": 3,
+              "t": 6.7,
+              "kind": "body",
+              "text": "Nobody is coming to save you",
+              "visible": true
+            },
+            {
+              "index": 4,
+              "t": 8.26,
+              "kind": "closer",
+              "text": "Become the beast",
+              "visible": true
+            }
+          ]
+        }
+      },
+      {
+        "step": "published",
+        "t": 905.61,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-20T21:34:15.491786+00:00",
+    "dry_run": false,
+    "offline": true,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.0
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.0,
+        "seconds": 9.6
+      },
+      {
+        "step": "trending_joined",
+        "t": 9.55,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 9.55,
+        "post": true,
+        "reason": "offline"
+      },
+      {
+        "step": "duration",
+        "t": 9.55,
+        "seconds": 10.42
+      },
+      {
+        "step": "generated",
+        "t": 9.56,
+        "hook": null,
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 45.5,
+        "source": "bundled"
+      },
+      {
+        "step": "music",
+        "t": 70.69,
+        "source": "trending_free"
+      },
+      {
+        "step": "built",
+        "t": 141.24,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "width": 1080,
+          "height": 1920,
+          "duration": 10.433333,
+          "size_mb": 2.82,
+          "faststart": true,
+          "problems": [],
+          "states": [
+            {
+              "count": 1,
+              "start": 0.6,
+              "end": 2.538
+            },
+            {
+              "count": 2,
+              "start": 2.538,
+              "end": 4.846
+            },
+            {
+              "count": 3,
+              "start": 4.846,
+              "end": 10.42
+            }
+          ],
+          "stamps": [
+            {
+              "index": 0,
+              "t": 1.3,
+              "count": 1
+            },
+            {
+              "index": 1,
+              "t": 3.24,
+              "count": 2
+            },
+            {
+              "index": 2,
+              "t": 5.55,
+              "count": 3
+            }
+          ]
+        }
+      },
+      {
+        "step": "published",
+        "t": 141.24,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-20T22:06:57.569563+00:00",
+    "dry_run": false,
+    "offline": true,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.0
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.0,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 0.0,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 0.0,
+        "post": true,
+        "reason": "offline"
+      },
+      {
+        "step": "duration",
+        "t": 0.0,
+        "seconds": 12.7
+      },
+      {
+        "step": "generated",
+        "t": 0.0,
+        "hook": null,
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 38.62,
+        "source": "bundled"
+      },
+      {
+        "step": "music",
+        "t": 39.85,
+        "source": "drone"
+      },
+      {
+        "step": "built",
+        "t": 115.27,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "width": 1080,
+          "height": 1920,
+          "duration": 12.7,
+          "size_mb": 3.49,
+          "faststart": true,
+          "problems": [],
+          "states": [
+            {
+              "count": 1,
+              "start": 0.6,
+              "end": 3.0
+            },
+            {
+              "count": 2,
+              "start": 3.0,
+              "end": 5.769
+            },
+            {
+              "count": 3,
+              "start": 5.769,
+              "end": 12.7
+            }
+          ],
+          "stamps": [
+            {
+              "index": 0,
+              "t": 1.3,
+              "count": 1
+            },
+            {
+              "index": 1,
+              "t": 3.7,
+              "count": 2
+            },
+            {
+              "index": 2,
+              "t": 6.47,
+              "count": 3
+            }
+          ]
+        }
+      },
+      {
+        "step": "published",
+        "t": 115.27,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-20T22:16:25.925674+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.01
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.01,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.25,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.25,
+        "post": false,
+        "reason": "already posted today (idempotency)"
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-20T22:17:17.232757+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.69
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.69,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 0.97,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 0.97,
+        "post": false,
+        "reason": "already posted today (idempotency)"
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
   }
 ]

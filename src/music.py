@@ -348,8 +348,12 @@ def drone_provider(cfg, content, track_mp3, track_wav, duration_s: float):
 
 
 def acquire(cfg, content, strategy, memory, trending_ref, duration_s: float,
-            dry_run: bool = False):
-    """Run the chain. Always returns (True, meta) unless even the drone fails."""
+            dry_run: bool = False, offline: bool = False):
+    """Run the chain. Always returns (True, meta) unless even the drone fails.
+
+    offline=True skips the network tiers entirely (deterministic drone only), so
+    `--offline` never touches the audio service — that path is not hermetic.
+    """
     config.OUTPUTS.mkdir(parents=True, exist_ok=True)
     track_mp3 = config.OUTPUTS / "track.mp3"
     track_wav = config.OUTPUTS / "track.wav"
@@ -357,13 +361,14 @@ def acquire(cfg, content, strategy, memory, trending_ref, duration_s: float,
         if f.exists():
             f.unlink()
 
-    ok, meta = trending_free_provider(cfg, content, strategy, memory, trending_ref,
-                                      track_mp3, track_wav, duration_s)
-    if ok:
-        return True, meta
-    ok, meta = library_provider(cfg, content, memory, track_mp3, track_wav, duration_s)
-    if ok:
-        return True, meta
+    if not offline:
+        ok, meta = trending_free_provider(cfg, content, strategy, memory, trending_ref,
+                                          track_mp3, track_wav, duration_s)
+        if ok:
+            return True, meta
+        ok, meta = library_provider(cfg, content, memory, track_mp3, track_wav, duration_s)
+        if ok:
+            return True, meta
     ok, meta = drone_provider(cfg, content, track_mp3, track_wav, duration_s)
     if ok:
         return True, meta
