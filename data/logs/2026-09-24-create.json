@@ -110,5 +110,329 @@
     "result": {
       "skipped": "dry-run"
     }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-24T19:31:12.985307+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.22
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.22,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.61,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.61,
+        "post": false,
+        "reason": "warmup (until 2026-09-28) — off day"
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-24T19:32:13.567357+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.08
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.08,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.37,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.37,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.38,
+        "seconds": 10.22
+      },
+      {
+        "step": "generated",
+        "t": 111.83,
+        "hook": "She matched with you. And you're suspicious.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 200.22,
+        "source": "pinterest_video"
+      },
+      {
+        "step": "music",
+        "t": 220.13,
+        "source": "trending_free"
+      },
+      {
+        "step": "built",
+        "t": 336.01,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "width": 1080,
+          "height": 1920,
+          "duration": 10.233333,
+          "size_mb": 8.22,
+          "faststart": true,
+          "problems": [],
+          "states": [
+            {
+              "index": 0,
+              "start": 0.0,
+              "end": 2.2
+            },
+            {
+              "index": 1,
+              "start": 2.2,
+              "end": 4.365
+            },
+            {
+              "index": 2,
+              "start": 4.365,
+              "end": 6.502
+            },
+            {
+              "index": 3,
+              "start": 6.502,
+              "end": 10.22
+            }
+          ],
+          "stamps": [
+            {
+              "index": 0,
+              "t": 0.7
+            },
+            {
+              "index": 1,
+              "t": 2.9
+            },
+            {
+              "index": 2,
+              "t": 5.07
+            },
+            {
+              "index": 3,
+              "t": 7.2
+            }
+          ]
+        }
+      },
+      {
+        "step": "published",
+        "t": 336.01,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-24T20:17:42.197675+00:00",
+    "dry_run": false,
+    "offline": true,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.0
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.0,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 0.0,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 0.0,
+        "post": true,
+        "reason": "offline"
+      },
+      {
+        "step": "duration",
+        "t": 0.0,
+        "seconds": 9.89
+      },
+      {
+        "step": "generated",
+        "t": 0.0,
+        "hook": "You know the exact words.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 53.14,
+        "source": "bundled"
+      },
+      {
+        "step": "music",
+        "t": 54.28,
+        "source": "drone"
+      },
+      {
+        "step": "built",
+        "t": 88.12,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.9,
+          "size_mb": 1.82,
+          "faststart": true,
+          "problems": [],
+          "text": {
+            "lines": 9,
+            "px": 72,
+            "widest": 836
+          },
+          "stamps": [
+            {
+              "index": 0,
+              "t": 1.2
+            },
+            {
+              "index": 1,
+              "t": 4.95
+            },
+            {
+              "index": 2,
+              "t": 8.69
+            }
+          ]
+        }
+      },
+      {
+        "step": "published",
+        "t": 88.12,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-24T20:19:53.875158+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.75
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.75,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.47,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.47,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.47,
+        "seconds": 9.77
+      },
+      {
+        "step": "generated",
+        "t": 68.09,
+        "hook": "You laugh a half second too late.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 129.64,
+        "source": "pinterest_video"
+      },
+      {
+        "step": "music",
+        "t": 158.79,
+        "source": "trending_free"
+      },
+      {
+        "step": "built",
+        "t": 218.13,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.77,
+          "size_mb": 5.88,
+          "faststart": true,
+          "problems": [],
+          "text": {
+            "lines": 7,
+            "px": 72,
+            "widest": 858
+          },
+          "stamps": [
+            {
+              "index": 0,
+              "t": 1.2
+            },
+            {
+              "index": 1,
+              "t": 4.88
+            },
+            {
+              "index": 2,
+              "t": 8.57
+            }
+          ]
+        }
+      },
+      {
+        "step": "published",
+        "t": 218.13,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
   }
 ]

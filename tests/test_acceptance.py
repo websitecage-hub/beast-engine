@@ -1,10 +1,9 @@
-"""Acceptance tests (section 11) — v4.0 BRAIN edition.
+"""Acceptance tests (section 11) — v4.1 single-paragraph edition.
 
 Run: python3 tests/test_acceptance.py
 
-Covers: clean imports, law enforcement (banned words, fonts), dedup rejection,
-script-block validation, cut map timing (2s hook hold), learn on fixture memory,
-and workflow YAML contracts.
+Covers: clean imports, law enforcement on paragraphs, measured-fit overflow
+gate, dedup rejection, learn on fixture memory, workflow YAML contracts.
 """
 from __future__ import annotations
 
@@ -35,102 +34,80 @@ def test_imports_clean():
 # ------------------------------------------------- brain law enforcement
 
 def test_law_no_just_no_advice():
-    ok, why = generate._laws_ok([
-        "You know exactly what to say. You say nothing. Again.",
-        "You ran the conversation on the walk over. Word for word.",
-        "It was never a knowledge problem.",
-    ])
-    assert ok, f"clean script rejected: {why}"
-    bad = [
-        "You know exactly what to say.",
-        "Just say it next time.",                      # Law 5: 'just' banned
-        "It was never a knowledge problem.",
-    ]
-    ok, why = generate._laws_ok(bad)
-    assert not ok, "'just' script must be rejected"
-    bad2 = [
-        "The conversation ends.",
-        "Here is my advice: stop rehearsing.",         # advice banned
-        "The trial begins.",
-    ]
-    ok, why = generate._laws_ok(bad2)
-    assert not ok, "advice script must be rejected"
-
-
-def test_font_laws():
-    # hook + landing anton, never same twice in a row
-    assert generate._fonts_ok(["anton", "playfair_italic", "anton"], 3)
-    assert not generate._fonts_ok(["playfair_italic", "cormorant_italic", "anton"], 3)
-    assert not generate._fonts_ok(["anton", "anton", "bebas"], 3)
-    assert not generate._fonts_ok(["anton", "bebas"], 3)              # landing not anton
-    assert not generate._fonts_ok(["anton", "playfair_italic"], 3)    # wrong length
+    ok, why = generate._laws_ok(
+        "You know the exact words. You ran them on the walk over. Your mouth filed "
+        "for silence. It was never a knowledge problem.")
+    assert ok, f"clean paragraph rejected: {why}"
+    ok, why = generate._laws_ok(
+        "You know the exact words. Just say them next time. It was never courage.")
+    assert not ok and "just" in why, "'just' must be rejected"
+    ok, why = generate._laws_ok(
+        "The conversation ends. Here is my advice: stop rehearsing. The trial begins.")
+    assert not ok, "advice must be rejected"
+    ok, why = generate._laws_ok("Two sentences only. Nothing more.")
+    assert not ok, "under 3 sentences must be rejected"
 
 
 def test_candidate_validation():
     cfg = config.load_config()
     good = {
-        "blocks": ["You know exactly what to say. You say nothing. Again.",
-                   "You ran the conversation on the walk over. Word for word.",
-                   "It was never a knowledge problem."],
-        "fonts": ["anton", "playfair_italic", "anton"],
+        "paragraph": ("You know the exact words. You ran them on the walk over, word "
+                      "for word. Then the moment arrived and your mouth filed for "
+                      "silence. It was never a knowledge problem."),
         "scene": "empty street night rain",
         "archetype": "the_freeze", "topic": "exposure_fear",
         "mood": "quiet_devastating", "bg_type": "freeze_detour",
     }
     assert generate._valid(good, cfg) is True
     assert generate._valid({**good, "scene": ""}, cfg) is False          # scene required
-    assert generate._valid({**good, "blocks": ["short", "lines", "ok"]}, cfg) is False
+    assert generate._valid({**good, "paragraph": "too short."}, cfg) is False
     assert generate._valid({**good, "mood": "aggressive_phonk"}, cfg) is False
     assert generate._valid({**good, "archetype": "hard_truth"}, cfg) is False
-    assert generate._valid({**good, "fonts": ["bebas", "caveat", "bebas"]}, cfg) is False
 
 
 # ------------------------------------------------------------------ dedup
 
 def test_dedup_rejects_near_duplicate():
-    dup = "The conversation ends. The trial begins."
-    near = "The conversation ends. The trial begins"
+    dup = ("You know the exact words. You ran them on the walk over. Your mouth "
+           "filed for silence. It was never a knowledge problem.")
+    near = ("You know the exact words. You ran them on the walk over. Your mouth "
+            "filed for silence. It was never a knowledge problem")
     assert generate._similar(dup, near) > generate.DEDUP_RATIO
     banned = [dup]
-    cand = {"blocks": [near, "You review the footage until 2am.",
-                       "You've been cross-examining yourself since school."],
-            "archetype": "the_aftermath", "topic": "replay_2am"}
+    cand = {"paragraph": near, "archetype": "the_freeze", "topic": "exposure_fear"}
     assert generate._dedup_ok(cand, banned, set()) is False
-    fresh = {"blocks": ["She matched with you. And you're suspicious.",
-                        "Being chosen feels like a setup.",
-                        "You're not unlovable. You're unreachable."],
+    fresh = {"paragraph": ("She matched with you. Being chosen feels like a setup. "
+                           "You never reply. You are not unlovable, you are "
+                           "unreachable."),
              "archetype": "the_craving", "topic": "dating_app_freeze"}
     assert generate._dedup_ok(fresh, banned, set()) is True
     assert generate._dedup_ok(fresh, [], {("the_craving", "dating_app_freeze")}) is False
 
 
-# ------------------------------------------------------- script + timing
+# --------------------------------------------------- measured fit (no overflow)
 
-def test_script_blocks_enforce_font_and_roles():
-    content = {"blocks": ["You want to talk. Your mouth disagrees.",
-                         "There's a version of you that's funny, warm, easy to be around.",
-                         "The words were never the problem. The opening was."],
-              "fonts": ["anton", "caveat", "anton"]}
-    blocks = build_video.script_blocks(content)
-    assert [b["role"] for b in blocks] == ["hook", "middle", "landing"]
-    assert blocks[0]["font"] == "anton" and blocks[-1]["font"] == "anton"
-    # same font twice in a row gets rewritten
-    content2 = {"blocks": ["A", "B", "C"], "fonts": ["anton", "anton", "anton"]}
-    blocks2 = build_video.script_blocks(content2)
-    assert blocks2[1]["font"] != blocks2[0]["font"]
-    assert blocks2[-1]["font"] == "anton"
+def test_fit_paragraph_never_overflows():
+    cfg = config.load_config()
+    long_p = ("You know the exact words and you ran them on the walk over, word for "
+              "word, and then the moment arrived and your mouth filed for silence "
+              "while everyone watched and the trial starts tonight at two in the "
+              "morning reviewing what you did not say.")
+    lines, px = build_video.fit_paragraph(long_p, cfg)
+    build_video.assert_fits(lines, px, cfg)      # raises on any overflow
+    assert len(lines) >= 2 and px > 0
+    # short paragraph keeps the biggest font
+    lines2, px2 = build_video.fit_paragraph("You know the exact words.", cfg)
+    assert px2 == build_video.PX_LADDER[0]
 
 
-def test_cut_map_hook_hold_law():
-    beats = [0.8, 1.6, 2.4, 3.2, 4.0, 4.8, 5.6, 6.4, 7.2, 8.0]
-    states = build_video.cut_map(["a"] * 4, beats, 10.0)
-    assert states[0]["start"] == 0.0
-    assert states[1]["start"] >= 1.8, f"2-second hold law violated: {states}"
-    assert states[-1]["end"] == 10.0
-    for a, b in zip(states, states[1:]):
-        assert b["start"] >= a["start"] + 1.0          # readable holds
-    # single block: full reel
-    assert build_video.cut_map(["a"], [], 9.0) == [{"index": 0, "start": 0.0, "end": 9.0}]
+# --------------------------------------------------------------- corpus
+
+def test_reddit_corpus_loaded():
+    posts = generate.load_corpus()
+    assert len(posts) >= 50, f"corpus too small: {len(posts)}"
+    sample = generate._corpus_sample()
+    assert 1 <= len(sample) <= generate.CORPUS_SAMPLE
+    assert all("title" in p or "text" in p for p in sample)
 
 
 # --------------------------------------------------------------- analyzer
@@ -145,14 +122,11 @@ def test_learn_on_fixture_memory():
     G = analyze._global_mean(posts)
     assert 0.02 < G < 0.15, f"global mean out of expected band: {G}"
 
-    strat = config.default_strategy()
     followers = {}
     for arch in cfg["archetypes"]:
         adj, n, wsum = analyze._adjusted(posts, lambda p: (p["dna"] or {}).get("archetype"),
                                          arch, G)
         followers[arch] = (adj, n)
-    # shrinkage: a sparse value must be pulled toward G, not sit at its raw mean
-    # (v4.0: the_craving appears exactly once, with the lowest raw score)
     sparse, raw_low = None, None
     for arch in cfg["archetypes"]:
         adj, n, _ = analyze._adjusted(posts, lambda p: (p["dna"] or {}).get("archetype"),
@@ -162,18 +136,14 @@ def test_learn_on_fixture_memory():
             if raw < G:
                 sparse, raw_low = arch, raw
                 break
-    assert sparse is not None and raw_low is not None, \
-        "fixture must contain a sparse low-scoring archetype"
+    assert sparse is not None and raw_low is not None
     adj_sparse = analyze._adjusted(posts, lambda p: (p["dna"] or {}).get("archetype"),
                                   sparse, G)[0]
-    assert abs(adj_sparse - G) < abs(raw_low - G) + 1e-9, \
-        "sparse value must shrink toward G"
+    assert abs(adj_sparse - G) < abs(raw_low - G) + 1e-9
 
-    # normalized weights
     norm = analyze._normalize({k: v for k, v in {a: followers[a][0] for a in followers}.items()})
     assert abs(sum(norm.values()) - 1.0) < 1e-6
 
-    # report renders with the saves/shares emphasis
     strategy = config.default_strategy()
     strategy["adj"] = {"archetype": {a: followers[a][0] for a in followers},
                        "topic": {}, "mood": {}, "bg_type": {}}
@@ -206,7 +176,6 @@ def test_workflows_parse_and_contracts():
     }
     for name, (cron, timeout, group, script) in expected.items():
         doc = yaml.safe_load((wf / name).read_text(encoding="utf-8"))
-        # PyYAML parses the bare `on:` key as boolean True
         triggers = doc.get("on") or doc.get(True)
         assert triggers is not None, f"{name}: no trigger block"
         crons = [c["cron"] for c in triggers["schedule"]]
@@ -250,7 +219,6 @@ def test_config_families_line_up():
     assert set(cfg["topics"]) == set(strat["weights"]["topic"])
     assert set(cfg["moods"]) == set(strat["weights"]["mood"])
     assert set(cfg["bg_types"].keys()) == set(strat["weights"]["bg_type"])
-    # v4.0: every archetype maps to a bg cluster
     for arch in cfg["archetypes"]:
         assert arch in cfg["archetype_bg_map"], f"{arch} missing from archetype_bg_map"
 

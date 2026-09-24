@@ -233,6 +233,57 @@ def _acquire(api: str, url: str, title: str, artist: str) -> bytes | None:
     return None
 
 
+MOOD_TEMPO_BANDS = {
+    # mood -> (min_bpm, max_bpm) — a quiet_devastating reel must not get a 140bpm
+    # banger; a restrained_anger reel must not get a lullaby. Measured, not guessed.
+    "quiet_devastating": (50, 95),
+    "heavy_shadow": (40, 80),
+    "muffled_world": (55, 95),
+    "restrained_anger": (60, 105),
+    "gentle_hope": (45, 85),
+}
+MOOD_RMS_FLOOR = 0.02       # near-silence is a broken download, not a mood match
+
+
+def tempo_of(path) -> float | None:
+    """Measured tempo (bpm) via librosa. None when analysis fails."""
+    try:
+        import librosa
+        y, sr = librosa.load(str(path), sr=22050, mono=True)
+        tempo, _ = librosa.beat.beat_track(y=y, sr=sr)
+        return float(tempo)
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def rms_of(path) -> float | None:
+    try:
+        import librosa
+        y, sr = librosa.load(str(path), sr=22050, mono=True)
+        return float(librosa.feature.rms(y=y).mean())
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def mood_matches(mood: str, track_path) -> bool:
+    """Audio-verified mood gate: tempo within band + non-silent."""
+    band = MOOD_TEMPO_BANDS.get(mood)
+    if band is None:
+        return True
+    t = tempo_of(track_path)
+    r = rms_of(track_path)
+    if t is None:
+        return True            # analysis failed -> don't block the chain
+    lo, hi = band
+    if not (lo <= t <= hi):
+        print(f"[music] mood gate: {t:.0f}bpm outside {mood} band {lo}-{hi} — rejecting")
+        return False
+    if r is not None and r < MOOD_RMS_FLOOR:
+        print(f"[music] mood gate: near-silent (rms {r:.4f}) — rejecting")
+        return False
+    return True
+
+
 def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_mp3, track_wav,
                            duration_s: float):
     """Returns (True, meta) on success. Never raises.
@@ -240,7 +291,8 @@ def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_m
     Candidates are tried in order. Each one is first pushed through the user's audio
     service (POST /v1/download) and fetched from /v1/file/reels/<name>; if that service
     cannot take a URL we already have a direct public URL, so we fall back to fetching it
-    ourselves rather than losing the track entirely.
+    ourselves rather than losing the track entirely. Every acquired track must pass the
+    measured mood gate (tempo band + RMS) before it is accepted.
     """
     music = cfg["music"]
     api = music["trending_api"]
@@ -270,7 +322,7 @@ def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_m
     title = (trending_ref or {}).get("title") or full_query
     artist = (trending_ref or {}).get("artist") or "free-license"
 
-    for url, source in candidates[:4]:
+    for url, source in candidates[:6]:
         got = None
         raw = _acquire(api, url, title, artist)
         if raw:
@@ -288,6 +340,8 @@ def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_m
             continue
         if not has_audio_stream(track_mp3) or ffprobe_duration(track_mp3) < 5:
             continue
+        if not mood_matches(mood, track_mp3):
+            continue                      # tempo/silence mismatch — try the next one
         if not to_wav(track_mp3, track_wav):
             continue
         return True, {"music_source": "trending_free", "url": url, "source_site": source,

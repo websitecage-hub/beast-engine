@@ -3,8 +3,9 @@
 Offline mode uses canned fixture content and mutates nothing.
 Dry-run performs real calls but mutates no state.
 
-v4.0 BRAIN: the account mirrors ONE person (social anxiety wound), script-block
-reels (HOOK -> DEEPENING -> LANDING), laws enforced in-prompt and in-code.
+v4.1: single confession PARAGRAPH reels grounded in the r/socialanxiety +
+r/lonely corpus (data/research/corpus.json). Laws enforced in-prompt AND
+in code. Saves+shares is the only success metric.
 """
 from __future__ import annotations
 
@@ -12,11 +13,12 @@ import difflib
 import json
 import random
 from datetime import timedelta
+from pathlib import Path
 
 from . import config, llm
 
-# The Generation Directive (Brain §12) embedded verbatim, plus the structured
-# JSON contract for script reels. Laws 1-12 are enforced in _valid() too.
+# The Generation Directive (Brain §12) embedded verbatim, plus the
+# single-paragraph contract grounded in the r/socialanxiety corpus.
 SYSTEM_PROMPT = (
     "You write for one person: a young man who believes, in his core, that he is "
     "fundamentally flawed — and that every social moment is a trial that might prove "
@@ -26,40 +28,45 @@ SYSTEM_PROMPT = (
     "wants to speak, the body betraying him while he watches — with such precision "
     "that for the first time, being seen outweighs feeling flawed. Never advise. "
     "Never sell. Never confirm the flaw: describe what he does and feels, never what "
-    "he is. Never say \"just\". Every reel: HOOK (one exact scene, 2-second hold) -> "
-    "DEEPENING (under the behavior, to the fear) -> LANDING (one line that names the "
-    "unnameable). Present tense, second person, his language. Hold the paradox close "
-    "— he craves the exact thing he avoids — and let the rare hope reels point at the "
-    "door without ever pushing him through it.\n\n"
+    "he is. Never say \"just\". Present tense, second person, his language. Hold the "
+    "paradox close — he craves the exact thing he avoids — and let the rare hope "
+    "reels point at the door without ever pushing him through it.\n\n"
+    "You are also given REAL POSTS from people exactly like him (r/socialanxiety, "
+    "r/lonely). Mine them for the exact scenes, the exact wording, the things they "
+    "actually say. His language lives there: the rehearsed order fumbled anyway, "
+    "the phone left to ring out, the bathroom at parties, the 2am replay, the text "
+    "deleted nine times, 'annoyed when invited, sad when not', the manager who "
+    "grades the silence instead of the work. Write the way those posts FEEL, "
+    "tightened into one paragraph — never a quote-for-quote copy, never the post "
+    "titles verbatim.\n\n"
     "Output contract: a JSON object {\"candidates\": [...]}. Each candidate has "
-    "blocks (3 to 5 text blocks, in order: hook, deepening..., landing), "
-    "archetype, topic, mood, scene (3-8 word dark cinematic Pinterest video query "
-    "matching the feeling's location), fonts (list, same length as blocks, each one "
-    "of anton, playfair_italic, cormorant_italic, caveat, bebas; the hook and landing "
-    "MUST be anton; never the same font twice in a row), is_hope (boolean, true only "
-    "for rare recovery reels written as distance traveled, never commands), and "
-    "rationale (why this stops HIS scroll). Every block is a complete thought, "
-    "present tense, second person. No advice, no tips, no \"just\", no emoji, no "
-    "hashtags on screen, no naming disorders, no toxic positivity, no grind. "
-    "Tragic, never pathetic."
+    "paragraph (ONE paragraph, 30-60 words, 3-6 sentences, present tense, second "
+    "person, ending on the line that names the unnameable — the last sentence IS "
+    "the landing), archetype, topic, mood, scene (3-8 word dark cinematic Pinterest "
+    "video query matching the feeling's location), is_hope (true only for rare "
+    "recovery reels written as distance traveled, never commands), and rationale. "
+    "No advice, no tips, no \"just\", no emoji, no hashtags, no naming disorders, "
+    "no toxic positivity, no grind. Tragic, never pathetic. The paragraph is the "
+    "whole reel — it must be readable in one breath-hold and hit the 'how did they "
+    "know' reflex by the second sentence."
 )
 
-BANNED_WORDS = ("just ", " just", "advice", "follow these", "try this", "you should",
-                "stop doing", "start doing", "grind", "hustle", "sigma", "discipline")
+BANNED_PHRASES = ("advice", "follow these", "try this", "you should", "stop doing",
+                  "start doing", "grind", "hustle", "sigma", "discipline >>>",
+                  "social anxiety", "socially anxious", "anxiety disorder",
+                  "just do it", "believe in yourself", "you got this")
 DEDUP_RATIO = 0.7
 HOOK_WINDOW_DAYS = 90
 PAIR_WINDOW_DAYS = 7
-VALID_FONTS = ("anton", "playfair_italic", "cormorant_italic", "caveat", "bebas")
+CORPUS_PATH = config.ROOT / "data" / "research" / "corpus.json"
+CORPUS_SAMPLE = 12          # how many real posts go into every prompt
 
 OFFLINE_CONTENT = {
-    "hook": "You know exactly what to say. You say nothing. Again.",
-    "blocks": [
-        "You know exactly what to say. You say nothing. Again.",
-        "You ran the conversation on the walk over. Word for word.",
-        "Then the moment came — and your body filed for silence.",
-        "It was never a knowledge problem.",
-    ],
-    "fonts": ["anton", "playfair_italic", "cormorant_italic", "anton"],
+    "paragraph": ("You know the exact words. You ran them on the walk over, word for "
+                  "word. Then the moment arrived and your mouth filed for silence — "
+                  "and the trial starts tonight at 2am, reviewing what you didn't "
+                  "say. It was never a knowledge problem."),
+    "hook": "You know the exact words.",
     "scene": "empty street night rain",
     "archetype": "the_freeze",
     "topic": "exposure_fear",
@@ -70,6 +77,37 @@ OFFLINE_CONTENT = {
     "is_hope": False,
 }
 
+
+# ------------------------------------------------------------------ corpus
+
+def load_corpus(limit: int = 0) -> list:
+    """Real confession posts (title + text) for prompt grounding."""
+    if not CORPUS_PATH.exists():
+        return []
+    try:
+        posts = json.loads(CORPUS_PATH.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return []
+    out = []
+    for p in posts:
+        title = str(p.get("title") or "").strip()
+        text = str(p.get("text") or "").strip()
+        if not title and not text:
+            continue
+        out.append({"sub": p.get("sub", ""), "title": title,
+                    "text": text[:400]})
+    return out[:limit] if limit else out
+
+
+def _corpus_sample() -> list:
+    posts = load_corpus()
+    if not posts:
+        return []
+    k = min(CORPUS_SAMPLE, len(posts))
+    return random.sample(posts, k)
+
+
+# --------------------------------------------------------------- prompting
 
 def _top_weighted(strategy: dict, family: str) -> str:
     weights = (strategy.get("weights") or {}).get(family) or {}
@@ -115,16 +153,13 @@ def build_user_prompt(cfg, strategy, memory, directives, force_hope=False) -> st
     lean = {fam: _top_weighted(strategy, fam) for fam in
             ("archetype", "topic", "mood", "bg_type")}
     past = _recent_hooks(memory, cfg)[-40:]
-    refs = random.sample(past, min(5, len(past))) if past else []
     calib = cfg["brand"].get("hook_examples") or []
     n_posts = int(memory.get("post_counter", 0))
-    # Hope quota: max 1 in 10. Whisper quota: max 1 in 7. Compute the next eligible
-    # post indexes so the model can't overspend them.
     hope_mod = n_posts % int(cfg.get("hope_every_n_posts", 10))
-    whisper_mod = n_posts % int(cfg.get("cta_every_n_posts", 7))
+    corpus = _corpus_sample()
     return json.dumps({
-        "task": ("Write exactly 10 distinct script-reel concepts for one specific "
-                  "person (see system). Each is a multi-block script." +
+        "task": ("Write exactly 10 distinct single-paragraph confession reels for "
+                  "one specific person (see system). Each paragraph is one reel." +
                   (" THIS SET MUST BE A QUIET HOPE SET: recovery written as distance "
                     "traveled, never commands, still second person." if force_hope
                     else " AT MOST ONE candidate may be is_hope=true.")),
@@ -133,28 +168,27 @@ def build_user_prompt(cfg, strategy, memory, directives, force_hope=False) -> st
         "topics": cfg["topics"],
         "moods": cfg["moods"],
         "bg_types": list(cfg["bg_types"].keys()),
-        "calibration_hooks": calib,
-        "style_reference_hooks": refs,
+        "calibration_examples": calib,
+        "real_posts_from_his_people": corpus,
         "banned_hooks_do_not_reuse": past,
-        "hope_quota_note": f"post_counter={n_posts}; hope allowed when 0 of this set is hope"
-                           f" and post_counter % hope_every_n_posts == {hope_mod}",
+        "hope_quota_note": f"post_counter={n_posts}; hope_every_n_posts=10; "
+                           f"hope allowed only when this batch forces it",
         "weekly_directives": directives or "none",
         "rules": [
-            "blocks: 3-5 complete-thought text blocks; first = HOOK (one exact scene), "
-            "last = LANDING (one line naming the unnameable); middle = DEEPENING",
-            "every block is present tense, second person, describes what he does/feels",
-            "fonts: hook and landing MUST be anton; never the same font twice in a row; "
-            "middle fonts from playfair_italic, cormorant_italic, caveat, bebas",
+            "paragraph: ONE paragraph, 30-60 words, 3-6 sentences, present tense, "
+            "second person; the last sentence is the landing — it names the "
+            "unnameable, it never advises",
             "scene: 3-8 word query for dark cinematic vertical video footage — the "
             "location of the feeling",
             "exploit the strategy_lean values unless you have a strong reason not to",
             "banned: advice, tips, the word just, grind/hustle/sigma/money, toxic "
-            "positivity, confirming the flaw, emoji, on-screen hashtags",
+            "positivity, confirming the flaw, emoji, hashtags, naming disorders",
+            "use the real_posts as FEELING calibration — never copy sentences from "
+            "them into the paragraph",
         ],
         "output_schema": {
             "candidates": [{
-                "blocks": ["HOOK", "deepening line", "LANDING"],
-                "fonts": ["anton", "playfair_italic", "anton"],
+                "paragraph": "the whole reel, one paragraph",
                 "archetype": "one of archetypes", "topic": "one of topics",
                 "mood": "one of moods", "bg_type": "one of bg_types",
                 "scene": "string", "is_hope": False,
@@ -167,15 +201,15 @@ def build_user_prompt(cfg, strategy, memory, directives, force_hope=False) -> st
 def judge(candidates: list) -> list:
     """Score each candidate 1-10 on saves+shares potential. Returns list of dicts."""
     payload = json.dumps({
-        "task": ("Score each reel script for an account whose ONLY success metric is "
-                 "saves + shares from one specific socially anxious young man. A save "
-                 "means 'this is me'; a share means 'this is you'."),
+        "task": ("Score each confession paragraph for an account whose ONLY success "
+                 "metric is saves + shares from one specific socially anxious young "
+                 "man. A save means 'this is me'; a share means 'this is you'."),
         "score_dimensions": ["precision of the scene ('how did they know' reflex)",
                              "save-worthiness (it IS him)",
                              "share-worthiness (sendable to the one friend)",
                              "law compliance (no advice, no 'just', no flaw-confirming)",
-                             "landing-line strength"],
-        "candidates": [{"index": i, "blocks": c.get("blocks"),
+                             "landing-sentence strength"],
+        "candidates": [{"index": i, "paragraph": c.get("paragraph"),
                         "scene": c.get("scene"), "archetype": c.get("archetype")}
                        for i, c in enumerate(candidates)],
         "output_schema": {"scores": [{"index": 0, "score": 1, "reason": "string"}]},
@@ -183,7 +217,7 @@ def judge(candidates: list) -> list:
     try:
         out = llm.chat([{"role": "system", "content": SYSTEM_PROMPT},
                         {"role": "user", "content": payload}], expect_json=True, retries=2)
-    except Exception:  # noqa: BLE001 — retry once more per error matrix
+    except Exception:  # noqa: BLE001
         out = llm.chat([{"role": "system", "content": SYSTEM_PROMPT},
                         {"role": "user", "content": payload}], expect_json=True, retries=1)
     scores = (out or {}).get("scores") or []
@@ -199,59 +233,33 @@ def judge(candidates: list) -> list:
     return cleaned
 
 
+# ------------------------------------------------------------ law gates
+
 def _clean_q(text) -> str:
     return " ".join(str(text or "").split()).strip().strip('"').strip("'").strip()
 
 
-def _laws_ok(blocks: list) -> tuple:
+def _laws_ok(paragraph: str) -> tuple:
     """Enforce Brain laws in code. Returns (ok, reason)."""
-    if not (3 <= len(blocks) <= 5):
-        return False, f"block count {len(blocks)}"
-    text = " ".join(blocks).lower()
-    if "just" in text.replace("justified", "").replace("adjust", ""):
-        # Law 5: the word 'just' is banned (allow inside other words only)
-        for blk in blocks:
-            low = blk.lower()
-            if any(f"just{c}" in low and f"just{c}" not in ("justified", "adjust")
-                   and f" just " in f" {low} " for c in (" ", ".", ",", "!", "?")):
-                return False, "'just' appears"
-    for word in ("advice", "you should", "try this", "follow these", "grind", "hustle",
-                 "sigma", "discipline >>>", "social anxiety", "socially anxious",
-                 "social anxiety disorder"):
-        if word in text:
-            return False, f"banned phrase: {word}"
-    # Hope law: only the hook block may carry hope and it must read as distance
-    # traveled — heuristic guard, the prompt carries the real rule.
-    if any("just do" in b.lower() for b in blocks):
-        return False, "imperative hope"
+    low = " " + paragraph.lower() + " "
+    # Law 5: the word 'just' is banned as a standalone word
+    if " just " in low or " just." in low or " just," in low or " just;" in low:
+        return False, "'just' appears"
+    for phrase in BANNED_PHRASES:
+        if phrase in low:
+            return False, f"banned phrase: {phrase}"
+    sentences = [s.strip() for s in paragraph.split(".") if s.strip()]
+    if len(sentences) < 3:
+        return False, "fewer than 3 sentences"
     return True, ""
 
 
-def _fonts_ok(fonts: list, n_blocks: int) -> bool:
-    if len(fonts) != n_blocks:
-        return False
-    if any(f not in VALID_FONTS for f in fonts):
-        return False
-    if fonts[0] != "anton" or fonts[-1] != "anton":
-        return False
-    for a, b in zip(fonts, fonts[1:]):
-        if a == b:
-            return False
-    return True
-
-
 def _valid(cand: dict, cfg) -> bool:
-    blocks = [ _clean_q(b) for b in (cand.get("blocks") or []) ]
-    blocks = [b for b in blocks if b]
-    if len(blocks) < 3:
+    paragraph = _clean_q(cand.get("paragraph"))
+    if not (20 <= len(paragraph.split()) <= 80):
         return False
-    if not all(2 <= len(b.split()) <= 30 for b in blocks):
-        return False
-    ok, _why = _laws_ok(blocks)
+    ok, _why = _laws_ok(paragraph)
     if not ok:
-        return False
-    fonts = [str(f).strip() for f in (cand.get("fonts") or [])]
-    if not fonts or not _fonts_ok(fonts, len(blocks)):
         return False
     if not (cand.get("scene") or "").strip():
         return False
@@ -267,13 +275,15 @@ def _valid(cand: dict, cfg) -> bool:
 
 
 def _dedup_ok(cand: dict, banned: list, recent_pairs: set) -> bool:
-    hook = _clean_q((cand.get("blocks") or [""])[0])
-    if any(_similar(hook, b) > DEDUP_RATIO for b in banned):
+    paragraph = _clean_q(cand.get("paragraph"))
+    if any(_similar(paragraph, b) > DEDUP_RATIO for b in banned):
         return False
     if (cand.get("archetype"), cand.get("topic")) in recent_pairs:
         return False
     return True
 
+
+# ------------------------------------------------------------ assembly
 
 def _hashtags(cfg, memory) -> list:
     pools = cfg["hashtag_pools"]
@@ -287,30 +297,23 @@ def _hashtags(cfg, memory) -> list:
         if tl not in seen:
             seen.add(tl)
             out.append(tl)
-    try:
-        fresh = llm.chat([{"role": "user", "content": json.dumps({
-            "task": "Invent 2 fresh niche hashtags for a quiet confessional page about "
-                    "social anxiety and being seen. Lowercase, no #, max 20 chars, "
-                    "gentle not clinical.",
-            "output_schema": {"tags": ["string"]}})},
-        ], expect_json=True, retries=2)
-        for t in (fresh or {}).get("tags", [])[:2]:
-            t = str(t).lower().lstrip("#").strip()
-            if t and len(t) <= 20 and t not in seen:
-                seen.add(t)
-                out.append("#" + t)
-    except Exception:  # noqa: BLE001 — hashtag invention is best-effort
-        pass
     return out[:20]
 
 
-def _build_caption(cfg, blocks: list, include_cta: bool, is_hope: bool) -> str:
-    cap = "\n\n".join(blocks)
+def _build_caption(cfg, paragraph: str, include_cta: bool, is_hope: bool) -> str:
+    cap = paragraph
     if is_hope:
         cap += "\n\n(quiet hope)"
     if include_cta:
         cap += "\n\n" + cfg["cta_line"]
     return cap[:2200]
+
+
+def _first_sentence(paragraph: str) -> str:
+    for sep in (". ", "! ", "? "):
+        if sep in paragraph:
+            return paragraph.split(sep)[0] + sep.strip()
+    return paragraph
 
 
 def generate(dry_run: bool = False, offline: bool = False) -> dict:
@@ -320,12 +323,11 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
     directives = config.load_directives()
 
     if offline:
-        winner = dict(OFFLINE_CONTENT)
-        content = dict(winner)
+        content = dict(OFFLINE_CONTENT)
         content["bg_source"] = "bundled"
         content["music_source"] = "drone"
         content["trending_ref"] = {"title": "", "artist": "", "genre": "", "trend_score": None}
-        content["caption"] = _build_caption(cfg, content["blocks"], False, False)
+        content["caption"] = _build_caption(cfg, content["paragraph"], False, False)
         content["hashtags"] = []
         content["include_cta"] = False
         content["exploit"] = True
@@ -381,16 +383,12 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
             is_hope = False
 
     include_cta = (n_posts + 1) % int(cfg.get("cta_every_n_posts", 7)) == 0
-    blocks = [_clean_q(b) for b in (winner.get("blocks") or []) if _clean_q(b)]
-    fonts = [str(f).strip() for f in (winner.get("fonts") or [])][:len(blocks)]
-    while len(fonts) < len(blocks):
-        fonts.append("playfair_italic")
-    hook = blocks[0]
+    paragraph = _clean_q(winner.get("paragraph"))
+    hook = _first_sentence(paragraph)
     content = {
-        "hook": hook,
-        "blocks": blocks,
-        "fonts": fonts,
-        "quote": hook,                     # legacy key: captions/logs
+        "paragraph": paragraph,
+        "hook": hook,                          # logs / dedup key
+        "quote": paragraph,                    # legacy key: captions/logs
         "attribution": "",
         "scene": _clean_q(winner.get("scene")),
         "archetype": winner["archetype"],
@@ -398,7 +396,7 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
         "mood": winner["mood"],
         "bg_type": winner["bg_type"],
         "is_hope": is_hope,
-        "caption": _build_caption(cfg, blocks, include_cta, is_hope),
+        "caption": _build_caption(cfg, paragraph, include_cta, is_hope),
         "hashtags": _hashtags(cfg, memory),
         "include_cta": include_cta,
         "exploit": exploit,
@@ -415,8 +413,8 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
         })
         memory.setdefault("candidate_log", []).append({
             "date": config.today_utc().isoformat(),
-            "candidates": [{"hook": (c.get("blocks") or [""])[0],
-                            "blocks": c.get("blocks"),
+            "candidates": [{"hook": _first_sentence(_clean_q(c.get("paragraph"))),
+                            "paragraph": c.get("paragraph"),
                             "archetype": c.get("archetype"),
                             "topic": c.get("topic"), "mood": c.get("mood"),
                             "scene": c.get("scene")} for c in candidates],

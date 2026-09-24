@@ -1,14 +1,13 @@
-"""build_video.py — v4.0 text-show reels: hard-cut paragraph blocks, font switching.
+"""build_video.py — static confession-paragraph reels.
 
-Format laws (Brain §7):
-  * Paragraph blocks, NO cumulative reveal — one complete thought per state,
-    hard cut on the beat. The block change IS the transition.
-  * Font switch mandatory, never same font twice in a row:
-      anton (hooks + landings), playfair_italic (confessions),
-      cormorant_italic (fragile intimacy), caveat (inner voice/2am), bebas (cold facts)
-  * 2-second hold law: hook block static and alone, minimum 1.8s.
-  * Center-third, white, soft shadow, readable at thumbnail size.
-  * 8-11 seconds, 3-5 blocks.
+Format (user-confirmed 2026-09-24, supersedes the multi-block/font-switch
+experiment): ONE paragraph on screen for the whole reel — no reveals, no
+hard cuts, no font switching. Serif (Tinos, Times-class), flat near-white,
+soft blurred shadow, centered — matching references/Video-*.mp4.
+
+Text is MEASURED, never guessed: the font auto-fits so no line can overflow
+(the v4.0 reel overflowed because Caveat was sized by char-count, not by
+rendered width — impossible now by construction).
 """
 from __future__ import annotations
 
@@ -19,24 +18,14 @@ from pathlib import Path
 
 from . import config
 
-SIDE_MARGIN = 120
-FONT_FILES = {
-    "anton": "assets/fonts/Anton-Regular.ttf",
-    "playfair_italic": "assets/fonts/PlayfairDisplay-Italic.ttf",
-    "cormorant_italic": "assets/fonts/CormorantGaramond-Italic.ttf",
-    "caveat": "assets/fonts/Caveat.ttf",
-    "bebas": "assets/fonts/BebasNeue-Regular.ttf",
-}
-FALLBACK_FONT = "assets/fonts/Tinos-Regular.ttf"
-# Slightly different px per font so optically similar (Anton is dense, Caveat light).
-FONT_PX = {"anton": 74, "playfair_italic": 64, "cormorant_italic": 66,
-           "caveat": 84, "bebas": 72}
+FONT_SERIF = "assets/fonts/Tinos-Regular.ttf"
+FONT_MARK = "assets/fonts/Inter-Regular.ttf"
 WATERMARK_PX = 28
-CARD_FADE = 0.22
-MIN_HOLD = 1.0
-HOOK_MIN_HOLD = 1.8
+SIDE_MARGIN = 110          # px each side -> 860 usable of 1080
+MAX_BLOCK_H = 0.60        # fraction of frame height the text block may use
+FADE_IN = 0.5
+PX_LADDER = [72, 68, 64, 60, 56, 52, 48, 44, 40]   # tried in order, first fit wins
 INK = (245, 245, 245, 255)
-INK_DIM = (235, 235, 235, 115)
 INK_MARK = (230, 230, 230, 150)
 
 
@@ -46,63 +35,127 @@ def _clean(text: str) -> str:
     return " ".join((text or "").split()).strip().strip('"').strip()
 
 
-def _wrap_block(text: str, font_key: str, max_chars: int = 30) -> list:
-    """Wrap one block into balanced display lines (short lines, centered)."""
+def paragraph_text(content: dict) -> str:
+    """The single confession paragraph (falls back to legacy quote field)."""
+    p = _clean(content.get("paragraph") or content.get("quote") or content.get("hook") or "")
+    return p
+
+
+def _wrap_measured(text: str, font, max_w: int) -> list:
+    """Greedy wrap by MEASURED width, then a balancing pass.
+
+    Returns [] if even a single word doesn't fit (caller tries a smaller px).
+    """
     words = text.split()
     if not words:
         return []
-    max_lines = 4 if len(words) > 24 else (3 if len(words) > 14 else 2)
-    best = {"cost": float("inf"), "lines": None}
 
-    def cost_of(lines):
-        lens = [len(l) for l in lines]
-        target = sum(lens) / len(lens)
-        c = sum((l - target) ** 2 for l in lens)
-        c += sum(max(0, l - max_chars) ** 2 * 40 for l in lens)
-        c += sum(900 for l in lines if len(l.split()) == 1)
-        return c
+    def width(s: str) -> int:
+        return font.getbbox(s)[2]
 
-    def recurse(start, acc):
-        if len(acc) == max_lines or start >= len(words):
-            if start >= len(words) and acc:
-                c = cost_of(acc)
-                if c < best["cost"]:
-                    best.update(cost=c, lines=list(acc))
-            return
-        for end in range(start + 1, min(len(words), start + 10) + 1):
-            chunk = " ".join(words[start:end])
-            if len(chunk) > max_chars and end > start + 1:
-                break
-            recurse(end, acc + [chunk])
+    # greedy fill
+    lines: list[str] = []
+    cur = ""
+    for wd in words:
+        cand = f"{cur} {wd}".strip()
+        if width(cand) <= max_w or not cur:
+            cur = cand
+        else:
+            lines.append(cur)
+            cur = wd
+    if cur:
+        lines.append(cur)
+    if any(width(ln) > max_w for ln in lines):
+        return []                    # a single word overflows -> smaller font
 
-    recurse(0, [])
-    return best["lines"] or [" ".join(words)]
+    # balance: move trailing words down while it evens the line widths
+    for _ in range(200):
+        moved = False
+        for i in range(len(lines) - 1):
+            wds = lines[i].split()
+            while len(wds) > 1:
+                trial_last = " ".join(wds[-1:])
+                rest = " ".join(wds[:-1])
+                nxt = f"{trial_last} {lines[i + 1]}".strip()
+                if width(rest) >= width(nxt) and width(nxt) <= max_w:
+                    lines[i] = rest
+                    lines[i + 1] = nxt
+                    wds = rest.split()
+                    moved = True
+                else:
+                    break
+        if not moved:
+            break
+    return lines
 
 
-def script_blocks(content: dict, cfg: dict | None = None) -> list:
-    """Return [{text, font, role}] — the reel's block sequence (v4.0)."""
-    blocks = [ _clean(b) for b in (content.get("blocks") or []) ]
-    blocks = [b for b in blocks if b]
-    if not blocks:
-        # legacy single-quote content: one block
-        q = _clean(content.get("quote") or content.get("hook") or "")
-        blocks = [q] if q else []
-    fonts = [str(f).strip() for f in (content.get("fonts") or [])]
-    out = []
-    for i, b in enumerate(blocks):
-        fk = fonts[i] if i < len(fonts) and fonts[i] in FONT_FILES else (
-            "anton" if i in (0, len(blocks) - 1) else "playfair_italic")
-        role = "hook" if i == 0 else ("landing" if i == len(blocks) - 1 else "middle")
-        out.append({"text": b, "font": fk, "role": role})
-    # Law: never same font twice in a row
-    for i in range(1, len(out)):
-        if out[i]["font"] == out[i - 1]["font"]:
-            out[i]["font"] = "cormorant_italic" if out[i]["role"] == "middle" else "anton"
-    # Law: hook + landing are anton
-    if out:
-        out[0]["font"] = "anton"
-        out[-1]["font"] = "anton"
-    return out
+def fit_paragraph(text: str, cfg) -> tuple:
+    """Return (lines, px) — the largest font size where every line fits."""
+    from PIL import ImageFont
+    w = int(cfg["reel"]["w"])
+    h = int(cfg["reel"]["h"])
+    max_w = w - 2 * SIDE_MARGIN
+    max_h = int(h * MAX_BLOCK_H)
+    for px in PX_LADDER:
+        font = ImageFont.truetype(str(config.ROOT / FONT_SERIF), px)
+        lines = _wrap_measured(text, font, max_w)
+        if not lines:
+            continue
+        line_h = int(px * 1.45)
+        if len(lines) * line_h <= max_h:
+            return lines, px
+    raise RuntimeError("paragraph cannot fit even at the smallest font size")
+
+
+def assert_fits(lines: list, px: int, cfg) -> None:
+    """Deterministic pre-render overflow gate (measured, not guessed)."""
+    from PIL import ImageFont
+    w = int(cfg["reel"]["w"])
+    max_w = w - 2 * SIDE_MARGIN
+    font = ImageFont.truetype(str(config.ROOT / FONT_SERIF), px)
+    worst = max(font.getbbox(ln)[2] for ln in lines)
+    assert worst <= max_w, f"overflow: widest line {worst}px > {max_w}px allowed"
+    assert len(lines) * int(px * 1.45) <= int(cfg["reel"]["h"] * MAX_BLOCK_H), "block too tall"
+
+
+# --------------------------------------------------------------- rendering
+
+def render_card(lines: list, px: int, watermark: str, out_png: Path, cfg) -> Path:
+    from PIL import Image, ImageDraw, ImageFilter, ImageFont
+    w = int(cfg["reel"]["w"])
+    h = int(cfg["reel"]["h"])
+    font = ImageFont.truetype(str(config.ROOT / FONT_SERIF), px)
+    mark_font = ImageFont.truetype(str(config.ROOT / FONT_MARK), WATERMARK_PX)
+
+    line_h = int(px * 1.45)
+    block_h = len(lines) * line_h
+    top = int(h * 0.5 - block_h / 2)
+
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    shadow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(shadow)
+    d = ImageDraw.Draw(img)
+
+    def draw_center(txt, f, y, fill, sd_fill):
+        bb = f.getbbox(txt)
+        tw = bb[2] - bb[0]
+        x = (w - tw) // 2 - bb[0]
+        sd.text((x + 2, y + 3), txt, font=f, fill=sd_fill)
+        d.text((x, y), txt, font=f, fill=fill)
+
+    for i, ln in enumerate(lines):
+        draw_center(ln, font, top + i * line_h, INK, (0, 0, 0, 150))
+
+    if watermark:
+        bb = mark_font.getbbox(watermark)
+        tw = bb[2] - bb[0]
+        d.text(((w - tw) // 2, int(h * 0.90)), watermark, font=mark_font, fill=INK_MARK)
+
+    shadow = shadow.filter(ImageFilter.GaussianBlur(5))
+    img = Image.alpha_composite(shadow, img)
+    out_png.parent.mkdir(parents=True, exist_ok=True)
+    img.save(out_png, "PNG")
+    return out_png
 
 
 # ------------------------------------------------------------------- timing
@@ -130,88 +183,6 @@ def beat_times_fallback(cfg, mood: str, duration_s: float) -> list:
     return out or [0.5, 1.0, 2.0, 3.0, 4.0]
 
 
-def cut_map(blocks: list, beats: list, duration_s: float) -> list:
-    """Hard-cut states: block i shows alone for its window. Returns [{index,start,end}].
-
-    Hook holds >= 1.8s alone (2-second hold law). Remaining blocks snap to beats,
-    spread across the rest of the reel; the landing holds to the end.
-    """
-    n = len(blocks)
-    if n == 0:
-        return []
-    states = []
-    if n == 1:
-        return [{"index": 0, "start": 0.0, "end": duration_s}]
-    hook_hold = max(HOOK_MIN_HOLD, min(2.2, duration_s * 0.22))
-    starts = [0.0]
-    usable = [b for b in beats if b > hook_hold + 0.4]
-    last_start = duration_s - max(MIN_HOLD, 1.2)
-    if usable:
-        span = max(last_start - starts[0], MIN_HOLD * (n - 1))
-        for i in range(1, n):
-            target = starts[0] + hook_hold + (span - hook_hold) * (i - 1) / max(n - 1, 1)
-            nearest = min(usable, key=lambda b: abs(b - target))
-            starts.append(nearest if abs(nearest - target) <= 0.4 else target)
-    else:
-        for i in range(1, n):
-            starts.append(hook_hold + (last_start - hook_hold) * i / max(n - 1, 1))
-    for i in range(1, n):
-        starts[i] = max(starts[i], starts[i - 1] + MIN_HOLD)
-    starts = sorted(starts[:n])
-    for i in range(n):
-        end = starts[i + 1] if i + 1 < n else duration_s
-        states.append({"index": i, "start": round(starts[i], 3),
-                       "end": round(max(end, starts[i] + 0.6), 3)})
-    states[-1]["end"] = duration_s
-    return states
-
-
-# --------------------------------------------------------------- rendering
-
-def render_state(block: dict, out_png: Path, cfg, watermark: str = "") -> Path:
-    """One block, one frame style — hard cuts mean each state is one card."""
-    from PIL import Image, ImageDraw, ImageFilter, ImageFont
-
-    w = int(cfg["reel"]["w"])
-    h = int(cfg["reel"]["h"])
-    font_key = block["font"]
-    font_file = config.ROOT / FONT_FILES.get(font_key, FALLBACK_FONT)
-    px = FONT_PX.get(font_key, 64)
-    quote_font = ImageFont.truetype(str(font_file), px)
-    mark_font = ImageFont.truetype(str(config.ROOT / FALLBACK_FONT), WATERMARK_PX)
-
-    lines = _wrap_block(block["text"], font_key)
-    line_h = int(px * 1.38)
-    block_h = len(lines) * line_h
-    top = int(h * 0.5 - block_h / 2)
-
-    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    shadow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    sd = ImageDraw.Draw(shadow)
-    d = ImageDraw.Draw(img)
-
-    def draw_center(txt, font, y, fill, sd_fill):
-        bb = font.getbbox(txt)
-        tw = bb[2] - bb[0]
-        x = (w - tw) // 2
-        sd.text((x + 2, y + 3), txt, font=font, fill=sd_fill)
-        d.text((x, y), txt, font=font, fill=fill)
-
-    for i, ln in enumerate(lines):
-        draw_center(ln, quote_font, top + i * line_h, INK, (0, 0, 0, 150))
-
-    if watermark:
-        bb = mark_font.getbbox(watermark)
-        tw = bb[2] - bb[0]
-        d.text(((w - tw) // 2, int(h * 0.90)), watermark, font=mark_font, fill=INK_MARK)
-
-    shadow = shadow.filter(ImageFilter.GaussianBlur(5))
-    img = Image.alpha_composite(shadow, img)
-    out_png.parent.mkdir(parents=True, exist_ok=True)
-    img.save(out_png, "PNG")
-    return out_png
-
-
 # ---------------------------------------------------------------- assembly
 
 def _probe_frames(path) -> int | None:
@@ -226,38 +197,27 @@ def _probe_frames(path) -> int | None:
         return None
 
 
-def assemble(bg_mp4: Path, states: list, pngs: list, track_mp3: Path, out_mp4: Path,
+def assemble(bg_mp4: Path, card_png: Path, track_mp3: Path, out_mp4: Path,
              cfg, duration_s: float) -> bool:
-    """Hard-cut overlays: each state's card is enabled for exactly its window."""
+    """One static card: fades in at ~0.15s, holds to the end."""
     fps = int(cfg["reel"]["fps"])
     inputs = []
     if _probe_frames(bg_mp4) == 1:
         inputs += ["-loop", "1"]
-    inputs += ["-i", str(bg_mp4)]
-    for p in pngs:
-        inputs += ["-loop", "1", "-i", str(p)]
-    inputs += ["-i", str(track_mp3)]
+    inputs += ["-i", str(bg_mp4), "-loop", "1", "-i", str(card_png), "-i", str(track_mp3)]
 
-    filters = [f"[0:v]fps={fps},format=yuv420p[base]"]
-    last = "base"
-    for i, (st, png) in enumerate(zip(states, pngs)):
-        s0, s1 = st["start"], st["end"]
-        filters.append(
-            f"[{i + 1}:v]format=rgba[s{i}]")
-        filters.append(
-            f"[{last}][s{i}]overlay=enable='between(t,{s0:.3f},{s1:.3f})':"
-            f"x=0:y=0:eof_action=pass[o{i}]")
-        last = f"o{i}"
     fade_out = 0.8
-    aidx = len(pngs) + 1
-    filters.append(
-        f"[{aidx}:a]loudnorm=I=-16:TP=-1.5:LRA=11,"
+    filters = [
+        f"[0:v]fps={fps},format=yuv420p[base]",
+        f"[1:v]format=rgba,fade=t=in:st=0.15:d={FADE_IN}:alpha=1[card]",
+        f"[base][card]overlay=x=0:y=0:eof_action=pass[v]",
+        f"[2:a]loudnorm=I=-16:TP=-1.5:LRA=11,"
         f"afade=t=out:st={max(duration_s - fade_out, 0):.3f}:d={fade_out},"
-        f"atrim=0:{duration_s:.3f},asetpts=N/SR/TB[aout]")
-
+        f"atrim=0:{duration_s:.3f},asetpts=N/SR/TB[aout]",
+    ]
     cmd = ["ffmpeg", "-y", "-v", "error"] + inputs + [
         "-filter_complex", ";".join(filters),
-        "-map", f"[{last}]", "-map", "[aout]",
+        "-map", "[v]", "-map", "[aout]",
         "-t", f"{duration_s:.3f}",
         "-c:v", "libx264", "-crf", "21", "-preset", "medium", "-pix_fmt", "yuv420p",
         "-r", str(fps), "-c:a", "aac", "-b:a", "128k", "-ac", "2",
@@ -276,20 +236,21 @@ def cover_from_frame0(reel: Path, out_jpg: Path) -> bool:
     return r.returncode == 0 and out_jpg.exists()
 
 
-# ----------------------------------------------------------------- QA gate
+# ----------------------------------------------------------------- QA gates
 
-def extract_stamps(reel: Path, states: list, out_dir=None) -> list:
+def extract_stamps(reel: Path, duration_s: float, out_dir=None) -> list:
+    """Three stamps: after fade-in, middle, near end. The card is static, so
+    every stamp MUST show text — this catches 'text missing' regressions."""
     out_dir = Path(out_dir or config.OUTPUTS)
+    times = [1.2, duration_s / 2.0, max(duration_s - 1.2, 1.2)]
     stamps = []
-    for i, s in enumerate(states):
-        t = min(s["start"] + 0.7, (s["start"] + s["end"]) / 2)
+    for i, t in enumerate(sorted(set(round(t, 2) for t in times))):
         p = out_dir / f"check_{i}.jpg"
         r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{max(t, 0):.3f}",
                             "-i", str(reel), "-frames:v", "1", "-q:v", "3", str(p)],
                            capture_output=True, text=True, timeout=120)
         if r.returncode == 0 and p.exists():
-            stamps.append({"index": i, "t": round(t, 2),
-                           "frame": str(p)})
+            stamps.append({"index": i, "t": t, "frame": str(p)})
     return stamps
 
 
@@ -347,15 +308,13 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
           out_mp4: Path | None = None, offline: bool = False):
     out_mp4 = out_mp4 or (config.OUTPUTS / "reel.mp4")
     mood = content.get("mood") or "heavy_shadow"
-    blocks = script_blocks(content, cfg)
-    if not blocks:
-        raise RuntimeError("no script blocks to render")
-    states = cut_map(blocks, [], duration_s)  # beats unused for hard cuts timing base
+    text = paragraph_text(content)
+    if not text:
+        raise RuntimeError("no paragraph to render")
 
-    # beats still drive micro-fade timing; hook hold is a law
-    beats = beat_times(track_wav, mood, cfg, duration_s) if track_wav.exists() \
-        else beat_times_fallback(cfg, mood, duration_s)
-    states = cut_map(blocks, beats, duration_s)
+    lines, px = fit_paragraph(text, cfg)          # measured fit — no overflow
+    assert_fits(lines, px, cfg)                   # deterministic gate
+    print(f"[video] paragraph fit: {len(lines)} lines at {px}px")
 
     watermark = ""
     handle = ((cfg.get("brand") or {}).get("handle") or "").strip()
@@ -363,30 +322,28 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
         watermark = (handle.split(".")[0] + "." + handle.split(".")[-1] + "_").upper()
         watermark = "".join(ch for ch in watermark if ch.isalnum() or ch in "._")
 
-    pngs = []
-    for i, blk in enumerate(blocks):
-        p = config.OUTPUTS / f"state_{i}.png"
-        render_state(blk, p, cfg, watermark=watermark)
-        pngs.append(p)
+    card = render_card(lines, px, watermark, config.OUTPUTS / "card.png", cfg)
 
-    if not assemble(bg_mp4, states, pngs, track_mp3, out_mp4, cfg, duration_s):
+    if not assemble(bg_mp4, card, track_mp3, out_mp4, cfg, duration_s):
         raise RuntimeError("video assembly failed")
     cover_from_frame0(out_mp4, config.OUTPUTS / "cover.jpg")
     ok, info = qa_gate(out_mp4, cfg)
-    info["states"] = states
     if not ok:
         raise RuntimeError(f"QA gate failed: {info.get('problems')}")
+    from PIL import ImageFont
+    widest = max(ImageFont.truetype(str(config.ROOT / FONT_SERIF), px).getbbox(ln)[2]
+                 for ln in lines)
+    info["text"] = {"lines": len(lines), "px": px, "widest": widest}
 
-    stamps = extract_stamps(out_mp4, states)
-    invisible = [f"state {s['index']} invisible at t={s['t']}"
-                 for s in stamps if not card_visible(Path(s["frame"]))]
+    stamps = extract_stamps(out_mp4, duration_s)
+    invisible = [f"t={s['t']}" for s in stamps if not card_visible(Path(s["frame"]))]
     info["stamps"] = [{k: v for k, v in s.items() if k != "frame"} for s in stamps]
-    if invisible or len(stamps) != len(states):
-        raise RuntimeError(f"QA gate failed: text missing from render: {invisible}")
+    if invisible or len(stamps) != 3:
+        raise RuntimeError(f"QA gate failed: text missing at {invisible}")
     return out_mp4, info
 
 
 def pick_duration(cfg) -> float:
     lo = float(cfg["reel"]["min_s"])
     hi = float(cfg["reel"]["max_s"])
-    return round(random.uniform(max(lo, 8.0), min(hi, 11.0)), 2)
+    return round(random.uniform(max(lo, 8.5), min(hi, 11.0)), 2)
