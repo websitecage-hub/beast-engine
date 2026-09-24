@@ -1,23 +1,174 @@
 {
   "weights": {
-    "archetype": {"pain_callout": 1.0, "secret_reveal": 1.0, "hard_truth": 1.0, "challenge_dare": 1.0, "identity_shift": 1.0, "fear_warning": 1.0, "contrarian": 1.0, "transformation_promise": 1.0},
-    "topic": {"discipline": 1.0, "loneliness": 1.0, "confidence": 1.0, "conversations": 1.0, "focus": 1.0, "pain": 1.0, "self_respect": 1.0, "purpose": 1.0, "rejection": 1.0, "silence": 1.0},
-    "mood": {"aggressive_phonk": 1.0, "melancholic_piano": 1.0, "epic_cinematic": 1.0, "dark_ambient": 1.0, "stoic_minimal": 1.0},
-    "bg_type": {"dark_gym": 1.0, "city_rain_night": 1.0, "lone_figure": 1.0, "wolf_dark": 1.0, "smoke_shadow": 1.0, "mountain_dark": 1.0, "ocean_storm": 1.0}
+    "archetype": {
+      "the_mask": 1.0,
+      "the_rehearsal": 1.0,
+      "the_freeze": 1.0,
+      "the_detour": 1.0,
+      "the_aftermath": 1.0,
+      "the_bodys_betrayal": 1.0,
+      "the_sealed_mouth": 1.0,
+      "the_craving": 1.0,
+      "the_losses": 1.0,
+      "the_buried_anger": 1.0,
+      "quiet_hope": 1.0
+    },
+    "topic": {
+      "exposure_fear": 1.0,
+      "fake_phone": 1.0,
+      "ordering_food": 1.0,
+      "phone_calls": 1.0,
+      "freeze_at_work": 1.0,
+      "asking_coworker": 1.0,
+      "party_bathroom": 1.0,
+      "mind_blank": 1.0,
+      "post_interaction_hate": 1.0,
+      "replay_2am": 1.0,
+      "read_receipts": 1.0,
+      "neutral_as_negative": 1.0,
+      "meetings_voice": 1.0,
+      "dating_app_freeze": 1.0,
+      "dying_alone_thought": 1.0,
+      "lost_friendships": 1.0,
+      "behind_at_25": 1.0,
+      "buried_anger": 1.0,
+      "therapy_irony": 1.0,
+      "the_grandma_win": 1.0
+    },
+    "mood": {
+      "quiet_devastating": 1.0,
+      "heavy_shadow": 1.0,
+      "muffled_world": 1.0,
+      "restrained_anger": 1.0,
+      "gentle_hope": 1.0
+    },
+    "bg_type": {
+      "mask": 1.0,
+      "rehearsal": 1.0,
+      "freeze_detour": 1.0,
+      "aftermath": 1.0,
+      "sealed_mouth": 1.0,
+      "craving": 1.0,
+      "losses": 1.0,
+      "buried_anger": 1.0,
+      "quiet_hope": 1.0
+    }
   },
   "n": {
-    "archetype": {"pain_callout": 0, "secret_reveal": 0, "hard_truth": 0, "challenge_dare": 0, "identity_shift": 0, "fear_warning": 0, "contrarian": 0, "transformation_promise": 0},
-    "topic": {"discipline": 0, "loneliness": 0, "confidence": 0, "conversations": 0, "focus": 0, "pain": 0, "self_respect": 0, "purpose": 0, "rejection": 0, "silence": 0},
-    "mood": {"aggressive_phonk": 0, "melancholic_piano": 0, "epic_cinematic": 0, "dark_ambient": 0, "stoic_minimal": 0},
-    "bg_type": {"dark_gym": 0, "city_rain_night": 0, "lone_figure": 0, "wolf_dark": 0, "smoke_shadow": 0, "mountain_dark": 0, "ocean_storm": 0}
+    "archetype": {
+      "the_mask": 0,
+      "the_rehearsal": 0,
+      "the_freeze": 0,
+      "the_detour": 0,
+      "the_aftermath": 0,
+      "the_bodys_betrayal": 0,
+      "the_sealed_mouth": 0,
+      "the_craving": 0,
+      "the_losses": 0,
+      "the_buried_anger": 0,
+      "quiet_hope": 0
+    },
+    "topic": {
+      "exposure_fear": 0,
+      "fake_phone": 0,
+      "ordering_food": 0,
+      "phone_calls": 0,
+      "freeze_at_work": 0,
+      "asking_coworker": 0,
+      "party_bathroom": 0,
+      "mind_blank": 0,
+      "post_interaction_hate": 0,
+      "replay_2am": 0,
+      "read_receipts": 0,
+      "neutral_as_negative": 0,
+      "meetings_voice": 0,
+      "dating_app_freeze": 0,
+      "dying_alone_thought": 0,
+      "lost_friendships": 0,
+      "behind_at_25": 0,
+      "buried_anger": 0,
+      "therapy_irony": 0,
+      "the_grandma_win": 0
+    },
+    "mood": {
+      "quiet_devastating": 0,
+      "heavy_shadow": 0,
+      "muffled_world": 0,
+      "restrained_anger": 0,
+      "gentle_hope": 0
+    },
+    "bg_type": {
+      "mask": 0,
+      "rehearsal": 0,
+      "freeze_detour": 0,
+      "aftermath": 0,
+      "sealed_mouth": 0,
+      "craving": 0,
+      "losses": 0,
+      "buried_anger": 0,
+      "quiet_hope": 0
+    }
   },
   "adj": {
-    "archetype": {"pain_callout": null, "secret_reveal": null, "hard_truth": null, "challenge_dare": null, "identity_shift": null, "fear_warning": null, "contrarian": null, "transformation_promise": null},
-    "topic": {"discipline": null, "loneliness": null, "confidence": null, "conversations": null, "focus": null, "pain": null, "self_respect": null, "purpose": null, "rejection": null, "silence": null},
-    "mood": {"aggressive_phonk": null, "melancholic_piano": null, "epic_cinematic": null, "dark_ambient": null, "stoic_minimal": null},
-    "bg_type": {"dark_gym": null, "city_rain_night": null, "lone_figure": null, "wolf_dark": null, "smoke_shadow": null, "mountain_dark": null, "ocean_storm": null}
+    "archetype": {
+      "the_mask": null,
+      "the_rehearsal": null,
+      "the_freeze": null,
+      "the_detour": null,
+      "the_aftermath": null,
+      "the_bodys_betrayal": null,
+      "the_sealed_mouth": null,
+      "the_craving": null,
+      "the_losses": null,
+      "the_buried_anger": null,
+      "quiet_hope": null
+    },
+    "topic": {
+      "exposure_fear": null,
+      "fake_phone": null,
+      "ordering_food": null,
+      "phone_calls": null,
+      "freeze_at_work": null,
+      "asking_coworker": null,
+      "party_bathroom": null,
+      "mind_blank": null,
+      "post_interaction_hate": null,
+      "replay_2am": null,
+      "read_receipts": null,
+      "neutral_as_negative": null,
+      "meetings_voice": null,
+      "dating_app_freeze": null,
+      "dying_alone_thought": null,
+      "lost_friendships": null,
+      "behind_at_25": null,
+      "buried_anger": null,
+      "therapy_irony": null,
+      "the_grandma_win": null
+    },
+    "mood": {
+      "quiet_devastating": null,
+      "heavy_shadow": null,
+      "muffled_world": null,
+      "restrained_anger": null,
+      "gentle_hope": null
+    },
+    "bg_type": {
+      "mask": null,
+      "rehearsal": null,
+      "freeze_detour": null,
+      "aftermath": null,
+      "sealed_mouth": null,
+      "craving": null,
+      "losses": null,
+      "buried_anger": null,
+      "quiet_hope": null
+    }
   },
-  "hour_scores": {"13:30": null, "15:00": null, "16:30": null},
+  "hour_scores": {
+    "13:30": null,
+    "15:00": null,
+    "16:30": null
+  },
   "next_post_hour": "15:00",
   "warmup_until": "2026-09-28",
   "experiments": [],

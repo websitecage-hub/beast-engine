@@ -1,0 +1,114 @@
+[
+  {
+    "workflow": "create",
+    "started": "2026-09-24T18:57:34.476377+00:00",
+    "dry_run": false,
+    "offline": true,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.01
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.01,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 0.01,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 0.01,
+        "post": true,
+        "reason": "offline"
+      },
+      {
+        "step": "duration",
+        "t": 0.01,
+        "seconds": 9.71
+      },
+      {
+        "step": "generated",
+        "t": 0.01,
+        "hook": "You know exactly what to say. You say nothing. Again.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 84.67,
+        "source": "bundled"
+      },
+      {
+        "step": "music",
+        "t": 86.17,
+        "source": "drone"
+      },
+      {
+        "step": "built",
+        "t": 170.48,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.7,
+          "size_mb": 1.79,
+          "faststart": true,
+          "problems": [],
+          "states": [
+            {
+              "index": 0,
+              "start": 0.0,
+              "end": 2.136
+            },
+            {
+              "index": 1,
+              "start": 2.136,
+              "end": 4.154
+            },
+            {
+              "index": 2,
+              "start": 4.154,
+              "end": 6.0
+            },
+            {
+              "index": 3,
+              "start": 6.0,
+              "end": 9.71
+            }
+          ],
+          "stamps": [
+            {
+              "index": 0,
+              "t": 0.7
+            },
+            {
+              "index": 1,
+              "t": 2.84
+            },
+            {
+              "index": 2,
+              "t": 4.85
+            },
+            {
+              "index": 3,
+              "t": 6.7
+            }
+          ]
+        }
+      },
+      {
+        "step": "published",
+        "t": 170.48,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  }
+]

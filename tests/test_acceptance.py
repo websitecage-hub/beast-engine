@@ -1,7 +1,10 @@
-"""Acceptance tests (section 11). Run: python -m pytest tests/ -v  (or python tests/run_tests.py)
+"""Acceptance tests (section 11) — v4.0 BRAIN edition.
 
-Covers: clean imports, trending confidence filter, Pixabay regex, dedup rejection,
-learn on the fixture memory, and workflow YAML contracts.
+Run: python3 tests/test_acceptance.py
+
+Covers: clean imports, law enforcement (banned words, fonts), dedup rejection,
+script-block validation, cut map timing (2s hook hold), learn on fixture memory,
+and workflow YAML contracts.
 """
 from __future__ import annotations
 
@@ -14,7 +17,7 @@ sys.path.insert(0, str(ROOT))
 
 import yaml  # noqa: E402
 
-from src import analyze, config, generate, music  # noqa: E402
+from src import analyze, build_video, config, generate, music  # noqa: E402
 
 FIXTURES = ROOT / "tests" / "fixtures"
 
@@ -29,83 +32,105 @@ def test_imports_clean():
     assert True
 
 
-# ------------------------------------------------- trending confidence filter
+# ------------------------------------------------- brain law enforcement
 
-def test_trending_filter_confidence():
-    data = json.loads((FIXTURES / "trending_fixture.json").read_text(encoding="utf-8"))
-    min_conf = 0.5
-    good = [r for r in data["results"] if float(r["confidence"]) >= min_conf]
-    good.sort(key=lambda r: r["trend_score"], reverse=True)
-    assert len(good) == 3, f"expected 3 rows >= 0.5 confidence, got {len(good)}"
-    assert sorted(r["confidence"] for r in good) == [0.5, 0.62, 0.86]
-    top = good[0]
-    assert top["title"] == "Slowed Phonk Drift"
-    assert top["trend_score"] == 91
-    genre = top["category"].split(":", 1)[1].strip()
-    assert genre == "rap"
-    assert all(float(r["confidence"]) >= min_conf for r in good)
-    assert "Low Confidence Filler" not in [r["title"] for r in good]
+def test_law_no_just_no_advice():
+    ok, why = generate._laws_ok([
+        "You know exactly what to say. You say nothing. Again.",
+        "You ran the conversation on the walk over. Word for word.",
+        "It was never a knowledge problem.",
+    ])
+    assert ok, f"clean script rejected: {why}"
+    bad = [
+        "You know exactly what to say.",
+        "Just say it next time.",                      # Law 5: 'just' banned
+        "It was never a knowledge problem.",
+    ]
+    ok, why = generate._laws_ok(bad)
+    assert not ok, "'just' script must be rejected"
+    bad2 = [
+        "The conversation ends.",
+        "Here is my advice: stop rehearsing.",         # advice banned
+        "The trial begins.",
+    ]
+    ok, why = generate._laws_ok(bad2)
+    assert not ok, "advice script must be rejected"
 
 
-# ------------------------------------------------------ pixabay URL regex
+def test_font_laws():
+    # hook + landing anton, never same twice in a row
+    assert generate._fonts_ok(["anton", "playfair_italic", "anton"], 3)
+    assert not generate._fonts_ok(["playfair_italic", "cormorant_italic", "anton"], 3)
+    assert not generate._fonts_ok(["anton", "anton", "bebas"], 3)
+    assert not generate._fonts_ok(["anton", "bebas"], 3)              # landing not anton
+    assert not generate._fonts_ok(["anton", "playfair_italic"], 3)    # wrong length
 
-def test_pixabay_regex_finds_all_three():
-    html = (FIXTURES / "pixabay_fixture.html").read_text(encoding="utf-8")
-    found = music.PIXABAY_MP3_RE.findall(html)
-    unique = sorted(set(found))
-    assert len(unique) == 3, f"expected 3 unique mp3 URLs, got {unique}"
-    for u in unique:
-        assert u.startswith("https://cdn.pixabay.com/audio/") and u.endswith(".mp3")
+
+def test_candidate_validation():
+    cfg = config.load_config()
+    good = {
+        "blocks": ["You know exactly what to say. You say nothing. Again.",
+                   "You ran the conversation on the walk over. Word for word.",
+                   "It was never a knowledge problem."],
+        "fonts": ["anton", "playfair_italic", "anton"],
+        "scene": "empty street night rain",
+        "archetype": "the_freeze", "topic": "exposure_fear",
+        "mood": "quiet_devastating", "bg_type": "freeze_detour",
+    }
+    assert generate._valid(good, cfg) is True
+    assert generate._valid({**good, "scene": ""}, cfg) is False          # scene required
+    assert generate._valid({**good, "blocks": ["short", "lines", "ok"]}, cfg) is False
+    assert generate._valid({**good, "mood": "aggressive_phonk"}, cfg) is False
+    assert generate._valid({**good, "archetype": "hard_truth"}, cfg) is False
+    assert generate._valid({**good, "fonts": ["bebas", "caveat", "bebas"]}, cfg) is False
 
 
 # ------------------------------------------------------------------ dedup
 
 def test_dedup_rejects_near_duplicate():
-    dup = "You were not built for comfort"
-    near = "You were not built for comfort."          # ratio ~0.98
+    dup = "The conversation ends. The trial begins."
+    near = "The conversation ends. The trial begins"
     assert generate._similar(dup, near) > generate.DEDUP_RATIO
     banned = [dup]
-    cand = {"quote": near, "scene": "dark gym", "archetype": "hard_truth",
-            "topic": "discipline"}
+    cand = {"blocks": [near, "You review the footage until 2am.",
+                       "You've been cross-examining yourself since school."],
+            "archetype": "the_aftermath", "topic": "replay_2am"}
     assert generate._dedup_ok(cand, banned, set()) is False
-    fresh = {"quote": "The mirror is not your friend", "scene": "dark gym",
-             "archetype": "hard_truth", "topic": "discipline"}
+    fresh = {"blocks": ["She matched with you. And you're suspicious.",
+                        "Being chosen feels like a setup.",
+                        "You're not unlovable. You're unreachable."],
+             "archetype": "the_craving", "topic": "dating_app_freeze"}
     assert generate._dedup_ok(fresh, banned, set()) is True
-    # (archetype, topic) used in the last 7 days is rejected too
-    assert generate._dedup_ok(fresh, [], {("hard_truth", "discipline")}) is False
+    assert generate._dedup_ok(fresh, [], {("the_craving", "dating_app_freeze")}) is False
 
 
-def test_quote_schema_validation():
-    cfg = config.load_config()
-    good = {"quote": "A man with soft fists shouldn't sharpen his tongue",
-            "attribution": "Dad", "scene": "boxer shadow boxing night",
-            "archetype": "hard_truth", "topic": "discipline",
-            "mood": "aggressive_phonk", "bg_type": "dark_gym"}
-    assert generate._valid(good, cfg) is True
-    assert generate._valid({**good, "scene": ""}, cfg) is False        # scene required
-    assert generate._valid({**good, "quote": "too short"}, cfg) is False
-    assert generate._valid({**good, "mood": "nope"}, cfg) is False
+# ------------------------------------------------------- script + timing
+
+def test_script_blocks_enforce_font_and_roles():
+    content = {"blocks": ["You want to talk. Your mouth disagrees.",
+                         "There's a version of you that's funny, warm, easy to be around.",
+                         "The words were never the problem. The opening was."],
+              "fonts": ["anton", "caveat", "anton"]}
+    blocks = build_video.script_blocks(content)
+    assert [b["role"] for b in blocks] == ["hook", "middle", "landing"]
+    assert blocks[0]["font"] == "anton" and blocks[-1]["font"] == "anton"
+    # same font twice in a row gets rewritten
+    content2 = {"blocks": ["A", "B", "C"], "fonts": ["anton", "anton", "anton"]}
+    blocks2 = build_video.script_blocks(content2)
+    assert blocks2[1]["font"] != blocks2[0]["font"]
+    assert blocks2[-1]["font"] == "anton"
 
 
-def test_quote_wrapping_balances_lines():
-    from src import build_video
-    lines = build_video.quote_lines({"quote":
-        "The moment you are disturbed by insult or pleased by praise, you are still a slave."})
-    assert 2 <= len(lines) <= 4
-    assert lines[0].startswith("\u201c") and lines[-1].endswith("\u201d")
-    # no orphan single-word line (the old greedy wrapper produced "...by / you / ...")
-    assert all(len(l.split()) >= 2 for l in lines)
-    lens = [len(l) for l in lines]
-    assert max(lens) - min(lens) <= 16, f"lines badly unbalanced: {lines}"
-
-
-def test_reveal_map_is_cumulative_and_covers_reel():
-    from src import build_video
-    states = build_video.reveal_map(["a b", "c d", "e f"], [0.8, 1.6, 2.4, 3.2, 4.0], 10.0)
-    assert [s["count"] for s in states] == [1, 2, 3]
-    assert states[0]["start"] <= 0.8 and states[-1]["end"] == 10.0
+def test_cut_map_hook_hold_law():
+    beats = [0.8, 1.6, 2.4, 3.2, 4.0, 4.8, 5.6, 6.4, 7.2, 8.0]
+    states = build_video.cut_map(["a"] * 4, beats, 10.0)
+    assert states[0]["start"] == 0.0
+    assert states[1]["start"] >= 1.8, f"2-second hold law violated: {states}"
+    assert states[-1]["end"] == 10.0
     for a, b in zip(states, states[1:]):
-        assert b["start"] >= a["start"] + 0.9          # readable holds
+        assert b["start"] >= a["start"] + 1.0          # readable holds
+    # single block: full reel
+    assert build_video.cut_map(["a"], [], 9.0) == [{"index": 0, "start": 0.0, "end": 9.0}]
 
 
 # --------------------------------------------------------------- analyzer
@@ -127,14 +152,28 @@ def test_learn_on_fixture_memory():
                                          arch, G)
         followers[arch] = (adj, n)
     # shrinkage: a sparse value must be pulled toward G, not sit at its raw mean
-    assert followers["secret_reveal"][1] == 1
-    assert abs(followers["secret_reveal"][0] - G) < abs(0.0765 - G) + 1e-9
+    # (v4.0: the_craving appears exactly once, with the lowest raw score)
+    sparse, raw_low = None, None
+    for arch in cfg["archetypes"]:
+        adj, n, _ = analyze._adjusted(posts, lambda p: (p["dna"] or {}).get("archetype"),
+                                      arch, G)
+        if n == 1:
+            raw = [p["score"] for p in posts if (p["dna"] or {}).get("archetype") == arch][0]
+            if raw < G:
+                sparse, raw_low = arch, raw
+                break
+    assert sparse is not None and raw_low is not None, \
+        "fixture must contain a sparse low-scoring archetype"
+    adj_sparse = analyze._adjusted(posts, lambda p: (p["dna"] or {}).get("archetype"),
+                                  sparse, G)[0]
+    assert abs(adj_sparse - G) < abs(raw_low - G) + 1e-9, \
+        "sparse value must shrink toward G"
 
     # normalized weights
     norm = analyze._normalize({k: v for k, v in {a: followers[a][0] for a in followers}.items()})
     assert abs(sum(norm.values()) - 1.0) < 1e-6
 
-    # report renders with the trending-correlation section
+    # report renders with the saves/shares emphasis
     strategy = config.default_strategy()
     strategy["adj"] = {"archetype": {a: followers[a][0] for a in followers},
                        "topic": {}, "mood": {}, "bg_type": {}}
@@ -142,7 +181,7 @@ def test_learn_on_fixture_memory():
                      "topic": {}, "mood": {}, "bg_type": {}}
     strategy["hour_scores"] = {"13:30": 0.06, "15:00": 0.12, "16:30": 0.03}
     strategy["next_post_hour"] = "15:00"
-    strategy["experiments"] = [{"archetype": "challenge_dare", "topic": "focus"}]
+    strategy["experiments"] = [{"archetype": "the_freeze", "topic": "asking_coworker"}]
     text = analyze._write_report(memory, strategy, posts, G)
     assert "Trending alignment" in text
     assert "Exploit vs explore" in text
@@ -200,8 +239,8 @@ def test_seed_files_and_no_pause():
     assert not (ROOT / "data" / "PAUSE").exists(), "PAUSE must not be seeded"
     strat = json.loads((ROOT / "data" / "strategy.json").read_text(encoding="utf-8"))
     assert strat["next_post_hour"] in strat["hour_scores"]
-    assert len(strat["weights"]["archetype"]) == 8
-    assert len(strat["weights"]["topic"]) == 10
+    assert len(strat["weights"]["archetype"]) == 11
+    assert len(strat["weights"]["topic"]) == 20
 
 
 def test_config_families_line_up():
@@ -211,6 +250,38 @@ def test_config_families_line_up():
     assert set(cfg["topics"]) == set(strat["weights"]["topic"])
     assert set(cfg["moods"]) == set(strat["weights"]["mood"])
     assert set(cfg["bg_types"].keys()) == set(strat["weights"]["bg_type"])
+    # v4.0: every archetype maps to a bg cluster
+    for arch in cfg["archetypes"]:
+        assert arch in cfg["archetype_bg_map"], f"{arch} missing from archetype_bg_map"
+
+
+# ------------------------------------------------- trending confidence filter
+
+def test_trending_filter_confidence():
+    data = json.loads((FIXTURES / "trending_fixture.json").read_text(encoding="utf-8"))
+    min_conf = 0.5
+    good = [r for r in data["results"] if float(r["confidence"]) >= min_conf]
+    good.sort(key=lambda r: r["trend_score"], reverse=True)
+    assert len(good) == 3, f"expected 3 rows >= 0.5 confidence, got {len(good)}"
+    assert sorted(r["confidence"] for r in good) == [0.5, 0.62, 0.86]
+    top = good[0]
+    assert top["title"] == "Slowed Phonk Drift"
+    assert top["trend_score"] == 91
+    genre = top["category"].split(":", 1)[1].strip()
+    assert genre == "rap"
+    assert all(float(r["confidence"]) >= min_conf for r in good)
+    assert "Low Confidence Filler" not in [r["title"] for r in good]
+
+
+# ------------------------------------------------------ pixabay URL regex
+
+def test_pixabay_regex_finds_all_three():
+    html = (FIXTURES / "pixabay_fixture.html").read_text(encoding="utf-8")
+    found = music.PIXABAY_MP3_RE.findall(html)
+    unique = sorted(set(found))
+    assert len(unique) == 3, f"expected 3 unique mp3 URLs, got {unique}"
+    for u in unique:
+        assert u.startswith("https://cdn.pixabay.com/audio/") and u.endswith(".mp3")
 
 
 if __name__ == "__main__":

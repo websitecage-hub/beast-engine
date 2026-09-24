@@ -1,6 +1,6 @@
 # Beast Engine — weekly brain report
 
-Generated: 2026-09-20T22:16:25+00:00
+Generated: 2026-09-24T19:29:16+00:00
 
 Posts scored this cycle: **10**
 Weighted mean score: **0.0832**
@@ -10,14 +10,17 @@ Weighted mean score: **0.0832**
 ### archetype
 | value | adj | n |
 |---|---|---|
-| hard_truth | 0.0952 | 2 |
-| fear_warning | 0.0897 | 1 |
-| pain_callout | 0.0885 | 1 |
-| transformation_promise | 0.0835 | 1 |
-| secret_reveal | 0.0826 | 1 |
-| contrarian | 0.0764 | 1 |
-| challenge_dare | 0.0754 | 1 |
-| identity_shift | 0.0749 | 2 |
+| the_mask | 0.0904 | 1 |
+| the_detour | 0.0892 | 1 |
+| the_freeze | 0.0881 | 1 |
+| the_sealed_mouth | 0.0881 | 1 |
+| the_losses | 0.0834 | 1 |
+| the_buried_anger | 0.0832 | 0 |
+| the_aftermath | 0.0826 | 1 |
+| quiet_hope | 0.0799 | 1 |
+| the_rehearsal | 0.0778 | 1 |
+| the_craving | 0.0770 | 1 |
+| the_bodys_betrayal | 0.0760 | 1 |
 
 ### topic
 | value | adj | n |
@@ -45,11 +48,11 @@ Next post hour: **15:00**
 
 | hook | score | archetype | topic | mood | exploit |
 |---|---|---|---|---|---|
-| Respect is rented, never owned | 0.1493 | hard_truth | self_respect | stoic_minimal | True |
-| You were not built for comfort | 0.1414 | hard_truth | discipline | aggressive_phonk | True |
-| Nobody is coming to save you | 0.1348 | pain_callout | loneliness | melancholic_piano | True |
-| Every man should see this | 0.1318 | fear_warning | conversations | aggressive_phonk | True |
-| Rejection is redirection | 0.0848 | transformation_promise | rejection | melancholic_piano | True |
+| Your manager thinks you're less competent than you are. | 0.1493 | the_mask | meetings_voice | muffled_world | True |
+| You know exactly what to say. You say nothing. Again. | 0.1414 | the_freeze | exposure_fear | quiet_devastating | True |
+| You want to talk. Your mouth disagrees. | 0.1348 | the_sealed_mouth | mind_blank | quiet_devastating | True |
+| The bathroom is the only room where you can breathe. | 0.1318 | the_detour | party_bathroom | heavy_shadow | True |
+| You often think of dying alone. | 0.0848 | the_losses | dying_alone_thought | quiet_devastating | True |
 
 ## Exploit vs explore
 - exploit: n=8 mean=0.1019
@@ -62,4 +65,4 @@ Next post hour: **15:00**
 
 ## Next week's experiments
 
-- challenge_dare x focus
+- the_freeze x asking_coworker

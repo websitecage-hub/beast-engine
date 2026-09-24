@@ -31,64 +31,87 @@ AUDIO_MANIFEST_PATH = ASSETS / "audio" / "manifest.json"
 
 BUILD_DATE = date(2026, 9, 20)
 
-ARCHETYPES = ["pain_callout", "secret_reveal", "hard_truth", "challenge_dare",
-              "identity_shift", "fear_warning", "contrarian", "transformation_promise"]
-TOPICS = ["discipline", "loneliness", "confidence", "conversations", "focus",
-          "pain", "self_respect", "purpose", "rejection", "silence"]
-MOODS = ["aggressive_phonk", "melancholic_piano", "epic_cinematic",
-         "dark_ambient", "stoic_minimal"]
-BG_TYPES = ["dark_gym", "city_rain_night", "lone_figure", "wolf_dark",
-            "smoke_shadow", "mountain_dark", "ocean_storm"]
+ARCHETYPES = ["the_mask", "the_rehearsal", "the_freeze", "the_detour", "the_aftermath",
+              "the_bodys_betrayal", "the_sealed_mouth", "the_craving", "the_losses",
+              "the_buried_anger", "quiet_hope"]
+TOPICS = ["exposure_fear", "fake_phone", "ordering_food", "phone_calls", "freeze_at_work",
+          "asking_coworker", "party_bathroom", "mind_blank", "post_interaction_hate",
+          "replay_2am", "read_receipts", "neutral_as_negative", "meetings_voice",
+          "dating_app_freeze", "dying_alone_thought", "lost_friendships", "behind_at_25",
+          "buried_anger", "therapy_irony", "the_grandma_win"]
+MOODS = ["quiet_devastating", "heavy_shadow", "muffled_world", "restrained_anger",
+         "gentle_hope"]
+BG_TYPES = ["mask", "rehearsal", "freeze_detour", "aftermath", "sealed_mouth",
+            "craving", "losses", "buried_anger", "quiet_hope"]
 
 DEFAULT_CONFIG = {
     "brand": {
         "name": "Unleash The Beast",
         "handle": "unleashthe.b",
-        "voice": "Dark, direct, no fluff. Short brutal sentences. Second person ('you'). Never preachy, never emoji, never hashtags in on-screen text.",
-        "hook_examples": ["Nobody warns you about this", "Why you can never love yourself",
-                          "Every man should see this", "You're not lazy. You're afraid."],
+        "voice": ("Describe, never advise. Mirror one specific person's inner life with "
+                  "exact scenes. Present tense, second person. Never sell, never confirm "
+                  "the flaw, never say 'just'. Tragic, never pathetic."),
+        "hook_examples": ["You know exactly what to say. You say nothing. Again.",
+                          "The conversation ends. The trial begins.",
+                          "You want to talk. Your mouth disagrees.",
+                          "She matched with you. And you're suspicious."],
     },
     "archetypes": ARCHETYPES,
     "topics": TOPICS,
     "moods": MOODS,
     "bg_types": {
-        "dark_gym": ["dark gym silhouette", "moody gym night"],
-        "city_rain_night": ["city rain night neon", "dark city street rain"],
-        "lone_figure": ["lone man walking dark", "silhouette man shadow"],
-        "wolf_dark": ["dark wolf moon", "wolf black aesthetic"],
-        "smoke_shadow": ["dark smoke aesthetic", "black smoke background"],
-        "mountain_dark": ["dark mountains fog", "lonely mountain night"],
-        "ocean_storm": ["dark ocean storm", "rough sea night"],
+        "mask": ["glass office night aesthetic", "empty meeting room aesthetic",
+                 "conference room dark"],
+        "rehearsal": ["cafe window night aesthetic", "phone glow dark room aesthetic"],
+        "freeze_detour": ["empty street night rain", "walking alone night city aesthetic"],
+        "aftermath": ["3am aesthetic dark", "ceiling fan dark aesthetic",
+                      "mirror dark aesthetic", "unmade bed aesthetic"],
+        "sealed_mouth": ["face half shadow aesthetic", "silhouette mouth covered dark"],
+        "craving": ["phone glow face dark aesthetic", "city lights from window night"],
+        "losses": ["empty lecture hall aesthetic", "empty classroom aesthetic",
+                   "old playground aesthetic"],
+        "buried_anger": ["storm clouds dark aesthetic", "cracked wall dark aesthetic"],
+        "quiet_hope": ["sunrise alone aesthetic", "first light window aesthetic"],
     },
-    "mood_fallback_bpm": {"aggressive_phonk": 130, "melancholic_piano": 70,
-                          "epic_cinematic": 90, "dark_ambient": 60, "stoic_minimal": 75},
+    "archetype_bg_map": {
+        "the_mask": "mask", "the_rehearsal": "rehearsal", "the_freeze": "freeze_detour",
+        "the_detour": "freeze_detour", "the_aftermath": "aftermath",
+        "the_bodys_betrayal": "sealed_mouth", "the_sealed_mouth": "sealed_mouth",
+        "the_craving": "craving", "the_losses": "losses",
+        "the_buried_anger": "buried_anger", "quiet_hope": "quiet_hope",
+    },
+    "mood_fallback_bpm": {"quiet_devastating": 65, "heavy_shadow": 55,
+                          "muffled_world": 70, "restrained_anger": 85,
+                          "gentle_hope": 60},
     "music": {
         "trending_api": "https://audi0-scraper.onrender.com",
         "trending_niche": "self-improvement",
         "trending_fallback_niche": "motivation",
         "min_confidence": 0.5,
         "mood_search": {
-            "aggressive_phonk": "dark phonk beat",
-            "melancholic_piano": "sad emotional piano",
-            "epic_cinematic": "epic dark cinematic",
-            "dark_ambient": "dark ambient drone",
-            "stoic_minimal": "minimal dark piano",
+            "quiet_devastating": "slowed sad piano reverb vinyl crackle",
+            "heavy_shadow": "dark ambient drone sub bass",
+            "muffled_world": "lofi heard through a wall",
+            "restrained_anger": "slow dark phonk soft",
+            "gentle_hope": "slow ambient build hopeful",
         },
         "genre_hint": {"rap": " dark phonk", "hip-hop": " dark phonk", "trap": " dark phonk",
                        "edm": " dark trap", "pop": " emotional", "rock": " cinematic",
                        "rnb": " moody", "lofi": " lofi dark"},
     },
     "posting_slots_utc": ["13:30", "15:00", "16:30"],
-    "reel": {"min_s": 8, "max_s": 14, "fps": 30, "w": 1080, "h": 1920},
+    "reel": {"min_s": 8, "max_s": 11, "fps": 30, "w": 1080, "h": 1920},
     "explore_rate": 0.2,
-    "cta_every_n_posts": 5,
-    "cta_line": "The full system is in my ebook — link in bio.",
+    "cta_every_n_posts": 7,
+    "cta_line": "the ebook in my bio was written for the person who felt this.",
+    "hope_every_n_posts": 10,
     "hashtag_pools": {
-        "broad": ["#motivation", "#discipline", "#mindset", "#selfimprovement", "#grind"],
-        "medium": ["#stoicism", "#masculinity", "#selfdevelopment", "#mentality",
-                   "#dailymotivation", "#growth"],
-        "niche": ["#unleashthebeast", "#innerwork", "#becomelion", "#disciplinedmind",
-                  "#quietgrind", "#ironmind"],
+        "broad": ["#socialanxiety", "#mentalhealth", "#anxiety", "#introvert",
+                  "#overthinking"],
+        "medium": ["#socialanxietysupport", "#quietpeople", "#sociallyawkward",
+                   "#introvertlife", "#mentalhealthawareness", "#shy"],
+        "niche": ["#unleashthebeast", "#thequietones", "#2amthoughts", "#innerwork",
+                  "#understoods", "#nightscroll"],
     },
     "font_path": "assets/fonts/Anton-Regular.ttf",
 }
@@ -148,9 +171,10 @@ def default_memory() -> dict:
 
 
 def default_trending_styles() -> list:
-    return ["slowed dark phonk, heavy cowbell, reverb",
-            "sad piano loop, vinyl crackle, slow",
-            "epic dark cinematic drums"]
+    return ["slowed sad piano, vinyl crackle, quiet",
+            "dark ambient drone, sub bass, slow",
+            "lofi through a wall, muffled, warm",
+            "soft dark phonk, slow, restrained"]
 
 
 def default_token_state() -> dict:
