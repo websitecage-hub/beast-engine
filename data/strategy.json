@@ -45,13 +45,20 @@
     "bg_type": {
       "mask": 1.0,
       "rehearsal": 1.0,
-      "freeze_detour": 1.0,
+      "freeze": 1.0,
+      "detour": 1.0,
       "aftermath": 1.0,
+      "bodys_betrayal": 1.0,
       "sealed_mouth": 1.0,
       "craving": 1.0,
       "losses": 1.0,
       "buried_anger": 1.0,
       "quiet_hope": 1.0
+    },
+    "loop_technique": {
+      "visual_echo": 1.0,
+      "audio_echo": 1.0,
+      "mid_thought": 1.0
     }
   },
   "n": {
@@ -100,13 +107,20 @@
     "bg_type": {
       "mask": 0,
       "rehearsal": 0,
-      "freeze_detour": 0,
+      "freeze": 0,
+      "detour": 0,
       "aftermath": 0,
+      "bodys_betrayal": 0,
       "sealed_mouth": 0,
       "craving": 0,
       "losses": 0,
       "buried_anger": 0,
       "quiet_hope": 0
+    },
+    "loop_technique": {
+      "visual_echo": 0,
+      "audio_echo": 0,
+      "mid_thought": 0
     }
   },
   "adj": {
@@ -155,21 +169,29 @@
     "bg_type": {
       "mask": null,
       "rehearsal": null,
-      "freeze_detour": null,
+      "freeze": null,
+      "detour": null,
       "aftermath": null,
+      "bodys_betrayal": null,
       "sealed_mouth": null,
       "craving": null,
       "losses": null,
       "buried_anger": null,
       "quiet_hope": null
+    },
+    "loop_technique": {
+      "visual_echo": null,
+      "audio_echo": null,
+      "mid_thought": null
     }
   },
   "hour_scores": {
     "13:30": null,
     "15:00": null,
-    "16:30": null
+    "16:30": null,
+    "21:30": null
   },
-  "next_post_hour": "15:00",
+  "next_post_hour": "21:30",
   "warmup_until": "2026-09-28",
   "experiments": [],
   "last_updated": null

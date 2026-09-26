@@ -2,12 +2,15 @@
   "brand": {
     "name": "Unleash The Beast",
     "handle": "unleashthe.b",
-    "voice": "Describe, never advise. Mirror one specific person's inner life with exact scenes. Present tense, second person. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
+    "meaning": "The real person under the mask. Not aggression, not grind. The self buried under years of small retreats who still wants to be known.",
+    "voice": "Describe, never advise. Present tense, second person, his language — never a psychologist's. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
     "hook_examples": [
       "You know exactly what to say. You say nothing. Again.",
       "The conversation ends. The trial begins.",
       "You want to talk. Your mouth disagrees.",
-      "She matched with you. And you're suspicious."
+      "She matched with you. And you're suspicious.",
+      "Your manager thinks you're less competent than you are.",
+      "You pull out your phone when someone walks by. Nothing's on it."
     ]
   },
   "archetypes": [
@@ -54,58 +57,75 @@
   ],
   "bg_types": {
     "mask": [
-      "glass office night aesthetic",
-      "empty meeting room aesthetic",
-      "conference room dark"
+      "glass office night video aesthetic",
+      "city crowd night video"
     ],
     "rehearsal": [
-      "cafe window night aesthetic",
-      "phone glow dark room aesthetic"
+      "cafe window rain video aesthetic",
+      "coffee shop moody video"
     ],
-    "freeze_detour": [
-      "empty street night rain",
-      "walking alone night city aesthetic"
+    "freeze": [
+      "walking alone night city video",
+      "empty street rain night video"
+    ],
+    "detour": [
+      "night walk aesthetic video",
+      "subway night video aesthetic"
     ],
     "aftermath": [
-      "3am aesthetic dark",
-      "ceiling fan dark aesthetic",
-      "mirror dark aesthetic",
-      "unmade bed aesthetic"
+      "ceiling night video aesthetic",
+      "rain window night video"
+    ],
+    "bodys_betrayal": [
+      "dark room flickering light video",
+      "shadow moving wall video"
     ],
     "sealed_mouth": [
-      "face half shadow aesthetic",
-      "silhouette mouth covered dark"
+      "silhouette standing dark video",
+      "person alone shadow video"
     ],
     "craving": [
-      "phone glow face dark aesthetic",
-      "city lights from window night"
+      "phone glow dark room video",
+      "city lights window night video"
     ],
     "losses": [
-      "empty lecture hall aesthetic",
-      "empty classroom aesthetic",
-      "old playground aesthetic"
+      "empty train night video",
+      "empty classroom aesthetic video"
     ],
     "buried_anger": [
-      "storm clouds dark aesthetic",
-      "cracked wall dark aesthetic"
+      "storm clouds dark video",
+      "waves crashing night video"
     ],
     "quiet_hope": [
-      "sunrise alone aesthetic",
-      "first light window aesthetic"
+      "sunrise slow video aesthetic",
+      "first light window video"
     ]
   },
   "archetype_bg_map": {
     "the_mask": "mask",
     "the_rehearsal": "rehearsal",
-    "the_freeze": "freeze_detour",
-    "the_detour": "freeze_detour",
+    "the_freeze": "freeze",
+    "the_detour": "detour",
     "the_aftermath": "aftermath",
-    "the_bodys_betrayal": "sealed_mouth",
+    "the_bodys_betrayal": "bodys_betrayal",
     "the_sealed_mouth": "sealed_mouth",
     "the_craving": "craving",
     "the_losses": "losses",
     "the_buried_anger": "buried_anger",
     "quiet_hope": "quiet_hope"
+  },
+  "cluster_mood_map": {
+    "the_mask": "muffled_world",
+    "the_rehearsal": "quiet_devastating",
+    "the_freeze": "quiet_devastating",
+    "the_detour": "heavy_shadow",
+    "the_aftermath": "heavy_shadow",
+    "the_bodys_betrayal": "heavy_shadow",
+    "the_sealed_mouth": "heavy_shadow",
+    "the_craving": "quiet_devastating",
+    "the_losses": "quiet_devastating",
+    "the_buried_anger": "restrained_anger",
+    "quiet_hope": "gentle_hope"
   },
   "mood_fallback_bpm": {
     "quiet_devastating": 65,
@@ -119,6 +139,10 @@
     "trending_niche": "self-improvement",
     "trending_fallback_niche": "motivation",
     "min_confidence": 0.5,
+    "phase2_score_band": [
+      0.35,
+      0.85
+    ],
     "mood_search": {
       "quiet_devastating": "slowed sad piano reverb vinyl crackle",
       "heavy_shadow": "dark ambient drone sub bass",
@@ -140,19 +164,30 @@
   "posting_slots_utc": [
     "13:30",
     "15:00",
-    "16:30"
+    "16:30",
+    "21:30"
   ],
   "reel": {
-    "min_s": 8,
-    "max_s": 11,
+    "min_s": 9.0,
+    "max_s": 10.0,
     "fps": 30,
     "w": 1080,
     "h": 1920
   },
+  "timing": {
+    "hook_end": 3.5,
+    "deepen_end": 7.0
+  },
+  "text_limits": {
+    "hook": 60,
+    "deepening": 90,
+    "landing": 70
+  },
+  "bg_darken": -0.13,
   "explore_rate": 0.2,
-  "cta_every_n_posts": 7,
-  "cta_line": "the ebook in my bio was written for the person who felt this.",
+  "whisper_every_n_posts": 7,
   "hope_every_n_posts": 10,
+  "whisper_line": "the ebook in my bio was written for the person who felt this.",
   "hashtag_pools": {
     "broad": [
       "#socialanxiety",

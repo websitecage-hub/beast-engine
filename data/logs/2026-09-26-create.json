@@ -1,0 +1,49 @@
+[
+  {
+    "workflow": "create",
+    "started": "2026-09-26T18:46:52.638131+00:00",
+    "dry_run": false,
+    "offline": true,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.0
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.0,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 0.0,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 0.0,
+        "post": true,
+        "reason": "offline"
+      },
+      {
+        "step": "duration",
+        "t": 0.0,
+        "seconds": 9.37
+      },
+      {
+        "step": "generated",
+        "t": 0.0,
+        "hook": "You know exactly what to say. You say nothing. Again.",
+        "exploit": true
+      },
+      {
+        "step": "failed",
+        "t": 0.01,
+        "error": "[Errno 2] No such file or directory: 'ffmpeg'"
+      }
+    ],
+    "errors": [
+      "[Errno 2] No such file or directory: 'ffmpeg'"
+    ]
+  }
+]
