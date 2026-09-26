@@ -29,8 +29,9 @@ Read this top to bottom before doing anything. It is written as *we are resuming
 
 ### 1b. `beast-engine` — the reel generator (LOCAL ONLY, DO NOT PUSH)
 - Local path: **`~/beast-engine`** (remote configured: `github.com/websitecage-hub/beast-engine`)
-- **10+ local commits, ALL UNPUSHED.** User's rule: do not push until they say it's final.
-- Latest commits: v5.0 THE COMPLETE MIND, Coolvetica font, visual-spec background work.
+- **All work is local and unpushed.** The remote is an **empty shell** — verified via the GitHub API: `size: 0`, `pushed_at: 2026-09-18`, and `git ls-remote --heads` returns **zero branches**. There is no `origin/main` ref locally, so `git log origin/main..HEAD` reports 0 and is *meaningless* — do not use it to judge push state. Compare `git rev-parse HEAD` against `git ls-remote` instead.
+- User's rule: **do not push until they say it's final.**
+- Latest commits: `904ebb0` handoff, `61662f9` v5.0 THE COMPLETE MIND + Coolvetica, `5cc9d7f` create failure log.
 
 ---
 

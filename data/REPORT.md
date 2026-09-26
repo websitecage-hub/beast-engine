@@ -1,6 +1,6 @@
 # Beast Engine — weekly brain report
 
-Generated: 2026-09-26T19:02:19+00:00
+Generated: 2026-09-26T21:08:18+00:00
 
 Posts scored this cycle: **10**
 Weighted mean score: **0.0832**
@@ -10,17 +10,17 @@ Weighted mean score: **0.0832**
 ### archetype
 | value | adj | n |
 |---|---|---|
-| the_mask | 0.0901 | 1 |
-| the_detour | 0.0890 | 1 |
+| the_mask | 0.0900 | 1 |
+| the_detour | 0.0889 | 1 |
 | the_freeze | 0.0879 | 1 |
 | the_sealed_mouth | 0.0879 | 1 |
 | the_losses | 0.0834 | 1 |
 | the_buried_anger | 0.0832 | 0 |
-| the_aftermath | 0.0826 | 1 |
+| the_aftermath | 0.0827 | 1 |
 | quiet_hope | 0.0801 | 1 |
 | the_rehearsal | 0.0780 | 1 |
-| the_craving | 0.0772 | 1 |
-| the_bodys_betrayal | 0.0763 | 1 |
+| the_craving | 0.0773 | 1 |
+| the_bodys_betrayal | 0.0764 | 1 |
 
 ### topic
 | value | adj | n |
