@@ -1,13 +1,13 @@
-"""background.py — dark cinematic VIDEO for the Part 5 format.
+"""background.py — VISUAL SPEC v1.0: Pinterest VIDEO clips, cinematic treatment.
 
-Part 5.2: the background MUST be video, not a static image — motion is the
-retention device. So the chain is video-first and video-only:
+Mandatory (spec §2):
+  * source is ONLY the Pinterest video search endpoint (direct MP4s, real motion)
+  * reject clips under 3s, reject non-video, dedup 30 days
+  * fallback chain: another query -> Meta image animated (rare, last resort)
 
-  1. Pinterest VIDEO (cluster query from config bg_types, LLM scene first)
-  2. bundled still loop (last resort — flagged as a QA warning, not silently ok)
-
-Follows the grade chain: crush dark, desaturate, vignette, grain, brightness
--0.13 so white text always pops.
+Cinematic treatment (spec §3):
+  crop/scale 1080x1920 -> grade (brightness -0.10, saturation 0.85, contrast 1.15,
+  blue shift) -> trim from the MIDDLE of the clip -> seamless loop.
 """
 from __future__ import annotations
 
@@ -15,15 +15,16 @@ import random
 import subprocess
 from pathlib import Path
 
-from . import config, pinterest
+from . import config, llm, pinterest
 
-GRADE = ("eq=contrast=1.12:saturation=0.40:gamma=0.95,"
-         "curves=all='0/0.035 0.30/0.33 1/1',"
-         "colorbalance=rs=-0.04:gs=-0.01:bs=0.07:rm=0:rh=0.035:bh=-0.035,"
-         "vignette=PI/4.6,noise=alls=6:allf=t+u")
-PREFERRED_ASPECT = 9 / 16
-BG_DARKEN = -0.13
+# Spec §3.2 — the exact cinematic grade chain.
+GRADE = ("eq=brightness=-0.10:saturation=0.85:contrast=1.15,"
+         "colorbalance=rs=-0.03:gs=0.0:bs=0.05")
+MIN_CLIP_S = 3.0            # spec §2.3
+DEDUP_DAYS = 30             # spec §2.3
 
+
+# ------------------------------------------------------------------ helpers
 
 def _pin_aspect(entry: dict) -> float:
     for key in ("orig", "474x", "236x"):
@@ -36,17 +37,53 @@ def _pin_aspect(entry: dict) -> float:
     return 0.75
 
 
-def _pick_video(results: list, used_pins: set):
-    """Pick an unused VIDEO pin, preferring vertical/portrait shape."""
+def _duration_ms(entry: dict) -> int:
+    """Duration straight from the search payload — no download needed (spec §2.3)."""
+    best = 0
+    for v in (entry.get("videos") or []):
+        try:
+            best = max(best, int(v.get("durationMs") or 0))
+        except (TypeError, ValueError):
+            continue
+    return best
+
+
+def _recent_pin_ids(memory) -> set:
+    """Pin ids used within the dedup window (spec §2.3: 30 days)."""
+    cutoff = config.today_utc() - config.timedelta(days=DEDUP_DAYS)
+    used = set()
+    for u in memory.get("used_pins", []):
+        if isinstance(u, dict):
+            raw = str(u.get("date") or "")[:10]
+            try:
+                if config.date.fromisoformat(raw) >= cutoff:
+                    used.add(str(u.get("id")))
+            except Exception:  # noqa: BLE001 — undated entries stay excluded
+                used.add(str(u.get("id")))
+        else:
+            used.add(str(u))
+    return used
+
+
+def pick_clip(results: list, used: set):
+    """Spec §2.3 selection: video with MP4, >=3s, croppable to 9:16, motion-leaning.
+
+    Prefers portrait/near-portrait shape and prefers longer clips (more room to
+    take a good middle slice). Returns the chosen entry or None.
+    """
     pool = []
     for e in results:
-        if str(e.get("id")) in used_pins:
+        if str(e.get("id")) in used:
             continue
         if (e.get("type") or "image") != "video" or not e.get("best_video"):
             continue
+        ms = _duration_ms(e)
+        if ms and ms < MIN_CLIP_S * 1000:
+            continue                                    # too short to loop
         ar = _pin_aspect(e)
-        shape_bonus = 2.0 if 0.4 <= ar <= 0.75 else 0.2
-        pool.append((3.0 * shape_bonus, e))
+        portrait = 1.0 if 0.4 <= ar <= 0.75 else (0.6 if 0.75 < ar <= 1.0 else 0.15)
+        length = 1.0 + min(ms / 60000.0, 1.0)           # up to 2x for long clips
+        pool.append((portrait * length, e))
     if not pool:
         return None
     total = sum(w for w, _ in pool)
@@ -59,79 +96,81 @@ def _pick_video(results: list, used_pins: set):
     return pool[-1][1]
 
 
-def _grade_cmd(src: Path, out: Path, duration_s: float, fps: int, still: bool,
-               darken: float = BG_DARKEN) -> bool:
+# ------------------------------------------------------------ processing
+
+def _probe_duration(path: Path) -> float:
+    try:
+        r = subprocess.run(["ffprobe", "-v", "error", "-show_entries",
+                            "format=duration", "-of", "default=nw=1:nk=1", str(path)],
+                           capture_output=True, text=True, timeout=60)
+        return float((r.stdout or "0").strip() or 0)
+    except Exception:  # noqa: BLE001
+        return 0.0
+
+
+def process_clip(src: Path, out: Path, duration_s: float, fps: int) -> bool:
+    """Spec §3: crop/scale -> grade -> trim from the MIDDLE -> seamless loop."""
     out.parent.mkdir(parents=True, exist_ok=True)
-    cfg = config.load_config()
-    w, h = cfg["reel"]["w"], cfg["reel"]["h"]
-    crop = f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h}"
-    if still:
-        frames = max(int(round(duration_s * fps)), 2)
-        ow, oh = int(w * 1.2), int(h * 1.2)
-        vf = (f"scale={ow}:{oh}:force_original_aspect_ratio=increase,crop={ow}:{oh},"
-              f"zoompan=z='1.0+0.06*on/{frames - 1}':"
-              f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={frames}:s={w}x{h}:fps={fps},"
-              f"{GRADE},eq=brightness={darken},format=yuv420p")
-        cmd = ["ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", str(src),
-               "-t", f"{duration_s:.3f}", "-vf", vf,
-               "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(out)]
-    else:
-        # Part 5.2 — seamless loop: trim to duration so the end flows into the start
-        vf = (f"{crop},fps={fps},{GRADE},eq=brightness={darken},format=yuv420p")
-        cmd = ["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-i", str(src),
-               "-t", f"{duration_s:.3f}", "-vf", vf, "-an",
-               "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(out)]
+    src_dur = _probe_duration(src)
+    if src_dur <= 0:
+        print("[background] cannot probe source duration")
+        return False
+    # Spec §3.3 — start in the middle where the motion is best.
+    start = max((src_dur - duration_s) / 2.0, 0.0)
+    # Spec §3.1 + §3.2 + §3.5 in one pass.
+    vf = (f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
+          f"fps={fps},{GRADE},format=yuv420p")
+    cmd = ["ffmpeg", "-y", "-v", "error", "-ss", f"{start:.3f}", "-i", str(src),
+           "-t", f"{duration_s:.3f}", "-vf", vf, "-an",
+           "-c:v", "libx264", "-preset", "slow", "-crf", "20", str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
     if r.returncode != 0 or not out.exists():
-        print(f"[background] grade failed: {r.stderr[-400:]}")
+        print(f"[background] process failed: {r.stderr[-400:]}")
         return False
     return True
 
 
-def build(cfg, content, memory, duration_s: float, offline: bool = False,
-          dry_run: bool = False):
-    """Returns (bg_mp4_path, bg_source). Video-first; bundled only as last resort."""
-    fps = int(cfg["reel"]["fps"])
-    out_norm = config.OUTPUTS / "bg.mp4"
-    raw = config.OUTPUTS / "bg_raw"
-    if offline:
-        if _bundled(cfg, out_norm, duration_s, fps):
-            return out_norm, "bundled"
-        raise RuntimeError("bundled fallback background failed")
+def loop_clip(src: Path, out: Path, duration_s: float, fps: int,
+              fade: float = 0.5) -> bool:
+    """Spec §3.4 — cross-fade the tail into the head so the video loops cleanly.
 
-    scene = (content.get("scene") or "").strip()
-    bg_type = content.get("bg_type")
-    synonyms = (cfg["bg_types"].get(bg_type)
-                or cfg.get("bg_types", {}).get(
-                    cfg.get("archetype_bg_map", {}).get(
-                        content.get("cluster") or content.get("archetype"), ""), [])
-                or ["dark cinematic night video"])
-    queries = [q for q in [scene, *synonyms] if q]
-    used = {str(u.get("id") if isinstance(u, dict) else u)
-            for u in memory.get("used_pins", [])}
+    For continuous-motion footage (rain/smoke/fog/water) the cut is already
+    seamless; the xfade guarantees it for everything else.
+    """
+    if duration_s <= fade * 2:
+        return False
+    offset = max(duration_s - fade * 2, 0.0)
+    filt = (f"[0:v]split[a][b];"
+            f"[a]trim=0:{offset:.3f},setpts=PTS-STARTPTS[ha];"
+            f"[b]trim={offset:.3f}:{duration_s:.3f},setpts=PTS-STARTPTS[tb];"
+            f"[ha][tb]xfade=transition=fade:duration={fade:.3f}:"
+            f"offset={max(offset - fade, 0):.3f},format=yuv420p[v]")
+    cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(src),
+           "-filter_complex", filt, "-map", "[v]", "-an",
+           "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-r", str(fps), str(out)]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
+    if r.returncode != 0 or not out.exists():
+        print(f"[background] loop xfade failed (using straight cut): {r.stderr[-300:]}")
+        return False
+    return True
 
-    # ---- 1. Pinterest VIDEO — the mandated format (Part 5.2)
-    for q in queries:
-        for attempt in range(3):
-            try:
-                results = pinterest.search(q, media_type="video")
-                entry = _pick_video(results, used)
-                if not entry:
-                    break
-                url = entry.get("best_video")
-                if url and pinterest.download(url, raw.with_suffix(".mp4")):
-                    if _grade_cmd(raw.with_suffix(".mp4"), out_norm, duration_s, fps, False):
-                        _record(memory, entry, dry_run)
-                        return out_norm, "pinterest_video"
-            except Exception as exc:  # noqa: BLE001
-                print(f"[background] video {attempt + 1} failed: {exc}")
 
-    # ---- 2. Bundled still loop (NOT the format — QA flags it)
-    if _bundled(cfg, out_norm, duration_s, fps):
-        print("[background] WARNING: fell back to bundled still background "
-              "(format requires video)")
-        return out_norm, "bundled"
-    raise RuntimeError("all background providers failed")
+def animate_still(src: Path, out: Path, duration_s: float, fps: int,
+                  darken: float = -0.13) -> bool:
+    """Spec §2.4 step 3 — LAST RESORT: animate a still with zoompan + blur drift."""
+    out.parent.mkdir(parents=True, exist_ok=True)
+    frames = max(int(round(duration_s * fps)), 2)
+    ow, oh = int(1080 * 1.2), int(1920 * 1.2)
+    vf = (f"scale={ow}:{oh}:force_original_aspect_ratio=increase,crop={ow}:{oh},"
+          f"zoompan=z='1.0+0.10*on/{frames - 1}':"
+          f"x='iw/2-(iw/zoom/2)+8*sin(on/12)':y='ih/2-(ih/zoom/2)+6*cos(on/15)':"
+          f"d={frames}:s=1080x1920:fps={fps},"
+          f"gblur=sigma=0.6,{GRADE},eq=brightness={darken},format=yuv420p")
+    cmd = ["ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", str(src),
+           "-t", f"{duration_s:.3f}", "-vf", vf,
+           "-c:v", "libx264", "-preset", "slow", "-crf", "20", str(out)]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
+    return r.returncode == 0 and out.exists()
 
 
 def _record(memory, entry, dry_run: bool):
@@ -143,32 +182,84 @@ def _record(memory, entry, dry_run: bool):
     })
 
 
-def _convert_still(path: Path) -> bool:
-    from PIL import Image
-    try:
-        with Image.open(path) as im:
-            im.convert("RGB").save(config.OUTPUTS / "bg_still.jpg", "JPEG", quality=92)
-        return True
-    except Exception as exc:  # noqa: BLE001
-        print(f"[background] still convert failed: {exc}")
-        return False
+# ------------------------------------------------------------------- build
 
+def build(cfg, content, memory, duration_s: float, offline: bool = False,
+          dry_run: bool = False):
+    """Returns (bg_mp4_path, bg_source). Raises only if every provider fails."""
+    fps = int(cfg["reel"]["fps"])
+    out_norm = config.OUTPUTS / "bg.mp4"
+    looped = config.OUTPUTS / "bg_looped.mp4"
+    raw = config.OUTPUTS / "bg_raw.mp4"
 
-def _bundled(cfg, out_norm: Path, duration_s: float, fps: int) -> bool:
+    if offline:
+        bundled = config.ASSETS / "fallback" / "bg_default.jpg"
+        if not bundled.exists():
+            make_default_bg(bundled)
+        # Offline is hermetic: animate the bundled still so the format still has
+        # motion, but flag it as non-Pinterest so the QA gate can see the truth.
+        if bundled.exists() and animate_still(bundled, looped, duration_s,
+                                              fps, darken=float(cfg.get("bg_darken", -0.13))):
+            return looped, "bundled_animated"
+        raise RuntimeError("offline background failed")
+
+    used = _recent_pin_ids(memory)
+    scene = (content.get("scene") or "").strip()
+    bg_type = content.get("bg_type")
+    cluster = content.get("cluster") or content.get("archetype")
+    mapped = (cfg.get("archetype_bg_map") or {}).get(cluster)
+    synonyms = (cfg["bg_types"].get(bg_type)
+                or cfg["bg_types"].get(mapped) or []
+                or ["dark aesthetic video night city"])
+
+    # Spec §2.2 — rotate the query list, LLM scene first when we have one.
+    queries = []
+    for q in [scene, *synonyms]:
+        if q and q not in queries:
+            queries.append(q)
+    random.shuffle(synonyms)
+    queries += [q for q in synonyms if q not in queries]
+
+    # Spec §2.4 steps 1-2 — Pinterest video, then more queries.
+    for q in queries[:8]:
+        for attempt in range(2):
+            try:
+                results = pinterest.search_videos(q)
+                entry = pick_clip(results, used)
+                if not entry:
+                    break
+                url = entry.get("best_video")
+                if url and pinterest.download(url, raw):
+                    if process_clip(raw, looped, duration_s, fps):
+                        if not loop_clip(looped, out_norm, duration_s, fps):
+                            # straight cut is acceptable for continuous motion
+                            out_norm.write_bytes(looped.read_bytes())
+                        _record(memory, entry, dry_run)
+                        return out_norm, "pinterest_video"
+            except Exception as exc:  # noqa: BLE001
+                print(f"[background] {q!r} attempt {attempt + 1} failed: {exc}")
+
+    # Spec §2.4 step 3 — LAST RESORT: AI image, animated.
+    print("[background] WARNING: no Pinterest clip qualified; animating an AI still")
+    prompt = (f"cinematic night photograph, {scene or 'lone man silhouette in rain'}, "
+              f"extremely dark low-key, crushed blacks, single light source, "
+              f"vertical composition, no text, no watermark")
+    gen = config.OUTPUTS / "bg_ai.jpg"
+    if llm.image(prompt, gen) and animate_still(
+            gen, looped, duration_s, fps, darken=float(cfg.get("bg_darken", -0.13))):
+        return looped, "meta_image_animated"
+
     bundled = config.ASSETS / "fallback" / "bg_default.jpg"
     if not bundled.exists():
         make_default_bg(bundled)
-    if not bundled.exists():
-        return False
-    return _grade_cmd(bundled, out_norm, duration_s, fps, True)
+    if animate_still(bundled, looped, duration_s, fps,
+                     darken=float(cfg.get("bg_darken", -0.13))):
+        return looped, "bundled_animated"
+    raise RuntimeError("all background providers failed")
 
 
 def make_default_bg(path) -> bool:
-    """1080x1920 near-black with a smooth dark-red radial glow.
-
-    Built with float maths + dither noise: stepping a Pillow pixel loop produced
-    visible banding rings, which is a dead giveaway of an amateur card.
-    """
+    """1080x1920 near-black with a smooth dark-red radial glow (dither-noised)."""
     from PIL import Image
     import numpy as np
 
@@ -183,9 +274,9 @@ def make_default_bg(path) -> bool:
     r = 10.0 + 62.0 * t
     g = 10.0 + 8.0 * t
     b = 12.0 + 14.0 * t
-    # ordered dither to kill banding in the smooth ramp
     rng = np.random.default_rng(11)
     n = rng.uniform(-0.9, 0.9, size=(h, w)).astype(np.float32)
     arr = np.stack([r + n, g + n, b + n], axis=-1)
-    Image.fromarray(np.clip(arr, 0, 255).astype("uint8"), "RGB").save(path, "JPEG", quality=92)
+    Image.fromarray(np.clip(arr, 0, 255).astype("uint8"), "RGB").save(path, "JPEG",
+                                                                     quality=92)
     return path.exists()

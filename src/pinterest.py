@@ -32,6 +32,15 @@ def wake(retries: int = 6, wait: float = 15.0) -> bool:
     return False
 
 
+def search_videos(query: str, retries: int = 3) -> list:
+    """Spec §2.1 — the ONLY acceptable background source.
+
+    Hits /search/videos and returns raw result dicts (each carries `best_video`
+    with a direct MP4 URL and `videos[]` with durationMs).
+    """
+    return search(query, media_type="video", retries=retries)
+
+
 def search(query: str, media_type: str | None = None, retries: int = 3) -> list:
     """Search pins. media_type 'video' -> /search/videos. Returns results[] (possibly empty)."""
     wake()
