@@ -116,21 +116,25 @@ DEFAULT_CONFIG = {
         # Part 4.5 — Phase 2 adoption window (days 4-8 of a sound's rise):
         # not the already-peaked top of the chart, not the untested bottom.
         "phase2_score_band": [0.35, 0.85],
+        # VISUAL SPEC v1.0 §5: dark trending only — phonk / dark ambient / slowed
+        # reverb. Explicitly NOT piano, NOT lofi, NOT generic ambient.
         "mood_search": {
-            "quiet_devastating": "slowed sad piano reverb vinyl crackle",
+            "quiet_devastating": "slow dark ambient reverb deep sub bass",
             "heavy_shadow": "dark ambient drone sub bass",
-            "muffled_world": "lofi heard through a wall",
+            "muffled_world": "slowed reverb dark ambient muffled",
             "restrained_anger": "slow dark phonk soft",
-            "gentle_hope": "slow ambient build hopeful",
+            "gentle_hope": "slow dark ambient build cinematic",
         },
+        "banned_music_terms": ["piano", "lofi", "lo-fi", "lo fi", "cheerful",
+                               "upbeat", "acoustic guitar"],
         "genre_hint": {"rap": " dark phonk", "hip-hop": " dark phonk", "trap": " dark phonk",
                        "edm": " dark trap", "pop": " emotional", "rock": " cinematic",
-                       "rnb": " moody", "lofi": " lofi dark"},
+                       "rnb": " moody", "lofi": " slowed reverb dark"},
     },
     "posting_slots_utc": ["13:30", "15:00", "16:30", "21:30"],
     # Part 5.5 — 9-10 seconds, locked
     "reel": {"min_s": 9.0, "max_s": 10.0, "fps": 30, "w": 1080, "h": 1920},
-    "timing": {"hook_end": 3.5, "deepen_end": 7.0},     # landing holds to the end
+    "timing": {"hook_end_frac": 0.45, "deepen_end_frac": 0.88},  # spec §4 (see build_video.state_map)
     "text_limits": {"hook": 60, "deepening": 90, "landing": 70},
     "bg_darken": -0.13,        # Part 5.2: brightness -0.12 to -0.15
     "explore_rate": 0.2,
@@ -206,9 +210,11 @@ def default_memory() -> dict:
 
 
 def default_trending_styles() -> list:
-    return ["slowed sad piano, vinyl crackle, quiet",
+    # VISUAL SPEC v1.0 §5 — dark trending audio only (phonk / dark ambient /
+    # slowed reverb). Piano and lofi are explicitly excluded.
+    return ["slow dark ambient, deep sub bass, reverb",
             "dark ambient drone, sub bass, slow",
-            "lofi through a wall, muffled, warm",
+            "slowed reverb dark ambient, muffled",
             "soft dark phonk, slow, restrained"]
 
 

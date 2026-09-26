@@ -299,6 +299,87 @@ def mood_matches(mood: str, track_path) -> bool:
     return True
 
 
+def _spec5_violates(text: str, cfg) -> bool:
+    """VISUAL SPEC v1.0 §5 gate: piano / lofi / cheerful must never be searched.
+
+    The config vocabulary is already clean, but a stale data/trending_styles.json or
+    a genre hint could reintroduce a banned term, so enforce it at query time too.
+    """
+    low = (text or "").lower()
+    banned = (cfg.get("music") or {}).get("banned_music_terms") or []
+    return any(term in low for term in banned)
+
+
+def _spec5_safe_query(cfg, mood: str) -> str:
+    """A spec-compliant query, guaranteed free of banned terms."""
+    music = cfg.get("music") or {}
+    base = (music.get("mood_search") or {}).get(mood) or "dark ambient drone"
+    return "dark ambient drone sub bass" if _spec5_violates(base, cfg) else base
+
+
+def song_provider(cfg, content, memory, track_mp3, track_wav, duration_s: float):
+    """Resolve by SONG NAME through the audio service's /v1/song (Instagram-first).
+
+    The deployed service resolves a title/artist to audio across Instagram ->
+    SoundCloud -> YouTube. We send the trending reference's title/artist when we
+    have one, else a spec §5-compliant dark query.
+    """
+    import requests
+
+    music = cfg.get("music") or {}
+    api = music.get("trending_api")
+    if not api:
+        return False, {}
+    mood = content.get("mood") or "heavy_shadow"
+    if not content.get("mood"):
+        cluster = content.get("cluster") or content.get("archetype")
+        mood = (cfg.get("cluster_mood_map") or {}).get(cluster, mood)
+
+    ref = content.get("_trending_ref") or {}
+    title = (ref.get("title") or "").strip() or _spec5_safe_query(cfg, mood)
+    artist = (ref.get("artist") or "").strip()
+
+    if _spec5_violates(title, cfg) or _spec5_violates(artist, cfg):
+        title, artist = _spec5_safe_query(cfg, mood), ""
+
+    try:
+        wake(api)
+        r = requests.post(f"{api}/v1/song",
+                          json={"title": title, "artist": artist, "niche": "reels"},
+                          timeout=300)
+        if r.status_code != 200:
+            return False, {}
+        data = r.json() or {}
+    except Exception as exc:  # noqa: BLE001
+        print(f"[music] /v1/song failed: {exc}")
+        return False, {}
+
+    url = data.get("file_url") or data.get("url")
+    if not data.get("ok") and not url:
+        return False, {}
+    if not url:
+        return False, {}
+
+    raw = _acquire(api, url, title, artist) or None
+    if not raw:
+        if not _download_direct(url, track_mp3):
+            return False, {}
+    else:
+        tmp = config.OUTPUTS / "song_dl.bin"
+        tmp.write_bytes(raw)
+        if not any(c.exists() and to_mp3(c, track_mp3)
+                   for c in (tmp, config.OUTPUTS / "song_dl.webm")):
+            return False, {}
+
+    if not has_audio_stream(track_mp3) or ffprobe_duration(track_mp3) < 5:
+        return False, {}
+    if not mood_matches(mood, track_mp3):
+        return False, {}
+    to_wav(track_mp3, track_wav)
+    return True, {"music_source": "song", "music_query": title,
+                  "music_artist": artist, "duration_s": ffprobe_duration(track_mp3)}
+
+
 def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_mp3, track_wav,
                            duration_s: float):
     """Returns (True, meta) on success. Never raises.
@@ -320,11 +401,16 @@ def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_m
     genre = (trending_ref or {}).get("genre") or ""
     styles = config.load_trending_styles()
     mood_search = music["mood_search"].get(mood, "dark ambient")
+    style = random.choice(styles) if styles else ""
+    if _spec5_violates(style, cfg):
+        style = ""                       # spec §5: never let a stale style through
     query_parts = [mood_search]
     query_parts.append(music.get("genre_hint", {}).get(genre, ""))
-    if styles:
-        query_parts.append(random.choice(styles))
+    if style:
+        query_parts.append(style)
     full_query = " ".join(p.strip() for p in query_parts if p and p.strip())
+    if _spec5_violates(full_query, cfg):
+        full_query = _spec5_safe_query(cfg, mood)
 
     used_urls = {u.get("url") if isinstance(u, dict) else str(u)
                  for u in memory.get("used_track_urls", [])}
@@ -438,6 +524,11 @@ def acquire(cfg, content, strategy, memory, trending_ref, duration_s: float,
     if not offline:
         ok, meta = trending_free_provider(cfg, content, strategy, memory, trending_ref,
                                           track_mp3, track_wav, duration_s)
+        if ok:
+            return True, meta
+        # /v1/song resolves a NAME (Instagram-first) — the trending-audio path
+        content.setdefault("_trending_ref", trending_ref or {})
+        ok, meta = song_provider(cfg, content, memory, track_mp3, track_wav, duration_s)
         if ok:
             return True, meta
         ok, meta = library_provider(cfg, content, memory, track_mp3, track_wav, duration_s)

@@ -144,12 +144,21 @@
       0.85
     ],
     "mood_search": {
-      "quiet_devastating": "slowed sad piano reverb vinyl crackle",
+      "quiet_devastating": "slow dark ambient reverb deep sub bass",
       "heavy_shadow": "dark ambient drone sub bass",
-      "muffled_world": "lofi heard through a wall",
+      "muffled_world": "slowed reverb dark ambient muffled",
       "restrained_anger": "slow dark phonk soft",
-      "gentle_hope": "slow ambient build hopeful"
+      "gentle_hope": "slow dark ambient build cinematic"
     },
+    "banned_music_terms": [
+      "piano",
+      "lofi",
+      "lo-fi",
+      "lo fi",
+      "cheerful",
+      "upbeat",
+      "acoustic guitar"
+    ],
     "genre_hint": {
       "rap": " dark phonk",
       "hip-hop": " dark phonk",
@@ -158,7 +167,7 @@
       "pop": " emotional",
       "rock": " cinematic",
       "rnb": " moody",
-      "lofi": " lofi dark"
+      "lofi": " slowed reverb dark"
     }
   },
   "posting_slots_utc": [
@@ -175,8 +184,8 @@
     "h": 1920
   },
   "timing": {
-    "hook_end": 3.5,
-    "deepen_end": 7.0
+    "hook_end_frac": 0.45,
+    "deepen_end_frac": 0.88
   },
   "text_limits": {
     "hook": 60,
@@ -213,5 +222,5 @@
       "#nightscroll"
     ]
   },
-  "font_path": "assets/fonts/Anton-Regular.ttf"
+  "font_path": "assets/fonts/Coolvetica-Regular.otf"
 }

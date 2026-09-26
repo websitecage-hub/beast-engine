@@ -131,9 +131,10 @@ def test_text_blocks_and_timing_map():
     states = build_video.state_map(blocks, cfg, 9.5)
     assert states[0]["start"] == 0.0                     # hook IS the thumbnail
     hook_state = next(s for s in states if s["kind"] == "hook")
-    assert hook_state["end"] == 3.5                      # Part 5.5 map
+    # spec §4: hook holds 4-5s (0.45 * 9.5 = 4.275), landing starts at 0.88*9.5
+    assert 3.9 <= hook_state["end"] <= 5.1
     land_state = next(s for s in states if s["kind"] == "landing")
-    assert land_state["start"] == 7.0 and land_state["end"] == 9.5
+    assert 7.8 <= land_state["start"] <= 9.1 and land_state["end"] == 9.5
     # 3-block format: single deepening block
     three = {**content, "deepening": ["Only one deepening block here."]}
     b3 = build_video.text_blocks(three)
@@ -283,7 +284,7 @@ def test_seed_files_and_config_shape():
     assert len(strat["weights"]["loop_technique"]) == 3
     # Part 5 locked format
     assert cfg["reel"]["min_s"] == 9.0 and cfg["reel"]["max_s"] == 10.0
-    assert cfg["timing"] == {"hook_end": 3.5, "deepen_end": 7.0}
+    assert cfg["timing"] == {"hook_end_frac": 0.45, "deepen_end_frac": 0.88}  # spec §4
     assert set(cfg["archetypes"]) == set(strat["weights"]["archetype"])
     assert set(cfg["moods"]) == set(strat["weights"]["mood"])
     assert set(cfg["bg_types"].keys()) == set(strat["weights"]["bg_type"])
@@ -324,6 +325,97 @@ def test_pixabay_regex_finds_all_three():
     html = (FIXTURES / "pixabay_fixture.html").read_text(encoding="utf-8")
     found = music.PIXABAY_MP3_RE.findall(html)
     assert len(sorted(set(found))) == 3
+
+
+# ------------------------------------------------- VISUAL SPEC v1.0 §4 / §5
+
+def test_spec4_text_anchored_at_35_percent():
+    """§4: the text sits ~a third down, not dead-centre."""
+    cfg = config.DEFAULT_CONFIG
+    h = int(cfg["reel"]["h"])
+    assert build_video.TEXT_TOP_FRAC == 0.35
+    # a 2-line hook must start within a few px of 35% (offset only by half its height)
+    top = build_video.hook_top(["one", "two"], 96, cfg)
+    assert abs(top - (h * 0.35 - 96 * 1.32)) < 3, top
+
+
+def test_spec4_shadow_blur_and_opacity():
+    """§4: shadow blur radius 8 at ~70% opacity."""
+    assert build_video.SHADOW_BLUR == 8
+    assert abs(build_video.SHADOW_ALPHA / 255 - 0.70) < 0.02
+
+
+def test_spec4_timing_satisfies_all_three_windows():
+    """§4 gives hook 4-5s, deepening 4-5s, landing 8-9s — on a 9-10s reel these
+    are only jointly satisfiable as fractions, so assert them across the range."""
+    cfg = dict(config.DEFAULT_CONFIG)
+    blocks = [{"text": "h", "kind": "hook"},
+              {"text": "d", "kind": "deepening"},
+              {"text": "l", "kind": "landing"}]
+    for dur in (9.0, 9.5, 10.0):
+        st = {s["kind"]: s for s in build_video.state_map(blocks, cfg, dur)}
+        hook_hold = st["hook"]["end"] - st["hook"]["start"]
+        deep_hold = st["deepening"]["end"] - st["deepening"]["start"]
+        assert st["hook"]["start"] == 0.0
+        assert 3.9 <= hook_hold <= 5.1, (dur, hook_hold)
+        assert 3.5 <= deep_hold <= 5.1, (dur, deep_hold)
+        assert 7.8 <= st["landing"]["start"] <= 9.1, (dur, st["landing"]["start"])
+        assert st["landing"]["end"] == dur
+
+
+def test_spec4_text_band_only_when_bright():
+    """§4: the dark scrim is conditional on the background being bright."""
+    cfg = config.DEFAULT_CONFIG
+    assert build_video.TEXT_BAND_ALPHA == 77          # 30% black
+    assert build_video.TEXT_BAND_BRIGHT_MIN > 0
+    # a dark band must NOT be laid on this project's dark footage
+    assert build_video.TEXT_BAND_BRIGHT_MIN >= 60
+
+
+def test_spec5_no_piano_or_lofi_anywhere_in_audio_vocab():
+    """§5: dark trending audio only — piano/lofi must not be searchable."""
+    cfg = config.DEFAULT_CONFIG
+    banned = cfg["music"]["banned_music_terms"]
+    assert "piano" in banned and "lofi" in banned
+
+    # code defaults
+    for mood, q in cfg["music"]["mood_search"].items():
+        assert not music._spec5_violates(q, cfg), f"{mood} query violates §5: {q}"
+    for style in config.default_trending_styles():
+        assert not music._spec5_violates(style, cfg), f"trending style violates §5: {style}"
+
+    # the DATA files too — a stale one silently reintroduces the banned terms.
+    # Check the searchable VALUES, not the raw file text (the file legitimately
+    # contains the words "piano"/"lofi" inside banned_music_terms itself).
+    live = json.loads((ROOT / "data" / "config.json").read_text(encoding="utf-8"))
+    for mood, q in live["music"]["mood_search"].items():
+        assert not music._spec5_violates(q, cfg), f"data/config mood {mood} violates §5: {q}"
+    for style in json.loads((ROOT / "data" / "trending_styles.json").read_text(encoding="utf-8")):
+        assert not music._spec5_violates(style, cfg), f"data style violates §5: {style}"
+
+
+def test_spec5_safe_query_never_returns_banned_term():
+    cfg = config.DEFAULT_CONFIG
+    for mood in cfg["moods"]:
+        q = music._spec5_safe_query(cfg, mood)
+        assert not music._spec5_violates(q, cfg), q
+
+
+def test_spec_audio_chain_includes_song_provider():
+    """The /v1/song tier must be wired into acquire() (name -> audio, IG-first)."""
+    import inspect
+    src = inspect.getsource(music.acquire)
+    assert "song_provider" in src
+    src_song = inspect.getsource(music.song_provider)
+    assert "/v1/song" in src_song
+
+
+def test_data_config_matches_code_defaults_for_spec_keys():
+    """data/config.json must not contradict the code defaults."""
+    live = json.loads((ROOT / "data" / "config.json").read_text(encoding="utf-8"))
+    for key in ("font_path", "timing", "text_limits", "bg_darken"):
+        assert live[key] == config.DEFAULT_CONFIG[key], f"{key} drifted from defaults"
+    assert live["music"]["mood_search"] == config.DEFAULT_CONFIG["music"]["mood_search"]
 
 
 if __name__ == "__main__":

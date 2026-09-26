@@ -1,11 +1,16 @@
-"""build_video.py — THE COMPLETE MIND format (Part 5).
+"""build_video.py — THE COMPLETE MIND format (Part 5) + VISUAL SPEC v1.0 §4.
 
   * dark cinematic VIDEO background, darkened -0.13, looped continuously
-  * 2-3 LARGE static text blocks, no per-word/per-line animation — a block
-    fades in over <=0.3s and holds
-  * hook: Anton, largest. deepening: Playfair Display Italic. landing: Anton,
-    same weight/position as the hook (the visual echo = the invisible loop)
-  * timing map (Part 5.5): hook 0.0-3.5, deepening 3.5-7.0, landing 7.0-end
+  * 2-4 LARGE static text blocks, no per-word/per-line animation — a block
+    fades in over <=0.3s and holds (spec §4: no reveal, no typed text)
+  * hook: largest, pinned to y=35% of height (spec §4 / verified against the
+    user's reference reels: "roughly one-third of the way down")
+  * landing: same font, size and exact top as the hook — the visual echo IS the
+    invisible loop (Part 4.2)
+  * soft shadow, blur radius 8, ~70% opacity (spec §4)
+  * a 30% black feathered band behind the text IS rendered when the video
+    underneath is bright (spec §4 "subtle dark overlay behind text")
+  * timing (spec §4): hook holds 4-5s, deepening 4-5s, landing 8-9s
   * 9-10 seconds, 1080x1920, -16 LUFS audio
 
 Every text line is MEASURED with real font metrics and auto-fitted: overflow
@@ -27,6 +32,12 @@ WATERMARK_PX = 28
 SIDE_MARGIN = 90                # Part 5.3: generous margins, 90px sides
 MAX_BLOCK_H = 0.62
 BLOCK_FADE = 0.3                # Part 5.3: block fade <= 0.3s, no text theatre
+# --- VISUAL SPEC v1.0 §4 -----------------------------------------------------
+TEXT_TOP_FRAC = 0.35            # §4: text sits ~a third down, not dead-centre
+SHADOW_BLUR = 8                 # §4: shadow blur radius 8
+SHADOW_ALPHA = 179              # §4: ~70% opacity (0.70 * 255)
+TEXT_BAND_ALPHA = 77            # §4: 30% black (0.30 * 255) behind text
+TEXT_BAND_BRIGHT_MIN = 88       # only lay the band when the bg luma exceeds this
 # Coolvetica runs wide, so the ladders start lower and walk further down.
 HOOK_PX_LADDER = [120, 112, 104, 96, 88, 82, 76, 70, 64, 58, 52, 46, 40]
 BODY_PX_LADDER = [104, 96, 90, 84, 78, 72, 66, 60, 54, 48, 42]
@@ -132,12 +143,15 @@ def assert_fits(lines: list, px: int, font_path: str, cfg) -> int:
 # --------------------------------------------------------------- rendering
 
 def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: Path,
-                 cfg, fixed_top: int | None = None) -> Path:
+                 cfg, fixed_top: int | None = None, bg_luma: float | None = None) -> Path:
     """One static text block as a transparent PNG.
 
     `fixed_top` pins the first text line to an exact y — the hook and the landing
     are both rendered with the hook's top, so the reel's final frame sits exactly
     where frame 1 sat. That IS the invisible loop (Part 4.2), enforced visually.
+
+    `bg_luma` (0-255 mean brightness of the background under the text) triggers the
+    spec §4 feathered dark band, so light footage can't wash the text out.
     """
     from PIL import Image, ImageDraw, ImageFilter, ImageFont
     w = int(cfg["reel"]["w"])
@@ -147,7 +161,7 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
 
     line_h = int(px * 1.32)
     block_h = len(lines) * line_h
-    top = fixed_top if fixed_top is not None else (int(h * 0.5) - block_h // 2)
+    top = fixed_top if fixed_top is not None else (int(h * TEXT_TOP_FRAC) - block_h // 2)
 
     img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     shadow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
@@ -159,24 +173,66 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
         sd.text((x + 2, y + 3), txt, font=f, fill=sd_fill)
         d.text((x, y), txt, font=f, fill=fill)
 
+    # spec §4: only lay the dark band when the video behind the text is bright
+    if bg_luma is not None and bg_luma >= TEXT_BAND_BRIGHT_MIN and block_h > 0:
+        band_pad = int(px * 0.55)
+        y0 = max(top - band_pad, 0)
+        y1 = min(top + block_h + band_pad, h)
+        band = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        ImageDraw.Draw(band).rectangle([0, y0, w, y1], fill=(0, 0, 0, TEXT_BAND_ALPHA))
+        # feathered edges, so it reads as a cinematic scrim and not a grey box
+        img = Image.alpha_composite(img, band.filter(ImageFilter.GaussianBlur(px * 0.5)))
+
     for i, ln in enumerate(lines):
-        draw_center(ln, font, top + i * line_h, INK, (0, 0, 0, 150))
+        draw_center(ln, font, top + i * line_h, INK, (0, 0, 0, SHADOW_ALPHA))
 
     if watermark:
         bb = mark_font.getbbox(watermark)
         d.text(((w - (bb[2] - bb[0])) // 2, int(h * 0.92)), watermark,
                font=mark_font, fill=INK_MARK)
 
-    img = Image.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(5)), img)
+    img = Image.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(SHADOW_BLUR)), img)
     out_png.parent.mkdir(parents=True, exist_ok=True)
     img.save(out_png, "PNG")
     return out_png
 
 
 def hook_top(lines: list, px: int, cfg) -> int:
-    """The canonical text top — hook and landing both use this (the visual echo)."""
+    """The canonical text top — hook and landing both use this (the visual echo).
+
+    Spec §4: anchored so the text sits ~a third of the way down (not centred).
+    """
     h = int(cfg["reel"]["h"])
-    return int(h * 0.5) - (len(lines) * int(px * 1.32)) // 2
+    return int(int(h * TEXT_TOP_FRAC) - (len(lines) * int(px * 1.32)) // 2)
+
+
+def bg_text_luma(bg_mp4: Path, at: float, cfg, top: int, block_h: int) -> float | None:
+    """Mean brightness (0-255) of the background in the text band.
+
+    Spec §4 asks for a dark scrim behind the text only when the video there is
+    bright. Measuring the actual band is the only honest way to decide, so read
+    one frame and average the rows the text will occupy.
+    """
+    try:
+        import numpy as np
+        w = int(cfg["reel"]["w"])
+        h = int(cfg["reel"]["h"])
+        r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{max(at, 0):.2f}",
+                            "-i", str(bg_mp4), "-frames:v", "1", "-vf",
+                            f"scale={w}:{h},format=gray", "-f", "rawvideo",
+                            "-pix_fmt", "gray", "-"],
+                           capture_output=True, timeout=120)
+        if r.returncode != 0 or not r.stdout:
+            return None
+        frame = np.frombuffer(r.stdout, dtype=np.uint8)
+        if frame.size != w * h:
+            return None
+        frame = frame.reshape(h, w)
+        y0 = max(min(top, h - 1), 0)
+        y1 = max(min(top + max(block_h, 1), h), y0 + 1)
+        return float(frame[y0:y1, :].mean())
+    except Exception:  # noqa: BLE001
+        return None
 
 
 # ------------------------------------------------------------------- timing
@@ -205,11 +261,27 @@ def beat_times_fallback(cfg, mood: str, duration_s: float) -> list:
 
 
 def state_map(blocks: list, cfg, duration_s: float) -> list:
-    """Part 5.5 timing map. Blocks only accumulate display time; each block is a
-    hard cut (fade-in <=0.3s) and holds. Hook opens at 0.0 (IS the thumbnail)."""
+    """Part 5.5 timing map, reconciled with VISUAL SPEC v1.0 §4.
+
+    §4 gives three constraints that cannot all be absolute on a 9-10s reel:
+    "hook holds 4-5s", "deepening 4-5s", "landing 8-9s". Read as fractions of
+    duration they are simultaneously satisfiable, so:
+      hook     0.00 -> 0.45*D   (4.05-4.50s on a 9-10s reel  -> "4-5s")
+      deepen   0.45 -> 0.88*D   (~3.9-4.3s                   -> "4-5s" band)
+      landing  0.88 -> D        (starts at 7.9-8.8s          -> "8-9s")
+    Absolute seconds still win if supplied in cfg["timing"] as *_end.
+    Blocks only accumulate display time; each block is a hard cut (fade-in
+    <=0.3s) and holds. Hook opens at 0.0 (IS the thumbnail).
+    """
     t = cfg["timing"]
-    hook_end = min(float(t["hook_end"]), duration_s)
-    deep_end = min(float(t["deepen_end"]), duration_s - 1.0)
+    hf = float(t.get("hook_end_frac", 0.45))
+    df = float(t.get("deepen_end_frac", 0.88))
+    hook_end = t.get("hook_end")
+    deep_end = t.get("deepen_end")
+    hook_end = float(hook_end) if hook_end else hf * duration_s
+    deep_end = float(deep_end) if deep_end else df * duration_s
+    hook_end = min(hook_end, duration_s)
+    deep_end = min(deep_end, duration_s - 1.0)
     if deep_end <= hook_end:
         deep_end = min(hook_end + 1.5, duration_s - 0.5)
     states = []
@@ -473,8 +545,13 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
     pngs = []
     for i, b in enumerate(fitted):
         p = config.OUTPUTS / f"block_{i}_{b['kind']}.png"
+        # spec §4: measure the actual background band, then scrim only if bright
+        top = b["pinned_top"] if b["pinned_top"] is not None else hook_top(
+            b["lines"], b["px"], cfg)
+        luma = bg_text_luma(bg_mp4, 1.0, cfg, top,
+                            len(b["lines"]) * int(b["px"] * 1.32))
         render_block(b["lines"], b["px"], b["font_path"], watermark, p, cfg,
-                     fixed_top=b["pinned_top"])
+                     fixed_top=b["pinned_top"], bg_luma=luma)
         pngs.append(p)
 
     states = state_map(blocks, cfg, duration_s)
