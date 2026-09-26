@@ -1,5 +1,11 @@
 # 🐺 Unleash The Beast — BEAST ENGINE
 
+> **📌 AGENT: read [`HANDOFF.md`](HANDOFF.md) FIRST.** It is the single canonical handoff for
+> this project and the only source of truth about its current state. Everything in it was
+> verified by running commands on the machine — believe it over any other notes, older
+> branch, worktree, or README claim. Verify it still holds with
+> `python3 tmp/verify_handoff.py` (must print `32/32`); if that fails, update the handoff.
+
 A fully autonomous Instagram Reels engine. Public repo = unlimited free GitHub Actions
 minutes. Jobs are the compute; JSON files in `data/` are the database and the brain.
 Every run reads state, does its job, and commits updated state back.

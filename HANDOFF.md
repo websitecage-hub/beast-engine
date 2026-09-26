@@ -1,213 +1,397 @@
-# HANDOFF.md — Beast Engine, full state for the next agent
+# HANDOFF.md — BEAST ENGINE (the only handoff for this project)
 
-**Date written:** 2026-09-26 (UTC) · **Author:** previous session (long; handed off for token budget)
+**This is the single canonical handoff. If you find any other handoff/notes file for this
+project, this one supersedes it.** Written 2026-09-26 (UTC) at local commit `90c70ec`.
 
-Read this top to bottom before doing anything. It is written as *we are resuming right here* — nothing about the project is a surprise to you after reading it.
+**Self-check:** `python3 tmp/verify_handoff.py` asserts 32 specific claims in this document
+against the live system and prints `32/32 claims verified`. Run it before you start and
+again after any change. A FAIL means this document is now lying — fix the document first,
+then the code. (`README.md` points here too.)
 
----
-
-## 0. TL;DR — where we are right at this moment
-
-- **The audio scraper is FIXED, DEPLOYED, and VERIFIED LIVE.** Its bug (every download returned the same wrong file) is dead. `/v1/song` works on the live service.
-- **The beast-engine (reel generator) has v5.0 "THE COMPLETE MIND" + the visual spec implemented, 17/17 tests green, but is NOT pushed** — user explicitly said: *"we will only push the beast engine when i will be fully done and final."* Do NOT push beast-engine without being told.
-- **Nothing has been posted to Instagram since the old grind-style reel.** No publish has happened in this session.
-- The user's last instruction: finish the audio part, write this handoff, then **pause**.
-
----
-
-## 1. THE TWO REPOS (never confuse them)
-
-### 1a. `audi0-scraper` — the audio API (FIXED & LIVE)
-- Local clone with work applied: **`/tmp/audi0-repo`** (git remote `github.com/websitecage-hub/audi0-scraper`)
-- Also an older local copy at `~/trending-audio-scraper` (no remote; ignore it, it's stale — use `/tmp/audi0-repo`)
-- **Live URL:** `https://audi0-scraper.onrender.com`
-- **Render service id:** `srv-danpk62jnfac739e6hv0` (name `audi0-scraper`, plan **free**, auto-deploy on commit = yes)
-- Pushed commits: `5d48bf2` (identity+IG+storage), `3c6764e` (name search), `7b31360` (requests fallback) — all deployed and live.
-- **Credentials** (all in `~/.beast-secrets/`, chmod 600):
-  - `audi0-pat` — GitHub PAT for websitecage-hub (works, validated)
-  - `audi0-render-hook` — **this is a Render API token, not a deploy hook URL.** Called as `Authorization: Bearer <token>` against `https://api.render.com/v1/...`. It can list services, read deploys, PUT env vars, POST a new deploy.
-
-### 1b. `beast-engine` — the reel generator (LOCAL ONLY, DO NOT PUSH)
-- Local path: **`~/beast-engine`** (remote configured: `github.com/websitecage-hub/beast-engine`)
-- **All work is local and unpushed.** The remote is an **empty shell** — verified via the GitHub API: `size: 0`, `pushed_at: 2026-09-18`, and `git ls-remote --heads` returns **zero branches**. There is no `origin/main` ref locally, so `git log origin/main..HEAD` reports 0 and is *meaningless* — do not use it to judge push state. Compare `git rev-parse HEAD` against `git ls-remote` instead.
-- User's rule: **do not push until they say it's final.**
-- Latest commits: `904ebb0` handoff, `61662f9` v5.0 THE COMPLETE MIND + Coolvetica, `5cc9d7f` create failure log.
+Read this entire file before touching anything. Everything in it was verified by running
+commands on this machine, not recalled. Where something is unverified or unresolved, it
+says so explicitly — **do not fill those gaps with plausible invention.** If a claim here
+contradicts what you observe, trust your observation and update this file.
 
 ---
 
-## 2. WHAT WAS FIXED IN THE AUDIO SCRAPER (and how it was proven)
+## 0. THE 60-SECOND VERSION
 
-### The bug (root cause, precisely)
-`UrlAudioProvider.download()` in `trend_scraper/audio/providers.py` ended with:
-```python
-path = _newest_audio(dest_dir)   # <-- WRONG
+Two separate repos matter. Do not confuse them.
+
+| | `beast-engine` | `audi0-scraper` |
+|---|---|---|
+| What | generates and publishes Instagram reels | HTTP API that fetches audio |
+| Path | `~/beast-engine` | `/tmp/audi0-repo` (⚠ `/tmp` is volatile) |
+| Remote | `github.com/websitecage-hub/beast-engine` — **EMPTY, no branches** | `github.com/websitecage-hub/audi0-scraper` — pushed & live |
+| Push it? | **NO. Not until the user says the project is final.** | Yes, already pushed and deployed |
+| Live? | Not deployed (GitHub Actions not yet enabled) | `https://audi0-scraper.onrender.com` |
+| Tests | `python3 tests/test_acceptance.py` → 17/17 | `pytest` suite → 31/31 |
+
+**Current true state:** the audio scraper is fixed and verified live. The beast-engine
+implements content spec v5.0 (17/17 tests) plus *part* of a later visual spec; the
+remaining visual work is listed in §6. **Nothing has been posted to Instagram since
+2026-09-20.**
+
+---
+
+## 1. WHAT THIS PROJECT IS
+
+An autonomous Instagram Reels engine for the account **@unleashthe.b** ("Unleash The
+Beast"), in the **social-anxiety confession** niche (NOT motivation/grind — that was the
+original niche and it was deliberately abandoned).
+
+**Business model:** sell an ebook about overcoming social anxiety. The account never sells
+in the reel; it describes one specific person's inner life precisely enough that he saves
+it, sends it to a friend, and eventually checks the bio link himself.
+
+**Success metric: saves + sends-per-reach.** Not likes, not views. Likes are worth almost
+nothing in the scoring weights; sends are worth the most.
+
+**The one person it writes for:** a young man, 16–30, who believes he is fundamentally
+flawed and that every social moment is a trial that might expose it. He does not fear
+people — **he fears confirmation.** The content describes the trial and must never confirm
+the verdict.
+
+**Daily loop (as designed):** generate script → fetch dark video background → pick
+mood-matched audio → build the reel → publish via the Instagram Graph API → measure
+insights → learn weekly and re-weight the strategy.
+
+---
+
+## 2. THE TWO REPOS IN DETAIL
+
+### 2a. `~/beast-engine` — the reel generator
+
+Self-contained Python. GitHub Actions are intended to be the compute; `data/*.json` is the
+database and the brain.
+
+**Verified inventory** (run `wc -l src/*.py` to confirm):
+
 ```
-It returned **the newest audio file in the shared niche folder**, not the file it just produced. Consequences:
-- Every request could return the same wrong track. **Proven live**: a PeryCreep phonk MP3 URL came back as `01-2194608-Yigit Atilla-Selfish Desires.mp3`.
-- Racy under concurrency: two simultaneous downloads could both report whichever file landed last.
+src/mind.py            148   THE COMPLETE MIND system prompt (single source of content truth)
+src/generate.py        482   candidates -> judge -> dedup -> explore/exploit
+src/build_video.py     505   the reel renderer (text blocks, timing, QA gate)
+src/config.py          347   embedded defaults + data loading
+src/music.py           449   audio provider chain
+src/background.py      281   Pinterest video fetch + cinematic grade + loop
+src/analyze.py         307   weekly learning brain (weights, metrics, report)
+src/run_create.py      275   daily orchestrator
+src/publish.py         286   Instagram Graph API publishing
+src/harvest.py         127   insights harvest + scoring
+src/run_health.py      134   token/service health + secret rotation
+src/upload_host.py      75   parks the MP4 on a public host for IG
+src/pinterest.py        81   Pinterest search API
+src/state.py            99   git commits of data/
+src/llm.py             161   LLM client
+src/alerts.py           76   Telegram alerts
+src/run_learn.py / run_measure.py   thin entrypoints
+tests/test_acceptance.py  340   17 tests
+```
 
-### The fix (`/tmp/audi0-repo`, commit `5d48bf2`)
-1. **Deterministic per-source stem**: every download writes to `src-<sha256[:12]>.</ext>`, so two URLs can never collide.
-2. **`resolve_download(dest_dir, stem)`** — only ever looks inside its own stem. The "newest file" fallback is **deleted entirely**.
-3. **`verify_audio(path)`** — success now requires real size (≥10KB) AND a probeable audio stream. A stale/empty leftover can no longer be reported as the requested track.
-4. **Per-stem locks** (`_lock_for`) serialise concurrent requests for the same source.
-5. **Cache reuse**: re-requesting the same URL reuses the on-disk file (no network, no dupe file).
-6. **`_cleanup_partials`** removes `.part`/`.ytdl` fragments on failure (covers both `<stem>.part` and `<stem>.<ext>.part`).
+**Git state — verified by command, not assumed:**
+- `git rev-parse HEAD` → `90c70ec023c291464fb57a0a8471fa5b5a85566d`
+- The remote is an **empty shell**: GitHub API reports `size: 0`, `pushed_at: 2026-09-18`,
+  and `git ls-remote --heads <remote>` returns **zero branches**.
+- Therefore `git log origin/main..HEAD` prints **0**, which is **meaningless** — there is no
+  `origin/main`. Never use that command to judge push state. Compare `git rev-parse HEAD`
+  against `git ls-remote` instead.
+- Working tree is clean except `data/REPORT.md` (regenerated by the learn pass).
 
-### Instagram support added (commit `5d48bf2`)
-7. **`POST /v1/song`** resolves a song NAME: explicit IG URL → IG audio-page search → SoundCloud/YouTube. Body: `{"title","artist","niche","instagram_url","cookies"}`.
-8. **CRITICAL BUG FIXED:** `server._write_cookies()` wrote **raw JSON**, but yt-dlp's `cookiefile` only parses **Netscape format**. So authenticated (Instagram) fetches *could never work*. Now emits a proper Netscape jar from a browser export, a dict, or an existing Netscape string.
-9. `InstagramReelProvider` gained `download_sound()` / `search()` and a mobile-app User-Agent.
+**Data files** (`data/`): `config.json`, `strategy.json`, `memory.json`,
+`trending_styles.json`, `token_state.json`, `DIRECTIVES.md`, `REPORT.md`, `logs/`,
+`research/corpus.json`. If one is missing/corrupt it is recreated from `src/config.py`
+defaults — so **`src/config.py` is the source of truth for defaults, not the JSON.**
 
-### Storage discipline (commit `5d48bf2`)
-10. Manifest rows carry `sha256`, `bytes`, `duration_s`; dead rows are dropped automatically.
-11. `download_url()` dedupes by source hash: **one row and one file per source** (previously every call appended a duplicate row *and* file).
-12. `_prune()` drops the **oldest** tracks first and **never the newest** (the one just written).
-13. `GET /health` reports storage: `{"files","bytes","mb","cap_mb","over_cap"}`.
-14. New downloads are **refused with HTTP 507** when free disk < `TL_MIN_FREE_MB` (after attempting a prune first).
-15. Cap lowered 700MB → **600MB**, `TL_MIN_FREE_MB=80`.
+**Fonts** in `assets/fonts/`: `Coolvetica-Regular.otf`, `Coolvetica-Italic.otf` (the
+active on-screen font — user's explicit choice), plus Anton, BebasNeue, Caveat,
+CormorantGaramond-Italic, PlayfairDisplay-Italic, Tinos, Inter (mostly unused leftovers).
 
-### Two more real bugs found and fixed after deploy
-16. **Name search was IP-blocked** (commit `3c6764e`): `ytsearch1:`/`scsearch1:` prefixes fail from Render's datacenter IPs ("no source had ..."). Direct YouTube/SoundCloud URLs work fine — verified. So `SongSearchProvider` now resolves a name to candidate *source URLs* (SoundCloud public search page + Internet Archive audio API, both datacenter-reachable) and downloads those **direct URLs**.
-17. **`/v1/song` returned 500 "No module named 'requests'`** (commit `7b31360`): the container image never had `requests` (only a transitive dep locally). Fixed with new `trend_scraper/std_http.py` — uses `requests` when present, falls back to `urllib` otherwise, returns a requests-like `Response` either way. `requirements.txt` now declares `requests` explicitly.
+**Workflows** in `.github/workflows/`: `create.yml`, `measure.yml`, `learn.yml`,
+`health.yml`. Written and tested by `test_workflows_parse_and_contracts`, but **never
+executed** because the repo has never been pushed.
 
-### Test suite status
-- **31 tests passing** in `/tmp/audi0-repo`:
-  - `test_download_identity.py` (7) — the wrong-file bug stays dead
-  - `test_cookies_and_song.py` (7) — Netscape cookie format, song endpoint, storage/prune
-  - `test_http_fallback.py` (4) — works with AND without `requests` installed
-  - `test_extract.py`, `test_metrics.py` (13) — pre-existing; **one was repaired** (a date-rot test asserting on a hardcoded date had gone red with the calendar; now uses relative dates)
-- Run them: `cd /tmp/audi0-repo && python3 -m pytest test_extract.py test_metrics.py test_download_identity.py test_cookies_and_song.py test_http_fallback.py -q`
+### 2b. `/tmp/audi0-repo` — the audio API
 
-### LIVE VERIFICATION (already done, don't redo unless suspicious)
-- `/health` → `{"status":"ok","storage":{"cap_mb":600.0,...}}` ✅
-- Two different URLs → two different files (`src-36d12bdacba7` vs `src-e2ec2e61bdb5`) ✅ **bug dead**
-- Same URL twice → same stem ✅
-- `/v1/song` `{"title":"Lonely Boy","artist":"The Black Keys"}` → **ok=True, 193.28s, 4.64MB, storage tracked** ✅
+The deployed service that turns a URL or a song name into an MP3.
 
-### ⚠️ KNOWN LIMIT OF THE CURRENT SETUP (important, unresolved)
-**The Render service has NO persistent disk.** Service detail returns `disk: None`, plan is `free`. On Render's free plan there are no persistent disks, so **`/data` is ephemeral — the library is wiped on every restart/deploy.** That is why storage always reads 0 after a deploy. Implications:
-- The scraper is best treated as a **stateless on-demand fetcher**, not a durable library.
-- If durable audio is wanted, options are: (a) paid Render disk, (b) cache the MP3s on the beast-engine side (`~/beast-engine/assets/audio/` already exists with a manifest fallback — `library_provider()` in `src/music.py` reads `assets/audio/manifest.json`), or (c) an external free host.
-- **The user was told "storage in mind"** — the code now handles it (caps, prune, refusals) but the platform itself has no disk. Raise this before assuming persistence.
+- **Live:** `https://audi0-scraper.onrender.com`
+- **Render service id:** `srv-danpk62jnfac739e6hv0` (name `audi0-scraper`, plan **free**, auto-deploy on push = yes)
+- **Endpoints:** `POST /v1/download`, `POST /v1/song`, `GET /v1/library/<niche>`,
+  `GET /v1/file/<niche>/<name>`, `GET /v1/trending/<niche>`, `GET /v1/niches`, `GET /health`
+- **Pushed commits:** `5d48bf2` (download identity + Instagram + storage), `3c6764e`
+  (name-search resolution), `7b31360` (missing-`requests` fallback). All deployed.
 
----
-
-## 3. WHAT HAPPENED IN THE BEAST-ENGINE SESSION (v5.0 + visual spec)
-
-### 3a. v5.0 "THE COMPLETE MIND" — implemented, 17/17 tests green, UNPUSHED
-The user pasted a large master-content doc. All 10 installation steps were applied:
-- **`src/mind.py`** (new) — THE COMPLETE MIND as the generation system prompt verbatim: Part 8 directive + Part 2.1 eleven-cluster evidence library + Part 6 calibration examples + output contract. `SYSTEM_PROMPT = mind.SYSTEM_PROMPT`. This is the single source of truth for content.
-- **`src/config.py`** — cluster taxonomy 1:1 with the evidence library; 11 video-only bg clusters; `cluster_mood_map`; `archetype_bg_map`; reel locked to 9-10s; `timing` map; `text_limits`; `whisper_every_n_posts=7`; `hope_every_n_posts=10`; `bg_darken=-0.13`; Phase-2 trending band.
-- **`src/generate.py`** — hook / 2× deepening / landing candidates; character limits + law gate + advisory echo score; variety guard (`diversify()`, caps cluster ≤3 and opening-pattern ≤5); Law 11 whisper; Law 12 no share-CTA ever.
-- **`src/build_video.py`** — Part 5 format: 2-4 static blocks, block fade ≤0.3s (NO per-word animation), Part 5.5 timing map, Part 5.6 QA checklist (8 checks). Measured text auto-fit — **overflow is impossible by construction**.
-- **`src/harvest.py`** — sends-first metric hierarchy: `(6*sends + 3*saves + 2*watch + 1*comments + 0.25*likes)/reach`, `TARGET_SENDS_PER_REACH = 0.02`.
-- **`src/analyze.py`** — `loop_technique` family; Part 7.3 self-improvement metrics; Part 7.2 answers (clusters/saves, bg/completion, loop/rewatch, trending-sends). **Found and fixed a real bug**: `scored_posts()` dropped the `metrics` key, so the metrics section always rendered empty.
-- **`src/run_create.py`** — full Part 7.1 DNA per post; motion gate blocks publish on a static bg.
-- **Fonts:** Coolvetica Regular + Italic downloaded from dafont, installed in `assets/fonts/Coolvetica-{Regular,Italic}.otf`, set as the on-screen font (config `font_path` + `build_video.FONT_HOOK/FONT_BODY`).
-
-**Two spec contradictions that were resolved deliberately (mention if asked):**
-- The spec capped hooks at 50 chars but its own canonical Part 6 example ("You know exactly what to say. You say nothing. Again.") is 53 chars → limits raised to **60/90/70** so the engine can produce the spec's own quality bar.
-- A lexical hook→landing "echo" gate would reject the spec's own calibration example 2 (they share no words) → the echo is enforced **structurally** instead: hook and landing share one font, size and pinned pixel top (`hook_top()` + `fixed_top`), verified by `loop_echo_ok()`.
-
-### 3b. THE VISUAL SPEC v1.0 — partially applied when the session ended
-The user then pasted a second doc (VISUAL & REEL CREATION SPECIFICATION v1.0 FINAL) governing only look and sound. Work done:
-- **`src/background.py` — FULLY REWRITTEN to spec and done.** Pinterest **video-only** (image/Meta-gen fallbacks deleted); selection rejects clips <3s using `videos[].durationMs` from the search payload (no download needed); **30-day pin dedup**; `process_clip()` does crop→1080×1920→cinematic grade (`brightness=-0.10, saturation=0.85, contrast=1.15, colorbalance bs=0.05`)→**trim from the MIDDLE**; `loop_clip()` cross-fades the tail into the head; `animate_still()` is the documented LAST RESORT (zoompan + blur drift).
-- **`src/pinterest.py`** — added `search_videos()`.
-- **NOT YET DONE (this is the resume point):** the page still owes the spec's §4 text-rendering details and §7/§8 QA+anti-pattern pass in `build_video.py` (the file currently implements the earlier Part 5 rules, which are close but not identical — spec §4 wants hook at y=35%, shadow blur radius 8 / 70% opacity, hook holds 4-5s, deepening 4-5s, landing 8-9s, and a subtle dark overlay behind text if the video is bright). Also §5 audio rules (phonk/dark-ambient/slowed-reverb, **no piano/lofi**) are only partially reflected in `music.py`.
-
-### 3c. Beast-engine verification state
-- `python3 tests/test_acceptance.py` → **17/17 green**
-- `python3 -m src.run_create --offline` → passes, full Part 5.6 QA checklist (8/8 checks incl. `loop_echo`)
-- A **live `--dry-run` was run and produced a real reel**: hook "Someone walks by. You unlock your phone." → landing "Someone walks by. You unlock your phone again." (the invisible loop working), real Pinterest video bg (`motion: True`), trending music, staged at `~/beast-showcase/reel.mp4`.
-- **Nothing published.** No live post exists from this session.
+⚠ **`/tmp/audi0-repo` is in `/tmp` and will be wiped when this container recycles.**
+The commits are safe on GitHub — re-clone if it's gone. `~/trending-audio-scraper` is an
+older, stale local copy with no remote; ignore it.
 
 ---
 
-## 4. HOW TO RUN EVERYTHING
+## 3. THE AUDIO SCRAPER FIX — DONE, DEPLOYED, VERIFIED
 
-### Audio scraper
+Recorded in full because the reasoning matters if it regresses.
+
+### Root cause
+`UrlAudioProvider.download()` ended with `path = _newest_audio(dest_dir)` — returning the
+newest audio file **in the shared niche folder** instead of the file it had just produced.
+Consequences: every request could report the same wrong track, and it was racy under
+concurrency. **Proven live before the fix:** a PeryCreep phonk MP3 URL came back as
+`01-2194608-Yigit Atilla-Selfish Desires.mp3`.
+
+### What was changed
+1. Deterministic per-source stem `src-<sha256[:12]>` — two URLs can never collide.
+2. `resolve_download(dest_dir, stem)` — looks only inside its own stem. The "newest file"
+   fallback was **deleted**, not merely bypassed.
+3. `verify_audio(path)` — success requires real size (≥10KB) AND a probeable audio stream.
+   A stale or empty leftover can no longer be reported as the requested track.
+4. Per-stem locks serialise concurrent requests for the same source.
+5. Re-requesting the same URL reuses the on-disk file (no network, no duplicate file).
+6. `_cleanup_partials()` removes `.part`/`.ytdl` fragments on failure.
+7. `POST /v1/song` resolves a **song name**: explicit IG URL → IG audio-page search →
+   SoundCloud/YouTube. Body: `{"title","artist","niche","instagram_url","cookies"}`.
+8. **A second real bug fixed:** `server._write_cookies()` wrote **raw JSON**, but yt-dlp's
+   `cookiefile` only parses **Netscape** format — so authenticated (Instagram) fetches
+   could never have worked. It now emits a proper Netscape jar from a browser export, a
+   dict, or an existing Netscape string.
+9. **A third real bug:** name search via `ytsearch1:`/`scsearch1:` prefixes is **IP-blocked
+   from Render** ("no source had ..."), while direct YouTube/SoundCloud URLs work fine.
+   `SongSearchProvider` now resolves a name to candidate source URLs (SoundCloud public
+   search page + Internet Archive audio API, both datacenter-reachable) and downloads those
+   direct URLs.
+10. **A fourth real bug:** `/v1/song` returned `500 "No module named 'requests'"` on the
+    deployed image (a transitive dep locally, absent in the container). Fixed with
+    `trend_scraper/std_http.py`, which uses `requests` when present and falls back to
+    `urllib` otherwise, returning a requests-like `Response`. `requirements.txt` now
+    declares `requests` explicitly.
+11. Storage discipline: manifest rows carry `sha256`/`bytes`/`duration_s`; dead rows are
+    dropped; `download_url()` dedupes by source hash so there is one row and one file per
+    source; `_prune()` drops the **oldest** first and **never the newest**; `/health`
+    reports storage; new downloads are refused with **HTTP 507** when free disk <
+    `TL_MIN_FREE_MB` (after attempting a prune). Cap 700MB → **600MB**, `TL_MIN_FREE_MB=80`.
+
+### Live verification already performed (don't redo unless you suspect a regression)
+- `/health` → `{"status":"ok","storage":{"cap_mb":600.0,...}}`
+- Two different URLs → two different files (`src-36d12bdacba7` vs `src-e2ec2e61bdb5`), each
+  with a real verified duration — **the original bug is dead**
+- Same URL twice → same stem (deterministic, cacheable)
+- `POST /v1/song {"title":"Lonely Boy","artist":"The Black Keys"}` → **ok=True, 193.28s,
+  4.64MB**, storage tracked
+
+### Tests — 31 passing
+`cd /tmp/audi0-repo && python3 -m pytest test_extract.py test_metrics.py test_download_identity.py test_cookies_and_song.py test_http_fallback.py -q`
+
+- `test_download_identity.py` (7) — the wrong-file bug stays dead
+- `test_cookies_and_song.py` (7) — Netscape cookie format, song endpoint, storage/prune
+- `test_http_fallback.py` (4) — works with AND without `requests` installed
+- `test_extract.py` + `test_metrics.py` (13) — pre-existing; **one was repaired**: a
+  date-rot test asserted against a hardcoded date and had gone red as the calendar moved.
+  It now uses relative dates.
+
+### ⚠ UNRESOLVED / DO NOT ASSUME
+**The Render service has NO persistent disk.** Service detail returns `disk: None` and the
+plan is `free`; on Render's free plan there are no persistent disks, so **`/data` is
+ephemeral and the library is wiped on every restart/deploy.** Verified — `storage.files`
+reads 0 after each deploy. The code handles this correctly (caps, prune, 507 refusals), but
+the platform cannot persist a library. Options if durable audio is wanted: a paid Render
+disk, caching MP3s on the beast-engine side (`assets/audio/` exists with an empty
+`manifest.json`, read by `library_provider()` in `src/music.py`), or an external host.
+**Raise this with the user rather than silently assuming either way.**
+
+---
+
+## 4. THE TWO CONTENT SPECS AND WHAT IS ACTUALLY IMPLEMENTED
+
+The user supplied two documents at different times. Both matter; the second one governs
+only look and sound.
+
+### 4a. "THE COMPLETE MIND" (content psychology) — IMPLEMENTED
+Mapped to code as follows:
+
+| Spec section | Where it lives |
+|---|---|
+| Part 8 generation directive (verbatim) | `src/mind.py` → `DIRECTIVE` |
+| Part 2.1 eleven-cluster evidence library | `src/mind.py` → `EVIDENCE_LIBRARY` |
+| Part 6 calibration examples | `src/mind.py` → `CALIBRATION` |
+| Output contract | `src/mind.py` → `OUTPUT_CONTRACT` |
+| Cluster taxonomy (11 archetypes) | `src/config.py` → `ARCHETYPES` |
+| Topics (20) | `src/config.py` → `TOPICS` |
+| Sound families (5) | `src/config.py` → `MOODS` |
+| Part 5.2 background clusters (video queries) | `src/config.py` → `bg_types` |
+| Part 4.2 loop mechanic | `src/build_video.py` → `hook_top()`, `render_block(fixed_top=)`, `loop_echo_ok()` |
+| Part 4.5 trending Phase-2 window | `src/music.py` → `fetch_trending()` (`phase2_score_band`) |
+| Part 7.1 DNA per post | `src/run_create.py` → `_record_post()` |
+| Part 7.3 metric hierarchy | `src/harvest.py` → `compute_score()` |
+| Part 7.2 report answers | `src/analyze.py` → `_metrics_section()` |
+| Law 11 (whisper, 1 in 7) | `src/config.py` → `whisper_every_n_posts`; used in `generate._build_caption()` |
+| Law 12 (never ask for shares) | `src/generate.py` → `BANNED_PHRASES` + `_build_caption()` |
+
+**Two spec contradictions resolved deliberately — know these so you don't "fix" them back:**
+- The spec caps hooks at 50 characters, but its own canonical Part 6 example ("You know
+  exactly what to say. You say nothing. Again.") is 53 characters. Limits were raised to
+  **60/90/70** so the engine can produce the spec's own quality bar.
+- A lexical hook→landing "echo" check would reject the spec's own calibration example 2
+  (those two lines share no words). The loop is therefore enforced **structurally**: hook
+  and landing render in one font at one size pinned to one pixel top, asserted by
+  `loop_echo_ok()`.
+
+### 4b. THE VISUAL SPEC v1.0 (look and sound) — PARTIALLY IMPLEMENTED
+Applied already:
+- `src/background.py` **fully rewritten to this spec**: Pinterest **video-only** sourcing
+  (the image and Meta-image-generation fallbacks were deleted); clips under 3s rejected
+  using `videos[].durationMs` straight from the search payload (no download needed);
+  30-day pin dedup; `process_clip()` does crop → 1080×1920 → cinematic grade
+  (`brightness=-0.10, saturation=0.85, contrast=1.15, colorbalance bs=0.05`) → **trim from
+  the middle**; `loop_clip()` cross-fades the tail into the head; `animate_still()` is the
+  documented last resort.
+- `src/pinterest.py` → `search_videos()` added.
+
+---
+
+## 5. HOW TO RUN EVERYTHING
+
+### beast-engine
+```bash
+cd ~/beast-engine
+python3 tests/test_acceptance.py        # must be 17/17
+python3 -m src.run_create --offline     # hermetic build (~2 min): bundled bg + drone, no network
+
+# real services, real LLM, real Pinterest video, NO publish, NO state mutation:
+BEAST_JITTER_SECONDS=0 BEAST_FORCE_POST=1 python3 -m src.run_create --dry-run
+
+# REAL POST to Instagram — only when the user explicitly asks:
+BEAST_JITTER_SECONDS=0 BEAST_FORCE_POST=1 python3 -m src.run_create
+
+python3 -m src.run_measure.py           # harvest insights
+python3 -m src.run_learn.py             # weekly brain update + REPORT.md
+python3 -m src.run_health.py            # token/service check (+ auto secret rotation)
+```
+`BEAST_FORCE_POST=1` skips the warmup off-day rule and the posting-hour window but **never**
+the one-post-per-day idempotency. `BEAST_JITTER_SECONDS=0` skips the 0–20 min jitter.
+
+### audi0-scraper
 ```bash
 cd /tmp/audi0-repo
-python3 -m pytest test_extract.py test_metrics.py test_download_identity.py test_cookies_and_song.py test_http_fallback.py -q   # 31 green
+python3 -m pytest test_extract.py test_metrics.py test_download_identity.py \
+                   test_cookies_and_song.py test_http_fallback.py -q     # 31 green
 
-# live probes
 curl -s https://audi0-scraper.onrender.com/health
-curl -s -X POST https://audi0-scraper.onrender.com/v1/download \
-  -H 'Content-Type: application/json' \
-  -d '{"url":"<direct mp3 url>","niche":"reels","title":"t","artist":"a"}'
 curl -s -X POST https://audi0-scraper.onrender.com/v1/song \
   -H 'Content-Type: application/json' \
   -d '{"title":"Lonely Boy","artist":"The Black Keys","niche":"reels"}'
-```
-Push + deploy (auto-deploys on push):
-```bash
-cd /tmp/audi0-repo
+
+# push + deploy (auto-deploys on push)
 PAT=$(cat ~/.beast-secrets/audi0-pat)
 git push "https://$PAT@github.com/websitecage-hub/audi0-scraper.git" HEAD:main
-python3 ~/beast-engine/tmp/wait_deploy.py     # polls Render until live
+python3 ~/beast-engine/tmp/wait_deploy.py
 ```
-Env vars are managed via the Render API (blueprint does NOT re-sync on free tier):
+Env vars on Render must be set **via the API** — the free tier does not re-sync the
+blueprint on deploy:
 ```bash
 TOK=$(cat ~/.beast-secrets/audi0-render-hook); SVC=srv-danpk62jnfac739e6hv0
 curl -s -X PUT -H "Authorization: Bearer $TOK" -H 'Content-Type: application/json' \
   "https://api.render.com/v1/services/$SVC/env-vars" \
-  -d '[{"key":"TL_LIBRARY","value":"/data"},{"key":"TL_MAX_LIBRARY_MB","value":"600"},{"key":"TL_MIN_FREE_MB","value":"80"},{"key":"TL_MAX_CONCURRENT","value":"2"}]'
+  -d '[{"key":"TL_LIBRARY","value":"/data"},
+       {"key":"TL_MAX_LIBRARY_MB","value":"600"},
+       {"key":"TL_MIN_FREE_MB","value":"80"},
+       {"key":"TL_MAX_CONCURRENT","value":"2"}]'
 ```
 
-### Beast engine
-```bash
-cd ~/beast-engine
-python3 tests/test_acceptance.py                      # 17/17
-python3 -m src.run_create --offline                   # hermetic build, ~2min
-BEAST_JITTER_SECONDS=0 BEAST_FORCE_POST=1 python3 -m src.run_create --dry-run   # real services, NO publish
-BEAST_JITTER_SECONDS=0 BEAST_FORCE_POST=1 python3 -m src.run_create              # REAL POST (only when told)
-```
-Helper scripts written this session, all in `~/beast-engine/tmp/`:
-- `wait_deploy.py` — poll Render until the deploy is live
-- `verify_deployed.py` — prove the download-identity fix on the live service
-- `diagnose_sources.py` — which audio sources work from the deployed IP
-- `migrate_v50.py` — refresh `data/config.json` + fixture to v5.0
-- `preview_paragraphs.py`, `rank_preview.py` — content-only preview/rank (cheap, no video build)
-- `qa_frames.py` — per-stamp legibility measurement
-- `mine_reddit.py` — mine the Reddit Atom captures into `data/research/corpus.json`
-- `rewrite_fixture.py`
+### Helper scripts (all in `~/beast-engine/tmp/`, written and used this session)
+`wait_deploy.py` (poll Render until live) · `verify_deployed.py` (prove download identity
+on the live service) · `diagnose_sources.py` (which audio sources work from Render's IP) ·
+`migrate_v50.py` (refresh config + fixture) · `preview_paragraphs.py` /
+`rank_preview.py` (cheap content-only preview and ranking — no video build) ·
+`qa_frames.py` (per-stamp legibility measurement) · `mine_reddit.py` (mine the Reddit Atom
+captures into `data/research/corpus.json`) · `rewrite_fixture.py`
 
 ---
 
-## 5. ENVIRONMENT GOTCHAS (this machine — trust these, they were all hit)
+## 6. WHAT IS PENDING — THE ACTUAL TO-DO LIST
 
-- **Cloud Shell container.** `/tmp` and apt packages **do not survive container recycles**; `~` does. **ffmpeg had to be reinstalled twice** (`sudo apt-get update -qq && sudo apt-get install -y ffmpeg`). If a build fails with `FileNotFoundError: ffmpeg`, that's the cause. Note `/tmp/audi0-repo` is therefore **at risk of vanishing** — if it's gone, re-clone and re-apply, or recover from `~/beast-engine` commit notes.
-- **`terminal` tool: the `notify` parameter is rejected** in this runtime ("notify must be true/false …"). Use `background=true` without notify, or `notify_on_complete=true`.
-- **`write_file` refuses JSON/dict content** ("content must be a string, got dict") when the content parses as JSON — write via a Python script in `tmp/` instead (that's why several `tmp/*.py` exist).
-- **`patch` fuzzy-matching fails on files with curly quotes/smart punctuation.** Re-read the whole file, then use `write_file` for the entire file instead of fighting it.
-- **Security scanner flags**: inline `python3 -c` heredocs, `cat | python3` pipes, and burst deletions (mass-delete warnings). Write scripts to files and run them.
-- **Reddit blocks datacenter IPs** (403 on .json and api.reddit.com). Its **Atom RSS works**: `https://www.reddit.com/r/<sub>/top/.rss?t=month` — but it rate-limits, so space requests ~20-30s apart. Do NOT treat a 200 as success: validate `<entry>` presence.
-- **Pixabay is 403** from these IPs. Internet Archive and SoundCloud work.
-- **Permissions/quota**: user home partition is small (~4.8GB). It was cleaned from 95%→50%, but keep big downloads out of `~`.
-- **GitHub**: beast-engine PAT is NOT configured and must NOT be used to push beast-engine until the user says final. The audio-scraper PAT is in `~/.beast-secrets/audi0-pat`.
+Ordered. Items 1–4 are beast-engine code; item 5 is a decision only the user can make.
+
+**1. `build_video.py` — align text rendering with the visual spec §4.** Currently
+implements the earlier Part 5 rules, which are close but not identical. Verified gaps:
+- Hook is vertically **dead-centred**; spec wants it at **y = 35% of height**.
+- Shadow is `GaussianBlur(5)`; spec wants **blur radius 8 at ~70% opacity**.
+- Timing is `{hook_end: 3.5, deepen_end: 7.0}`; spec wants **hook 4–5s, deepening 4–5s,
+  landing 8–9s**.
+- Spec wants a **subtle dark overlay behind the text zone (30% black, blurred edges)** when
+  the video behind the text is bright. **Not implemented at all.**
+
+**2. `music.py` + `config.py` — audio must match spec §5 (no piano, no lofi).** Verified
+current values that violate this:
+- `config.py` `music.mood_search["quiet_devastating"] = "slowed sad piano reverb vinyl crackle"`
+- `config.py` `music.mood_search["muffled_world"] = "lofi heard through a wall"`
+- `config.py` `default_trending_styles()` includes "slowed sad piano…" and "lofi through a wall…"
+- `music.py` `MOOD_TEMPO_BANDS` and the mood gate are fine; only the *search vocabulary*
+  needs re-voicing toward phonk / dark ambient / slowed reverb.
+
+**3. `music.py` — wire it to the fixed scraper.** It still uses only the old
+`POST /v1/download` + `GET /v1/file/reels/<name>` flow. It should also use the new
+`POST /v1/song` (name → audio, Instagram-first) and the new response contract
+(`sha256`, `bytes`, `duration_s`, `cached`). Verified: no reference to `/v1/song` exists in
+`src/music.py` today.
+
+**4. Local audio cache (optional, but it is the real answer to "storage in mind").** Render
+has no persistent disk (§3). Caching MP3s in `~/beast-engine/assets/audio/` — the directory
+and an empty `manifest.json` already exist, and `library_provider()` in `src/music.py`
+already reads it — would remove the dependency on the ephemeral `/data`. Not started.
+
+**5. Needs the user, not code:**
+- **Instagram session cookies.** Required for the *actual* IG trending sound. Without them
+  `/v1/song` skips the Instagram step and falls back to name search — which works, but is
+  not literally the Instagram audio. If the user wants the true IG sound, ask for a browser
+  cookie export.
+- **Push `beast-engine`** + set Actions secrets `IG_ACCESS_TOKEN` / `IG_USER_ID` (values in
+  `~/.beast-secrets/ig.env`) + dispatch the create workflow to prove the CI loop. Only when
+  the user says the project is final.
+- **The old grind-style reel is still live** on @unleashthe.b — media_id
+  `18116512901101357`, permalink `https://www.instagram.com/reel/Ddhd6RrjlTK/`, hook "Your
+  future self hates you". It predates the niche pivot. The API **cannot** delete media
+  published via an IG-Login token, so the user must delete it in the app. Their call.
+
+### Known code/data inconsistencies to fix (verified, not speculation)
+- **`data/config.json` says `"font_path": "assets/fonts/Anton-Regular.ttf"` while
+  `src/config.py` `DEFAULT_CONFIG` says Coolvetica, and `build_video.py` hardcodes
+  `FONT_HOOK`/`FONT_BODY` to Coolvetica.** So Coolvetica *is* what renders, but the data
+  file disagrees with the code default. Refresh `data/config.json` from the defaults
+  (`tmp/migrate_v50.py` does exactly this) or they will drift further.
+- `data/REPORT.md` is regenerated by the learn pass and shows as modified in git; that is
+  normal, not a problem.
 
 ---
 
-## 6. THE USER — how they work (do not misread them)
+## 7. ENVIRONMENT GOTCHAS — ALL OF THESE ACTUALLY COST TIME
 
-- Sloppy typos, ALL CAPS bursts, repeated messages when excited, "make it fast". **Intent is sharp**; they know exactly what they want visually.
-- **They want action and the actual artifact, not descriptions of it.** Show the file path and what came back from real execution.
-- **They reject things bluntly** ("i dont liek it", "really un postabl"). Take it as data, find the root cause, fix it — this is exactly how the wrong-file audio bug and the text-overflow bug were found. Don't get defensive, don't ask them to re-explain.
-- **They paste tokens/PATs directly in chat.** Store them in `~/.beast-secrets/` (chmod 600), never in a repo.
-- They have said, explicitly: **do not push beast-engine until it is final.** Audio scraper was cleared for push.
-- When they say "pause", stop cleanly and report state — don't start new work.
-
----
-
-## 7. WHAT'S NEXT (in order, when the user returns)
-
-1. **Resume the visual spec** in `beast-engine`: apply §4 text-rendering exactly (hook y=35%, shadow blur 8/70% opacity, hook 4-5s hold, deepening 4-5s, landing 8-9s, dark text-zone overlay when the video is bright) and the §5 audio rule (**no piano/lofi**; phonk/dark-ambient/slowed-reverb only). Then run `--dry-run` and stage the reel for the user to watch.
-2. **Wire the beast-engine's `music.py` to the fixed scraper.** It should use `POST /v1/song` (name → audio, IG-first) and/or `/v1/download` with direct URLs. Note `library_provider()` in `src/music.py` reads `assets/audio/manifest.json` as a local fallback — a good place to cache audio since Render's disk isn't persistent.
-3. **Decide the audio persistence question** (§2 known limit): Render free has no disk. Either accept on-demand fetching, cache on the beast-engine side, or pay for a disk. **Raise this with the user — don't silently assume.**
-4. **Instagram posting for the trending-audio path** needs **cookies** (the user has not supplied any). Without them `/v1/song` skips the Instagram step and falls back to name search — which works, but it is not literally "the Instagram trending audio". Ask for a browser cookie export if they want the real IG sound.
-5. When the user says final: push `beast-engine`, set the GitHub Actions secrets (`IG_ACCESS_TOKEN`, `IG_USER_ID` from `~/.beast-secrets/ig.env`), and dispatch the create workflow to prove the CI loop.
-6. Optional/outstanding from earlier: the old grind-style reel is still live on @unleashthe.b (delete in the app — the API can't delete Ig-Login-token media). The IG token expires ~2026-11-19.
+- **Cloud Shell container.** `/tmp` and apt packages **do not survive recycles**; `~` does.
+  **ffmpeg had to be reinstalled twice.** If a build dies with `FileNotFoundError: ffmpeg`:
+  `sudo apt-get update -qq && sudo apt-get install -y ffmpeg`. This also means
+  `/tmp/audi0-repo` can vanish — re-clone from GitHub if so.
+- **The `terminal` tool rejects the `notify` parameter** ("notify must be true/false …").
+  Use `background=true` without notify, or `notify_on_complete=true`.
+- **`write_file` refuses content that is a JSON object** ("content must be a string, got
+  dict"). Write via a small Python script in `tmp/` instead — that is why several
+  `tmp/*.py` files exist.
+- **`patch` fuzzy-matching fails on files containing curly quotes / smart punctuation.**
+  Re-read the whole file and use `write_file` for the entire file rather than retrying
+  variations.
+- **Security scanner flags** inline `python3 -c` heredocs, `cat | python3` pipes, and bursts
+  of deletions. Write scripts to files and run them.
+- **Reddit blocks datacenter IPs** — 403 on `.json` and `api.reddit.com`. Its **Atom feed
+  works**: `https://www.reddit.com/r/<sub>/top/.rss?t=month`, but it rate-limits, so space
+  requests ~20–30s apart. **Do not treat a 200 as success** — check for `<entry>` presence
+  (Reddit serves Atom `<entry>`, *not* RSS `<item>`).
+- **Pixabay returns 403** from these IPs. Internet Archive, SoundCloud, and direct
+  YouTube URLs work.
+- **User home partition is small (~4.8GB)** and was once at 95%. It was cleaned to ~50%.
+  Keep large downloads out of `~`.
+- **There is no vision tool in this environment** and no vision API keys. Images cannot be
+  *seen* — only measured (bright-pixel counts, dimensions, histograms). You can analyze
+  audio (librosa/ffmpeg) and video structurally (ffprobe, frame differencing, scene-cut
+  detection) but you cannot judge how footage looks. If visual judgment is needed, the
+  `vision` toolset + a vision model must be configured first.
 
 ---
 
@@ -215,18 +399,60 @@ Helper scripts written this session, all in `~/beast-engine/tmp/`:
 
 | What | Where |
 |---|---|
-| IG access token + user id | `~/.beast-secrets/ig.env` (chmod 600) |
+| IG access token + user id | `~/.beast-secrets/ig.env` (chmod 600). Verified working; expires ~2026-11-19 |
 | GitHub PAT (websitecage-hub) | `~/.beast-secrets/audi0-pat` |
-| Render API token (audi0-scraper) | `~/.beast-secrets/audi0-render-hook` |
+| Render API token (audi0-scraper) | `~/.beast-secrets/audi0-render-hook` — **this is an API token, not a deploy-hook URL.** Use `Authorization: Bearer <token>` against `api.render.com` |
 | Render service id | `srv-danpk62jnfac739e6hv0` |
-| Audio API base | `https://audi0-scraper.onrender.com` |
-| Pinterest API base | `https://pinterest-api-inyg.onrender.com` |
-| Meta LLM base | `https://meta-api-chat-h326.onrender.com` |
+| Audio API | `https://audi0-scraper.onrender.com` |
+| Pinterest API | `https://pinterest-api-inyg.onrender.com` |
+| Meta LLM API | `https://meta-api-chat-h326.onrender.com` |
 
-Never commit these. Never print token values into a repo file.
+Never commit these; never write a token value into a repo file.
 
 ---
 
-## 9. THE ONE-PARAGRAPH RESUME PROMPT
+## 9. THE USER — READ THIS BEFORE YOU INTERPRET A MESSAGE
 
-> We're resuming the Beast Engine project. The audio scraper (`/tmp/audi0-repo`, live at `audi0-scraper.onrender.com`) is fixed, deployed and verified — read HANDOFF.md §2. The beast-engine (`~/beast-engine`) has v5.0 THE COMPLETE MIND done with 17/17 tests green and is **unpushed on purpose**; the visual spec is applied to `src/background.py` but §4 text-rendering and §5 audio rules are still outstanding. Next step: finish the visual spec in `build_video.py`, run a `--dry-run`, and stage the reel for the user to watch. Do not push beast-engine and do not post to Instagram until told.
+- Sloppy typos, ALL CAPS bursts, repeated messages when excited, "make it fast". **The
+  intent is sharp** and they know exactly what they want visually.
+- **They want the artifact, not a description of it.** Report the real file path and what
+  real execution returned.
+- **They reject work bluntly** ("i dont liek it", "really un postabl"). Treat it as data:
+  find the root cause and fix it. That is exactly how the wrong-file audio bug, the
+  text-overflow bug, and the multi-font overload were all found. Do not ask them to
+  re-explain and do not get defensive.
+- **They paste tokens directly in chat.** Move them into `~/.beast-secrets/` (chmod 600),
+  never into a repo.
+- **Explicit standing instruction: do NOT push `beast-engine` until they say it is final.**
+  The audio scraper was cleared for push.
+- When they say "pause", stop cleanly and report state. Do not start new work.
+
+---
+
+## 10. WHAT "DONE" LOOKED LIKE ORIGINALLY (for context, has changed)
+
+The very first version of this project was a dark-motivation/grind account using stoic
+quote cards, a different archetype taxonomy, and reels built from Pinterest images. **All of
+that was deliberately replaced** by the social-anxiety confession niche (v4.0 pivot) and
+then by THE COMPLETE MIND (v5.0). If you find old code or notes referencing
+`pain_callout`, `hard_truth`, `aggressive_phonk`, `dark_gym`, or quote cards with
+attribution lines, that is **dead legacy** — do not resurrect it.
+
+---
+
+## 11. RESUME PROMPT (paste this into a fresh session)
+
+> We're resuming the Beast Engine project. Read `~/beast-engine/HANDOFF.md` in full first —
+> it is the only handoff and everything in it was verified by command.
+>
+> Current state: the audio scraper (`/tmp/audi0-repo`, live at
+> `audi0-scraper.onrender.com`) is fixed, deployed and verified — its wrong-file bug is
+> dead and it has 31 passing tests. The beast-engine (`~/beast-engine`, commit `90c70ec`)
+> implements content spec v5.0 with 17/17 tests green and is **deliberately unpushed**; the
+> visual spec is applied to `src/background.py` but §4 text rendering and §5 audio
+> vocabulary are still outstanding (handoff §6 items 1–3).
+>
+> Next action: do handoff §6 items 1–3, then run a `--dry-run` and stage the reel in
+> `~/beast-showcase/` for the user to watch.
+>
+> Do NOT push beast-engine and do NOT post to Instagram until the user says so.
