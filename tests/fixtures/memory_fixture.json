@@ -22,14 +22,25 @@
           "artist": "Kordhell",
           "genre": "rap",
           "trend_score": 91
-        }
+        },
+        "cluster": "the_freeze",
+        "hook_text": "You know exactly what to say. You say nothing. Again.",
+        "hook_length_chars": 53,
+        "num_text_blocks": 3,
+        "landing_text": "landing 0",
+        "audio_mood": "quiet_devastating",
+        "audio_from_trending": true,
+        "loop_technique": "visual_echo",
+        "posted_hour": "15:00",
+        "bg_is_video": true
       },
       "metrics": {
         "reach": 1240,
         "likes": 88,
         "comments": 12,
         "saved": 14,
-        "shares": 6
+        "shares": 6,
+        "plays": 1984
       },
       "score": 0.1414,
       "harvested": true
@@ -56,14 +67,25 @@
           "artist": "Unknown",
           "genre": "edm",
           "trend_score": 40
-        }
+        },
+        "cluster": "the_aftermath",
+        "hook_text": "The conversation ends. The trial begins.",
+        "hook_length_chars": 40,
+        "num_text_blocks": 3,
+        "landing_text": "landing 1",
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": true,
+        "loop_technique": "audio_echo",
+        "posted_hour": "13:30",
+        "bg_is_video": true
       },
       "metrics": {
         "reach": 980,
         "likes": 51,
         "comments": 7,
         "saved": 9,
-        "shares": 2
+        "shares": 2,
+        "plays": 1568
       },
       "score": 0.0765,
       "harvested": true
@@ -85,14 +107,25 @@
         "exploit": true,
         "bg_source": "pinterest",
         "music_source": "trending_free",
-        "trending_ref": null
+        "trending_ref": null,
+        "cluster": "the_sealed_mouth",
+        "hook_text": "You want to talk. Your mouth disagrees.",
+        "hook_length_chars": 39,
+        "num_text_blocks": 3,
+        "landing_text": "landing 2",
+        "audio_mood": "quiet_devastating",
+        "audio_from_trending": true,
+        "loop_technique": "mid_thought",
+        "posted_hour": "15:00",
+        "bg_is_video": true
       },
       "metrics": {
         "reach": 2100,
         "likes": 141,
         "comments": 22,
         "saved": 31,
-        "shares": 11
+        "shares": 11,
+        "plays": 3360
       },
       "score": 0.1348,
       "harvested": true
@@ -114,14 +147,25 @@
         "exploit": false,
         "bg_source": "meta_image",
         "music_source": "library",
-        "trending_ref": null
+        "trending_ref": null,
+        "cluster": "the_craving",
+        "hook_text": "She matched with you. And you're suspicious.",
+        "hook_length_chars": 44,
+        "num_text_blocks": 3,
+        "landing_text": "landing 3",
+        "audio_mood": "muffled_world",
+        "audio_from_trending": false,
+        "loop_technique": "visual_echo",
+        "posted_hour": "16:30",
+        "bg_is_video": true
       },
       "metrics": {
         "reach": 760,
         "likes": 39,
         "comments": 4,
         "saved": 5,
-        "shares": 1
+        "shares": 1,
+        "plays": 1216
       },
       "score": 0.0217,
       "harvested": true
@@ -148,14 +192,25 @@
           "artist": "Ghostemane",
           "genre": "trap",
           "trend_score": 74
-        }
+        },
+        "cluster": "the_mask",
+        "hook_text": "Your manager thinks you're less competent than you are.",
+        "hook_length_chars": 55,
+        "num_text_blocks": 3,
+        "landing_text": "landing 4",
+        "audio_mood": "muffled_world",
+        "audio_from_trending": true,
+        "loop_technique": "audio_echo",
+        "posted_hour": "15:00",
+        "bg_is_video": true
       },
       "metrics": {
         "reach": 1520,
         "likes": 97,
         "comments": 15,
         "saved": 18,
-        "shares": 8
+        "shares": 8,
+        "plays": 2432
       },
       "score": 0.1493,
       "harvested": true
@@ -177,14 +232,25 @@
         "exploit": true,
         "bg_source": "pinterest",
         "music_source": "drone",
-        "trending_ref": null
+        "trending_ref": null,
+        "cluster": "the_rehearsal",
+        "hook_text": "You rehearse the order. You always rehearse the order.",
+        "hook_length_chars": 54,
+        "num_text_blocks": 3,
+        "landing_text": "landing 5",
+        "audio_mood": "quiet_devastating",
+        "audio_from_trending": false,
+        "loop_technique": "mid_thought",
+        "posted_hour": "13:30",
+        "bg_is_video": true
       },
       "metrics": {
         "reach": 640,
         "likes": 28,
         "comments": 3,
         "saved": 4,
-        "shares": 1
+        "shares": 1,
+        "plays": 1024
       },
       "score": 0.0359,
       "harvested": true
@@ -211,14 +277,25 @@
           "artist": "Kordhell",
           "genre": "rap",
           "trend_score": 91
-        }
+        },
+        "cluster": "the_detour",
+        "hook_text": "The bathroom is the only room where you can breathe.",
+        "hook_length_chars": 52,
+        "num_text_blocks": 3,
+        "landing_text": "landing 6",
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": true,
+        "loop_technique": "visual_echo",
+        "posted_hour": "15:00",
+        "bg_is_video": true
       },
       "metrics": {
         "reach": 1810,
         "likes": 120,
         "comments": 19,
         "saved": 26,
-        "shares": 9
+        "shares": 9,
+        "plays": 2896
       },
       "score": 0.1318,
       "harvested": true
@@ -240,14 +317,25 @@
         "exploit": false,
         "bg_source": "bundled",
         "music_source": "drone",
-        "trending_ref": null
+        "trending_ref": null,
+        "cluster": "the_bodys_betrayal",
+        "hook_text": "You're not lazy. You're exhausted from a war nobody can see.",
+        "hook_length_chars": 60,
+        "num_text_blocks": 3,
+        "landing_text": "landing 7",
+        "audio_mood": "restrained_anger",
+        "audio_from_trending": false,
+        "loop_technique": "audio_echo",
+        "posted_hour": "16:30",
+        "bg_is_video": true
       },
       "metrics": {
         "reach": 520,
         "likes": 21,
         "comments": 2,
         "saved": 3,
-        "shares": 0
+        "shares": 0,
+        "plays": 832
       },
       "score": 0.0288,
       "harvested": true
@@ -274,14 +362,25 @@
           "artist": "Blume",
           "genre": "rnb",
           "trend_score": 55
-        }
+        },
+        "cluster": "the_losses",
+        "hook_text": "You often think of dying alone.",
+        "hook_length_chars": 31,
+        "num_text_blocks": 3,
+        "landing_text": "landing 8",
+        "audio_mood": "quiet_devastating",
+        "audio_from_trending": true,
+        "loop_technique": "mid_thought",
+        "posted_hour": "15:00",
+        "bg_is_video": true
       },
       "metrics": {
         "reach": 1120,
         "likes": 72,
         "comments": 11,
         "saved": 12,
-        "shares": 4
+        "shares": 4,
+        "plays": 1792
       },
       "score": 0.0848,
       "harvested": true
@@ -303,14 +402,25 @@
         "exploit": true,
         "bg_source": "pinterest",
         "music_source": "trending_free",
-        "trending_ref": null
+        "trending_ref": null,
+        "cluster": "quiet_hope",
+        "hook_text": "Two years ago you couldn't order pizza without rehearsing it five times.",
+        "hook_length_chars": 72,
+        "num_text_blocks": 3,
+        "landing_text": "landing 9",
+        "audio_mood": "gentle_hope",
+        "audio_from_trending": true,
+        "loop_technique": "visual_echo",
+        "posted_hour": "13:30",
+        "bg_is_video": true
       },
       "metrics": {
         "reach": 890,
         "likes": 44,
         "comments": 6,
         "saved": 7,
-        "shares": 2
+        "shares": 2,
+        "plays": 1424
       },
       "score": 0.0607,
       "harvested": false

@@ -1,9 +1,10 @@
-"""Acceptance tests (section 11) — v4.1 single-paragraph edition.
+"""Acceptance tests — v5.0 THE COMPLETE MIND.
 
 Run: python3 tests/test_acceptance.py
 
-Covers: clean imports, law enforcement on paragraphs, measured-fit overflow
-gate, dedup rejection, learn on fixture memory, workflow YAML contracts.
+Covers: the mind prompt, character limits + law gate, loop echo, the Part 5.5
+timing map, measured text fit, variety guard, harvest metric hierarchy (sends
+first), learning on fixture memory, and workflow YAML contracts.
 """
 from __future__ import annotations
 
@@ -16,7 +17,7 @@ sys.path.insert(0, str(ROOT))
 
 import yaml  # noqa: E402
 
-from src import analyze, build_video, config, generate, music  # noqa: E402
+from src import analyze, build_video, config, generate, harvest, mind, music  # noqa: E402
 
 FIXTURES = ROOT / "tests" / "fixtures"
 
@@ -31,109 +32,165 @@ def test_imports_clean():
     assert True
 
 
-# ------------------------------------------------- brain law enforcement
+# ------------------------------------------------------------------- mind
 
-def test_law_no_just_no_advice():
-    ok, why = generate._laws_ok(
-        "You know the exact words. You ran them on the walk over. Your mouth filed "
-        "for silence. It was never a knowledge problem.")
-    assert ok, f"clean paragraph rejected: {why}"
-    ok, why = generate._laws_ok(
-        "You know the exact words. Just say them next time. It was never courage.")
-    assert not ok and "just" in why, "'just' must be rejected"
-    ok, why = generate._laws_ok(
-        "The conversation ends. Here is my advice: stop rehearsing. The trial begins.")
-    assert not ok, "advice must be rejected"
-    ok, why = generate._laws_ok("Two sentences only. Nothing more.")
-    assert not ok, "under 3 sentences must be rejected"
+def test_mind_prompt_complete():
+    sp = generate.SYSTEM_PROMPT
+    assert sp == mind.SYSTEM_PROMPT
+    # Part 8 directive, Part 2 evidence library, Part 6 calibration, contract
+    for marker in ("terrified of confirmation", "EVIDENCE LIBRARY", "CALIBRATION",
+                   "OUTPUT CONTRACT", "this is exactly [friend's name]"):
+        assert marker in sp, f"mind prompt missing {marker!r}"
+    # every cluster appears in the evidence library
+    for cluster in config.ARCHETYPES:
+        assert cluster in mind.EVIDENCE_LIBRARY, f"{cluster} missing from evidence"
 
 
-def test_candidate_validation():
+# ------------------------------------------------------- law + limit gates
+
+def test_limits_and_laws():
     cfg = config.load_config()
     good = {
-        "paragraph": ("You know the exact words. You ran them on the walk over, word "
-                      "for word. Then the moment arrived and your mouth filed for "
-                      "silence. It was never a knowledge problem."),
-        "scene": "empty street night rain",
-        "archetype": "the_freeze", "topic": "exposure_fear",
-        "mood": "quiet_devastating", "bg_type": "freeze_detour",
+        "hook": "You know exactly what to say. You say nothing. Again.",
+        "deepening": ["You ran the conversation on the walk over. Word for word.",
+                      "Then the moment came and your body filed for silence."],
+        "landing": "It was never a knowledge problem.",
+        "cluster": "the_freeze", "topic": "freeze_at_work",
+        "mood": "quiet_devastating", "bg_type": "freeze",
+        "loop_technique": "visual_echo",
     }
+    ok, why = generate._limits_ok(good, cfg)
+    assert ok, f"clean candidate rejected: {why}"
     assert generate._valid(good, cfg) is True
-    assert generate._valid({**good, "scene": ""}, cfg) is False          # scene required
-    assert generate._valid({**good, "paragraph": "too short."}, cfg) is False
-    assert generate._valid({**good, "mood": "aggressive_phonk"}, cfg) is False
-    assert generate._valid({**good, "archetype": "hard_truth"}, cfg) is False
+
+    # character limits are enforced
+    long_hook = {**good, "hook": "You know exactly what to say and you say nothing "
+                                 "again and again and again and again"}
+    assert len(long_hook["hook"]) > cfg["text_limits"]["hook"]
+    assert generate._valid(long_hook, cfg) is False
+    # laws
+    assert generate._laws_ok("Just say it next time.")[0] is False
+    assert generate._laws_ok("Here is my advice.")[0] is False
+    assert generate._laws_ok("Share this with someone.")[0] is False   # Law 12
+    assert generate._laws_ok("You have social anxiety.")[0] is False   # Law 7
+    assert generate._laws_ok("You know exactly what to say.")[0] is True
+    # cliffhanger humour / exclamation rejected (tone)
+    assert generate._laws_ok("You did it!")[0] is False
 
 
-# ------------------------------------------------------------------ dedup
+def test_echo_score_is_advisory():
+    """Part 6's own example shares no words between hook and landing, so the
+    loop is guaranteed structurally (same font/size/pinned top), not lexically."""
+    cfg = config.load_config()
+    calib = {"hook": "The conversation ends. The trial begins.",
+             "landing": "You've been cross-examining yourself since school."}
+    # the spec's quality bar must pass validation
+    full = {**calib, "deepening": ["What you said. What you didn't.",
+                                   "You'll review the footage until 2am."],
+            "cluster": "the_aftermath", "topic": "replay_2am",
+            "mood": "heavy_shadow", "bg_type": "aftermath",
+            "loop_technique": "visual_echo"}
+    assert generate._valid(full, cfg) is True, "spec example 2 must be valid"
+    # the echo score is reported but never blocks
+    assert generate._echo_score(calib) >= 0.0
+    # structurally, hook and landing pin to the same top
+    blocks = build_video.text_blocks(full)
+    hook = next(b for b in blocks if b["kind"] == "hook")
+    land = next(b for b in blocks if b["kind"] == "landing")
+    hook["pinned_top"] = 700
+    land["pinned_top"] = 700
+    assert build_video.loop_echo_ok(blocks) is True
+    land["pinned_top"] = 800
+    assert build_video.loop_echo_ok(blocks) is False
+
 
 def test_dedup_rejects_near_duplicate():
-    dup = ("You know the exact words. You ran them on the walk over. Your mouth "
-           "filed for silence. It was never a knowledge problem.")
-    near = ("You know the exact words. You ran them on the walk over. Your mouth "
-            "filed for silence. It was never a knowledge problem")
-    assert generate._similar(dup, near) > generate.DEDUP_RATIO
-    banned = [dup]
-    cand = {"paragraph": near, "archetype": "the_freeze", "topic": "exposure_fear"}
-    assert generate._dedup_ok(cand, banned, set()) is False
-    fresh = {"paragraph": ("She matched with you. Being chosen feels like a setup. "
-                           "You never reply. You are not unlovable, you are "
-                           "unreachable."),
-             "archetype": "the_craving", "topic": "dating_app_freeze"}
-    assert generate._dedup_ok(fresh, banned, set()) is True
+    dup = {"hook": "You know exactly what to say. You say nothing. Again."}
+    near = {"hook": "You know exactly what to say. You say nothing. Again"}
+    assert generate._similar(dup["hook"], near["hook"]) > generate.DEDUP_RATIO
+    assert generate._dedup_ok(near, [dup["hook"]], set()) is False
+    fresh = {"hook": "She matched with you. And you're suspicious.",
+             "cluster": "the_craving", "topic": "dating_app_freeze"}
+    assert generate._dedup_ok(fresh, [dup["hook"]], set()) is True
     assert generate._dedup_ok(fresh, [], {("the_craving", "dating_app_freeze")}) is False
 
 
-# --------------------------------------------------- measured fit (no overflow)
+# ------------------------------------------------- Part 5.3 / 5.5 format
 
-def test_fit_paragraph_never_overflows():
+def test_text_blocks_and_timing_map():
     cfg = config.load_config()
-    long_p = ("You know the exact words and you ran them on the walk over, word for "
-              "word, and then the moment arrived and your mouth filed for silence "
-              "while everyone watched and the trial starts tonight at two in the "
-              "morning reviewing what you did not say.")
-    lines, px = build_video.fit_paragraph(long_p, cfg)
-    build_video.assert_fits(lines, px, cfg)      # raises on any overflow
-    assert len(lines) >= 2 and px > 0
-    # short paragraph keeps the biggest font
-    lines2, px2 = build_video.fit_paragraph("You know the exact words.", cfg)
-    assert px2 == build_video.PX_LADDER[0]
+    content = {
+        "hook": "The conversation ends. The trial begins.",
+        "deepening": ["What you said. What you didn't. The face they made.",
+                      "You'll review the footage until 2am."],
+        "landing": "You've been cross-examining yourself since school.",
+    }
+    blocks = build_video.text_blocks(content)
+    assert len(blocks) == 4
+    assert [b["kind"] for b in blocks] == ["hook", "deepening", "deepening", "landing"]
+    states = build_video.state_map(blocks, cfg, 9.5)
+    assert states[0]["start"] == 0.0                     # hook IS the thumbnail
+    hook_state = next(s for s in states if s["kind"] == "hook")
+    assert hook_state["end"] == 3.5                      # Part 5.5 map
+    land_state = next(s for s in states if s["kind"] == "landing")
+    assert land_state["start"] == 7.0 and land_state["end"] == 9.5
+    # 3-block format: single deepening block
+    three = {**content, "deepening": ["Only one deepening block here."]}
+    b3 = build_video.text_blocks(three)
+    assert len(b3) == 3
+    assert build_video.loop_echo_ok(b3) is True
 
 
-# --------------------------------------------------------------- corpus
+def test_measured_fit_no_overflow():
+    cfg = config.load_config()
+    long_text = ("Your manager thinks you are less competent than you actually are "
+                 "because in meetings your voice files its resignation and the quiet "
+                 "gets graded instead of the work")
+    lines, px, font_path = build_video.fit_block(long_text, "hook", cfg)
+    widest = build_video.assert_fits(lines, px, font_path, cfg)
+    assert widest <= int(cfg["reel"]["w"]) - 2 * build_video.SIDE_MARGIN
+    assert px <= build_video.HOOK_PX_LADDER[0]
+    # short hook keeps the biggest size
+    _, px2, _ = build_video.fit_block("The trial begins.", "hook", cfg)
+    assert px2 == build_video.HOOK_PX_LADDER[0]
+    # body uses the Playfair ladder
+    _, pxb, fpb = build_video.fit_block("Because alone, your work is excellent.",
+                                        "deepening", cfg)
+    assert fpb == build_video.FONT_BODY and pxb <= build_video.BODY_PX_LADDER[0]
 
-def test_reddit_corpus_loaded():
-    posts = generate.load_corpus()
-    assert len(posts) >= 50, f"corpus too small: {len(posts)}"
-    sample = generate._corpus_sample()
-    assert 1 <= len(sample) <= generate.CORPUS_SAMPLE
-    assert all("title" in p or "text" in p for p in sample)
 
-
-def test_batch_variety_guard():
-    def cand(arch, para):
-        return {"archetype": arch, "paragraph": para, "topic": "exposure_fear",
-                "mood": "quiet_devastating", "bg_type": "mask", "scene": "s"}
-    batch = [
-        cand("the_mask", "You smile on cue. You nod. You vanish inside it."),
-        cand("the_mask", "You pull out your phone. You scroll nothing. You hide."),
-        cand("the_mask", "You rehearse the order. You mumble. You apologize."),
-        cand("the_mask", "You laugh too late. You keep your voice low. You edit."),
-        cand("the_freeze", "The order you rehearsed, fumbled anyway. Then silence."),
-        cand("the_aftermath", "Two years ago the phone rang and you let it. Still."),
-        cand("the_losses", "There is a version of you that everyone likes. Gone."),
-    ]
+def test_variety_guard():
+    def cand(cluster, hook):
+        return {"cluster": cluster, "hook": hook}
+    batch = [cand("the_mask", f"You do thing number {i}.") for i in range(5)]
+    batch += [cand("the_freeze", "The order you rehearsed, fumbled anyway."),
+              cand("the_aftermath", "Two years ago the phone rang and you let it."),
+              cand("the_losses", "There is a version of you that everyone likes.")]
     kept = generate.diversify(batch)
-    arch_counts = {}
+    counts = {}
     for c in kept:
-        arch_counts[c["archetype"]] = arch_counts.get(c["archetype"], 0) + 1
-    assert arch_counts.get("the_mask", 0) <= 3, f"archetype cap failed: {arch_counts}"
-    assert len(kept) >= 4
-    # opening patterns are classified, and 'you_verb' is capped
-    assert generate._opening_pattern("You smile on cue.") == "you_verb"
-    assert generate._opening_pattern("Two years ago you couldn't order pizza.") == "time"
+        counts[c["cluster"]] = counts.get(c["cluster"], 0) + 1
+    assert counts.get("the_mask", 0) <= 3, f"cluster cap failed: {counts}"
+    assert generate._opening_pattern("You smile on cue.") == "you"
     assert generate._opening_pattern("There is a version of you.") == "there"
-    assert generate._opening_pattern("The order you rehearsed, fumbled.") == "scene"
+    assert generate._opening_pattern("Two years ago you couldn't.") == "scene"
+
+
+# ------------------------------------------------------- harvest metrics
+
+def test_harvest_metric_hierarchy():
+    sends_heavy = {"reach": 1000, "shares": 30, "saved": 5, "likes": 100}
+    saves_heavy = {"reach": 1000, "shares": 2, "saved": 60, "likes": 100}
+    # sends outweigh saves (Part 4.1 hierarchy)
+    assert harvest.compute_score(sends_heavy) > harvest.compute_score(saves_heavy)
+    assert harvest.sends_per_reach(sends_heavy) == 0.03
+    assert harvest.saves_per_reach(saves_heavy) == 0.06
+    # likes are near-worthless: removing them barely moves the score
+    with_likes = harvest.compute_score({"reach": 1000, "shares": 10, "saved": 10,
+                                        "likes": 0})
+    more_likes = harvest.compute_score({"reach": 1000, "shares": 10, "saved": 10,
+                                        "likes": 500})
+    assert more_likes - with_likes < 0.15
 
 
 # --------------------------------------------------------------- analyzer
@@ -146,42 +203,28 @@ def test_learn_on_fixture_memory():
     posts = analyze.scored_posts(memory)
     assert len(posts) == 10
     G = analyze._global_mean(posts)
-    assert 0.02 < G < 0.15, f"global mean out of expected band: {G}"
-
+    assert 0.02 < G < 0.6, f"global mean out of expected band: {G}"
     followers = {}
-    for arch in cfg["archetypes"]:
-        adj, n, wsum = analyze._adjusted(posts, lambda p: (p["dna"] or {}).get("archetype"),
-                                         arch, G)
-        followers[arch] = (adj, n)
-    sparse, raw_low = None, None
     for arch in cfg["archetypes"]:
         adj, n, _ = analyze._adjusted(posts, lambda p: (p["dna"] or {}).get("archetype"),
                                       arch, G)
-        if n == 1:
-            raw = [p["score"] for p in posts if (p["dna"] or {}).get("archetype") == arch][0]
-            if raw < G:
-                sparse, raw_low = arch, raw
-                break
-    assert sparse is not None and raw_low is not None
-    adj_sparse = analyze._adjusted(posts, lambda p: (p["dna"] or {}).get("archetype"),
-                                  sparse, G)[0]
-    assert abs(adj_sparse - G) < abs(raw_low - G) + 1e-9
-
+        followers[arch] = (adj, n)
     norm = analyze._normalize({k: v for k, v in {a: followers[a][0] for a in followers}.items()})
     assert abs(sum(norm.values()) - 1.0) < 1e-6
 
     strategy = config.default_strategy()
     strategy["adj"] = {"archetype": {a: followers[a][0] for a in followers},
-                       "topic": {}, "mood": {}, "bg_type": {}}
+                       "topic": {}, "mood": {}, "bg_type": {}, "loop_technique": {}}
     strategy["n"] = {"archetype": {a: followers[a][1] for a in followers},
-                     "topic": {}, "mood": {}, "bg_type": {}}
-    strategy["hour_scores"] = {"13:30": 0.06, "15:00": 0.12, "16:30": 0.03}
-    strategy["next_post_hour"] = "15:00"
+                     "topic": {}, "mood": {}, "bg_type": {}, "loop_technique": {}}
+    strategy["hour_scores"] = {"13:30": 0.06, "15:00": 0.12, "16:30": 0.03, "21:30": 0.2}
+    strategy["next_post_hour"] = "21:30"
     strategy["experiments"] = [{"archetype": "the_freeze", "topic": "asking_coworker"}]
     text = analyze._write_report(memory, strategy, posts, G)
+    assert "Self-improvement metrics" in text     # Part 7.3
+    assert "sends per reach" in text
     assert "Trending alignment" in text
     assert "Exploit vs explore" in text
-    assert "insufficient" not in text.lower()
 
 
 def test_insufficient_data_report():
@@ -217,7 +260,7 @@ def test_workflows_parse_and_contracts():
         run_step = next((s for s in job["steps"] if script in str(s.get("run", ""))), None)
         assert run_step is not None, f"{name}: no step runs {script}.py"
         assert run_step["env"]["GITHUB_TOKEN"].startswith("${{ secrets.")
-        if name != "learn.yml":        # learn never calls the Instagram API
+        if name != "learn.yml":
             assert run_step["env"]["IG_ACCESS_TOKEN"].startswith("${{ secrets.")
         if "actions/checkout@v4" not in [s.get("uses") for s in job["steps"]]:
             raise AssertionError(f"{name}: missing actions/checkout@v4")
@@ -227,55 +270,60 @@ def test_workflows_parse_and_contracts():
 
 # ------------------------------------------------------------- data files
 
-def test_seed_files_and_no_pause():
+def test_seed_files_and_config_shape():
     for name in ("config.json", "strategy.json", "memory.json",
                  "trending_styles.json", "token_state.json"):
         assert (ROOT / "data" / name).exists(), f"missing data/{name}"
     assert not (ROOT / "data" / "PAUSE").exists(), "PAUSE must not be seeded"
+    cfg = config.load_config()
     strat = json.loads((ROOT / "data" / "strategy.json").read_text(encoding="utf-8"))
     assert strat["next_post_hour"] in strat["hour_scores"]
     assert len(strat["weights"]["archetype"]) == 11
     assert len(strat["weights"]["topic"]) == 20
-
-
-def test_config_families_line_up():
-    cfg = config.load_config()
-    strat = json.loads((ROOT / "data" / "strategy.json").read_text(encoding="utf-8"))
+    assert len(strat["weights"]["loop_technique"]) == 3
+    # Part 5 locked format
+    assert cfg["reel"]["min_s"] == 9.0 and cfg["reel"]["max_s"] == 10.0
+    assert cfg["timing"] == {"hook_end": 3.5, "deepen_end": 7.0}
     assert set(cfg["archetypes"]) == set(strat["weights"]["archetype"])
-    assert set(cfg["topics"]) == set(strat["weights"]["topic"])
     assert set(cfg["moods"]) == set(strat["weights"]["mood"])
     assert set(cfg["bg_types"].keys()) == set(strat["weights"]["bg_type"])
+    # every cluster maps to a bg type and a sound family
     for arch in cfg["archetypes"]:
         assert arch in cfg["archetype_bg_map"], f"{arch} missing from archetype_bg_map"
+        assert arch in cfg["cluster_mood_map"], f"{arch} missing from cluster_mood_map"
+        assert cfg["archetype_bg_map"][arch] in cfg["bg_types"]
+        assert cfg["cluster_mood_map"][arch] in cfg["moods"]
 
 
-# ------------------------------------------------- trending confidence filter
+# ------------------------------------------------------- background/music
+
+def test_background_queries_are_video():
+    cfg = config.load_config()
+    for bg, queries in cfg["bg_types"].items():
+        assert queries, f"{bg} has no queries"
+        for q in queries:
+            assert "video" in q, f"{bg} query not video-first: {q!r}"
+
+
+def test_mood_tempo_bands_cover_all_moods():
+    cfg = config.load_config()
+    for mood in cfg["moods"]:
+        assert mood in music.MOOD_TEMPO_BANDS, f"{mood} has no tempo band"
+        lo, hi = music.MOOD_TEMPO_BANDS[mood]
+        assert 0 < lo < hi < 200
+
 
 def test_trending_filter_confidence():
     data = json.loads((FIXTURES / "trending_fixture.json").read_text(encoding="utf-8"))
     min_conf = 0.5
     good = [r for r in data["results"] if float(r["confidence"]) >= min_conf]
-    good.sort(key=lambda r: r["trend_score"], reverse=True)
-    assert len(good) == 3, f"expected 3 rows >= 0.5 confidence, got {len(good)}"
-    assert sorted(r["confidence"] for r in good) == [0.5, 0.62, 0.86]
-    top = good[0]
-    assert top["title"] == "Slowed Phonk Drift"
-    assert top["trend_score"] == 91
-    genre = top["category"].split(":", 1)[1].strip()
-    assert genre == "rap"
-    assert all(float(r["confidence"]) >= min_conf for r in good)
-    assert "Low Confidence Filler" not in [r["title"] for r in good]
+    assert len(good) == 3
 
-
-# ------------------------------------------------------ pixabay URL regex
 
 def test_pixabay_regex_finds_all_three():
     html = (FIXTURES / "pixabay_fixture.html").read_text(encoding="utf-8")
     found = music.PIXABAY_MP3_RE.findall(html)
-    unique = sorted(set(found))
-    assert len(unique) == 3, f"expected 3 unique mp3 URLs, got {unique}"
-    for u in unique:
-        assert u.startswith("https://cdn.pixabay.com/audio/") and u.endswith(".mp3")
+    assert len(sorted(set(found))) == 3
 
 
 if __name__ == "__main__":

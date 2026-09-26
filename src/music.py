@@ -93,18 +93,22 @@ def _unused_marker():
 # ------------------------------------------------------- trending fetching
 
 def fetch_trending(cfg) -> dict | None:
-    """Fetch today's trending reference. Primary niche, then fallback niche.
+    """Fetch today's trending reference — Part 4.5 Phase 2 window.
 
-    Returns {title, artist, genre, trend_score} or None. Never raises.
+    Sounds in days 4-8 of their rise are the high-value adoption window: the
+    algorithm is actively distributing reels using them. We approximate that by
+    preferring mid-band trend_score momentum over the already-peaked top of the
+    chart. Returns {title, artist, genre, trend_score, phase} or None. Never raises.
     """
     music = cfg["music"]
     api = music["trending_api"]
     wake(api)
+    lo, hi = (music.get("phase2_score_band") or [0.35, 0.85])
     for niche in (music["trending_niche"], music.get("trending_fallback_niche")):
         if not niche:
             continue
         try:
-            r = requests.get(f"{api}/v1/trending/{niche}", params={"limit": 10},
+            r = requests.get(f"{api}/v1/trending/{niche}", params={"limit": 25},
                              timeout=150)
             if r.status_code != 200:
                 continue
@@ -113,8 +117,18 @@ def fetch_trending(cfg) -> dict | None:
                     if float(x.get("confidence") or 0) >= float(music.get("min_confidence", 0.5))]
             if not good:
                 continue
-            good.sort(key=lambda x: (x.get("trend_score") or 0), reverse=True)
-            top = good[0]
+            scores = [float(x.get("trend_score") or 0) for x in good]
+            smin, smax = min(scores), max(scores)
+            span = max(smax - smin, 1.0)
+
+            def norm(x):
+                return (float(x.get("trend_score") or 0) - smin) / span
+
+            # Phase 2 = the rising middle, not the peak and not the floor
+            phase2 = [x for x in good if lo <= norm(x) <= hi]
+            pool = phase2 or good
+            pool.sort(key=lambda x: float(x.get("trend_score") or 0), reverse=True)
+            top = pool[0]
             category = str(top.get("category") or "")
             genre = category.split(":", 1)[1].strip() if ":" in category else ""
             return {
@@ -122,6 +136,7 @@ def fetch_trending(cfg) -> dict | None:
                 "artist": str(top.get("artist") or ""),
                 "genre": genre,
                 "trend_score": top.get("trend_score"),
+                "phase": "phase2" if phase2 else "fallback",
             }
         except Exception:  # noqa: BLE001 — trending failure is never fatal
             continue
@@ -296,7 +311,12 @@ def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_m
     """
     music = cfg["music"]
     api = music["trending_api"]
-    mood = content.get("mood") or "dark_ambient"
+    mood = content.get("mood") or "heavy_shadow"
+    # Part 7.1: the cluster's own preferred sound family wins when the model
+    # didn't pick one (keeps audio mood-matched to the content cluster).
+    if not content.get("mood"):
+        cluster = content.get("cluster") or content.get("archetype")
+        mood = (cfg.get("cluster_mood_map") or {}).get(cluster, mood)
     genre = (trending_ref or {}).get("genre") or ""
     styles = config.load_trending_styles()
     mood_search = music["mood_search"].get(mood, "dark ambient")

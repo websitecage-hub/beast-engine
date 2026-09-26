@@ -139,7 +139,8 @@ def run(dry_run=False, offline=False) -> int:
         bg_mp4, bg_source = background.build(cfg, content, memory, duration,
                                              offline=offline, dry_run=dry_run)
         content["bg_source"] = bg_source
-        step("background", {"source": bg_source})
+        content["bg_is_video"] = bg_source in ("pinterest_video",)
+        step("background", {"source": bg_source, "is_video": content["bg_is_video"]})
 
         ok_music, mmeta = music.acquire(cfg, content, strategy, memory,
                                         content.get("trending_ref"), duration, dry_run=dry_run,
@@ -152,6 +153,17 @@ def run(dry_run=False, offline=False) -> int:
         reel, qa = build_video.build(cfg, content, duration, R / "track.mp3", R / "track.wav",
                                      bg_mp4, R / "reel.mp4", offline=offline)
         step("built", {"qa": {k: v for k, v in qa.items() if k != "cards"}})
+
+        # Part 5.6 — "Video bg: motion present (not static)" is mandatory when we
+        # are actually going to publish. Offline mode knowingly uses the bundled
+        # still for hermetic tests, so the motion check only gates real runs.
+        if not offline and not qa.get("motion", True):
+            raise RuntimeError(
+                f"QA gate failed: background has no motion (source={content.get('bg_source')}) "
+                "— Part 5.2 requires dark cinematic VIDEO")
+        if not offline and bg_source != "pinterest_video":
+            print(f"[create] WARNING: bg_source={bg_source} is not video "
+                  "(Part 5.2 format requires video)")
 
         config.save_content(content)
 
@@ -207,25 +219,41 @@ def _record_track(memory, mmeta):
 
 
 def _record_post(memory, content, result, strategy):
+    """Part 7.1 — store the reel's full genetic code."""
     now = datetime.now(timezone.utc)
     slot = strategy.get("next_post_hour")
+    hook = content.get("hook") or ""
     memory.setdefault("posts", []).append({
         "media_id": result["media_id"],
         "container_id": result.get("container_id"),
         "created_at": now.isoformat(),
         "hour_slot": slot,
-        "hook": content.get("hook"),
+        "hook": hook,
+        "hook_text": hook,
         "caption": result.get("caption"),
         "hashtags": content.get("hashtags"),
         "dna": {
-            "archetype": content.get("archetype"),
+            # Part 7.1 genetic code
+            "hook_text": hook,
+            "cluster": content.get("cluster") or content.get("archetype"),
             "topic": content.get("topic"),
-            "mood": content.get("mood"),
+            "hook_length_chars": len(hook),
+            "num_text_blocks": len(content.get("blocks") or []),
+            "landing_text": content.get("landing") or "",
             "bg_type": content.get("bg_type"),
+            "bg_is_video": bool(content.get("bg_is_video")),
+            "audio_mood": content.get("mood"),
+            "audio_from_trending": content.get("music_source") == "trending_free",
+            "trending_ref": content.get("trending_ref"),
+            "loop_technique": content.get("loop_technique"),
+            "posted_hour": slot,
+            "include_cta": bool(content.get("include_whisper")),
             "exploit": content.get("exploit"),
+            # legacy aliases kept so older analysis paths keep working
+            "archetype": content.get("cluster") or content.get("archetype"),
+            "mood": content.get("mood"),
             "bg_source": content.get("bg_source"),
             "music_source": content.get("music_source"),
-            "trending_ref": content.get("trending_ref"),
         },
         "metrics": {},
         "score": None,

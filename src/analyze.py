@@ -1,22 +1,24 @@
-"""analyze.py — the learning brain (Sunday).
+"""analyze.py — the learning brain (Sunday), v5.0.
 
 Decay w = 0.5 ** (age_days/28); global mean G; per-value adjusted score with
 shrinkage k=5: adj = (Sum w*s + 5*G) / (Sum w + 5). Weights = max(adj, 0.001)
 normalized per family. Hour learning picks next_post_hour. Experiments enqueue
-under-sampled (archetype, topic) combos. Writes data/REPORT.md.
+under-sampled (cluster, topic) combos. Writes data/REPORT.md.
+
+Part 7.2 questions answered in the report + Part 7.3 self-improvement metrics.
 """
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 
-from . import config
+from . import config, harvest
 
 MIN_POSTS = 5
 DECAY_HALFLIFE_D = 28
 K = 5
 MIN_WEIGHT = 0.001
-FAMILIES = ("archetype", "topic", "mood", "bg_type")
-HOURS = ("13:30", "15:00", "16:30")
+FAMILIES = ("archetype", "topic", "mood", "bg_type", "loop_technique")
+HOURS = ("13:30", "15:00", "16:30", "21:30")
 
 
 def _parse(ts):
@@ -45,6 +47,8 @@ def scored_posts(memory: dict) -> list:
             "trending_ref": (p.get("dna") or {}).get("trending_ref"),
             "hook": p.get("hook") or ((p.get("caption") or "").split("\n")[0]),
             "age_days": age_days,
+            # v5.0: the raw insight numbers drive the Part 7.3 metrics section
+            "metrics": p.get("metrics") or {},
         })
     return out
 
@@ -84,7 +88,8 @@ def analyze(dry_run: bool = False) -> dict:
     for fam in FAMILIES:
         values = list((strategy.get("weights") or {}).get(fam, {}).keys()) or \
             cfg.get({"archetype": "archetypes", "topic": "topics",
-                     "mood": "moods", "bg_type": "bg_types"}[fam]) or []
+                     "mood": "moods", "bg_type": "bg_types",
+                     "loop_technique": "loop_techniques"}[fam]) or []
         adj_row, n_row = {}, {}
         for v in values:
             adj, n, _ = _adjusted(posts, lambda p, f=fam, vv=v: (p["dna"] or {}).get(f), v, G)
@@ -143,6 +148,86 @@ def _normalize(row: dict) -> dict:
     return {k: max(v / total, MIN_WEIGHT) for k, v in row.items()}
 
 
+def _metrics_section(memory, posts) -> list:
+    """Part 7.3 — self-improvement metrics + Part 4.1/7.2 answers."""
+    out = ["## Self-improvement metrics (Part 7.3)", ""]
+    with_metrics = [p for p in posts if (p.get("dna") is not None)]
+    rows = []
+    for p in posts:
+        m = (p.get("metrics") or {})
+        if not m:
+            continue
+        rows.append((p, m))
+    if not rows:
+        out += ["_no harvested metrics yet_", ""]
+        return out
+    spr = [harvest.sends_per_reach(m) for _, m in rows]
+    savr = [harvest.saves_per_reach(m) for _, m in rows]
+    out += [f"- posts with metrics: **{len(rows)}**",
+            f"- sends per reach: mean **{sum(spr)/len(spr)*100:.2f}%** "
+            f"(target >{harvest.TARGET_SENDS_PER_REACH*100:.0f}%)",
+            f"- saves per reach: mean **{sum(savr)/len(savr)*100:.2f}%**",
+            f"- reels above the send target: "
+            f"**{sum(1 for x in spr if x >= harvest.TARGET_SENDS_PER_REACH)}/{len(spr)}**",
+            ""]
+    # Part 7.2 Q1: which clusters earn the most saves?
+    per_cluster = {}
+    for p, m in rows:
+        cl = (p.get("dna") or {}).get("cluster") or (p.get("dna") or {}).get("archetype")
+        if not cl:
+            continue
+        per_cluster.setdefault(cl, []).append(harvest.saves_per_reach(m))
+    if per_cluster:
+        out += ["## Which clusters earn the most saves? (Part 7.2 Q1)", "",
+                "| cluster | mean saves/reach | n |", "|---|---|---|"]
+        for cl, vals in sorted(per_cluster.items(), key=lambda kv: sum(kv[1]) / len(kv[1]),
+                               reverse=True):
+            out.append(f"| {cl} | {sum(vals)/len(vals)*100:.2f}% | {len(vals)} |")
+        out.append("")
+    # Part 7.2 Q3: bg type vs completion proxy
+    per_bg = {}
+    for p, m in rows:
+        bg = (p.get("dna") or {}).get("bg_type")
+        plays, reach = float(m.get("plays") or 0), max(float(m.get("reach") or 0), 1.0)
+        if not bg or not plays:
+            continue
+        per_bg.setdefault(bg, []).append(plays / reach)
+    if per_bg:
+        out += ["## Background type vs completion proxy (Part 7.2 Q3)", "",
+                "| bg_type | mean plays/reach | n |", "|---|---|---|"]
+        for bg, vals in sorted(per_bg.items(), key=lambda kv: sum(kv[1]) / len(kv[1]),
+                               reverse=True):
+            out.append(f"| {bg} | {sum(vals)/len(vals):.2f} | {len(vals)} |")
+        out.append("")
+    # Part 7.2 Q7: loop technique effect
+    per_loop = {}
+    for p, m in rows:
+        lt = (p.get("dna") or {}).get("loop_technique")
+        plays, reach = float(m.get("plays") or 0), max(float(m.get("reach") or 0), 1.0)
+        if not lt or not plays:
+            continue
+        per_loop.setdefault(lt, []).append(plays / reach)
+    if per_loop:
+        out += ["## Loop technique vs rewatch proxy (Part 7.2 Q7)", "",
+                "| loop_technique | mean plays/reach | n |", "|---|---|---|"]
+        for lt, vals in sorted(per_loop.items(), key=lambda kv: sum(kv[1]) / len(kv[1]),
+                               reverse=True):
+            out.append(f"| {lt} | {sum(vals)/len(vals):.2f} | {len(vals)} |")
+        out.append("")
+    # Part 7.2 Q6: trending alignment
+    aligned = [harvest.sends_per_reach(m) for p, m in rows
+               if (p.get("dna") or {}).get("audio_from_trending")]
+    unaligned = [harvest.sends_per_reach(m) for p, m in rows
+                 if not (p.get("dna") or {}).get("audio_from_trending")]
+    out += ["## Does trending audio help sends? (Part 7.2 Q6)", "",
+            f"- trending audio: n={len(aligned)} "
+            + (f"mean sends/reach={sum(aligned)/len(aligned)*100:.2f}%" if aligned else ""),
+            f"- non-trending: n={len(unaligned)} "
+            + (f"mean sends/reach={sum(unaligned)/len(unaligned)*100:.2f}%" if unaligned else ""),
+            ""]
+    return out
+
+
 def _write_report(memory, strategy, posts, G, insufficient: bool = False) -> str:
     lines = ["# Beast Engine — weekly brain report", "",
              f"Generated: {datetime.now(timezone.utc).isoformat(timespec='seconds')}", ""]
@@ -175,13 +260,17 @@ def _write_report(memory, strategy, posts, G, insufficient: bool = False) -> str
     lines += ["", f"Next post hour: **{strategy.get('next_post_hour')}**", ""]
 
     top = sorted(posts, key=lambda p: p["score"], reverse=True)[:5]
-    lines += ["## Top 5 hooks", "", "| hook | score | archetype | topic | mood | exploit |",
+    lines += ["## Top 5 hooks", "", "| hook | score | cluster | topic | mood | exploit |",
               "|---|---|---|---|---|---|"]
     for p in top:
         d = p["dna"] or {}
-        lines.append(f"| {p['hook'][:60]} | {p['score']:.4f} | {d.get('archetype','')} | "
+        lines.append(f"| {p['hook'][:60]} | {p['score']:.4f} | "
+                     f"{d.get('cluster') or d.get('archetype','')} | "
                      f"{d.get('topic','')} | {d.get('mood','')} | {p['exploit']} |")
     lines.append("")
+
+    # Part 7.3 — self-improvement metrics (sends-first hierarchy)
+    lines += _metrics_section(memory, posts)
 
     ex = [p["score"] for p in posts if p["exploit"]]
     xp = [p["score"] for p in posts if not p["exploit"]]

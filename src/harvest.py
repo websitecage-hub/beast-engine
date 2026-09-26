@@ -1,6 +1,10 @@
 """harvest.py — pull insights for 24h-7d old posts, score them, prune memory.
 
-score = (3*shares + 2*saved + 1.5*comments + 1*likes) / max(reach, 1)
+v5.0 metric hierarchy (Part 4.1 / 7.3) — sends-per-reach is the king signal,
+then watch-through, then saves, then comments; likes are near-worthless.
+
+score = (6*sends + 3*saved + 2*watch + 1*comments + 0.25*likes) / max(reach, 1)
+        where watch = completion/rewatch proxy when available, else plays/reach.
 """
 from __future__ import annotations
 
@@ -13,6 +17,7 @@ MAX_AGE_D = 7
 REPULL_H = 6
 PRUNE_PINS_D = 30
 PRUNE_HOOKS_D = 90
+TARGET_SENDS_PER_REACH = 0.02        # Part 4.1: >2% triggers distribution
 
 
 def _parse(ts: str):
@@ -22,13 +27,26 @@ def _parse(ts: str):
         return None
 
 
-def compute_score(m: dict) -> float:
+def sends_per_reach(m: dict) -> float:
     reach = max(float(m.get("reach") or 0), 1.0)
-    shares = float(m.get("shares") or 0)
+    return float(m.get("shares") or 0) / reach
+
+
+def saves_per_reach(m: dict) -> float:
+    reach = max(float(m.get("reach") or 0), 1.0)
+    return float(m.get("saved") or 0) / reach
+
+
+def compute_score(m: dict) -> float:
+    """Weighted per-reach engagement, sends-first (Part 4.1 hierarchy)."""
+    reach = max(float(m.get("reach") or 0), 1.0)
+    sends = float(m.get("shares") or 0)
     saved = float(m.get("saved") or 0)
     comments = float(m.get("comments") or 0)
     likes = float(m.get("likes") or 0)
-    return (3 * shares + 2 * saved + 1.5 * comments + 1 * likes) / reach
+    plays = float(m.get("plays") or 0)
+    watch = plays / reach if plays else 0.0        # completion/rewatch proxy
+    return (6 * sends + 3 * saved + 2 * watch + 1 * comments + 0.25 * likes) / reach
 
 
 def harvest(dry_run: bool = False) -> dict:

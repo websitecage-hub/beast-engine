@@ -45,5 +45,506 @@
     "errors": [
       "[Errno 2] No such file or directory: 'ffmpeg'"
     ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-26T18:47:45.569889+00:00",
+    "dry_run": false,
+    "offline": true,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.0
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.0,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 0.0,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 0.0,
+        "post": true,
+        "reason": "offline"
+      },
+      {
+        "step": "duration",
+        "t": 0.0,
+        "seconds": 9.11
+      },
+      {
+        "step": "generated",
+        "t": 0.0,
+        "hook": "You know exactly what to say. You say nothing. Again.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 42.98,
+        "source": "bundled",
+        "is_video": false
+      },
+      {
+        "step": "music",
+        "t": 43.87,
+        "source": "drone"
+      },
+      {
+        "step": "built",
+        "t": 95.92,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "text_blocks_2_3": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.1,
+          "size_mb": 1.45,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "hook",
+              "px": 120,
+              "widest": 842,
+              "lines": 4
+            },
+            {
+              "kind": "deepening",
+              "px": 100,
+              "widest": 837,
+              "lines": 4
+            },
+            {
+              "kind": "deepening",
+              "px": 100,
+              "widest": 895,
+              "lines": 3
+            },
+            {
+              "kind": "landing",
+              "px": 120,
+              "widest": 679,
+              "lines": 3
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "hook",
+              "start": 0.0,
+              "end": 3.5
+            },
+            {
+              "index": 1,
+              "kind": "deepening",
+              "start": 3.5,
+              "end": 5.25
+            },
+            {
+              "index": 2,
+              "kind": "deepening",
+              "start": 5.25,
+              "end": 7.0
+            },
+            {
+              "index": 3,
+              "kind": "landing",
+              "start": 7.0,
+              "end": 9.11
+            }
+          ],
+          "stamps": [
+            {
+              "index": 0,
+              "t": 0.5,
+              "kind": "hook",
+              "bright": 2580,
+              "mean": 16.86746527777778
+            },
+            {
+              "index": 1,
+              "t": 4.0,
+              "kind": "deepening",
+              "bright": 245,
+              "mean": 4.548194444444444
+            },
+            {
+              "index": 2,
+              "t": 5.75,
+              "kind": "deepening",
+              "bright": 253,
+              "mean": 4.560208333333334
+            },
+            {
+              "index": 3,
+              "t": 7.5,
+              "kind": "landing",
+              "bright": 1689,
+              "mean": 11.339652777777777
+            }
+          ],
+          "motion": false
+        }
+      },
+      {
+        "step": "published",
+        "t": 95.92,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-26T18:50:11.434995+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.14
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.14,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.46,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.46,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.46,
+        "seconds": 9.92
+      },
+      {
+        "step": "generated",
+        "t": 75.93,
+        "hook": "Someone walks by. You unlock your phone.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 144.31,
+        "source": "pinterest_video",
+        "is_video": true
+      },
+      {
+        "step": "music",
+        "t": 173.56,
+        "source": "trending_free"
+      },
+      {
+        "step": "built",
+        "t": 235.92,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "text_blocks_2_3": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.933333,
+          "size_mb": 2.71,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "hook",
+              "px": 120,
+              "widest": 758,
+              "lines": 3
+            },
+            {
+              "kind": "deepening",
+              "px": 100,
+              "widest": 786,
+              "lines": 2
+            },
+            {
+              "kind": "deepening",
+              "px": 100,
+              "widest": 754,
+              "lines": 2
+            },
+            {
+              "kind": "landing",
+              "px": 120,
+              "widest": 864,
+              "lines": 3
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "hook",
+              "start": 0.0,
+              "end": 3.5
+            },
+            {
+              "index": 1,
+              "kind": "deepening",
+              "start": 3.5,
+              "end": 5.25
+            },
+            {
+              "index": 2,
+              "kind": "deepening",
+              "start": 5.25,
+              "end": 7.0
+            },
+            {
+              "index": 3,
+              "kind": "landing",
+              "start": 7.0,
+              "end": 9.92
+            }
+          ],
+          "stamps": [
+            {
+              "index": 0,
+              "t": 0.5,
+              "kind": "hook",
+              "bright": 2166,
+              "mean": 14.128628472222223
+            },
+            {
+              "index": 1,
+              "t": 4.0,
+              "kind": "deepening",
+              "bright": 167,
+              "mean": 3.018715277777778
+            },
+            {
+              "index": 2,
+              "t": 5.75,
+              "kind": "deepening",
+              "bright": 146,
+              "mean": 2.8385243055555556
+            },
+            {
+              "index": 3,
+              "t": 7.5,
+              "kind": "landing",
+              "bright": 2494,
+              "mean": 15.93951388888889
+            }
+          ],
+          "motion": true
+        }
+      },
+      {
+        "step": "published",
+        "t": 235.92,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-26T18:58:55.691596+00:00",
+    "dry_run": false,
+    "offline": true,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.0
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.0,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 0.0,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 0.0,
+        "post": true,
+        "reason": "offline"
+      },
+      {
+        "step": "duration",
+        "t": 0.0,
+        "seconds": 9.66
+      },
+      {
+        "step": "generated",
+        "t": 0.0,
+        "hook": "You know exactly what to say. You say nothing. Again.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 45.87,
+        "source": "bundled",
+        "is_video": false
+      },
+      {
+        "step": "music",
+        "t": 47.37,
+        "source": "drone"
+      },
+      {
+        "step": "built",
+        "t": 103.4,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "text_blocks_2_3": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.666667,
+          "size_mb": 1.46,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "hook",
+              "px": 120,
+              "widest": 864,
+              "lines": 4
+            },
+            {
+              "kind": "deepening",
+              "px": 104,
+              "widest": 872,
+              "lines": 4
+            },
+            {
+              "kind": "deepening",
+              "px": 104,
+              "widest": 898,
+              "lines": 3
+            },
+            {
+              "kind": "landing",
+              "px": 120,
+              "widest": 689,
+              "lines": 3
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "hook",
+              "start": 0.0,
+              "end": 3.5
+            },
+            {
+              "index": 1,
+              "kind": "deepening",
+              "start": 3.5,
+              "end": 5.25
+            },
+            {
+              "index": 2,
+              "kind": "deepening",
+              "start": 5.25,
+              "end": 7.0
+            },
+            {
+              "index": 3,
+              "kind": "landing",
+              "start": 7.0,
+              "end": 9.66
+            }
+          ],
+          "stamps": [
+            {
+              "index": 0,
+              "t": 0.5,
+              "kind": "hook",
+              "bright": 1417,
+              "mean": 10.984704861111112
+            },
+            {
+              "index": 1,
+              "t": 4.0,
+              "kind": "deepening",
+              "bright": 932,
+              "mean": 8.20265625
+            },
+            {
+              "index": 2,
+              "t": 5.75,
+              "kind": "deepening",
+              "bright": 887,
+              "mean": 8.145677083333334
+            },
+            {
+              "index": 3,
+              "t": 7.5,
+              "kind": "landing",
+              "bright": 868,
+              "mean": 6.993645833333333
+            }
+          ],
+          "motion": false
+        }
+      },
+      {
+        "step": "published",
+        "t": 103.4,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
   }
 ]

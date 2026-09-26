@@ -1,7 +1,7 @@
 """config.py — state loading, path constants, embedded defaults.
 
+v5.0 THE COMPLETE MIND: clusters from Part 2, DNA from Part 7, format from Part 5.
 Every run reads data/*.json at start and the orchestrator commits it back at end.
-A missing/corrupt data file is recreated from the embedded defaults (section 5).
 """
 from __future__ import annotations
 
@@ -31,54 +31,79 @@ AUDIO_MANIFEST_PATH = ASSETS / "audio" / "manifest.json"
 
 BUILD_DATE = date(2026, 9, 20)
 
+# Part 2.1 — the eleven evidence clusters (archetypes in the DNA)
 ARCHETYPES = ["the_mask", "the_rehearsal", "the_freeze", "the_detour", "the_aftermath",
               "the_bodys_betrayal", "the_sealed_mouth", "the_craving", "the_losses",
               "the_buried_anger", "quiet_hope"]
+
+# Part 7.1 — tracked topics
 TOPICS = ["exposure_fear", "fake_phone", "ordering_food", "phone_calls", "freeze_at_work",
           "asking_coworker", "party_bathroom", "mind_blank", "post_interaction_hate",
           "replay_2am", "read_receipts", "neutral_as_negative", "meetings_voice",
           "dating_app_freeze", "dying_alone_thought", "lost_friendships", "behind_at_25",
           "buried_anger", "therapy_irony", "the_grandma_win"]
+
+# audio moods (Part 5.4 / evidence library sound families)
 MOODS = ["quiet_devastating", "heavy_shadow", "muffled_world", "restrained_anger",
          "gentle_hope"]
-BG_TYPES = ["mask", "rehearsal", "freeze_detour", "aftermath", "sealed_mouth",
-            "craving", "losses", "buried_anger", "quiet_hope"]
+
+# Part 5.2 — background VIDEO queries, keyed 1:1 with the clusters
+BG_TYPES = ["mask", "rehearsal", "freeze", "detour", "aftermath", "bodys_betrayal",
+            "sealed_mouth", "craving", "losses", "buried_anger", "quiet_hope"]
+
+LOOP_TECHNIQUES = ["visual_echo", "audio_echo", "mid_thought"]
 
 DEFAULT_CONFIG = {
     "brand": {
         "name": "Unleash The Beast",
         "handle": "unleashthe.b",
-        "voice": ("Describe, never advise. Mirror one specific person's inner life with "
-                  "exact scenes. Present tense, second person. Never sell, never confirm "
-                  "the flaw, never say 'just'. Tragic, never pathetic."),
-        "hook_examples": ["You know exactly what to say. You say nothing. Again.",
-                          "The conversation ends. The trial begins.",
-                          "You want to talk. Your mouth disagrees.",
-                          "She matched with you. And you're suspicious."],
+        "meaning": ("The real person under the mask. Not aggression, not grind. The self "
+                    "buried under years of small retreats who still wants to be known."),
+        "voice": ("Describe, never advise. Present tense, second person, his language — "
+                  "never a psychologist's. Never sell, never confirm the flaw, never say "
+                  "'just'. Tragic, never pathetic."),
+        "hook_examples": [
+            "You know exactly what to say. You say nothing. Again.",
+            "The conversation ends. The trial begins.",
+            "You want to talk. Your mouth disagrees.",
+            "She matched with you. And you're suspicious.",
+            "Your manager thinks you're less competent than you are.",
+            "You pull out your phone when someone walks by. Nothing's on it.",
+        ],
     },
     "archetypes": ARCHETYPES,
     "topics": TOPICS,
     "moods": MOODS,
     "bg_types": {
-        "mask": ["glass office night aesthetic", "empty meeting room aesthetic",
-                 "conference room dark"],
-        "rehearsal": ["cafe window night aesthetic", "phone glow dark room aesthetic"],
-        "freeze_detour": ["empty street night rain", "walking alone night city aesthetic"],
-        "aftermath": ["3am aesthetic dark", "ceiling fan dark aesthetic",
-                      "mirror dark aesthetic", "unmade bed aesthetic"],
-        "sealed_mouth": ["face half shadow aesthetic", "silhouette mouth covered dark"],
-        "craving": ["phone glow face dark aesthetic", "city lights from window night"],
-        "losses": ["empty lecture hall aesthetic", "empty classroom aesthetic",
-                   "old playground aesthetic"],
-        "buried_anger": ["storm clouds dark aesthetic", "cracked wall dark aesthetic"],
-        "quiet_hope": ["sunrise alone aesthetic", "first light window aesthetic"],
+        "mask": ["glass office night video aesthetic", "city crowd night video"],
+        "rehearsal": ["cafe window rain video aesthetic", "coffee shop moody video"],
+        "freeze": ["walking alone night city video", "empty street rain night video"],
+        "detour": ["night walk aesthetic video", "subway night video aesthetic"],
+        "aftermath": ["ceiling night video aesthetic", "rain window night video"],
+        "bodys_betrayal": ["dark room flickering light video",
+                           "shadow moving wall video"],
+        "sealed_mouth": ["silhouette standing dark video", "person alone shadow video"],
+        "craving": ["phone glow dark room video", "city lights window night video"],
+        "losses": ["empty train night video", "empty classroom aesthetic video"],
+        "buried_anger": ["storm clouds dark video", "waves crashing night video"],
+        "quiet_hope": ["sunrise slow video aesthetic", "first light window video"],
     },
+    # cluster -> bg cluster (1:1 except the body-betrayal phrasing variants)
     "archetype_bg_map": {
-        "the_mask": "mask", "the_rehearsal": "rehearsal", "the_freeze": "freeze_detour",
-        "the_detour": "freeze_detour", "the_aftermath": "aftermath",
-        "the_bodys_betrayal": "sealed_mouth", "the_sealed_mouth": "sealed_mouth",
+        "the_mask": "mask", "the_rehearsal": "rehearsal", "the_freeze": "freeze",
+        "the_detour": "detour", "the_aftermath": "aftermath",
+        "the_bodys_betrayal": "bodys_betrayal", "the_sealed_mouth": "sealed_mouth",
         "the_craving": "craving", "the_losses": "losses",
         "the_buried_anger": "buried_anger", "quiet_hope": "quiet_hope",
+    },
+    # Part 7.1 — cluster -> preferred audio mood
+    "cluster_mood_map": {
+        "the_mask": "muffled_world", "the_rehearsal": "quiet_devastating",
+        "the_freeze": "quiet_devastating", "the_detour": "heavy_shadow",
+        "the_aftermath": "heavy_shadow", "the_bodys_betrayal": "heavy_shadow",
+        "the_sealed_mouth": "heavy_shadow", "the_craving": "quiet_devastating",
+        "the_losses": "quiet_devastating", "the_buried_anger": "restrained_anger",
+        "quiet_hope": "gentle_hope",
     },
     "mood_fallback_bpm": {"quiet_devastating": 65, "heavy_shadow": 55,
                           "muffled_world": 70, "restrained_anger": 85,
@@ -88,6 +113,9 @@ DEFAULT_CONFIG = {
         "trending_niche": "self-improvement",
         "trending_fallback_niche": "motivation",
         "min_confidence": 0.5,
+        # Part 4.5 — Phase 2 adoption window (days 4-8 of a sound's rise):
+        # not the already-peaked top of the chart, not the untested bottom.
+        "phase2_score_band": [0.35, 0.85],
         "mood_search": {
             "quiet_devastating": "slowed sad piano reverb vinyl crackle",
             "heavy_shadow": "dark ambient drone sub bass",
@@ -99,12 +127,16 @@ DEFAULT_CONFIG = {
                        "edm": " dark trap", "pop": " emotional", "rock": " cinematic",
                        "rnb": " moody", "lofi": " lofi dark"},
     },
-    "posting_slots_utc": ["13:30", "15:00", "16:30"],
-    "reel": {"min_s": 8, "max_s": 11, "fps": 30, "w": 1080, "h": 1920},
+    "posting_slots_utc": ["13:30", "15:00", "16:30", "21:30"],
+    # Part 5.5 — 9-10 seconds, locked
+    "reel": {"min_s": 9.0, "max_s": 10.0, "fps": 30, "w": 1080, "h": 1920},
+    "timing": {"hook_end": 3.5, "deepen_end": 7.0},     # landing holds to the end
+    "text_limits": {"hook": 60, "deepening": 90, "landing": 70},
+    "bg_darken": -0.13,        # Part 5.2: brightness -0.12 to -0.15
     "explore_rate": 0.2,
-    "cta_every_n_posts": 7,
-    "cta_line": "the ebook in my bio was written for the person who felt this.",
-    "hope_every_n_posts": 10,
+    "whisper_every_n_posts": 7,     # Law 11
+    "hope_every_n_posts": 10,       # Law 8 / Part 2.1 cluster J
+    "whisper_line": "the ebook in my bio was written for the person who felt this.",
     "hashtag_pools": {
         "broad": ["#socialanxiety", "#mentalhealth", "#anxiety", "#introvert",
                   "#overthinking"],
@@ -113,7 +145,7 @@ DEFAULT_CONFIG = {
         "niche": ["#unleashthebeast", "#thequietones", "#2amthoughts", "#innerwork",
                   "#understoods", "#nightscroll"],
     },
-    "font_path": "assets/fonts/Anton-Regular.ttf",
+    "font_path": "assets/fonts/Coolvetica-Regular.otf",
 }
 
 
@@ -136,21 +168,24 @@ def default_strategy() -> dict:
             "topic": _one_family(TOPICS),
             "mood": _one_family(MOODS),
             "bg_type": _one_family(BG_TYPES),
+            "loop_technique": _one_family(LOOP_TECHNIQUES),
         },
         "n": {
             "archetype": _zero_family(ARCHETYPES),
             "topic": _zero_family(TOPICS),
             "mood": _zero_family(MOODS),
             "bg_type": _zero_family(BG_TYPES),
+            "loop_technique": _zero_family(LOOP_TECHNIQUES),
         },
         "adj": {
             "archetype": _null_family(ARCHETYPES),
             "topic": _null_family(TOPICS),
             "mood": _null_family(MOODS),
             "bg_type": _null_family(BG_TYPES),
+            "loop_technique": _null_family(LOOP_TECHNIQUES),
         },
-        "hour_scores": {"13:30": None, "15:00": None, "16:30": None},
-        "next_post_hour": "15:00",
+        "hour_scores": {"13:30": None, "15:00": None, "16:30": None, "21:30": None},
+        "next_post_hour": "21:30",
         "warmup_until": (BUILD_DATE + timedelta(days=8)).isoformat(),
         "experiments": [],
         "last_updated": None,
@@ -233,7 +268,7 @@ def ensure_data_files():
         DIRECTIVES_PATH.parent.mkdir(parents=True, exist_ok=True)
         DIRECTIVES_PATH.write_text(
             "# DIRECTIVES — optional weekly guidance for the machine\n"
-            'Example: "this week focus on loneliness"\n', encoding="utf-8")
+            'Example: "this week focus on the sealed mouth"\n', encoding="utf-8")
         recreated.append("DIRECTIVES.md")
     LOGS.mkdir(parents=True, exist_ok=True)
     return recreated
@@ -253,7 +288,8 @@ def load_config(validate=True) -> dict:
     cfg = load_json(CONFIG_PATH, DEFAULT_CONFIG)
     if validate:
         required = ["brand", "archetypes", "topics", "moods", "bg_types", "music",
-                    "posting_slots_utc", "reel", "hashtag_pools", "mood_fallback_bpm"]
+                    "posting_slots_utc", "reel", "hashtag_pools", "mood_fallback_bpm",
+                    "timing", "text_limits", "cluster_mood_map"]
         missing = [k for k in required if k not in cfg]
         if missing:
             raise KeyError(f"config.json missing required keys: {missing}")
@@ -280,7 +316,6 @@ def load_directives() -> str:
     if not DIRECTIVES_PATH.exists():
         return ""
     text = DIRECTIVES_PATH.read_text(encoding="utf-8")
-    # strip the seed comment lines so they never influence the model
     lines = [ln for ln in text.splitlines()
              if not ln.strip().startswith("#") and 'Example: "this week' not in ln]
     return "\n".join(lines).strip()

@@ -1,11 +1,13 @@
-"""background.py — cinematic dark footage for quote-card reels.
+"""background.py — dark cinematic VIDEO for the Part 5 format.
 
-Reference look (references/Video-*.mp4): REAL MOVING footage, crushed dark,
-desaturated, strong vignette, faint grain — detail survives in the shadows.
+Part 5.2: the background MUST be video, not a static image — motion is the
+retention device. So the chain is video-first and video-only:
 
-Priority: Pinterest VIDEO (LLM scene query from content.json) -> Pinterest image
-(with slow push-in) -> Meta image gen -> bundled still. All normalized to
-1080x1920 with the cinematic grade chain.
+  1. Pinterest VIDEO (cluster query from config bg_types, LLM scene first)
+  2. bundled still loop (last resort — flagged as a QA warning, not silently ok)
+
+Follows the grade chain: crush dark, desaturate, vignette, grain, brightness
+-0.13 so white text always pops.
 """
 from __future__ import annotations
 
@@ -13,13 +15,14 @@ import random
 import subprocess
 from pathlib import Path
 
-from . import config, llm, pinterest
+from . import config, pinterest
 
 GRADE = ("eq=contrast=1.12:saturation=0.40:gamma=0.95,"
          "curves=all='0/0.035 0.30/0.33 1/1',"
          "colorbalance=rs=-0.04:gs=-0.01:bs=0.07:rm=0:rh=0.035:bh=-0.035,"
          "vignette=PI/4.6,noise=alls=6:allf=t+u")
 PREFERRED_ASPECT = 9 / 16
+BG_DARKEN = -0.13
 
 
 def _pin_aspect(entry: dict) -> float:
@@ -33,32 +36,17 @@ def _pin_aspect(entry: dict) -> float:
     return 0.75
 
 
-def _pick(results: list, used_pins: set, want: str):
+def _pick_video(results: list, used_pins: set):
+    """Pick an unused VIDEO pin, preferring vertical/portrait shape."""
     pool = []
     for e in results:
         if str(e.get("id")) in used_pins:
             continue
-        typ = e.get("type") or "image"
-        if want == "video":
-            if typ == "video" and e.get("best_video"):
-                ar = _pin_aspect(e)
-                shape_bonus = 2.0 if 0.4 <= ar <= 0.75 else 0.2
-                pool.append((3.0 * shape_bonus, e))
-        else:
-            imgs = e.get("images") or {}
-            orig = imgs.get("orig")
-            wide = 0
-            if isinstance(orig, dict):
-                try:
-                    wide = int(orig.get("width") or 0)
-                except (TypeError, ValueError):
-                    wide = 0
-            elif isinstance(orig, str):
-                wide = 1000
-            if typ == "image" and e.get("best_image") and wide >= 900:
-                ar = _pin_aspect(e)
-                shape_bonus = 1.6 if ar <= 0.85 else 0.5
-                pool.append((shape_bonus, e))
+        if (e.get("type") or "image") != "video" or not e.get("best_video"):
+            continue
+        ar = _pin_aspect(e)
+        shape_bonus = 2.0 if 0.4 <= ar <= 0.75 else 0.2
+        pool.append((3.0 * shape_bonus, e))
     if not pool:
         return None
     total = sum(w for w, _ in pool)
@@ -71,22 +59,25 @@ def _pick(results: list, used_pins: set, want: str):
     return pool[-1][1]
 
 
-def _grade_cmd(src: Path, out: Path, duration_s: float, fps: int, still: bool) -> bool:
+def _grade_cmd(src: Path, out: Path, duration_s: float, fps: int, still: bool,
+               darken: float = BG_DARKEN) -> bool:
     out.parent.mkdir(parents=True, exist_ok=True)
-    w, h = config.load_config()["reel"]["w"], config.load_config()["reel"]["h"]
-    crop = (f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h}")
+    cfg = config.load_config()
+    w, h = cfg["reel"]["w"], cfg["reel"]["h"]
+    crop = f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h}"
     if still:
         frames = max(int(round(duration_s * fps)), 2)
         ow, oh = int(w * 1.2), int(h * 1.2)
         vf = (f"scale={ow}:{oh}:force_original_aspect_ratio=increase,crop={ow}:{oh},"
-              f"zoompan=z='1.0+0.08*on/{frames - 1}':"
+              f"zoompan=z='1.0+0.06*on/{frames - 1}':"
               f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={frames}:s={w}x{h}:fps={fps},"
-              f"{GRADE},format=yuv420p")
+              f"{GRADE},eq=brightness={darken},format=yuv420p")
         cmd = ["ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", str(src),
                "-t", f"{duration_s:.3f}", "-vf", vf,
                "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(out)]
     else:
-        vf = f"{crop},fps={fps},{GRADE},format=yuv420p"
+        # Part 5.2 — seamless loop: trim to duration so the end flows into the start
+        vf = (f"{crop},fps={fps},{GRADE},eq=brightness={darken},format=yuv420p")
         cmd = ["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-i", str(src),
                "-t", f"{duration_s:.3f}", "-vf", vf, "-an",
                "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", str(out)]
@@ -99,7 +90,7 @@ def _grade_cmd(src: Path, out: Path, duration_s: float, fps: int, still: bool) -
 
 def build(cfg, content, memory, duration_s: float, offline: bool = False,
           dry_run: bool = False):
-    """Returns (bg_mp4_path, bg_source). Raises only if all providers fail."""
+    """Returns (bg_mp4_path, bg_source). Video-first; bundled only as last resort."""
     fps = int(cfg["reel"]["fps"])
     out_norm = config.OUTPUTS / "bg.mp4"
     raw = config.OUTPUTS / "bg_raw"
@@ -109,18 +100,22 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
         raise RuntimeError("bundled fallback background failed")
 
     scene = (content.get("scene") or "").strip()
-    synonyms = (cfg["bg_types"].get(content.get("bg_type"))
-                or ["dark cinematic night"])
-    queries = [q for q in [scene, random.choice(synonyms)] if q]
+    bg_type = content.get("bg_type")
+    synonyms = (cfg["bg_types"].get(bg_type)
+                or cfg.get("bg_types", {}).get(
+                    cfg.get("archetype_bg_map", {}).get(
+                        content.get("cluster") or content.get("archetype"), ""), [])
+                or ["dark cinematic night video"])
+    queries = [q for q in [scene, *synonyms] if q]
     used = {str(u.get("id") if isinstance(u, dict) else u)
             for u in memory.get("used_pins", [])}
 
-    # ---- 1. Pinterest VIDEO — the reference look is moving footage
+    # ---- 1. Pinterest VIDEO — the mandated format (Part 5.2)
     for q in queries:
         for attempt in range(3):
             try:
                 results = pinterest.search(q, media_type="video")
-                entry = _pick(results, used, "video")
+                entry = _pick_video(results, used)
                 if not entry:
                     break
                 url = entry.get("best_video")
@@ -131,31 +126,10 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
             except Exception as exc:  # noqa: BLE001
                 print(f"[background] video {attempt + 1} failed: {exc}")
 
-    # ---- 2. Pinterest IMAGE with slow push-in
-    for q in queries:
-        try:
-            results = pinterest.search(q)
-            entry = _pick(results, used, "image")
-            if entry and entry.get("best_image"):
-                if pinterest.download(entry["best_image"], raw) and _convert_still(raw):
-                    if _grade_cmd(config.OUTPUTS / "bg_still.jpg", out_norm,
-                                  duration_s, fps, True):
-                        _record(memory, entry, dry_run)
-                        return out_norm, "pinterest_image"
-        except Exception as exc:  # noqa: BLE001
-            print(f"[background] image failed: {exc}")
-
-    # ---- 3. Meta image generation
-    prompt = (f"cinematic night photograph, {scene or 'lone man silhouette'}, "
-              f"extremely dark low-key, crushed blacks, single light source, "
-              f"vertical composition, no text, no watermark")
-    gen = config.OUTPUTS / "bg_ai.jpg"
-    if llm.image(prompt, gen) and _convert_still(gen):
-        if _grade_cmd(config.OUTPUTS / "bg_still.jpg", out_norm, duration_s, fps, True):
-            return out_norm, "meta_image"
-
-    # ---- 4. Bundled
+    # ---- 2. Bundled still loop (NOT the format — QA flags it)
     if _bundled(cfg, out_norm, duration_s, fps):
+        print("[background] WARNING: fell back to bundled still background "
+              "(format requires video)")
         return out_norm, "bundled"
     raise RuntimeError("all background providers failed")
 
