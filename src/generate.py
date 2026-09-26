@@ -48,7 +48,14 @@ SYSTEM_PROMPT = (
     "No advice, no tips, no \"just\", no emoji, no hashtags, no naming disorders, "
     "no toxic positivity, no grind. Tragic, never pathetic. The paragraph is the "
     "whole reel — it must be readable in one breath-hold and hit the 'how did they "
-    "know' reflex by the second sentence."
+    "know' reflex by the second sentence.\n\n"
+    "VARIETY IS MANDATORY inside one batch: no more than two candidates may share "
+    "an archetype, and no more than two may open with the same pattern. Vary your "
+    "sentence openings — do NOT write 'You [verb]. You [verb]. You [verb].' through "
+    "a whole paragraph. Open on the scene itself sometimes: 'The order you "
+    "rehearsed, fumbled anyway.', 'Two years ago, the phone rang and you let it.', "
+    "'There is a version of you...', 'Same cafe, same order, same rehearsal.' "
+    "The reader must never feel a template."
 )
 
 BANNED_PHRASES = ("advice", "follow these", "try this", "you should", "stop doing",
@@ -283,6 +290,50 @@ def _dedup_ok(cand: dict, banned: list, recent_pairs: set) -> bool:
     return True
 
 
+def _opening_pattern(paragraph: str) -> str:
+    """Classify how the paragraph opens, to block template monotony.
+
+    'you_verb' (You smile...), 'scene' (The order you...), 'time' (Two years
+    ago...), 'there' (There is...), 'other'.
+    """
+    low = paragraph.lower().strip()
+    if low.startswith("you "):
+        return "you_verb"
+    if low.startswith("there "):
+        return "there"
+    for starter in ("two years", "three years", "last year", "years ago", "tonight",
+                    "at 2am", "some nights", "every morning", "same cafe", "each time"):
+        if low.startswith(starter):
+            return "time"
+    return "scene"
+
+
+def diversify(candidates: list, max_per_archetype: int = 3,
+              max_per_opening: int = 5) -> list:
+    """Keep batch variety: cap archetype + opening-pattern repetition.
+
+    Applied before judging so the LLM can't hand back ten variations of one
+    template. Order is preserved (the model's own ranking intent survives).
+    """
+    arch_counts, open_counts, kept = {}, {}, []
+    for c in candidates:
+        a = c.get("archetype")
+        o = _opening_pattern(_clean_q(c.get("paragraph")))
+        if arch_counts.get(a, 0) >= max_per_archetype:
+            continue
+        if open_counts.get(o, 0) >= max_per_opening:
+            continue
+        arch_counts[a] = arch_counts.get(a, 0) + 1
+        open_counts[o] = open_counts.get(o, 0) + 1
+        kept.append(c)
+    return kept or candidates
+
+
+def opening_variety(candidates: list) -> int:
+    """How many distinct opening patterns survive — used in the QA log."""
+    return len({_opening_pattern(_clean_q(c.get("paragraph"))) for c in candidates})
+
+
 # ------------------------------------------------------------ assembly
 
 def _hashtags(cfg, memory) -> list:
@@ -347,6 +398,7 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
                        expect_json=True)
         candidates = [c for c in (raw or {}).get("candidates", []) if isinstance(c, dict)]
         candidates = [c for c in candidates if _valid(c, cfg)]
+        candidates = diversify(candidates)          # kill template monotony
         if not candidates:
             continue
         scores = judge(candidates)

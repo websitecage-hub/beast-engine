@@ -110,6 +110,32 @@ def test_reddit_corpus_loaded():
     assert all("title" in p or "text" in p for p in sample)
 
 
+def test_batch_variety_guard():
+    def cand(arch, para):
+        return {"archetype": arch, "paragraph": para, "topic": "exposure_fear",
+                "mood": "quiet_devastating", "bg_type": "mask", "scene": "s"}
+    batch = [
+        cand("the_mask", "You smile on cue. You nod. You vanish inside it."),
+        cand("the_mask", "You pull out your phone. You scroll nothing. You hide."),
+        cand("the_mask", "You rehearse the order. You mumble. You apologize."),
+        cand("the_mask", "You laugh too late. You keep your voice low. You edit."),
+        cand("the_freeze", "The order you rehearsed, fumbled anyway. Then silence."),
+        cand("the_aftermath", "Two years ago the phone rang and you let it. Still."),
+        cand("the_losses", "There is a version of you that everyone likes. Gone."),
+    ]
+    kept = generate.diversify(batch)
+    arch_counts = {}
+    for c in kept:
+        arch_counts[c["archetype"]] = arch_counts.get(c["archetype"], 0) + 1
+    assert arch_counts.get("the_mask", 0) <= 3, f"archetype cap failed: {arch_counts}"
+    assert len(kept) >= 4
+    # opening patterns are classified, and 'you_verb' is capped
+    assert generate._opening_pattern("You smile on cue.") == "you_verb"
+    assert generate._opening_pattern("Two years ago you couldn't order pizza.") == "time"
+    assert generate._opening_pattern("There is a version of you.") == "there"
+    assert generate._opening_pattern("The order you rehearsed, fumbled.") == "scene"
+
+
 # --------------------------------------------------------------- analyzer
 
 def test_learn_on_fixture_memory():
