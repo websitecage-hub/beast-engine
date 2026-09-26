@@ -1,0 +1,20 @@
+[
+  {
+    "workflow": "measure",
+    "started": "2026-09-26T16:19:08.662707+00:00",
+    "dry_run": false,
+    "harvest": {
+      "updated": 0,
+      "skipped": 1,
+      "errors": [
+        {
+          "media_id": "18116512901101357",
+          "error": "IG_ACCESS_TOKEN secret is not set"
+        }
+      ],
+      "total_posts": 1
+    },
+    "logs_pruned": 0,
+    "seconds": 0.0
+  }
+]
