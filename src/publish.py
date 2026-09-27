@@ -78,10 +78,25 @@ def alt_text_for(content: dict, cfg: dict) -> str:
 
 def create_container(ig_id: str, caption: str, test: bool = False,
                      alt_text: str = "", hide_like_count: bool = False) -> dict:
-    # SEO §6.1: the Graph API rejects unknown params on this endpoint — sending
+    # SEO §6.1: the Graph API rejects SOME unknown params on this endpoint — sending
     # alt_text returns HTTP 400 "The param alt_text is not supported for REEL" and the
     # whole publish fails. So the container is created WITHOUT it; publish_reel()
     # persists the alt text to memory.json for manual entry via the app instead.
+    #
+    # hide_like_count is DIFFERENT: the Instagram Graph host silently ignores it.
+    # Measured, not assumed —
+    #   * a deliberately bogus param (this_param_is_fake_xyz=1) is also accepted and
+    #     still returns a container id, so HTTP 200 proves NOTHING about a param;
+    #   * a KNOWN param with a bad value (media_type=NOTATYPE) returns HTTP 400, so
+    #     the endpoint does not validate params generically;
+    #   * hide_like_count=true and hide_like_count=NOTABOOLEAN are BOTH accepted, so
+    #     the value is never even parsed;
+    #   * the field is absent from the API (`fields=hide_like_count` -> code 100
+    #     "Tried accessing nonexisting field"), and the published reel still reports
+    #     like_count, i.e. its likes are NOT hidden.
+    # Conclusion: there is no API route to hide like counts on an IG reel. It is an
+    # app-only setting, so we keep sending the param (harmless, and it will start
+    # working the moment Meta ships it) and record the manual step in memory.json.
     data = {"media_type": "REELS", "upload_type": "resumable",
             "mime_type": "video/mp4", "caption": caption}
     if hide_like_count:
@@ -246,8 +261,15 @@ def publish_reel(video: Path, content: dict, cfg: dict, test: bool = False,
     # than dropped, so the field can be added in the app and never silently disappears.
     print(f"[publish] alt text (add via app Advanced Settings): {alt_text[:110]}")
     hide_likes = bool(cfg.get("hide_like_count", False))
+    manual = []                                    # app-only steps for this post
     if hide_likes:
-        print("[publish] hide_like_count requested on the container")
+        # Measured: the Graph API ignores this param, so the likes are still visible
+        # after publishing. Surface it as a one-tap action instead of a passing note,
+        # and record it on the post so the report can chase it.
+        manual.append("Hide like count: Instagram app -> the reel -> ... -> "
+                      "\"Hide like and view counts\"")
+        print("[publish] hide_like_count sent (the API ignores it) — "
+              "apply in the app: open the reel > ... > Hide like and view counts")
 
     from . import upload_host
     url, host = upload_host.publicize(video)
@@ -265,6 +287,7 @@ def publish_reel(video: Path, content: dict, cfg: dict, test: bool = False,
             media_id = media_publish(ig_id, cid)
             return {"media_id": media_id, "container_id": cid, "caption": caption,
                     "alt_text": alt_text, "hide_like_count": hide_likes,
+                    "manual_steps": manual,
                     "ig_id": ig_id, "status": status, "host": host, "video_url": url}
         except PermissionError:
             raise
@@ -281,6 +304,8 @@ def publish_reel(video: Path, content: dict, cfg: dict, test: bool = False,
         return {"test": True, "container_id": cid, "status": status}
     media_id = media_publish(ig_id, cid)
     return {"media_id": media_id, "container_id": cid, "caption": caption,
+            "alt_text": alt_text, "hide_like_count": hide_likes,
+            "manual_steps": manual,
             "ig_id": ig_id, "status": status}
 
 

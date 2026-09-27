@@ -69,8 +69,13 @@ def fail(reason: str, log_tail: str = "") -> None:
     issue(reason, f"```\n{log_tail[-5000:]}\n```" if log_tail else "no log tail")
 
 
-def success(post_number, hook: str, video_path=None) -> None:
+def success(post_number, hook: str, video_path=None, manual_steps=None) -> None:
     text = f"✅ Reel #{post_number} live — {hook}"
+    todo = [s for s in (manual_steps or []) if s]
+    if todo:
+        # Surfaces app-only steps (e.g. hiding like counts) on the post that needs
+        # them, instead of a log line nobody reads.
+        text += "\n\n⚠️ Needs 10 seconds in the app:\n" + "\n".join(f"• {s}" for s in todo)
     telegram(text)
     if video_path:
         telegram_video(video_path, text)

@@ -212,7 +212,8 @@ def run(dry_run=False, offline=False) -> int:
             config.save_memory(memory)
             state.write_log("create", log)
             state.commit_all(f"post: {result['media_id']}")
-            alerts.success(memory.get("post_counter"), content.get("hook", ""), reel)
+            alerts.success(memory.get("post_counter"), content.get("hook", ""), reel,
+                           manual_steps=result.get("manual_steps"))
             return 0
 
         state.write_log("create", log)

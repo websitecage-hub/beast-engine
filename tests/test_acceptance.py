@@ -17,8 +17,8 @@ sys.path.insert(0, str(ROOT))
 
 import yaml  # noqa: E402
 
-from src import (analyze, background, build_video, config, generate, harvest,  # noqa: E402
-                 mind, music, run_create)
+from src import (alerts, analyze, background, build_video, config, generate,  # noqa: E402
+                 harvest, mind, music, publish, run_create)
 
 FIXTURES = ROOT / "tests" / "fixtures"
 
@@ -272,6 +272,25 @@ def test_final_format_no_person_queries_are_person_bearing():
     # §3's own exact queries must all be recognised as person-bearing
     for q in background.PERSON_QUERIES:
         assert any(w in q.lower() for w in background.PERSON_WORDS), q
+
+
+def test_hide_like_count_is_a_manual_step_not_a_false_claim():
+    """The Graph API cannot hide reel like counts, so the engine must not imply it did.
+
+    Measured: the endpoint accepts a bogus param AND hide_like_count=NOTABOOLEAN
+    (so 200 proves nothing), `fields=hide_like_count` is a nonexistent field, and the
+    published reel still reports like_count. The workaround is a surfaced manual step.
+    """
+    import inspect
+    src = inspect.getsource(publish.publish_reel)
+    assert "manual" in src, "publish_reel must collect app-only steps"
+    assert "Hide like" in src, "the manual step must name the app setting"
+    # the alert must carry it, or the step is invisible
+    sig = inspect.signature(alerts.success)
+    assert "manual_steps" in sig.parameters, "alerts.success must accept manual_steps"
+    # and run_create must pass it through
+    rc = inspect.getsource(run_create.run)
+    assert "manual_steps" in rc, "run_create must forward manual_steps to the alert"
 
 
 def test_scheduler_hours_match_the_workflow_crons():
