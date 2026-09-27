@@ -851,5 +851,153 @@
     "errors": [
       "QA gate failed: background has no motion (source=pinterest_video) — Part 5.2 requires dark cinematic VIDEO"
     ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T08:25:14.374656+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.52
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.52,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.79,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.79,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.79,
+        "seconds": 9.84
+      },
+      {
+        "step": "generated",
+        "t": 74.27,
+        "hook": "The door closes. The replay starts.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 189.18,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "A moody vertical video of a person alone in a quiet, ordinary setting...."
+      },
+      {
+        "step": "music",
+        "t": 210.01,
+        "source": "trending_free"
+      },
+      {
+        "step": "built",
+        "t": 259.34,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "one_text_block": true,
+            "lines_max_5": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.84,
+          "size_mb": 4.77,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "message",
+              "px": 58,
+              "widest": 849,
+              "lines": 5
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "message",
+              "start": 0.0,
+              "end": 9.84
+            }
+          ],
+          "text_visibility": [
+            {
+              "t": 0.0,
+              "text_visible": true
+            },
+            {
+              "t": 0.25,
+              "text_visible": true
+            },
+            {
+              "t": 4.92,
+              "text_visible": true
+            },
+            {
+              "t": 9.59,
+              "text_visible": true
+            }
+          ],
+          "motion": true
+        }
+      },
+      {
+        "step": "seo",
+        "t": 259.34,
+        "primary_keyword_first_line": true,
+        "secondary_keywords_in_body": true,
+        "hashtag_count_6_to_9": true,
+        "hashtags_1_2_branded": true,
+        "hashtags_3_4_primary": true,
+        "hashtags_2_3_longtail": true,
+        "on_screen_has_searchable_phrase": true,
+        "alt_text_present": true,
+        "caption_describes_content": true
+      },
+      {
+        "step": "published",
+        "t": 296.66,
+        "media_id": "18188315185408018",
+        "container_id": "17911008018538210",
+        "caption": "This is what social anxiety actually looks like. The door closes. The replay starts.\n\nEvery word you said gets rewritten crueler.\n\nThe part nobody says out loud: wanting to be alone but lonely — feeling behind everyone.\n\nThe door closes. And replay starts again.\n\n#unleashthebeast #socialanxietyhelp #selfimprovement #innerwork #introvertlife #overthinker #meetinganxiety #wantingtobealone",
+        "alt_text": "A moody vertical video of a person alone in a quiet, ordinary setting. Overlay text reads: The door closes. The replay starts. Every word you said gets rewritten crueler. By midnight you are convinced they hate you. The door closes. And replay starts again. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "ig_id": "35157222637226667",
+        "status": "FINISHED",
+        "host": "litterbox",
+        "video_url": "https://litter.catbox.moe/r2i114.mp4"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "media_id": "18188315185408018",
+      "container_id": "17911008018538210",
+      "caption": "This is what social anxiety actually looks like. The door closes. The replay starts.\n\nEvery word you said gets rewritten crueler.\n\nThe part nobody says out loud: wanting to be alone but lonely — feeling behind everyone.\n\nThe door closes. And replay starts again.\n\n#unleashthebeast #socialanxietyhelp #selfimprovement #innerwork #introvertlife #overthinker #meetinganxiety #wantingtobealone",
+      "alt_text": "A moody vertical video of a person alone in a quiet, ordinary setting. Overlay text reads: The door closes. The replay starts. Every word you said gets rewritten crueler. By midnight you are convinced they hate you. The door closes. And replay starts again. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+      "ig_id": "35157222637226667",
+      "status": "FINISHED",
+      "host": "litterbox",
+      "video_url": "https://litter.catbox.moe/r2i114.mp4"
+    }
   }
 ]
