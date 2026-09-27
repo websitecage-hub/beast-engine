@@ -78,17 +78,14 @@ def alt_text_for(content: dict, cfg: dict) -> str:
 
 def create_container(ig_id: str, caption: str, test: bool = False,
                      alt_text: str = "") -> dict:
-    data = {"media_type": "REELS", "upload_type": "resumable",
-            "mime_type": "video/mp4", "caption": caption}
-    # SEO §6.1: pass alt text when the API accepts it. Graph has historically ignored
-    # unknown fields on this endpoint, so it is additive and harmless when unsupported;
-    # publish_reel() also persists it to memory.json for manual entry in that case.
-    if alt_text:
-        data["alt_text"] = alt_text
-        data["accessibility_caption"] = alt_text
+    # SEO §6.1: the Graph API rejects unknown params on this endpoint — sending
+    # alt_text returns HTTP 400 "The param alt_text is not supported for REEL" and the
+    # whole publish fails. So the container is created WITHOUT it; publish_reel()
+    # persists the alt text to memory.json for manual entry via the app instead.
     r = requests.post(f"{GRAPH}/{ig_id}/media",
                       params={"access_token": _token()},
-                      data=data,
+                      data={"media_type": "REELS", "upload_type": "resumable",
+                            "mime_type": "video/mp4", "caption": caption},
                       timeout=120)
     if r.status_code == 401:
         raise PermissionError("401 TOKEN DEAD")
@@ -241,7 +238,10 @@ def publish_reel(video: Path, content: dict, cfg: dict, test: bool = False,
     ig_id = str(account["id"])
     caption = caption_for(content, cfg)
     alt_text = alt_text_for(content, cfg)
-    print(f"[publish] alt text: {alt_text[:90]}...")
+    # SEO §6.1: Graph rejects alt_text on REELS containers (HTTP 400), so it cannot be
+    # shipped via the API. It is surfaced loudly and returned in the result dict rather
+    # than dropped, so the field can be added in the app and never silently disappears.
+    print(f"[publish] alt text (add via app Advanced Settings): {alt_text[:110]}")
 
     from . import upload_host
     url, host = upload_host.publicize(video)
@@ -277,14 +277,16 @@ def publish_reel(video: Path, content: dict, cfg: dict, test: bool = False,
 
 def create_container_url(ig_id: str, caption: str, video_url: str,
                          alt_text: str = "") -> dict:
-    """Hosted-URL container — the only route Instagram-Login tokens accept."""
-    data_in = {"media_type": "REELS", "video_url": video_url, "caption": caption}
-    if alt_text:
-        data_in["alt_text"] = alt_text
-        data_in["accessibility_caption"] = alt_text
+    """Hosted-URL container — the only route Instagram-Login tokens accept.
+
+    `alt_text` is accepted as a parameter but deliberately NOT sent: the Graph API
+    rejects it on REELS containers with HTTP 400 ("The param alt_text is not supported
+    for REEL"). It is carried through the return value so the caller can persist it.
+    """
     r = requests.post(f"{GRAPH}/{ig_id}/media",
                       params={"access_token": _token()},
-                      data=data_in,
+                      data={"media_type": "REELS", "video_url": video_url,
+                            "caption": caption},
                       timeout=120)
     if r.status_code == 401:
         raise PermissionError("401 TOKEN DEAD")

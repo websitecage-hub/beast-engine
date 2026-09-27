@@ -26,6 +26,9 @@ GRADE_CINEMATIC = ("eq=brightness=-0.10:saturation=0.85:contrast=1.15,"
                    "colorbalance=rs=-0.03:gs=0.0:bs=0.05")
 MIN_CLIP_S = 3.0            # spec §2.3
 DEDUP_DAYS = 30             # spec §2.3
+# Frame-difference energy below which a Pinterest "video" is really a still image.
+# Matches build_video's motion gate so a clip accepted here cannot fail there.
+MOTION_MIN_DIFF = 0.8
 
 # FINAL FORMAT §3 — the frame MUST contain a person, since the content is about a
 # person's inner life. Rotated as extra queries when a cluster query finds nothing.
@@ -244,6 +247,34 @@ def animate_still(src: Path, out: Path, duration_s: float, fps: int,
     return r.returncode == 0 and out.exists()
 
 
+def clip_has_motion(path: Path, fps: int = 30) -> bool:
+    """True when the clip actually moves. Guards the Part 5.2 "video not static" rule.
+
+    Pinterest returns some pins that are a still image re-encoded as a short video, and
+    those pass every other check while producing a reel that fails the final motion QA
+    gate. Testing here means a dead pin is skipped and the query loop simply moves on,
+    instead of a fully built reel being thrown away at the end. Sampling is done on a
+    downscaled gray copy; the cost is milliseconds.
+    """
+    try:
+        import numpy as np
+        frames = []
+        for at in (1.0, 1.6):
+            r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{at:.2f}", "-i",
+                                str(path), "-frames:v", "1", "-vf",
+                                "scale=160:284,format=gray", "-f", "rawvideo",
+                                "-pix_fmt", "gray", "-"],
+                               capture_output=True, timeout=120)
+            if r.returncode != 0 or not r.stdout:
+                return True          # can't measure -> don't block the pipeline
+            frames.append(np.frombuffer(r.stdout, dtype=np.uint8).astype(np.int16))
+        if len(frames) != 2 or frames[0].size != frames[1].size:
+            return True
+        return float(np.abs(frames[0] - frames[1]).mean()) >= MOTION_MIN_DIFF
+    except Exception:  # noqa: BLE001
+        return True
+
+
 def _record(memory, entry, dry_run: bool):
     if dry_run:
         return
@@ -310,6 +341,12 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
                 url = entry.get("best_video")
                 if url and pinterest.download(url, raw):
                     if process_clip(raw, looped, duration_s, fps, cfg):
+                        # Part 5.2: a still-image pin re-encoded as video would pass
+                        # here and then fail the final QA gate, discarding a whole
+                        # build. Reject it now so the loop just tries the next query.
+                        if not clip_has_motion(looped, fps):
+                            print(f"[background] {q!r}: static clip, skipping")
+                            continue
                         if not loop_clip(looped, out_norm, duration_s, fps):
                             # straight cut is acceptable for continuous motion
                             out_norm.write_bytes(looped.read_bytes())

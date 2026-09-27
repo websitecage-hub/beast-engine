@@ -615,6 +615,39 @@ def test_build_video_chain_has_no_brightness_by_default():
     assert "bg_grade" in body, "assemble should gate the grade on bg_grade"
 
 
+def test_background_rejects_static_clips_before_build():
+    """A still pin re-encoded as video must be skipped at selection, not caught at the
+    final QA gate (where a whole build is discarded)."""
+    from src import background as B
+    src = (ROOT / "src" / "background.py").read_text(encoding="utf-8")
+    assert hasattr(B, "clip_has_motion"), "background needs a motion probe"
+    # The probe must run BEFORE the clip is accepted and returned.
+    seg = src.split("if process_clip(raw, looped, duration_s, fps, cfg):", 1)[1]
+    seg = seg.split("return out_norm", 1)[0]
+    assert "clip_has_motion(looped" in seg, "motion check must gate acceptance"
+    assert "continue" in seg, "a static clip must skip to the next query"
+    # Threshold must match build_video's so an accepted clip cannot fail downstream.
+    bv = (ROOT / "src" / "build_video.py").read_text(encoding="utf-8")
+    import re as _re
+    bv_default = _re.search(r'motion_min_diff",\s*([0-9.]+)', bv)
+    assert bv_default and float(bv_default.group(1)) == B.MOTION_MIN_DIFF, \
+        "background and build_video motion thresholds disagree"
+
+
+def test_publish_never_sends_alt_text_to_container():
+    """Graph rejects alt_text on REELS containers (HTTP 400). Sending it killed the
+    entire publish, so it must never appear in either container's request params."""
+    src = (ROOT / "src" / "publish.py").read_text(encoding="utf-8")
+    # No assignment of alt_text into a container payload anywhere.
+    assert 'data["alt_text"]' not in src, "alt_text assigned into container params"
+    assert 'data_in["alt_text"]' not in src, "alt_text assigned into url container params"
+    # Both container functions still receive it so the caller can surface it.
+    assert 'def create_container(ig_id: str, caption: str, test: bool = False,\n                     alt_text: str = "")' in src
+    assert 'def create_container_url(ig_id: str, caption: str, video_url: str,\n                         alt_text: str = "")' in src
+    # The alt text must still be returned/printed rather than silently dropped.
+    assert "alt_text_for(content, cfg)" in src
+
+
 def test_data_config_matches_code_defaults_for_spec_keys():
     """data/config.json must not contradict the code defaults."""
     live = json.loads((ROOT / "data" / "config.json").read_text(encoding="utf-8"))
