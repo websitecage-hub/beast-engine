@@ -105,6 +105,66 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18121136690487842",
+      "container_id": "17911028691538210",
+      "created_at": "2026-09-27T11:18:27.022630+00:00",
+      "hour_slot": "21:30",
+      "hook": "POV: you unlock your phone so you don't have to make eye contact",
+      "hook_text": "POV: you unlock your phone so you don't have to make eye contact",
+      "caption": "That fake scroll isn't you being rude.\nIt's you trying to disappear before anyone can reject you. Your nervous system scans eye contact as exposure, so it shuts you down before you get a vote. You unlock your phone, you type nothing, you look busy so you don't have to risk being seen and judged.\nIf you pretend to text to avoid people you actually wish you could talk to, you're not alone. Comment GHOST and I'll send you the full breakdown. Built for the moment right after you walk past.\n#socialanxiety #overthinking #socialanxietystruggles #introvertstruggles #anxietyproblems #quietpeople #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#introvertstruggles",
+        "#anxietyproblems",
+        "#quietpeople",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "POV: you unlock your phone so you don't have to make eye contact",
+        "cluster": "the_losses",
+        "topic": "lost_friendships",
+        "hook_length_chars": 64,
+        "num_text_blocks": 8,
+        "landing_text": "Comment GHOST and I'll send you the full breakdown.",
+        "bg_type": "losses",
+        "bg_is_video": true,
+        "audio_mood": "muffled_world",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Be Her",
+          "artist": "Ella Langley",
+          "genre": "pop",
+          "trend_score": 75.7,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man alone in dark room lit by phone screen glow cinematic. Overlay text reads: POV: you unlock your phone so you don't have to make eye contact You see someone you know coming and your stomach drops instantly You open your messages, you stare at nothing, you start typing to no one You walk past them scrolling a... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: you unlock your phone so you don't have to make eye contact\nYou see someone you know coming and your stomach drops instantly\nYou open your messages, you stare at nothing, you start typing to no one\nYou walk past them scrolling a dead screen just to look busy\nFor three seconds you feel relief, then shame again for how fake it looked\nNow you're replaying it alone, still pretending, still hiding\nYou're not cold. Your nervous system learned that being invisible feels safer than being seen\nComment GHOST and I'll send you the full breakdown.",
+        "keyword": "GHOST",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#introvertstruggles",
+          "#anxietyproblems",
+          "#quietpeople",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "21:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_losses",
+        "mood": "muffled_world",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -122,6 +182,11 @@
       "id": "890446157600106975",
       "date": "2026-09-27",
       "pin_url": "https://www.pinterest.com/pin/890446157600106975/"
+    },
+    {
+      "id": "61924563618865143",
+      "date": "2026-09-27",
+      "pin_url": "https://www.pinterest.com/pin/61924563618865143/"
     }
   ],
   "used_tracks": [],
@@ -238,5 +303,5 @@
     }
   ],
   "last_post_date": "2026-09-27",
-  "post_counter": 2
+  "post_counter": 3
 }

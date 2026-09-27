@@ -1440,5 +1440,155 @@
     "result": {
       "skipped": "dry-run"
     }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T11:14:26.171401+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.71
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.71,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 0.99,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 0.99,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 0.99,
+        "seconds": 9.82
+      },
+      {
+        "step": "generated",
+        "t": 24.72,
+        "hook": "POV: you unlock your phone so you don't have to make eye contact",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 115.95,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "Man alone in dark room lit by phone screen glow cinematic. Overlay tex..."
+      },
+      {
+        "step": "music",
+        "t": 143.19,
+        "source": "song"
+      },
+      {
+        "step": "built",
+        "t": 201.6,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "one_text_block": true,
+            "lines_in_bounds": true,
+            "cta_present": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.833333,
+          "size_mb": 3.32,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "message",
+              "px": 56,
+              "widest": 892,
+              "lines": 17
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "message",
+              "start": 0.0,
+              "end": 9.82
+            }
+          ],
+          "text_visibility": [
+            {
+              "t": 0.0,
+              "text_visible": true
+            },
+            {
+              "t": 0.25,
+              "text_visible": true
+            },
+            {
+              "t": 4.91,
+              "text_visible": true
+            },
+            {
+              "t": 9.57,
+              "text_visible": true
+            }
+          ],
+          "motion": true
+        }
+      },
+      {
+        "step": "seo",
+        "t": 201.6,
+        "keyword_on_screen": true,
+        "keyword_in_caption": true,
+        "keyword_is_dm_enabled": true,
+        "hashtags_5_to_7": true,
+        "hashtags_present": true,
+        "on_screen_has_searchable_phrase": true,
+        "alt_text_present": true,
+        "caption_describes_content": true
+      },
+      {
+        "step": "published",
+        "t": 240.85,
+        "media_id": "18121136690487842",
+        "container_id": "17911028691538210",
+        "caption": "That fake scroll isn't you being rude.\nIt's you trying to disappear before anyone can reject you. Your nervous system scans eye contact as exposure, so it shuts you down before you get a vote. You unlock your phone, you type nothing, you look busy so you don't have to risk being seen and judged.\nIf you pretend to text to avoid people you actually wish you could talk to, you're not alone. Comment GHOST and I'll send you the full breakdown. Built for the moment right after you walk past.\n#socialanxiety #overthinking #socialanxietystruggles #introvertstruggles #anxietyproblems #quietpeople #latenightthoughts",
+        "alt_text": "Man alone in dark room lit by phone screen glow cinematic. Overlay text reads: POV: you unlock your phone so you don't have to make eye contact You see someone you know coming and your stomach drops instantly You open your messages, you stare at nothing, you start typing to no one You walk past them scrolling a... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "hide_like_count": true,
+        "ig_id": "35157222637226667",
+        "status": "FINISHED",
+        "host": "litterbox",
+        "video_url": "https://litter.catbox.moe/g30pzu.mp4"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "media_id": "18121136690487842",
+      "container_id": "17911028691538210",
+      "caption": "That fake scroll isn't you being rude.\nIt's you trying to disappear before anyone can reject you. Your nervous system scans eye contact as exposure, so it shuts you down before you get a vote. You unlock your phone, you type nothing, you look busy so you don't have to risk being seen and judged.\nIf you pretend to text to avoid people you actually wish you could talk to, you're not alone. Comment GHOST and I'll send you the full breakdown. Built for the moment right after you walk past.\n#socialanxiety #overthinking #socialanxietystruggles #introvertstruggles #anxietyproblems #quietpeople #latenightthoughts",
+      "alt_text": "Man alone in dark room lit by phone screen glow cinematic. Overlay text reads: POV: you unlock your phone so you don't have to make eye contact You see someone you know coming and your stomach drops instantly You open your messages, you stare at nothing, you start typing to no one You walk past them scrolling a... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+      "hide_like_count": true,
+      "ig_id": "35157222637226667",
+      "status": "FINISHED",
+      "host": "litterbox",
+      "video_url": "https://litter.catbox.moe/g30pzu.mp4"
+    }
   }
 ]
