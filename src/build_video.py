@@ -330,7 +330,7 @@ def assert_fits(lines: list, px: int, font_path: str, cfg) -> int:
         else:
             text, is_c = ln, is_cta(ln)
         f = cta_font if is_c else body_font
-        widest = max(widest, f.getbbox(text)[2])
+        widest = max(widest, int(f.getbbox(text)[2]))
     assert widest <= max_w, f"overflow: widest line {widest}px > {max_w}px allowed"
     return widest
 
@@ -920,14 +920,27 @@ def qa_gate(reel: Path, cfg, blocks: list | None = None) -> tuple:
         # PLACEMENT GATE. Every layout failure so far was a number that looked correct
         # and painted wrong (text 82% down the frame, under Instagram's caption bar).
         # Assert on measured pixels, so a regression fails the build instead of shipping.
+        # NB: derive from b["text"] — b["lines"] is a COUNT in the logged block dicts,
+        # and silently produced an empty check list (a gate that passes by not running
+        # is worse than no gate).
         _placed = []
         for b in blocks:
-            if b.get("lines") and b.get("px"):
-                _placed.append(placement_report(b["lines"], b["px"], cfg))
-        if _placed and not all(p.get("empty") for p in _placed):
-            c["text_inside_safe_band"] = all(p.get("inside_band", True) for p in _placed)
-            c["text_clears_ui"] = all(p.get("clears_ui", True) for p in _placed)
-            c["text_centred"] = all(p.get("centred", True) for p in _placed)
+            text = str(b.get("text") or "")
+            if not text.strip():
+                continue
+            try:
+                entries, px, _fp = fit_message(text, cfg)
+                _placed.append(placement_report(entries, px, cfg))
+            except Exception as exc:  # noqa: BLE001
+                info.setdefault("placement_errors", []).append(repr(exc))
+        if not _placed:
+            # Cannot verify => fail closed. A gate that cannot measure must not pass.
+            c["text_placement_verified"] = False
+        else:
+            c["text_placement_verified"] = not all(p.get("empty") for p in _placed)
+            c["text_inside_safe_band"] = all(p.get("inside_band", False) for p in _placed)
+            c["text_clears_ui"] = all(p.get("clears_ui", False) for p in _placed)
+            c["text_centred"] = all(p.get("centred", False) for p in _placed)
             info["placement"] = _placed[0]
     for name, ok in c.items():
         if not ok:

@@ -1,6 +1,6 @@
 # Beast Engine — weekly brain report
 
-Generated: 2026-09-27T13:09:18+00:00
+Generated: 2026-09-27T13:25:25+00:00
 
 Posts scored this cycle: **10**
 Weighted mean score: **0.0832**
@@ -19,7 +19,7 @@ Weighted mean score: **0.0832**
 | the_aftermath | 0.0827 | 1 |
 | quiet_hope | 0.0801 | 1 |
 | the_rehearsal | 0.0781 | 1 |
-| the_craving | 0.0773 | 1 |
+| the_craving | 0.0774 | 1 |
 | the_bodys_betrayal | 0.0765 | 1 |
 
 ### topic
