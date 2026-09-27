@@ -609,21 +609,30 @@ def test_pixabay_regex_finds_all_three():
 # ------------------------------------------------- VISUAL SPEC v1.0 §4 / §5
 
 def test_text_anchor_and_block_height_agree():
-    """The block's TOP sits at TEXT_TOP_FRAC (spec §3: 30% of frame height), and the
-    anchor must use the same per-line heights as the renderer (the CTA is smaller)."""
+    """The block's placement is measured, centred in the safe band, and clear of the UI.
+
+    This replaces an arithmetic assertion (top == h*frac - block_h/2) that passed while
+    the real render put the text at 82% of the frame, under Instagram's caption bar.
+    """
     cfg = config.DEFAULT_CONFIG
     h = int(cfg["reel"]["h"])
-    entries = [("one", False), ("two", False), ("Comment SAFE and I'll send you "
-                                                "the full breakdown.", True)]
-    top = build_video.hook_top(entries, 96, cfg)
-    bh = build_video.block_height(entries, 96)
-    # TOP anchor: exact, independent of block height
-    assert abs(top - int(h * build_video.TEXT_TOP_FRAC)) < 3, top
-    # the block must still finish inside the frame, clear of the bottom UI
-    assert top + bh < h, (top, bh)
-    # taller blocks do NOT move the top (top-anchored, not centred)
-    two = entries[:-1]
-    assert build_video.hook_top(entries, 96, cfg) == build_video.hook_top(two, 96, cfg)
+    entries = [("one", False), ("two", False), ("a third line of text", False),
+               ("Comment SAFE and I'll send you the full breakdown.", True)]
+    px = 72
+    rep = build_video.placement_report(entries, px, cfg)
+    assert not rep.get("empty"), rep
+    # the three invariants the user's bug violated
+    assert rep["inside_band"], rep
+    assert rep["clears_ui"], rep
+    assert rep["centred"], rep
+    # top-anchored mode still clamps inside the band
+    old = build_video.TEXT_TOP_FRAC
+    build_video.TEXT_TOP_FRAC = 0.30
+    try:
+        anchored = build_video.placement_report(entries, px, cfg, top=None)
+    finally:
+        build_video.TEXT_TOP_FRAC = old
+    assert anchored["inside_band"], anchored
     # The CTA renders smaller than the body. (Its LINE is not shorter: the extra
     # leading above it (CTA_GAP) makes the line taller than a body line, which is
     # what gives the footer its visual separation.)

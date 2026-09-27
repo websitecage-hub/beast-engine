@@ -202,6 +202,12 @@
       "date": "2026-09-27",
       "archetype": "the_rehearsal",
       "topic": "fake_phone"
+    },
+    {
+      "hook": "POV: you laugh at a joke you didn't hear and pray no one noticed.",
+      "date": "2026-09-27",
+      "archetype": "the_sealed_mouth",
+      "topic": "neutral_as_negative"
     }
   ],
   "candidate_log": [
@@ -300,8 +306,18 @@
         }
       ],
       "winner": "Your phone has nothing on it."
+    },
+    {
+      "date": "2026-09-27",
+      "keyword": "HEARD",
+      "topic": "laughing at joke you missed",
+      "hook": "POV: you laugh at a joke you didn't hear and pray no one noticed."
     }
   ],
   "last_post_date": "2026-09-26",
-  "post_counter": 3
+  "post_counter": 3,
+  "last_keyword": "HEARD",
+  "keyword_counts": {
+    "HEARD": 1
+  }
 }

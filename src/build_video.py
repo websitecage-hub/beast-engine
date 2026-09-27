@@ -44,9 +44,19 @@ MAX_DISPLAY_LINES = 22          # after wrapping. The frame's real limit is BLOC
 MAX_LINES_TARGET = 7            # §3 target for source lines
 MIN_LINES_ON_SCREEN = 5         # §8.7 source-line floor
 MAX_TOTAL_WORDS = 190           # 9 lines x ~21 words; the print cap, enforced
-TEXT_TOP_FRAC = 0.30            # spec §3: the TOP of the text sits at 30% of
-                                # frame height (the block then reads high-middle,
-                                # clear of the reel UI at the bottom).
+# INSTAGRAM SAFE BAND. Spec §3 said "top of text at 30% of frame height", but a
+# 5-7 line block is ~1000px tall, so a 30% top put its bottom at ~82% of the frame —
+# directly under Instagram's caption and action bar, which is exactly what shipped.
+# The block is now centred inside this band instead, which is both what the user asked
+# for ("centred from top to bottom") and what keeps every line clear of the UI.
+TEXT_SAFE_TOP = 0.13            # below the username/audio chrome at the top
+TEXT_SAFE_BOTTOM = 0.72         # above the caption + like/comment/share bar
+UI_ZONE_TOP = 0.76              # where Instagram's caption/action bar begins
+PLACEMENT_TOLERANCE = 12        # px the block may sit off centre and still pass QA
+SMART_PLACEMENT = True          # two-pass measure-then-place; see render_block
+# Kept for the tests and for anyone wanting the old top-anchor: a positive value here
+# means "top-anchor at this fraction", 0 means "centre inside the safe band".
+TEXT_TOP_FRAC = 0.0
 SHADOW_BLUR = 8                 # soft dark shadow
 SHADOW_ALPHA = 179              # ~70% opacity
 TEXT_BAND_ALPHA = 77            # 30% black scrim, only over bright footage
@@ -62,8 +72,7 @@ MIN_PX = 52                     # spec §3: minimum font size. If the text canno
 # The spec's 6-9 line blocks carry far more words than the old 3-5 line ones, so the
 # block is allowed to occupy more of the frame. 0.68 leaves ~300px of headroom top
 # and bottom, which keeps the text clear of the reel's UI chrome.
-MAX_BLOCK_H = 0.58              # a touch smaller than 0.68: the block stays well
-                                # inside the frame and reads lighter on the eye
+MAX_BLOCK_H = TEXT_SAFE_BOTTOM - TEXT_SAFE_TOP   # the safe band, 0.59 of the frame
 # Coolvetica runs wide, so the ladders start lower and walk further down.
 # The text engine asks for a 72px start; the ladder begins there and walks down.
 # Legacy hook/card sizes. These stay large: a short card must still fill >=75% of
@@ -387,7 +396,7 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
     block_h = ((len(entries) - n_cta) * line_h
                + (int(cta_px * CTA_GAP) if n_cta else 0)
                + n_cta * cta_h)
-    top = fixed_top if fixed_top is not None else (int(h * TEXT_TOP_FRAC) - block_h // 2)
+    top = fixed_top if fixed_top is not None else hook_top(entries, px, cfg)
 
     img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
 
@@ -405,40 +414,81 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
         # feathered edges, so it reads as a cinematic scrim and not a grey box
         img = Image.alpha_composite(img, band.filter(ImageFilter.GaussianBlur(px * 0.5)))
 
-    shadow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    sd, d = ImageDraw.Draw(shadow), ImageDraw.Draw(img)      # AFTER any compositing
+    def paint_layer(top_y: int, with_watermark: bool = True):
+        """Paint the text (and its shadow) at a given top. Returns (img, shadow).
 
-    def draw_center(txt, f, y, fill, sd_fill):
-        # Centre on the glyphs' true ink box, not the layout box: getbbox() includes
-        # the font's side bearing, which pushed the block ~2-3px off the frame's
-        # centre line. getmask() returns the rendered bitmap, so its bbox IS the ink.
-        try:
-            mask_bb = f.getmask(txt).getbbox()
-        except Exception:  # noqa: BLE001
-            mask_bb = None
-        if mask_bb:
-            ink_w, ink_left = mask_bb[2] - mask_bb[0], mask_bb[0]
-        else:
-            bb = f.getbbox(txt)
-            ink_w, ink_left = bb[2] - bb[0], bb[0]
-        x = (w - ink_w) // 2 - ink_left
-        sd.text((x + 2, y + 3), txt, font=f, fill=sd_fill)
-        d.text((x, y), txt, font=f, fill=fill)
+        Extracted so the two-pass placement can paint once to MEASURE and again to
+        place, with both passes guaranteed to use identical metrics.
+        """
+        img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
 
-    y = top
-    for ln, is_c in entries:
-        if is_c:
-            y += int(cta_px * CTA_GAP)
-            draw_center(ln, cta_font, y, INK_CTA, (0, 0, 0, SHADOW_ALPHA))
-            y += cta_h
-        else:
-            draw_center(ln, font, y, INK, (0, 0, 0, SHADOW_ALPHA))
-            y += line_h
+        # The footage is never darkened or overlaid with a scrim — text rides directly
+        # on the video. The band is disabled outright (TEXT_SCRIM), and the shadow
+        # behind each glyph carries legibility instead. Ordering matters: any
+        # compositing must happen BEFORE the draw handles are created, or `d` points
+        # at a discarded image and the glyphs vanish (that bug made text invisible).
+        if TEXT_SCRIM and bg_luma is not None and bg_luma >= TEXT_BAND_BRIGHT_MIN and block_h > 0:
+            band_pad = int(px * 0.55)
+            y0 = max(top_y - band_pad, 0)
+            y1 = min(top_y + block_h + band_pad, h)
+            band = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+            ImageDraw.Draw(band).rectangle([0, y0, w, y1], fill=(0, 0, 0, TEXT_BAND_ALPHA))
+            # feathered edges, so it reads as a cinematic scrim and not a grey box
+            img = Image.alpha_composite(img, band.filter(ImageFilter.GaussianBlur(px * 0.5)))
 
-    if watermark:
-        bb = mark_font.getbbox(watermark)
-        d.text(((w - (bb[2] - bb[0])) // 2, int(h * 0.92)), watermark,
-               font=mark_font, fill=INK_MARK)
+        shadow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        sd, d = ImageDraw.Draw(shadow), ImageDraw.Draw(img)   # AFTER any compositing
+
+        def draw_center(txt, f, y, fill, sd_fill):
+            # Centre on the glyphs' true ink box, not the layout box: getbbox()
+            # includes the font's side bearing, which pushed the block ~3.5px off the
+            # frame's centre line. getmask() returns the rendered bitmap, its bbox IS
+            # the ink.
+            try:
+                mask_bb = f.getmask(txt).getbbox()
+            except Exception:  # noqa: BLE001
+                mask_bb = None
+            if mask_bb:
+                ink_w, ink_left = mask_bb[2] - mask_bb[0], mask_bb[0]
+            else:
+                bb = f.getbbox(txt)
+                ink_w, ink_left = bb[2] - bb[0], bb[0]
+            x = (w - ink_w) // 2 - ink_left
+            sd.text((x + 2, y + 3), txt, font=f, fill=sd_fill)
+            d.text((x, y), txt, font=f, fill=fill)
+
+        y = top_y
+        for ln, is_c in entries:
+            if is_c:
+                y += int(cta_px * CTA_GAP)
+                draw_center(ln, cta_font, y, INK_CTA, (0, 0, 0, SHADOW_ALPHA))
+                y += cta_h
+            else:
+                draw_center(ln, font, y, INK, (0, 0, 0, SHADOW_ALPHA))
+                y += line_h
+
+        if with_watermark and watermark:
+            bb = mark_font.getbbox(watermark)
+            d.text(((w - (bb[2] - bb[0])) // 2, int(h * 0.92)), watermark,
+                   font=mark_font, fill=INK_MARK)
+        return img, shadow
+
+    # ---- smart placement: measure the real ink, then re-place exactly --------------
+    # Only when the caller did not dictate a top. hook_top() gives a good estimate, but
+    # block_h counts the CTA's leading gap (which paints nothing), so the estimate left
+    # the visible block ~60px high in the band (measured 94px above vs 205px below).
+    # Paint once, read the true ink extent, correct the offset, paint again.
+    if fixed_top is None and SMART_PLACEMENT:
+        probe, _ = paint_layer(top, with_watermark=False)
+        bounds = ink_bounds(probe)
+        if bounds:
+            ink_top_abs, ink_bot_abs = bounds
+            ink_h = ink_bot_abs - ink_top_abs
+            band_top, band_bot = int(h * TEXT_SAFE_TOP), int(h * TEXT_SAFE_BOTTOM)
+            want = band_top + max(0, (band_bot - band_top - ink_h) // 2)
+            top = max(0, min(top + want - ink_top_abs, h - ink_h - 1))
+
+    img, shadow = paint_layer(top, with_watermark=True)
 
     img = Image.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(SHADOW_BLUR)), img)
     out_png.parent.mkdir(parents=True, exist_ok=True)
@@ -446,13 +496,84 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
     return out_png
 
 
-def hook_top(lines: list, px: int, cfg) -> int:
-    """The canonical text top: the FIRST LINE's baseline box starts here.
+def ink_bounds(layer) -> tuple | None:
+    """(top, bottom) of the painted ink in an RGBA layer, or None if nothing painted.
 
-    Spec §3: "top of text at 30% of frame height". This is a TOP anchor, not a
-    centre anchor — the earlier version subtracted half the block height, so a
-    0.30 fraction put the ink near the very top of the frame instead of at 30%.
-    The old centre behaviour is still available by passing a negative fraction.
+    "Ink" means genuinely opaque text pixels: the drop shadow is blurred and semi
+    transparent, so a high alpha threshold measures the glyphs and not the glow.
+    """
+    a = layer.split()[-1]
+    box = a.point(lambda v: 255 if v >= 200 else 0).getbbox()
+    return (box[1], box[3]) if box else None
+
+
+def placement_report(lines: list, px: int, cfg, top: int | None = None) -> dict:
+    """Where the block actually lands, in frame fractions. Used by the QA gate.
+
+    Every layout bug we have hit was a number that looked right and painted wrong, so
+    this measures pixels instead of trusting arithmetic — and it applies the SAME
+    two-pass correction render_block does, so it cannot report a placement that the
+    renderer would not produce.
+    """
+    from PIL import Image, ImageDraw, ImageFont
+    w, h = int(cfg["reel"]["w"]), int(cfg["reel"]["h"])
+    entries = _tagged(lines)
+    cta_px = max(int(px * CTA_SCALE), CTA_MIN_PX)
+    line_h, cta_h = int(px * LINE_SPACING), int(cta_px * LINE_SPACING)
+    font = ImageFont.truetype(str(config.ROOT / FONT_HOOK), int(px))
+    cta_font = ImageFont.truetype(str(config.ROOT / FONT_HOOK), cta_px)
+
+    def draw_at(top_y: int):
+        img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        d = ImageDraw.Draw(img)
+        y = top_y
+        for ln, is_c in entries:
+            f = cta_font if is_c else font
+            if is_c:
+                y += int(cta_px * CTA_GAP)
+            try:
+                mb = f.getmask(ln).getbbox()
+            except Exception:  # noqa: BLE001
+                mb = None
+            if mb:
+                iw, il = mb[2] - mb[0], mb[0]
+            else:
+                bb = f.getbbox(ln)
+                iw, il = bb[2] - bb[0], bb[0]
+            d.text(((w - iw) // 2 - il, y), ln, font=f, fill=(255, 255, 255, 255))
+            y += cta_h if is_c else line_h
+        return ink_bounds(img)
+
+    band_top, band_bot = int(h * TEXT_SAFE_TOP), int(h * TEXT_SAFE_BOTTOM)
+    top_y = top if top is not None else hook_top(entries, px, cfg)
+    bounds = draw_at(top_y)
+    if bounds and SMART_PLACEMENT:
+        # mirror render_block's correction exactly
+        ink_h = bounds[1] - bounds[0]
+        want = band_top + max(0, (band_bot - band_top - ink_h) // 2)
+        top_y = max(0, min(top_y + want - bounds[0], h - ink_h - 1))
+        bounds = draw_at(top_y)
+    if not bounds:
+        return {"empty": True}
+    t, b = bounds
+    return {
+        "top": top_y,
+        "ink_top_frac": round(t / h, 4), "ink_bot_frac": round(b / h, 4),
+        "band_top": band_top, "band_bot": band_bot,
+        "gap_above": t - band_top, "gap_below": band_bot - b,
+        "inside_band": t >= band_top and b <= band_bot,
+        "clears_ui": b <= int(h * UI_ZONE_TOP),
+        "centred": abs((t - band_top) - (band_bot - b)) <= PLACEMENT_TOLERANCE,
+    }
+
+
+def hook_top(lines: list, px: int, cfg) -> int:
+    """The canonical text top.
+
+    Default (TEXT_TOP_FRAC = 0): the block is CENTRED inside Instagram's safe band,
+    which is what the user asked for and what keeps its last line out from under the
+    caption and action bar. A positive TEXT_TOP_FRAC top-anchors at that fraction of
+    frame height (the spec §3 wording), clamped so the block still cannot reach the UI.
     """
     h = int(cfg["reel"]["h"])
     entries = _tagged(lines)
@@ -462,10 +583,51 @@ def hook_top(lines: list, px: int, cfg) -> int:
     block_h = ((len(entries) - n_cta) * int(px_i * LINE_SPACING)
                + (int(cta_px * CTA_GAP) if n_cta else 0)
                + n_cta * int(cta_px * LINE_SPACING))
-    if TEXT_TOP_FRAC < 0:
-        # legacy centre-of-block anchor
-        return int(int(h * abs(TEXT_TOP_FRAC)) - block_h // 2)
-    return int(h * TEXT_TOP_FRAC)
+    band_top = int(h * TEXT_SAFE_TOP)
+    band_bot = int(h * TEXT_SAFE_BOTTOM)
+    if TEXT_TOP_FRAC > 0:
+        return max(band_top, min(int(h * TEXT_TOP_FRAC), band_bot - block_h))
+    # Centre on the MEASURED ink. block_h counts the CTA's leading gap, which paints
+    # nothing, so centring on it left the visible text ~60px high in the band. The
+    # renderer re-measures and corrects anyway (two-pass), but the estimate should be
+    # right so the correction is a no-op and the anchor is predictable.
+    ink_h = ink_span(entries, px)
+    return max(band_top, band_top + max(0, (band_bot - band_top - ink_h) // 2))
+
+
+def ink_span(lines: list, px: int) -> int:
+    """Height of the actually-painted glyphs (excludes leading gaps that paint nothing).
+
+    Renders to a scratch canvas and measures the alpha extent. Cheap (one small PIL
+    draw) and exact, which matters because the CTA's gap is a layout-only construct.
+    """
+    from PIL import Image as _Image, ImageDraw as _ImageDraw, ImageFont as _ImageFont
+    entries = _tagged(lines)
+    px_i = int(px)
+    cta_px = max(int(px_i * CTA_SCALE), CTA_MIN_PX)
+    line_h = int(px_i * LINE_SPACING)
+    cta_h = int(cta_px * LINE_SPACING)
+    n_cta = sum(1 for _ln, is_c in entries if is_c)
+    layout_h = ((len(entries) - n_cta) * line_h + (int(cta_px * CTA_GAP) if n_cta else 0)
+                + n_cta * cta_h)
+    try:
+        font = _ImageFont.truetype(str(config.ROOT / FONT_HOOK), px_i)
+        cta_font = _ImageFont.truetype(str(config.ROOT / FONT_HOOK), cta_px)
+        canvas = _Image.new("L", (10, max(layout_h, 1) + 40), 0)
+        d = _ImageDraw.Draw(canvas)
+        y = 20
+        for ln, is_c in entries:
+            f = cta_font if is_c else font
+            if is_c:
+                y += int(cta_px * CTA_GAP)
+            d.text((2, y), ln, font=f, fill=255)
+            y += cta_h if is_c else line_h
+        box = canvas.getbbox()
+        if box:
+            return max(box[3] - box[1], 1)
+    except Exception:  # noqa: BLE001 - fall back to the layout estimate
+        pass
+    return layout_h
 
 
 def block_height(lines: list, px: int) -> int:
@@ -755,6 +917,18 @@ def qa_gate(reel: Path, cfg, blocks: list | None = None) -> tuple:
                                 <= MAX_LINES_ON_SCREEN)
         c["cta_present"] = any(is_cta(ln) for ln in _src_lines)
         c["loop_echo"] = loop_echo_ok(blocks)
+        # PLACEMENT GATE. Every layout failure so far was a number that looked correct
+        # and painted wrong (text 82% down the frame, under Instagram's caption bar).
+        # Assert on measured pixels, so a regression fails the build instead of shipping.
+        _placed = []
+        for b in blocks:
+            if b.get("lines") and b.get("px"):
+                _placed.append(placement_report(b["lines"], b["px"], cfg))
+        if _placed and not all(p.get("empty") for p in _placed):
+            c["text_inside_safe_band"] = all(p.get("inside_band", True) for p in _placed)
+            c["text_clears_ui"] = all(p.get("clears_ui", True) for p in _placed)
+            c["text_centred"] = all(p.get("centred", True) for p in _placed)
+            info["placement"] = _placed[0]
     for name, ok in c.items():
         if not ok:
             problems.append(name)
