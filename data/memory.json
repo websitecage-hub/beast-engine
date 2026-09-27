@@ -356,6 +356,66 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18129372190747783",
+      "container_id": "17911073487538210",
+      "created_at": "2026-09-27T16:02:29.546704+00:00",
+      "hour_slot": "15:00",
+      "hook_text": "POV: you cancelled and felt relief before the text even sent.",
+      "hook": "POV: you cancelled and felt relief before the text even sent.",
+      "keyword": "FREE",
+      "topic": "cancel relief guilt cycle",
+      "caption": "That relief after canceling doesn't make you a bad friend.\nYour nervous system treats every plan like a trial where your flaw will be exposed. That's what social anxiety does, it keeps you in threat mode for hours until canceling feels like the only way to breathe again.\nIf you live in that cancel, relief, then guilt all night loop, you're not alone. Comment FREE and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "POV: you cancelled and felt relief before the text even sent.",
+        "cluster": "the_detour",
+        "topic": "lost_friendships",
+        "hook_length_chars": 61,
+        "num_text_blocks": 6,
+        "landing_text": "Comment FREE and I'll send you the full breakdown.",
+        "bg_type": "detour",
+        "bg_is_video": true,
+        "audio_mood": "muffled_world",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Be Her",
+          "artist": "Ella Langley",
+          "genre": "pop",
+          "trend_score": 75.7,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man alone on couch at night dark room cinematic. Overlay text reads: POV: you cancelled and felt relief before the text even sent. You stared at 'sorry can't make it tonight' for 20 minutes. The second you hit send your stomach unclenched. Then the guilt came. Now you're alone scrolling, checking if they... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: you cancelled and felt relief before the text even sent.\nYou stared at 'sorry can't make it tonight' for 20 minutes.\nThe second you hit send your stomach unclenched. Then the guilt came.\nNow you're alone scrolling, checking if they saw it, rewriting the apology again.\nYou're not flaky. You just chose the punishment you could survive tonight.\nComment FREE and I'll send you the full breakdown.",
+        "keyword": "FREE",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "15:00",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_detour",
+        "mood": "muffled_world",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -393,6 +453,11 @@
       "id": "25262447902582183",
       "date": "2026-09-27",
       "pin_url": "https://www.pinterest.com/pin/25262447902582183/"
+    },
+    {
+      "id": "749075350559821950",
+      "date": "2026-09-27",
+      "pin_url": "https://www.pinterest.com/pin/749075350559821950/"
     }
   ],
   "used_tracks": [],
@@ -521,7 +586,7 @@
     }
   ],
   "last_post_date": "2026-09-27",
-  "post_counter": 6,
+  "post_counter": 7,
   "last_keyword": "HEARD",
   "keyword_counts": {
     "HEARD": 1
@@ -550,6 +615,30 @@
       "date": "2026-09-27",
       "source": "backfill",
       "query": "published-reel-Ddyv2XVjOte"
+    },
+    {
+      "profile": [
+        0.06427028765186463,
+        0.2267406075991093,
+        0.08517364912213551,
+        0.20538178467376475,
+        0.07010910063267926,
+        0.11380670101964246,
+        0.08091389456299927,
+        0.04456142219785383,
+        0.036389061301701914,
+        0.024683014653927353,
+        0.016416427877852104,
+        0.010644220223777421,
+        0.006500670797234801,
+        0.004891908023209068,
+        0.004155181796221113,
+        0.003175982765532758,
+        0.002186085100494459
+      ],
+      "date": "2026-09-27",
+      "source": "song",
+      "query": "slowed reverb dark ambient muffled"
     }
   ]
 }
