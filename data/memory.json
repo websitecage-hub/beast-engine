@@ -60,8 +60,112 @@
   ],
   "used_tracks": [],
   "used_track_urls": [],
-  "used_hooks": [],
-  "candidate_log": [],
+  "used_hooks": [
+    {
+      "hook": "Your phone has nothing on it.",
+      "date": "2026-09-27",
+      "archetype": "the_rehearsal",
+      "topic": "fake_phone"
+    }
+  ],
+  "candidate_log": [
+    {
+      "date": "2026-09-27",
+      "candidates": [
+        {
+          "hook": "Being seen feels dangerous.",
+          "cluster": "the_mask",
+          "topic": "exposure_fear",
+          "mood": "quiet_devastating"
+        },
+        {
+          "hook": "Your phone has nothing on it.",
+          "cluster": "the_rehearsal",
+          "topic": "fake_phone",
+          "mood": "quiet_devastating"
+        },
+        {
+          "hook": "You rehearsed ordering. Still froze.",
+          "cluster": "the_freeze",
+          "topic": "ordering_food",
+          "mood": "muffled_world"
+        },
+        {
+          "hook": "Unknown number. You watch it ring.",
+          "cluster": "the_detour",
+          "topic": "phone_calls",
+          "mood": "heavy_shadow"
+        },
+        {
+          "hook": "The conversation ends. The trial begins.",
+          "cluster": "the_aftermath",
+          "topic": "post_interaction_hate",
+          "mood": "quiet_devastating"
+        },
+        {
+          "hook": "Mind blank. Heart loud.",
+          "cluster": "the_bodys_betrayal",
+          "topic": "mind_blank",
+          "mood": "heavy_shadow"
+        },
+        {
+          "hook": "A simple question feels enormous.",
+          "cluster": "the_sealed_mouth",
+          "topic": "asking_coworker",
+          "mood": "quiet_devastating"
+        },
+        {
+          "hook": "You were there, but not really there.",
+          "cluster": "the_losses",
+          "topic": "lost_friendships",
+          "mood": "quiet_devastating"
+        }
+      ],
+      "scores": [
+        {
+          "index": 0,
+          "score": 4.0,
+          "reason": "Hook 'Being seen feels dangerous' is abstract/poetic, not 'that's exactly [name]' specific. Low save/send - conceptual not secret-behavior. Law compliant (no advice/just/flaw). Landing echoes hook well but can't save a weak hook."
+        },
+        {
+          "index": 1,
+          "score": 10.0,
+          "reason": "Perfect hook specificity - 'Your phone has nothing on it' is instant visual 'that's [name]' test. Maximum save ('how did you know') + send ('this is literally you' funny/loving, zero shame). Law clean. Landing 'phone stays up like armor' echoes + elevates, ideal loop."
+        },
+        {
+          "index": 2,
+          "score": 9.0,
+          "reason": "Top-tier specificity - rehearsed ordering then freeze is textbook social anxiety behavior. High save/send, highly forwardable to one friend. Law compliant. Landing is verbatim echo 'Still froze after rehearsing' = perfect loop closure."
+        },
+        {
+          "index": 3,
+          "score": 10.0,
+          "reason": "Elite specificity - 'Unknown number. You watch it ring.' is THE most universal secret behavior for this demo. Max save + max send (group chat staple). Law compliant. Landing echoes perfectly 'You watched the unknown number ring out again' - loops flawlessly."
+        },
+        {
+          "index": 4,
+          "score": 4.0,
+          "reason": "Hook 'trial begins' is good concept but less behavioral. Save is high for rumination. Send-worthiness drops - heavy/shame-adjacent. Law FAIL: 'You find the flaw they must have noticed too' is direct flaw-confirming. Landing echoes well but violation kills saves+sends."
+        },
+        {
+          "index": 5,
+          "score": 6.0,
+          "reason": "Hook 'Mind blank. Heart loud.' is somatic but generic anxiety, not specific social image. Moderate save (body betrayal resonates), lower send (feels like 'are you ok?' not 'this is YOU'). Law compliant. Landing 'Heart loud, mind blank, loop on repeat' echoes but adds meta phrase, weaker."
+        },
+        {
+          "index": 6,
+          "score": 8.0,
+          "reason": "Strong specificity for burden subtype - drafting question 3 ways. High save 'this IS me' + high gentle send. Law mostly clean but 'be a burden' is borderline flaw label. Landing 'Enormous, that simple question you never asked' echoes hook well with good loop."
+        },
+        {
+          "index": 7,
+          "score": 2.0,
+          "reason": "Low specificity - 'not really there' is vague depression/dissociation, not name-callable. Low save/send - consequence framing. Law FAIL: 'Friendships thinned while you were busy hiding' is flaw-confirming + shame/blame, not saveable or forwardable as love. Landing weak melancholic drop, not loop."
+        }
+      ],
+      "winner": "Your phone has nothing on it."
+    }
+  ],
   "last_post_date": "2026-09-20",
   "post_counter": 1
 }
