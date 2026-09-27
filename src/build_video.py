@@ -974,7 +974,13 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
             fitted.append({**blk, "lines": lines, "px": px, "font_path": font_path,
                            "widest": widest, "pinned_top": None})
     for b in fitted:
-        b["pinned_top"] = hook_top(b["lines"], b["px"], cfg)
+        # Estimate only, for scrim/luma sampling. NOT passed as fixed_top: doing so
+        # skipped the two-pass placement entirely, so the renderer used the arithmetic
+        # estimate (which counts the CTA's unpainted leading gap) while placement_report
+        # measured the smart path — the gate verified a placement that never shipped
+        # (report said 52/53px, the actual overlay was 74/32px).
+        b["pinned_top"] = None
+        b["est_top"] = hook_top(b["lines"], b["px"], cfg)
     print(f"[video] {len(fitted)} text block(s): "
           + ", ".join(f"{len(b['lines'])} lines @{b['px']}px "
                       f"({sum(1 for ln in b['lines'] if isinstance(ln, tuple) and ln[1])} cta) "
@@ -990,11 +996,11 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
     for i, b in enumerate(fitted):
         p = config.OUTPUTS / f"block_{i}_{b['kind']}.png"
         # spec §4: measure the actual background band, then scrim only if bright
-        top = b["pinned_top"] if b["pinned_top"] is not None else hook_top(
+        top = b["est_top"] if b.get("est_top") is not None else hook_top(
             b["lines"], b["px"], cfg)
         luma = bg_text_luma(bg_mp4, 1.0, cfg, top, block_height(b["lines"], b["px"]))
         render_block(b["lines"], b["px"], b["font_path"], watermark, p, cfg,
-                     fixed_top=b["pinned_top"], bg_luma=luma)
+                     fixed_top=None, bg_luma=luma)
         pngs.append(p)
 
     states = state_map(blocks, cfg, duration_s)

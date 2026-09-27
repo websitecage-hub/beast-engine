@@ -263,6 +263,48 @@ def test_render_block_text_visible_with_and_without_scrim():
         assert n >= 300, f"text invisible when bg_luma={luma} (bright px {n})"
 
 
+def test_report_matches_the_rendered_png():
+    """THE test that would have caught the shipped bug.
+
+    placement_report said gap_above 52 / gap_below 53, but the overlay that actually
+    got composited measured 74 / 32 — because build() passed fixed_top=<estimate>,
+    which skipped smart placement, while the report measured the smart path. A gate
+    that measures a different code path than the renderer is worse than no gate.
+
+    So: render through the SAME entry point the build uses, then assert the PNG's own
+    pixels agree with the report.
+    """
+    from PIL import Image
+    cfg = config.DEFAULT_CONFIG
+    h = int(cfg["reel"]["h"])
+    lines = ["You let the call ring out", "then text sorry just saw this",
+             "You saw it on the first ring.",
+             "Comment HEARD and I'll send you the full breakdown."]
+    entries, px, font_path = build_video.fit_message("\n".join(lines), cfg)
+    out = config.OUTPUTS / "test_report_match.png"
+    build_video.render_block(entries, px, font_path, "", out, cfg,
+                             fixed_top=None, bg_luma=None)
+
+    # measure the PNG
+    with Image.open(out) as im:
+        import numpy as _np
+        mask = _np.array(im.convert("RGBA"))[:, :, 3] >= 200
+        rows = _np.where(mask.any(axis=1))[0]
+        box = (0, int(rows[0]), 1, int(rows[-1]) + 1) if len(rows) else None
+    assert box, "nothing rendered"
+    t, b = box[1], box[3]
+
+    rep = build_video.placement_report(entries, px, cfg)
+    band_top, band_bot = int(h * build_video.TEXT_SAFE_TOP), int(h * build_video.TEXT_SAFE_BOTTOM)
+    png_gap_above, png_gap_below = t - band_top, band_bot - b
+
+    assert abs(png_gap_above - rep["gap_above"]) <= 2, (png_gap_above, rep["gap_above"])
+    assert abs(png_gap_below - rep["gap_below"]) <= 2, (png_gap_below, rep["gap_below"])
+    assert abs(png_gap_above - png_gap_below) <= build_video.PLACEMENT_TOLERANCE, \
+        f"PNG not centred: {png_gap_above} above vs {png_gap_below} below"
+    assert b <= int(h * build_video.UI_ZONE_TOP), f"PNG text under IG UI: {b}"
+
+
 def test_final_format_no_person_queries_are_person_bearing():
     """§3: every bg query must imply a human figure in frame."""
     cfg = config.load_config()
