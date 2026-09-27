@@ -206,6 +206,16 @@ SEARCH_VOCAB = {
     "nervous", "worried", "thoughts", "nobody", "ignored", "left", "behind",
     "avoid", "avoiding", "hide", "hiding", "comfortable", "uncomfortable",
     "interaction", "interactions", "stranger", "strangers", "group", "crowd",
+    # Vocabulary the TEXT ENGINE spec's own lived experiences use. Without these the
+    # spec's own calibration examples score FALSE (measured: EXAMPLE 1 and EXAMPLE 3
+    # both failed), which made the checklist permanently red and therefore useless.
+    "laugh", "laughed", "laughing", "joke", "jokes", "hear", "heard", "hearing",
+    "blank", "freeze", "froze", "frozen", "throat", "stomach", "heartbeat", "order",
+    "waiter", "menu", "nod", "nodded", "fake", "faking", "rehearsed", "rehearsing",
+    "rehearse", "silence", "silent", "shame", "ashamed", "relief", "guilt", "dinner",
+    "store", "party", "room", "voice", "words", "speak", "speaking", "answer",
+    "answered", "text", "texting", "scroll", "scrolling", "screen", "disappear",
+    "exposure", "anxiety", "cringe", "awkward", "starving", "dish", "drink",
 }
 
 

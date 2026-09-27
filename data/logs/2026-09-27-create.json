@@ -1620,5 +1620,139 @@
     ],
     "errors": [],
     "result": "skipped"
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T12:44:57.826128+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.9
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.9,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.21,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.21,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.21,
+        "seconds": 9.5
+      },
+      {
+        "step": "generated",
+        "t": 37.81,
+        "hook": "POV: you just laughed at a joke you didn't hear at all.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 228.26,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "Man silent while others around him talk dark cinematic. Overlay text r..."
+      },
+      {
+        "step": "music",
+        "t": 272.52,
+        "source": "song"
+      },
+      {
+        "step": "built",
+        "t": 394.43,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "one_text_block": true,
+            "lines_in_bounds": true,
+            "cta_present": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.5,
+          "size_mb": 7.5,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "message",
+              "px": 56,
+              "widest": 896,
+              "lines": 15
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "message",
+              "start": 0.0,
+              "end": 9.5
+            }
+          ],
+          "text_visibility": [
+            {
+              "t": 0.0,
+              "text_visible": true
+            },
+            {
+              "t": 0.25,
+              "text_visible": true
+            },
+            {
+              "t": 4.75,
+              "text_visible": true
+            },
+            {
+              "t": 9.25,
+              "text_visible": true
+            }
+          ],
+          "motion": true
+        }
+      },
+      {
+        "step": "seo",
+        "t": 394.43,
+        "keyword_on_screen": true,
+        "keyword_in_caption": true,
+        "keyword_is_dm_enabled": true,
+        "hashtags_5_to_7": true,
+        "hashtags_present": true,
+        "on_screen_has_searchable_phrase": false,
+        "alt_text_present": true,
+        "caption_describes_content": true
+      },
+      {
+        "step": "published",
+        "t": 394.43,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
   }
 ]
