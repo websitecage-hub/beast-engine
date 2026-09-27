@@ -1590,5 +1590,35 @@
       "host": "litterbox",
       "video_url": "https://litter.catbox.moe/g30pzu.mp4"
     }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T11:51:35.404627+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.49
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.49,
+        "seconds": 99.6
+      },
+      {
+        "step": "trending_joined",
+        "t": 100.11,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 100.11,
+        "post": false,
+        "reason": "already posted today (idempotency)"
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
   }
 ]
