@@ -139,6 +139,42 @@ DEFAULT_CONFIG = {
             "restrained_anger": "slow dark phonk soft",
             "gentle_hope": "slow dark ambient build cinematic",
         },
+        # Extra queries per mood. One query is one result set: the canonical phrase
+        # above returned the SAME track for two consecutive reels, so the song tier
+        # walks these in order and rejects anything already fingerprinted. All are
+        # inside the §5 palette (no piano/lofi/upbeat) — _spec5_violates still runs.
+        "query_hints": {
+            "quiet_devastating": [
+                "dark ambient reverb drone instrumental",
+                "slow cinematic sub bass no drums",
+                "night reverb ambient texture",
+                "deep atmospheric drone loop",
+            ],
+            "heavy_shadow": [
+                "dark drone ambient instrumental",
+                "slow sub bass cinematic no drums",
+                "brooding ambient texture loop",
+                "deep dark pad drone",
+            ],
+            "muffled_world": [
+                "muffled reverb ambient instrumental",
+                "distant slowed ambient drone",
+                "underwater reverb texture",
+                "soft muted dark ambient loop",
+            ],
+            "restrained_anger": [
+                "slow dark instrumental tension",
+                "low phonk instrumental no vocals",
+                "tense cinematic drone",
+                "dark restrained ambient loop",
+            ],
+            "gentle_hope": [
+                "slow ambient build instrumental",
+                "cinematic hope drone soft",
+                "gentle dark ambient swell",
+                "warm reverb pad cinematic",
+            ],
+        },
         "banned_music_terms": ["piano", "lofi", "lo-fi", "lo fi", "cheerful",
                                "upbeat", "acoustic guitar"],
         "genre_hint": {"rap": " dark phonk", "hip-hop": " dark phonk", "trap": " dark phonk",
@@ -268,6 +304,7 @@ def default_memory() -> dict:
         "used_pins": [],
         "used_tracks": [],
         "used_track_urls": [],
+        "used_track_hashes": [],
         "used_hooks": [],
         "candidate_log": [],
         "last_post_date": None,

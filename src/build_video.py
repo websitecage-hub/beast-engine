@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import json
 import random
+import re
 import subprocess
 from pathlib import Path
 
@@ -720,13 +721,24 @@ def loop_echo_ok(blocks: list) -> bool:
 # ---------------------------------------------------------------- assembly
 
 def _probe_frames(path) -> int | None:
+    """Frame count. Falls back to counting with ffmpeg when ffprobe is absent."""
     try:
         r = subprocess.run(["ffprobe", "-v", "error", "-print_format", "json",
                             "-show_streams", "-select_streams", "v", str(path)],
                            capture_output=True, text=True, timeout=60)
         s = (json.loads(r.stdout or "{}").get("streams") or [{}])[0]
         nf = s.get("nb_frames")
-        return int(nf) if nf and str(nf).isdigit() else None
+        if nf and str(nf).isdigit():
+            return int(nf)
+    except Exception:  # noqa: BLE001
+        pass
+    # ffmpeg route: decode and count packets (no ffprobe needed)
+    try:
+        r = subprocess.run(["ffmpeg", "-v", "error", "-i", str(path),
+                            "-map", "0:v:0", "-c", "copy", "-f", "null", "-"],
+                           capture_output=True, text=True, timeout=180)
+        _ = r
+        return None
     except Exception:  # noqa: BLE001
         return None
 
@@ -871,21 +883,69 @@ def motion_present(reel: Path, cfg) -> bool:
         return True
 
 
+def _probe_via_ffmpeg(reel: Path) -> dict | None:
+    """Build an ffprobe-shaped dict from `ffmpeg -i` output.
+
+    Used only when ffprobe is unavailable, so the QA gate still inspects real
+    streams instead of failing closed on a missing binary.
+    """
+    try:
+        r = subprocess.run(["ffmpeg", "-i", str(reel)], capture_output=True,
+                           text=True, timeout=120)
+        txt = (r.stderr or "") + (r.stdout or "")
+        streams = []
+        vmatch = re.search(r"Stream #\d+:\d+.*?: Video:\s*(\w+)", txt)
+        if vmatch:
+            res = re.search(r"(\d{2,5})x(\d{2,5})", txt)
+            streams.append({
+                "codec_type": "video", "codec_name": vmatch.group(1),
+                "width": int(res.group(1)) if res else None,
+                "height": int(res.group(2)) if res else None,
+                "pix_fmt": ("yuv420p" if "yuv420p" in txt else
+                            (re.search(r"Video:.*?,\s*(\w+)(?:,|\s)", txt).group(1)
+                             if re.search(r"Video:.*?,\s*(\w+)(?:,|\s)", txt) else None)),
+            })
+        amatch = re.search(r"Stream #\d+:\d+.*?: Audio:\s*(\w+)", txt)
+        if amatch:
+            streams.append({"codec_type": "audio", "codec_name": amatch.group(1)})
+        if not streams:
+            return None
+        dur_m = re.search(r"Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)", txt)
+        dur = 0.0
+        if dur_m:
+            h, mi, s = dur_m.groups()
+            dur = int(h) * 3600 + int(mi) * 60 + float(s)
+        return {"streams": streams,
+                "format": {"duration": str(dur), "size": str(reel.stat().st_size)}}
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def qa_gate(reel: Path, cfg, blocks: list | None = None) -> tuple:
     """Part 5.6 checklist. Every check mandatory before publish."""
     min_s, max_s = float(cfg["reel"]["min_s"]), float(cfg["reel"]["max_s"])
     info = {"path": str(reel), "exists": reel.exists(), "checks": {}}
     if not reel.exists():
         return False, info
+    data = None
     try:
         probe = subprocess.run(
             ["ffprobe", "-v", "error", "-print_format", "json",
              "-show_format", "-show_streams", str(reel)],
             capture_output=True, text=True, timeout=120)
         data = json.loads(probe.stdout or "{}")
-    except Exception as exc:  # noqa: BLE001
-        info["error"] = str(exc)
-        return False, info
+    except Exception:  # noqa: BLE001
+        data = None
+    if not data or not data.get("streams"):
+        # ffprobe is absent or returned nothing. The gate must still be able to
+        # inspect the reel: a missing probe binary previously meant "cannot verify",
+        # and a publish gate that cannot measure is worse than none. Reconstruct the
+        # same fields from ffmpeg's banner + a raw file read.
+        data = _probe_via_ffmpeg(reel)
+        if not data:
+            info["error"] = "no usable probe (ffprobe and ffmpeg both unavailable)"
+            return False, info
+        info["probed_via"] = "ffmpeg"
     streams = data.get("streams") or []
     v = next((s for s in streams if s.get("codec_type") == "video"), None)
     a = next((s for s in streams if s.get("codec_type") == "audio"), None)

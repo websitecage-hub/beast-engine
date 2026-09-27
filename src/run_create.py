@@ -266,6 +266,15 @@ def _record_track(memory, mmeta):
     if mmeta.get("track"):
         memory.setdefault("used_tracks", []).append(
             {"track": mmeta["track"], "date": config.today_utc().isoformat()})
+    # The content fingerprint is what actually prevents repeats. URL-only memory
+    # missed the identical track arriving under a different name, which is how two
+    # consecutive reels shipped the same audio.
+    fp = mmeta.get("fingerprint")
+    if fp:
+        memory.setdefault("used_track_hashes", []).append(
+            {"hash": fp, "date": config.today_utc().isoformat(),
+             "source": mmeta.get("music_source") or "",
+             "query": mmeta.get("music_query") or mmeta.get("query") or ""})
 
 
 def _record_post(memory, content, result, strategy):

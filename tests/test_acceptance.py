@@ -1120,6 +1120,102 @@ def test_data_config_matches_code_defaults_for_spec_keys():
     assert live["music"]["mood_search"] == config.DEFAULT_CONFIG["music"]["mood_search"]
 
 
+def test_ffprobe_fallbacks_work_without_ffprobe():
+    """The pipeline must not require ffprobe, only ffmpeg.
+
+    ffprobe was absent on the dev box (imageio-ffmpeg ships only ffmpeg), which broke
+    duration reads, audio-stream detection and the QA gate. Every one of those must
+    fall back to parsing ffmpeg's own output rather than reporting 'cannot measure'.
+    """
+    import shutil
+    if not shutil.which("ffmpeg"):
+        return          # nothing to test without any ffmpeg at all
+    cfg = config.load_config()
+    probe = config.OUTPUTS / "test_probe_src.mp3"
+    wav = config.OUTPUTS / "test_probe_src.wav"
+    if not probe.exists():
+        music.drone_provider(cfg, {"mood": "heavy_shadow"}, probe, wav, 6.0)
+    assert probe.exists(), "no probe audio"
+
+    # duration: ffprobe absent -> the ffmpeg banner parser must still return a value
+    dur = music.ffprobe_duration(probe)
+    assert dur > 0, f"duration unresolved without ffprobe: {dur}"
+    # audio detection
+    assert music.has_audio_stream(probe) is True, "audio stream not detected"
+
+    # the QA gate's ffprobe->ffmpeg fallback must produce a real stream description
+    reel = Path("/tmp/r1.mp4")
+    if reel.exists():
+        d = build_video._probe_via_ffmpeg(reel)
+        assert d, "ffmpeg fallback probe returned nothing"
+        v = next(s for s in d["streams"] if s["codec_type"] == "video")
+        a = next(s for s in d["streams"] if s["codec_type"] == "audio")
+        assert v["codec_name"] == "h264" and v["width"] == 1080 and v["height"] == 1920, v
+        assert v["pix_fmt"] == "yuv420p", v
+        assert a["codec_name"] == "aac", a
+        assert float(d["format"]["duration"]) > 9, d["format"]
+        # and the gate accepts the reel through that fallback
+        ok, info = build_video.qa_gate(reel, cfg)
+        assert info.get("probed_via") == "ffmpeg" or ok, info
+        assert info["checks"]["resolution_1080x1920"] is True, info
+
+
+def test_audio_repeat_guard_uses_content_not_urls():
+    """Two consecutive reels shipped the SAME audio. Verified: correlation +1.0000,
+    spectral distance 0.0000 between the published files.
+
+    Cause: song_provider resolved one canonical query, the service returned one track,
+    and memory only recorded URLs — so the identical audio under a different name was
+    invisible. This asserts a CONTENT-level guard exists and discriminates.
+    """
+    import json as _json
+    cfg = config.load_config()
+
+    # 1. the config must offer several queries per mood (one query = one result set)
+    hints = (cfg["music"].get("query_hints") or {})
+    for mood in cfg["music"]["mood_search"]:
+        vs = music._query_variants(cfg, mood)
+        assert len(vs) >= 2, f"{mood}: only {len(vs)} query variant(s)"
+        assert len({v.lower() for v in vs}) == len(vs), f"{mood}: duplicate variants"
+        # every variant stays inside the §5 palette
+        for v in vs:
+            assert not music._spec5_violates(v, cfg), f"{mood}: {v!r} violates §5"
+        _ = hints  # documented above; mood_search coverage is what matters
+
+    # 2. the fingerprint must be CONTENT-based: identical bytes -> identical hash
+    import shutil
+    src = config.OUTPUTS / "test_fp_a.mp3"
+    for probe in (config.OUTPUTS / "test_fp_b.mp3", config.OUTPUTS / "test_fp_c.wav"):
+        if probe.exists():
+            probe.unlink()
+    if not src.exists():
+        src.parent.mkdir(parents=True, exist_ok=True)
+        tmp = config.OUTPUTS / "test_fp_src.wav"
+        music.drone_provider(cfg, {"mood": "heavy_shadow"}, tmp, src, 6.0)
+    assert src.exists(), "no probe audio available"
+    # same audio, different container/name -> same fingerprint
+    shutil.copy(src, config.OUTPUTS / "test_fp_b.mp3")
+    fa = music.audio_fingerprint(src)
+    fb = music.audio_fingerprint(config.OUTPUTS / "test_fp_b.mp3")
+    assert fa and fb and fa == fb, f"same audio gave different hashes: {fa} vs {fb}"
+
+    # 3. the guard rejects a known-used fingerprint and allows a fresh one
+    assert music.track_is_duplicate(src, {"used_track_hashes": [{"hash": fa}]}) is True
+    assert music.track_is_duplicate(src, {"used_track_hashes": []}) is False
+    assert music.track_is_duplicate(src, {}) is False
+    # an unfingerprintable path must NOT be treated as a duplicate (fail open, so a
+    # transient ffmpeg problem cannot wedge the pipeline)
+    assert music.track_is_duplicate(config.OUTPUTS / "nope_missing.mp3",
+                                    {"used_track_hashes": [{"hash": fa}]}) is False
+
+    # 4. the two real published reels must NOT be reported as different audio —
+    #    i.e. the guard would have caught them. Uses the measured hashes.
+    real_a = music.audio_fingerprint("/tmp/r1_a.wav") if Path("/tmp/r1_a.wav").exists() else ""
+    real_b = music.audio_fingerprint("/tmp/r2_a.wav") if Path("/tmp/r2_a.wav").exists() else ""
+    if real_a and real_b:
+        assert real_a == real_b, "the shipped duplicate pair no longer matches?"
+
+
 if __name__ == "__main__":
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_") and callable(v)]
     failed = 0

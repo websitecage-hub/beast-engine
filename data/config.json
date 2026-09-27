@@ -3,7 +3,7 @@
     "name": "Unleash The Beast",
     "handle": "unleashthe.b",
     "meaning": "The real person under the mask. Not aggression, not grind. The self buried under years of small retreats who still wants to be known.",
-    "voice": "Describe, never advise. Present tense, second person, his language \u2014 never a psychologist's. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
+    "voice": "Describe, never advise. Present tense, second person, his language — never a psychologist's. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
     "hook_examples": [
       "You know exactly what to say. You say nothing. Again.",
       "The conversation ends. The trial begins.",
@@ -168,6 +168,38 @@
       "rock": " cinematic",
       "rnb": " moody",
       "lofi": " slowed reverb dark"
+    },
+    "query_hints": {
+      "quiet_devastating": [
+        "dark ambient reverb drone instrumental",
+        "slow cinematic sub bass no drums",
+        "night reverb ambient texture",
+        "deep atmospheric drone loop"
+      ],
+      "heavy_shadow": [
+        "dark drone ambient instrumental",
+        "slow sub bass cinematic no drums",
+        "brooding ambient texture loop",
+        "deep dark pad drone"
+      ],
+      "muffled_world": [
+        "muffled reverb ambient instrumental",
+        "distant slowed ambient drone",
+        "underwater reverb texture",
+        "soft muted dark ambient loop"
+      ],
+      "restrained_anger": [
+        "slow dark instrumental tension",
+        "low phonk instrumental no vocals",
+        "tense cinematic drone",
+        "dark restrained ambient loop"
+      ],
+      "gentle_hope": [
+        "slow ambient build instrumental",
+        "cinematic hope drone soft",
+        "gentle dark ambient swell",
+        "warm reverb pad cinematic"
+      ]
     }
   },
   "posting_slots_utc": [
@@ -288,7 +320,7 @@
       ]
     },
     "name_field": "Unleash The Beast | Social Anxiety Help",
-    "bio_template": "Overcoming social anxiety. Real posts for the ones who overthink every conversation. The book that gets it \u2192 link below.",
+    "bio_template": "Overcoming social anxiety. Real posts for the ones who overthink every conversation. The book that gets it → link below.",
     "hashtags_min": 6,
     "hashtags_max": 9
   },

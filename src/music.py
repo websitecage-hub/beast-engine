@@ -25,6 +25,75 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
 PIXABAY_MP3_RE = re.compile(r"https://cdn\.pixabay\.com/audio/[^\"'\s]+\.mp3")
 _woken = False
 
+# How many past tracks to remember, and how many query variants to try before
+# concluding the palette is exhausted.
+TRACK_MEMORY_DAYS = 30
+QUERY_VARIANTS = 6
+
+
+def audio_fingerprint(path) -> str:
+    """sha256 of the decoded PCM. Identity by CONTENT, not by URL or filename.
+
+    The same track arrives by many routes (a different URL, a re-encoded mp3, a
+    shortened clip), so URL-only memory silently fails to notice a repeat. The
+    fingerprint is computed after decoding to raw PCM, which normalises container and
+    bitrate: the same music gives the same hash.
+    """
+    import hashlib
+    try:
+        r = subprocess.run(
+            ["ffmpeg", "-v", "error", "-i", str(path), "-t", "20",
+             "-f", "s16le", "-ac", "1", "-ar", "11025", "-"],
+            capture_output=True, timeout=120)
+        if r.returncode != 0 or not r.stdout:
+            return ""
+        return hashlib.sha256(r.stdout).hexdigest()[:32]
+    except Exception:  # noqa: BLE001
+        return ""
+
+
+def _used_fingerprints(memory) -> set:
+    out = set()
+    for e in (memory.get("used_track_hashes") or []):
+        h = e.get("hash") if isinstance(e, dict) else str(e)
+        if h:
+            out.add(h)
+    return out
+
+
+def _query_variants(cfg, mood: str) -> list:
+    """Ordered, distinct queries for a mood. Index 0 is the canonical palette query.
+
+    Why this exists: the verification queue resolved every reel through one query
+    ('slow dark ambient reverb deep sub bass'), so the service returned the SAME
+    track for two consecutive posts — measured at correlation +1.0000 and spectral
+    distance 0.0000. One query is one result set; several queries is a palette.
+    """
+    music = (cfg.get("music") or {})
+    base = _spec5_safe_query(cfg, mood)
+    out = [base]
+    hints = (music.get("query_hints") or {})
+    for q in (hints.get(mood) or hints.get("_default") or []):
+        q = str(q).strip()
+        if not q or _spec5_violates(q, cfg):
+            continue
+        if q.lower() not in {o.lower() for o in out}:
+            out.append(q)
+    # a tempo/colour suffix keeps the family but changes the result set
+    for suffix in ("instrumental", "no drums", "cinematic loop", "slow tempo"):
+        q = f"{base} {suffix}".strip()
+        if not _spec5_violates(q, cfg) and q.lower() not in {o.lower() for o in out}:
+            out.append(q)
+    return out[:QUERY_VARIANTS]
+
+
+def track_is_duplicate(track_mp3, memory) -> bool:
+    """True when this exact audio has been used recently."""
+    h = audio_fingerprint(track_mp3)
+    if not h:
+        return False        # cannot fingerprint -> do not block on a guess
+    return h in _used_fingerprints(memory)
+
 
 # ---------------------------------------------------------------- helpers
 
@@ -45,23 +114,62 @@ def wake(api: str, retries: int = 6, wait: float = 15.0) -> bool:
 
 
 def ffprobe_duration(path) -> float:
+    """Duration in seconds, or 0.0. Falls back to parsing `ffmpeg -i`.
+
+    ffprobe is NOT always installed alongside ffmpeg (the imageio-ffmpeg wheel ships
+    only the ffmpeg binary, and some slim CI images omit ffprobe). The pipeline must
+    not depend on a tool that may be absent, so if ffprobe is unavailable or fails we
+    read the same information out of ffmpeg's stderr banner.
+    """
     try:
         out = subprocess.run(
             ["ffprobe", "-v", "error", "-show_entries", "format=duration",
              "-of", "default=nw=1:nk=1", str(path)],
             capture_output=True, text=True, timeout=60)
-        return float(out.stdout.strip())
+        val = float(out.stdout.strip())
+        if val > 0:
+            return val
+    except Exception:  # noqa: BLE001
+        pass
+    return _duration_via_ffmpeg(path)
+
+
+def _duration_via_ffmpeg(path) -> float:
+    """Parse 'Duration: HH:MM:SS.ss' from `ffmpeg -i <file>` (which exits non-zero)."""
+    try:
+        r = subprocess.run(["ffmpeg", "-i", str(path)], capture_output=True,
+                           text=True, timeout=60)
+        m = re.search(r"Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)",
+                      (r.stderr or "") + (r.stdout or ""))
+        if not m:
+            return 0.0
+        h, mi, s = m.groups()
+        return int(h) * 3600 + int(mi) * 60 + float(s)
     except Exception:  # noqa: BLE001
         return 0.0
 
 
 def has_audio_stream(path) -> bool:
+    """True when the file has an audio stream. Falls back to ffmpeg parsing.
+
+    ffprobe is not guaranteed to exist alongside ffmpeg (imageio-ffmpeg ships only
+    ffmpeg; slim CI images omit it). When ffprobe fails we ask ffmpeg instead, so a
+    missing probe binary degrades to "parse the banner" rather than "no audio".
+    """
     try:
         out = subprocess.run(
             ["ffprobe", "-v", "error", "-select_streams", "a",
              "-show_entries", "stream=codec_type", "-of", "csv=p=0", str(path)],
             capture_output=True, text=True, timeout=60)
-        return "audio" in out.stdout
+        if out.stdout and "audio" in out.stdout:
+            return True
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        r = subprocess.run(["ffmpeg", "-i", str(path)], capture_output=True,
+                           text=True, timeout=60)
+        txt = (r.stderr or "") + (r.stdout or "")
+        return bool(re.search(r"Stream #\d+:\d+.*?: Audio:", txt))
     except Exception:  # noqa: BLE001
         return False
 
@@ -354,33 +462,49 @@ def song_provider(cfg, content, memory, track_mp3, track_wav, duration_s: float)
     music["_song_title"] = query
     title = query
 
-    try:
-        wake(api)
-        raw = _song_by_title(api, title)
-        if not raw and title != _spec5_safe_query(cfg, mood):
-            # the mood-specific phrasing found nothing; fall back to the base
-            # palette query before giving up on this tier entirely
-            title = _spec5_safe_query(cfg, mood)
-            raw = _song_by_title(api, title)
+    # One query is one result set. The service resolved both of the last two reels
+    # through the same canonical phrase and returned byte-identical audio (measured
+    # correlation +1.0000), so walk several queries and reject anything already used.
+    variants = _query_variants(cfg, mood)
+    if title not in variants:
+        variants.insert(0, title)
+
+    last_reason = ""
+    for vi, q in enumerate(variants):
+        try:
+            wake(api)
+            raw = _song_by_title(api, q)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[music] /v1/song failed ({q!r}): {exc}")
+            continue
         if not raw:
-            return False, {}
-    except Exception as exc:  # noqa: BLE001
-        print(f"[music] /v1/song failed: {exc}")
-        return False, {}
-
-    tmp = config.OUTPUTS / "song_dl.bin"
-    tmp.write_bytes(raw)
-    if not any(c.exists() and to_mp3(c, track_mp3)
-               for c in (tmp, config.OUTPUTS / "song_dl.webm")):
-        return False, {}
-
-    if not has_audio_stream(track_mp3) or ffprobe_duration(track_mp3) < 5:
-        return False, {}
-    if not mood_matches(mood, track_mp3):
-        return False, {}
-    to_wav(track_mp3, track_wav)
-    return True, {"music_source": "song", "music_query": title,
-                  "music_mood": mood, "duration_s": ffprobe_duration(track_mp3)}
+            continue
+        tmp = config.OUTPUTS / "song_dl.bin"
+        tmp.write_bytes(raw)
+        if not any(c.exists() and to_mp3(c, track_mp3)
+                   for c in (tmp, config.OUTPUTS / "song_dl.webm")):
+            continue
+        if not has_audio_stream(track_mp3) or ffprobe_duration(track_mp3) < 5:
+            last_reason = "too short / no audio"
+            continue
+        if not mood_matches(mood, track_mp3):
+            last_reason = "mood mismatch"
+            continue
+        # THE repeat guard: refuse audio we have already published, regardless of the
+        # URL or filename it arrived under.
+        fp = audio_fingerprint(track_mp3)
+        if fp and fp in _used_fingerprints(memory):
+            last_reason = "already used (fingerprint match)"
+            print(f"[music] rejected duplicate track via {q!r}")
+            continue
+        if not to_wav(track_mp3, track_wav):
+            continue
+        return True, {"music_source": "song", "music_query": q,
+                      "music_mood": mood, "duration_s": ffprobe_duration(track_mp3),
+                      "fingerprint": fp, "query_index": vi}
+    if last_reason:
+        print(f"[music] song tier exhausted: {last_reason}")
+    return False, {}
 
 
 def _song_by_title(api: str, title: str) -> bytes | None:
@@ -479,10 +603,16 @@ def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_m
             continue
         if not mood_matches(mood, track_mp3):
             continue                      # tempo/silence mismatch — try the next one
+        # same content-level repeat guard as the song tier
+        fp = audio_fingerprint(track_mp3)
+        if fp and fp in _used_fingerprints(memory):
+            print(f"[music] rejected duplicate track ({source}): {url[:70]}")
+            continue
         if not to_wav(track_mp3, track_wav):
             continue
         return True, {"music_source": "trending_free", "url": url, "source_site": source,
-                      "acquired_via": got, "query": full_query, "trending_ref": trending_ref}
+                      "acquired_via": got, "query": full_query, "trending_ref": trending_ref,
+                      "fingerprint": fp}
     return False, {}
 
 
@@ -513,8 +643,12 @@ def library_provider(cfg, content, memory, track_mp3, track_wav, duration_s: flo
         capture_output=True, text=True, timeout=300)
     if r.returncode != 0 or not has_audio_stream(track_mp3):
         return False, {}
+    fp = audio_fingerprint(track_mp3)
+    if fp and fp in _used_fingerprints(memory):
+        return False, {}
     to_wav(track_mp3, track_wav)
-    return True, {"music_source": "library", "track": pick.get("file")}
+    return True, {"music_source": "library", "track": pick.get("file"),
+                  "fingerprint": fp}
 
 
 def drone_provider(cfg, content, track_mp3, track_wav, duration_s: float):

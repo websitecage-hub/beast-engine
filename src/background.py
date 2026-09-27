@@ -12,6 +12,7 @@ Cinematic treatment (spec §3):
 from __future__ import annotations
 
 import random
+import re
 import subprocess
 from pathlib import Path
 
@@ -196,11 +197,25 @@ def pick_clip(results: list, used: set):
 # ------------------------------------------------------------ processing
 
 def _probe_duration(path: Path) -> float:
+    """Duration via ffprobe, falling back to parsing `ffmpeg -i` (ffprobe may be absent)."""
     try:
         r = subprocess.run(["ffprobe", "-v", "error", "-show_entries",
                             "format=duration", "-of", "default=nw=1:nk=1", str(path)],
                            capture_output=True, text=True, timeout=60)
-        return float((r.stdout or "0").strip() or 0)
+        val = float((r.stdout or "0").strip() or 0)
+        if val > 0:
+            return val
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        r = subprocess.run(["ffmpeg", "-i", str(path)], capture_output=True,
+                           text=True, timeout=60)
+        m = re.search(r"Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)",
+                      (r.stderr or "") + (r.stdout or ""))
+        if not m:
+            return 0.0
+        h, mi, s = m.groups()
+        return int(h) * 3600 + int(mi) * 60 + float(s)
     except Exception:  # noqa: BLE001
         return 0.0
 
