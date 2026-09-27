@@ -1,515 +1,387 @@
-"""generate.py — content strategist: 10 candidates -> judge -> dedup -> explore/exploit.
+"""generate.py — the text engine driver.
 
-v5.0 THE COMPLETE MIND: the system prompt is src/mind.py (Part 8 directive +
-evidence library + calibration examples). Candidates are script pieces
-(hook / deepening x2 / landing) mapped onto 2-3 static text blocks. Character
-limits, laws, loop echo and variety are enforced in code, not merely requested.
+ONE call to the Meta LLM with mind.SYSTEM_PROMPT produces the reel's entire
+payload: onscreen_text, caption, keyword, topic. That is the whole content
+pipeline now — there is no candidate/judge/dedup tournament and no caption
+assembly step, because the model writes the final caption including hashtags.
+
+What this module still enforces in CODE (never trusting the model):
+  * on-screen line count within the spec's 6-9 target (5-10 absolute bounds)
+  * no "I"/"we" in on-screen text; no emojis; no hashtags on screen
+  * the CTA line exists and carries the chosen keyword
+  * the keyword is one of the DM-automation keywords and never repeats
+    consecutively (the account's automation only fires on those words)
+  * hashtags: 5-7, from the sanctioned pool
+  * cluster / bg_type / mood / scene are derived from the keyword so the footage
+    matches the story
+
+Everything the downstream video pipeline needs is stored in content.json.
 """
 from __future__ import annotations
 
-import difflib
 import json
-import random
-from datetime import timedelta
-from pathlib import Path
+import re
 
 from . import config, llm, mind, seo
 
 SYSTEM_PROMPT = mind.SYSTEM_PROMPT
 
-BANNED_PHRASES = ("advice", "follow these", "try this", "you should", "stop doing",
-                  "start doing", "grind", "hustle", "sigma", "discipline >>>",
-                  "social anxiety", "socially anxious", "anxiety disorder",
-                  "just do it", "believe in yourself", "you got this",
-                  "share this", "send this to", "link in bio", "comment below")
-DEDUP_RATIO = 0.7
-HOOK_WINDOW_DAYS = 90
-PAIR_WINDOW_DAYS = 7
-CORPUS_PATH = config.ROOT / "data" / "research" / "corpus.json"
-CORPUS_SAMPLE = 12
+# The caption must close with hashtags drawn from this pool (spec §4). The last three
+# appear in the spec's own examples, so they are legal too.
+HASHTAG_POOL = [
+    "socialanxiety", "overthinking", "socialanxietystruggles", "anxietyproblems",
+    "introvertstruggles", "latenightthoughts", "mentalhealthmatters", "socialskills",
+    "anxietysupport", "quietpeople", "overthinkers", "socialanxietyproblems",
+    "deepthinkers", "phoneanxiety", "2amthoughts", "introvertproblems",
+]
+HASHTAGS_MIN, HASHTAGS_MAX = 5, 7
+
+MIN_LINES, MAX_LINES = 5, 10      # spec §8.8 absolute bounds
+TARGET_LINES = (6, 9)             # spec §3 target
+
+BANNED_THERAPY = ("journey", "healing", "trauma", "toxic")
+BANNED_CTA = ("link in bio", "save this", "share this", "comment below")
+EMOJI = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\uFE0F]")
 
 OFFLINE_CONTENT = {
-    "hook": "You know exactly what to say. You say nothing. Again.",
-    "deepening": ["You ran the conversation on the walk over. Word for word.",
-                  "Then the moment came — and your body filed for silence."],
-    "landing": "It was never a knowledge problem.",
-    "cluster": "the_freeze",
-    "archetype": "the_freeze",
-    "topic": "freeze_at_work",
-    "mood": "quiet_devastating",
-    "bg_type": "freeze",
-    "loop_technique": "visual_echo",
-    "scene": "empty street rain night video",
-    "rationale": "offline fixture",
-    "exploit": True,
-    "is_hope": False,
+    "onscreen_text": (
+        "POV: you answered the phone instead of letting it ring out.\n"
+        "Your voice came out too fast and too high.\n"
+        "You said sorry twice for nothing at all.\n"
+        "Then you talked over them and went quiet.\n"
+        "You spent the rest of the day re-reading it.\n"
+        "You're not broken. Your body just never learned that a phone was safe.\n"
+        "Comment QUIET and I'll send you the full breakdown."
+    ),
+    "caption": (
+        "You didn't do anything wrong on that call.\n\n"
+        "The speed, the pitch, the two apologies — that's a nervous system "
+        "responding to a threat it invented. Not a personality flaw.\n\n"
+        "If this is you, you're not alone.\n\n"
+        "Comment QUIET and I'll send you the full breakdown.\n\n"
+        "#socialanxiety #phoneanxiety #overthinking #socialanxietystruggles #quietpeople"
+    ),
+    "keyword": "QUIET",
+    "topic": "phone call avoidance",
 }
 
 
-# ------------------------------------------------------------------ corpus
+# ------------------------------------------------------------------ validation
 
-def load_corpus(limit: int = 0) -> list:
-    if not CORPUS_PATH.exists():
-        return []
-    try:
-        posts = json.loads(CORPUS_PATH.read_text(encoding="utf-8"))
-    except Exception:  # noqa: BLE001
-        return []
-    out = []
-    for p in posts:
-        title = str(p.get("title") or "").strip()
-        text = str(p.get("text") or "").strip()
-        if not title and not text:
-            continue
-        out.append({"sub": p.get("sub", ""), "title": title, "text": text[:400]})
-    return out[:limit] if limit else out
+def _clean(text) -> str:
+    return " ".join(str(text or "").replace("\r", "").split())
 
 
-def _corpus_sample() -> list:
-    posts = load_corpus()
-    if not posts:
-        return []
-    return random.sample(posts, min(CORPUS_SAMPLE, len(posts)))
+def _lines(onscreen: str) -> list:
+    """On-screen lines, preserving the model's intended breaks."""
+    raw = str(onscreen or "").replace("\r", "").split("\n")
+    return [ln.strip() for ln in raw if ln.strip()]
 
 
-# --------------------------------------------------------------- prompting
-
-def _top_weighted(strategy: dict, family: str) -> str:
-    weights = (strategy.get("weights") or {}).get(family) or {}
-    if not weights:
-        return ""
-    return max(weights.items(), key=lambda kv: kv[1])[0]
-
-
-def _recent_hooks(memory, cfg, days=HOOK_WINDOW_DAYS) -> list:
-    cutoff = config.today_utc() - timedelta(days=days)
-    out = []
-    for h in memory.get("used_hooks", []):
-        if isinstance(h, dict):
-            try:
-                if config.date.fromisoformat(str(h.get("date"))[:10]) >= cutoff:
-                    out.append(str(h.get("hook", "")))
-            except Exception:  # noqa: BLE001
-                out.append(str(h.get("hook", "")))
-        else:
-            out.append(str(h))
-    return [h for h in out if h]
-
-
-def _recent_pairs(memory, days=PAIR_WINDOW_DAYS) -> set:
-    cutoff = config.today_utc() - timedelta(days=days)
-    pairs = set()
-    for h in memory.get("used_hooks", []):
-        if isinstance(h, dict):
-            try:
-                if config.date.fromisoformat(str(h.get("date"))[:10]) >= cutoff:
-                    pairs.add((h.get("archetype"), h.get("topic")))
-            except Exception:  # noqa: BLE001
-                continue
-    return pairs
-
-
-def _similar(a: str, b: str) -> float:
-    return difflib.SequenceMatcher(None, (a or "").lower().strip(),
-                                   (b or "").lower().strip()).ratio()
-
-
-def build_user_prompt(cfg, strategy, memory, directives, force_hope=False) -> str:
-    lean = {fam: _top_weighted(strategy, fam) for fam in
-            ("archetype", "topic", "mood", "bg_type", "loop_technique")}
-    past = _recent_hooks(memory, cfg)[-40:]
-    n_posts = int(memory.get("post_counter", 0))
-    lim = cfg["text_limits"]
-    return json.dumps({
-        "task": ("Write exactly 10 distinct reel scripts for one specific person "
-                  "(see the mind). Each is HOOK + 2 DEEPENING blocks + LANDING." +
-                  (" THIS BATCH IS THE QUIET HOPE BATCH: recovery as distance "
-                    "traveled, never commands." if force_hope
-                    else " AT MOST ONE candidate may be is_hope=true.")),
-        "strategy_lean": lean,
-        "clusters": cfg["archetypes"],
-        "topics": cfg["topics"],
-        "moods": cfg["moods"],
-        "bg_types": list(cfg["bg_types"].keys()),
-        "loop_techniques": config.LOOP_TECHNIQUES,
-        "character_limits": lim,
-        "calibration_examples": cfg["brand"].get("hook_examples") or [],
-        "real_posts_from_his_people": _corpus_sample(),
-        "banned_hooks_do_not_reuse": past,
-        "hope_quota_note": (f"post_counter={n_posts}; hope allowed roughly 1 in "
-                            f"{cfg.get('hope_every_n_posts', 10)} posts"),
-        "weekly_directives": directives or "none",
-        "rules": [
-            f"hook <= {lim['hook']} chars, each deepening <= {lim['deepening']} chars, "
-            f"landing <= {lim['landing']} chars (enforced in code)",
-            "the landing must ECHO the hook so the reel loops invisibly",
-            "scene/bg_type: the location of the feeling (dark cinematic video)",
-            "exploit the strategy_lean values unless you have a strong reason not to",
-            "banned: advice, tips, the word just, grind/hustle/sigma/money, selling, "
-            "share-begging, toxic positivity, confirming the flaw, emoji, hashtags",
-            "use real_posts as feeling calibration — never copy their sentences",
-            "vary the openings across the batch; never ten 'You ...' hooks",
-        ],
-        "output_schema": {
-            "candidates": [{
-                "hook": "<=50 chars",
-                "deepening": ["<=80 chars", "<=80 chars (may send only one)"],
-                "landing": "<=60 chars, echoes the hook",
-                "cluster": "one of clusters", "topic": "one of topics",
-                "mood": "one of moods", "bg_type": "one of bg_types",
-                "loop_technique": "visual_echo | audio_echo | mid_thought",
-                "is_hope": False,
-                "rationale": "why this triggers 'this is exactly [friend's name]'",
-            }]
-        },
-    }, ensure_ascii=False)
-
-
-def judge(candidates: list) -> list:
-    payload = json.dumps({
-        "task": ("Score each reel script for an account whose ONLY success metric is "
-                 "saves + sends-per-reach from one specific socially anxious young "
-                 "man. A save means 'this is me'; a share means 'this is YOU, I'm "
-                 "sending it to you'."),
-        "score_dimensions": ["hook specificity ('this is exactly [friend's name]')",
-                             "save-worthiness (it IS him)",
-                             "send-worthiness (forwardable to the one friend)",
-                             "law compliance (no advice, no 'just', no flaw-confirming)",
-                             "landing strength + how well it echoes the hook for the loop"],
-        "candidates": [{"index": i, "hook": c.get("hook"),
-                        "deepening": c.get("deepening"), "landing": c.get("landing"),
-                        "cluster": c.get("cluster")}
-                       for i, c in enumerate(candidates)],
-        "output_schema": {"scores": [{"index": 0, "score": 1, "reason": "string"}]},
-    }, ensure_ascii=False)
-    try:
-        out = llm.chat([{"role": "system", "content": SYSTEM_PROMPT},
-                        {"role": "user", "content": payload}], expect_json=True, retries=2)
-    except Exception:  # noqa: BLE001
-        out = llm.chat([{"role": "system", "content": SYSTEM_PROMPT},
-                        {"role": "user", "content": payload}], expect_json=True, retries=1)
-    scores = (out or {}).get("scores") or []
-    cleaned = []
-    for s in scores:
-        try:
-            cleaned.append({"index": int(s["index"]), "score": float(s["score"]),
-                            "reason": str(s.get("reason", ""))})
-        except Exception:  # noqa: BLE001
-            continue
-    if not cleaned:
-        raise RuntimeError("judge returned no parseable scores")
-    return cleaned
-
-
-# ------------------------------------------------------------ law gates
-
-def _clean_q(text) -> str:
-    return " ".join(str(text or "").split()).strip().strip('"').strip("'").strip()
-
-
-def text_pieces(cand: dict) -> list:
-    """Ordered text blocks for the reel: hook, deepening..., landing (2-3 blocks)."""
-    pieces = [_clean_q(cand.get("hook"))]
-    deep = [_clean_q(d) for d in (cand.get("deepening") or [])]
-    pieces += [d for d in deep if d]
-    pieces.append(_clean_q(cand.get("landing")))
-    return [p for p in pieces if p]
-
-
-def _laws_ok(text: str) -> tuple:
-    """Law gate on any text block. Returns (ok, reason)."""
-    low = " " + text.lower() + " "
-    if " just " in low or " just." in low or " just," in low:
-        return False, "'just' appears"
-    for phrase in BANNED_PHRASES:
+def onscreen_problems(onscreen: str, keyword: str) -> list:
+    """Every reason the on-screen text would be rejected. Empty list == good."""
+    problems: list = []
+    lines = _lines(onscreen)
+    if not lines:
+        return ["on-screen text is empty"]
+    if len(lines) < MIN_LINES:
+        problems.append(f"{len(lines)} lines (need >= {MIN_LINES})")
+    if len(lines) > MAX_LINES:
+        problems.append(f"{len(lines)} lines (need <= {MAX_LINES})")
+    body = " ".join(lines)
+    low = body.lower()
+    # spec §8.1 — second person only. A bare "I " / "we " is a violation; "I'll" is
+    # the mandated CTA wording and is explicitly required by §3.4, so it is allowed.
+    if re.search(r"\b(i|we|our|my|us)\b(?!')", low):
+        problems.append("first person in on-screen text")
+    if EMOJI.search(body):
+        problems.append("emoji in on-screen text")
+    if "#" in body:
+        problems.append("hashtag in on-screen text")
+    for phrase in BANNED_THERAPY:
         if phrase in low:
-            return False, f"banned phrase: {phrase}"
-    if "!" in text:
-        return False, "exclamation mark"
-    return True, ""
+            problems.append(f"therapy-speak: {phrase}")
+    if "!" in body:
+        problems.append("exclamation mark")
+    for phrase in ("link in bio", "save this"):
+        if phrase in low:
+            problems.append(f"banned phrase: {phrase}")
+    # §3.4 — the CTA line must exist and carry the keyword the automation listens for.
+    cta = [ln for ln in lines if "comment" in ln.lower() and "breakdown" in ln.lower()]
+    if not cta:
+        problems.append("no CTA line")
+    elif keyword.lower() not in cta[-1].lower():
+        problems.append(f"CTA line does not contain keyword {keyword!r}")
+    return problems
 
 
-def _limits_ok(cand: dict, cfg) -> tuple:
-    lim = cfg["text_limits"]
-    hook = _clean_q(cand.get("hook"))
-    deep = [_clean_q(d) for d in (cand.get("deepening") or []) if _clean_q(d)]
-    landing = _clean_q(cand.get("landing"))
-    if not hook or not landing:
-        return False, "missing hook or landing"
-    if len(hook) > lim["hook"]:
-        return False, f"hook {len(hook)} > {lim['hook']} chars"
-    if not (1 <= len(deep) <= 2):
-        return False, f"deepening blocks = {len(deep)} (want 1-2)"
-    for d in deep:
-        if len(d) > lim["deepening"]:
-            return False, f"deepening {len(d)} > {lim['deepening']} chars"
-    if len(landing) > lim["landing"]:
-        return False, f"landing {len(landing)} > {lim['landing']} chars"
-    for piece in [hook] + deep + [landing]:
-        if len(piece.split()) < 2:
-            return False, f"fragment too short: {piece!r}"
-        ok, why = _laws_ok(piece)
-        if not ok:
-            return False, why
-    return True, ""
-
-
-def _echo_score(cand: dict) -> float:
-    """How much the landing shares with the hook (Part 4.2 loop).
-
-    ADVISORY ONLY — Part 6's own calibration example (hook: "The conversation
-    ends. The trial begins." / landing: "You've been cross-examining yourself
-    since school.") shares no words, so lexical overlap can never be a hard
-    gate. The loop is guaranteed structurally instead: the landing is rendered
-    in the hook's font, size and anchor position, and the final frame's text
-    position is compared against the first frame in the QA stamp check.
-    """
-    hook, landing = _clean_q(cand.get("hook")), _clean_q(cand.get("landing"))
-    if not hook or not landing:
-        return 0.0
-    stop = {"you", "your", "the", "a", "an", "and", "it", "is", "was", "to", "of",
-            "in", "that", "this", "for", "on", "with", "as", "at", "be", "not", "again"}
-    hw = {w.strip(".,'\"—").lower() for w in hook.split()} - stop
-    lw = {w.strip(".,'\"—").lower() for w in landing.split()} - stop
-    if not hw:
-        return 1.0
-    return len(hw & lw) / max(len(hw), 1)
-
-
-def _valid(cand: dict, cfg) -> bool:
-    ok, _why = _limits_ok(cand, cfg)
-    if not ok:
-        return False
-    cluster = cand.get("cluster") or cand.get("archetype")
-    if cluster not in cfg["archetypes"]:
-        return False
-    if cand.get("topic") not in cfg["topics"]:
-        return False
-    if cand.get("mood") not in cfg["moods"]:
-        return False
-    if cand.get("bg_type") not in cfg["bg_types"]:
-        return False
-    if cand.get("loop_technique") not in config.LOOP_TECHNIQUES:
-        return False
-    return True
-
-
-def _dedup_ok(cand: dict, banned: list, recent_pairs: set) -> bool:
-    hook = _clean_q(cand.get("hook"))
-    if any(_similar(hook, b) > DEDUP_RATIO for b in banned):
-        return False
-    cluster = cand.get("cluster") or cand.get("archetype")
-    if (cluster, cand.get("topic")) in recent_pairs:
-        return False
-    return True
-
-
-def _opening_pattern(text: str) -> str:
-    low = _clean_q(text).lower()
-    if low.startswith("you "):
-        return "you"
-    if low.startswith("there"):
-        return "there"
-    for starter in ("two years", "three years", "last year", "years ago", "tonight",
-                    "at 2am", "some nights", "every morning", "same cafe", "each time",
-                    "the "):
-        if low.startswith(starter):
-            return "scene"
-    return "other"
-
-
-def diversify(candidates: list, max_per_cluster: int = 3,
-              max_per_opening: int = 5) -> list:
-    """Cap cluster + opening-pattern repetition before judging (Part: variety)."""
-    c_counts, o_counts, kept = {}, {}, []
-    for c in candidates:
-        cl = c.get("cluster") or c.get("archetype")
-        op = _opening_pattern(_clean_q(c.get("hook")))
-        if c_counts.get(cl, 0) >= max_per_cluster:
-            continue
-        if o_counts.get(op, 0) >= max_per_opening:
-            continue
-        c_counts[cl] = c_counts.get(cl, 0) + 1
-        o_counts[op] = o_counts.get(op, 0) + 1
-        kept.append(c)
-    return kept or candidates
-
-
-# ------------------------------------------------------------ assembly
-
-def _hashtags(cfg, memory, topic: str = "", on_screen_text: str = "") -> list:
-    """SEO §4: 1-2 branded + 3-4 primary + 2-3 long-tail, matched to this reel.
-
-    Falls back to the legacy broad/medium/niche pools only if the SEO pool is absent,
-    so an older config.json still generates something usable.
-    """
-    if "seo" in cfg or not cfg.get("hashtag_pools", {}).get("broad"):
-        return seo.build_hashtags(topic=topic, on_screen_text=on_screen_text)
-    pools = cfg["hashtag_pools"]
-    tags = []
-    tags += random.sample(pools["broad"], min(random.randint(3, 5), len(pools["broad"])))
-    tags += random.sample(pools["medium"], min(random.randint(5, 8), len(pools["medium"])))
-    tags += random.sample(pools["niche"], min(random.randint(5, 8), len(pools["niche"])))
-    seen, out = set(), []
+def caption_problems(caption: str, keyword: str) -> list:
+    problems: list = []
+    if not caption.strip():
+        return ["caption is empty"]
+    low = caption.lower()
+    if EMOJI.search(caption):
+        problems.append("emoji in caption")
+    for phrase in BANNED_CTA:
+        if phrase in low:
+            problems.append(f"banned phrase: {phrase}")
+    tags = extract_hashtags(caption)
+    if not (HASHTAGS_MIN <= len(tags) <= HASHTAGS_MAX):
+        problems.append(f"{len(tags)} hashtags (need {HASHTAGS_MIN}-{HASHTAGS_MAX})")
     for t in tags:
-        tl = t.lower()
-        if tl not in seen:
-            seen.add(tl)
-            out.append(tl)
-    return out[:20]
+        if t.lstrip("#") not in HASHTAG_POOL:
+            problems.append(f"hashtag off-pool: {t}")
+    paras = [p for p in caption.split("\n\n") if p.strip()]
+    if len(paras) > 5:                      # 4 short paragraphs + the tag line
+        problems.append(f"{len(paras)} caption paragraphs (max 4 + tags)")
+    if keyword and keyword.lower() not in low:
+        problems.append(f"caption missing keyword {keyword!r}")
+    return problems
 
 
-def _build_caption(cfg, hook: str, landing: str, include_whisper: bool,
-                   is_hope: bool, *, body: str = "", topic: str = "",
-                   on_screen_text: str = "", hashtags: list | None = None) -> str:
-    """SEO §3: keyword-first caption that still reads like a person wrote it.
+def extract_hashtags(caption: str) -> list:
+    return re.findall(r"#[A-Za-z0-9_]+", caption or "")
 
-    Law 12: no share-CTA language ever. Law 11: the rare whisper line only.
+
+def pick_keyword(memory: dict, preferred: str = "") -> str:
+    """The keyword for today. Never the same as the last reel's.
+
+    Only keywords wired to the DM automation may be used — a keyword nobody has a
+    rule for means the commenter never gets the breakdown.
     """
-    cap = seo.build_caption(
-        hook, body, landing,
-        topic=topic, on_screen_text=on_screen_text, hashtags=hashtags,
-        include_whisper=include_whisper,
-        whisper_line=cfg.get("whisper_line", ""),
-    )
-    if is_hope:
-        cap = cap.replace("\n\n", "\n\n(quiet hope)\n\n", 1)
-    return cap[:2200]
+    last = str((memory.get("last_keyword") or "")).strip().upper()
+    pref = (preferred or "").strip().upper()
+    if pref in mind.KEYWORDS and pref != last:
+        return pref
+    pool = [k for k in mind.KEYWORDS if k != last]
+    # Prefer keywords we have used least, so all of them stay in rotation.
+    counts = memory.get("keyword_counts") or {}
+    pool.sort(key=lambda k: (counts.get(k, 0), mind.KEYWORDS.index(k)))
+    return pool[0] if pool else mind.KEYWORDS[0]
 
 
-def generate(dry_run: bool = False, offline: bool = False) -> dict:
-    cfg = config.load_config()
-    strategy = config.load_strategy()
-    memory = config.load_memory()
-    directives = config.load_directives()
+# ------------------------------------------------------------------ assembly
 
-    if offline:
-        content = dict(OFFLINE_CONTENT)
-        content["blocks"] = text_pieces(content)
-        content["bg_is_video"] = False
-        content["bg_source"] = "bundled"
-        content["music_source"] = "drone"
-        content["trending_ref"] = {"title": "", "artist": "", "genre": "", "trend_score": None}
-        on_screen = " ".join(content.get("blocks") or [])
-        content["on_screen_text"] = on_screen
-        tags = _hashtags(cfg, memory, topic=content.get("topic", ""),
-                         on_screen_text=on_screen)
-        content["caption"] = _build_caption(
-            cfg, content["hook"], content["landing"], False, False,
-            topic=content.get("topic", ""), on_screen_text=on_screen, hashtags=tags)
-        content["hashtags"] = tags
-        content["alt_text"] = seo.build_alt_text(
-            scene=content.get("scene", ""), topic=content.get("topic", ""),
-            hook=content["hook"], on_screen_text=on_screen)
-        content["include_whisper"] = False
-        content["exploit"] = True
-        config.save_content(content)
-        return content
+def _ensure_hashtags(caption: str) -> str:
+    """Pad the tag line to the 5-7 range from the sanctioned pool.
 
-    banned = _recent_hooks(memory, cfg)
-    recent_pairs = _recent_pairs(memory)
-    n_posts = int(memory.get("post_counter", 0))
-    force_hope = (n_posts > 0 and n_posts % int(cfg.get("hope_every_n_posts", 10)) == 0)
+    The model sometimes writes four (its own EXAMPLE 4 does). The spec's range is a
+    hard requirement, so the shortfall is topped up in code rather than re-rolling
+    the whole reel.
+    """
+    tags = extract_hashtags(caption)
+    if len(tags) >= HASHTAGS_MIN:
+        return caption
+    have = {t.lstrip("#") for t in tags}
+    extra = [f"#{t}" for t in HASHTAG_POOL if t not in have][:HASHTAGS_MIN - len(tags)]
+    if not extra:
+        return caption
+    if tags:
+        return caption.rstrip() + " " + " ".join(extra)
+    return caption.rstrip() + "\n\n" + " ".join(extra)
 
-    candidates, scores = [], []
-    for round_no in range(2):
-        raw = llm.chat([{"role": "system", "content": SYSTEM_PROMPT},
-                        {"role": "user", "content": build_user_prompt(
-                            cfg, strategy, memory, directives, force_hope=force_hope)}],
-                       expect_json=True)
-        candidates = [c for c in (raw or {}).get("candidates", []) if isinstance(c, dict)]
-        candidates = [c for c in candidates if _valid(c, cfg)]
-        candidates = diversify(candidates)
-        if not candidates:
-            continue
-        scores = judge(candidates)
-        ranked = sorted((s for s in scores if 0 <= s["index"] < len(candidates)),
-                        key=lambda s: s["score"], reverse=True)
-        top3 = [candidates[s["index"]] for s in ranked[:3]]
-        survivors = [c for c in top3 if _dedup_ok(c, banned, recent_pairs)]
-        if survivors:
+
+def _fix_line_count(onscreen: str) -> str:
+    """Trim toward the 6-9 line target without touching the CTA.
+
+    The model is asked for 6-9 lines and usually complies; when it over-writes the
+    hard bound is 10, and the safest cut is a middle story line — the CTA and the
+    compassion pivot carry the reel's function.
+    """
+    lines = _lines(onscreen)
+    if len(lines) <= MAX_LINES:
+        return "\n".join(lines)
+    cta = [i for i, ln in enumerate(lines)
+           if "comment" in ln.lower() and "breakdown" in ln.lower()]
+    keep_cta = cta[-1] if cta else None
+    while len(lines) > MAX_LINES:
+        cut = None
+        for i in range(1, len(lines) - 1):
+            if i == keep_cta:
+                continue
+            cut = i
             break
-        candidates = []
-    if not candidates or not scores:
-        raise RuntimeError("content generation produced no valid candidates")
-    ranked = sorted((s for s in scores if 0 <= s["index"] < len(candidates)),
-                    key=lambda s: s["score"], reverse=True)
-    alive = [c for c in [candidates[s["index"]] for s in ranked[:3]]
-             if _dedup_ok(c, banned, recent_pairs)]
-    if not alive:
-        raise RuntimeError("all judged candidates rejected by dedup — aborting day (no weak fallback)")
+        if cut is None:
+            break
+        lines.pop(cut)
+        if keep_cta is not None and cut < keep_cta:
+            keep_cta -= 1
+    return "\n".join(lines)
 
-    if random.random() < float(cfg.get("explore_rate", 0.2)):
-        winner = random.choice(candidates)
-        exploit = False
-    else:
-        winner = alive[0]
-        exploit = True
 
-    is_hope = bool(winner.get("is_hope"))
-    if is_hope and not force_hope:
-        non_hope = [c for c in alive if not c.get("is_hope")]
-        if non_hope:
-            winner = non_hope[0]
-            is_hope = False
+def build_user_prompt(directives: str = "", last_keyword: str = "") -> str:
+    """The user message: a plain daily order, plus the account's live keyword list.
 
-    # Law 11 — the whisper, at most 1 in 7
-    include_whisper = (n_posts + 1) % int(cfg.get("whisper_every_n_posts", 7)) == 0
+    The keyword list belongs HERE, not in the system prompt: the spec's §5 examples
+    include words (FREEZE) that are not wired to this account's DM automation, and
+    the spec prompt must stay verbatim. Naming the enabled words in the daily order
+    keeps the CTA pointing at a rule that actually fires.
+    """
+    parts = ["Generate one reel for today."]
+    parts.append(
+        "For this account the CTA keyword MUST be exactly one of: "
+        + ", ".join(mind.KEYWORDS)
+        + ". These are the only words the DM automation listens for, so any other "
+          "keyword means the commenter never receives the breakdown.")
+    if directives:
+        parts.append(f"Operator directive for this reel: {directives}")
+    if last_keyword:
+        parts.append(
+            f"Do not use the keyword {last_keyword}; it was used on the previous "
+            f"reel. Choose a different one from the list above.")
+    return "\n".join(parts)
 
-    hook = _clean_q(winner.get("hook"))
-    landing = _clean_q(winner.get("landing"))
-    cluster = winner.get("cluster") or winner.get("archetype")
-    blocks = text_pieces(winner)
-    # SEO: on-screen text is the whole message now (one always-visible block).
-    on_screen = " ".join(blocks or [])
-    tags = _hashtags(cfg, memory, topic=winner["topic"], on_screen_text=on_screen)
-    content = {
-        "hook": hook,
-        "deepening": [_clean_q(d) for d in (winner.get("deepening") or []) if _clean_q(d)],
-        "landing": landing,
-        "blocks": blocks,
+
+def _retarget_cta(onscreen: str, keyword: str) -> str:
+    """Point the CTA line at `keyword`, preserving the spec's CTA wording.
+
+    The CTA is a fixed template ("Comment X and I'll send you the full breakdown"),
+    so only the keyword token varies. If the model names a keyword that is not wired
+    to the automation, swapping the token keeps the reel usable instead of discarding
+    a finished message over one word.
+    """
+    out = []
+    for ln in _lines(onscreen):
+        if "comment" in ln.lower() and "breakdown" in ln.lower():
+            fixed = re.sub(r"(?i)(comment\s+)([A-Za-z]+)", rf"\g<1>{keyword}", ln,
+                           count=1)
+            out.append(fixed)
+        else:
+            out.append(ln)
+    return "\n".join(out)
+
+
+def _shape(data: dict, memory: dict, offline: bool) -> dict:
+    """Turn one raw LLM response into the content dict the pipeline consumes."""
+    keyword = pick_keyword(memory, str(data.get("keyword", "")))
+    onscreen = _fix_line_count(str(data.get("onscreen_text", "")))
+    # The model may name a keyword outside the automation's list; retarget the CTA
+    # onto the keyword actually chosen so the comment always triggers a DM rule.
+    onscreen = _retarget_cta(onscreen, keyword)
+    caption = _ensure_hashtags(_retarget_cta(str(data.get("caption", "")), keyword))
+    topic_label = _clean(data.get("topic")) or "social anxiety"
+
+    cluster, bg_type, mood, scene, legacy_topic = mind.profile(keyword)
+    if legacy_topic not in config.load_config()["topics"]:
+        legacy_topic = config.load_config()["topics"][0]
+
+    lines = _lines(onscreen)
+    return {
+        "onscreen_text": onscreen,
+        "caption": caption,
+        "keyword": keyword,
+        "topic_label": topic_label,
+        # derived pipeline settings — the footage must match the story
         "cluster": cluster,
-        "archetype": cluster,                 # legacy alias
-        "topic": winner["topic"],
-        "mood": winner["mood"],
-        "bg_type": winner["bg_type"],
-        "loop_technique": winner["loop_technique"],
-        "scene": _clean_q(winner.get("scene")) or "",
-        "is_hope": is_hope,
-        "on_screen_text": on_screen,
-        "caption": _build_caption(cfg, hook, landing, include_whisper, is_hope,
-                                  body=" ".join(blocks[1:2]) if len(blocks) > 1 else "",
-                                  topic=winner["topic"], on_screen_text=on_screen,
-                                  hashtags=tags),
-        "hashtags": tags,
-        "include_whisper": include_whisper,
-        "exploit": exploit,
-        "rationale": winner.get("rationale", ""),
+        "archetype": cluster,
+        "bg_type": bg_type,
+        "mood": mood,
+        "scene": scene,
+        "topic": legacy_topic,
+        # compatibility fields the video/publish stages still read
+        "hook": lines[0] if lines else "",
+        "landing": lines[-1] if lines else "",
+        "deepening": lines[1:-1],
+        "blocks": lines,
+        "on_screen_text": " ".join(lines),   # legacy alias kept for reports
+        "hashtags": extract_hashtags(caption),
+        "loop_technique": "visual_echo",
+        "is_hope": cluster == "quiet_hope",
+        "include_whisper": False,
+        "exploit": True,
+        "rationale": f"keyword {keyword}",
         "bg_source": "",
         "bg_is_video": False,
         "music_source": "",
         "trending_ref": {"title": "", "artist": "", "genre": "", "trend_score": None},
     }
 
-    # SEO §6: alt text is filled in once the background scene is chosen (it needs the
-    # visual description), so build.py / run_create calls refresh_alt_text().
-    content["alt_text"] = seo.build_alt_text(
-        scene=content["scene"], topic=content["topic"], hook=hook,
-        on_screen_text=on_screen)
 
-    if not dry_run and not offline:
-        memory.setdefault("used_hooks", []).append({
-            "hook": hook, "date": config.today_utc().isoformat(),
-            "archetype": cluster, "topic": content["topic"],
-        })
+def _record(memory: dict, content: dict) -> None:
+    memory["last_keyword"] = content["keyword"]
+    counts = memory.setdefault("keyword_counts", {})
+    counts[content["keyword"]] = counts.get(content["keyword"], 0) + 1
+    memory.setdefault("used_hooks", []).append({
+        "hook": content["hook"], "date": config.today_utc().isoformat(),
+        "archetype": content["cluster"], "topic": content["topic"],
+    })
+    memory["used_hooks"] = memory["used_hooks"][-200:]
+
+
+def generate(dry_run: bool = False, offline: bool = False) -> dict:
+    cfg = config.load_config()
+    memory = config.load_memory()
+    directives = config.load_directives()
+
+    if offline:
+        content = _shape(dict(OFFLINE_CONTENT), memory, offline=True)
+        content["bg_is_video"] = False
+        content["bg_source"] = "bundled"
+        content["music_source"] = "drone"
+        content["alt_text"] = seo.build_alt_text(
+            scene=content["scene"], topic=content["topic"], hook=content["hook"],
+            on_screen_text=content["onscreen_text"])
+        config.save_content(content)
+        return content
+
+    last_kw = str(memory.get("last_keyword") or "")
+    user_msg = build_user_prompt(directives, last_kw)
+
+    # Two attempts: a rejected response is usually one rule away from valid, and
+    # re-rolling is cheap next to losing the day's post.
+    last_problems: list = []
+    for attempt in range(2):
+        raw = llm.chat([{"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user", "content": user_msg}], expect_json=True)
+        if not raw and attempt == 0:
+            # expect_json can miss on a chatty response; the module still parses
+            # raw text, so ask once more before giving up.
+            raw = llm.chat([{"role": "system", "content": SYSTEM_PROMPT},
+                            {"role": "user", "content": user_msg}], expect_json=False)
+        if not isinstance(raw, dict):
+            last_problems = ["no JSON object in response"]
+            user_msg += ("\n\nYour previous reply was not valid JSON. Return ONLY "
+                         "the JSON object with the four keys.")
+            continue
+
+        content = _shape(raw, memory, offline=False)
+        problems = (onscreen_problems(content["onscreen_text"], content["keyword"])
+                    + caption_problems(content["caption"], content["keyword"]))
+        if not problems:
+            break
+        last_problems = problems
+        print(f"[generate] attempt {attempt + 1} rejected: {problems}")
+        user_msg += ("\n\nYour previous reply broke these rules: "
+                     + "; ".join(problems)
+                     + ". Fix exactly those and return the full JSON again.")
+    else:
+        raise RuntimeError(f"text engine produced no valid reel: {last_problems}")
+
+    content["alt_text"] = seo.build_alt_text(
+        scene=content["scene"], topic=content["topic"], hook=content["hook"],
+        on_screen_text=content["onscreen_text"])
+
+    if not dry_run:
+        _record(memory, content)
         memory.setdefault("candidate_log", []).append({
             "date": config.today_utc().isoformat(),
-            "candidates": [{"hook": c.get("hook"), "cluster": c.get("cluster"),
-                            "topic": c.get("topic"), "mood": c.get("mood")}
-                           for c in candidates],
-            "scores": scores, "winner": hook,
+            "keyword": content["keyword"], "topic": content["topic_label"],
+            "hook": content["hook"],
         })
         config.save_memory(memory)
 
     config.save_content(content)
     return content
+
+
+def preview_meta(content: dict) -> dict:
+    """Small summary for logs/reports."""
+    lines = _lines(content.get("onscreen_text", ""))
+    return {"keyword": content.get("keyword"), "topic": content.get("topic_label"),
+            "lines": len(lines), "hashtags": len(content.get("hashtags") or []),
+            "caption_paras": len([p for p in content.get("caption", "").split("\n\n")
+                                  if p.strip()])}
+
+
+if __name__ == "__main__":
+    print(json.dumps(preview_meta(generate(offline=True)), indent=2))

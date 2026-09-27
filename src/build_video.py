@@ -30,25 +30,43 @@ FONT_BODY = "assets/fonts/Coolvetica-Regular.otf"       # one font family, per u
 FONT_MARK = "assets/fonts/Inter-Regular.ttf"
 WATERMARK_PX = 28
 SIDE_MARGIN = 90                # Part 5.3: generous margins, 90px sides
-MAX_BLOCK_H = 0.62
 BLOCK_FADE = 0.3                # Part 5.3: block fade <= 0.3s, no text theatre
-# --- FINAL FORMAT (the "already on screen" spec) -----------------------------
-LINE_SPACING = 1.32             # comfortable breathing room between lines (§2)
+# --- TEXT ENGINE UPGRADE (6-9 lines + CTA line) ------------------------------
+LINE_SPACING = 1.30             # slightly tighter: more lines must share the frame
 MIN_WIDTH_FILL = 0.75           # §2: text fills >=75% of frame width
 MAX_WIDTH_FILL = 0.92           # never touch the edges
-MAX_LINES_ON_SCREEN = 5         # §2: "NEVER more than 5 short lines"
-MAX_TOTAL_WORDS = 46            # §2: 5 lines x ~9 words — the print cap, enforced
-TEXT_TOP_FRAC = 0.35            # §2: centered, slightly above middle
+MAX_LINES_ON_SCREEN = 10        # the model's SOURCE lines (§8.8), validated in generate
+MAX_DISPLAY_LINES = 22          # after wrapping. The frame's real limit is BLOCK
+                                # HEIGHT, not a line count: at 56px the block holds
+                                # ~20 display lines in 1190px. This is a generous
+                                # backstop against a pathological wrap, not the
+                                # binding constraint.
+MAX_LINES_TARGET = 9            # §3 target for source lines
+MIN_LINES_ON_SCREEN = 5         # §8.8 source-line floor
+MAX_TOTAL_WORDS = 190           # 9 lines x ~21 words; the print cap, enforced
+TEXT_TOP_FRAC = 0.38            # taller blocks sit slightly lower to stay centred
 SHADOW_BLUR = 8                 # soft dark shadow
 SHADOW_ALPHA = 179              # ~70% opacity
 TEXT_BAND_ALPHA = 77            # 30% black scrim, only over bright footage
 TEXT_BAND_BRIGHT_MIN = 88       # only lay the band when the bg luma exceeds this
 TEXT_SCRIM = False              # never darken the footage: text rides on the video
+# CTA line ("Comment SAFE...") renders smaller than the body, at the block's foot.
+CTA_SCALE = 0.78                # relative to the fitted body size
+CTA_MIN_PX = 40                 # never shrink the CTA below legibility
+CTA_GAP = 0.55                  # extra leading above the CTA line, in px multiples
+MIN_PX = 48                     # spec §3: below 48px the text stops being readable
+                                # at thumbnail size — wrap wider instead of going smaller
+# The spec's 6-9 line blocks carry far more words than the old 3-5 line ones, so the
+# block is allowed to occupy more of the frame. 0.68 leaves ~300px of headroom top
+# and bottom, which keeps the text clear of the reel's UI chrome.
+MAX_BLOCK_H = 0.68
 # Coolvetica runs wide, so the ladders start lower and walk further down.
-HOOK_PX_LADDER = [120, 112, 104, 96, 88, 82, 76, 70, 64, 58, 52, 46, 40]
-BODY_PX_LADDER = [104, 96, 90, 84, 78, 72, 66, 60, 54, 48, 42]
+# The text engine asks for a 72px start; the ladder begins there and walks down.
+HOOK_PX_LADDER = [120, 112, 104, 96, 88, 82, 76, 72, 68, 64, 60, 56, 52, 48, 44, 40]
+BODY_PX_LADDER = [104, 96, 90, 84, 78, 72, 68, 64, 60, 56, 52, 48, 44, 40]
 INK = (245, 245, 245, 255)
 INK_MARK = (230, 230, 230, 150)
+INK_CTA = (238, 238, 238, 235)   # slightly softer: the ask is a footer, not body
 
 
 # ------------------------------------------------------------------ wording
@@ -60,23 +78,29 @@ def _clean(text) -> str:
 def text_blocks(content: dict) -> list:
     """THE COMPLETE MESSAGE as ONE block (FINAL FORMAT §2).
 
-    The format is explicit: exactly ONE text block containing the whole message
-    (3-5 short lines), visible from frame 0 and never changing. The hook/body/
-    landing structure still drives the *writing*, but on screen it is a single
-    stacked paragraph — not three timed cards.
+    The text engine now returns `onscreen_text` — the finished 6-9 line block with
+    its own intended line breaks. That string is the single source of truth: the
+    line breaks are the model's, and re-flowing or re-splitting them would destroy
+    the structure the prompt was calibrated for. Hook/deepening/landing are still
+    written to content.json for reporting, but on screen it is one static block,
+    visible from frame 0 and never changing.
     """
+    raw = content.get("onscreen_text")
+    if raw and str(raw).strip():
+        parts = [ln.strip() for ln in str(raw).replace("\r", "").split("\n")
+                 if ln.strip()]
+        if parts:
+            return [{"text": "\n".join(parts), "kind": "message",
+                     "lines_source": parts}]
+
+    # legacy path: content written before the text engine upgrade
     hook = _clean(content.get("hook"))
     landing = _clean(content.get("landing"))
     deep = [_clean(d) for d in (content.get("deepening") or []) if _clean(d)]
-
     if not hook and content.get("blocks"):
-        deep = [_clean(b) for b in content["blocks"] if _clean(b)]   # legacy
+        deep = [_clean(b) for b in content["blocks"] if _clean(b)]
         hook = deep[0] if deep else ""
         deep = deep[1:]
-
-    # the complete message, in reading order: hook -> deepening -> landing.
-    # The landing is the loop-echo of the hook, so when they read as the same
-    # idea we drop the duplicate line rather than print it twice.
     parts = [hook, *deep[:2]]
     if landing and landing.lower() not in {p.lower() for p in parts}:
         parts.append(landing)
@@ -84,16 +108,14 @@ def text_blocks(content: dict) -> list:
     if not parts:
         return []
 
-    # §2 hard cap. The model is asked for a 25-40 word total, but a model can
-    # over-write, and the cap must hold deterministically regardless. Trim the
-    # middle (deepening) first: the hook opens and the landing closes the loop, so
-    # those two survive; the middle is what a human editor would cut.
+    # Hard cap, enforced regardless of what the model produced. Trim the middle
+    # first: the hook opens and the CTA closes, so those survive; the middle story
+    # lines are what a human editor would cut.
     while len(parts) > MAX_LINES_ON_SCREEN and len(parts) > 2:
         parts.pop(len(parts) - 2)
 
     total_words = sum(len(p.split()) for p in parts)
     if total_words > MAX_TOTAL_WORDS and len(parts) > 2:
-        # still too long to print in 5 lines: keep hook + strongest + landing
         keep = [parts[0]]
         mid = parts[1:-1]
         mid.sort(key=lambda s: len(s.split()))
@@ -126,7 +148,6 @@ def _wrap_measured(text: str, font, max_w: int) -> list:
             if cur:
                 lines.append(cur)
                 cur = ""
-            lines.append("")                      # preserved as breathing room
             continue
         for wd in raw.split():
             cand = f"{cur} {wd}".strip()
@@ -135,38 +156,91 @@ def _wrap_measured(text: str, font, max_w: int) -> list:
             else:
                 lines.append(cur)
                 cur = wd
+        # HARD BREAK at the end of each source line. Without this the wrap is purely
+        # width-driven and runs sentences together ("...make eye contact You see
+        # someone..."), which destroys the sentence structure the text engine wrote.
+        if cur:
+            lines.append(cur)
+            cur = ""
     if cur:
         lines.append(cur)
     lines = [ln for ln in lines if ln != ""] or []
     if any(width(ln) > max_w for ln in lines):
         return []
 
-    for _ in range(200):
-        moved = False
-        for i in range(len(lines) - 1):
-            wds = lines[i].split()
-            while len(wds) > 1:
-                last = " ".join(wds[-1:])
-                rest = " ".join(wds[:-1])
-                nxt = f"{last} {lines[i + 1]}".strip()
-                if width(rest) >= width(nxt) and width(nxt) <= max_w:
-                    lines[i], lines[i + 1] = rest, nxt
-                    wds = rest.split()
-                    moved = True
-                else:
-                    break
-        if not moved:
-            break
+    # NOTE: there is deliberately no re-balancing pass here. A pass that shifts words
+    # between adjacent lines would undo the hard breaks above and re-merge sentences.
     return lines
+
+
+def split_message(text: str) -> tuple:
+    """(body_text, cta_text) — the CTA is separated BEFORE wrapping.
+
+    Wrapping is width-driven, so a CTA line can be merged into the preceding story
+    line (it happened: the 7-line block wrapped to 10 and "Comment QUIET..." ended up
+    mid-line, which meant it rendered at body size and the CTA gate failed). Holding
+    it out as its own segment keeps it a distinct, smaller footer line.
+    """
+    lines = [ln.strip() for ln in str(text or "").replace("\r", "").split("\n")
+             if ln.strip()]
+    cta = [ln for ln in lines if is_cta(ln)]
+    body = [ln for ln in lines if not is_cta(ln)]
+    return "\n".join(body), "\n".join(cta)
+
+
+def fit_message(text: str, cfg) -> tuple:
+    """Return (entries, px, font_path) for the whole message as ONE block.
+
+    `entries` is an ordered list of (line, is_cta) pairs — the CTA lines are wrapped
+    at their own smaller size so the footer reads as a footer. The ladder starts at
+    the 72px the spec asks for, keeps a 48px floor (below that the text stops being
+    readable at thumbnail size), and the cap counts body + CTA lines together.
+    """
+    from PIL import ImageFont
+    w = int(cfg["reel"]["w"])
+    h = int(cfg["reel"]["h"])
+    max_w = w - 2 * SIDE_MARGIN
+    max_h = int(h * MAX_BLOCK_H)
+    font_path = FONT_HOOK
+    body_text, cta_text = split_message(text)
+    best = None
+    for px in [p for p in HOOK_PX_LADDER if p >= MIN_PX]:
+        font = ImageFont.truetype(str(config.ROOT / font_path), px)
+        body_lines = _wrap_measured(body_text, font, max_w) if body_text else []
+        cta_px = max(int(px * CTA_SCALE), CTA_MIN_PX)
+        cta_font = ImageFont.truetype(str(config.ROOT / font_path), cta_px)
+        cta_lines = _wrap_measured(cta_text, cta_font, max_w) if cta_text else []
+        total = len(body_lines) + len(cta_lines)
+        if total == 0 or total > MAX_DISPLAY_LINES:
+            continue
+        block_h = (len(body_lines) * int(px * LINE_SPACING)
+                   + (int(cta_px * CTA_GAP) if cta_lines else 0)
+                   + len(cta_lines) * int(cta_px * LINE_SPACING))
+        if block_h > max_h:
+            continue
+        widest = max([font.getbbox(ln)[2] for ln in body_lines]
+                     + [cta_font.getbbox(ln)[2] for ln in cta_lines])
+        if widest > max_w:
+            continue                     # never hand back a size that overflows
+        entries = [(ln, False) for ln in body_lines] + [(ln, True) for ln in cta_lines]
+        cand = (entries, px, font_path, widest / float(w))
+        if best is None:
+            best = cand
+        if cand[3] >= MIN_WIDTH_FILL:
+            return entries, px, font_path
+    if best is not None:
+        return best[0], best[1], best[2]
+    raise RuntimeError(f"message cannot fit in {MAX_DISPLAY_LINES} displayed lines: {text!r}")
 
 
 def fit_block(text: str, kind: str, cfg, max_lines: int | None = None) -> tuple:
     """Return (lines, px, font_path) — largest size where everything fits.
 
-    FINAL FORMAT §2: the text must fill 75-80% of the frame width (readable at
-    thumbnail size) AND must never exceed 5 short lines. Both are hard limits, so
-    the ladder only accepts sizes satisfying the line cap, and among those prefers
-    the largest that fills at least MIN_WIDTH_FILL of the width.
+    TEXT ENGINE: the block is now 6-9 lines including the CTA, which renders smaller
+    than the body, so the height test uses the real per-line heights rather than
+    lines x leading. The ladder starts at the 72px the spec asks for and walks down;
+    stopping at ~72px rather than the old 120px start is what keeps long copy
+    readable instead of clipped.
     """
     from PIL import ImageFont
     w = int(cfg["reel"]["w"])
@@ -180,16 +254,20 @@ def fit_block(text: str, kind: str, cfg, max_lines: int | None = None) -> tuple:
     for px in ladder:
         font = ImageFont.truetype(str(config.ROOT / font_path), px)
         lines = _wrap_measured(text, font, max_w)
-        if not lines or len(lines) > cap:      # §2 hard cap on on-screen lines
+        if not lines or len(lines) > cap:      # hard cap on on-screen lines
             continue
-        line_h = int(px * LINE_SPACING)
-        if len(lines) * line_h > max_h:
+        # Real block height: CTA lines are shorter and carry extra leading.
+        cta_px = max(int(px * CTA_SCALE), CTA_MIN_PX)
+        n_cta = sum(1 for ln in lines if is_cta(ln))
+        block_h = ((len(lines) - n_cta) * int(px * LINE_SPACING)
+                   + n_cta * (int(cta_px * LINE_SPACING) + int(cta_px * CTA_GAP)))
+        if block_h > max_h:
             continue
         widest = max(font.getbbox(ln)[2] for ln in lines)
         cand = (lines, px, font_path, widest / w)
         if best is None:
             best = cand
-        # §2: stop at the first size that fills the target width band
+        # stop at the first size that fills the target width band
         if cand[3] >= MIN_WIDTH_FILL:
             return lines, px, font_path
     if best is None:
@@ -199,23 +277,62 @@ def fit_block(text: str, kind: str, cfg, max_lines: int | None = None) -> tuple:
 
 
 def assert_fits(lines: list, px: int, font_path: str, cfg) -> int:
-    """Deterministic pre-render overflow gate. Returns widest line (px)."""
+    """Deterministic pre-render overflow gate. Returns widest line (px).
+
+    Accepts tagged (line, is_cta) entries: the CTA is wrapped at a smaller size, so
+    measuring it with the body font reported a false overflow (1124px vs the 900px
+    limit) even though it renders narrower.
+    """
     from PIL import ImageFont
     max_w = int(cfg["reel"]["w"]) - 2 * SIDE_MARGIN
-    font = ImageFont.truetype(str(config.ROOT / font_path), px)
-    widest = max(font.getbbox(ln)[2] for ln in lines)
+    body_font = ImageFont.truetype(str(config.ROOT / font_path), int(px))
+    cta_px = max(int(int(px) * CTA_SCALE), CTA_MIN_PX)
+    cta_font = ImageFont.truetype(str(config.ROOT / font_path), cta_px)
+    widest = 0
+    for ln in lines:
+        if isinstance(ln, tuple):
+            text, is_c = ln
+        else:
+            text, is_c = ln, is_cta(ln)
+        f = cta_font if is_c else body_font
+        widest = max(widest, f.getbbox(text)[2])
     assert widest <= max_w, f"overflow: widest line {widest}px > {max_w}px allowed"
     return widest
 
 
 # --------------------------------------------------------------- rendering
 
+def _tagged(lines: list) -> list:
+    """Normalise lines to (text, is_cta) entries, unpacking any already tagged.
+
+    A naive `(ln, is_cta(ln))` over a tagged list produced ((text, flag), flag),
+    which then reached PIL's font metrics as a tuple and crashed the render.
+    """
+    out = []
+    for ln in lines:
+        if isinstance(ln, tuple):
+            out.append((str(ln[0]), bool(ln[1])))
+        else:
+            out.append((str(ln), is_cta(ln)))
+    return out
+
+
+def is_cta(line: str) -> bool:
+    """The comment-keyword CTA line. Rendered smaller, at the block's foot."""
+    low = (line or "").lower()
+    return "comment" in low and "breakdown" in low
+
+
 def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: Path,
                  cfg, fixed_top: int | None = None, bg_luma: float | None = None) -> Path:
     """ONE static text block as a transparent PNG — visible on every frame.
 
     FINAL FORMAT §2: this is the single overlay composited over the whole reel.
-    `fixed_top` places the first line at the 35% anchor.
+    `fixed_top` places the first line at the TEXT_TOP_FRAC anchor.
+
+    TEXT ENGINE: the CTA line renders at CTA_SCALE of the body size with a little
+    extra leading above it, so the ask reads as a footer rather than another
+    story beat. The body keeps the fitted size.
 
     `bg_luma` (0-255 mean brightness of the background under the text) triggers the
     optional feathered dark scrim, so light footage can't wash the text out. The
@@ -228,8 +345,22 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
     font = ImageFont.truetype(str(config.ROOT / font_path), px)
     mark_font = ImageFont.truetype(str(config.ROOT / FONT_MARK), WATERMARK_PX)
 
+    cta_px = max(int(px * CTA_SCALE), CTA_MIN_PX)
+    cta_font = ImageFont.truetype(str(config.ROOT / font_path), cta_px)
+
+    # Accept either tagged (line, is_cta) entries from fit_message, or plain strings
+    # (legacy callers). Tagged entries are authoritative: the CTA was already held out
+    # before wrapping, so its size cannot depend on re-detecting it by content.
+    # Unpack rather than re-wrap: `(ln, True) if isinstance(ln, tuple)` turned a
+    # tagged entry into ((text, flag), True) and handed a tuple to the font metrics.
+    entries = _tagged(lines)
+
     line_h = int(px * LINE_SPACING)
-    block_h = len(lines) * line_h
+    cta_h = int(cta_px * LINE_SPACING)
+    n_cta = sum(1 for _ln, is_c in entries if is_c)
+    block_h = ((len(entries) - n_cta) * line_h
+               + (int(cta_px * CTA_GAP) if n_cta else 0)
+               + n_cta * cta_h)
     top = fixed_top if fixed_top is not None else (int(h * TEXT_TOP_FRAC) - block_h // 2)
 
     img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
@@ -257,8 +388,15 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
         sd.text((x + 2, y + 3), txt, font=f, fill=sd_fill)
         d.text((x, y), txt, font=f, fill=fill)
 
-    for i, ln in enumerate(lines):
-        draw_center(ln, font, top + i * line_h, INK, (0, 0, 0, SHADOW_ALPHA))
+    y = top
+    for ln, is_c in entries:
+        if is_c:
+            y += int(cta_px * CTA_GAP)
+            draw_center(ln, cta_font, y, INK_CTA, (0, 0, 0, SHADOW_ALPHA))
+            y += cta_h
+        else:
+            draw_center(ln, font, y, INK, (0, 0, 0, SHADOW_ALPHA))
+            y += line_h
 
     if watermark:
         bb = mark_font.getbbox(watermark)
@@ -272,12 +410,31 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
 
 
 def hook_top(lines: list, px: int, cfg) -> int:
-    """The canonical text top — hook and landing both use this (the visual echo).
+    """The canonical text top — the anchor the block is centred on.
 
-    Spec §4: anchored so the text sits ~a third of the way down (not centred).
+    Accepts tagged (line, is_cta) entries from fit_message or plain strings, and uses
+    the same per-line heights as render_block so the anchor matches the drawn block.
     """
     h = int(cfg["reel"]["h"])
-    return int(int(h * TEXT_TOP_FRAC) - (len(lines) * int(px * LINE_SPACING)) // 2)
+    entries = _tagged(lines)
+    px_i = int(px)
+    cta_px = max(int(px_i * CTA_SCALE), CTA_MIN_PX)
+    n_cta = sum(1 for _ln, is_c in entries if is_c)
+    block_h = ((len(entries) - n_cta) * int(px_i * LINE_SPACING)
+               + (int(cta_px * CTA_GAP) if n_cta else 0)
+               + n_cta * int(cta_px * LINE_SPACING))
+    return int(int(h * TEXT_TOP_FRAC) - block_h // 2)
+
+
+def block_height(lines: list, px: int) -> int:
+    """Drawn height of a block, in px — shared by the anchor, the luma probe and QA."""
+    entries = _tagged(lines)
+    px_i = int(px)
+    cta_px = max(int(px_i * CTA_SCALE), CTA_MIN_PX)
+    n_cta = sum(1 for _ln, is_c in entries if is_c)
+    return ((len(entries) - n_cta) * int(px_i * LINE_SPACING)
+            + (int(cta_px * CTA_GAP) if n_cta else 0)
+            + n_cta * int(cta_px * LINE_SPACING))
 
 
 def bg_text_luma(bg_mp4: Path, at: float, cfg, top: int, block_h: int) -> float | None:
@@ -421,8 +578,14 @@ def assemble(bg_mp4: Path, states: list, pngs: list, track_mp3: Path, out_mp4: P
         "-filter_complex", ";".join(filters),
         "-map", f"[{last}]", "-map", "[aout]",
         "-t", f"{duration_s:.3f}",
-        "-c:v", "libx264", "-crf", "21", "-preset", "medium", "-pix_fmt", "yuv420p",
-        "-r", str(fps), "-c:a", "aac", "-b:a", "128k", "-ac", "2",
+        # Final render quality. This is the only encode Instagram will see, so it is
+        # near-lossless: CRF 16 with veryslow + a high profile and 4:2:0 8-bit, which
+        # is what the platform re-encodes from. Audio at 192k keeps the music intact.
+        # (The fixed format is 1080x1920 - no vertical upscale happens here.)
+        "-c:v", "libx264", "-crf", "16", "-preset", "veryslow",
+        "-profile:v", "high", "-level", "4.1",
+        "-pix_fmt", "yuv420p", "-r", str(fps),
+        "-c:a", "aac", "-b:a", "192k", "-ac", "2",
         "-movflags", "+faststart", str(out_mp4)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
     if r.returncode != 0:
@@ -539,12 +702,16 @@ def qa_gate(reel: Path, cfg, blocks: list | None = None) -> tuple:
     c["size_under_60mb"] = size < 60 * 1024 * 1024
     c["faststart"] = info["faststart"]
     if blocks:
-        # FINAL FORMAT §2: exactly ONE text block on screen.
+        # §1/§2: exactly ONE text block on screen.
         c["one_text_block"] = len([b for b in blocks if b.get("text")]) == 1
-        # §2: NEVER more than 5 short lines
-        c["lines_max_5"] = all(
-            len([ln for ln in str(b.get("text") or "").split("\n") if ln.strip()]) <= 5
-            for b in blocks)
+        # §8.8: 5-10 SOURCE lines (the model's line breaks, which the validator in
+        # generate.py checked). This used to demand <=5, which the text engine's
+        # 6-9 line structure cannot satisfy — every valid reel failed the gate.
+        _src_lines = [ln for b in blocks
+                      for ln in str(b.get("text") or "").split("\n") if ln.strip()]
+        c["lines_in_bounds"] = (MIN_LINES_ON_SCREEN <= len(_src_lines)
+                                <= MAX_LINES_ON_SCREEN)
+        c["cta_present"] = any(is_cta(ln) for ln in _src_lines)
         c["loop_echo"] = loop_echo_ok(blocks)
     for name, ok in c.items():
         if not ok:
@@ -562,18 +729,26 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
     if not blocks:
         raise RuntimeError("no text: content produced an empty message")
 
-    # FINAL FORMAT §2: ONE block, all lines stacked, centered, sitting on top of
-    # the video from frame 0. No pinning, no per-card top, no timing.
+    # ONE block, all lines stacked, centered, sitting on top of the video from frame 0.
+    # No pinning, no per-card top, no timing. The message uses the CTA-aware fitter so
+    # the footer line renders smaller than the body.
     fitted = []
     for blk in blocks:
-        lines, px, font_path = fit_block(blk["text"], blk["kind"], cfg)
-        widest = assert_fits(lines, px, font_path, cfg)
-        fitted.append({**blk, "lines": lines, "px": px, "font_path": font_path,
-                       "widest": widest, "pinned_top": None})
+        if blk["kind"] == "message":
+            entries, px, font_path = fit_message(blk["text"], cfg)
+            widest = assert_fits(entries, px, font_path, cfg)
+            fitted.append({**blk, "lines": entries, "px": px, "font_path": font_path,
+                           "widest": widest, "pinned_top": None})
+        else:
+            lines, px, font_path = fit_block(blk["text"], blk["kind"], cfg)
+            widest = assert_fits(lines, px, font_path, cfg)
+            fitted.append({**blk, "lines": lines, "px": px, "font_path": font_path,
+                           "widest": widest, "pinned_top": None})
     for b in fitted:
         b["pinned_top"] = hook_top(b["lines"], b["px"], cfg)
     print(f"[video] {len(fitted)} text block(s): "
           + ", ".join(f"{len(b['lines'])} lines @{b['px']}px "
+                      f"({sum(1 for ln in b['lines'] if isinstance(ln, tuple) and ln[1])} cta) "
                       f"(width {b['widest']}/{int(cfg['reel']['w'])}px)" for b in fitted))
 
     watermark = ""
@@ -588,8 +763,7 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
         # spec §4: measure the actual background band, then scrim only if bright
         top = b["pinned_top"] if b["pinned_top"] is not None else hook_top(
             b["lines"], b["px"], cfg)
-        luma = bg_text_luma(bg_mp4, 1.0, cfg, top,
-                            len(b["lines"]) * int(b["px"] * LINE_SPACING))
+        luma = bg_text_luma(bg_mp4, 1.0, cfg, top, block_height(b["lines"], b["px"]))
         render_block(b["lines"], b["px"], b["font_path"], watermark, p, cfg,
                      fixed_top=b["pinned_top"], bg_luma=luma)
         pngs.append(p)
@@ -603,12 +777,26 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
     if not ok:
         raise RuntimeError(f"QA gate failed: {info.get('problems')}")
 
-    # §2 hard cap: the RENDERED line count (post-wrap), not just the source parts.
+    # Hard cap: the RENDERED line count (post-wrap), not just the source parts.
+    # TEXT ENGINE §8.8 bounds both ends — more than 10 lines cannot fit the frame
+    # readably, fewer than 5 means the story never got written.
     for b in fitted:
-        if len(b["lines"]) > MAX_LINES_ON_SCREEN:
+        if len(b["lines"]) > MAX_DISPLAY_LINES:
             raise RuntimeError(
-                f"FINAL FORMAT §2 violated: {len(b['lines'])} lines on screen "
-                f"(max {MAX_LINES_ON_SCREEN})")
+                f"render violated: {len(b['lines'])} displayed lines "
+                f"(max {MAX_DISPLAY_LINES})")
+        # §8.8 governs the model's source lines, which are what the validator checked.
+        src_n = len(b.get("lines_source") or [])
+        if src_n and src_n < MIN_LINES_ON_SCREEN:
+            raise RuntimeError(
+                f"TEXT ENGINE §8.8 violated: only {src_n} source lines "
+                f"(min {MIN_LINES_ON_SCREEN})")
+    # The CTA line must survive to the finished video — it is the whole conversion
+    # path, so its absence is a hard failure rather than a cosmetic issue.
+    for b in fitted:
+        if not any((ln[1] if isinstance(ln, tuple) else is_cta(ln))
+                   for ln in b["lines"]):
+            raise RuntimeError("TEXT ENGINE §3.4 violated: no CTA line rendered")
 
     info["blocks"] = [{"kind": b["kind"], "px": b["px"], "widest": b["widest"],
                        "lines": len(b["lines"])} for b in fitted]

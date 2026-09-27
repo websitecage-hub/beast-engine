@@ -147,7 +147,7 @@ def run(dry_run=False, offline=False) -> int:
         content["alt_text"] = _seo.build_alt_text(
             scene=content.get("scene", ""), topic=content.get("topic", ""),
             hook=content.get("hook", ""), bg_source=bg_source,
-            on_screen_text=content.get("on_screen_text", ""))
+            on_screen_text=content.get("onscreen_text", "") or content.get("on_screen_text", ""))
         step("background", {"source": bg_source, "is_video": content["bg_is_video"],
                             "alt_text": content["alt_text"][:70] + "..."})
 
@@ -269,7 +269,8 @@ def _record_post(memory, content, result, strategy):
             # SEO §8: recorded per post so the weekly report can measure whether the
             # search fields were actually shipped, instead of trusting that they were.
             "alt_text": content.get("alt_text") or result.get("alt_text") or "",
-            "on_screen_text": content.get("on_screen_text") or "",
+            "onscreen_text": content.get("onscreen_text") or "",
+            "keyword": content.get("keyword") or "",
             "hashtags": content.get("hashtags") or [],
             "posted_hour": slot,
             "include_cta": bool(content.get("include_whisper")),

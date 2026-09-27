@@ -180,16 +180,29 @@ def _metrics_section(memory, posts) -> list:
         described = sum(1 for p, _ in seo_rows
                         if len((p.get("dna") or {}).get("alt_text") or "") > 40)
         tagged = sum(1 for p, _ in seo_rows
-                     if 6 <= len((p.get("dna") or {}).get("hashtags") or []) <= 9)
+                     if 5 <= len((p.get("dna") or {}).get("hashtags") or []) <= 7)
+        kws = {}
+        for p, _ in seo_rows:
+            kw = (p.get("dna") or {}).get("keyword")
+            if kw:
+                kws[kw] = kws.get(kw, 0) + 1
         out += ["## SEO: is the search channel compounding? (spec §8)", "",
                 "| metric | value | what good looks like |", "|---|---|---|",
                 f"| reels shipping alt text | {described}/{len(seo_rows)} | all of them |",
-                f"| reels with 6-9 hashtags | {tagged}/{len(seo_rows)} | all of them |",
+                f"| reels with 5-7 hashtags | {tagged}/{len(seo_rows)} | all of them |",
                 f"| reels at >=5% saves/reach | {big_saves}/{len(rows)} | above 5% |",
                 "_profile visits from search, reach from non-followers and bio link "
                 "clicks live in Instagram Insights — rising month over month means "
                 "search discovery is working._",
                 ""]
+        if kws:
+            # The comment keyword is the DM conversion path, so its distribution shows
+            # whether comments are being spread across the automation's rules.
+            top = sorted(kws.items(), key=lambda kv: kv[1], reverse=True)
+            out += ["### comment keywords used (DM automation triggers)", "",
+                    "| keyword | reels |", "|---|---|"]
+            out += [f"| {k} | {n} |" for k, n in top[:12]]
+            out.append("")
     # Part 7.2 Q1: which clusters earn the most saves?
     per_cluster = {}
     for p, m in rows:

@@ -191,8 +191,11 @@
     "hook": 60,
     "deepening": 90,
     "landing": 70,
-    "line": 60,
-    "lines_max": 5
+    "line": 68,
+    "lines_max": 10,
+    "lines_min": 5,
+    "lines_target_min": 6,
+    "lines_target_max": 9
   },
   "bg_darken": 0.0,
   "explore_rate": 0.2,
@@ -289,5 +292,6 @@
     "hashtags_min": 6,
     "hashtags_max": 9
   },
-  "bg_grade": false
+  "bg_grade": false,
+  "hide_like_count": true
 }

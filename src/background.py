@@ -117,6 +117,48 @@ def has_person(entry: dict) -> bool:
     return any(w in blob for w in PERSON_WORDS)
 
 
+def _variants(e: dict) -> list:
+    """Usable MP4 variants for a pin, best resolution first.
+
+    The API returns an HLS playlist (vHLSV4) and a direct MP4 (v720P), and
+    `best_video` is always the 720p one. 720x1280 upscaled to 1080x1920 is a visible
+    quality loss, so any real MP4 variant that meets or beats the target width is
+    preferred. HLS is skipped: it is a playlist, not a file, and would need segment
+    stitching for no gain here.
+    """
+    out = []
+    for v in (e.get("videos") or []):
+        if not isinstance(v, dict):
+            continue
+        url = str(v.get("url") or "")
+        if not url or ".mp4" not in url.lower():
+            continue
+        try:
+            w = int(v.get("width") or 0)
+            h = int(v.get("height") or 0)
+        except (TypeError, ValueError):
+            continue
+        out.append((w, h, url))
+    out.sort(key=lambda t: (t[0], t[1]), reverse=True)
+    return out
+
+
+def best_source_url(e: dict, target_w: int = 1080) -> str:
+    """The highest-quality MP4 for a pin, falling back to `best_video`.
+
+    Prefers a variant at least as wide as the reel (no upscaling). If none reaches
+    it, takes the widest available — still better than accepting a 720p default
+    when a 906p or 1440p variant exists.
+    """
+    vs = _variants(e)
+    for w, _h, url in vs:
+        if w >= target_w:
+            return url
+    if vs:
+        return vs[0][2]
+    return str(e.get("best_video") or "")
+
+
 def pick_clip(results: list, used: set):
     """Spec §2.3 selection: video with MP4, >=3s, croppable to 9:16, motion-leaning.
 
@@ -196,7 +238,7 @@ def process_clip(src: Path, out: Path, duration_s: float, fps: int,
           f"fps={fps},{_grade_segments(cfg, 0.0)},format=yuv420p".replace(",,", ","))
     cmd = ["ffmpeg", "-y", "-v", "error", "-ss", f"{start:.3f}", "-i", str(src),
            "-t", f"{duration_s:.3f}", "-vf", vf, "-an",
-           "-c:v", "libx264", "-preset", "slow", "-crf", "20", str(out)]
+           "-c:v", "libx264", "-preset", "slower", "-crf", "16", str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
     if r.returncode != 0 or not out.exists():
         print(f"[background] process failed: {r.stderr[-400:]}")
@@ -221,7 +263,7 @@ def loop_clip(src: Path, out: Path, duration_s: float, fps: int,
             f"offset={max(offset - fade, 0):.3f},format=yuv420p[v]")
     cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(src),
            "-filter_complex", filt, "-map", "[v]", "-an",
-           "-c:v", "libx264", "-preset", "slow", "-crf", "20", "-r", str(fps), str(out)]
+           "-c:v", "libx264", "-preset", "slower", "-crf", "16", "-r", str(fps), str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
     if r.returncode != 0 or not out.exists():
         print(f"[background] loop xfade failed (using straight cut): {r.stderr[-300:]}")
@@ -242,7 +284,7 @@ def animate_still(src: Path, out: Path, duration_s: float, fps: int,
           f"gblur=sigma=0.6,{_grade_segments(cfg, darken)},format=yuv420p".replace(",,", ","))
     cmd = ["ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", str(src),
            "-t", f"{duration_s:.3f}", "-vf", vf,
-           "-c:v", "libx264", "-preset", "slow", "-crf", "20", str(out)]
+           "-c:v", "libx264", "-preset", "slower", "-crf", "16", str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
     return r.returncode == 0 and out.exists()
 
@@ -338,7 +380,7 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
                 entry = pick_clip(results, used)
                 if not entry:
                     break
-                url = entry.get("best_video")
+                url = best_source_url(entry, target_w=int(cfg["reel"]["w"]))
                 if url and pinterest.download(url, raw):
                     if process_clip(raw, looped, duration_s, fps, cfg):
                         # Part 5.2: a still-image pin re-encoded as video would pass

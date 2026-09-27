@@ -73,19 +73,22 @@ def alt_text_for(content: dict, cfg: dict) -> str:
     return seo.build_alt_text(
         scene=content.get("scene", ""), topic=content.get("topic", ""),
         hook=content.get("hook", ""),
-        on_screen_text=content.get("on_screen_text", ""))[:1000]
+        on_screen_text=seo.onscreen_text_of(content))[:1000]
 
 
 def create_container(ig_id: str, caption: str, test: bool = False,
-                     alt_text: str = "") -> dict:
+                     alt_text: str = "", hide_like_count: bool = False) -> dict:
     # SEO §6.1: the Graph API rejects unknown params on this endpoint — sending
     # alt_text returns HTTP 400 "The param alt_text is not supported for REEL" and the
     # whole publish fails. So the container is created WITHOUT it; publish_reel()
     # persists the alt text to memory.json for manual entry via the app instead.
+    data = {"media_type": "REELS", "upload_type": "resumable",
+            "mime_type": "video/mp4", "caption": caption}
+    if hide_like_count:
+        data["hide_like_count"] = "true"
     r = requests.post(f"{GRAPH}/{ig_id}/media",
                       params={"access_token": _token()},
-                      data={"media_type": "REELS", "upload_type": "resumable",
-                            "mime_type": "video/mp4", "caption": caption},
+                      data=data,
                       timeout=120)
     if r.status_code == 401:
         raise PermissionError("401 TOKEN DEAD")
@@ -242,28 +245,34 @@ def publish_reel(video: Path, content: dict, cfg: dict, test: bool = False,
     # shipped via the API. It is surfaced loudly and returned in the result dict rather
     # than dropped, so the field can be added in the app and never silently disappears.
     print(f"[publish] alt text (add via app Advanced Settings): {alt_text[:110]}")
+    hide_likes = bool(cfg.get("hide_like_count", False))
+    if hide_likes:
+        print("[publish] hide_like_count requested on the container")
 
     from . import upload_host
     url, host = upload_host.publicize(video)
     if url:
         try:
-            container = create_container_url(ig_id, caption, url, alt_text=alt_text)
+            container = create_container_url(ig_id, caption, url, alt_text=alt_text,
+                                             hide_like_count=hide_likes)
             cid = container["id"]
             status = wait_finished(cid)
             if test:
                 print(f"[publish] TEST mode: container {cid} ready ({status}), not publishing")
                 return {"test": True, "container_id": cid, "status": status,
-                        "host": host, "alt_text": alt_text}
+                        "host": host, "alt_text": alt_text,
+                        "hide_like_count": hide_likes}
             media_id = media_publish(ig_id, cid)
             return {"media_id": media_id, "container_id": cid, "caption": caption,
-                    "alt_text": alt_text, "ig_id": ig_id, "status": status,
-                    "host": host, "video_url": url}
+                    "alt_text": alt_text, "hide_like_count": hide_likes,
+                    "ig_id": ig_id, "status": status, "host": host, "video_url": url}
         except PermissionError:
             raise
         except Exception as exc:  # noqa: BLE001
             print(f"[publish] hosted-url route failed ({exc}); trying resumable")
 
-    container = create_container(ig_id, caption, test=test, alt_text=alt_text)
+    container = create_container(ig_id, caption, test=test, alt_text=alt_text,
+                                 hide_like_count=hide_likes)
     cid, uri = container["id"], container["uri"]
     upload(uri, video)
     status = wait_finished(cid)
@@ -276,17 +285,23 @@ def publish_reel(video: Path, content: dict, cfg: dict, test: bool = False,
 
 
 def create_container_url(ig_id: str, caption: str, video_url: str,
-                         alt_text: str = "") -> dict:
+                         alt_text: str = "", hide_like_count: bool = False) -> dict:
     """Hosted-URL container — the only route Instagram-Login tokens accept.
 
     `alt_text` is accepted as a parameter but deliberately NOT sent: the Graph API
     rejects it on REELS containers with HTTP 400 ("The param alt_text is not supported
     for REEL"). It is carried through the return value so the caller can persist it.
+
+    `hide_like_count` IS sent when enabled — the endpoint accepts it (HTTP 200) rather
+    than rejecting it the way it rejects alt_text, and it is the only lever the API
+    exposes for hiding like counts on a reel.
     """
+    data = {"media_type": "REELS", "video_url": video_url, "caption": caption}
+    if hide_like_count:
+        data["hide_like_count"] = "true"
     r = requests.post(f"{GRAPH}/{ig_id}/media",
                       params={"access_token": _token()},
-                      data={"media_type": "REELS", "video_url": video_url,
-                            "caption": caption},
+                      data=data,
                       timeout=120)
     if r.status_code == 401:
         raise PermissionError("401 TOKEN DEAD")

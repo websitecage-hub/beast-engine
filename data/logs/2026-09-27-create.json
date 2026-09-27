@@ -999,5 +999,446 @@
       "host": "litterbox",
       "video_url": "https://litter.catbox.moe/r2i114.mp4"
     }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T10:26:08.334197+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.09
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.09,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.37,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.37,
+        "post": false,
+        "reason": "already posted today (idempotency)"
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T10:27:38.046802+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.14
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.14,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.51,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.51,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.51,
+        "seconds": 9.47
+      },
+      {
+        "step": "failed",
+        "t": 153.54,
+        "error": "text engine produced no valid reel: ['on-screen text is empty', \"caption missing keyword 'SAFE'\"]"
+      }
+    ],
+    "errors": [
+      "text engine produced no valid reel: ['on-screen text is empty', \"caption missing keyword 'SAFE'\"]"
+    ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T10:35:51.490252+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.19
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.19,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.47,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.47,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.47,
+        "seconds": 9.6
+      },
+      {
+        "step": "generated",
+        "t": 27.44,
+        "hook": "POV: you unlock your phone so you don't have to make eye contact",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 167.63,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "Man alone in dark room lit by phone screen glow cinematic. Overlay tex..."
+      },
+      {
+        "step": "music",
+        "t": 195.84,
+        "source": "song"
+      },
+      {
+        "step": "failed",
+        "t": 196.68,
+        "error": "message cannot fit in 10 lines: \"POV: you unlock your phone so you don't have to make eye contact\\nYou see someone you know 20 feet away and your thumbs start moving\\nYou type nothing. You scroll nothing. You stare at a dead screen like it needs you\\nYour heart is hammering so loud you're sure they can hear it\\nThey walk past. You exhale. Then the shame hits for pretending again\\nYou stand there a second too long, still holding the fake conversation\\nYou're not fake. Your body chose invisibility because being seen still feels like a trial\\nComment GHOST and I'll send you the full breakdown.\""
+      }
+    ],
+    "errors": [
+      "message cannot fit in 10 lines: \"POV: you unlock your phone so you don't have to make eye contact\\nYou see someone you know 20 feet away and your thumbs start moving\\nYou type nothing. You scroll nothing. You stare at a dead screen like it needs you\\nYour heart is hammering so loud you're sure they can hear it\\nThey walk past. You exhale. Then the shame hits for pretending again\\nYou stand there a second too long, still holding the fake conversation\\nYou're not fake. Your body chose invisibility because being seen still feels like a trial\\nComment GHOST and I'll send you the full breakdown.\""
+    ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T10:41:15.784889+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.12
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.12,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.76,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.76,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.76,
+        "seconds": 9.48
+      },
+      {
+        "step": "generated",
+        "t": 20.67,
+        "hook": "POV: you're pretending to text so no one talks to you",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 156.7,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "Man alone in dark room lit by phone screen glow cinematic. Overlay tex..."
+      },
+      {
+        "step": "music",
+        "t": 179.42,
+        "source": "song"
+      },
+      {
+        "step": "failed",
+        "t": 179.88,
+        "error": "message cannot fit in 16 displayed lines: \"POV: you're pretending to text so no one talks to you\\nYou walk into the room and unlock your phone instantly.\\nYou stare at a blank screen and scroll nothing.\\nYour thumbs move. Your shoulders tighten. You hold your breath.\\nSomeone walks past and you feel relief flood your chest.\\nThen guilt right after. Because you wanted them to stop and say hi too.\\nYou sit down alone, still holding the phone like a shield, replaying again how obvious it must have looked.\\nYou're not cold. Your nervous system learned that disappearing is safer than being seen and judged.\\nComment GHOST and I'll send you the full breakdown.\""
+      }
+    ],
+    "errors": [
+      "message cannot fit in 16 displayed lines: \"POV: you're pretending to text so no one talks to you\\nYou walk into the room and unlock your phone instantly.\\nYou stare at a blank screen and scroll nothing.\\nYour thumbs move. Your shoulders tighten. You hold your breath.\\nSomeone walks past and you feel relief flood your chest.\\nThen guilt right after. Because you wanted them to stop and say hi too.\\nYou sit down alone, still holding the phone like a shield, replaying again how obvious it must have looked.\\nYou're not cold. Your nervous system learned that disappearing is safer than being seen and judged.\\nComment GHOST and I'll send you the full breakdown.\""
+    ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T10:45:52.688951+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.3
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.3,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.92,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.92,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.92,
+        "seconds": 9.03
+      },
+      {
+        "step": "generated",
+        "t": 21.74,
+        "hook": "POV: you unlock your phone so you don't have to make eye contact",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 150.48,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "Man alone in dark room lit by phone screen glow cinematic. Overlay tex..."
+      },
+      {
+        "step": "music",
+        "t": 172.72,
+        "source": "song"
+      },
+      {
+        "step": "failed",
+        "t": 173.56,
+        "error": "expected string or bytes"
+      }
+    ],
+    "errors": [
+      "expected string or bytes"
+    ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T10:52:14.951414+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.15
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.15,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.42,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.42,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.42,
+        "seconds": 9.18
+      },
+      {
+        "step": "generated",
+        "t": 35.51,
+        "hook": "POV: you unlock your phone so you don't have to talk to anyone",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 122.44,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "Man in a crowd looking down alone dark cinematic. Overlay text reads: ..."
+      },
+      {
+        "step": "music",
+        "t": 159.07,
+        "source": "song"
+      },
+      {
+        "step": "failed",
+        "t": 208.68,
+        "error": "QA gate failed: ['lines_max_5']"
+      }
+    ],
+    "errors": [
+      "QA gate failed: ['lines_max_5']"
+    ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T11:05:54.099085+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.55
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.56,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 2.21,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 2.21,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 2.21,
+        "seconds": 9.19
+      },
+      {
+        "step": "generated",
+        "t": 24.4,
+        "hook": "POV: you unlock your phone to avoid a human",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 159.64,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "Man alone in dark room lit by phone screen glow cinematic. Overlay tex..."
+      },
+      {
+        "step": "music",
+        "t": 185.78,
+        "source": "song"
+      },
+      {
+        "step": "built",
+        "t": 328.23,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "one_text_block": true,
+            "lines_in_bounds": true,
+            "cta_present": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.2,
+          "size_mb": 5.92,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "message",
+              "px": 56,
+              "widest": 890,
+              "lines": 18
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "message",
+              "start": 0.0,
+              "end": 9.19
+            }
+          ],
+          "text_visibility": [
+            {
+              "t": 0.0,
+              "text_visible": true
+            },
+            {
+              "t": 0.25,
+              "text_visible": true
+            },
+            {
+              "t": 4.59,
+              "text_visible": true
+            },
+            {
+              "t": 8.94,
+              "text_visible": true
+            }
+          ],
+          "motion": true
+        }
+      },
+      {
+        "step": "seo",
+        "t": 328.24,
+        "keyword_on_screen": true,
+        "keyword_in_caption": true,
+        "keyword_is_dm_enabled": true,
+        "hashtags_5_to_7": true,
+        "hashtags_present": true,
+        "on_screen_has_searchable_phrase": true,
+        "alt_text_present": true,
+        "caption_describes_content": true
+      },
+      {
+        "step": "published",
+        "t": 328.24,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
   }
 ]

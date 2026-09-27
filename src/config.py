@@ -150,11 +150,17 @@ DEFAULT_CONFIG = {
     "reel": {"min_s": 9.0, "max_s": 10.0, "fps": 30, "w": 1080, "h": 1920},
     "timing": {"hook_end_frac": 0.45, "deepen_end_frac": 0.88},  # spec §4 (see build_video.state_map)
     "text_limits": {"hook": 60, "deepening": 90, "landing": 70,
-                    # FINAL FORMAT §2: ONE block of 3-5 short lines, <=60 chars
-                    # per LINE on screen (the block total is naturally larger).
-                    "line": 60, "lines_max": 5},
+                    # TEXT ENGINE §3: 6-9 lines on screen (5-10 absolute bounds in §8.8).
+                    # `line` is a wrap width, not a per-line cap: a story line runs
+                    # ~21 words. `lines_max` is the hard ceiling the renderer and QA
+                    # both enforce.
+                    "line": 68, "lines_max": 10, "lines_min": 5,
+                    "lines_target_min": 6, "lines_target_max": 9},
     "bg_darken": 0.0,          # NO extra darkening: the footage ships as shot
     "bg_grade": False,         # no brightness/saturation crush on the source video
+    # Hide the public like count on every reel. The container accepts the param
+    # (HTTP 200), unlike alt_text which Graph rejects outright.
+    "hide_like_count": True,
     # Instagram SEO (spec §7.1). Keywords steer caption/alt-text wording and the
     # hashtag pools. Hashtags are content-matched per reel by src/seo.py; these lists
     # are the single source of truth so the pools are never duplicated in code.

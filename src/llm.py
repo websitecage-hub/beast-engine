@@ -82,11 +82,96 @@ def json_first(text: str):
     return None
 
 
+def _fold_system(messages) -> list:
+    """Move any `system` text into the first user turn.
+
+    See chat()'s docstring: the upstream endpoint discards the system role, so a
+    spec delivered that way never reaches the model.
+    """
+    system_parts, out = [], []
+    for m in messages:
+        if not isinstance(m, dict):
+            continue
+        if m.get("role") == "system":
+            content = str(m.get("content") or "").strip()
+            if content:
+                system_parts.append(content)
+        else:
+            out.append(dict(m))
+    if system_parts and out:
+        first = out[0]
+        if first.get("role") == "user":
+            first["content"] = ("\n\n".join(system_parts) + "\n\n---\n\n"
+                                + str(first.get("content") or ""))
+        else:
+            out.insert(0, {"role": "user", "content": "\n\n".join(system_parts)})
+    elif system_parts:
+        out = [{"role": "user", "content": "\n\n".join(system_parts)}]
+    return out or list(messages)
+
+
+def _json_largest(text: str):
+    """The LARGEST parseable JSON object in the text, not the first.
+
+    json_first() returns the first balanced block, which can be a small literal from
+    an example (`{}` or `{"keyword": "SAFE"}`) rather than the model's answer. The
+    answer is the biggest object, so scanning all candidates and taking the largest
+    is the safer pick.
+    """
+    if not text:
+        return None
+    best, i = None, text.find("{")
+    while i != -1:
+        depth, in_str, escape, end = 0, False, False, -1
+        for j in range(i, len(text)):
+            ch = text[j]
+            if in_str:
+                if escape:
+                    escape = False
+                elif ch == "\\":
+                    escape = True
+                elif ch == '"':
+                    in_str = False
+                continue
+            if ch == '"':
+                in_str = True
+            elif ch == "{":
+                depth += 1
+            elif ch == "}":
+                depth -= 1
+                if depth == 0:
+                    end = j
+                    break
+        if end != -1:
+            blob = text[i:end + 1]
+            try:
+                obj = json.loads(blob)
+            except Exception:  # noqa: BLE001
+                try:
+                    import ast
+                    obj = ast.literal_eval(blob)
+                except Exception:  # noqa: BLE001
+                    obj = None
+            if isinstance(obj, dict) and (best is None or len(obj) > len(best)):
+                best = obj
+        i = text.find("{", i + 1)
+    return best
+
+
 def chat(messages, expect_json: bool = False, retries: int = 3, timeout: int = CHAT_TIMEOUT):
-    """Stateless chat completion. Returns text (or parsed object when expect_json)."""
+    """Stateless chat completion. Returns text (or parsed object when expect_json).
+
+    The upstream Meta endpoint IGNORES the `system` role — verified directly: a
+    "reply as a pirate" system message came back as a friendly assistant greeting.
+    A spec sent as a system message is silently discarded, which makes the model
+    free-style unrelated content while looking like a normal 200 response.
+
+    So system instructions are folded into the user turn. That is correct whether or
+    not the endpoint honours `system`, and it is the only form proven to work here.
+    """
     wake()
     last_err = None
-    msgs = list(messages)
+    msgs = _fold_system(messages)
     for attempt in range(retries):
         body = {"model": MODEL, "messages": msgs}
         try:
@@ -101,11 +186,18 @@ def chat(messages, expect_json: bool = False, retries: int = 3, timeout: int = C
             parsed = json_first(text)
             if parsed is None:
                 raise ValueError("no JSON block found")
+            if isinstance(parsed, dict) and not parsed:
+                # json_first found `{}` — usually a JSON example inside the prompt
+                # rather than the answer. Looking for a richer object is closer to
+                # intent than accepting an empty one.
+                parsed = _json_largest(text)
+                if not parsed:
+                    raise ValueError("only an empty JSON object in response")
             return parsed
         except Exception as exc:  # noqa: BLE001 — retried below
             last_err = exc
             if expect_json and attempt == 0:
-                msgs = list(messages) + [{
+                msgs = list(_fold_system(messages)) + [{
                     "role": "user",
                     "content": "Respond with ONLY valid JSON, no prose. No markdown fences.",
                 }]

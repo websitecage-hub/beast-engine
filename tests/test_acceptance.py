@@ -36,101 +36,163 @@ def test_imports_clean():
 # ------------------------------------------------------------------- mind
 
 def test_mind_prompt_complete():
+    """The text engine prompt is the spec's, verbatim — the ONLY instruction set."""
     sp = generate.SYSTEM_PROMPT
     assert sp == mind.SYSTEM_PROMPT
-    # Part 8 directive, Part 2 evidence library, Part 6 calibration, contract
-    for marker in ("terrified of confirmation", "EVIDENCE LIBRARY", "CALIBRATION",
-                   "OUTPUT CONTRACT", "this is exactly [friend's name]"):
+    for marker in ("COMPASSIONATE WITNESS", "SECTION 1", "SECTION 9",
+                   "OUTPUT FORMAT", "Comment [KEYWORD] and I'll send you the full breakdown",
+                   "NEVER use \"I\" or \"we\""):
         assert marker in sp, f"mind prompt missing {marker!r}"
-    # every cluster appears in the evidence library
-    for cluster in config.ARCHETYPES:
-        assert cluster in mind.EVIDENCE_LIBRARY, f"{cluster} missing from evidence"
-
-
-# ------------------------------------------------------- law + limit gates
-
-def test_limits_and_laws():
+    # every keyword the account's DM automation listens for must be known here
+    for kw in ("SAFE", "QUIET", "FREE", "REPLAY", "SEEN", "START", "GHOST", "MASK",
+               "HEARD", "BLANK", "STILL", "ALONE", "CALM", "ENOUGH", "PEACE", "CLEAR"):
+        assert kw in mind.KEYWORDS, f"{kw} missing from KEYWORDS"
+        assert kw in mind.KEYWORD_PROFILE, f"{kw} has no pipeline profile"
+    # each profile must map onto real config values the pipeline understands
     cfg = config.load_config()
-    good = {
-        "hook": "You know exactly what to say. You say nothing. Again.",
-        "deepening": ["You ran the conversation on the walk over. Word for word.",
-                      "Then the moment came and your body filed for silence."],
-        "landing": "It was never a knowledge problem.",
-        "cluster": "the_freeze", "topic": "freeze_at_work",
-        "mood": "quiet_devastating", "bg_type": "freeze",
-        "loop_technique": "visual_echo",
+    for kw, (_cl, bg, mood, scene, topic) in mind.KEYWORD_PROFILE.items():
+        assert bg in cfg["bg_types"], f"{kw}: bg_type {bg!r} unknown"
+        assert mood in cfg["moods"], f"{kw}: mood {mood!r} unknown"
+        assert topic in cfg["topics"], f"{kw}: topic {topic!r} unknown"
+        assert scene.strip(), f"{kw}: empty scene query"
+
+
+# ------------------------------------------------------- text engine gates
+
+def test_onscreen_validator_enforces_the_hard_constraints():
+    """§8: second person, no emoji/hashtags, CTA carries the keyword, 5-10 lines."""
+    good = ("When the phone rings and your whole body freezes.\n"
+            "You watch it ring. You watch it stop.\n"
+            "You tell yourself you'll call back in five minutes.\n"
+            "Then five minutes becomes tomorrow.\n"
+            "Then tomorrow becomes sorry, just saw this.\n"
+            "It's not laziness. Your body treats a call like a threat.\n"
+            "Comment QUIET and I'll send you the full breakdown.")
+    assert generate.onscreen_problems(good, "QUIET") == []
+
+    # §8.1 first person. "I'll" is the mandated CTA wording, so it must stay legal.
+    bad_i = good.replace("You watch it ring.", "I watch it ring.")
+    assert any("first person" in p for p in generate.onscreen_problems(bad_i, "QUIET"))
+    assert not any("first person" in p for p in generate.onscreen_problems(good, "QUIET"))
+
+    # §8.4/§8.5 emoji and on-screen hashtags
+    assert any("emoji" in p for p in generate.onscreen_problems(good + "\n😂", "QUIET"))
+    assert any("hashtag" in p for p in generate.onscreen_problems(good + "\n#anxiety", "QUIET"))
+    # §8.3 therapy-speak
+    assert any("therapy" in p for p in generate.onscreen_problems(
+        good.replace("It's not laziness.", "It's part of your healing journey."), "QUIET"))
+    # §8.8 line bounds
+    assert any("lines" in p for p in generate.onscreen_problems(
+        "\n".join([good.split("\n")[0]] * 4), "QUIET"))
+    assert any("lines" in p for p in generate.onscreen_problems(
+        "\n".join([good.split("\n")[0]] * 11), "QUIET"))
+    # §3.4 the CTA must carry the keyword the automation listens for
+    assert any("keyword" in p for p in generate.onscreen_problems(good, "SAFE"))
+    assert any("no CTA" in p for p in generate.onscreen_problems(
+        good.replace("Comment QUIET and I'll send you the full breakdown.", "That is it."),
+        "QUIET"))
+
+
+def test_caption_validator_enforces_structure():
+    good = ("You didn't do anything wrong on that call.\n\n"
+            "The speed and the two apologies are a nervous system responding to a "
+            "threat it invented.\n\nIf this is you, you're not alone.\n\n"
+            "Comment QUIET and I'll send you the full breakdown.\n\n"
+            "#socialanxiety #phoneanxiety #overthinking #socialanxietystruggles #quietpeople")
+    assert generate.caption_problems(good, "QUIET") == []
+    # 5-7 hashtags, and only from the sanctioned pool
+    assert any("hashtags" in p for p in generate.caption_problems(
+        good.replace("#quietpeople", ""), "QUIET"))
+    assert any("off-pool" in p for p in generate.caption_problems(
+        good.replace("#quietpeople", "#crypto"), "QUIET"))
+    # §8.6 no link-in-bio CTA anymore
+    assert any("banned" in p for p in generate.caption_problems(
+        good.replace("Comment QUIET and I'll send you the full breakdown.",
+                     "Link in bio for more."), "QUIET"))
+    # keyword must appear in the caption
+    assert any("keyword" in p for p in generate.caption_problems(good, "SAFE"))
+    # §8.9 max 4 short paragraphs + the tag line
+    bloated = good.replace("\n\nIf this is you", "\n\nA\n\nB\n\nC\n\nIf this is you")
+    assert any("paragraphs" in p for p in generate.caption_problems(bloated, "QUIET"))
+
+
+def test_keyword_never_repeats_and_stays_in_rotation():
+    """§8.7: never the same keyword twice running; DM rules exist for every keyword."""
+    mem = {"last_keyword": "QUIET"}
+    seen = set()
+    for _ in range(40):
+        kw = generate.pick_keyword(mem)
+        assert kw in mind.KEYWORDS, f"unknown keyword {kw}"
+        assert kw != mem.get("last_keyword"), "keyword repeated consecutively"
+        seen.add(kw)
+        mem["last_keyword"] = kw
+        counts = mem.setdefault("keyword_counts", {})
+        counts[kw] = counts.get(kw, 0) + 1
+    # least-used-first ordering should reach most of the pool
+    assert len(seen) >= 10, f"rotation too narrow: {sorted(seen)}"
+
+
+def test_hashtags_are_topped_up_into_the_required_range():
+    """The model sometimes writes 4 tags (its own EXAMPLE 4 does); spec wants 5-7."""
+    cap = ("Something true.\n\nA mechanism.\n\nYou're not alone.\n\n"
+           "Comment SAFE and I'll send you the full breakdown.\n\n"
+           "#socialanxiety #overthinking #socialanxietystruggles")
+    fixed = generate._ensure_hashtags(cap)
+    tags = generate.extract_hashtags(fixed)
+    assert generate.HASHTAGS_MIN <= len(tags) <= generate.HASHTAGS_MAX, tags
+    for t in tags:
+        assert t.lstrip("#") in generate.HASHTAG_POOL
+
+
+def test_static_block_makes_the_loop_structural():
+    """The text is one static block visible the whole time, so the first and last
+    frame are identical by construction and the loop is unconditional."""
+    cfg = config.load_config()
+    full = {
+        "onscreen_text": ("The conversation ends. The trial begins.\n"
+                          "What you said. What you didn't. The face they made.\n"
+                          "You'll review the footage until 2am.\n"
+                          "You've been cross-examining yourself since school.\n"
+                          "Comment REPLAY and I'll send you the full breakdown."),
+        "keyword": "REPLAY",
     }
-    ok, why = generate._limits_ok(good, cfg)
-    assert ok, f"clean candidate rejected: {why}"
-    assert generate._valid(good, cfg) is True
-
-    # character limits are enforced
-    long_hook = {**good, "hook": "You know exactly what to say and you say nothing "
-                                 "again and again and again and again"}
-    assert len(long_hook["hook"]) > cfg["text_limits"]["hook"]
-    assert generate._valid(long_hook, cfg) is False
-    # laws
-    assert generate._laws_ok("Just say it next time.")[0] is False
-    assert generate._laws_ok("Here is my advice.")[0] is False
-    assert generate._laws_ok("Share this with someone.")[0] is False   # Law 12
-    assert generate._laws_ok("You have social anxiety.")[0] is False   # Law 7
-    assert generate._laws_ok("You know exactly what to say.")[0] is True
-    # cliffhanger humour / exclamation rejected (tone)
-    assert generate._laws_ok("You did it!")[0] is False
-
-
-def test_echo_score_is_advisory():
-    """Part 6's own example shares no words between hook and landing, so the loop
-    never depended on a lexical echo. Under FINAL FORMAT the text is one static
-    block visible the whole time, so the first and last frame are identical by
-    construction and the loop is unconditional."""
-    cfg = config.load_config()
-    calib = {"hook": "The conversation ends. The trial begins.",
-             "landing": "You've been cross-examining yourself since school."}
-    # the spec's quality bar must pass validation
-    full = {**calib, "deepening": ["What you said. What you didn't.",
-                                   "You'll review the footage until 2am."],
-            "cluster": "the_aftermath", "topic": "replay_2am",
-            "mood": "heavy_shadow", "bg_type": "aftermath",
-            "loop_technique": "visual_echo"}
-    assert generate._valid(full, cfg) is True, "spec example 2 must be valid"
-    # the echo score is reported but never blocks
-    assert generate._echo_score(calib) >= 0.0
-    # FINAL FORMAT §1: one static block -> the loop is structural, not lexical
+    assert generate.onscreen_problems(full["onscreen_text"], "REPLAY") == []
     blocks = build_video.text_blocks(full)
     assert len(blocks) == 1
     assert build_video.loop_echo_ok(blocks) is True
 
 
-def test_dedup_rejects_near_duplicate():
-    dup = {"hook": "You know exactly what to say. You say nothing. Again."}
-    near = {"hook": "You know exactly what to say. You say nothing. Again"}
-    assert generate._similar(dup["hook"], near["hook"]) > generate.DEDUP_RATIO
-    assert generate._dedup_ok(near, [dup["hook"]], set()) is False
-    fresh = {"hook": "She matched with you. And you're suspicious.",
-             "cluster": "the_craving", "topic": "dating_app_freeze"}
-    assert generate._dedup_ok(fresh, [dup["hook"]], set()) is True
-    assert generate._dedup_ok(fresh, [], {("the_craving", "dating_app_freeze")}) is False
+def test_onscreen_text_is_taken_verbatim_from_the_engine():
+    """The engine's line breaks are the design — re-flowing them is a regression."""
+    content = {"onscreen_text": "One.\nTwo.\nThree.\nFour.\nFive.\nComment SAFE and "
+                                "I'll send you the full breakdown."}
+    blocks = build_video.text_blocks(content)
+    assert len(blocks) == 1, "exactly one block"
+    assert blocks[0]["lines_source"] == [
+        "One.", "Two.", "Three.", "Four.", "Five.",
+        "Comment SAFE and I'll send you the full breakdown."]
+    assert blocks[0]["text"] == content["onscreen_text"]
 
 
 # ------------------------------------------------- Part 5.3 / 5.5 format
 
 def test_text_blocks_and_timing_map():
-    """FINAL FORMAT §1/§2: exactly ONE block containing the whole message,
-    on screen from 0.0 to the end with no timing."""
+    """§1/§2: exactly ONE block containing the whole message, on screen from 0.0 to
+    the end with no timing."""
     cfg = config.load_config()
     content = {
-        "hook": "The conversation ends. The trial begins.",
-        "deepening": ["What you said. What you didn't. The face they made.",
-                      "You'll review the footage until 2am."],
-        "landing": "You've been cross-examining yourself since school.",
+        "onscreen_text": ("The conversation ends. The trial begins.\n"
+                          "What you said. What you didn't. The face they made.\n"
+                          "You'll review the footage until 2am.\n"
+                          "You've been cross-examining yourself since school.\n"
+                          "Comment REPLAY and I'll send you the full breakdown."),
+        "keyword": "REPLAY",
     }
     blocks = build_video.text_blocks(content)
     assert len(blocks) == 1, "§2: exactly one text block"
     assert blocks[0]["kind"] == "message"
-    # the whole message is in the one block, 3-5 lines (§2)
     src = blocks[0]["lines_source"]
-    assert 3 <= len(src) <= 5
+    assert build_video.MIN_LINES_ON_SCREEN <= len(src) <= build_video.MAX_LINES_ON_SCREEN
     assert blocks[0]["text"] == "\n".join(src)
 
     states = build_video.state_map(blocks, cfg, 9.5)
@@ -248,21 +310,63 @@ def test_measured_fit_no_overflow():
     assert fpb == build_video.FONT_BODY and pxb <= build_video.BODY_PX_LADDER[0]
 
 
-def test_variety_guard():
-    def cand(cluster, hook):
-        return {"cluster": cluster, "hook": hook}
-    batch = [cand("the_mask", f"You do thing number {i}.") for i in range(5)]
-    batch += [cand("the_freeze", "The order you rehearsed, fumbled anyway."),
-              cand("the_aftermath", "Two years ago the phone rang and you let it."),
-              cand("the_losses", "There is a version of you that everyone likes.")]
-    kept = generate.diversify(batch)
-    counts = {}
-    for c in kept:
-        counts[c["cluster"]] = counts.get(c["cluster"], 0) + 1
-    assert counts.get("the_mask", 0) <= 3, f"cluster cap failed: {counts}"
-    assert generate._opening_pattern("You smile on cue.") == "you"
-    assert generate._opening_pattern("There is a version of you.") == "there"
-    assert generate._opening_pattern("Two years ago you couldn't.") == "scene"
+def test_variety_guard_keyword_rotation():
+    """The old cluster/opening diversify pass is gone; variety is now enforced by the
+    keyword rotation (never twice running, least-used first) plus topic rotation."""
+    mem = {"last_keyword": "SAFE"}
+    seq = []
+    for _ in range(20):
+        kw = generate.pick_keyword(mem)
+        assert kw != mem["last_keyword"]
+        seq.append(kw)
+        mem["last_keyword"] = kw
+        mem.setdefault("keyword_counts", {})
+        mem["keyword_counts"][kw] = mem["keyword_counts"].get(kw, 0) + 1
+    # no immediate repeats anywhere in the sequence
+    assert all(seq[i] != seq[i + 1] for i in range(len(seq) - 1))
+    assert len(set(seq)) >= 8, f"rotation stuck: {seq}"
+
+
+def test_static_clip_probe_and_source_quality():
+    """The motion probe must exist, and the best-quality variant must be preferred."""
+    from src import background as B
+    # a 1080p variant must beat the 720p default that `best_video` always returns
+    e = {"best_video": "https://x/720.mp4",
+         "videos": [{"url": "https://x/720.mp4", "width": 720, "height": 1280},
+                    {"url": "https://x/1080.mp4", "width": 1080, "height": 1920}]}
+    assert B.best_source_url(e, target_w=1080) == "https://x/1080.mp4"
+    # if nothing reaches the target, take the widest on offer
+    e2 = {"best_video": "https://x/720.mp4",
+          "videos": [{"url": "https://x/720.mp4", "width": 720, "height": 1280},
+                     {"url": "https://x/906.mp4", "width": 906, "height": 1384}]}
+    assert B.best_source_url(e2, target_w=1080) == "https://x/906.mp4"
+    # HLS playlists are not files — never chosen as the download
+    e3 = {"best_video": "https://x/720.mp4",
+          "videos": [{"url": "https://x/hls.m3u8", "width": 1080, "height": 1920},
+                     {"url": "https://x/720.mp4", "width": 720, "height": 1280}]}
+    assert B.best_source_url(e3, target_w=1080) == "https://x/720.mp4"
+    # no usable variants -> fall back to best_video rather than failing the download
+    assert B.best_source_url({"best_video": "https://x/720.mp4"}, 1080) == "https://x/720.mp4"
+
+
+def test_final_render_is_high_quality():
+    """The shipped encode must not be a throwaway: CRF 16, high profile, faststart."""
+    src = (ROOT / "src" / "build_video.py").read_text(encoding="utf-8")
+    body = src.split("def assemble", 1)[1]
+    assert '"veryslow"' in body, "final preset should be veryslow"
+    assert '"16"' in body, "final CRF should be 16"
+    assert '"high"' in body, "h264 high profile expected"
+    assert "+faststart" in body, "faststart is required for streaming"
+    assert '"192k"' in body, "audio bitrate should be 192k"
+
+
+def test_hide_like_count_is_configurable_and_sent():
+    """The user asked for hidden like counts; the container must carry the param."""
+    assert config.DEFAULT_CONFIG["hide_like_count"] is True
+    src = (ROOT / "src" / "publish.py").read_text(encoding="utf-8")
+    assert 'data["hide_like_count"] = "true"' in src, "hide_like_count never sent"
+    # ...but alt_text must STILL never be sent (Graph rejects it with a 400)
+    assert 'data["alt_text"]' not in src
 
 
 # ------------------------------------------------------- harvest metrics
@@ -422,14 +526,27 @@ def test_pixabay_regex_finds_all_three():
 
 # ------------------------------------------------- VISUAL SPEC v1.0 §4 / §5
 
-def test_spec4_text_anchored_at_35_percent():
-    """§4: the text sits ~a third down, not dead-centre."""
+def test_text_anchor_and_block_height_agree():
+    """The block is centred on TEXT_TOP_FRAC, and the anchor must use the same
+    per-line heights as the renderer (the CTA is smaller, which changes block height)."""
     cfg = config.DEFAULT_CONFIG
     h = int(cfg["reel"]["h"])
-    assert build_video.TEXT_TOP_FRAC == 0.35
-    # a 2-line hook must start within a few px of 35% (offset only by half its height)
-    top = build_video.hook_top(["one", "two"], 96, cfg)
-    assert abs(top - (h * 0.35 - 96 * 1.32)) < 3, top
+    entries = [("one", False), ("two", False), ("Comment SAFE and I'll send you "
+                                                "the full breakdown.", True)]
+    top = build_video.hook_top(entries, 96, cfg)
+    bh = build_video.block_height(entries, 96)
+    assert abs(top - (int(h * build_video.TEXT_TOP_FRAC) - bh // 2)) < 3, top
+    # taller blocks must start higher (they are centred, not top-aligned)
+    two = entries[:-1]
+    assert build_video.hook_top(entries, 96, cfg) < build_video.hook_top(two, 96, cfg)
+    # The CTA renders smaller than the body. (Its LINE is not shorter: the extra
+    # leading above it (CTA_GAP) makes the line taller than a body line, which is
+    # what gives the footer its visual separation.)
+    cta_px = max(int(96 * build_video.CTA_SCALE), build_video.CTA_MIN_PX)
+    assert cta_px < 96, "CTA must render smaller than the body"
+    assert build_video.CTA_MIN_PX >= 36, "CTA must stay legible"
+    # and the CTA font is never allowed below the legibility floor
+    assert max(int(40 * build_video.CTA_SCALE), build_video.CTA_MIN_PX) == build_video.CTA_MIN_PX
 
 
 def test_spec4_shadow_blur_and_opacity():
@@ -500,43 +617,38 @@ def test_spec_audio_chain_includes_song_provider():
     assert "/v1/song" in src_song
 
 
-def test_seo_hashtags_are_content_matched_and_within_limits():
-    """SEO §4.2: 6-9 tags = 1-2 branded + 3-4 primary + 2-3 long-tail, topic-matched."""
-    from src import seo as S
-    for topic in ("fake_phone", "cancelled_plans", "the_2am_replay"):
-        tags = S.build_hashtags(topic=topic, on_screen_text="Phone out. Head down.")
-        assert 6 <= len(tags) <= 9, f"{topic}: {len(tags)} tags"
-        assert len({t.lower() for t in tags}) == len(tags), "duplicate tags"
-        branded = [t for t in tags if t in S.BRANDED_TAGS]
-        primary = [t for t in tags if t in S.PRIMARY_TAGS]
-        long_tail = [t for t in tags if t in S.LONG_TAIL_TAGS]
-        assert 1 <= len(branded) <= 2, f"{topic}: branded {branded}"
-        assert 3 <= len(primary) <= 4, f"{topic}: primary {primary}"
-        assert 2 <= len(long_tail) <= 3, f"{topic}: long-tail {long_tail}"
-        # Every long-tail tag must belong to THIS topic, not be random filler.
-        topic_tags = S.TOPIC_MAP[topic][0]
-        assert all(t in topic_tags for t in long_tail), \
-            f"{topic}: mismatched long-tail {long_tail} vs {topic_tags}"
+def test_seo_checklist_matches_the_current_text_engine():
+    """The checklist must validate the CURRENT contract (5-7 tags, keyword shipped).
 
-
-def test_seo_caption_puts_keyword_in_first_line_without_stuffing():
-    """SEO §3.2: primary keyword in line 1, 1+ secondary keyword, no repetition."""
+    It previously enforced a superseded 6-9 hashtag rule, which reported a false
+    failure on every valid reel once the text engine took over the caption.
+    """
     from src import seo as S
-    on_screen = "Phone out. Head down. Still invisible."
-    tags = S.build_hashtags(topic="fake_phone", on_screen_text=on_screen)
-    cap = S.build_caption("Phone out. Head down. Nobody can tell.",
-                          "This is what it looks like from the outside.",
-                          "Phone out again. Head down. Still invisible.",
-                          topic="fake_phone", on_screen_text=on_screen, hashtags=tags)
-    first = cap.split("\n", 1)[0]
-    assert S.primary_in(first) is not None, f"no primary keyword in line 1: {first!r}"
-    assert any(s in cap.lower() for s in S.SECONDARY_KEYWORDS), "no secondary keyword"
-    # Keyword stuffing guard: no single keyword may appear more than twice overall.
-    for kw in S.PRIMARY_KEYWORDS:
-        assert cap.lower().count(kw) <= 2, f"keyword stuffed: {kw}"
-    assert cap.rstrip().endswith(tags[-1]), "hashtags must close the caption"
-    # The caption must not simply repeat the on-screen text (it has to add a description).
-    assert len(cap.split()) >= 12
+    good = {
+        "onscreen_text": ("When the phone rings you freeze.\n"
+                          "You watch it ring out.\n"
+                          "You said sorry, just saw this.\n"
+                          "You saw it on the first ring.\n"
+                          "Comment QUIET and I'll send you the full breakdown."),
+        "caption": ("The phone was never the problem. It's the performance.\n\n"
+                    "If this is you, you're not alone.\n\n"
+                    "Comment QUIET and I'll send you the full breakdown.\n\n"
+                    "#socialanxiety #phoneanxiety #overthinking "
+                    "#socialanxietystruggles #quietpeople"),
+        "hashtags": ["#socialanxiety", "#phoneanxiety", "#overthinking",
+                     "#socialanxietystruggles", "#quietpeople"],
+        "keyword": "QUIET",
+        "alt_text": "A man alone holding a phone in a dark room.",
+    }
+    res = S.checklist(good)
+    assert all(res.values()), [k for k, v in res.items() if not v]
+    # a 9-tag caption is a FAIL now (the old rule); 5-7 is the contract
+    too_many = dict(good, hashtags=good["hashtags"] * 2)
+    assert S.checklist(too_many)["hashtags_5_to_7"] is False
+    # keyword missing from the overlay must be caught
+    assert S.checklist(dict(good, onscreen_text="Nothing here."))["keyword_on_screen"] is False
+    # a keyword with no DM rule would mean commenters never get the link
+    assert S.checklist(dict(good, keyword="NOTAKEYWORD"))["keyword_is_dm_enabled"] is False
 
 
 def test_seo_alt_text_describes_visual_and_ends_with_brand():
@@ -553,23 +665,6 @@ def test_seo_alt_text_describes_visual_and_ends_with_brand():
     import re as _re
     for m in _re.finditer(r"\.\s+([a-z])", alt):
         raise AssertionError(f"sentence starts lowercase: ...{alt[m.start():m.start()+30]!r}")
-
-
-def test_seo_checklist_all_pass_on_generated_content():
-    """The §9 checklist must be fully green for a normal reel."""
-    from src import seo as S
-    on_screen = "Phone out. Head down. Nobody can tell. You scroll through nothing."
-    tags = S.build_hashtags(topic="fake_phone", on_screen_text=on_screen)
-    cap = S.build_caption("Phone out. Head down. Nobody can tell.",
-                          "This is what it looks like from the outside.",
-                          "Phone out again. Head down. Still invisible.",
-                          topic="fake_phone", on_screen_text=on_screen, hashtags=tags)
-    alt = S.build_alt_text(scene="A lone silhouette on a wet street at night",
-                           topic="fake_phone", on_screen_text=on_screen)
-    res = S.checklist({"caption": cap, "hashtags": tags,
-                       "on_screen_text": on_screen, "alt_text": alt})
-    bad = [k for k, v in res.items() if not v]
-    assert not bad, f"checklist failures: {bad}"
 
 
 def test_seo_on_screen_searchable_without_keyword_stuffing():
@@ -647,9 +742,7 @@ def test_publish_never_sends_alt_text_to_container():
     assert 'data["alt_text"]' not in src, "alt_text assigned into container params"
     assert 'data_in["alt_text"]' not in src, "alt_text assigned into url container params"
     # Both container functions still receive it so the caller can surface it.
-    assert 'def create_container(ig_id: str, caption: str, test: bool = False,\n                     alt_text: str = "")' in src
-    assert 'def create_container_url(ig_id: str, caption: str, video_url: str,\n                         alt_text: str = "")' in src
-    # The alt text must still be returned/printed rather than silently dropped.
+    assert "alt_text: str = \"\"" in src
     assert "alt_text_for(content, cfg)" in src
 
 
@@ -690,6 +783,53 @@ def test_entrypoint_modules_are_importable_as_modules():
     for mod in ("run_create", "run_health", "run_learn", "run_measure"):
         m = importlib.import_module(f"src.{mod}")
         assert hasattr(m, "main") or hasattr(m, "run"), f"{mod} has no entry callable"
+
+
+def test_llm_folds_system_into_user_turn():
+    """The upstream endpoint discards the `system` role, so a spec sent that way is
+    silently lost and the model free-styles. It must be folded into the user turn."""
+    from src import llm
+    folded = llm._fold_system([{"role": "system", "content": "RULE: say BANANA"},
+                               {"role": "user", "content": "hello"}])
+    assert len(folded) == 1 and folded[0]["role"] == "user", folded
+    assert "BANANA" in folded[0]["content"], "system spec lost"
+    assert "hello" in folded[0]["content"], "user message lost"
+    # no system message -> only a user turn is sent
+    assert all(m["role"] != "system" for m in folded)
+    # a system-only call still produces a usable user turn
+    only = llm._fold_system([{"role": "system", "content": "RULES"}])
+    assert only and only[0]["role"] == "user" and "RULES" in only[0]["content"]
+
+
+def test_llm_picks_the_largest_json_object_not_the_first():
+    """Prompt examples contain small JSON literals; the answer is the biggest object.
+    json_first() returned {"keyword": "SAFE"} and the reel was built from it."""
+    from src import llm
+    txt = ('example: {"keyword":"SAFE"}\n'
+           'answer:\n{"onscreen_text":"a\\nb","caption":"c","keyword":"QUIET",'
+           '"topic":"d"}')
+    assert llm.json_first(txt) == {"keyword": "SAFE"}, "precondition changed"
+    biggest = llm._json_largest(txt)
+    assert biggest["keyword"] == "QUIET", biggest
+    assert set(biggest) == {"onscreen_text", "caption", "keyword", "topic"}
+    # tolerant of prose around the object and of trailing commas
+    assert llm._json_largest('blah {"a": 1, "b": 2} tail')["b"] == 2
+    assert llm._json_largest("") is None
+
+
+def test_generate_retargets_cta_onto_a_dm_enabled_keyword():
+    """The keyword the CTA names must be one the automation fires on, or comments
+    are lost. FREEZE is in the spec's §5 examples but is NOT enabled here."""
+    o = ("POV: you freeze.\nYou watch it ring.\nYou say nothing again.\n"
+         "You hate this part.\nComment FREEZE and I'll send you the full breakdown.")
+    fixed = generate._retarget_cta(o, "QUIET")
+    assert "Comment QUIET" in fixed, fixed
+    assert "FREEZE" not in fixed
+    # body lines are untouched
+    assert fixed.split("\n")[0] == "POV: you freeze."
+    # a caption CTA is retargeted too
+    cap = "True.\n\nMechanism.\n\nComment FREEZE and I'll send you the full breakdown."
+    assert "Comment QUIET" in generate._retarget_cta(cap, "QUIET")
 
 
 def test_data_config_matches_code_defaults_for_spec_keys():
