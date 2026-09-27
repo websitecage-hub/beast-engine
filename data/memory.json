@@ -165,6 +165,68 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18019035686728113",
+      "container_id": "17911049460538210",
+      "created_at": "2026-09-27T13:45:46.360510+00:00",
+      "hour_slot": "15:00",
+      "hook_text": "POV: your phone rings and you watch it ring out.",
+      "hook": "POV: your phone rings and you watch it ring out.",
+      "keyword": "QUIET",
+      "topic": "phone call avoidance",
+      "caption": "That text after the missed call isn't a lie. It's protection.\nYour nervous system hears a ringing phone as a live performance with no script and no pause button. So it freezes you before you can fail, because a text gives you control that a voice call never does.\nIf you watch calls ring out even though you wanted to answer, you're not alone. You're not rude or cold. You're just trying to keep your voice from shaking in front of someone else.\nComment QUIET and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts #quietpeople",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#latenightthoughts",
+        "#quietpeople"
+      ],
+      "dna": {
+        "hook_text": "POV: your phone rings and you watch it ring out.",
+        "cluster": "the_detour",
+        "topic": "phone_calls",
+        "hook_length_chars": 48,
+        "num_text_blocks": 6,
+        "landing_text": "Comment QUIET and I'll send you the full breakdown.",
+        "bg_type": "detour",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Be Her",
+          "artist": "Ella Langley",
+          "genre": "pop",
+          "trend_score": 75.7,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man alone holding phone looking at it dark room cinematic. Overlay text reads: POV: your phone rings and you watch it ring out. You saw it on the first ring. You still let it go to voicemail. Then you text \"sorry, just saw this\" with your heart hammering in your chest. You know exactly what to say. You just can't... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: your phone rings and you watch it ring out.\nYou saw it on the first ring. You still let it go to voicemail.\nThen you text \"sorry, just saw this\" with your heart hammering in your chest.\nYou know exactly what to say. You just can't say it while someone is listening.\nYou're not flaky. You're trying not to be heard shaking.\nComment QUIET and I'll send you the full breakdown.",
+        "keyword": "QUIET",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#latenightthoughts",
+          "#quietpeople"
+        ],
+        "posted_hour": "15:00",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_detour",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -187,6 +249,11 @@
       "id": "61924563618865143",
       "date": "2026-09-27",
       "pin_url": "https://www.pinterest.com/pin/61924563618865143/"
+    },
+    {
+      "id": "176344141654834357",
+      "date": "2026-09-27",
+      "pin_url": "https://www.pinterest.com/pin/176344141654834357/"
     }
   ],
   "used_tracks": [],
@@ -314,8 +381,8 @@
       "hook": "POV: you laugh at a joke you didn't hear and pray no one noticed."
     }
   ],
-  "last_post_date": "2026-09-26",
-  "post_counter": 3,
+  "last_post_date": "2026-09-27",
+  "post_counter": 4,
   "last_keyword": "HEARD",
   "keyword_counts": {
     "HEARD": 1
