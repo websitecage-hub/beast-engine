@@ -398,6 +398,29 @@ def test_scheduler_retries_are_not_dead_weight():
     assert not ok and "already posted" in why
 
 
+def test_skip_decision_happens_before_the_jitter_sleep():
+    """A run destined to skip must not burn CI time sleeping first.
+
+    Observed on a real CI run: jitter_start 1064.5s, then "already posted today
+    (idempotency)" — 17.7 minutes of a 30-minute job budget spent before deciding
+    there was nothing to do. The skip check has to come first, with a re-check after
+    the sleep so the one-post-per-day cap still holds.
+    """
+    import inspect
+    src = inspect.getsource(run_create.run)
+    # locate the positions of the two markers in the source
+    pre = src.find("Pre-check BEFORE sleeping")
+    jit = src.find('step("jitter_start"')
+    post = src.find("Re-check after the delay")
+    assert pre != -1 and jit != -1 and post != -1, "jitter/skip ordering markers missing"
+    assert pre < jit, "pre-jitter skip check must come before jitter_start"
+    assert jit < post, "post-sleep re-check must come after the sleep"
+    # and the pre-check must actually return before sleeping
+    seg = src[pre:jit]
+    assert "return 0" in seg, "pre-jitter skip path must return without sleeping"
+    assert "time.sleep" not in seg, "nothing may sleep before the skip decision"
+
+
 def test_final_format_text_fills_width():
     """§2: the block must fill >=75% of the frame width (readable at thumbnail)."""
     cfg = config.load_config()

@@ -123,6 +123,23 @@ def run(dry_run=False, offline=False) -> int:
             trending_thread, box = _start_trending(cfg)
         jitter = 0.0 if offline else (float(tone) if tone is not None
                                       else random.uniform(0, 1200))
+
+        force = (config.env("GITHUB_EVENT_NAME") == "workflow_dispatch"
+                 or config.env("BEAST_FORCE_POST") == "1")
+
+        # Pre-check BEFORE sleeping. The jitter exists to look human, but it was
+        # running first, so a run that was always going to skip still burned up to
+        # 20 minutes of CI (observed: jitter_start 1064.5s, then "already posted
+        # today") against a 30-minute job timeout. Deciding first costs nothing and
+        # keeps the human-looking delay on the runs that actually post.
+        ok, reason = scheduler_check(cfg, strategy, memory, offline=offline, force=force)
+        if not ok:
+            step("scheduler", {"post": False, "reason": reason, "pre_jitter": True})
+            log["result"] = "skipped"
+            state.write_log("create", log)
+            state.commit_all(f"create: skip ({reason})", dry_run=dry_run)
+            return 0
+
         step("jitter_start", {"seconds": round(jitter, 1)})
         if jitter > 0:
             time.sleep(jitter)
@@ -130,8 +147,8 @@ def run(dry_run=False, offline=False) -> int:
             trending_thread.join(timeout=30)
         step("trending_joined", {"error": bool(box and box.error)})
 
-        force = (config.env("GITHUB_EVENT_NAME") == "workflow_dispatch"
-                 or config.env("BEAST_FORCE_POST") == "1")
+        # Re-check after the delay: the sleep can be long enough for another run to
+        # have posted, and the one-post-per-day cap must still hold.
         ok, reason = scheduler_check(cfg, strategy, memory, offline=offline, force=force)
         step("scheduler", {"post": ok, "reason": reason})
         if not ok:
