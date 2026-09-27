@@ -18,7 +18,11 @@ DECAY_HALFLIFE_D = 28
 K = 5
 MIN_WEIGHT = 0.001
 FAMILIES = ("archetype", "topic", "mood", "bg_type", "loop_technique")
-HOURS = ("13:30", "15:00", "16:30", "21:30")
+# ONLY the hours a cron actually fires. The learner used to choose from a list that
+# included 21:30, which no workflow triggers — picking it silently stopped the
+# machine from posting at all (every run failed the +/-35min window check).
+# Keep this in lockstep with the `cron:` entries in .github/workflows/create.yml.
+HOURS = ("13:30", "15:00", "16:30")
 
 
 def _parse(ts):

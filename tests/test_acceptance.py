@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT))
 import yaml  # noqa: E402
 
 from src import (analyze, background, build_video, config, generate, harvest,  # noqa: E402
-                 mind, music)
+                 mind, music, run_create)
 
 FIXTURES = ROOT / "tests" / "fixtures"
 
@@ -272,6 +272,68 @@ def test_final_format_no_person_queries_are_person_bearing():
     # §3's own exact queries must all be recognised as person-bearing
     for q in background.PERSON_QUERIES:
         assert any(w in q.lower() for w in background.PERSON_WORDS), q
+
+
+def test_scheduler_hours_match_the_workflow_crons():
+    """The learner must only be offered hours a cron actually fires at.
+
+    HOURS used to include 21:30 while create.yml only fires 13:30/15:00/16:30. The
+    learner picked 21:30, so no scheduled run was ever inside the window and the
+    machine stopped posting on its own while every unit test stayed green.
+    """
+    import re
+    from pathlib import Path
+    yml = (Path(config.ROOT) / ".github" / "workflows" / "create.yml").read_text()
+    crons = set(re.findall(r'cron:\s*"(\d+)\s+(\d+)', yml))
+    cron_times = {f"{int(h):02d}:{int(m):02d}" for m, h in crons}
+    assert cron_times == set(analyze.HOURS), (
+        f"analyze.HOURS {sorted(analyze.HOURS)} != cron times {sorted(cron_times)} — "
+        "the learner could pick an hour nothing triggers")
+    # and the scheduler's own slot list must agree with both
+    assert set(run_create.SLOT_HOURS) == cron_times
+
+
+def test_scheduler_retries_are_not_dead_weight():
+    """A failed slot must be retryable by the next one.
+
+    Slots are 90 minutes apart. The old +/-35min window meant only one cron could
+    ever post, so the other two were decorative and a failure lost the whole day.
+    """
+    from datetime import datetime, timezone
+    cfg = config.load_config()
+    strat = {"warmup_until": "2000-01-01", "next_post_hour": "15:00"}
+    # at slot 1 and slot 2 (with nothing posted yet) the day is still open
+    for slot in run_create.SLOT_HOURS[:2]:
+        hh, mm = (int(x) for x in slot.split(":"))
+        fake = datetime(2026, 9, 27, hh, mm, tzinfo=timezone.utc)
+        real = run_create.datetime
+        class _DT(real):
+            @classmethod
+            def now(cls, tz=None):
+                return fake
+        run_create.datetime = _DT
+        try:
+            ok, why = run_create.scheduler_check(cfg, strat, {}, offline=False, force=False)
+        finally:
+            run_create.datetime = real
+        assert ok, f"slot {slot} should be able to post: {why}"
+    # after the last slot the day is closed (so we never post at midnight)
+    fake = datetime(2026, 9, 27, 23, 30, tzinfo=timezone.utc)
+    real = run_create.datetime
+    class _DT2(real):
+        @classmethod
+        def now(cls, tz=None):
+            return fake
+    run_create.datetime = _DT2
+    try:
+        ok, why = run_create.scheduler_check(cfg, strat, {}, offline=False, force=False)
+    finally:
+        run_create.datetime = real
+    assert not ok and "last slot" in why, why
+    # idempotency beats everything, force included
+    ok, why = run_create.scheduler_check(cfg, strat, {"last_post_date": config.today_utc().isoformat()},
+                                        offline=False, force=True)
+    assert not ok and "already posted" in why
 
 
 def test_final_format_text_fills_width():

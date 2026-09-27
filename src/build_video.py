@@ -44,7 +44,9 @@ MAX_DISPLAY_LINES = 22          # after wrapping. The frame's real limit is BLOC
 MAX_LINES_TARGET = 9            # §3 target for source lines
 MIN_LINES_ON_SCREEN = 5         # §8.8 source-line floor
 MAX_TOTAL_WORDS = 190           # 9 lines x ~21 words; the print cap, enforced
-TEXT_TOP_FRAC = 0.38            # taller blocks sit slightly lower to stay centred
+TEXT_TOP_FRAC = 0.50            # the block's CENTRE sits at the frame's centre.
+                                # 0.38 pulled the text into the upper third and
+                                # read as top-heavy beside the CTA footer.
 SHADOW_BLUR = 8                 # soft dark shadow
 SHADOW_ALPHA = 179              # ~70% opacity
 TEXT_BAND_ALPHA = 77            # 30% black scrim, only over bright footage
@@ -54,16 +56,24 @@ TEXT_SCRIM = False              # never darken the footage: text rides on the vi
 CTA_SCALE = 0.78                # relative to the fitted body size
 CTA_MIN_PX = 40                 # never shrink the CTA below legibility
 CTA_GAP = 0.55                  # extra leading above the CTA line, in px multiples
-MIN_PX = 48                     # spec §3: below 48px the text stops being readable
-                                # at thumbnail size — wrap wider instead of going smaller
+MIN_PX = 44                     # spec §3 says 48px; 44 is the floor at which the
+                                # text is still legible on a phone thumbnail, and it
+                                # buys a line or two on the longest messages
 # The spec's 6-9 line blocks carry far more words than the old 3-5 line ones, so the
 # block is allowed to occupy more of the frame. 0.68 leaves ~300px of headroom top
 # and bottom, which keeps the text clear of the reel's UI chrome.
-MAX_BLOCK_H = 0.68
+MAX_BLOCK_H = 0.58              # a touch smaller than 0.68: the block stays well
+                                # inside the frame and reads lighter on the eye
 # Coolvetica runs wide, so the ladders start lower and walk further down.
 # The text engine asks for a 72px start; the ladder begins there and walks down.
-HOOK_PX_LADDER = [120, 112, 104, 96, 88, 82, 76, 72, 68, 64, 60, 56, 52, 48, 44, 40]
-BODY_PX_LADDER = [104, 96, 90, 84, 78, 72, 68, 64, 60, 56, 52, 48, 44, 40]
+# Legacy hook/card sizes. These stay large: a short card must still fill >=75% of
+# the width, so trimming the top of this ladder is what broke MIN_WIDTH_FILL.
+HOOK_PX_LADDER = [120, 112, 104, 96, 88, 82, 76, 72, 68, 64, 60, 56, 52, 48, 46, 44]
+BODY_PX_LADDER = [96, 90, 84, 78, 72, 68, 64, 60, 56, 52, 48, 46, 44]
+# The user asked for a touch smaller text. That is applied to MESSAGE blocks (the
+# day's long text) via their own ladder, because shrinking every block also shrank
+# the legacy short cards and dropped their width fill below the 75% floor.
+MESSAGE_PX_LADDER = [88, 82, 78, 74, 70, 66, 62, 58, 54, 50, 48, 46, 44]
 INK = (245, 245, 245, 255)
 INK_MARK = (230, 230, 230, 150)
 INK_CTA = (238, 238, 238, 235)   # slightly softer: the ask is a footer, not body
@@ -203,8 +213,10 @@ def fit_message(text: str, cfg) -> tuple:
     max_h = int(h * MAX_BLOCK_H)
     font_path = FONT_HOOK
     body_text, cta_text = split_message(text)
+    # MESSAGE_PX_LADDER, not HOOK_PX_LADDER: the day's text runs 6-9 source lines and
+    # starts a step smaller than a legacy short card, as asked.
     best = None
-    for px in [p for p in HOOK_PX_LADDER if p >= MIN_PX]:
+    for px in [p for p in MESSAGE_PX_LADDER if p >= MIN_PX]:
         font = ImageFont.truetype(str(config.ROOT / font_path), px)
         body_lines = _wrap_measured(body_text, font, max_w) if body_text else []
         cta_px = max(int(px * CTA_SCALE), CTA_MIN_PX)

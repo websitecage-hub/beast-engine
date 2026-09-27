@@ -40,11 +40,22 @@ def _start_trending(cfg) -> tuple:
     return t, box
 
 
+# The exact times the create workflow's crons fire. Kept here so the scheduler and
+# the publish pipeline agree on what "today's slot" means.
+SLOT_HOURS = ("13:30", "15:00", "16:30")
+
+
 def scheduler_check(cfg, strategy, memory, offline=False, force=False) -> tuple:
     """Returns (should_post, reason).
 
-    force=True (workflow_dispatch, or BEAST_FORCE_POST=1) skips the warmup off-day rule
-    and the +/-35min window, but NEVER the one-post-per-day idempotency check.
+    force=True (workflow_dispatch, or BEAST_FORCE_POST=1) skips the warmup off-day
+    rule and the slot window, but NEVER the one-post-per-day idempotency check.
+
+    The crons fire at SLOT_HOURS and are three RETRIES of one daily post, not three
+    posts. The old +/-35min window made the retries dead weight: the slots are 90
+    minutes apart, so only one cron could ever be inside the window and the other
+    two always skipped. Now any run before the day's last slot may post — if
+    slot 1 fails to build a reel, slot 2 picks the day up automatically.
     """
     today = config.today_utc()
     if offline:
@@ -61,16 +72,17 @@ def scheduler_check(cfg, strategy, memory, offline=False, force=False) -> tuple:
             return False, f"warmup (until {warmup_until}) — off day"
     if force:
         return True, "forced (manual dispatch)"
-    target = strategy.get("next_post_hour") or "15:00"
-    try:
-        hh, mm = (int(x) for x in target.split(":"))
-    except Exception:  # noqa: BLE001
-        hh, mm = 15, 0
     now = datetime.now(timezone.utc)
-    delta = abs((now.hour * 60 + now.minute) - (hh * 60 + mm))
-    if delta > 35:
-        return False, f"outside the +/-35min window for {target} (delta {delta}m)"
-    return True, f"in slot {target}"
+    deadline = _slot_minutes(max(SLOT_HOURS))
+    if now.hour * 60 + now.minute > deadline:
+        return False, (f"past the last slot {max(SLOT_HOURS)} — today is a write-off, "
+                       "tomorrow's first run takes it")
+    return True, f"in the daily window (slots {', '.join(SLOT_HOURS)})"
+
+
+def _slot_minutes(hhmm: str) -> int:
+    hh, mm = (int(x) for x in hhmm.split(":"))
+    return hh * 60 + mm
 
 
 def run(dry_run=False, offline=False) -> int:

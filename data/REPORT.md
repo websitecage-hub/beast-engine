@@ -1,6 +1,6 @@
 # Beast Engine — weekly brain report
 
-Generated: 2026-09-27T11:13:55+00:00
+Generated: 2026-09-27T11:50:43+00:00
 
 Posts scored this cycle: **10**
 Weighted mean score: **0.0832**
@@ -12,7 +12,7 @@ Weighted mean score: **0.0832**
 |---|---|---|
 | the_mask | 0.0900 | 1 |
 | the_detour | 0.0889 | 1 |
-| the_freeze | 0.0879 | 1 |
+| the_freeze | 0.0878 | 1 |
 | the_sealed_mouth | 0.0878 | 1 |
 | the_losses | 0.0834 | 1 |
 | the_buried_anger | 0.0832 | 0 |

@@ -62,20 +62,47 @@ def search(query: str, media_type: str | None = None, retries: int = 3) -> list:
 
 
 def download(url: str, out_path, retries: int = 3) -> bool:
-    out_path = Path(out_path)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
+    """Fetch a Pinterest MP4 to disk.
+
+    ffmpeg is preferred over requests when the URL is HLS or the host rejects a
+    plain GET: a .m3u8 needs remuxing before it is usable as a video source, and
+    requests cannot do that at all. requests stays as the fast path for plain MP4s.
+    """
+    url = str(url or "")
+    if not url:
+        return False
+    if ".m3u8" in url.lower():
+        return _download_ffmpeg(url, out_path)
     for attempt in range(retries):
         try:
-            r = requests.get(url, headers={"User-Agent": UA}, timeout=120, stream=True)
-            if r.status_code >= 500:
-                raise RuntimeError(f"transient {r.status_code}")
-            r.raise_for_status()
-            with out_path.open("wb") as fh:
-                for chunk in r.iter_content(65536):
-                    fh.write(chunk)
-            if out_path.stat().st_size > 1024:
-                return True
-        except Exception:  # noqa: BLE001
-            if attempt < retries - 1:
-                time.sleep(3 * (attempt + 1))
-    return False
+            r = requests.get(url, timeout=120, stream=True,
+                             headers={"User-Agent": UA})
+            if r.status_code == 200:
+                with open(out_path, "wb") as fh:
+                    for chunk in r.iter_content(1 << 16):
+                        if chunk:
+                            fh.write(chunk)
+                if Path(out_path).stat().st_size > 0:
+                    return True
+            elif r.status_code in (403, 404, 410):
+                break                      # gone or blocked: retrying will not help
+        except requests.RequestException:
+            pass
+        if attempt < retries - 1:
+            time.sleep(2 * (attempt + 1))
+    return _download_ffmpeg(url, out_path)
+
+
+def _download_ffmpeg(url: str, out_path, timeout: int = 600) -> bool:
+    """Last resort: let ffmpeg pull the stream (handles HLS and odd hosts)."""
+    import subprocess
+    out = Path(out_path)
+    if out.exists():
+        out.unlink()
+    cmd = ["ffmpeg", "-y", "-v", "error", "-user_agent", UA,
+           "-i", url, "-c", "copy", "-bsf:a", "aac_adtstoasc", str(out)]
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    except Exception:  # noqa: BLE001
+        return False
+    return r.returncode == 0 and out.exists() and out.stat().st_size > 0

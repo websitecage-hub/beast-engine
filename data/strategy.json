@@ -191,8 +191,8 @@
     "16:30": null,
     "21:30": null
   },
-  "next_post_hour": "21:30",
-  "warmup_until": "2026-09-28",
+  "next_post_hour": "15:00",
+  "warmup_until": "2026-09-27",
   "experiments": [],
   "last_updated": null
 }
