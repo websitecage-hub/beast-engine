@@ -25,7 +25,26 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # Gate the publish on the acceptance suite. Without this, a regression in
+  # src/ only surfaced when someone ran the tests by hand — CI would happily build
+  # and post a reel with broken placement. Cheap (no deps, no network) and it runs
+  # before any secrets are needed.
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Acceptance tests
+        run: python -m tests.test_acceptance
+
   create:
+    needs: test
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:

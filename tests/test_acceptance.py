@@ -595,10 +595,17 @@ def test_workflows_parse_and_contracts():
         assert perms["contents"] == "write" and perms["issues"] == "write"
         assert doc["concurrency"]["group"] == group
         assert doc["concurrency"]["cancel-in-progress"] is False
-        job = doc["jobs"][list(doc["jobs"].keys())[0]]
+        # Find the job that RUNS the entrypoint, rather than assuming it is jobs[0].
+        # Hard-coding the first job meant adding any preceding job (e.g. a test gate)
+        # broke this assertion even though the contract was intact.
+        job = None
+        for _j in doc["jobs"].values():
+            if any(script in str(s.get("run", "")) for s in _j.get("steps", [])):
+                job = _j
+                break
+        assert job is not None, f"{name}: no job runs {script}.py"
         assert job["timeout-minutes"] == timeout, f"{name}: timeout {job['timeout-minutes']}"
-        run_step = next((s for s in job["steps"] if script in str(s.get("run", ""))), None)
-        assert run_step is not None, f"{name}: no step runs {script}.py"
+        run_step = next(s for s in job["steps"] if script in str(s.get("run", "")))
         assert run_step["env"]["GITHUB_TOKEN"].startswith("${{ secrets.")
         if name != "learn.yml":
             assert run_step["env"]["IG_ACCESS_TOKEN"].startswith("${{ secrets.")
@@ -611,6 +618,76 @@ def test_workflows_parse_and_contracts():
     health = yaml.safe_load((wf / "health.yml").read_text(encoding="utf-8"))
     assert health["permissions"]["contents"] == "write", "health needs contents:write"
     assert health["permissions"]["issues"] == "write", "health needs issues:write"
+
+
+def test_safe_band_constants_are_pinned_and_clear_the_ui():
+    """The band constants themselves must be locked, and must clear the UI zone.
+
+    Found by injecting TEXT_SAFE_BOTTOM = 0.95: the suite still passed 56/56, because
+    every placement test asked "is the text centred inside the band?" — and a band that
+    extends into Instagram's caption bar is still a band. Centred-in-band is not the
+    invariant that matters; text-above-the-UI is. Pin both:
+      * the constants have the values the fix was verified at
+      * TEXT_SAFE_BOTTOM leaves real clearance below the UI zone threshold
+    """
+    assert build_video.TEXT_SAFE_TOP == 0.13, build_video.TEXT_SAFE_TOP
+    assert build_video.TEXT_SAFE_BOTTOM == 0.72, build_video.TEXT_SAFE_BOTTOM
+    assert build_video.UI_ZONE_TOP == 0.76, build_video.UI_ZONE_TOP
+    # The band must end ABOVE where the UI begins, with margin. If someone raises
+    # TEXT_SAFE_BOTTOM to chase a taller block, this fails before a reel ships.
+    assert build_video.TEXT_SAFE_BOTTOM < build_video.UI_ZONE_TOP, \
+        "safe band overlaps the Instagram UI zone"
+    assert build_video.UI_ZONE_TOP - build_video.TEXT_SAFE_BOTTOM >= 0.03, \
+        "less than 3% of frame height between the band and the UI"
+    # and the derived cap must agree with the band
+    assert build_video.MAX_BLOCK_H == build_video.TEXT_SAFE_BOTTOM - build_video.TEXT_SAFE_TOP
+
+    # The strongest form: render a block and assert its ink clears the UI zone by
+    # construction, for the tallest block the fitter can produce.
+    from PIL import Image
+    import numpy as _np
+    cfg = config.DEFAULT_CONFIG
+    h = int(cfg["reel"]["h"])
+    long_text = "\n".join(["You rehearse the whole thing then it still falls apart"] * 5
+                          + ["Comment HEARD and I'll send you the full breakdown."])
+    entries, px, fp = build_video.fit_message(long_text, cfg)
+    out = config.OUTPUTS / "test_band_clearance.png"
+    build_video.render_block(entries, px, fp, "", out, cfg, fixed_top=None, bg_luma=None)
+    with Image.open(out) as im:
+        mask = _np.array(im.convert("RGBA"))[:, :, 3] >= 200
+    rows = _np.where(mask.any(axis=1))[0]
+    assert len(rows), "nothing rendered"
+    ink_bottom = int(rows[-1])
+    ui_top = int(h * build_video.UI_ZONE_TOP)
+    assert ink_bottom < ui_top, f"tallest block reaches {ink_bottom} vs UI {ui_top}"
+    # and it still sits inside the band
+    assert int(rows[0]) >= int(h * build_video.TEXT_SAFE_TOP)
+    assert ink_bottom <= int(h * build_video.TEXT_SAFE_BOTTOM) + 1
+
+
+def test_create_publish_is_gated_on_the_acceptance_suite():
+    """The create workflow must run the acceptance tests and publish only if they pass.
+
+    Without a gate, a regression in src/ (broken placement, dead publish, bad
+    contract) reached Instagram untested — CI only ran the entrypoint. This asserts
+    the gate exists, that it runs the suite, and that the publishing job depends on it.
+    """
+    doc = yaml.safe_load((ROOT / ".github" / "workflows" / "create.yml")
+                         .read_text(encoding="utf-8"))
+    jobs = doc["jobs"]
+    gate = None
+    for name, j in jobs.items():
+        if any("test_acceptance" in str(s.get("run", "")) for s in j.get("steps", [])):
+            gate = name
+            break
+    assert gate is not None, "create.yml has no acceptance-test step"
+    # the publisher must WAIT on the gate
+    pub = [n for n, j in jobs.items()
+           if any("run_create" in str(s.get("run", "")) for s in j.get("steps", []))]
+    assert pub, "create.yml has no job running run_create"
+    for p in pub:
+        assert jobs[p].get("needs") == gate, \
+            f"publishing job {p!r} must needs: {gate!r} (got {jobs[p].get('needs')!r})"
 
 
 # ------------------------------------------------------------- data files
