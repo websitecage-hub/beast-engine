@@ -648,6 +648,21 @@ def test_publish_never_sends_alt_text_to_container():
     assert "alt_text_for(content, cfg)" in src
 
 
+def test_workflows_use_only_valid_permission_scopes():
+    """An invalid scope key makes the whole workflow unparseable — GitHub rejects the
+    file and the schedule silently never runs. `secrets: write` is NOT a real scope and
+    did exactly that to health.yml."""
+    import glob as _glob
+    import yaml
+    valid = {"actions", "attestations", "checks", "contents", "deployments",
+             "discussions", "id-token", "issues", "models", "packages", "pages",
+             "pull-requests", "repository-projects", "security-events", "statuses"}
+    for f in sorted(_glob.glob(str(ROOT / ".github" / "workflows" / "*.yml"))):
+        d = yaml.safe_load(open(f, encoding="utf-8"))
+        for scope in (d.get("permissions") or {}):
+            assert scope in valid, f"{f}: invalid permission scope {scope!r}"
+
+
 def test_data_config_matches_code_defaults_for_spec_keys():
     """data/config.json must not contradict the code defaults."""
     live = json.loads((ROOT / "data" / "config.json").read_text(encoding="utf-8"))
