@@ -41,9 +41,16 @@
           "trend_score": 76.3
         }
       },
-      "metrics": {},
-      "score": null,
-      "harvested": false
+      "metrics": {
+        "reach": 98,
+        "likes": 2,
+        "comments": 0,
+        "saved": 0,
+        "shares": 0
+      },
+      "score": 0.00510204081632653,
+      "harvested": false,
+      "last_harvested": "2026-09-27T14:54:07.460549+00:00"
     },
     {
       "media_id": "18188315185408018",

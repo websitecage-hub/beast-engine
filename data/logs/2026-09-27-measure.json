@@ -1,0 +1,15 @@
+[
+  {
+    "workflow": "measure",
+    "started": "2026-09-27T14:54:07.460310+00:00",
+    "dry_run": false,
+    "harvest": {
+      "updated": 1,
+      "skipped": 0,
+      "errors": [],
+      "total_posts": 5
+    },
+    "logs_pruned": 0,
+    "seconds": 0.94
+  }
+]
