@@ -709,6 +709,31 @@ def test_all_third_party_imports_are_declared_in_requirements():
     assert not missing, "undeclared third-party imports: " + ", ".join(sorted(missing))
 
 
+def test_token_rotation_uses_a_credential_that_can_write_secrets():
+    """Token rotation must not be wired to the automatic GITHUB_TOKEN.
+
+    The automatic Actions token cannot read or write Actions secrets — that scope does
+    not exist for it. health.yml passed secrets.GITHUB_TOKEN, so _set_secret() always
+    returned False, the refresh logged "not rotated", and the IG token would expire
+    ~60 days later with no warning and stop all posting. Rotation requires a PAT with
+    Actions-secrets write.
+    """
+    doc = yaml.safe_load((ROOT / ".github" / "workflows" / "health.yml")
+                         .read_text(encoding="utf-8"))
+    for job in doc["jobs"].values():
+        for step in job.get("steps", []):
+            env = step.get("env") or {}
+            if "run_health" not in str(step.get("run", "")):
+                continue
+            tok = str(env.get("GITHUB_TOKEN", ""))
+            # it must not be the bare automatic token
+            assert tok != "${{ secrets.GITHUB_TOKEN }}", \
+                "health.yml passes the automatic GITHUB_TOKEN; secret rotation will fail"
+            # and it must name a rotation-capable secret
+            assert "BEAST_GH_PAT" in tok, \
+                f"health.yml GITHUB_TOKEN does not use the rotation PAT: {tok!r}"
+
+
 def test_create_publish_is_gated_on_the_acceptance_suite():
     """The create workflow must run the acceptance tests and publish only if they pass.
 

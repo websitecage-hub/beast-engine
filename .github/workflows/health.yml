@@ -31,7 +31,14 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # The automatic GITHUB_TOKEN CANNOT read or write Actions secrets (that
+          # scope does not exist for it), so passing it here made token rotation
+          # silently fail: the refresh reported "not rotated" and the IG token would
+          # simply expire ~60 days later, stopping all posting. BEAST_GH_PAT is a
+          # fine-grained PAT with Actions-secrets write, which is what rotation needs.
+          # Falls back to GITHUB_TOKEN so a missing secret degrades to the old
+          # behaviour (warn) instead of crashing the health pass.
+          GITHUB_TOKEN: ${{ secrets.BEAST_GH_PAT || secrets.GITHUB_TOKEN }}
         run: python -m src.run_health
       - name: Commit state
         if: always()
