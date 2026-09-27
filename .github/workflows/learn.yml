@@ -32,7 +32,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python src/run_learn.py
+        run: python -m src.run_learn
       - name: Commit state
         if: always()
         run: |

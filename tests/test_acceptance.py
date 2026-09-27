@@ -668,6 +668,30 @@ def test_workflows_use_only_valid_permission_scopes():
             assert scope in valid, f"{f}: invalid permission scope {scope!r}"
 
 
+def test_workflows_invoke_modules_not_file_paths():
+    """`python src/run_x.py` breaks the package's relative imports
+    ("attempted relative import with no known parent package") — every scheduled run
+    died instantly. The entrypoints must be invoked as modules."""
+    import glob as _glob
+    import yaml
+    for f in sorted(_glob.glob(str(ROOT / ".github" / "workflows" / "*.yml"))):
+        d = yaml.safe_load(open(f, encoding="utf-8"))
+        for job in (d.get("jobs") or {}).values():
+            for step in job.get("steps", []):
+                cmd = str(step.get("run", "") or "")
+                if "run_" in cmd and ".py" in cmd:
+                    raise AssertionError(
+                        f"{f}: runs a script path ({cmd!r}); use -m src.run_x instead")
+
+
+def test_entrypoint_modules_are_importable_as_modules():
+    """Each workflow entrypoint must work under `python -m src.<name>`."""
+    import importlib
+    for mod in ("run_create", "run_health", "run_learn", "run_measure"):
+        m = importlib.import_module(f"src.{mod}")
+        assert hasattr(m, "main") or hasattr(m, "run"), f"{mod} has no entry callable"
+
+
 def test_data_config_matches_code_defaults_for_spec_keys():
     """data/config.json must not contradict the code defaults."""
     live = json.loads((ROOT / "data" / "config.json").read_text(encoding="utf-8"))
