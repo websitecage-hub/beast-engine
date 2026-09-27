@@ -1,0 +1,227 @@
+[
+  {
+    "workflow": "create",
+    "started": "2026-09-27T05:26:08.135110+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 13.53
+      },
+      {
+        "step": "jitter_start",
+        "t": 13.53,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 43.53,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 43.53,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 43.53,
+        "seconds": 9.87
+      },
+      {
+        "step": "generated",
+        "t": 110.7,
+        "hook": "Someone walks closer. Your phone becomes interesting.",
+        "exploit": true
+      },
+      {
+        "step": "failed",
+        "t": 255.35,
+        "error": "[Errno 2] No such file or directory: 'ffmpeg'"
+      }
+    ],
+    "errors": [
+      "[Errno 2] No such file or directory: 'ffmpeg'"
+    ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T05:33:34.417222+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.52
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.52,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.8,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.8,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.8,
+        "seconds": 9.74
+      },
+      {
+        "step": "generated",
+        "t": 83.82,
+        "hook": "Someone walks by. Phone comes out.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 184.59,
+        "source": "pinterest_video",
+        "is_video": true
+      },
+      {
+        "step": "music",
+        "t": 215.28,
+        "source": "song"
+      },
+      {
+        "step": "failed",
+        "t": 248.76,
+        "error": "FINAL FORMAT §1 violated: text not visible at [0.0, 0.25, 4.87, 9.49]s — the text must be on screen from frame 0 to the end with no animation"
+      }
+    ],
+    "errors": [
+      "FINAL FORMAT §1 violated: text not visible at [0.0, 0.25, 4.87, 9.49]s — the text must be on screen from frame 0 to the end with no animation"
+    ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T05:44:21.236475+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.16
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.16,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.46,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.46,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.46,
+        "seconds": 9.32
+      },
+      {
+        "step": "generated",
+        "t": 93.97,
+        "hook": "Phone out. Head down. Nobody can tell.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 179.48,
+        "source": "pinterest_video",
+        "is_video": true
+      },
+      {
+        "step": "music",
+        "t": 197.14,
+        "source": "trending_free"
+      },
+      {
+        "step": "built",
+        "t": 227.59,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "one_text_block": true,
+            "lines_max_5": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.333333,
+          "size_mb": 1.7,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "message",
+              "px": 58,
+              "widest": 864,
+              "lines": 5
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "message",
+              "start": 0.0,
+              "end": 9.32
+            }
+          ],
+          "text_visibility": [
+            {
+              "t": 0.0,
+              "text_visible": true
+            },
+            {
+              "t": 0.25,
+              "text_visible": true
+            },
+            {
+              "t": 4.66,
+              "text_visible": true
+            },
+            {
+              "t": 9.07,
+              "text_visible": true
+            }
+          ],
+          "motion": true
+        }
+      },
+      {
+        "step": "published",
+        "t": 227.59,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  }
+]

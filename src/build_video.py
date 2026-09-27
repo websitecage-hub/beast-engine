@@ -32,11 +32,16 @@ WATERMARK_PX = 28
 SIDE_MARGIN = 90                # Part 5.3: generous margins, 90px sides
 MAX_BLOCK_H = 0.62
 BLOCK_FADE = 0.3                # Part 5.3: block fade <= 0.3s, no text theatre
-# --- VISUAL SPEC v1.0 §4 -----------------------------------------------------
-TEXT_TOP_FRAC = 0.35            # §4: text sits ~a third down, not dead-centre
-SHADOW_BLUR = 8                 # §4: shadow blur radius 8
-SHADOW_ALPHA = 179              # §4: ~70% opacity (0.70 * 255)
-TEXT_BAND_ALPHA = 77            # §4: 30% black (0.30 * 255) behind text
+# --- FINAL FORMAT (the "already on screen" spec) -----------------------------
+LINE_SPACING = 1.32             # comfortable breathing room between lines (§2)
+MIN_WIDTH_FILL = 0.75           # §2: text fills >=75% of frame width
+MAX_WIDTH_FILL = 0.92           # never touch the edges
+MAX_LINES_ON_SCREEN = 5         # §2: "NEVER more than 5 short lines"
+MAX_TOTAL_WORDS = 46            # §2: 5 lines x ~9 words — the print cap, enforced
+TEXT_TOP_FRAC = 0.35            # §2: centered, slightly above middle
+SHADOW_BLUR = 8                 # soft dark shadow
+SHADOW_ALPHA = 179              # ~70% opacity
+TEXT_BAND_ALPHA = 77            # 30% black scrim, only over bright footage
 TEXT_BAND_BRIGHT_MIN = 88       # only lay the band when the bg luma exceeds this
 # Coolvetica runs wide, so the ladders start lower and walk further down.
 HOOK_PX_LADDER = [120, 112, 104, 96, 88, 82, 76, 70, 64, 58, 52, 46, 40]
@@ -52,25 +57,60 @@ def _clean(text) -> str:
 
 
 def text_blocks(content: dict) -> list:
-    """The 2-3 on-screen blocks: hook, deepening..., landing (Part 5.3)."""
+    """THE COMPLETE MESSAGE as ONE block (FINAL FORMAT §2).
+
+    The format is explicit: exactly ONE text block containing the whole message
+    (3-5 short lines), visible from frame 0 and never changing. The hook/body/
+    landing structure still drives the *writing*, but on screen it is a single
+    stacked paragraph — not three timed cards.
+    """
     hook = _clean(content.get("hook"))
     landing = _clean(content.get("landing"))
     deep = [_clean(d) for d in (content.get("deepening") or []) if _clean(d)]
+
     if not hook and content.get("blocks"):
-        # legacy content.json with only a `blocks` list
-        legacy = [_clean(b) for b in content["blocks"] if _clean(b)]
-        if legacy:
-            return [{"text": legacy[0], "kind": "hook"},
-                    *[{"text": t, "kind": "deepening"} for t in legacy[1:-1]],
-                    *([{"text": legacy[-1], "kind": "landing"}] if len(legacy) > 1 else [])]
-    out = [{"text": hook, "kind": "hook"}]
-    out += [{"text": d, "kind": "deepening"} for d in deep[:2]]
-    out.append({"text": landing, "kind": "landing"})
-    return [b for b in out if b["text"]]
+        deep = [_clean(b) for b in content["blocks"] if _clean(b)]   # legacy
+        hook = deep[0] if deep else ""
+        deep = deep[1:]
+
+    # the complete message, in reading order: hook -> deepening -> landing.
+    # The landing is the loop-echo of the hook, so when they read as the same
+    # idea we drop the duplicate line rather than print it twice.
+    parts = [hook, *deep[:2]]
+    if landing and landing.lower() not in {p.lower() for p in parts}:
+        parts.append(landing)
+    parts = [p for p in parts if p]
+    if not parts:
+        return []
+
+    # §2 hard cap. The model is asked for a 25-40 word total, but a model can
+    # over-write, and the cap must hold deterministically regardless. Trim the
+    # middle (deepening) first: the hook opens and the landing closes the loop, so
+    # those two survive; the middle is what a human editor would cut.
+    while len(parts) > MAX_LINES_ON_SCREEN and len(parts) > 2:
+        parts.pop(len(parts) - 2)
+
+    total_words = sum(len(p.split()) for p in parts)
+    if total_words > MAX_TOTAL_WORDS and len(parts) > 2:
+        # still too long to print in 5 lines: keep hook + strongest + landing
+        keep = [parts[0]]
+        mid = parts[1:-1]
+        mid.sort(key=lambda s: len(s.split()))
+        keep.append(mid[0])
+        keep.append(parts[-1])
+        parts = keep
+
+    return [{"text": "\n".join(parts), "kind": "message",
+             "lines_source": parts}]
 
 
 def _wrap_measured(text: str, font, max_w: int) -> list:
-    """Greedy wrap by MEASURED width + balancing pass. [] if even one word won't fit."""
+    """Greedy wrap by MEASURED width + balancing pass. [] if even one word won't fit.
+
+    A newline in `text` is a hard line break: the format stacks the complete
+    message as distinct short lines, so those breaks must be preserved rather
+    than re-flowed.
+    """
     words = text.split()
     if not words:
         return []
@@ -80,15 +120,23 @@ def _wrap_measured(text: str, font, max_w: int) -> list:
 
     lines: list[str] = []
     cur = ""
-    for wd in words:
-        cand = f"{cur} {wd}".strip()
-        if width(cand) <= max_w or not cur:
-            cur = cand
-        else:
-            lines.append(cur)
-            cur = wd
+    for raw in text.split("\n"):
+        if not raw.strip():                       # blank line = paragraph gap
+            if cur:
+                lines.append(cur)
+                cur = ""
+            lines.append("")                      # preserved as breathing room
+            continue
+        for wd in raw.split():
+            cand = f"{cur} {wd}".strip()
+            if width(cand) <= max_w or not cur:
+                cur = cand
+            else:
+                lines.append(cur)
+                cur = wd
     if cur:
         lines.append(cur)
+    lines = [ln for ln in lines if ln != ""] or []
     if any(width(ln) > max_w for ln in lines):
         return []
 
@@ -111,23 +159,42 @@ def _wrap_measured(text: str, font, max_w: int) -> list:
     return lines
 
 
-def fit_block(text: str, kind: str, cfg) -> tuple:
-    """Return (lines, px, font_path) — largest size where everything fits."""
+def fit_block(text: str, kind: str, cfg, max_lines: int | None = None) -> tuple:
+    """Return (lines, px, font_path) — largest size where everything fits.
+
+    FINAL FORMAT §2: the text must fill 75-80% of the frame width (readable at
+    thumbnail size) AND must never exceed 5 short lines. Both are hard limits, so
+    the ladder only accepts sizes satisfying the line cap, and among those prefers
+    the largest that fills at least MIN_WIDTH_FILL of the width.
+    """
     from PIL import ImageFont
     w = int(cfg["reel"]["w"])
     h = int(cfg["reel"]["h"])
     max_w = w - 2 * SIDE_MARGIN
     max_h = int(h * MAX_BLOCK_H)
-    ladder = HOOK_PX_LADDER if kind in ("hook", "landing") else BODY_PX_LADDER
-    font_path = FONT_HOOK if kind in ("hook", "landing") else FONT_BODY
+    cap = max_lines or MAX_LINES_ON_SCREEN
+    ladder = HOOK_PX_LADDER if kind in ("hook", "landing", "message") else BODY_PX_LADDER
+    font_path = FONT_HOOK if kind in ("hook", "landing", "message") else FONT_BODY
+    best = None
     for px in ladder:
         font = ImageFont.truetype(str(config.ROOT / font_path), px)
         lines = _wrap_measured(text, font, max_w)
-        if not lines:
+        if not lines or len(lines) > cap:      # §2 hard cap on on-screen lines
             continue
-        if len(lines) * int(px * 1.32) <= max_h:
+        line_h = int(px * LINE_SPACING)
+        if len(lines) * line_h > max_h:
+            continue
+        widest = max(font.getbbox(ln)[2] for ln in lines)
+        cand = (lines, px, font_path, widest / w)
+        if best is None:
+            best = cand
+        # §2: stop at the first size that fills the target width band
+        if cand[3] >= MIN_WIDTH_FILL:
             return lines, px, font_path
-    raise RuntimeError(f"text cannot fit at any size: {text!r}")
+    if best is None:
+        raise RuntimeError(
+            f"text cannot fit in {cap} lines at any size: {text!r}")
+    return best[0], best[1], best[2]
 
 
 def assert_fits(lines: list, px: int, font_path: str, cfg) -> int:
@@ -144,14 +211,15 @@ def assert_fits(lines: list, px: int, font_path: str, cfg) -> int:
 
 def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: Path,
                  cfg, fixed_top: int | None = None, bg_luma: float | None = None) -> Path:
-    """One static text block as a transparent PNG.
+    """ONE static text block as a transparent PNG — visible on every frame.
 
-    `fixed_top` pins the first text line to an exact y — the hook and the landing
-    are both rendered with the hook's top, so the reel's final frame sits exactly
-    where frame 1 sat. That IS the invisible loop (Part 4.2), enforced visually.
+    FINAL FORMAT §2: this is the single overlay composited over the whole reel.
+    `fixed_top` places the first line at the 35% anchor.
 
     `bg_luma` (0-255 mean brightness of the background under the text) triggers the
-    spec §4 feathered dark band, so light footage can't wash the text out.
+    optional feathered dark scrim, so light footage can't wash the text out. The
+    scrim MUST be composited before the text is drawn — see the ordering comment
+    inside, and its regression test.
     """
     from PIL import Image, ImageDraw, ImageFilter, ImageFont
     w = int(cfg["reel"]["w"])
@@ -159,21 +227,16 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
     font = ImageFont.truetype(str(config.ROOT / font_path), px)
     mark_font = ImageFont.truetype(str(config.ROOT / FONT_MARK), WATERMARK_PX)
 
-    line_h = int(px * 1.32)
+    line_h = int(px * LINE_SPACING)
     block_h = len(lines) * line_h
     top = fixed_top if fixed_top is not None else (int(h * TEXT_TOP_FRAC) - block_h // 2)
 
     img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    shadow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    sd, d = ImageDraw.Draw(shadow), ImageDraw.Draw(img)
 
-    def draw_center(txt, f, y, fill, sd_fill):
-        bb = f.getbbox(txt)
-        x = (w - (bb[2] - bb[0])) // 2 - bb[0]
-        sd.text((x + 2, y + 3), txt, font=f, fill=sd_fill)
-        d.text((x, y), txt, font=f, fill=fill)
-
-    # spec §4: only lay the dark band when the video behind the text is bright
+    # FINAL FORMAT §2 / earlier §4: lay the dark scrim FIRST, when the video behind
+    # the text is bright. It must happen before the draw handles are created —
+    # otherwise `d` still points at the pre-composite image and the glyphs land in
+    # a discarded layer (that bug made the text invisible on every frame).
     if bg_luma is not None and bg_luma >= TEXT_BAND_BRIGHT_MIN and block_h > 0:
         band_pad = int(px * 0.55)
         y0 = max(top - band_pad, 0)
@@ -182,6 +245,15 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
         ImageDraw.Draw(band).rectangle([0, y0, w, y1], fill=(0, 0, 0, TEXT_BAND_ALPHA))
         # feathered edges, so it reads as a cinematic scrim and not a grey box
         img = Image.alpha_composite(img, band.filter(ImageFilter.GaussianBlur(px * 0.5)))
+
+    shadow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    sd, d = ImageDraw.Draw(shadow), ImageDraw.Draw(img)      # AFTER any compositing
+
+    def draw_center(txt, f, y, fill, sd_fill):
+        bb = f.getbbox(txt)
+        x = (w - (bb[2] - bb[0])) // 2 - bb[0]
+        sd.text((x + 2, y + 3), txt, font=f, fill=sd_fill)
+        d.text((x, y), txt, font=f, fill=fill)
 
     for i, ln in enumerate(lines):
         draw_center(ln, font, top + i * line_h, INK, (0, 0, 0, SHADOW_ALPHA))
@@ -203,7 +275,7 @@ def hook_top(lines: list, px: int, cfg) -> int:
     Spec §4: anchored so the text sits ~a third of the way down (not centred).
     """
     h = int(cfg["reel"]["h"])
-    return int(int(h * TEXT_TOP_FRAC) - (len(lines) * int(px * 1.32)) // 2)
+    return int(int(h * TEXT_TOP_FRAC) - (len(lines) * int(px * LINE_SPACING)) // 2)
 
 
 def bg_text_luma(bg_mp4: Path, at: float, cfg, top: int, block_h: int) -> float | None:
@@ -261,69 +333,25 @@ def beat_times_fallback(cfg, mood: str, duration_s: float) -> list:
 
 
 def state_map(blocks: list, cfg, duration_s: float) -> list:
-    """Part 5.5 timing map, reconciled with VISUAL SPEC v1.0 §4.
+    """ONE text state spanning the whole reel (FINAL FORMAT §1).
 
-    §4 gives three constraints that cannot all be absolute on a 9-10s reel:
-    "hook holds 4-5s", "deepening 4-5s", "landing 8-9s". Read as fractions of
-    duration they are simultaneously satisfiable, so:
-      hook     0.00 -> 0.45*D   (4.05-4.50s on a 9-10s reel  -> "4-5s")
-      deepen   0.45 -> 0.88*D   (~3.9-4.3s                   -> "4-5s" band)
-      landing  0.88 -> D        (starts at 7.9-8.8s          -> "8-9s")
-    Absolute seconds still win if supplied in cfg["timing"] as *_end.
-    Blocks only accumulate display time; each block is a hard cut (fade-in
-    <=0.3s) and holds. Hook opens at 0.0 (IS the thumbnail).
+    There is no timing map any more: the single block is on screen from 0.0 to the
+    end. Kept as a function so QA/logging can still reason about "what is on screen
+    when", and so old callers don't break.
     """
-    t = cfg["timing"]
-    hf = float(t.get("hook_end_frac", 0.45))
-    df = float(t.get("deepen_end_frac", 0.88))
-    hook_end = t.get("hook_end")
-    deep_end = t.get("deepen_end")
-    hook_end = float(hook_end) if hook_end else hf * duration_s
-    deep_end = float(deep_end) if deep_end else df * duration_s
-    hook_end = min(hook_end, duration_s)
-    deep_end = min(deep_end, duration_s - 1.0)
-    if deep_end <= hook_end:
-        deep_end = min(hook_end + 1.5, duration_s - 0.5)
-    states = []
-    kinds = [b["kind"] for b in blocks]
-    if kinds[0] == "hook":
-        states.append({"index": 0, "kind": "hook", "start": 0.0, "end": hook_end})
-    deep_idx = [i for i, k in enumerate(kinds) if k == "deepening"]
-    if deep_idx:
-        span = max(deep_end - hook_end, 1.0)
-        per = span / len(deep_idx)
-        for n, i in enumerate(deep_idx):
-            s = hook_end + n * per
-            states.append({"index": i, "kind": "deepening",
-                           "start": round(s, 3), "end": round(s + per, 3)})
-    land_idx = [i for i, k in enumerate(kinds) if k == "landing"]
-    if land_idx:
-        states.append({"index": land_idx[-1], "kind": "landing",
-                       "start": round(deep_end, 3), "end": duration_s})
-    states.sort(key=lambda s: s["index"])
-    return states
+    if not blocks:
+        return []
+    return [{"index": 0, "kind": "message", "start": 0.0, "end": duration_s}]
 
 
 def loop_echo_ok(blocks: list) -> bool:
-    """Part 4.2 / 5.6 — the final frame must echo frame 1.
+    """FINAL FORMAT §1: the text never changes, so the loop echo is automatic.
 
-    Structural guarantee (not a text filter): the landing is rendered in the
-    hook's font, at the hook's size, pinned to the hook's exact top coordinate,
-    so its on-screen position and weight are identical. This gate asserts the
-    structural preconditions are met and reports the advisory text overlap.
+    Under the old multi-card format this gate verified that the landing reused the
+    hook's exact top coordinate. With a single always-visible block there is
+    nothing to echo — the first and last frame are identical by construction.
     """
-    kinds = [b["kind"] for b in blocks]
-    if "hook" not in kinds or "landing" not in kinds:
-        return False
-    hook_block = next(b for b in blocks if b["kind"] == "hook")
-    land_block = next(b for b in blocks if b["kind"] == "landing")
-    # raw text blocks (pre-render) have no geometry yet: assert the structural
-    # precondition that both are hook-family text that WILL be pinned together.
-    if hook_block.get("pinned_top") is None and land_block.get("pinned_top") is None:
-        return True
-    if land_block.get("pinned_top") is None or hook_block.get("pinned_top") is None:
-        return False
-    return land_block["pinned_top"] == hook_block["pinned_top"]
+    return bool(blocks)
 
 
 # ---------------------------------------------------------------- assembly
@@ -342,10 +370,13 @@ def _probe_frames(path) -> int | None:
 
 def assemble(bg_mp4: Path, states: list, pngs: list, track_mp3: Path, out_mp4: Path,
              cfg, duration_s: float, bg_is_video: bool = True) -> bool:
-    """Video bg + hard-cut static text blocks + mood audio.
+    """Video bg + ONE text overlay that is visible on EVERY frame (FINAL FORMAT §1/§2).
 
-    Part 5.2: bg motion must be continuous; a still bg is only ever the bundled
-    fallback (flagged by the QA gate).
+    The format is unambiguous: the text is already on screen at frame 0 and never
+    appears, fades, slides or changes. That means a single `overlay=0:0` with NO
+    `enable=` condition at all — there is exactly one PNG and zero timing logic.
+
+    Any per-block `enable='between(t,...)'` is a failure condition (§7).
     """
     fps = int(cfg["reel"]["fps"])
     inputs = []
@@ -360,15 +391,14 @@ def assemble(bg_mp4: Path, states: list, pngs: list, track_mp3: Path, out_mp4: P
     filters = [f"[0:v]fps={fps},scale=1080:1920:force_original_aspect_ratio=increase,"
                f"crop=1080:1920,eq=brightness={darken}:contrast=1.08:"
                f"saturation=0.55,format=yuv420p[base]"]
+
+    # §1/§2: one overlay, composited from frame 0 to the end. No enable=, no fade.
     last = "base"
-    for i, (st, _png) in enumerate(zip(states, pngs)):
-        s0, s1 = st["start"], st["end"]
-        fade_d = BLOCK_FADE if st["start"] > 0.05 else 0.01
-        filters.append(f"[{i + 1}:v]format=rgba,fade=t=in:st={s0:.3f}:"
-                       f"d={fade_d}:alpha=1[b{i}]")
-        filters.append(f"[{last}][b{i}]overlay=enable='between(t,{s0:.3f},{s1:.3f})':"
-                       f"x=0:y=0:eof_action=pass[o{i}]")
+    for i, _png in enumerate(pngs):
+        filters.append(f"[{i + 1}:v]format=rgba[b{i}]")
+        filters.append(f"[{last}][b{i}]overlay=0:0:eof_action=pass[o{i}]")
         last = f"o{i}"
+
     fade_out = 0.5
     aidx = len(pngs) + 1
     filters.append(f"[{aidx}:a]loudnorm=I=-16:TP=-1.5:LRA=11,"
@@ -498,7 +528,12 @@ def qa_gate(reel: Path, cfg, blocks: list | None = None) -> tuple:
     c["size_under_60mb"] = size < 60 * 1024 * 1024
     c["faststart"] = info["faststart"]
     if blocks:
-        c["text_blocks_2_3"] = 2 <= len([b for b in blocks if b.get("text")]) <= 4
+        # FINAL FORMAT §2: exactly ONE text block on screen.
+        c["one_text_block"] = len([b for b in blocks if b.get("text")]) == 1
+        # §2: NEVER more than 5 short lines
+        c["lines_max_5"] = all(
+            len([ln for ln in str(b.get("text") or "").split("\n") if ln.strip()]) <= 5
+            for b in blocks)
         c["loop_echo"] = loop_echo_ok(blocks)
     for name, ok in c.items():
         if not ok:
@@ -513,28 +548,22 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
           out_mp4: Path | None = None, offline: bool = False):
     out_mp4 = out_mp4 or (config.OUTPUTS / "reel.mp4")
     blocks = text_blocks(content)
-    if len(blocks) < 2:
-        raise RuntimeError(f"need 2-3 text blocks, got {len(blocks)}")
+    if not blocks:
+        raise RuntimeError("no text: content produced an empty message")
 
+    # FINAL FORMAT §2: ONE block, all lines stacked, centered, sitting on top of
+    # the video from frame 0. No pinning, no per-card top, no timing.
     fitted = []
     for blk in blocks:
         lines, px, font_path = fit_block(blk["text"], blk["kind"], cfg)
         widest = assert_fits(lines, px, font_path, cfg)
         fitted.append({**blk, "lines": lines, "px": px, "font_path": font_path,
                        "widest": widest, "pinned_top": None})
-    # Part 4.2 — the hook and the landing share ONE top coordinate and font:
-    # the reel's last frame occupies the same place as frame 1 (the invisible loop).
-    hook_f = next((b for b in fitted if b["kind"] == "hook"), None)
-    if hook_f:
-        hook_f["pinned_top"] = hook_top(hook_f["lines"], hook_f["px"], cfg)
-        for b in fitted:
-            if b["kind"] == "landing":
-                b["pinned_top"] = hook_f["pinned_top"]
-    print(f"[video] {len(fitted)} blocks fitted: "
-          + ", ".join(f"{b['kind']}@{b['px']}px" for b in fitted))
     for b in fitted:
-        if b["kind"] != "hook" and b["kind"] != "landing" and b["pinned_top"] is None:
-            b["pinned_top"] = hook_top(b["lines"], b["px"], cfg)
+        b["pinned_top"] = hook_top(b["lines"], b["px"], cfg)
+    print(f"[video] {len(fitted)} text block(s): "
+          + ", ".join(f"{len(b['lines'])} lines @{b['px']}px "
+                      f"(width {b['widest']}/{int(cfg['reel']['w'])}px)" for b in fitted))
 
     watermark = ""
     handle = ((cfg.get("brand") or {}).get("handle") or "").strip()
@@ -549,7 +578,7 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
         top = b["pinned_top"] if b["pinned_top"] is not None else hook_top(
             b["lines"], b["px"], cfg)
         luma = bg_text_luma(bg_mp4, 1.0, cfg, top,
-                            len(b["lines"]) * int(b["px"] * 1.32))
+                            len(b["lines"]) * int(b["px"] * LINE_SPACING))
         render_block(b["lines"], b["px"], b["font_path"], watermark, p, cfg,
                      fixed_top=b["pinned_top"], bg_luma=luma)
         pngs.append(p)
@@ -563,15 +592,37 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
     if not ok:
         raise RuntimeError(f"QA gate failed: {info.get('problems')}")
 
+    # §2 hard cap: the RENDERED line count (post-wrap), not just the source parts.
+    for b in fitted:
+        if len(b["lines"]) > MAX_LINES_ON_SCREEN:
+            raise RuntimeError(
+                f"FINAL FORMAT §2 violated: {len(b['lines'])} lines on screen "
+                f"(max {MAX_LINES_ON_SCREEN})")
+
     info["blocks"] = [{"kind": b["kind"], "px": b["px"], "widest": b["widest"],
                        "lines": len(b["lines"])} for b in fitted]
     info["states"] = states
-    stamps = extract_stamps(out_mp4, states, duration_s)
-    invisible = [f"{s['kind']}@{s['t']}" for s in stamps
-                 if not card_visible(Path(s["frame"]))]
-    info["stamps"] = [{k: v for k, v in s.items() if k != "frame"} for s in stamps]
-    if invisible:
-        raise RuntimeError(f"QA gate failed: text missing at {invisible}")
+
+    # §1/§7 — the text MUST be on screen at frame 0 and still on the last frame.
+    # Sampling only the middle (or a fixed timestamp past the end) would miss both
+    # the "appears later" and "disappears early" failure modes.
+    checkpoints = [0.0, 0.25, duration_s * 0.5, max(duration_s - 0.25, 0.1)]
+    missing = []
+    visibility = []
+    for t in checkpoints:
+        frame = config.OUTPUTS / f"vis_{t:.2f}.jpg"
+        r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.3f}",
+                            "-i", str(out_mp4), "-frames:v", "1", "-q:v", "3", str(frame)],
+                           capture_output=True, text=True, timeout=120)
+        vis = r.returncode == 0 and frame.exists() and card_visible(frame)
+        visibility.append({"t": round(t, 2), "text_visible": vis})
+        if not vis:
+            missing.append(round(t, 2))
+    info["text_visibility"] = visibility
+    if missing:
+        raise RuntimeError(
+            f"FINAL FORMAT §1 violated: text not visible at {missing}s — the text "
+            "must be on screen from frame 0 to the end with no animation")
 
     info["motion"] = motion_present(out_mp4, cfg)
     return out_mp4, info

@@ -57,48 +57,48 @@
   ],
   "bg_types": {
     "mask": [
-      "glass office night video aesthetic",
-      "city crowd night video"
+      "man standing crowd night video aesthetic",
+      "person walking city crowd night video"
     ],
     "rehearsal": [
-      "cafe window rain video aesthetic",
-      "coffee shop moody video"
+      "man looking out window rain video",
+      "person sitting alone cafe window video aesthetic"
     ],
     "freeze": [
-      "walking alone night city video",
-      "empty street rain night video"
+      "man walking alone night video aesthetic",
+      "lone figure walking city night video"
     ],
     "detour": [
-      "night walk aesthetic video",
-      "subway night video aesthetic"
+      "back of person walking night video",
+      "person walking away night video aesthetic"
     ],
     "aftermath": [
-      "ceiling night video aesthetic",
-      "rain window night video"
+      "person sitting alone dark aesthetic video",
+      "man sitting bed night video aesthetic"
     ],
     "bodys_betrayal": [
-      "dark room flickering light video",
-      "shadow moving wall video"
+      "man face shadow dark video aesthetic",
+      "person shadow dark aesthetic video"
     ],
     "sealed_mouth": [
-      "silhouette standing dark video",
-      "person alone shadow video"
+      "silhouette man dark video aesthetic",
+      "silhouette person street light night video"
     ],
     "craving": [
-      "phone glow dark room video",
-      "city lights window night video"
+      "man looking at phone dark room video",
+      "person phone glow night video aesthetic"
     ],
     "losses": [
-      "empty train night video",
-      "empty classroom aesthetic video"
+      "person alone train night video aesthetic",
+      "man standing empty station night video"
     ],
     "buried_anger": [
-      "storm clouds dark video",
-      "waves crashing night video"
+      "man standing cliff dark video aesthetic",
+      "silhouette man storm video aesthetic"
     ],
     "quiet_hope": [
-      "sunrise slow video aesthetic",
-      "first light window video"
+      "person standing sunrise silhouette video",
+      "man walking dawn light video aesthetic"
     ]
   },
   "archetype_bg_map": {
@@ -190,7 +190,9 @@
   "text_limits": {
     "hook": 60,
     "deepening": 90,
-    "landing": 70
+    "landing": 70,
+    "line": 60,
+    "lines_max": 5
   },
   "bg_darken": -0.13,
   "explore_rate": 0.2,

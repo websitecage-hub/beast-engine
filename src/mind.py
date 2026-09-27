@@ -117,6 +117,14 @@ LANDING: "You're not underperforming. You're underheard."
 OUTPUT_CONTRACT = """
 OUTPUT CONTRACT — return ONLY valid JSON, one object: {"candidates": [ ... ]}
 
+THE ON-SCREEN FORMAT (this is how your words are used):
+The whole message is printed as ONE static text block, visible from the first frame
+to the last. It reads as a short stacked paragraph. Therefore the TOTAL must stay
+tiny: the hook + deepening + landing together must print in AT MOST 5 SHORT LINES
+at ~6-9 words per line. Aim for a total of roughly 25-40 words across all fields.
+Write so the combined message reads as one continuous thought, not three separate
+statements. Short sentences. Line breaks land on the pauses.
+
 Each candidate:
 {
   "hook": "one exact scene, <= 50 characters, present tense, second person",

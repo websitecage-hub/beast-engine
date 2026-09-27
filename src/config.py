@@ -75,18 +75,32 @@ DEFAULT_CONFIG = {
     "topics": TOPICS,
     "moods": MOODS,
     "bg_types": {
-        "mask": ["glass office night video aesthetic", "city crowd night video"],
-        "rehearsal": ["cafe window rain video aesthetic", "coffee shop moody video"],
-        "freeze": ["walking alone night city video", "empty street rain night video"],
-        "detour": ["night walk aesthetic video", "subway night video aesthetic"],
-        "aftermath": ["ceiling night video aesthetic", "rain window night video"],
-        "bodys_betrayal": ["dark room flickering light video",
-                           "shadow moving wall video"],
-        "sealed_mouth": ["silhouette standing dark video", "person alone shadow video"],
-        "craving": ["phone glow dark room video", "city lights window night video"],
-        "losses": ["empty train night video", "empty classroom aesthetic video"],
-        "buried_anger": ["storm clouds dark video", "waves crashing night video"],
-        "quiet_hope": ["sunrise slow video aesthetic", "first light window video"],
+        # FINAL FORMAT §3 — MUST contain a PERSON/HUMAN FIGURE (not just rain,
+        # city lights or smoke). Ordered person-first; each cluster keeps its
+        # emotional register through the *setting*, while every query guarantees
+        # human presence.
+        "mask": ["man standing crowd night video aesthetic",
+                 "person walking city crowd night video"],
+        "rehearsal": ["man looking out window rain video",
+                      "person sitting alone cafe window video aesthetic"],
+        "freeze": ["man walking alone night video aesthetic",
+                   "lone figure walking city night video"],
+        "detour": ["back of person walking night video",
+                   "person walking away night video aesthetic"],
+        "aftermath": ["person sitting alone dark aesthetic video",
+                      "man sitting bed night video aesthetic"],
+        "bodys_betrayal": ["man face shadow dark video aesthetic",
+                           "person shadow dark aesthetic video"],
+        "sealed_mouth": ["silhouette man dark video aesthetic",
+                         "silhouette person street light night video"],
+        "craving": ["man looking at phone dark room video",
+                    "person phone glow night video aesthetic"],
+        "losses": ["person alone train night video aesthetic",
+                   "man standing empty station night video"],
+        "buried_anger": ["man standing cliff dark video aesthetic",
+                         "silhouette man storm video aesthetic"],
+        "quiet_hope": ["person standing sunrise silhouette video",
+                       "man walking dawn light video aesthetic"],
     },
     # cluster -> bg cluster (1:1 except the body-betrayal phrasing variants)
     "archetype_bg_map": {
@@ -135,7 +149,10 @@ DEFAULT_CONFIG = {
     # Part 5.5 — 9-10 seconds, locked
     "reel": {"min_s": 9.0, "max_s": 10.0, "fps": 30, "w": 1080, "h": 1920},
     "timing": {"hook_end_frac": 0.45, "deepen_end_frac": 0.88},  # spec §4 (see build_video.state_map)
-    "text_limits": {"hook": 60, "deepening": 90, "landing": 70},
+    "text_limits": {"hook": 60, "deepening": 90, "landing": 70,
+                    # FINAL FORMAT §2: ONE block of 3-5 short lines, <=60 chars
+                    # per LINE on screen (the block total is naturally larger).
+                    "line": 60, "lines_max": 5},
     "bg_darken": -0.13,        # Part 5.2: brightness -0.12 to -0.15
     "explore_rate": 0.2,
     "whisper_every_n_posts": 7,     # Law 11

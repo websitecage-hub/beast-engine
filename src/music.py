@@ -320,9 +320,15 @@ def _spec5_safe_query(cfg, mood: str) -> str:
 def song_provider(cfg, content, memory, track_mp3, track_wav, duration_s: float):
     """Resolve by SONG NAME through the audio service's /v1/song (Instagram-first).
 
-    The deployed service resolves a title/artist to audio across Instagram ->
-    SoundCloud -> YouTube. We send the trending reference's title/artist when we
-    have one, else a spec §5-compliant dark query.
+    The service resolves a title/artist across Instagram -> SoundCloud -> YouTube
+    and returns {"ok": true, "path": "/data/reels/src-<hash>.mp3"} — there is no
+    URL field, so the bytes come back via the same two-step as /v1/download:
+    read `path`, then GET /v1/file/reels/<filename>.
+
+    Spec §4.5 note: an outdoor-concert pop track is *not* the right bed for these
+    reels, whose audio is the one element the strategy treats as fixed. The
+    trending reference is used for its *mood* signal (genre/tempo), never as a
+    literal song request, so the sound is always inside the §5 palette.
     """
     import requests
 
@@ -335,41 +341,38 @@ def song_provider(cfg, content, memory, track_mp3, track_wav, duration_s: float)
         cluster = content.get("cluster") or content.get("archetype")
         mood = (cfg.get("cluster_mood_map") or {}).get(cluster, mood)
 
+    # spec §5 palette, informed by the trending genre/mood signal
     ref = content.get("_trending_ref") or {}
-    title = (ref.get("title") or "").strip() or _spec5_safe_query(cfg, mood)
-    artist = (ref.get("artist") or "").strip()
+    genre = (ref.get("genre") or "").strip().lower()
+    query = _spec5_safe_query(cfg, mood)
+    hint = (music.get("genre_hint") or {}).get(genre, "")
+    if hint and not _spec5_violates(query + hint, cfg):
+        query = f"{query}{hint}".strip()
+    if _spec5_violates(query, cfg):
+        query = _spec5_safe_query(cfg, mood)
 
-    if _spec5_violates(title, cfg) or _spec5_violates(artist, cfg):
-        title, artist = _spec5_safe_query(cfg, mood), ""
+    music["_song_title"] = query
+    title = query
 
     try:
         wake(api)
-        r = requests.post(f"{api}/v1/song",
-                          json={"title": title, "artist": artist, "niche": "reels"},
-                          timeout=300)
-        if r.status_code != 200:
+        raw = _song_by_title(api, title)
+        if not raw and title != _spec5_safe_query(cfg, mood):
+            # the mood-specific phrasing found nothing; fall back to the base
+            # palette query before giving up on this tier entirely
+            title = _spec5_safe_query(cfg, mood)
+            raw = _song_by_title(api, title)
+        if not raw:
             return False, {}
-        data = r.json() or {}
     except Exception as exc:  # noqa: BLE001
         print(f"[music] /v1/song failed: {exc}")
         return False, {}
 
-    url = data.get("file_url") or data.get("url")
-    if not data.get("ok") and not url:
+    tmp = config.OUTPUTS / "song_dl.bin"
+    tmp.write_bytes(raw)
+    if not any(c.exists() and to_mp3(c, track_mp3)
+               for c in (tmp, config.OUTPUTS / "song_dl.webm")):
         return False, {}
-    if not url:
-        return False, {}
-
-    raw = _acquire(api, url, title, artist) or None
-    if not raw:
-        if not _download_direct(url, track_mp3):
-            return False, {}
-    else:
-        tmp = config.OUTPUTS / "song_dl.bin"
-        tmp.write_bytes(raw)
-        if not any(c.exists() and to_mp3(c, track_mp3)
-                   for c in (tmp, config.OUTPUTS / "song_dl.webm")):
-            return False, {}
 
     if not has_audio_stream(track_mp3) or ffprobe_duration(track_mp3) < 5:
         return False, {}
@@ -377,7 +380,35 @@ def song_provider(cfg, content, memory, track_mp3, track_wav, duration_s: float)
         return False, {}
     to_wav(track_mp3, track_wav)
     return True, {"music_source": "song", "music_query": title,
-                  "music_artist": artist, "duration_s": ffprobe_duration(track_mp3)}
+                  "music_mood": mood, "duration_s": ffprobe_duration(track_mp3)}
+
+
+def _song_by_title(api: str, title: str) -> bytes | None:
+    """POST /v1/song with a NAME, then fetch the file it produced.
+
+    Response shape (verified live): {"ok":true, "path":"/data/reels/src-<hash>.mp3",
+    "duration_s":...} — no URL, so the bytes come from /v1/file/reels/<filename>.
+    """
+    try:
+        r = requests.post(f"{api}/v1/song",
+                          json={"title": title, "artist": "", "niche": "reels"},
+                          timeout=300)
+        ct = r.headers.get("content-type", "")
+        if r.status_code != 200 or not ct.startswith("application/json"):
+            return None
+        data = r.json() or {}
+        if not data.get("ok"):
+            return None
+        path = str(data.get("path") or "")
+        fname = path.rsplit("/", 1)[-1]
+        if not fname:
+            return None
+        fr = requests.get(f"{api}/v1/file/reels/{fname}", timeout=180)
+        if fr.status_code == 200 and len(fr.content) > 10240:
+            return fr.content
+    except Exception:  # noqa: BLE001
+        return None
+    return None
 
 
 def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_mp3, track_wav,

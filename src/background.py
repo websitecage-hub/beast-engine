@@ -23,6 +23,37 @@ GRADE = ("eq=brightness=-0.10:saturation=0.85:contrast=1.15,"
 MIN_CLIP_S = 3.0            # spec §2.3
 DEDUP_DAYS = 30             # spec §2.3
 
+# FINAL FORMAT §3 — the frame MUST contain a person, since the content is about a
+# person's inner life. Rotated as extra queries when a cluster query finds nothing.
+PERSON_QUERIES = [
+    "man walking alone night video aesthetic",
+    "silhouette man dark video aesthetic",
+    "person standing alone night video",
+    "lone figure walking city night video",
+    "man looking out window rain video",
+    "back of person walking night video",
+    "person sitting alone dark aesthetic video",
+    "silhouette person street light night video",
+    "man walking rain night cinematic video",
+    "person shadow dark aesthetic video",
+    "lonely man night city video aesthetic",
+    "man standing cliff dark video aesthetic",
+    "person walking away night video aesthetic",
+    "man face shadow dark video aesthetic",
+    "person alone train night video aesthetic",
+]
+# §3 backup queries (used only if the person queries return nothing)
+BACKUP_QUERIES = [
+    "anime boy dark aesthetic video",
+    "dark anime scene rain video aesthetic",
+    "aesthetic dark night walk video",
+    "cinematic night video aesthetic person",
+]
+# Words that indicate a person is present in the pin's title/description.
+PERSON_WORDS = ("man", "person", "silhouette", "figure", "boy", "guy", "male",
+                "walking", "walk", "standing", "sitting", "lonely", "alone",
+                "human", "anime")
+
 
 # ------------------------------------------------------------------ helpers
 
@@ -65,11 +96,26 @@ def _recent_pin_ids(memory) -> set:
     return used
 
 
+def has_person(entry: dict) -> bool:
+    """FINAL FORMAT §3 — does this pin plausibly contain a human figure?
+
+    Pinterest gives us no vision, so this reads the query/title/description text
+    and the alt text. It is a *preference signal*, not proof: pick_clip uses it to
+    rank person-bearing clips above empty scenery, which is the strongest
+    available guarantee short of watching the video.
+    """
+    blob = " ".join(str(entry.get(k) or "") for k in
+                    ("title", "description", "alt", "grid_title", "seo_title",
+                     "query", "source_query")).lower()
+    return any(w in blob for w in PERSON_WORDS)
+
+
 def pick_clip(results: list, used: set):
     """Spec §2.3 selection: video with MP4, >=3s, croppable to 9:16, motion-leaning.
 
-    Prefers portrait/near-portrait shape and prefers longer clips (more room to
-    take a good middle slice). Returns the chosen entry or None.
+    FINAL FORMAT §3 additionally prefers clips that evidence a PERSON. Portrait
+    shape and longer duration still count, but a human-figure signal outranks both.
+    Returns the chosen entry or None.
     """
     pool = []
     for e in results:
@@ -83,7 +129,9 @@ def pick_clip(results: list, used: set):
         ar = _pin_aspect(e)
         portrait = 1.0 if 0.4 <= ar <= 0.75 else (0.6 if 0.75 < ar <= 1.0 else 0.15)
         length = 1.0 + min(ms / 60000.0, 1.0)           # up to 2x for long clips
-        pool.append((portrait * length, e))
+        # §3: person presence is the strongest signal available
+        person = 2.5 if has_person(e) else 0.25
+        pool.append((portrait * length * person, e))
     if not pool:
         return None
     total = sum(w for w, _ in pool)
@@ -212,16 +260,23 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
                 or cfg["bg_types"].get(mapped) or []
                 or ["dark aesthetic video night city"])
 
-    # Spec §2.2 — rotate the query list, LLM scene first when we have one.
+    # FINAL FORMAT §3 — rotate the query list, LLM scene first when we have one.
+    # Every query must yield a PERSON in frame, so the cluster synonyms are
+    # backed by the explicit person-bearing query list, then the §3 backups.
     queries = []
     for q in [scene, *synonyms]:
         if q and q not in queries:
             queries.append(q)
     random.shuffle(synonyms)
     queries += [q for q in synonyms if q not in queries]
+    # §3: if the cluster queries don't return a usable clip, fall back to
+    # explicit person queries (rotated) before ever considering a still.
+    person_pool = PERSON_QUERIES[:]
+    random.shuffle(person_pool)
+    queries += [q for q in person_pool if q not in queries]
 
     # Spec §2.4 steps 1-2 — Pinterest video, then more queries.
-    for q in queries[:8]:
+    for q in queries[:10]:
         for attempt in range(2):
             try:
                 results = pinterest.search_videos(q)
@@ -238,6 +293,22 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
                         return out_norm, "pinterest_video"
             except Exception as exc:  # noqa: BLE001
                 print(f"[background] {q!r} attempt {attempt + 1} failed: {exc}")
+
+    # §3 backups (anime / generic cinematic person footage)
+    for q in BACKUP_QUERIES:
+        try:
+            results = pinterest.search_videos(q)
+            entry = pick_clip(results, used)
+            if not entry:
+                continue
+            url = entry.get("best_video")
+            if url and pinterest.download(url, raw) and process_clip(raw, looped, duration_s, fps):
+                if not loop_clip(looped, out_norm, duration_s, fps):
+                    out_norm.write_bytes(looped.read_bytes())
+                _record(memory, entry, dry_run)
+                return out_norm, "pinterest_video"
+        except Exception as exc:  # noqa: BLE001
+            print(f"[background] backup {q!r} failed: {exc}")
 
     # Spec §2.4 step 3 — LAST RESORT: AI image, animated.
     print("[background] WARNING: no Pinterest clip qualified; animating an AI still")

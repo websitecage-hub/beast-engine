@@ -17,7 +17,8 @@ sys.path.insert(0, str(ROOT))
 
 import yaml  # noqa: E402
 
-from src import analyze, build_video, config, generate, harvest, mind, music  # noqa: E402
+from src import (analyze, background, build_video, config, generate, harvest,  # noqa: E402
+                 mind, music)
 
 FIXTURES = ROOT / "tests" / "fixtures"
 
@@ -79,8 +80,10 @@ def test_limits_and_laws():
 
 
 def test_echo_score_is_advisory():
-    """Part 6's own example shares no words between hook and landing, so the
-    loop is guaranteed structurally (same font/size/pinned top), not lexically."""
+    """Part 6's own example shares no words between hook and landing, so the loop
+    never depended on a lexical echo. Under FINAL FORMAT the text is one static
+    block visible the whole time, so the first and last frame are identical by
+    construction and the loop is unconditional."""
     cfg = config.load_config()
     calib = {"hook": "The conversation ends. The trial begins.",
              "landing": "You've been cross-examining yourself since school."}
@@ -93,15 +96,10 @@ def test_echo_score_is_advisory():
     assert generate._valid(full, cfg) is True, "spec example 2 must be valid"
     # the echo score is reported but never blocks
     assert generate._echo_score(calib) >= 0.0
-    # structurally, hook and landing pin to the same top
+    # FINAL FORMAT §1: one static block -> the loop is structural, not lexical
     blocks = build_video.text_blocks(full)
-    hook = next(b for b in blocks if b["kind"] == "hook")
-    land = next(b for b in blocks if b["kind"] == "landing")
-    hook["pinned_top"] = 700
-    land["pinned_top"] = 700
+    assert len(blocks) == 1
     assert build_video.loop_echo_ok(blocks) is True
-    land["pinned_top"] = 800
-    assert build_video.loop_echo_ok(blocks) is False
 
 
 def test_dedup_rejects_near_duplicate():
@@ -118,6 +116,8 @@ def test_dedup_rejects_near_duplicate():
 # ------------------------------------------------- Part 5.3 / 5.5 format
 
 def test_text_blocks_and_timing_map():
+    """FINAL FORMAT §1/§2: exactly ONE block containing the whole message,
+    on screen from 0.0 to the end with no timing."""
     cfg = config.load_config()
     content = {
         "hook": "The conversation ends. The trial begins.",
@@ -126,20 +126,108 @@ def test_text_blocks_and_timing_map():
         "landing": "You've been cross-examining yourself since school.",
     }
     blocks = build_video.text_blocks(content)
-    assert len(blocks) == 4
-    assert [b["kind"] for b in blocks] == ["hook", "deepening", "deepening", "landing"]
+    assert len(blocks) == 1, "§2: exactly one text block"
+    assert blocks[0]["kind"] == "message"
+    # the whole message is in the one block, 3-5 lines (§2)
+    src = blocks[0]["lines_source"]
+    assert 3 <= len(src) <= 5
+    assert blocks[0]["text"] == "\n".join(src)
+
     states = build_video.state_map(blocks, cfg, 9.5)
-    assert states[0]["start"] == 0.0                     # hook IS the thumbnail
-    hook_state = next(s for s in states if s["kind"] == "hook")
-    # spec §4: hook holds 4-5s (0.45 * 9.5 = 4.275), landing starts at 0.88*9.5
-    assert 3.9 <= hook_state["end"] <= 5.1
-    land_state = next(s for s in states if s["kind"] == "landing")
-    assert 7.8 <= land_state["start"] <= 9.1 and land_state["end"] == 9.5
-    # 3-block format: single deepening block
-    three = {**content, "deepening": ["Only one deepening block here."]}
-    b3 = build_video.text_blocks(three)
-    assert len(b3) == 3
-    assert build_video.loop_echo_ok(b3) is True
+    assert len(states) == 1
+    assert states[0]["start"] == 0.0 and states[0]["end"] == 9.5
+    assert build_video.loop_echo_ok(blocks) is True
+
+
+def test_final_format_one_overlay_no_timing():
+    """§1/§7: the assembly must contain ONE overlay with NO enable= condition.
+
+    `overlay=enable='between(t,...)'` is an explicit failure condition. Inspects
+    the actual string literals the function builds (via AST), not its docstring —
+    the docstring *describes* the forbidden pattern, which would false-positive a
+    naive source grep. Audio `afade` is allowed: the ban is on TEXT animation.
+    """
+    import ast
+    import inspect
+    fn = ast.parse(inspect.getsource(build_video.assemble).lstrip()).body[0]
+    # Exclude the docstring NODE by identity: ast.get_docstring() returns a cleaned
+    # string, so comparing values does not match the raw Constant.
+    doc_ids = set()
+    first = fn.body[0] if getattr(fn, "body", None) else None
+    if isinstance(first, ast.Expr) and isinstance(first.value, ast.Constant) \
+            and isinstance(first.value.value, str):
+        doc_ids.add(id(first.value))
+
+    literals = [n.value for n in ast.walk(fn)
+                if isinstance(n, ast.Constant) and isinstance(n.value, str)
+                and id(n) not in doc_ids]
+    joined = " ".join(literals)
+
+    assert "enable=" not in joined, \
+        "§7: any enable='between(...)' on text is a failure"
+    assert "overlay=0:0" in joined, \
+        "§1: text must be composited from frame 0, always on"
+    # no VIDEO fade on the text layers. Check for a video fade target (`fade=t=in`
+    # not preceded by 'a'): the audio `afade` is legitimate and expected.
+    import re
+    for lit in literals:
+        if lit.startswith(":"):
+            continue                     # this is the audio chain (afade) — allowed
+        assert not re.search(r"(?<!a)fade=t=in:st=", lit), \
+            f"§1: text/vision must never fade in: {lit!r}"
+
+
+def test_render_block_text_visible_with_and_without_scrim():
+    """Regression: drawing the scrim AFTER creating the draw handle discarded the
+    glyphs, so the text was invisible on every frame when the bg was bright.
+
+    Renders the same block with bg_luma=None and bg_luma=bright and asserts BOTH
+    contain bright text pixels.
+    """
+    from PIL import Image
+    cfg = config.DEFAULT_CONFIG
+    lines = ["You rehearse your order", "twelve times. Then still", "mess it up."]
+    out = config.OUTPUTS / "test_block.png"
+
+    def bright_pixels(p):
+        with Image.open(p) as im:
+            return sum(im.convert("L").histogram()[235:256])
+
+    for luma in (None, 200.0):          # dark bg, and bright bg (scrim fires)
+        build_video.render_block(lines, 82, build_video.FONT_HOOK, "", out, cfg,
+                                 fixed_top=600, bg_luma=luma)
+        n = bright_pixels(out)
+        assert n >= 300, f"text invisible when bg_luma={luma} (bright px {n})"
+
+
+def test_final_format_no_person_queries_are_person_bearing():
+    """§3: every bg query must imply a human figure in frame."""
+    cfg = config.load_config()
+    for cluster, queries in cfg["bg_types"].items():
+        for q in queries:
+            assert any(w in q.lower() for w in background.PERSON_WORDS), \
+                f"{cluster} query has no human signal: {q!r}"
+    # §3's own exact queries must all be recognised as person-bearing
+    for q in background.PERSON_QUERIES:
+        assert any(w in q.lower() for w in background.PERSON_WORDS), q
+
+
+def test_final_format_text_fills_width():
+    """§2: the block must fill >=75% of the frame width (readable at thumbnail)."""
+    cfg = config.load_config()
+    lines, px, fp = build_video.fit_block(
+        "You rehearse your\norder 12 times.\n\nThen still mess\nit up.", "message", cfg)
+    widest = build_video.assert_fits(lines, px, fp, cfg)
+    fill = widest / int(cfg["reel"]["w"])
+    assert fill >= build_video.MIN_WIDTH_FILL, f"text fills only {fill:.0%} of width"
+    assert len(lines) <= build_video.MAX_LINES_ON_SCREEN
+
+
+def test_text_blocks_and_timing_map_old_name_removed():
+    """Guard: the old multi-card helper must not come back."""
+    import inspect
+    src = inspect.getsource(build_video.text_blocks)
+    assert "deepening\", \"kind\"" not in src
 
 
 def test_measured_fit_no_overflow():
@@ -346,21 +434,18 @@ def test_spec4_shadow_blur_and_opacity():
 
 
 def test_spec4_timing_satisfies_all_three_windows():
-    """§4 gives hook 4-5s, deepening 4-5s, landing 8-9s — on a 9-10s reel these
-    are only jointly satisfiable as fractions, so assert them across the range."""
+    """FINAL FORMAT supersedes the §4 timing windows: there is no timing any more.
+
+    The text is on screen from frame 0 to the end, so the old "hook 4-5s /
+    deepening / landing 8-9s" map no longer exists. Guard against it returning.
+    """
     cfg = dict(config.DEFAULT_CONFIG)
-    blocks = [{"text": "h", "kind": "hook"},
-              {"text": "d", "kind": "deepening"},
-              {"text": "l", "kind": "landing"}]
+    blocks = [{"text": "h\nd\nl", "kind": "message"}]
     for dur in (9.0, 9.5, 10.0):
-        st = {s["kind"]: s for s in build_video.state_map(blocks, cfg, dur)}
-        hook_hold = st["hook"]["end"] - st["hook"]["start"]
-        deep_hold = st["deepening"]["end"] - st["deepening"]["start"]
-        assert st["hook"]["start"] == 0.0
-        assert 3.9 <= hook_hold <= 5.1, (dur, hook_hold)
-        assert 3.5 <= deep_hold <= 5.1, (dur, deep_hold)
-        assert 7.8 <= st["landing"]["start"] <= 9.1, (dur, st["landing"]["start"])
-        assert st["landing"]["end"] == dur
+        states = build_video.state_map(blocks, cfg, dur)
+        assert len(states) == 1, "exactly one on-screen state spans the whole reel"
+        assert states[0]["start"] == 0.0
+        assert states[0]["end"] == dur
 
 
 def test_spec4_text_band_only_when_bright():
