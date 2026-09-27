@@ -353,8 +353,13 @@ def test_workflows_parse_and_contracts():
             assert run_step["env"]["IG_ACCESS_TOKEN"].startswith("${{ secrets.")
         if "actions/checkout@v4" not in [s.get("uses") for s in job["steps"]]:
             raise AssertionError(f"{name}: missing actions/checkout@v4")
+    # The old assertion here demanded `secrets: write`, an invalid scope that made
+    # GitHub refuse to parse health.yml — every run died at trigger time. Permissions
+    # are validated in test_workflows_use_only_valid_permission_scopes; here we only
+    # assert health declares the scopes it actually uses.
     health = yaml.safe_load((wf / "health.yml").read_text(encoding="utf-8"))
-    assert health["permissions"].get("secrets") == "write"
+    assert health["permissions"]["contents"] == "write", "health needs contents:write"
+    assert health["permissions"]["issues"] == "write", "health needs issues:write"
 
 
 # ------------------------------------------------------------- data files
