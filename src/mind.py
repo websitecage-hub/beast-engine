@@ -125,6 +125,16 @@ at ~6-9 words per line. Aim for a total of roughly 25-40 words across all fields
 Write so the combined message reads as one continuous thought, not three separate
 statements. Short sentences. Line breaks land on the pauses.
 
+SEARCHABLE WITHOUT SOUNDING LIKE A KEYWORD LIST (this matters for reach):
+Google indexes the text printed on the reel, so the words on screen are how strangers
+find this months from now. Use the real words people type when they search this
+feeling — phone, alone, invisible, overthinking, awkward, exhausted, quiet, nobody,
+ignore, plans, talk — the way you already would. NEVER staple a phrase like "social
+anxiety" onto a scene that does not call for it, and never repeat a keyword to raise
+its weight. A scene that honestly says "Phone out. Head down. Still invisible." is
+more findable than one that name-drops the topic. Searchability comes from specificity,
+not from vocabulary you would not say out loud.
+
 Each candidate:
 {
   "hook": "one exact scene, <= 50 characters, present tense, second person",

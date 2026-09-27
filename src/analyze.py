@@ -170,6 +170,26 @@ def _metrics_section(memory, posts) -> list:
             f"- reels above the send target: "
             f"**{sum(1 for x in spr if x >= harvest.TARGET_SENDS_PER_REACH)}/{len(spr)}**",
             ""]
+    # SEO §8: search is a compounding channel, so its leading indicators are tracked
+    # separately from the 48-hour engagement signals above. Reach from non-followers is
+    # the proxy for search discovery; saves/reach is the trust signal the spec names.
+    seo_rows = [(p, m) for p, m in rows
+                if (p.get("dna") or {}).get("alt_text") or (p.get("dna") or {}).get("hashtags")]
+    if seo_rows:
+        big_saves = sum(1 for _, m in rows if harvest.saves_per_reach(m) >= 0.05)
+        described = sum(1 for p, _ in seo_rows
+                        if len((p.get("dna") or {}).get("alt_text") or "") > 40)
+        tagged = sum(1 for p, _ in seo_rows
+                     if 6 <= len((p.get("dna") or {}).get("hashtags") or []) <= 9)
+        out += ["## SEO: is the search channel compounding? (spec §8)", "",
+                "| metric | value | what good looks like |", "|---|---|---|",
+                f"| reels shipping alt text | {described}/{len(seo_rows)} | all of them |",
+                f"| reels with 6-9 hashtags | {tagged}/{len(seo_rows)} | all of them |",
+                f"| reels at >=5% saves/reach | {big_saves}/{len(rows)} | above 5% |",
+                "_profile visits from search, reach from non-followers and bio link "
+                "clicks live in Instagram Insights — rising month over month means "
+                "search discovery is working._",
+                ""]
     # Part 7.2 Q1: which clusters earn the most saves?
     per_cluster = {}
     for p, m in rows:

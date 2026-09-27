@@ -17,7 +17,7 @@ import traceback
 from datetime import datetime, timezone
 
 from . import (alerts, background, build_video, config, generate, llm, music,
-               publish, state)
+               publish, seo, state)
 
 
 class _Box:
@@ -140,7 +140,16 @@ def run(dry_run=False, offline=False) -> int:
                                              offline=offline, dry_run=dry_run)
         content["bg_source"] = bg_source
         content["bg_is_video"] = bg_source in ("pinterest_video",)
-        step("background", {"source": bg_source, "is_video": content["bg_is_video"]})
+        # SEO §6: the alt text describes the VISUAL, so it can only be finalised once
+        # the background scene is actually chosen. Refresh it here, before the reel is
+        # written to content.json, so publish always ships a visual description.
+        from . import seo as _seo
+        content["alt_text"] = _seo.build_alt_text(
+            scene=content.get("scene", ""), topic=content.get("topic", ""),
+            hook=content.get("hook", ""), bg_source=bg_source,
+            on_screen_text=content.get("on_screen_text", ""))
+        step("background", {"source": bg_source, "is_video": content["bg_is_video"],
+                            "alt_text": content["alt_text"][:70] + "..."})
 
         ok_music, mmeta = music.acquire(cfg, content, strategy, memory,
                                         content.get("trending_ref"), duration, dry_run=dry_run,
@@ -166,6 +175,17 @@ def run(dry_run=False, offline=False) -> int:
                   "(Part 5.2 format requires video)")
 
         config.save_content(content)
+
+        # SEO §9: the checklist is asserted before publishing, not just reported. A reel
+        # that ships without its keyword in the first caption line or without alt text is
+        # unreachable by search, and that failure is silent — so it gates the publish.
+        seo_check = seo.checklist(content)
+        step("seo", seo_check)
+        failed = [k for k, v in seo_check.items() if not v]
+        if failed:
+            print(f"[create] SEO CHECKLIST: {len(failed)} unmet -> {failed}")
+        else:
+            print("[create] SEO checklist: all green")
 
         if not dry_run and not offline:
             _record_track(memory, mmeta)
@@ -246,6 +266,11 @@ def _record_post(memory, content, result, strategy):
             "audio_from_trending": content.get("music_source") == "trending_free",
             "trending_ref": content.get("trending_ref"),
             "loop_technique": content.get("loop_technique"),
+            # SEO §8: recorded per post so the weekly report can measure whether the
+            # search fields were actually shipped, instead of trusting that they were.
+            "alt_text": content.get("alt_text") or result.get("alt_text") or "",
+            "on_screen_text": content.get("on_screen_text") or "",
+            "hashtags": content.get("hashtags") or [],
             "posted_hour": slot,
             "include_cta": bool(content.get("include_whisper")),
             "exploit": content.get("exploit"),

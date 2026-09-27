@@ -3,7 +3,7 @@
     "name": "Unleash The Beast",
     "handle": "unleashthe.b",
     "meaning": "The real person under the mask. Not aggression, not grind. The self buried under years of small retreats who still wants to be known.",
-    "voice": "Describe, never advise. Present tense, second person, his language — never a psychologist's. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
+    "voice": "Describe, never advise. Present tense, second person, his language \u2014 never a psychologist's. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
     "hook_examples": [
       "You know exactly what to say. You say nothing. Again.",
       "The conversation ends. The trial begins.",
@@ -194,7 +194,7 @@
     "line": 60,
     "lines_max": 5
   },
-  "bg_darken": -0.13,
+  "bg_darken": 0.0,
   "explore_rate": 0.2,
   "whisper_every_n_posts": 7,
   "hope_every_n_posts": 10,
@@ -224,5 +224,70 @@
       "#nightscroll"
     ]
   },
-  "font_path": "assets/fonts/Coolvetica-Regular.otf"
+  "font_path": "assets/fonts/Coolvetica-Regular.otf",
+  "seo": {
+    "primary_keywords": [
+      "social anxiety",
+      "overthinking conversations",
+      "socially anxious",
+      "quiet people",
+      "introvert struggles"
+    ],
+    "secondary_keywords": [
+      "fear of being judged",
+      "canceling plans relief",
+      "hating phone calls",
+      "replaying conversations",
+      "feeling behind everyone",
+      "wanting to be alone but lonely",
+      "performing \"fine\"",
+      "exhausted from socializing"
+    ],
+    "long_tail_keywords": [
+      "why do i overthink every conversation",
+      "relief when plans get cancelled",
+      "social anxiety at work meetings",
+      "how to stop replaying conversations",
+      "introvert vs social anxiety"
+    ],
+    "hashtag_pools": {
+      "branded": [
+        "#unleashthebeast",
+        "#socialanxietyhelp"
+      ],
+      "primary": [
+        "#socialanxiety",
+        "#introvert",
+        "#overthinking",
+        "#quietpeople",
+        "#mentalhealth",
+        "#anxietyrelief",
+        "#selfimprovement",
+        "#introvertlife",
+        "#sociallyanxious",
+        "#overthinker",
+        "#quietmind",
+        "#innerwork"
+      ],
+      "long_tail": [
+        "#cancelingplans",
+        "#replayingconversations",
+        "#phonecallanxiety",
+        "#meetinganxiety",
+        "#eatingalone",
+        "#2amthoughts",
+        "#beingthequietone",
+        "#performingfine",
+        "#socialanxietyatwork",
+        "#introvertproblems",
+        "#behindeveryone",
+        "#wantingtobealone"
+      ]
+    },
+    "name_field": "Unleash The Beast | Social Anxiety Help",
+    "bio_template": "Overcoming social anxiety. Real posts for the ones who overthink every conversation. The book that gets it \u2192 link below.",
+    "hashtags_min": 6,
+    "hashtags_max": 9
+  },
+  "bg_grade": false
 }

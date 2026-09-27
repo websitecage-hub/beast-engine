@@ -43,6 +43,7 @@ SHADOW_BLUR = 8                 # soft dark shadow
 SHADOW_ALPHA = 179              # ~70% opacity
 TEXT_BAND_ALPHA = 77            # 30% black scrim, only over bright footage
 TEXT_BAND_BRIGHT_MIN = 88       # only lay the band when the bg luma exceeds this
+TEXT_SCRIM = False              # never darken the footage: text rides on the video
 # Coolvetica runs wide, so the ladders start lower and walk further down.
 HOOK_PX_LADDER = [120, 112, 104, 96, 88, 82, 76, 70, 64, 58, 52, 46, 40]
 BODY_PX_LADDER = [104, 96, 90, 84, 78, 72, 66, 60, 54, 48, 42]
@@ -233,11 +234,12 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
 
     img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
 
-    # FINAL FORMAT §2 / earlier §4: lay the dark scrim FIRST, when the video behind
-    # the text is bright. It must happen before the draw handles are created —
-    # otherwise `d` still points at the pre-composite image and the glyphs land in
-    # a discarded layer (that bug made the text invisible on every frame).
-    if bg_luma is not None and bg_luma >= TEXT_BAND_BRIGHT_MIN and block_h > 0:
+    # The footage is never darkened or overlaid with a scrim — text rides directly on
+    # the video. The band is disabled outright (TEXT_SCRIM), and the shadow behind
+    # each glyph carries legibility instead. Ordering matters: any compositing must
+    # happen BEFORE the draw handles are created, or `d` points at a discarded image
+    # and the glyphs vanish (that bug made the text invisible on every frame).
+    if TEXT_SCRIM and bg_luma is not None and bg_luma >= TEXT_BAND_BRIGHT_MIN and block_h > 0:
         band_pad = int(px * 0.55)
         y0 = max(top - band_pad, 0)
         y1 = min(top + block_h + band_pad, h)
@@ -387,10 +389,19 @@ def assemble(bg_mp4: Path, states: list, pngs: list, track_mp3: Path, out_mp4: P
         inputs += ["-loop", "1", "-i", str(p)]
     inputs += ["-i", str(track_mp3)]
 
-    darken = float(cfg.get("bg_darken", -0.13))
+    # The background ships AS SHOT. No brightness lift/drop, no saturation crush.
+    # `bg_grade: true` would restore the cinematic chain; `bg_darken` a non-zero
+    # value adds the brightness term. Both default to off, so this chain is a clean
+    # scale+crop with zero colour change.
+    darken = float(cfg.get("bg_darken", 0.0))
+    grade_parts = []
+    if cfg.get("bg_grade"):
+        grade_parts.append("eq=contrast=1.08:saturation=0.55")
+    if darken:
+        grade_parts.append(f"eq=brightness={darken}")
+    grade_seg = ("," + ",".join(grade_parts)) if grade_parts else ""
     filters = [f"[0:v]fps={fps},scale=1080:1920:force_original_aspect_ratio=increase,"
-               f"crop=1080:1920,eq=brightness={darken}:contrast=1.08:"
-               f"saturation=0.55,format=yuv420p[base]"]
+               f"crop=1080:1920{grade_seg},format=yuv420p[base]"]
 
     # §1/§2: one overlay, composited from frame 0 to the end. No enable=, no fade.
     last = "base"

@@ -223,5 +223,246 @@
     "result": {
       "skipped": "dry-run"
     }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T07:24:47.479599+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 13.44
+      },
+      {
+        "step": "jitter_start",
+        "t": 13.44,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 13.75,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 13.75,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 13.75,
+        "seconds": 9.61
+      },
+      {
+        "step": "generated",
+        "t": 95.15,
+        "hook": "Smiling is choreography now.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 150.46,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "A moody vertical video of a person alone in a quiet, ordinary setting...."
+      },
+      {
+        "step": "music",
+        "t": 168.13,
+        "source": "trending_free"
+      },
+      {
+        "step": "built",
+        "t": 198.24,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "one_text_block": true,
+            "lines_max_5": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.61,
+          "size_mb": 1.46,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "message",
+              "px": 58,
+              "widest": 847,
+              "lines": 5
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "message",
+              "start": 0.0,
+              "end": 9.61
+            }
+          ],
+          "text_visibility": [
+            {
+              "t": 0.0,
+              "text_visible": true
+            },
+            {
+              "t": 0.25,
+              "text_visible": true
+            },
+            {
+              "t": 4.8,
+              "text_visible": true
+            },
+            {
+              "t": 9.36,
+              "text_visible": true
+            }
+          ],
+          "motion": true
+        }
+      },
+      {
+        "step": "published",
+        "t": 198.24,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T07:31:52.451345+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.16
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.16,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.48,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.48,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.48,
+        "seconds": 9.27
+      },
+      {
+        "step": "generated",
+        "t": 79.25,
+        "hook": "Pretending to scroll again, huh?",
+        "exploit": false
+      },
+      {
+        "step": "background",
+        "t": 126.3,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "A moody vertical video of a person alone in a quiet, ordinary setting...."
+      },
+      {
+        "step": "music",
+        "t": 144.39,
+        "source": "trending_free"
+      },
+      {
+        "step": "built",
+        "t": 170.35,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "one_text_block": true,
+            "lines_max_5": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.27,
+          "size_mb": 1.1,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "message",
+              "px": 64,
+              "widest": 885,
+              "lines": 5
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "message",
+              "start": 0.0,
+              "end": 9.27
+            }
+          ],
+          "text_visibility": [
+            {
+              "t": 0.0,
+              "text_visible": true
+            },
+            {
+              "t": 0.25,
+              "text_visible": true
+            },
+            {
+              "t": 4.63,
+              "text_visible": true
+            },
+            {
+              "t": 9.02,
+              "text_visible": true
+            }
+          ],
+          "motion": false
+        }
+      },
+      {
+        "step": "failed",
+        "t": 170.35,
+        "error": "QA gate failed: background has no motion (source=pinterest_video) — Part 5.2 requires dark cinematic VIDEO"
+      }
+    ],
+    "errors": [
+      "QA gate failed: background has no motion (source=pinterest_video) — Part 5.2 requires dark cinematic VIDEO"
+    ]
   }
 ]

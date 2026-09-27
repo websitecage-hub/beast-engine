@@ -13,7 +13,7 @@ import random
 from datetime import timedelta
 from pathlib import Path
 
-from . import config, llm, mind
+from . import config, llm, mind, seo
 
 SYSTEM_PROMPT = mind.SYSTEM_PROMPT
 
@@ -337,7 +337,14 @@ def diversify(candidates: list, max_per_cluster: int = 3,
 
 # ------------------------------------------------------------ assembly
 
-def _hashtags(cfg, memory) -> list:
+def _hashtags(cfg, memory, topic: str = "", on_screen_text: str = "") -> list:
+    """SEO §4: 1-2 branded + 3-4 primary + 2-3 long-tail, matched to this reel.
+
+    Falls back to the legacy broad/medium/niche pools only if the SEO pool is absent,
+    so an older config.json still generates something usable.
+    """
+    if "seo" in cfg or not cfg.get("hashtag_pools", {}).get("broad"):
+        return seo.build_hashtags(topic=topic, on_screen_text=on_screen_text)
     pools = cfg["hashtag_pools"]
     tags = []
     tags += random.sample(pools["broad"], min(random.randint(3, 5), len(pools["broad"])))
@@ -353,15 +360,20 @@ def _hashtags(cfg, memory) -> list:
 
 
 def _build_caption(cfg, hook: str, landing: str, include_whisper: bool,
-                   is_hope: bool) -> str:
-    """Law 12: no share-CTA language ever. Law 11: the rare whisper line only."""
-    cap = hook
-    if landing and landing != hook:
-        cap += "\n\n" + landing
+                   is_hope: bool, *, body: str = "", topic: str = "",
+                   on_screen_text: str = "", hashtags: list | None = None) -> str:
+    """SEO §3: keyword-first caption that still reads like a person wrote it.
+
+    Law 12: no share-CTA language ever. Law 11: the rare whisper line only.
+    """
+    cap = seo.build_caption(
+        hook, body, landing,
+        topic=topic, on_screen_text=on_screen_text, hashtags=hashtags,
+        include_whisper=include_whisper,
+        whisper_line=cfg.get("whisper_line", ""),
+    )
     if is_hope:
-        cap += "\n\n(quiet hope)"
-    if include_whisper:
-        cap += "\n\n" + cfg["whisper_line"]
+        cap = cap.replace("\n\n", "\n\n(quiet hope)\n\n", 1)
     return cap[:2200]
 
 
@@ -378,9 +390,17 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
         content["bg_source"] = "bundled"
         content["music_source"] = "drone"
         content["trending_ref"] = {"title": "", "artist": "", "genre": "", "trend_score": None}
-        content["caption"] = _build_caption(cfg, content["hook"], content["landing"],
-                                            False, False)
-        content["hashtags"] = []
+        on_screen = " ".join(content.get("blocks") or [])
+        content["on_screen_text"] = on_screen
+        tags = _hashtags(cfg, memory, topic=content.get("topic", ""),
+                         on_screen_text=on_screen)
+        content["caption"] = _build_caption(
+            cfg, content["hook"], content["landing"], False, False,
+            topic=content.get("topic", ""), on_screen_text=on_screen, hashtags=tags)
+        content["hashtags"] = tags
+        content["alt_text"] = seo.build_alt_text(
+            scene=content.get("scene", ""), topic=content.get("topic", ""),
+            hook=content["hook"], on_screen_text=on_screen)
         content["include_whisper"] = False
         content["exploit"] = True
         config.save_content(content)
@@ -440,6 +460,9 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
     landing = _clean_q(winner.get("landing"))
     cluster = winner.get("cluster") or winner.get("archetype")
     blocks = text_pieces(winner)
+    # SEO: on-screen text is the whole message now (one always-visible block).
+    on_screen = " ".join(blocks or [])
+    tags = _hashtags(cfg, memory, topic=winner["topic"], on_screen_text=on_screen)
     content = {
         "hook": hook,
         "deepening": [_clean_q(d) for d in (winner.get("deepening") or []) if _clean_q(d)],
@@ -453,8 +476,12 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
         "loop_technique": winner["loop_technique"],
         "scene": _clean_q(winner.get("scene")) or "",
         "is_hope": is_hope,
-        "caption": _build_caption(cfg, hook, landing, include_whisper, is_hope),
-        "hashtags": _hashtags(cfg, memory),
+        "on_screen_text": on_screen,
+        "caption": _build_caption(cfg, hook, landing, include_whisper, is_hope,
+                                  body=" ".join(blocks[1:2]) if len(blocks) > 1 else "",
+                                  topic=winner["topic"], on_screen_text=on_screen,
+                                  hashtags=tags),
+        "hashtags": tags,
         "include_whisper": include_whisper,
         "exploit": exploit,
         "rationale": winner.get("rationale", ""),
@@ -463,6 +490,12 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
         "music_source": "",
         "trending_ref": {"title": "", "artist": "", "genre": "", "trend_score": None},
     }
+
+    # SEO §6: alt text is filled in once the background scene is chosen (it needs the
+    # visual description), so build.py / run_create calls refresh_alt_text().
+    content["alt_text"] = seo.build_alt_text(
+        scene=content["scene"], topic=content["topic"], hook=hook,
+        on_screen_text=on_screen)
 
     if not dry_run and not offline:
         memory.setdefault("used_hooks", []).append({

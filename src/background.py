@@ -17,9 +17,13 @@ from pathlib import Path
 
 from . import config, llm, pinterest
 
-# Spec §3.2 — the exact cinematic grade chain.
-GRADE = ("eq=brightness=-0.10:saturation=0.85:contrast=1.15,"
-         "colorbalance=rs=-0.03:gs=0.0:bs=0.05")
+# Background grade. The footage ships AS SHOT — no brightness/saturation crush and
+# no colour balance shift. Empty by default; `bg_grade: true` would restore the
+# cinematic chain below. Kept as a named constant so the ffmpeg chains keep a single
+# source of truth and a re-enable is a one-line change.
+GRADE = "null"   # ffmpeg pass-through: zero colour change
+GRADE_CINEMATIC = ("eq=brightness=-0.10:saturation=0.85:contrast=1.15,"
+                   "colorbalance=rs=-0.03:gs=0.0:bs=0.05")
 MIN_CLIP_S = 3.0            # spec §2.3
 DEDUP_DAYS = 30             # spec §2.3
 
@@ -156,7 +160,26 @@ def _probe_duration(path: Path) -> float:
         return 0.0
 
 
-def process_clip(src: Path, out: Path, duration_s: float, fps: int) -> bool:
+
+def _grade_segments(cfg, darken: float) -> str:
+    """ffmpeg colour chain for the background — EMPTY by default.
+
+    The user wants the original footage untouched: no brightness lift/drop, no
+    saturation crush, no colour-balance shift. So the default chain is a pure
+    pass-through. Setting config `bg_grade: true` restores GRADE_CINEMATIC, and a
+    non-zero `bg_darken` adds the extra brightness term. Returning "" (no filter
+    at all) is what guarantees zero pixel change, so we never emit a no-op eq.
+    """
+    parts = []
+    if cfg.get("bg_grade"):
+        parts.append(GRADE_CINEMATIC)
+    if darken:
+        parts.append(f"eq=brightness={darken}")
+    return ",".join(parts)
+
+
+def process_clip(src: Path, out: Path, duration_s: float, fps: int,
+                 cfg: dict | None = None) -> bool:
     """Spec §3: crop/scale -> grade -> trim from the MIDDLE -> seamless loop."""
     out.parent.mkdir(parents=True, exist_ok=True)
     src_dur = _probe_duration(src)
@@ -167,7 +190,7 @@ def process_clip(src: Path, out: Path, duration_s: float, fps: int) -> bool:
     start = max((src_dur - duration_s) / 2.0, 0.0)
     # Spec §3.1 + §3.2 + §3.5 in one pass.
     vf = (f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
-          f"fps={fps},{GRADE},format=yuv420p")
+          f"fps={fps},{_grade_segments(cfg, 0.0)},format=yuv420p".replace(",,", ","))
     cmd = ["ffmpeg", "-y", "-v", "error", "-ss", f"{start:.3f}", "-i", str(src),
            "-t", f"{duration_s:.3f}", "-vf", vf, "-an",
            "-c:v", "libx264", "-preset", "slow", "-crf", "20", str(out)]
@@ -204,7 +227,7 @@ def loop_clip(src: Path, out: Path, duration_s: float, fps: int,
 
 
 def animate_still(src: Path, out: Path, duration_s: float, fps: int,
-                  darken: float = -0.13) -> bool:
+                  darken: float = 0.0, cfg: dict | None = None) -> bool:
     """Spec §2.4 step 3 — LAST RESORT: animate a still with zoompan + blur drift."""
     out.parent.mkdir(parents=True, exist_ok=True)
     frames = max(int(round(duration_s * fps)), 2)
@@ -213,7 +236,7 @@ def animate_still(src: Path, out: Path, duration_s: float, fps: int,
           f"zoompan=z='1.0+0.10*on/{frames - 1}':"
           f"x='iw/2-(iw/zoom/2)+8*sin(on/12)':y='ih/2-(ih/zoom/2)+6*cos(on/15)':"
           f"d={frames}:s=1080x1920:fps={fps},"
-          f"gblur=sigma=0.6,{GRADE},eq=brightness={darken},format=yuv420p")
+          f"gblur=sigma=0.6,{_grade_segments(cfg, darken)},format=yuv420p".replace(",,", ","))
     cmd = ["ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", str(src),
            "-t", f"{duration_s:.3f}", "-vf", vf,
            "-c:v", "libx264", "-preset", "slow", "-crf", "20", str(out)]
@@ -246,8 +269,9 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
             make_default_bg(bundled)
         # Offline is hermetic: animate the bundled still so the format still has
         # motion, but flag it as non-Pinterest so the QA gate can see the truth.
-        if bundled.exists() and animate_still(bundled, looped, duration_s,
-                                              fps, darken=float(cfg.get("bg_darken", -0.13))):
+        if bundled.exists() and animate_still(bundled, looped, duration_s, fps,
+                                              darken=float(cfg.get("bg_darken", 0.0)),
+                                              cfg=cfg):
             return looped, "bundled_animated"
         raise RuntimeError("offline background failed")
 
@@ -285,7 +309,7 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
                     break
                 url = entry.get("best_video")
                 if url and pinterest.download(url, raw):
-                    if process_clip(raw, looped, duration_s, fps):
+                    if process_clip(raw, looped, duration_s, fps, cfg):
                         if not loop_clip(looped, out_norm, duration_s, fps):
                             # straight cut is acceptable for continuous motion
                             out_norm.write_bytes(looped.read_bytes())
@@ -302,7 +326,7 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
             if not entry:
                 continue
             url = entry.get("best_video")
-            if url and pinterest.download(url, raw) and process_clip(raw, looped, duration_s, fps):
+            if url and pinterest.download(url, raw) and process_clip(raw, looped, duration_s, fps, cfg):
                 if not loop_clip(looped, out_norm, duration_s, fps):
                     out_norm.write_bytes(looped.read_bytes())
                 _record(memory, entry, dry_run)
@@ -317,14 +341,14 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
               f"vertical composition, no text, no watermark")
     gen = config.OUTPUTS / "bg_ai.jpg"
     if llm.image(prompt, gen) and animate_still(
-            gen, looped, duration_s, fps, darken=float(cfg.get("bg_darken", -0.13))):
+            gen, looped, duration_s, fps, darken=float(cfg.get("bg_darken", 0.0))):
         return looped, "meta_image_animated"
 
     bundled = config.ASSETS / "fallback" / "bg_default.jpg"
     if not bundled.exists():
         make_default_bg(bundled)
     if animate_still(bundled, looped, duration_s, fps,
-                     darken=float(cfg.get("bg_darken", -0.13))):
+                     darken=float(cfg.get("bg_darken", 0.0))):
         return looped, "bundled_animated"
     raise RuntimeError("all background providers failed")
 

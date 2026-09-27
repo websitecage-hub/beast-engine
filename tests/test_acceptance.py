@@ -495,6 +495,126 @@ def test_spec_audio_chain_includes_song_provider():
     assert "/v1/song" in src_song
 
 
+def test_seo_hashtags_are_content_matched_and_within_limits():
+    """SEO §4.2: 6-9 tags = 1-2 branded + 3-4 primary + 2-3 long-tail, topic-matched."""
+    from src import seo as S
+    for topic in ("fake_phone", "cancelled_plans", "the_2am_replay"):
+        tags = S.build_hashtags(topic=topic, on_screen_text="Phone out. Head down.")
+        assert 6 <= len(tags) <= 9, f"{topic}: {len(tags)} tags"
+        assert len({t.lower() for t in tags}) == len(tags), "duplicate tags"
+        branded = [t for t in tags if t in S.BRANDED_TAGS]
+        primary = [t for t in tags if t in S.PRIMARY_TAGS]
+        long_tail = [t for t in tags if t in S.LONG_TAIL_TAGS]
+        assert 1 <= len(branded) <= 2, f"{topic}: branded {branded}"
+        assert 3 <= len(primary) <= 4, f"{topic}: primary {primary}"
+        assert 2 <= len(long_tail) <= 3, f"{topic}: long-tail {long_tail}"
+        # Every long-tail tag must belong to THIS topic, not be random filler.
+        topic_tags = S.TOPIC_MAP[topic][0]
+        assert all(t in topic_tags for t in long_tail), \
+            f"{topic}: mismatched long-tail {long_tail} vs {topic_tags}"
+
+
+def test_seo_caption_puts_keyword_in_first_line_without_stuffing():
+    """SEO §3.2: primary keyword in line 1, 1+ secondary keyword, no repetition."""
+    from src import seo as S
+    on_screen = "Phone out. Head down. Still invisible."
+    tags = S.build_hashtags(topic="fake_phone", on_screen_text=on_screen)
+    cap = S.build_caption("Phone out. Head down. Nobody can tell.",
+                          "This is what it looks like from the outside.",
+                          "Phone out again. Head down. Still invisible.",
+                          topic="fake_phone", on_screen_text=on_screen, hashtags=tags)
+    first = cap.split("\n", 1)[0]
+    assert S.primary_in(first) is not None, f"no primary keyword in line 1: {first!r}"
+    assert any(s in cap.lower() for s in S.SECONDARY_KEYWORDS), "no secondary keyword"
+    # Keyword stuffing guard: no single keyword may appear more than twice overall.
+    for kw in S.PRIMARY_KEYWORDS:
+        assert cap.lower().count(kw) <= 2, f"keyword stuffed: {kw}"
+    assert cap.rstrip().endswith(tags[-1]), "hashtags must close the caption"
+    # The caption must not simply repeat the on-screen text (it has to add a description).
+    assert len(cap.split()) >= 12
+
+
+def test_seo_alt_text_describes_visual_and_ends_with_brand():
+    """SEO §6.2: visual description -> keyword topic -> brand, well-formed."""
+    from src import seo as S
+    alt = S.build_alt_text(scene="A lone silhouette walking through a dark street",
+                           topic="fake_phone", hook="Phone out. Head down.",
+                           on_screen_text="Phone out. Head down. Still invisible.")
+    assert alt.startswith("A lone silhouette"), alt
+    assert alt.endswith("From Unleash The Beast."), alt
+    assert ".." not in alt, f"double period: {alt}"
+    assert "content about" in alt.lower()
+    # No lowercase sentence start after a full stop.
+    import re as _re
+    for m in _re.finditer(r"\.\s+([a-z])", alt):
+        raise AssertionError(f"sentence starts lowercase: ...{alt[m.start():m.start()+30]!r}")
+
+
+def test_seo_checklist_all_pass_on_generated_content():
+    """The §9 checklist must be fully green for a normal reel."""
+    from src import seo as S
+    on_screen = "Phone out. Head down. Nobody can tell. You scroll through nothing."
+    tags = S.build_hashtags(topic="fake_phone", on_screen_text=on_screen)
+    cap = S.build_caption("Phone out. Head down. Nobody can tell.",
+                          "This is what it looks like from the outside.",
+                          "Phone out again. Head down. Still invisible.",
+                          topic="fake_phone", on_screen_text=on_screen, hashtags=tags)
+    alt = S.build_alt_text(scene="A lone silhouette on a wet street at night",
+                           topic="fake_phone", on_screen_text=on_screen)
+    res = S.checklist({"caption": cap, "hashtags": tags,
+                       "on_screen_text": on_screen, "alt_text": alt})
+    bad = [k for k, v in res.items() if not v]
+    assert not bad, f"checklist failures: {bad}"
+
+
+def test_seo_on_screen_searchable_without_keyword_stuffing():
+    """§5: honest scene text counts as searchable; empty filler does not."""
+    from src import seo as S
+    assert S.has_searchable_phrase("Phone out. Head down. Still invisible."), \
+        "an honest scene with phone/invisible should be searchable"
+    assert not S.has_searchable_phrase("The end. A time."), \
+        "content-free text must not pass as searchable"
+    assert S.on_screen_seo_score("Phone out. Head down. Still invisible.") > 0.3
+
+
+def test_config_declares_no_background_darkening():
+    """The footage ships AS SHOT: no grade, no darken, in code AND data/config.json."""
+    assert config.DEFAULT_CONFIG["bg_darken"] == 0.0, "default darken must be 0"
+    assert config.DEFAULT_CONFIG["bg_grade"] is False, "default grade must be off"
+    live = json.loads((ROOT / "data" / "config.json").read_text(encoding="utf-8"))
+    assert live["bg_darken"] == 0.0, "config.json still darkens the background"
+    assert live["bg_grade"] is False, "config.json still grades the background"
+
+
+def test_background_filters_emit_no_colour_filters_by_default():
+    """With grade+darken off, the ffmpeg chains must contain no eq/colorbalance.
+
+    This is the mechanical guarantee that the source video is not darkened — a config
+    value alone would not catch a hard-coded filter left behind in the chain.
+    """
+    from src import background as B
+    src = (ROOT / "src" / "background.py").read_text(encoding="utf-8")
+    # The cinematic chain may exist, but must only be reachable via bg_grade.
+    body = src.split("def _grade_segments", 1)[1].split("def process_clip", 1)[0]
+    assert "if cfg.get(\"bg_grade\")" in body, "cinematic grade not gated behind bg_grade"
+    assert B._grade_segments({}, 0.0) == "", "default grade chain must be empty"
+    assert B._grade_segments({"bg_darken": 0.0, "bg_grade": False}, 0.0) == ""
+    assert "eq=" in B._grade_segments({}, -0.2), "darken must still work"
+    assert "eq=" in B._grade_segments({"bg_grade": True}, 0.0), "grade must still work"
+    assert B.GRADE_CINEMATIC, "cinematic chain should be preserved for re-enabling"
+
+
+def test_build_video_chain_has_no_brightness_by_default():
+    """build_video's assemble chain must not darken the background either."""
+    src = (ROOT / "src" / "build_video.py").read_text(encoding="utf-8")
+    body = src.split("def assemble", 1)[1].split("\n    last =", 1)[0]
+    assert "scale=1080:1920" in body, "assemble should scale/crop the background"
+    # The literal darken filter must not be baked into the base chain string.
+    assert "eq=brightness=" not in body.split("grade_parts")[0], \
+        "base chain still hard-codes a brightness filter"
+    assert "bg_grade" in body, "assemble should gate the grade on bg_grade"
+
+
 def test_data_config_matches_code_defaults_for_spec_keys():
     """data/config.json must not contradict the code defaults."""
     live = json.loads((ROOT / "data" / "config.json").read_text(encoding="utf-8"))

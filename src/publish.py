@@ -12,7 +12,7 @@ from pathlib import Path
 
 import requests
 
-from . import alerts, config
+from . import alerts, config, seo
 
 GRAPH = "https://graph.instagram.com/v23.0"
 RUPLOAD = "https://rupload.instagram.com"
@@ -55,16 +55,40 @@ def resolve_account() -> dict:
 def caption_for(content: dict, cfg: dict) -> str:
     tags = " ".join(content.get("hashtags") or [])
     cap = content.get("caption") or content.get("hook", "")
-    if tags:
+    if tags and tags not in cap:
         cap = f"{cap}\n\n{tags}"
     return cap[:2200]
 
 
-def create_container(ig_id: str, caption: str, test: bool = False) -> dict:
+def alt_text_for(content: dict, cfg: dict) -> str:
+    """SEO §6: alt text for the media container. Google reads this directly.
+
+    Rebuilt from the finished content dict when it is missing, so a reel built before
+    the SEO layer existed still ships an alt text rather than silently skipping a
+    Google-visible field.
+    """
+    alt = (content.get("alt_text") or "").strip()
+    if alt:
+        return alt[:1000]
+    return seo.build_alt_text(
+        scene=content.get("scene", ""), topic=content.get("topic", ""),
+        hook=content.get("hook", ""),
+        on_screen_text=content.get("on_screen_text", ""))[:1000]
+
+
+def create_container(ig_id: str, caption: str, test: bool = False,
+                     alt_text: str = "") -> dict:
+    data = {"media_type": "REELS", "upload_type": "resumable",
+            "mime_type": "video/mp4", "caption": caption}
+    # SEO §6.1: pass alt text when the API accepts it. Graph has historically ignored
+    # unknown fields on this endpoint, so it is additive and harmless when unsupported;
+    # publish_reel() also persists it to memory.json for manual entry in that case.
+    if alt_text:
+        data["alt_text"] = alt_text
+        data["accessibility_caption"] = alt_text
     r = requests.post(f"{GRAPH}/{ig_id}/media",
                       params={"access_token": _token()},
-                      data={"media_type": "REELS", "upload_type": "resumable",
-                            "mime_type": "video/mp4", "caption": caption},
+                      data=data,
                       timeout=120)
     if r.status_code == 401:
         raise PermissionError("401 TOKEN DEAD")
@@ -216,26 +240,30 @@ def publish_reel(video: Path, content: dict, cfg: dict, test: bool = False,
     account = resolve_account()
     ig_id = str(account["id"])
     caption = caption_for(content, cfg)
+    alt_text = alt_text_for(content, cfg)
+    print(f"[publish] alt text: {alt_text[:90]}...")
 
     from . import upload_host
     url, host = upload_host.publicize(video)
     if url:
         try:
-            container = create_container_url(ig_id, caption, url)
+            container = create_container_url(ig_id, caption, url, alt_text=alt_text)
             cid = container["id"]
             status = wait_finished(cid)
             if test:
                 print(f"[publish] TEST mode: container {cid} ready ({status}), not publishing")
-                return {"test": True, "container_id": cid, "status": status, "host": host}
+                return {"test": True, "container_id": cid, "status": status,
+                        "host": host, "alt_text": alt_text}
             media_id = media_publish(ig_id, cid)
             return {"media_id": media_id, "container_id": cid, "caption": caption,
-                    "ig_id": ig_id, "status": status, "host": host, "video_url": url}
+                    "alt_text": alt_text, "ig_id": ig_id, "status": status,
+                    "host": host, "video_url": url}
         except PermissionError:
             raise
         except Exception as exc:  # noqa: BLE001
             print(f"[publish] hosted-url route failed ({exc}); trying resumable")
 
-    container = create_container(ig_id, caption, test=test)
+    container = create_container(ig_id, caption, test=test, alt_text=alt_text)
     cid, uri = container["id"], container["uri"]
     upload(uri, video)
     status = wait_finished(cid)
@@ -247,12 +275,16 @@ def publish_reel(video: Path, content: dict, cfg: dict, test: bool = False,
             "ig_id": ig_id, "status": status}
 
 
-def create_container_url(ig_id: str, caption: str, video_url: str) -> dict:
+def create_container_url(ig_id: str, caption: str, video_url: str,
+                         alt_text: str = "") -> dict:
     """Hosted-URL container — the only route Instagram-Login tokens accept."""
+    data_in = {"media_type": "REELS", "video_url": video_url, "caption": caption}
+    if alt_text:
+        data_in["alt_text"] = alt_text
+        data_in["accessibility_caption"] = alt_text
     r = requests.post(f"{GRAPH}/{ig_id}/media",
                       params={"access_token": _token()},
-                      data={"media_type": "REELS", "video_url": video_url,
-                            "caption": caption},
+                      data=data_in,
                       timeout=120)
     if r.status_code == 401:
         raise PermissionError("401 TOKEN DEAD")

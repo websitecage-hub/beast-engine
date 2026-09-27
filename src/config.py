@@ -153,7 +153,50 @@ DEFAULT_CONFIG = {
                     # FINAL FORMAT §2: ONE block of 3-5 short lines, <=60 chars
                     # per LINE on screen (the block total is naturally larger).
                     "line": 60, "lines_max": 5},
-    "bg_darken": -0.13,        # Part 5.2: brightness -0.12 to -0.15
+    "bg_darken": 0.0,          # NO extra darkening: the footage ships as shot
+    "bg_grade": False,         # no brightness/saturation crush on the source video
+    # Instagram SEO (spec §7.1). Keywords steer caption/alt-text wording and the
+    # hashtag pools. Hashtags are content-matched per reel by src/seo.py; these lists
+    # are the single source of truth so the pools are never duplicated in code.
+    "seo": {
+        "primary_keywords": [
+            "social anxiety", "overthinking conversations", "socially anxious",
+            "quiet people", "introvert struggles",
+        ],
+        "secondary_keywords": [
+            "fear of being judged", "canceling plans relief", "hating phone calls",
+            "replaying conversations", "feeling behind everyone",
+            "wanting to be alone but lonely", 'performing "fine"',
+            "exhausted from socializing",
+        ],
+        "long_tail_keywords": [
+            "why do i overthink every conversation",
+            "relief when plans get cancelled",
+            "social anxiety at work meetings",
+            "how to stop replaying conversations",
+            "introvert vs social anxiety",
+        ],
+        "hashtag_pools": {
+            "branded": ["#unleashthebeast", "#socialanxietyhelp"],
+            "primary": [
+                "#socialanxiety", "#introvert", "#overthinking", "#quietpeople",
+                "#mentalhealth", "#anxietyrelief", "#selfimprovement",
+                "#introvertlife", "#sociallyanxious", "#overthinker",
+                "#quietmind", "#innerwork",
+            ],
+            "long_tail": [
+                "#cancelingplans", "#replayingconversations", "#phonecallanxiety",
+                "#meetinganxiety", "#eatingalone", "#2amthoughts",
+                "#beingthequietone", "#performingfine", "#socialanxietyatwork",
+                "#introvertproblems", "#behindeveryone", "#wantingtobealone",
+            ],
+        },
+        "name_field": "Unleash The Beast | Social Anxiety Help",
+        "bio_template": ("Overcoming social anxiety. Real posts for the ones who "
+                         "overthink every conversation. The book that gets it → link below."),
+        "hashtags_min": 6,
+        "hashtags_max": 9,
+    },
     "explore_rate": 0.2,
     "whisper_every_n_posts": 7,     # Law 11
     "hope_every_n_posts": 10,       # Law 8 / Part 2.1 cluster J
