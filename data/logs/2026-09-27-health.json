@@ -26,5 +26,33 @@
       "paused": false
     },
     "seconds": 2.02
+  },
+  {
+    "workflow": "health",
+    "started": "2026-09-27T14:55:07.475674+00:00",
+    "dry_run": false,
+    "checks": {
+      "meta": true,
+      "pinterest": true,
+      "audio_scraper": true
+    },
+    "trending_warm": {
+      "status": 200,
+      "results": 5
+    },
+    "token": {
+      "ok": false,
+      "account": null
+    },
+    "token_expiry": {
+      "expires_at": "2026-11-19",
+      "days_left": 53
+    },
+    "staleness": {
+      "last_post_date": "2026-09-27",
+      "stale": false,
+      "paused": false
+    },
+    "seconds": 1.75
   }
 ]
