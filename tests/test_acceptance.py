@@ -94,11 +94,12 @@ def test_onscreen_validator_enforces_the_hard_constraints():
 
 
 def test_caption_validator_enforces_structure():
+    # Uses the tags the FINAL INSTALL sanctions (SECTION 4), not a legacy pool tag.
     good = ("You didn't do anything wrong on that call.\n\n"
             "The speed and the two apologies are a nervous system responding to a "
             "threat it invented.\n\nIf this is you, you're not alone.\n\n"
             "Comment QUIET and I'll send you the full breakdown.\n\n"
-            "#socialanxiety #phoneanxiety #overthinking #socialanxietystruggles #quietpeople")
+            "#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #quietpeople")
     assert generate.caption_problems(good, "QUIET") == []
     # 5-7 hashtags, and only from the sanctioned pool
     assert any("hashtags" in p for p in generate.caption_problems(
@@ -608,18 +609,21 @@ def test_pixabay_regex_finds_all_three():
 # ------------------------------------------------- VISUAL SPEC v1.0 §4 / §5
 
 def test_text_anchor_and_block_height_agree():
-    """The block is centred on TEXT_TOP_FRAC, and the anchor must use the same
-    per-line heights as the renderer (the CTA is smaller, which changes block height)."""
+    """The block's TOP sits at TEXT_TOP_FRAC (spec §3: 30% of frame height), and the
+    anchor must use the same per-line heights as the renderer (the CTA is smaller)."""
     cfg = config.DEFAULT_CONFIG
     h = int(cfg["reel"]["h"])
     entries = [("one", False), ("two", False), ("Comment SAFE and I'll send you "
                                                 "the full breakdown.", True)]
     top = build_video.hook_top(entries, 96, cfg)
     bh = build_video.block_height(entries, 96)
-    assert abs(top - (int(h * build_video.TEXT_TOP_FRAC) - bh // 2)) < 3, top
-    # taller blocks must start higher (they are centred, not top-aligned)
+    # TOP anchor: exact, independent of block height
+    assert abs(top - int(h * build_video.TEXT_TOP_FRAC)) < 3, top
+    # the block must still finish inside the frame, clear of the bottom UI
+    assert top + bh < h, (top, bh)
+    # taller blocks do NOT move the top (top-anchored, not centred)
     two = entries[:-1]
-    assert build_video.hook_top(entries, 96, cfg) < build_video.hook_top(two, 96, cfg)
+    assert build_video.hook_top(entries, 96, cfg) == build_video.hook_top(two, 96, cfg)
     # The CTA renders smaller than the body. (Its LINE is not shorter: the extra
     # leading above it (CTA_GAP) makes the line taller than a body line, which is
     # what gives the footer its visual separation.)

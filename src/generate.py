@@ -28,16 +28,17 @@ SYSTEM_PROMPT = mind.SYSTEM_PROMPT
 
 # The caption must close with hashtags drawn from this pool (spec §4). The last three
 # appear in the spec's own examples, so they are legal too.
+# SECTION 4's list, plus the few the spec's own calibration examples use
+# (2amthoughts appears in EXAMPLE 2), so a model copying an example is not failed.
 HASHTAG_POOL = [
     "socialanxiety", "overthinking", "socialanxietystruggles", "anxietyproblems",
-    "introvertstruggles", "latenightthoughts", "mentalhealthmatters", "socialskills",
-    "anxietysupport", "quietpeople", "overthinkers", "socialanxietyproblems",
-    "deepthinkers", "phoneanxiety", "2amthoughts", "introvertproblems",
+    "introvertstruggles", "latenightthoughts", "mentalhealthmatters", "quietpeople",
+    "overthinkers", "2amthoughts",
 ]
 HASHTAGS_MIN, HASHTAGS_MAX = 5, 7
 
-MIN_LINES, MAX_LINES = 5, 10      # spec §8.8 absolute bounds
-TARGET_LINES = (6, 9)             # spec §3 target
+MIN_LINES, MAX_LINES = 5, 7       # spec §8.7: never fewer than 5, never more than 7
+TARGET_LINES = (5, 7)             # spec §3 structure
 
 BANNED_THERAPY = ("journey", "healing", "trauma", "toxic")
 BANNED_CTA = ("link in bio", "save this", "share this", "comment below")
@@ -182,10 +183,10 @@ def _ensure_hashtags(caption: str) -> str:
 
 
 def _fix_line_count(onscreen: str) -> str:
-    """Trim toward the 6-9 line target without touching the CTA.
+    """Trim toward the 5-7 line target without touching the CTA.
 
-    The model is asked for 6-9 lines and usually complies; when it over-writes the
-    hard bound is 10, and the safest cut is a middle story line — the CTA and the
+    The model is asked for 5-7 lines and usually complies; when it over-writes, the
+    hard bound is 7, and the safest cut is a middle story line — the CTA and the
     compassion pivot carry the reel's function.
     """
     lines = _lines(onscreen)
@@ -209,13 +210,16 @@ def _fix_line_count(onscreen: str) -> str:
     return "\n".join(lines)
 
 
-def build_user_prompt(directives: str = "", last_keyword: str = "") -> str:
+def build_user_prompt(directives: str = "", last_keyword: str = "",
+                      recent_topics=None) -> str:
     """The user message: a plain daily order, plus the account's live keyword list.
 
     The keyword list belongs HERE, not in the system prompt: the spec's §5 examples
     include words (FREEZE) that are not wired to this account's DM automation, and
     the spec prompt must stay verbatim. Naming the enabled words in the daily order
     keeps the CTA pointing at a rule that actually fires.
+
+    Spec §4: the last three topics are excluded so consecutive reels do not repeat.
     """
     parts = ["Generate one reel for today."]
     parts.append(
@@ -229,6 +233,12 @@ def build_user_prompt(directives: str = "", last_keyword: str = "") -> str:
         parts.append(
             f"Do not use the keyword {last_keyword}; it was used on the previous "
             f"reel. Choose a different one from the list above.")
+    topics = [str(t).strip() for t in (recent_topics or []) if str(t).strip()]
+    if topics:
+        # Spec §4 rotation: naming the recent topics is what actually stops the
+        # model re-running "fake scroll avoidance" three days in a row.
+        parts.append("Do not use the topics: " + "; ".join(topics)
+                     + ". Pick a different experience from SECTION 9.")
     return "\n".join(parts)
 
 
@@ -325,7 +335,9 @@ def generate(dry_run: bool = False, offline: bool = False) -> dict:
         return content
 
     last_kw = str(memory.get("last_keyword") or "")
-    user_msg = build_user_prompt(directives, last_kw)
+    # Spec §4: the last three topics, so consecutive reels do not repeat.
+    recent = [p.get("topic") for p in (memory.get("posts") or [])][-3:]
+    user_msg = build_user_prompt(directives, last_kw, recent_topics=recent)
 
     # Two attempts: a rejected response is usually one rule away from valid, and
     # re-rolling is cheap next to losing the day's post.

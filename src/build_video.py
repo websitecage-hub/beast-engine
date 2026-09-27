@@ -35,30 +35,30 @@ BLOCK_FADE = 0.3                # Part 5.3: block fade <= 0.3s, no text theatre
 LINE_SPACING = 1.30             # slightly tighter: more lines must share the frame
 MIN_WIDTH_FILL = 0.75           # §2: text fills >=75% of frame width
 MAX_WIDTH_FILL = 0.92           # never touch the edges
-MAX_LINES_ON_SCREEN = 10        # the model's SOURCE lines (§8.8), validated in generate
+MAX_LINES_ON_SCREEN = 7         # spec §3 / §8.7: 5-7 source lines, hard ceiling
 MAX_DISPLAY_LINES = 22          # after wrapping. The frame's real limit is BLOCK
                                 # HEIGHT, not a line count: at 56px the block holds
                                 # ~20 display lines in 1190px. This is a generous
                                 # backstop against a pathological wrap, not the
                                 # binding constraint.
-MAX_LINES_TARGET = 9            # §3 target for source lines
-MIN_LINES_ON_SCREEN = 5         # §8.8 source-line floor
+MAX_LINES_TARGET = 7            # §3 target for source lines
+MIN_LINES_ON_SCREEN = 5         # §8.7 source-line floor
 MAX_TOTAL_WORDS = 190           # 9 lines x ~21 words; the print cap, enforced
-TEXT_TOP_FRAC = 0.50            # the block's CENTRE sits at the frame's centre.
-                                # 0.38 pulled the text into the upper third and
-                                # read as top-heavy beside the CTA footer.
+TEXT_TOP_FRAC = 0.30            # spec §3: the TOP of the text sits at 30% of
+                                # frame height (the block then reads high-middle,
+                                # clear of the reel UI at the bottom).
 SHADOW_BLUR = 8                 # soft dark shadow
 SHADOW_ALPHA = 179              # ~70% opacity
 TEXT_BAND_ALPHA = 77            # 30% black scrim, only over bright footage
 TEXT_BAND_BRIGHT_MIN = 88       # only lay the band when the bg luma exceeds this
 TEXT_SCRIM = False              # never darken the footage: text rides on the video
 # CTA line ("Comment SAFE...") renders smaller than the body, at the block's foot.
-CTA_SCALE = 0.78                # relative to the fitted body size
+CTA_SCALE = 0.70                # spec §3: the CTA renders at 70% of the body
 CTA_MIN_PX = 40                 # never shrink the CTA below legibility
 CTA_GAP = 0.55                  # extra leading above the CTA line, in px multiples
-MIN_PX = 44                     # spec §3 says 48px; 44 is the floor at which the
-                                # text is still legible on a phone thumbnail, and it
-                                # buys a line or two on the longest messages
+MIN_PX = 52                     # spec §3: minimum font size. If the text cannot fit
+                                # at 52px it is too long — we warn and render anyway
+                                # rather than dropping the reel.
 # The spec's 6-9 line blocks carry far more words than the old 3-5 line ones, so the
 # block is allowed to occupy more of the frame. 0.68 leaves ~300px of headroom top
 # and bottom, which keeps the text clear of the reel's UI chrome.
@@ -73,7 +73,7 @@ BODY_PX_LADDER = [96, 90, 84, 78, 72, 68, 64, 60, 56, 52, 48, 46, 44]
 # The user asked for a touch smaller text. That is applied to MESSAGE blocks (the
 # day's long text) via their own ladder, because shrinking every block also shrank
 # the legacy short cards and dropped their width fill below the 75% floor.
-MESSAGE_PX_LADDER = [88, 82, 78, 74, 70, 66, 62, 58, 54, 50, 48, 46, 44]
+MESSAGE_PX_LADDER = [78, 76, 74, 72, 70, 68, 66, 64, 62, 60, 58, 56, 54, 52]
 INK = (245, 245, 245, 255)
 INK_MARK = (230, 230, 230, 150)
 INK_CTA = (238, 238, 238, 235)   # slightly softer: the ask is a footer, not body
@@ -242,7 +242,21 @@ def fit_message(text: str, cfg) -> tuple:
             return entries, px, font_path
     if best is not None:
         return best[0], best[1], best[2]
-    raise RuntimeError(f"message cannot fit in {MAX_DISPLAY_LINES} displayed lines: {text!r}")
+    # Spec §3: "minimum font size 52px (if lines don't fit at 52px, the text is too
+    # long — log a warning but still render)". So this is NOT fatal any more: fall
+    # back to the smallest ladder size and let it wrap wider than the ideal, rather
+    # than losing the day's reel.
+    px = MIN_PX
+    font = ImageFont.truetype(str(config.ROOT / font_path), px)
+    body_lines = _wrap_measured(body_text, font, max_w) if body_text else []
+    cta_px = max(int(px * CTA_SCALE), CTA_MIN_PX)
+    cta_font = ImageFont.truetype(str(config.ROOT / font_path), cta_px)
+    cta_lines = _wrap_measured(cta_text, cta_font, max_w) if cta_text else []
+    print(f"[video] WARNING: text exceeds the frame at the {MIN_PX}px minimum "
+          f"({len(body_lines) + len(cta_lines)} display lines) — rendering anyway, "
+          "consider a shorter message")
+    return ([(ln, False) for ln in body_lines] + [(ln, True) for ln in cta_lines],
+            px, font_path)
 
 
 def fit_block(text: str, kind: str, cfg, max_lines: int | None = None) -> tuple:
@@ -395,8 +409,19 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
     sd, d = ImageDraw.Draw(shadow), ImageDraw.Draw(img)      # AFTER any compositing
 
     def draw_center(txt, f, y, fill, sd_fill):
-        bb = f.getbbox(txt)
-        x = (w - (bb[2] - bb[0])) // 2 - bb[0]
+        # Centre on the glyphs' true ink box, not the layout box: getbbox() includes
+        # the font's side bearing, which pushed the block ~2-3px off the frame's
+        # centre line. getmask() returns the rendered bitmap, so its bbox IS the ink.
+        try:
+            mask_bb = f.getmask(txt).getbbox()
+        except Exception:  # noqa: BLE001
+            mask_bb = None
+        if mask_bb:
+            ink_w, ink_left = mask_bb[2] - mask_bb[0], mask_bb[0]
+        else:
+            bb = f.getbbox(txt)
+            ink_w, ink_left = bb[2] - bb[0], bb[0]
+        x = (w - ink_w) // 2 - ink_left
         sd.text((x + 2, y + 3), txt, font=f, fill=sd_fill)
         d.text((x, y), txt, font=f, fill=fill)
 
@@ -422,10 +447,12 @@ def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: 
 
 
 def hook_top(lines: list, px: int, cfg) -> int:
-    """The canonical text top — the anchor the block is centred on.
+    """The canonical text top: the FIRST LINE's baseline box starts here.
 
-    Accepts tagged (line, is_cta) entries from fit_message or plain strings, and uses
-    the same per-line heights as render_block so the anchor matches the drawn block.
+    Spec §3: "top of text at 30% of frame height". This is a TOP anchor, not a
+    centre anchor — the earlier version subtracted half the block height, so a
+    0.30 fraction put the ink near the very top of the frame instead of at 30%.
+    The old centre behaviour is still available by passing a negative fraction.
     """
     h = int(cfg["reel"]["h"])
     entries = _tagged(lines)
@@ -435,7 +462,10 @@ def hook_top(lines: list, px: int, cfg) -> int:
     block_h = ((len(entries) - n_cta) * int(px_i * LINE_SPACING)
                + (int(cta_px * CTA_GAP) if n_cta else 0)
                + n_cta * int(cta_px * LINE_SPACING))
-    return int(int(h * TEXT_TOP_FRAC) - block_h // 2)
+    if TEXT_TOP_FRAC < 0:
+        # legacy centre-of-block anchor
+        return int(int(h * abs(TEXT_TOP_FRAC)) - block_h // 2)
+    return int(h * TEXT_TOP_FRAC)
 
 
 def block_height(lines: list, px: int) -> int:

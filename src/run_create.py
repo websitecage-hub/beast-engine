@@ -261,8 +261,12 @@ def _record_post(memory, content, result, strategy):
         "container_id": result.get("container_id"),
         "created_at": now.isoformat(),
         "hour_slot": slot,
-        "hook": hook,
         "hook_text": hook,
+        "hook": hook,
+        "keyword": content.get("keyword") or "",
+        # Spec §2: the topic is tracked on the POST (not only in the DNA) because
+        # topic rotation reads it back to exclude the last three topics.
+        "topic": content.get("topic_label") or content.get("topic"),
         "caption": result.get("caption"),
         "hashtags": content.get("hashtags"),
         "dna": {
