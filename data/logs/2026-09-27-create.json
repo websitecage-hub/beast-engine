@@ -464,5 +464,272 @@
     "errors": [
       "QA gate failed: background has no motion (source=pinterest_video) — Part 5.2 requires dark cinematic VIDEO"
     ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T08:03:34.277529+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.17
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.17,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.89,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.89,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.89,
+        "seconds": 9.78
+      },
+      {
+        "step": "generated",
+        "t": 78.72,
+        "hook": "The room looks. You disappear.",
+        "exploit": false
+      },
+      {
+        "step": "background",
+        "t": 337.24,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "A moody vertical video of a person alone in a quiet, ordinary setting...."
+      },
+      {
+        "step": "music",
+        "t": 383.1,
+        "source": "trending_free"
+      },
+      {
+        "step": "built",
+        "t": 485.71,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "one_text_block": true,
+            "lines_max_5": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.78,
+          "size_mb": 13.25,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "message",
+              "px": 64,
+              "widest": 886,
+              "lines": 5
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "message",
+              "start": 0.0,
+              "end": 9.78
+            }
+          ],
+          "text_visibility": [
+            {
+              "t": 0.0,
+              "text_visible": true
+            },
+            {
+              "t": 0.25,
+              "text_visible": true
+            },
+            {
+              "t": 4.89,
+              "text_visible": true
+            },
+            {
+              "t": 9.53,
+              "text_visible": true
+            }
+          ],
+          "motion": true
+        }
+      },
+      {
+        "step": "seo",
+        "t": 485.71,
+        "primary_keyword_first_line": true,
+        "secondary_keywords_in_body": true,
+        "hashtag_count_6_to_9": true,
+        "hashtags_1_2_branded": true,
+        "hashtags_3_4_primary": true,
+        "hashtags_2_3_longtail": true,
+        "on_screen_has_searchable_phrase": true,
+        "alt_text_present": true,
+        "caption_describes_content": true
+      },
+      {
+        "step": "published",
+        "t": 485.71,
+        "skipped": "dry-run"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "skipped": "dry-run"
+    }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-27T08:12:34.097104+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.11
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.11,
+        "seconds": 0.0
+      },
+      {
+        "step": "trending_joined",
+        "t": 1.42,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1.42,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 1.42,
+        "seconds": 9.41
+      },
+      {
+        "step": "generated",
+        "t": 83.67,
+        "hook": "Someone walks by. Phone comes out.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 182.24,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "A moody vertical video of a person alone in a quiet, ordinary setting...."
+      },
+      {
+        "step": "music",
+        "t": 205.34,
+        "source": "song"
+      },
+      {
+        "step": "built",
+        "t": 253.54,
+        "qa": {
+          "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "one_text_block": true,
+            "lines_max_5": true,
+            "loop_echo": true
+          },
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.41,
+          "size_mb": 4.05,
+          "faststart": true,
+          "has_audio": true,
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "message",
+              "px": 52,
+              "widest": 884,
+              "lines": 5
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "message",
+              "start": 0.0,
+              "end": 9.41
+            }
+          ],
+          "text_visibility": [
+            {
+              "t": 0.0,
+              "text_visible": true
+            },
+            {
+              "t": 0.25,
+              "text_visible": true
+            },
+            {
+              "t": 4.71,
+              "text_visible": true
+            },
+            {
+              "t": 9.16,
+              "text_visible": true
+            }
+          ],
+          "motion": true
+        }
+      },
+      {
+        "step": "seo",
+        "t": 253.54,
+        "primary_keyword_first_line": true,
+        "secondary_keywords_in_body": true,
+        "hashtag_count_6_to_9": true,
+        "hashtags_1_2_branded": true,
+        "hashtags_3_4_primary": true,
+        "hashtags_2_3_longtail": true,
+        "on_screen_has_searchable_phrase": true,
+        "alt_text_present": true,
+        "caption_describes_content": true
+      },
+      {
+        "step": "failed",
+        "t": 257.58,
+        "error": "container create failed 400: {\"error\":{\"message\":\"The param alt_text is not supported for REEL\",\"type\":\"IGApiException\",\"code\":100,\"fbtrace_id\":\"AZFkZdrHnEWrxMoiYJARarT\"}}"
+      }
+    ],
+    "errors": [
+      "container create failed 400: {\"error\":{\"message\":\"The param alt_text is not supported for REEL\",\"type\":\"IGApiException\",\"code\":100,\"fbtrace_id\":\"AZFkZdrHnEWrxMoiYJARarT\"}}"
+    ]
   }
 ]
