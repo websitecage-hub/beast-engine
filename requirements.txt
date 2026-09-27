@@ -4,3 +4,7 @@ numpy>=1.26
 librosa>=0.10
 soundfile>=0.12
 pynacl>=1.5
+# PyYAML parses the workflow files in tests/test_acceptance.py. It was implicitly
+# available on the dev box but NOT in CI, so 'Acceptance tests' died with
+# ModuleNotFoundError: No module named 'yaml' the first time the gate ran.
+PyYAML>=6.0

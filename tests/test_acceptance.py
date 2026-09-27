@@ -665,6 +665,50 @@ def test_safe_band_constants_are_pinned_and_clear_the_ui():
     assert ink_bottom <= int(h * build_video.TEXT_SAFE_BOTTOM) + 1
 
 
+def test_all_third_party_imports_are_declared_in_requirements():
+    """Every third-party module the code imports must be in requirements.txt.
+
+    PyYAML was imported by the tests but never declared: it worked on the dev box
+    (installed globally) and died in CI with 'ModuleNotFoundError: No module named
+    yaml' the moment the test gate ran. Any module that is importable locally is a
+    false green.
+    """
+    import ast
+    import pathlib
+    import sys
+
+    # name -> the distribution that provides it (import name != package name)
+    DIST = {"PIL": "pillow", "yaml": "pyyaml", "nacl": "pynacl",
+            "soundfile": "soundfile", "librosa": "librosa", "numpy": "numpy",
+            "requests": "requests", "pytest": "pytest"}
+    STDLIB = set(sys.stdlib_module_names)
+    LOCAL = {"src", "tests"}
+
+    declared = set()
+    for line in (ROOT / "requirements.txt").read_text(encoding="utf-8").splitlines():
+        line = line.split("#")[0].strip()
+        if line:
+            declared.add(line.split(">=")[0].split("==")[0].split("[")[0].strip().lower())
+
+    missing = set()
+    for py in list((ROOT / "src").glob("*.py")) + list((ROOT / "tests").glob("*.py")):
+        tree = ast.parse(py.read_text(encoding="utf-8"))
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                names = [a.name.split(".")[0] for a in node.names]
+            elif isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
+                names = [node.module.split(".")[0]]
+            else:
+                continue
+            for m in names:
+                if m in STDLIB or m in LOCAL:
+                    continue
+                dist = DIST.get(m, m).lower()
+                if dist not in declared:
+                    missing.add(f"{m} (from {py.name})")
+    assert not missing, "undeclared third-party imports: " + ", ".join(sorted(missing))
+
+
 def test_create_publish_is_gated_on_the_acceptance_suite():
     """The create workflow must run the acceptance tests and publish only if they pass.
 
