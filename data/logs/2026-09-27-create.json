@@ -2363,12 +2363,17 @@
   },
   {
     "workflow": "create",
+<<<<<<< Updated upstream
     "started": "2026-09-27T13:51:26.961267+00:00",
+=======
+    "started": "2026-09-27T13:50:27.843415+00:00",
+>>>>>>> Stashed changes
     "dry_run": false,
     "offline": false,
     "steps": [
       {
         "step": "services_awake",
+<<<<<<< Updated upstream
         "t": 1.64
       },
       {
@@ -2379,10 +2384,23 @@
       {
         "step": "trending_joined",
         "t": 1.94,
+=======
+        "t": 1.2
+      },
+      {
+        "step": "jitter_start",
+        "t": 1.2,
+        "seconds": 1064.5
+      },
+      {
+        "step": "trending_joined",
+        "t": 1065.65,
+>>>>>>> Stashed changes
         "error": false
       },
       {
         "step": "scheduler",
+<<<<<<< Updated upstream
         "t": 1.94,
         "post": true,
         "reason": "forced (manual dispatch)"
@@ -2532,5 +2550,14 @@
       "host": "litterbox",
       "video_url": "https://litter.catbox.moe/mfiy63.mp4"
     }
+=======
+        "t": 1065.65,
+        "post": false,
+        "reason": "already posted today (idempotency)"
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
+>>>>>>> Stashed changes
   }
 ]
