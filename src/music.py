@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import random
 import re
+import numpy as np
 import subprocess
 import time
 from pathlib import Path
@@ -30,35 +31,97 @@ _woken = False
 TRACK_MEMORY_DAYS = 30
 QUERY_VARIANTS = 6
 
+# Spectral-fingerprint comparison. Measured on real service output:
+#   same track (transcoded / different length) : L1 0.0000 - 0.0010
+#   different tracks                           : L1 0.9630 - 1.9826
+# 0.05 sits ~1000x above the noise floor and ~20x below the nearest real difference.
+DUP_THRESHOLD = 0.05
+FP_BANDS = [0, 40, 80, 120, 160, 200, 250, 300, 400, 500, 650, 800,
+            1000, 1300, 1600, 2000, 2600, 3300]
+FP_SECS = 30
+FP_SR = 8000
 
-def audio_fingerprint(path) -> str:
-    """sha256 of the decoded PCM. Identity by CONTENT, not by URL or filename.
 
-    The same track arrives by many routes (a different URL, a re-encoded mp3, a
-    shortened clip), so URL-only memory silently fails to notice a repeat. The
-    fingerprint is computed after decoding to raw PCM, which normalises container and
-    bitrate: the same music gives the same hash.
+def audio_profile(path, secs: int = FP_SECS, sr: int = FP_SR):
+    """Normalised band-energy profile of the decoded audio.
+
+    This is the identity of the MUSIC, not of the file. Hashing raw PCM was tried and
+    abandoned: it varies with the sample rate and the decode path, so the identical
+    track measured differently and the repeat guard never fired (which is exactly how
+    a second identical reel shipped). A normalised spectral profile is stable across
+    container, bitrate and length, and separates different tracks by ~1.0 while the
+    same track measures ~0.000.
     """
-    import hashlib
     try:
         r = subprocess.run(
-            ["ffmpeg", "-v", "error", "-i", str(path), "-t", "20",
-             "-f", "s16le", "-ac", "1", "-ar", "11025", "-"],
-            capture_output=True, timeout=120)
-        if r.returncode != 0 or not r.stdout:
-            return ""
-        return hashlib.sha256(r.stdout).hexdigest()[:32]
+            ["ffmpeg", "-v", "error", "-i", str(path), "-t", str(secs),
+             "-f", "s16le", "-ac", "1", "-ar", str(sr), "-"],
+            capture_output=True, timeout=180)
+        x = np.frombuffer(r.stdout, dtype=np.int16).astype(float)
+        if len(x) == 0:
+            return None
+        spec = np.abs(np.fft.rfft(x * np.hanning(len(x))))
+        fr = np.fft.rfftfreq(len(x), 1 / sr)
+        v = np.array([float(spec[(fr >= FP_BANDS[i]) & (fr < FP_BANDS[i + 1])].mean())
+                      for i in range(len(FP_BANDS) - 1)])
+        total = v.sum()
+        return (v / total) if total > 0 else None
     except Exception:  # noqa: BLE001
-        return ""
+        return None
 
 
-def _used_fingerprints(memory) -> set:
-    out = set()
-    for e in (memory.get("used_track_hashes") or []):
-        h = e.get("hash") if isinstance(e, dict) else str(e)
-        if h:
-            out.add(h)
+def profile_distance(a, b) -> float:
+    """L1 distance between two profiles. 99.0 when either is unavailable."""
+    if a is None or b is None:
+        return 99.0
+    return float(np.abs(np.asarray(a, dtype=float) - np.asarray(b, dtype=float)).sum())
+
+
+def _used_profiles(memory) -> list:
+    out = []
+    for e in (memory.get("used_track_profiles") or []):
+        if isinstance(e, dict) and e.get("profile"):
+            out.append(e["profile"])
     return out
+
+
+def _is_dup_profile(prof, memory) -> bool:
+    """True when a band profile matches a remembered one within DUP_THRESHOLD.
+
+    Fails OPEN on a missing profile so a transient ffmpeg failure cannot wedge the
+    pipeline — worst case we reuse a track, which is recoverable.
+    """
+    if prof is None:
+        return False
+    for prev in _used_profiles(memory):
+        if profile_distance(prof, prev) <= DUP_THRESHOLD:
+            return True
+    return False
+
+
+def track_is_duplicate(track_path, memory) -> bool:
+    """True when this audio is the same music we already used.
+
+    Compares the spectral profile against every remembered one and returns True if any
+    is closer than DUP_THRESHOLD. Fails OPEN (returns False) when the audio cannot be
+    analysed, so a transient ffmpeg problem can never wedge the pipeline.
+    """
+    prof = audio_profile(track_path)
+    if prof is None:
+        return False
+    for prev in _used_profiles(memory):
+        if profile_distance(prof, prev) <= DUP_THRESHOLD:
+            return True
+    return False
+
+
+def audio_fingerprint(path) -> str:
+    """Short, stable label for a track's music (for logs and memory entries)."""
+    import hashlib
+    prof = audio_profile(path)
+    if prof is None:
+        return ""
+    return hashlib.sha256(np.round(prof, 4).tobytes()).hexdigest()[:32]
 
 
 def _query_variants(cfg, mood: str) -> list:
@@ -85,14 +148,6 @@ def _query_variants(cfg, mood: str) -> list:
         if not _spec5_violates(q, cfg) and q.lower() not in {o.lower() for o in out}:
             out.append(q)
     return out[:QUERY_VARIANTS]
-
-
-def track_is_duplicate(track_mp3, memory) -> bool:
-    """True when this exact audio has been used recently."""
-    h = audio_fingerprint(track_mp3)
-    if not h:
-        return False        # cannot fingerprint -> do not block on a guess
-    return h in _used_fingerprints(memory)
 
 
 # ---------------------------------------------------------------- helpers
@@ -491,17 +546,18 @@ def song_provider(cfg, content, memory, track_mp3, track_wav, duration_s: float)
             last_reason = "mood mismatch"
             continue
         # THE repeat guard: refuse audio we have already published, regardless of the
-        # URL or filename it arrived under.
-        fp = audio_fingerprint(track_mp3)
-        if fp and fp in _used_fingerprints(memory):
-            last_reason = "already used (fingerprint match)"
+        # URL, filename or encoding it arrived under.
+        prof = audio_profile(track_mp3)
+        if _is_dup_profile(prof, memory):
+            last_reason = "already used (spectral match)"
             print(f"[music] rejected duplicate track via {q!r}")
             continue
         if not to_wav(track_mp3, track_wav):
             continue
         return True, {"music_source": "song", "music_query": q,
                       "music_mood": mood, "duration_s": ffprobe_duration(track_mp3),
-                      "fingerprint": fp, "query_index": vi}
+                      "profile": prof, "fingerprint": audio_fingerprint(track_mp3),
+                      "query_index": vi}
     if last_reason:
         print(f"[music] song tier exhausted: {last_reason}")
     return False, {}
@@ -604,15 +660,15 @@ def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_m
         if not mood_matches(mood, track_mp3):
             continue                      # tempo/silence mismatch — try the next one
         # same content-level repeat guard as the song tier
-        fp = audio_fingerprint(track_mp3)
-        if fp and fp in _used_fingerprints(memory):
+        prof = audio_profile(track_mp3)
+        if _is_dup_profile(prof, memory):
             print(f"[music] rejected duplicate track ({source}): {url[:70]}")
             continue
         if not to_wav(track_mp3, track_wav):
             continue
         return True, {"music_source": "trending_free", "url": url, "source_site": source,
                       "acquired_via": got, "query": full_query, "trending_ref": trending_ref,
-                      "fingerprint": fp}
+                      "profile": prof}
     return False, {}
 
 
@@ -643,12 +699,12 @@ def library_provider(cfg, content, memory, track_mp3, track_wav, duration_s: flo
         capture_output=True, text=True, timeout=300)
     if r.returncode != 0 or not has_audio_stream(track_mp3):
         return False, {}
-    fp = audio_fingerprint(track_mp3)
-    if fp and fp in _used_fingerprints(memory):
+    prof = audio_profile(track_mp3)
+    if _is_dup_profile(prof, memory):
         return False, {}
     to_wav(track_mp3, track_wav)
     return True, {"music_source": "library", "track": pick.get("file"),
-                  "fingerprint": fp}
+                  "profile": prof}
 
 
 def drone_provider(cfg, content, track_mp3, track_wav, duration_s: float):

@@ -108,15 +108,15 @@ def prune(memory: dict) -> dict:
             return True
 
     before = {k: len(memory.get(k, [])) for k in
-              ("used_pins", "used_tracks", "used_track_urls", "used_track_hashes",
+              ("used_pins", "used_tracks", "used_track_urls", "used_track_profiles",
                "used_hooks", "candidate_log")}
     memory["used_pins"] = [e for e in memory.get("used_pins", []) if _keep(e, PRUNE_PINS_D)]
     memory["used_tracks"] = [e for e in memory.get("used_tracks", []) if _keep(e, 14)]
     memory["used_track_urls"] = [e for e in memory.get("used_track_urls", []) if _keep(e, PRUNE_PINS_D)]
     # keep the audio fingerprints longer than the URLs: a repeat noticed a month later
     # is still a repeat, and the hash list is tiny.
-    memory["used_track_hashes"] = [e for e in memory.get("used_track_hashes", [])
-                                   if _keep(e, PRUNE_TRACK_DAYS)]
+    memory["used_track_profiles"] = [e for e in memory.get("used_track_profiles", [])
+                                     if _keep(e, PRUNE_TRACK_DAYS)]
     memory["used_hooks"] = [e for e in memory.get("used_hooks", []) if _keep(e, PRUNE_HOOKS_D)]
     memory["candidate_log"] = [e for e in memory.get("candidate_log", []) if _keep(e, PRUNE_HOOKS_D)]
     return {"before": before,

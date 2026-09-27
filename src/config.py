@@ -304,7 +304,7 @@ def default_memory() -> dict:
         "used_pins": [],
         "used_tracks": [],
         "used_track_urls": [],
-        "used_track_hashes": [],
+        "used_track_profiles": [],
         "used_hooks": [],
         "candidate_log": [],
         "last_post_date": None,

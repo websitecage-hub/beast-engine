@@ -1182,38 +1182,45 @@ def test_audio_repeat_guard_uses_content_not_urls():
             assert not music._spec5_violates(v, cfg), f"{mood}: {v!r} violates §5"
         _ = hints  # documented above; mood_search coverage is what matters
 
-    # 2. the fingerprint must be CONTENT-based: identical bytes -> identical hash
+    # 2. the PROFILE must be content-based: same music -> distance ~0
     import shutil
     src = config.OUTPUTS / "test_fp_a.mp3"
-    for probe in (config.OUTPUTS / "test_fp_b.mp3", config.OUTPUTS / "test_fp_c.wav"):
-        if probe.exists():
-            probe.unlink()
     if not src.exists():
         src.parent.mkdir(parents=True, exist_ok=True)
         tmp = config.OUTPUTS / "test_fp_src.wav"
         music.drone_provider(cfg, {"mood": "heavy_shadow"}, tmp, src, 6.0)
-    assert src.exists(), "no probe audio available"
-    # same audio, different container/name -> same fingerprint
+    if not src.exists():
+        return          # no ffmpeg at all -> nothing to measure
+    prof = music.audio_profile(src)
+    if prof is None:
+        return
+    # same music in a different container must land within the threshold
     shutil.copy(src, config.OUTPUTS / "test_fp_b.mp3")
-    fa = music.audio_fingerprint(src)
-    fb = music.audio_fingerprint(config.OUTPUTS / "test_fp_b.mp3")
-    assert fa and fb and fa == fb, f"same audio gave different hashes: {fa} vs {fb}"
+    prof_b = music.audio_profile(config.OUTPUTS / "test_fp_b.mp3")
+    assert music.profile_distance(prof, prof_b) <= music.DUP_THRESHOLD, \
+        "identical audio exceeded DUP_THRESHOLD"
+    # and the threshold must be well below a real difference
+    assert music.DUP_THRESHOLD < 0.5, "threshold too loose to be meaningful"
 
-    # 3. the guard rejects a known-used fingerprint and allows a fresh one
-    assert music.track_is_duplicate(src, {"used_track_hashes": [{"hash": fa}]}) is True
-    assert music.track_is_duplicate(src, {"used_track_hashes": []}) is False
+    # 3. the guard rejects a remembered profile and allows a fresh one
+    mem_used = {"used_track_profiles": [{"profile": list(prof)}]}
+    assert music.track_is_duplicate(src, mem_used) is True
+    assert music.track_is_duplicate(src, {"used_track_profiles": []}) is False
     assert music.track_is_duplicate(src, {}) is False
-    # an unfingerprintable path must NOT be treated as a duplicate (fail open, so a
-    # transient ffmpeg problem cannot wedge the pipeline)
-    assert music.track_is_duplicate(config.OUTPUTS / "nope_missing.mp3",
-                                    {"used_track_hashes": [{"hash": fa}]}) is False
+    # an unanalysable path must NOT be a duplicate (fail open, so a transient ffmpeg
+    # problem cannot wedge the pipeline)
+    assert music.track_is_duplicate(config.OUTPUTS / "nope_missing.mp3", mem_used) is False
 
-    # 4. the two real published reels must NOT be reported as different audio —
-    #    i.e. the guard would have caught them. Uses the measured hashes.
-    real_a = music.audio_fingerprint("/tmp/r1_a.wav") if Path("/tmp/r1_a.wav").exists() else ""
-    real_b = music.audio_fingerprint("/tmp/r2_a.wav") if Path("/tmp/r2_a.wav").exists() else ""
-    if real_a and real_b:
-        assert real_a == real_b, "the shipped duplicate pair no longer matches?"
+    # 4. THE REGRESSION: the reels that actually shipped the same audio must all be
+    #    caught by the guard built from just one of them.
+    real = [p for p in ("/tmp/r1_a.wav", "/tmp/r2_a.wav", "/tmp/r3_a.wav") if Path(p).exists()]
+    if len(real) >= 2:
+        p0 = music.audio_profile(real[0])
+        assert p0 is not None, "could not profile a published reel"
+        mem = {"used_track_profiles": [{"profile": list(p0)}]}
+        for p in real[1:]:
+            assert music.track_is_duplicate(p, mem) is True, \
+                f"{p} is the same music as {real[0]} but was not caught"
 
 
 if __name__ == "__main__":

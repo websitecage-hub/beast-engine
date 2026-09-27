@@ -266,13 +266,14 @@ def _record_track(memory, mmeta):
     if mmeta.get("track"):
         memory.setdefault("used_tracks", []).append(
             {"track": mmeta["track"], "date": config.today_utc().isoformat()})
-    # The content fingerprint is what actually prevents repeats. URL-only memory
-    # missed the identical track arriving under a different name, which is how two
-    # consecutive reels shipped the same audio.
-    fp = mmeta.get("fingerprint")
-    if fp:
-        memory.setdefault("used_track_hashes", []).append(
-            {"hash": fp, "date": config.today_utc().isoformat(),
+    # The spectral PROFILE is what actually prevents repeats. URL-only memory missed
+    # the identical track arriving under a different name, and a raw-PCM hash missed
+    # it too because the decode path differed — which is how two consecutive reels
+    # shipped the same audio.
+    prof = mmeta.get("profile")
+    if prof is not None:
+        memory.setdefault("used_track_profiles", []).append(
+            {"profile": list(prof), "date": config.today_utc().isoformat(),
              "source": mmeta.get("music_source") or "",
              "query": mmeta.get("music_query") or mmeta.get("query") or ""})
 
