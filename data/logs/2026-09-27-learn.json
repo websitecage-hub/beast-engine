@@ -1,0 +1,12 @@
+[
+  {
+    "workflow": "learn",
+    "started": "2026-09-27T21:09:59.597620+00:00",
+    "dry_run": false,
+    "analyze": {
+      "insufficient": true,
+      "n": 1
+    },
+    "seconds": 0.0
+  }
+]
