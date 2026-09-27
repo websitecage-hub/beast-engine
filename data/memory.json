@@ -227,6 +227,68 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18371214331242157",
+      "container_id": "17911052151538210",
+      "created_at": "2026-09-27T14:04:36.837616+00:00",
+      "hour_slot": "15:00",
+      "hook_text": "POV: you're in a group of four and your mouth won't open.",
+      "hook": "POV: you're in a group of four and your mouth won't open.",
+      "keyword": "SEEN",
+      "topic": "freezing in group conversations",
+      "caption": "That freeze in groups isn't you being shy or rude. It's you watching yourself disappear while everyone else keeps talking.\nOne-on-one your brain can track one person. In a group it scans every face as a threat at once, so it locks your throat, blanks your mind, and turns your heartbeat up until you can't hear the conversation anymore. This is what social anxiety does when you're outnumbered.\nIf you leave every group hangout replaying the one thing you didn't say, you're not alone. Comment SEEN and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #introvertstruggles #quietpeople #latenightthoughts #anxietyproblems",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#introvertstruggles",
+        "#quietpeople",
+        "#latenightthoughts",
+        "#anxietyproblems"
+      ],
+      "dna": {
+        "hook_text": "POV: you're in a group of four and your mouth won't open.",
+        "cluster": "the_freeze",
+        "topic": "freeze_at_work",
+        "hook_length_chars": 57,
+        "num_text_blocks": 6,
+        "landing_text": "Comment SEEN and I'll send you the full breakdown.",
+        "bg_type": "freeze",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Be Her",
+          "artist": "Ella Langley",
+          "genre": "pop",
+          "trend_score": 75.7,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man standing apart from a group of people dark cinematic. Overlay text reads: POV: you're in a group of four and your mouth won't open. One-on-one you can talk. Here your heart is hammering so loud you miss everything they say. You have the line ready. The timing passes. Again. You nod and fake laugh so no one... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: you're in a group of four and your mouth won't open.\nOne-on-one you can talk. Here your heart is hammering so loud you miss everything they say.\nYou have the line ready. The timing passes. Again.\nYou nod and fake laugh so no one notices you're already gone.\nYou're not quiet. You're frozen in a room that decided you don't exist.\nComment SEEN and I'll send you the full breakdown.",
+        "keyword": "SEEN",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#introvertstruggles",
+          "#quietpeople",
+          "#latenightthoughts",
+          "#anxietyproblems"
+        ],
+        "posted_hour": "15:00",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_freeze",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -254,6 +316,11 @@
       "id": "176344141654834357",
       "date": "2026-09-27",
       "pin_url": "https://www.pinterest.com/pin/176344141654834357/"
+    },
+    {
+      "id": "18155204735357040",
+      "date": "2026-09-27",
+      "pin_url": "https://www.pinterest.com/pin/18155204735357040/"
     }
   ],
   "used_tracks": [],
@@ -382,7 +449,7 @@
     }
   ],
   "last_post_date": "2026-09-27",
-  "post_counter": 4,
+  "post_counter": 5,
   "last_keyword": "HEARD",
   "keyword_counts": {
     "HEARD": 1
