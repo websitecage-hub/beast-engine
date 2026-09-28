@@ -170,8 +170,11 @@ def run(dry_run=False, offline=False) -> int:
         step("trending_joined", {"error": bool(box and box.error)})
 
         # Re-check after the delay: the sleep can be long enough for another run to
-        # have posted, and the one-post-per-day cap must still hold.
-        ok, reason = scheduler_check(cfg, strategy, memory, offline=offline, force=force)
+        # have posted, and the one-post-per-day cap must still hold. dry_run must be
+        # passed here too — this second call is the one that actually gates the build,
+        # so omitting it made the dry-run skip exactly like a real run.
+        ok, reason = scheduler_check(cfg, strategy, memory, offline=offline,
+                                     force=force, dry_run=dry_run)
         step("scheduler", {"post": ok, "reason": reason})
         if not ok:
             log["result"] = "skipped"

@@ -797,6 +797,22 @@ def test_dry_run_bypasses_idempotency_but_real_runs_never_do():
     ok, why = run_create.scheduler_check(cfg, {}, mem, force=True, dry_run=True)
     assert ok is True, f"dry-run should proceed to exercise the render, got {why!r}"
 
+    # EVERY call site inside run() must forward dry_run. There are two scheduler_check
+    # calls (one before the jitter, one after); patching only the first left the
+    # second — the one that actually gates the build — skipping the dry-run exactly
+    # like a real run. Parsed with ast rather than string-matched, because these calls
+    # span two lines and a line-wise check reports a false positive.
+    import ast as _ast
+    tree = _ast.parse((ROOT / "src" / "run_create.py").read_text(encoding="utf-8"))
+    calls = [n for n in _ast.walk(tree)
+             if isinstance(n, _ast.Call)
+             and getattr(n.func, "id", None) == "scheduler_check"]
+    assert len(calls) >= 2, f"expected both scheduler_check call sites, found {len(calls)}"
+    for c in calls:
+        kw = {k.arg for k in c.keywords}
+        assert "dry_run" in kw, \
+            f"scheduler_check call at line {c.lineno} omits dry_run: {sorted(kw)}"
+
 
 def test_used_music_query_memory_records_and_backfills():
     """used_music_queries must actually accumulate, including queries only known via
