@@ -1,0 +1,32 @@
+name: notify
+# Sends a message to the Telegram bot on demand, so a report can be delivered without
+# the bot token ever touching the local machine (it is a repo secret).
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        description: "Message text (Markdown)"
+        required: true
+      photo:
+        description: "Optional image URL to send with it"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Send
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MSG: ${{ inputs.text }}
+          PHOTO: ${{ inputs.photo }}
+        run: python -m src.notify_send
