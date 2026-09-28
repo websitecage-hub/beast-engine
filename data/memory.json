@@ -118,7 +118,7 @@
       },
       "score": 0.036057692307692304,
       "harvested": false,
-      "last_harvested": "2026-09-28T10:17:12.009925+00:00"
+      "last_harvested": "2026-09-28T21:27:57.549349+00:00"
     },
     {
       "media_id": "18121136690487842",
@@ -176,9 +176,16 @@
         "bg_source": "pinterest_video",
         "music_source": "song"
       },
-      "metrics": {},
-      "score": null,
-      "harvested": false
+      "metrics": {
+        "reach": 123,
+        "likes": 2,
+        "comments": 0,
+        "saved": 0,
+        "shares": 0
+      },
+      "score": 0.0040650406504065045,
+      "harvested": false,
+      "last_harvested": "2026-09-28T21:27:57.549349+00:00"
     },
     {
       "media_id": "18019035686728113",
@@ -238,9 +245,16 @@
         "bg_source": "pinterest_video",
         "music_source": "song"
       },
-      "metrics": {},
-      "score": null,
-      "harvested": false
+      "metrics": {
+        "reach": 122,
+        "likes": 1,
+        "comments": 0,
+        "saved": 0,
+        "shares": 0
+      },
+      "score": 0.0020491803278688526,
+      "harvested": false,
+      "last_harvested": "2026-09-28T21:27:57.549349+00:00"
     },
     {
       "media_id": "18371214331242157",
@@ -300,9 +314,16 @@
         "bg_source": "pinterest_video",
         "music_source": "song"
       },
-      "metrics": {},
-      "score": null,
-      "harvested": false
+      "metrics": {
+        "reach": 5,
+        "likes": 2,
+        "comments": 2,
+        "saved": 0,
+        "shares": 0
+      },
+      "score": 0.5,
+      "harvested": false,
+      "last_harvested": "2026-09-28T21:27:57.549349+00:00"
     },
     {
       "media_id": "17994488751042115",
@@ -360,9 +381,16 @@
         "bg_source": "pinterest_video",
         "music_source": "song"
       },
-      "metrics": {},
-      "score": null,
-      "harvested": false
+      "metrics": {
+        "reach": 106,
+        "likes": 3,
+        "comments": 1,
+        "saved": 0,
+        "shares": 0
+      },
+      "score": 0.01650943396226415,
+      "harvested": false,
+      "last_harvested": "2026-09-28T21:27:57.549349+00:00"
     },
     {
       "media_id": "18129372190747783",
@@ -420,9 +448,16 @@
         "bg_source": "pinterest_video",
         "music_source": "song"
       },
-      "metrics": {},
-      "score": null,
-      "harvested": false
+      "metrics": {
+        "reach": 110,
+        "likes": 1,
+        "comments": 0,
+        "saved": 0,
+        "shares": 0
+      },
+      "score": 0.0022727272727272726,
+      "harvested": false,
+      "last_harvested": "2026-09-28T21:27:57.549349+00:00"
     },
     {
       "media_id": "18384062170228476",
