@@ -742,5 +742,26 @@
     "result": {
       "skipped": "dry-run"
     }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-28T20:12:58.531133+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.61
+      },
+      {
+        "step": "scheduler",
+        "t": 0.61,
+        "post": false,
+        "reason": "already posted today (idempotency)",
+        "pre_jitter": true
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
   }
 ]
