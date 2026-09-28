@@ -561,5 +561,35 @@
     ],
     "errors": [],
     "result": "skipped"
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-28T16:07:08.550205+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.67
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.67,
+        "seconds": 1023.9
+      },
+      {
+        "step": "trending_joined",
+        "t": 1024.54,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 1024.54,
+        "post": false,
+        "reason": "already posted today (idempotency)"
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
   }
 ]
