@@ -486,6 +486,12 @@
       "date": "2026-09-27",
       "archetype": "the_sealed_mouth",
       "topic": "neutral_as_negative"
+    },
+    {
+      "hook": "POV: the conversation pauses and your mind goes completely blank.",
+      "date": "2026-09-28",
+      "archetype": "the_freeze",
+      "topic": "mind_blank"
     }
   ],
   "candidate_log": [
@@ -590,13 +596,20 @@
       "keyword": "HEARD",
       "topic": "laughing at joke you missed",
       "hook": "POV: you laugh at a joke you didn't hear and pray no one noticed."
+    },
+    {
+      "date": "2026-09-28",
+      "keyword": "BLANK",
+      "topic": "going blank mid-conversation",
+      "hook": "POV: the conversation pauses and your mind goes completely blank."
     }
   ],
   "last_post_date": "2026-09-27",
   "post_counter": 7,
-  "last_keyword": "HEARD",
+  "last_keyword": "BLANK",
   "keyword_counts": {
-    "HEARD": 1
+    "HEARD": 1,
+    "BLANK": 1
   },
   "used_track_profiles": [
     {

@@ -287,5 +287,64 @@
     "errors": [
       "QA gate failed: background has no motion (source=pinterest_video) — Part 5.2 requires dark cinematic VIDEO"
     ]
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-28T15:02:03.280237+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.82
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.83,
+        "seconds": 893.3
+      },
+      {
+        "step": "trending_joined",
+        "t": 894.1,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 894.1,
+        "post": true,
+        "reason": "forced (manual dispatch)"
+      },
+      {
+        "step": "duration",
+        "t": 894.1,
+        "seconds": 9.87
+      },
+      {
+        "step": "generated",
+        "t": 928.24,
+        "hook": "POV: the conversation pauses and your mind goes completely blank.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 961.7,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "Man frozen mid conversation with someone dark cinematic. Overlay text ..."
+      },
+      {
+        "step": "music",
+        "t": 998.87,
+        "source": "trending_free"
+      },
+      {
+        "step": "failed",
+        "t": 1018.79,
+        "error": "video assembly failed"
+      }
+    ],
+    "errors": [
+      "video assembly failed"
+    ]
   }
 ]
