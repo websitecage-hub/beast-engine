@@ -287,6 +287,16 @@ def _record_track(memory, mmeta):
         if q.lower() not in {str(x).strip().lower() for x in used_q}:
             used_q.append(q)
 
+    # Backfill: runs that predate the query memory recorded their query only inside the
+    # used_track_profiles entry. Without this, those older queries stay in the fresh
+    # pool and can be handed out again — the very repetition this is meant to stop.
+    known = {str(x).strip().lower() for x in (memory.get(music.USED_QUERIES_KEY) or [])}
+    for e in (memory.get("used_track_profiles") or []):
+        prev = str((e or {}).get("query") or "").strip()
+        if prev and prev.lower() not in known:
+            memory.setdefault(music.USED_QUERIES_KEY, []).append(prev)
+            known.add(prev.lower())
+
 
 def _record_post(memory, content, result, strategy):
     """Part 7.1 — store the reel's full genetic code."""

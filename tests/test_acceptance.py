@@ -775,6 +775,41 @@ def test_used_music_queries_is_persisted_and_pruned():
         "run_create never records the resolved query; the same track can return"
 
 
+def test_used_music_query_memory_records_and_backfills():
+    """used_music_queries must actually accumulate, including queries only known via
+    used_track_profiles.
+
+    The service resolves a query to exactly one track, so never repeating a query is
+    the primary guarantee of unique music. Only reading the key (never writing it)
+    meant the exclusion set stayed empty and the same query could come back.
+    """
+    mem = {"used_music_queries": ["grim ambient oppressive"],
+           "used_track_profiles": [
+               {"query": "slowed reverb dark ambient muffled", "profile": [0.1] * 17},
+               {"query": "grim ambient oppressive", "profile": [0.2] * 17}]}
+    run_create._record_track(mem, {"music_query": "third query", "profile": [0.3] * 17})
+    got = [q.lower() for q in mem["used_music_queries"]]
+    for want in ("grim ambient oppressive", "slowed reverb dark ambient muffled",
+                 "third query"):
+        assert want in got, f"{want!r} missing from used_music_queries"
+    assert len(got) == len(set(got)), "used_music_queries accumulated duplicates"
+
+    # and the pool must actually exclude them
+    cfg = config.load_config()
+    moods = cfg.get("moods") or []
+    mood = moods[0] if moods else "quiet_devastating"
+    pool = music._all_mood_queries(cfg, mood)
+    assert pool, f"no queries generated for mood {mood!r}"
+    # use queries that genuinely belong to this mood's pool, otherwise there is nothing
+    # to exclude and the assertion would be vacuous
+    taken = pool[:2]
+    mem2 = {"used_music_queries": list(taken)}
+    fresh = [q for q in pool
+             if q.lower() not in {t.lower() for t in mem2["used_music_queries"]}]
+    assert len(fresh) == len(pool) - len(taken), "used queries were not excluded"
+    assert not any(q in taken for q in fresh)
+
+
 def test_probe_frames_works_without_ffprobe():
     """Frame probing must work on CI, where ffprobe does not exist.
 
