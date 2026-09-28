@@ -775,6 +775,56 @@ def test_used_music_queries_is_persisted_and_pruned():
         "run_create never records the resolved query; the same track can return"
 
 
+def test_video_validity_rejects_empty_and_garbage_outputs():
+    """A failed ffmpeg run leaves a 0-byte file that exists() reports as present.
+
+    This is what let a broken reel reach the end of the pipeline: the xfade loop failed
+    in CI ('The inputs needs to be a constant frame rate; current rate of 1/0 is
+    invalid'), left a 0-byte bg.mp4 behind, the straight-cut fallback copied those 0
+    bytes, the render wrote no packets, and the build only failed much later in the
+    motion QA gate. A size+duration check catches it immediately.
+    """
+    probe = config.OUTPUTS / "validity_probe.mp4"
+    probe.parent.mkdir(parents=True, exist_ok=True)
+
+    probe.write_bytes(b"")
+    assert probe.exists() is True, "precondition: exists() is True for a 0-byte file"
+    assert background._is_valid_video(probe) is False, "0-byte file accepted as valid"
+
+    probe.write_bytes(b"not a video at all" * 5000)
+    assert probe.exists() is True
+    assert background._is_valid_video(probe) is False, "garbage accepted as a video"
+
+    assert background._is_valid_video(config.OUTPUTS / "definitely_missing.mp4") is False
+
+    probe.unlink(missing_ok=True)
+
+    # and the render path must not gate on a bare exists() either
+    src = (ROOT / "src" / "build_video.py").read_text(encoding="utf-8")
+    assert "return out_mp4.exists()" not in src, \
+        "build_video gates the render on exists(), which accepts a 0-byte file"
+
+
+def test_background_loop_does_not_use_xfade():
+    """The loop must not use xfade: trim() drops the frame rate and xfade rejects it.
+
+    Verified at ffmpeg 7.0.2: 'The inputs needs to be a constant frame rate; current
+    rate of 1/0 is invalid' (rc=234). Adding fps=/settb= before xfade does NOT fix it.
+    concat works and passes the motion gate, so the loop uses concat.
+    """
+    src = (ROOT / "src" / "background.py").read_text(encoding="utf-8")
+    loop_body = src.split("def loop_clip", 1)[1].split("\ndef ", 1)[0]
+    # strip comments/docstrings so the explanation of WHY xfade is avoided does not
+    # read as a use of it — only the executed filter string matters
+    loop_body = loop_body.split('"""', 2)[-1]
+    code_lines = [ln for ln in loop_body.splitlines()
+                  if ln.strip() and not ln.strip().startswith("#")]
+    code = "\n".join(code_lines)
+    assert "xfade" not in code, \
+        "loop_clip uses xfade, which fails after trim() strips the frame rate"
+    assert "concat" in code, "loop_clip does not use concat for the loop join"
+
+
 def test_all_third_party_imports_are_declared_in_requirements():
     """Every third-party module the code imports must be in requirements.txt.
 

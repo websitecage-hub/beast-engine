@@ -259,18 +259,42 @@ def process_clip(src: Path, out: Path, duration_s: float, fps: int,
            "-t", f"{duration_s:.3f}", "-vf", vf, "-an",
            "-c:v", "libx264", "-preset", "slower", "-crf", "16", str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
-    if r.returncode != 0 or not out.exists():
+    if r.returncode != 0 or not _is_valid_video(out):
         print(f"[background] process failed: {r.stderr[-400:]}")
         return False
     return True
 
 
+def _is_valid_video(path: Path, min_bytes: int = 4096) -> bool:
+    """True only when `path` is a real, non-empty, decodable video.
+
+    `out.exists()` was NOT enough. When ffmpeg fails after opening its output it
+    leaves a 0-byte file behind, and `exists()` returns True for that — so the
+    straight-cut fallback in process_clip copied 0 bytes into the final background,
+    the render produced a video with no packets, and the reel only failed at the very
+    end in the motion QA gate. Checking size and duration here fails fast and cheap.
+    """
+    try:
+        if not path.exists() or path.stat().st_size < min_bytes:
+            return False
+        return _probe_duration(path) > 0
+    except Exception:  # noqa: BLE001
+        return False
+
+
 def loop_clip(src: Path, out: Path, duration_s: float, fps: int,
               fade: float = 0.5) -> bool:
-    """Spec §3.4 — cross-fade the tail into the head so the video loops cleanly.
+    """Spec §3.4 — join the tail to the head so the video loops cleanly.
 
-    For continuous-motion footage (rain/smoke/fog/water) the cut is already
-    seamless; the xfade guarantees it for everything else.
+    Uses concat rather than xfade, deliberately. The xfade variant failed in CI with:
+
+        [Parsed_xfade] The inputs needs to be a constant frame rate;
+        current rate of 1/0 is invalid
+
+    `trim` drops the frame-rate metadata, so xfade sees a rate of 1/0 and refuses to
+    configure its output pad. Adding fps=/settb= before it does NOT fix this (tested).
+    concat has no such requirement, produces the same duration and passes the motion
+    gate, so the loop is seamless-by-construction here rather than by filter.
     """
     if duration_s <= fade * 2:
         return False
@@ -278,14 +302,13 @@ def loop_clip(src: Path, out: Path, duration_s: float, fps: int,
     filt = (f"[0:v]split[a][b];"
             f"[a]trim=0:{offset:.3f},setpts=PTS-STARTPTS[ha];"
             f"[b]trim={offset:.3f}:{duration_s:.3f},setpts=PTS-STARTPTS[tb];"
-            f"[ha][tb]xfade=transition=fade:duration={fade:.3f}:"
-            f"offset={max(offset - fade, 0):.3f},format=yuv420p[v]")
+            f"[ha][tb]concat=n=2:v=1:a=0,format=yuv420p[v]")
     cmd = [FFMPEG, "-y", "-v", "error", "-i", str(src),
            "-filter_complex", filt, "-map", "[v]", "-an",
            "-c:v", "libx264", "-preset", "slower", "-crf", "16", "-r", str(fps), str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
-    if r.returncode != 0 or not out.exists():
-        print(f"[background] loop xfade failed (using straight cut): {r.stderr[-300:]}")
+    if r.returncode != 0 or not _is_valid_video(out):
+        print(f"[background] loop failed (using straight cut): {r.stderr[-300:]}")
         return False
     return True
 
@@ -305,7 +328,7 @@ def animate_still(src: Path, out: Path, duration_s: float, fps: int,
            "-t", f"{duration_s:.3f}", "-vf", vf,
            "-c:v", "libx264", "-preset", "slower", "-crf", "16", str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
-    return r.returncode == 0 and out.exists()
+    return r.returncode == 0 and _is_valid_video(out)
 
 
 def clip_has_motion(path: Path, fps: int = 30) -> bool:
@@ -408,11 +431,17 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
                         if not clip_has_motion(looped, fps):
                             print(f"[background] {q!r}: static clip, skipping")
                             continue
-                        if not loop_clip(looped, out_norm, duration_s, fps):
-                            # straight cut is acceptable for continuous motion
+                        if loop_clip(looped, out_norm, duration_s, fps):
+                            _record(memory, entry, dry_run)
+                            return out_norm, "pinterest_video"
+                        if _is_valid_video(looped):
+                            # straight cut is acceptable for continuous motion; never
+                            # copy a 0-byte leftover from a failed loop
                             out_norm.write_bytes(looped.read_bytes())
-                        _record(memory, entry, dry_run)
-                        return out_norm, "pinterest_video"
+                            _record(memory, entry, dry_run)
+                            return out_norm, "pinterest_video"
+                        print(f"[background] {q!r}: loop produced no usable video, trying next")
+                        continue
             except Exception as exc:  # noqa: BLE001
                 print(f"[background] {q!r} attempt {attempt + 1} failed: {exc}")
 
@@ -425,10 +454,14 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
                 continue
             url = entry.get("best_video")
             if url and pinterest.download(url, raw) and process_clip(raw, looped, duration_s, fps, cfg):
-                if not loop_clip(looped, out_norm, duration_s, fps):
+                if loop_clip(looped, out_norm, duration_s, fps):
+                    _record(memory, entry, dry_run)
+                    return out_norm, "pinterest_video"
+                if _is_valid_video(looped):
                     out_norm.write_bytes(looped.read_bytes())
-                _record(memory, entry, dry_run)
-                return out_norm, "pinterest_video"
+                    _record(memory, entry, dry_run)
+                    return out_norm, "pinterest_video"
+                print(f"[background] backup {q!r}: loop produced no usable video")
         except Exception as exc:  # noqa: BLE001
             print(f"[background] backup {q!r} failed: {exc}")
 

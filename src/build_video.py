@@ -811,7 +811,21 @@ def assemble(bg_mp4: Path, states: list, pngs: list, track_mp3: Path, out_mp4: P
     if r.returncode != 0:
         print(f"[video] assemble failed: {r.stderr[-1200:]}")
         return False
-    return out_mp4.exists()
+    # `exists()` is not enough: ffmpeg leaves a 0-byte file behind when it fails after
+    # opening the output, and exists() is True for that. That is how a render reported
+    # "exists: True" while containing no packets at all, only failing much later in the
+    # motion QA gate. Require real size AND a decodable duration.
+    try:
+        if not out_mp4.exists() or out_mp4.stat().st_size < 4096:
+            print(f"[video] assemble produced no usable file ({out_mp4.stat().st_size if out_mp4.exists() else 0} bytes)")
+            return False
+        if not _probe_frames(out_mp4):
+            print("[video] assemble produced a file with no video frames")
+            return False
+    except Exception as exc:  # noqa: BLE001
+        print(f"[video] assemble validation failed: {exc}")
+        return False
+    return True
 
 
 def cover_from_frame0(reel: Path, out_jpg: Path) -> bool:
