@@ -8,8 +8,8 @@ from __future__ import annotations
 
 import os
 import sys
-
-import requests
+import urllib.parse
+import urllib.request
 
 TG = "https://api.telegram.org/bot{token}/{method}"
 
@@ -21,12 +21,16 @@ def send(token: str, chat: str, text: str, photo: str = "") -> bool:
         payload.update({"photo": photo, "caption": text[:1024]})
     else:
         payload.update({"text": text, "disable_web_page_preview": False})
+    body = urllib.parse.urlencode(payload).encode()
+    # stdlib only: this runs in a job that installs no dependencies, so importing
+    # requests here crashed with ModuleNotFoundError before sending anything.
     for attempt in range(3):
         try:
-            r = requests.post(url, data=payload, timeout=60)
-            if r.status_code == 200:
-                return True
-            print(f"[notify] attempt {attempt + 1}: {r.status_code} {r.text[:300]}")
+            req = urllib.request.Request(url, data=body, method="POST")
+            with urllib.request.urlopen(req, timeout=60) as r:
+                if r.status == 200:
+                    return True
+                print(f"[notify] attempt {attempt + 1}: {r.status}")
         except Exception as exc:  # noqa: BLE001
             print(f"[notify] attempt {attempt + 1} failed: {exc}")
     return False
