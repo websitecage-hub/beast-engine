@@ -763,5 +763,26 @@
     ],
     "errors": [],
     "result": "skipped"
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-28T21:11:42.203570+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.53
+      },
+      {
+        "step": "scheduler",
+        "t": 0.53,
+        "post": false,
+        "reason": "already posted today (idempotency)",
+        "pre_jitter": true
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
   }
 ]
