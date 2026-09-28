@@ -775,6 +775,29 @@ def test_used_music_queries_is_persisted_and_pruned():
         "run_create never records the resolved query; the same track can return"
 
 
+def test_dry_run_bypasses_idempotency_but_real_runs_never_do():
+    """dry_run may bypass the one-post-per-day guard; real runs never may.
+
+    The guard prevents a second PUBLISH. A dry-run publishes nothing and mutates no
+    state, but it used to return "already posted today" before the render began, so
+    the render path could not be exercised on any day that had already posted — which
+    is most days, since the day's first success sets that flag. Forced real runs must
+    still be blocked, because force is also what a manual dispatch uses to publish.
+    """
+    cfg = config.load_config()
+    today = config.today_utc().isoformat()
+    mem = {"last_post_date": today}
+
+    ok, _ = run_create.scheduler_check(cfg, {}, mem, force=False)
+    assert ok is False, "a real run after today's post must be blocked"
+
+    ok, _ = run_create.scheduler_check(cfg, {}, mem, force=True)
+    assert ok is False, "a FORCED real run must still be blocked (double-publish guard)"
+
+    ok, why = run_create.scheduler_check(cfg, {}, mem, force=True, dry_run=True)
+    assert ok is True, f"dry-run should proceed to exercise the render, got {why!r}"
+
+
 def test_used_music_query_memory_records_and_backfills():
     """used_music_queries must actually accumulate, including queries only known via
     used_track_profiles.

@@ -45,11 +45,19 @@ def _start_trending(cfg) -> tuple:
 SLOT_HOURS = ("13:30", "15:00", "16:30")
 
 
-def scheduler_check(cfg, strategy, memory, offline=False, force=False) -> tuple:
+def scheduler_check(cfg, strategy, memory, offline=False, force=False,
+                    dry_run=False) -> tuple:
     """Returns (should_post, reason).
 
     force=True (workflow_dispatch, or BEAST_FORCE_POST=1) skips the warmup off-day
     rule and the slot window, but NEVER the one-post-per-day idempotency check.
+
+    dry_run=True additionally bypasses that idempotency check. The check exists to
+    stop a second PUBLISH; a dry-run publishes nothing and mutates no state, but it
+    used to return "already posted today" before the render ever started, so the
+    render path was unexercisable on any day that had already posted — which is most
+    days, because the day's first success sets that flag. Every real run still gets
+    the guard, including forced ones.
 
     The crons fire at SLOT_HOURS and are three RETRIES of one daily post, not three
     posts. The old +/-35min window made the retries dead weight: the slots are 90
@@ -61,6 +69,12 @@ def scheduler_check(cfg, strategy, memory, offline=False, force=False) -> tuple:
     if offline:
         return True, "offline"
     if memory.get("last_post_date") == today.isoformat():
+        if dry_run:
+            # A dry-run publishes nothing, so the double-publish guard does not apply
+            # to it. Without this it returned "already posted today" before the render
+            # started, making the render path unexercisable on any day that had already
+            # posted. Real runs — including forced ones — still get the guard.
+            return True, "dry-run (idempotency not applicable)"
         return False, "already posted today (idempotency)"
     warmup_until = strategy.get("warmup_until")
     try:
@@ -132,7 +146,15 @@ def run(dry_run=False, offline=False) -> int:
         # 20 minutes of CI (observed: jitter_start 1064.5s, then "already posted
         # today") against a 30-minute job timeout. Deciding first costs nothing and
         # keeps the human-looking delay on the runs that actually post.
-        ok, reason = scheduler_check(cfg, strategy, memory, offline=offline, force=force)
+        #
+        # dry_run bypasses the one-post-per-day guard. That guard exists to stop a
+        # second PUBLISH, and a dry-run publishes nothing and mutates no state — but
+        # it was returning "already posted today" before the render ever ran, so the
+        # render path could not be exercised on any day that had already posted
+        # (which is most days, since the day's first success sets it). The guard is
+        # untouched for every real run.
+        ok, reason = scheduler_check(cfg, strategy, memory,
+                                     offline=offline, force=force, dry_run=dry_run)
         if not ok:
             step("scheduler", {"post": False, "reason": reason, "pre_jitter": True})
             log["result"] = "skipped"
