@@ -6,6 +6,10 @@ Base: https://pinterest-api-inyg.onrender.com
 from __future__ import annotations
 
 import time
+from . import config
+
+# ffmpeg is resolved centrally: PATH first, then imageio-ffmpeg's bundled binary.
+FFMPEG = config.resolve_ffmpeg()
 from pathlib import Path
 
 import requests
@@ -99,7 +103,7 @@ def _download_ffmpeg(url: str, out_path, timeout: int = 600) -> bool:
     out = Path(out_path)
     if out.exists():
         out.unlink()
-    cmd = ["ffmpeg", "-y", "-v", "error", "-user_agent", UA,
+    cmd = [FFMPEG, "-y", "-v", "error", "-user_agent", UA,
            "-i", url, "-c", "copy", "-bsf:a", "aac_adtstoasc", str(out)]
     try:
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)

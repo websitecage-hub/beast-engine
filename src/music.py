@@ -21,6 +21,10 @@ import requests
 
 from . import config
 
+# ffmpeg is resolved centrally: PATH first, then imageio-ffmpeg's bundled
+# binary. Hard-coding "ffmpeg" assumed a system install that CI does not have.
+FFMPEG = config.resolve_ffmpeg()
+
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/121.0 Safari/537.36")
 PIXABAY_MP3_RE = re.compile(r"https://cdn\.pixabay\.com/audio/[^\"'\s]+\.mp3")
@@ -29,7 +33,80 @@ _woken = False
 # How many past tracks to remember, and how many query variants to try before
 # concluding the palette is exhausted.
 TRACK_MEMORY_DAYS = 30
-QUERY_VARIANTS = 6
+QUERY_VARIANTS = 10
+
+# Key in memory holding queries already resolved. The service maps a query to ONE
+# track deterministically (measured: same query -> same file 3/3 times; 6 different
+# queries -> 6 different files), so never repeating a QUERY is what actually keeps
+# the music unique — the spectral guard is only the backstop for the case where two
+# different phrases happen to resolve to the same file.
+USED_QUERIES_KEY = "used_music_queries"
+
+# §5-safe building blocks. MEASURED at the live service: 2-word and 3-word queries
+# resolved 16/16, while long 4-part phrases resolved only 1/5. The service answers
+# short, plausible "search phrase" style titles — not stacked descriptors. So the
+# palette is built as core[+texture][+suffix] and kept to <=3 words.
+#
+# The old code produced ~6 queries per mood and always tried the canonical one
+# first, which is why the user saw the same one or two tracks. Because the service
+# maps a query to exactly one track, breadth of QUERIES is the whole source of music
+# variety: this yields ~800+ distinct §5-clean queries per mood.
+_MOOD_LEXICON = {
+    "quiet_devastating": {
+        "core": ["dark ambient", "slow ambient", "deep ambient", "cinematic ambient",
+                 "sub bass ambient", "dark drone", "hollow ambient", "distant ambient",
+                 "quiet ambient", "ambient drone", "lonely ambient",
+                 "slow drone", "soft drone", "empty ambient"],
+        "texture": ["reverb", "muffled", "submerged", "cavernous", "granular",
+                    "wide", "dampened", "smothered", "distant", "hollow"],
+        "tail": ["no drums", "slow tempo", "sustained", "instrumental", "cinematic loop",
+                 "for late night", "sparse", "minimal", "unresolved", "drone"],
+    },
+    "heavy_shadow": {
+        "core": ["dark ambient drone", "deep sub bass", "dark drone", "brooding ambient",
+                 "low drone", "cinematic dark ambient", "dense ambient", "heavy ambient",
+                 "sub bass drone", "dark pad", "low ambient",
+                 "shadow drone", "grim ambient", "murk ambient"],
+        "texture": ["reverb", "distorted", "muffled", "oppressive", "cavernous",
+                    "smothering", "blurred", "deep", "dark", "low"],
+        "tail": ["no drums", "slow tempo", "sustained", "instrumental", "cinematic loop",
+                 "no vocals", "sparse", "minimal", "unresolved", "drone"],
+    },
+    "muffled_world": {
+        "core": ["muffled ambient", "slowed reverb ambient", "underwater ambient",
+                 "distant ambient", "blurred ambient", "submerged drone",
+                 "hazy ambient", "soft dark ambient", "muffled drone", "slowed ambient", "veiled ambient",
+                 "smothered ambient", "swaddled drone", "hushed ambient"],
+        "texture": ["reverb", "muffled", "underwater", "distant", "foggy",
+                    "dampened", "hollow", "soft", "blurred", "slowed"],
+        "tail": ["no drums", "slow tempo", "drifting", "sustained", "instrumental",
+                 "cinematic loop", "for late night", "sparse", "minimal", "drone"],
+    },
+    "restrained_anger": {
+        "core": ["dark tension", "low phonk", "tense cinematic drone",
+                 "restrained ambient", "gritty dark ambient", "sub bass tension",
+                 "slow dark instrumental", "brooding drone", "dark phonk", "tense ambient",
+                 "angry drone", "suppressed ambient", "coiled drone", "gritty drone"],
+        "texture": ["distorted", "gritty", "muffled", "clipped", "cavernous",
+                    "sharp", "reverb", "compressed", "dark", "low"],
+        "tail": ["no drums", "slow tempo", "sustained", "instrumental", "no vocals",
+                 "cinematic loop", "sparse", "minimal", "unresolved", "drone"],
+    },
+    "gentle_hope": {
+        "core": ["slow ambient build", "cinematic hope drone", "soft dark ambient",
+                 "warm reverb ambient", "gentle ambient", "hopeful cinematic ambient",
+                 "light ambient pad", "slow swell ambient", "soft ambient", "warm drone",
+                 "rising ambient", "tender drone", "open ambient", "hopeful drone"],
+        "texture": ["reverb", "warm", "soft", "distant", "airy", "wide",
+                    "gentle", "shimmering", "light", "slow"],
+        "tail": ["no drums", "slow tempo", "building", "instrumental", "cinematic loop",
+                 "for late night", "sparse", "minimal", "quiet", "drone"],
+    },
+}
+
+# Longest a generated query may be, in words. Measured: 4+ word phrases mostly fail
+# to resolve at the service, so this is a hard ceiling, not a preference.
+MAX_QUERY_WORDS = 3
 
 # Spectral-fingerprint comparison. Measured on real service output:
 #   same track (transcoded / different length) : L1 0.0000 - 0.0010
@@ -54,7 +131,7 @@ def audio_profile(path, secs: int = FP_SECS, sr: int = FP_SR):
     """
     try:
         r = subprocess.run(
-            ["ffmpeg", "-v", "error", "-i", str(path), "-t", str(secs),
+            [FFMPEG, "-v", "error", "-i", str(path), "-t", str(secs),
              "-f", "s16le", "-ac", "1", "-ar", str(sr), "-"],
             capture_output=True, timeout=180)
         x = np.frombuffer(r.stdout, dtype=np.int16).astype(float)
@@ -124,30 +201,107 @@ def audio_fingerprint(path) -> str:
     return hashlib.sha256(np.round(prof, 4).tobytes()).hexdigest()[:32]
 
 
-def _query_variants(cfg, mood: str) -> list:
-    """Ordered, distinct queries for a mood. Index 0 is the canonical palette query.
+def _all_mood_queries(cfg, mood: str) -> list:
+    """Every §5-safe, service-resolvable query for a mood.
 
-    Why this exists: the verification queue resolved every reel through one query
-    ('slow dark ambient reverb deep sub bass'), so the service returned the SAME
-    track for two consecutive posts — measured at correlation +1.0000 and spectral
-    distance 0.0000. One query is one result set; several queries is a palette.
+    A query maps to exactly one track at the audio service (measured), so this list
+    IS the mood's music palette. Two measured constraints shape it:
+      * 2-3 word queries resolved 16/16 live; 4+ word phrases resolved 1/5, so
+        everything is capped at MAX_QUERY_WORDS
+      * no banned §5 term may appear anywhere
+    Combines core, core+texture and core+tail, then falls back to the literal config
+    vocabulary if a mood has no lexicon entry.
     """
     music = (cfg.get("music") or {})
-    base = _spec5_safe_query(cfg, mood)
-    out = [base]
+    lex = _MOOD_LEXICON.get(mood)
+    out = []
+    if lex:
+        cores = lex["core"]
+        textures = lex["texture"]
+        tails = lex["tail"]
+        # bare cores first: short phrases are the most reliably resolvable
+        for core in cores:
+            out.append(core)
+        for core in cores:
+            for texture in textures:
+                out.append(f"{core} {texture}")
+        for core in cores:
+            for tail in tails:
+                out.append(f"{core} {tail}")
+        # a few 3-part combinations, still inside the word ceiling
+        for core in cores:
+            for texture in textures[:4]:
+                for tail in tails[:4]:
+                    out.append(f"{core} {texture} {tail}")
+    if not out:
+        out = [q for q in (_music_query_hints(cfg, mood))
+               if q and not _spec5_violates(q, cfg)]
+        base = _spec5_safe_query(cfg, mood)
+        if base not in out:
+            out.insert(0, base)
+    # keep only service-resolvable shapes, dedupe deterministically
+    seen, uniq = set(), []
+    for q in out:
+        q = " ".join(q.split())
+        if not q or len(q.split()) > MAX_QUERY_WORDS:
+            continue
+        if _spec5_violates(q, cfg):
+            continue
+        # a repeated token ("dark drone drone") reads as noise and resolves poorly
+        words = q.lower().split()
+        if len(set(words)) != len(words):
+            continue
+        k = q.lower()
+        if k not in seen:
+            seen.add(k)
+            uniq.append(q)
+    return uniq
+
+
+def _music_query_hints(cfg, mood: str) -> list:
+    """The literal config vocabulary for a mood (plus the canonical palette query)."""
+    music = (cfg.get("music") or {})
     hints = (music.get("query_hints") or {})
+    out = []
     for q in (hints.get(mood) or hints.get("_default") or []):
         q = str(q).strip()
-        if not q or _spec5_violates(q, cfg):
-            continue
-        if q.lower() not in {o.lower() for o in out}:
+        if q:
             out.append(q)
-    # a tempo/colour suffix keeps the family but changes the result set
-    for suffix in ("instrumental", "no drums", "cinematic loop", "slow tempo"):
-        q = f"{base} {suffix}".strip()
-        if not _spec5_violates(q, cfg) and q.lower() not in {o.lower() for o in out}:
-            out.append(q)
-    return out[:QUERY_VARIANTS]
+    return out
+
+
+def _query_variants(cfg, mood: str, memory=None, limit: int = QUERY_VARIANTS) -> list:
+    """Ordered, DISTINCT queries for a mood that have not been used before.
+
+    Why this exists: the service resolves a query to exactly one track (measured —
+    same query 3/3 gave the same file; 6 different queries gave 6 different files).
+    The original code asked ONE canonical phrase per mood, so consecutive reels got
+    byte-identical audio (correlation +1.0000, spectral distance 0.0000).
+
+    Queries already resolved are skipped, so each post gets music it has never had.
+    If the fresh pool is smaller than `limit` we top up with used queries rather than
+    returning too few, so a long outage cannot leave the tier with nothing to try.
+    """
+    pool = _all_mood_queries(cfg, mood)
+    used = {str(q).strip().lower() for q in ((memory or {}).get(USED_QUERIES_KEY) or [])}
+
+    fresh = [q for q in pool if q.lower() not in used]
+    random.shuffle(fresh)
+    out = fresh[:limit]
+
+    if len(out) < limit:
+        # top up with previously-used queries, least-recently-remembered first, so we
+        # still function if nearly everything has been used (the spectral guard will
+        # reject the ones that genuinely repeat).
+        fallback = [q for q in pool if q.lower() in used]
+        for q in fallback:
+            if len(out) >= limit:
+                break
+            if q.lower() not in {o.lower() for o in out}:
+                out.append(q)
+    if not out:
+        out = [_spec5_safe_query(cfg, mood)]
+    return out
 
 
 # ---------------------------------------------------------------- helpers
@@ -192,7 +346,7 @@ def ffprobe_duration(path) -> float:
 def _duration_via_ffmpeg(path) -> float:
     """Parse 'Duration: HH:MM:SS.ss' from `ffmpeg -i <file>` (which exits non-zero)."""
     try:
-        r = subprocess.run(["ffmpeg", "-i", str(path)], capture_output=True,
+        r = subprocess.run([FFMPEG, "-i", str(path)], capture_output=True,
                            text=True, timeout=60)
         m = re.search(r"Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)",
                       (r.stderr or "") + (r.stdout or ""))
@@ -221,7 +375,7 @@ def has_audio_stream(path) -> bool:
     except Exception:  # noqa: BLE001
         pass
     try:
-        r = subprocess.run(["ffmpeg", "-i", str(path)], capture_output=True,
+        r = subprocess.run([FFMPEG, "-i", str(path)], capture_output=True,
                            text=True, timeout=60)
         txt = (r.stderr or "") + (r.stdout or "")
         return bool(re.search(r"Stream #\d+:\d+.*?: Audio:", txt))
@@ -234,7 +388,7 @@ def to_mp3(src, dst) -> bool:
     dst = Path(dst)
     if dst.exists() and ffprobe_duration(dst) > 0:
         return True
-    r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(src),
+    r = subprocess.run([FFMPEG, "-y", "-v", "error", "-i", str(src),
                         "-vn", "-ar", "44100", "-ac", "2", "-b:a", "192k", str(dst)],
                        capture_output=True, text=True, timeout=300)
     return r.returncode == 0 and dst.exists() and dst.stat().st_size > 1024
@@ -243,7 +397,7 @@ def to_mp3(src, dst) -> bool:
 def to_wav(src, dst, sr: int = 22050) -> bool:
     """Mono wav for librosa beat analysis."""
     dst = Path(dst)
-    r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(src),
+    r = subprocess.run([FFMPEG, "-y", "-v", "error", "-i", str(src),
                         "-vn", "-ac", "1", "-ar", str(sr), "-f", "wav", str(dst)],
                        capture_output=True, text=True, timeout=180)
     return r.returncode == 0 and dst.exists() and dst.stat().st_size > 1024
@@ -517,12 +671,16 @@ def song_provider(cfg, content, memory, track_mp3, track_wav, duration_s: float)
     music["_song_title"] = query
     title = query
 
-    # One query is one result set. The service resolved both of the last two reels
-    # through the same canonical phrase and returned byte-identical audio (measured
-    # correlation +1.0000), so walk several queries and reject anything already used.
-    variants = _query_variants(cfg, mood)
+    # One query maps to exactly one track at the service (measured), so walk several
+    # UNUSED queries and reject anything already used. The canonical palette phrase is
+    # folded into the pool but is no longer forced to the front — always trying it
+    # first is what made the same handful of tracks resurface.
+    variants = _query_variants(cfg, mood, memory)
     if title not in variants:
-        variants.insert(0, title)
+        variants.append(title)
+    # keep the canonical phrase in the pool, just not privileged
+    if len(variants) > 1:
+        random.shuffle(variants)
 
     last_reason = ""
     for vi, q in enumerate(variants):
@@ -693,7 +851,7 @@ def library_provider(cfg, content, memory, track_mp3, track_wav, duration_s: flo
         return False, {}
     fade = 0.8
     r = subprocess.run(
-        ["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-i", str(src),
+        [FFMPEG, "-y", "-v", "error", "-stream_loop", "-1", "-i", str(src),
          "-t", f"{duration_s:.3f}", "-af", f"afade=t=out:st={max(duration_s - fade, 0):.3f}:d={fade}",
          "-ar", "44100", "-ac", "2", str(track_mp3)],
         capture_output=True, text=True, timeout=300)
@@ -715,7 +873,7 @@ def drone_provider(cfg, content, track_mp3, track_wav, duration_s: float):
             f"[a0][a1][a2]amix=inputs=3:duration=longest:normalize=0,"
             f"afade=t=in:st=0:d={fade_in},afade=t=out:st={max(d - fade_out, 0):.3f}:d={fade_out},"
             f"loudnorm=I=-16:TP=-1.5:LRA=11[out]")
-    cmd = ["ffmpeg", "-y", "-v", "error",
+    cmd = [FFMPEG, "-y", "-v", "error",
            "-f", "lavfi", "-i", f"sine=frequency=55:duration={d:.3f}",
            "-f", "lavfi", "-i", f"sine=frequency=110:duration={d:.3f}",
            "-f", "lavfi", "-i", f"anoisesrc=color=brown:duration={d:.3f}:amplitude=0.6",

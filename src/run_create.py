@@ -277,6 +277,16 @@ def _record_track(memory, mmeta):
              "source": mmeta.get("music_source") or "",
              "query": mmeta.get("music_query") or mmeta.get("query") or ""})
 
+    # Remember the QUERY too. The audio service resolves a query to one track
+    # deterministically, so never repeating a query is the primary way to guarantee
+    # unique music on every post; the spectral profile above is the backstop for the
+    # case where two different phrases resolve to the same file.
+    q = (mmeta.get("music_query") or mmeta.get("query") or "").strip()
+    if q:
+        used_q = memory.setdefault(music.USED_QUERIES_KEY, [])
+        if q.lower() not in {str(x).strip().lower() for x in used_q}:
+            used_q.append(q)
+
 
 def _record_post(memory, content, result, strategy):
     """Part 7.1 — store the reel's full genetic code."""

@@ -26,6 +26,10 @@ from pathlib import Path
 
 from . import config
 
+# ffmpeg is resolved centrally: PATH first, then imageio-ffmpeg's bundled
+# binary. Hard-coding "ffmpeg" assumed a system install that CI does not have.
+FFMPEG = config.resolve_ffmpeg()
+
 FONT_HOOK = "assets/fonts/Coolvetica-Regular.otf"      # user pick (2026-09-26)
 FONT_BODY = "assets/fonts/Coolvetica-Regular.otf"       # one font family, per user
 FONT_MARK = "assets/fonts/Inter-Regular.ttf"
@@ -653,7 +657,7 @@ def bg_text_luma(bg_mp4: Path, at: float, cfg, top: int, block_h: int) -> float 
         import numpy as np
         w = int(cfg["reel"]["w"])
         h = int(cfg["reel"]["h"])
-        r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{max(at, 0):.2f}",
+        r = subprocess.run([FFMPEG, "-v", "error", "-ss", f"{max(at, 0):.2f}",
                             "-i", str(bg_mp4), "-frames:v", "1", "-vf",
                             f"scale={w}:{h},format=gray", "-f", "rawvideo",
                             "-pix_fmt", "gray", "-"],
@@ -734,7 +738,7 @@ def _probe_frames(path) -> int | None:
         pass
     # ffmpeg route: decode and count packets (no ffprobe needed)
     try:
-        r = subprocess.run(["ffmpeg", "-v", "error", "-i", str(path),
+        r = subprocess.run([FFMPEG, "-v", "error", "-i", str(path),
                             "-map", "0:v:0", "-c", "copy", "-f", "null", "-"],
                            capture_output=True, text=True, timeout=180)
         _ = r
@@ -790,7 +794,7 @@ def assemble(bg_mp4: Path, states: list, pngs: list, track_mp3: Path, out_mp4: P
                    f"afade=t=out:st={max(duration_s - fade_out, 0):.3f}:d={fade_out},"
                    f"atrim=0:{duration_s:.3f},asetpts=N/SR/TB[aout]")
 
-    cmd = ["ffmpeg", "-y", "-v", "error"] + inputs + [
+    cmd = [FFMPEG, "-y", "-v", "error"] + inputs + [
         "-filter_complex", ";".join(filters),
         "-map", f"[{last}]", "-map", "[aout]",
         "-t", f"{duration_s:.3f}",
@@ -811,7 +815,7 @@ def assemble(bg_mp4: Path, states: list, pngs: list, track_mp3: Path, out_mp4: P
 
 
 def cover_from_frame0(reel: Path, out_jpg: Path) -> bool:
-    r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", "0.6", "-i", str(reel),
+    r = subprocess.run([FFMPEG, "-y", "-v", "error", "-ss", "0.6", "-i", str(reel),
                         "-frames:v", "1", "-q:v", "2", str(out_jpg)],
                        capture_output=True, text=True, timeout=120)
     return r.returncode == 0 and out_jpg.exists()
@@ -821,7 +825,7 @@ def cover_from_frame0(reel: Path, out_jpg: Path) -> bool:
 
 def _luma_stats(reel: Path, at: float) -> dict:
     """Sample a frame's luma histogram (text presence + motion check)."""
-    r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{at:.2f}", "-i", str(reel),
+    r = subprocess.run([FFMPEG, "-v", "error", "-ss", f"{at:.2f}", "-i", str(reel),
                         "-frames:v", "1", "-vf", "scale=180:320,format=gray",
                         "-f", "rawvideo", "-pix_fmt", "gray", "-"],
                        capture_output=True, timeout=120)
@@ -839,7 +843,7 @@ def extract_stamps(reel: Path, states: list, duration_s: float, out_dir=None) ->
     for i, s in enumerate(states):
         t = min(s["start"] + max(BLOCK_FADE, 0.5), max(s["end"] - 0.15, s["start"] + 0.2))
         p = out_dir / f"check_{i}.jpg"
-        r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{max(t, 0):.3f}",
+        r = subprocess.run([FFMPEG, "-y", "-v", "error", "-ss", f"{max(t, 0):.3f}",
                             "-i", str(reel), "-frames:v", "1", "-q:v", "3", str(p)],
                            capture_output=True, text=True, timeout=120)
         if r.returncode == 0 and p.exists():
@@ -868,7 +872,7 @@ def motion_present(reel: Path, cfg) -> bool:
         import numpy as np
         outs = []
         for at in (2.0, 2.35):
-            r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{at:.2f}", "-i",
+            r = subprocess.run([FFMPEG, "-v", "error", "-ss", f"{at:.2f}", "-i",
                                 str(reel), "-frames:v", "1", "-vf",
                                 "scale=160:284,format=gray", "-f", "rawvideo",
                                 "-pix_fmt", "gray", "-"], capture_output=True, timeout=120)
@@ -890,7 +894,7 @@ def _probe_via_ffmpeg(reel: Path) -> dict | None:
     streams instead of failing closed on a missing binary.
     """
     try:
-        r = subprocess.run(["ffmpeg", "-i", str(reel)], capture_output=True,
+        r = subprocess.run([FFMPEG, "-i", str(reel)], capture_output=True,
                            text=True, timeout=120)
         txt = (r.stderr or "") + (r.stdout or "")
         streams = []
@@ -1105,7 +1109,7 @@ def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_
     visibility = []
     for t in checkpoints:
         frame = config.OUTPUTS / f"vis_{t:.2f}.jpg"
-        r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.3f}",
+        r = subprocess.run([FFMPEG, "-y", "-v", "error", "-ss", f"{t:.3f}",
                             "-i", str(out_mp4), "-frames:v", "1", "-q:v", "3", str(frame)],
                            capture_output=True, text=True, timeout=120)
         vis = r.returncode == 0 and frame.exists() and card_visible(frame)

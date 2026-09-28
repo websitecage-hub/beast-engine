@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -30,6 +31,57 @@ REPORT_PATH = DATA / "REPORT.md"
 AUDIO_MANIFEST_PATH = ASSETS / "audio" / "manifest.json"
 
 BUILD_DATE = date(2026, 9, 20)
+
+_FFMPEG_CACHE = None
+
+
+def resolve_ffmpeg() -> str:
+    """Return a usable ffmpeg executable path.
+
+    ffmpeg is a hard runtime dependency — src/ shells out to it in four modules, so
+    a missing binary means no reel can be rendered at all. On the dev box ffmpeg was
+    only reachable through a hand-made symlink to imageio-ffmpeg's bundled binary,
+    which CI does not have; that masked a total absence of ffmpeg on the runner and
+    every CI create run silently skipped before it ever tried to render.
+
+    Resolution order:
+      1. BEAST_FFMPEG env override (set it to pin an exact binary)
+      2. ffmpeg on PATH (the normal case: apt/pip in CI, system package elsewhere)
+      3. imageio-ffmpeg's bundled binary (pipped in via requirements.txt)
+
+    Cached, because this is called on every ffmpeg invocation.
+    """
+    global _FFMPEG_CACHE
+    if _FFMPEG_CACHE:
+        return _FFMPEG_CACHE
+
+    override = os.environ.get("BEAST_FFMPEG")
+    if override and Path(override).exists():
+        _FFMPEG_CACHE = override
+        return _FFMPEG_CACHE
+
+    found = shutil.which("ffmpeg")
+    if found:
+        _FFMPEG_CACHE = found
+        return _FFMPEG_CACHE
+
+    try:
+        import imageio_ffmpeg
+        bundled = imageio_ffmpeg.get_ffmpeg_exe()
+        if bundled and Path(bundled).exists():
+            _FFMPEG_CACHE = bundled
+            return _FFMPEG_CACHE
+    except Exception:
+        pass
+
+    # Nothing found. Return the bare name so the caller raises a normal
+    # FileNotFoundError with a helpful message rather than a confusing None.
+    _FFMPEG_CACHE = "ffmpeg"
+    return _FFMPEG_CACHE
+
+
+# Backwards-compatible alias: modules call config.FFMPEG in subprocess arg lists.
+FFMPEG = "ffmpeg"      # replaced on first resolve_ffmpeg() by callers
 
 # Part 2.1 — the eleven evidence clusters (archetypes in the DNA)
 ARCHETYPES = ["the_mask", "the_rehearsal", "the_freeze", "the_detour", "the_aftermath",
@@ -305,6 +357,9 @@ def default_memory() -> dict:
         "used_tracks": [],
         "used_track_urls": [],
         "used_track_profiles": [],
+        # every music query already resolved; the service maps a query to one track,
+        # so not repeating queries is what keeps the music unique
+        "used_music_queries": [],
         "used_hooks": [],
         "candidate_log": [],
         "last_post_date": None,

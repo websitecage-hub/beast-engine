@@ -8,3 +8,13 @@ pynacl>=1.5
 # available on the dev box but NOT in CI, so 'Acceptance tests' died with
 # ModuleNotFoundError: No module named 'yaml' the first time the gate ran.
 PyYAML>=6.0
+
+# ffmpeg is a HARD runtime dependency: music.py, background.py, build_video.py and
+# pinterest.py all shell out to it, so without it no reel can be rendered at all.
+# It was never declared, and the dev box only had it via a hand-made symlink to
+# imageio-ffmpeg's bundled binary. On a clean runner there was NO ffmpeg, so the
+# acceptance suite died with [Errno 2] 'ffmpeg' — and because the suite gates
+# publishing in create.yml, the fix is to declare the dependency rather than let
+# the runner's luck decide. imageio-ffmpeg ships a static ffmpeg build, so this
+# works identically on CI and locally, no apt/sudo required.
+imageio-ffmpeg>=0.4.9

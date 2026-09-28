@@ -18,6 +18,10 @@ from pathlib import Path
 
 from . import config, llm, pinterest
 
+# ffmpeg is resolved centrally: PATH first, then imageio-ffmpeg's bundled
+# binary. Hard-coding "ffmpeg" assumed a system install that CI does not have.
+FFMPEG = config.resolve_ffmpeg()
+
 # Background grade. The footage ships AS SHOT — no brightness/saturation crush and
 # no colour balance shift. Empty by default; `bg_grade: true` would restore the
 # cinematic chain below. Kept as a named constant so the ffmpeg chains keep a single
@@ -208,7 +212,7 @@ def _probe_duration(path: Path) -> float:
     except Exception:  # noqa: BLE001
         pass
     try:
-        r = subprocess.run(["ffmpeg", "-i", str(path)], capture_output=True,
+        r = subprocess.run([FFMPEG, "-i", str(path)], capture_output=True,
                            text=True, timeout=60)
         m = re.search(r"Duration:\s*(\d+):(\d+):(\d+(?:\.\d+)?)",
                       (r.stderr or "") + (r.stdout or ""))
@@ -251,7 +255,7 @@ def process_clip(src: Path, out: Path, duration_s: float, fps: int,
     # Spec §3.1 + §3.2 + §3.5 in one pass.
     vf = (f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
           f"fps={fps},{_grade_segments(cfg, 0.0)},format=yuv420p".replace(",,", ","))
-    cmd = ["ffmpeg", "-y", "-v", "error", "-ss", f"{start:.3f}", "-i", str(src),
+    cmd = [FFMPEG, "-y", "-v", "error", "-ss", f"{start:.3f}", "-i", str(src),
            "-t", f"{duration_s:.3f}", "-vf", vf, "-an",
            "-c:v", "libx264", "-preset", "slower", "-crf", "16", str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
@@ -276,7 +280,7 @@ def loop_clip(src: Path, out: Path, duration_s: float, fps: int,
             f"[b]trim={offset:.3f}:{duration_s:.3f},setpts=PTS-STARTPTS[tb];"
             f"[ha][tb]xfade=transition=fade:duration={fade:.3f}:"
             f"offset={max(offset - fade, 0):.3f},format=yuv420p[v]")
-    cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(src),
+    cmd = [FFMPEG, "-y", "-v", "error", "-i", str(src),
            "-filter_complex", filt, "-map", "[v]", "-an",
            "-c:v", "libx264", "-preset", "slower", "-crf", "16", "-r", str(fps), str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
@@ -297,7 +301,7 @@ def animate_still(src: Path, out: Path, duration_s: float, fps: int,
           f"x='iw/2-(iw/zoom/2)+8*sin(on/12)':y='ih/2-(ih/zoom/2)+6*cos(on/15)':"
           f"d={frames}:s=1080x1920:fps={fps},"
           f"gblur=sigma=0.6,{_grade_segments(cfg, darken)},format=yuv420p".replace(",,", ","))
-    cmd = ["ffmpeg", "-y", "-v", "error", "-loop", "1", "-i", str(src),
+    cmd = [FFMPEG, "-y", "-v", "error", "-loop", "1", "-i", str(src),
            "-t", f"{duration_s:.3f}", "-vf", vf,
            "-c:v", "libx264", "-preset", "slower", "-crf", "16", str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=900)
@@ -317,7 +321,7 @@ def clip_has_motion(path: Path, fps: int = 30) -> bool:
         import numpy as np
         frames = []
         for at in (1.0, 1.6):
-            r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{at:.2f}", "-i",
+            r = subprocess.run([FFMPEG, "-v", "error", "-ss", f"{at:.2f}", "-i",
                                 str(path), "-frames:v", "1", "-vf",
                                 "scale=160:284,format=gray", "-f", "rawvideo",
                                 "-pix_fmt", "gray", "-"],

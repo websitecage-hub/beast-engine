@@ -665,6 +665,116 @@ def test_safe_band_constants_are_pinned_and_clear_the_ui():
     assert ink_bottom <= int(h * build_video.TEXT_SAFE_BOTTOM) + 1
 
 
+def test_ffmpeg_is_resolved_centrally_and_declared():
+    """ffmpeg must be resolvable without a system install, and declared as a dep.
+
+    Every module hard-coded the bare name "ffmpeg", which only worked because the dev
+    box had a hand-made symlink to imageio-ffmpeg's binary. A clean CI runner has no
+    ffmpeg at all, so the acceptance suite died with [Errno 2] 'ffmpeg' — and since
+    that suite gates publishing, the whole create workflow was blocked.
+    """
+    import ast
+    import importlib
+
+    # 1. no module may hard-code the bare executable name in a subprocess call
+    offenders = []
+    for py in (ROOT / "src").glob("*.py"):
+        src = py.read_text(encoding="utf-8")
+        tree = ast.parse(src)
+        for node in ast.walk(tree):
+            if (isinstance(node, ast.List) and node.elts
+                    and isinstance(node.elts[0], ast.Constant)
+                    and node.elts[0].value == "ffmpeg"):
+                offenders.append(f"{py.name}:{node.lineno}")
+    assert not offenders, f"hard-coded 'ffmpeg' executable: {offenders}"
+
+    # 2. the resolver must find SOMETHING in this environment
+    assert config.resolve_ffmpeg(), "resolve_ffmpeg() returned nothing"
+
+    # 3. and it must be a real, executable file
+    exe = config.resolve_ffmpeg()
+    if exe != "ffmpeg":                    # a bare name means "hopefully on PATH"
+        assert Path(exe).exists(), f"resolved ffmpeg does not exist: {exe}"
+
+    # 4. every caller must go through it, not through a stale module constant
+    for mod in ("music", "background", "build_video", "pinterest"):
+        m = importlib.import_module(f"src.{mod}")
+        assert getattr(m, "FFMPEG", None), f"src/{mod}.py has no resolved FFMPEG"
+        assert m.FFMPEG != "", f"src/{mod}.py resolved ffmpeg to an empty string"
+
+
+def test_ffmpeg_dependency_is_declared_in_requirements():
+    """imageio-ffmpeg provides the bundled binary the resolver falls back to."""
+    text = (ROOT / "requirements.txt").read_text(encoding="utf-8").lower()
+    assert "imageio-ffmpeg" in text, \
+        "imageio-ffmpeg is not declared; a clean runner will have no ffmpeg"
+
+
+def test_music_query_palette_is_large_and_never_repeats():
+    """The music palette must be big enough that consecutive posts never share audio.
+
+    The service resolves a QUERY to exactly one track (measured: same query -> same
+    file 3/3; 6 different queries -> 6 different files). The old code generated ~6
+    queries per mood and always tried the canonical one first, so the user saw the
+    same one or two tracks repeatedly. Palette size *is* music variety.
+    """
+    cfg = config.load_config()
+    moods = list(cfg["music"]["mood_search"].keys())
+    assert moods, "no moods configured"
+
+    total = 0
+    smallest = None
+    for mood in moods:
+        pool = music._all_mood_queries(cfg, mood)
+        # Measured live: 2-3 word queries resolve 16/16 at the service, while 4+ word
+        # phrases resolve 1/5 — so the palette cannot be made arbitrarily large by
+        # stacking descriptors. ~100 distinct resolvable queries per mood is roughly
+        # 1.5 years of daily posting across the 5-mood rotation, which is the real
+        # requirement here (the old code had ~6).
+        assert len(pool) >= 100, f"{mood}: palette only {len(pool)} queries"
+        smallest = len(pool) if smallest is None else min(smallest, len(pool))
+        # every one must be §5-clean, unique, and short enough to resolve
+        for q in pool:
+            assert not music._spec5_violates(q, cfg), f"{mood}: {q!r} violates §5"
+            assert len(q.split()) <= music.MAX_QUERY_WORDS, \
+                f"{mood}: {q!r} has too many words to resolve"
+        assert len({q.lower() for q in pool}) == len(pool), f"{mood}: duplicate queries"
+        total += len(pool)
+    assert total >= 500, f"total palette only {total} (smallest mood {smallest})"
+
+    # consecutive posts must not get the same query
+    mem = {}
+    handed = []
+    for i in range(60):
+        mood = moods[i % len(moods)]
+        picked = music._query_variants(cfg, mood, mem, limit=5)[0]
+        handed.append(picked)
+        mem.setdefault(music.USED_QUERIES_KEY, []).append(picked)
+    assert len(set(handed)) == len(handed), "a query was handed out twice in 60 posts"
+
+    # and the generator must respect queries already recorded in memory
+    pool = music._all_mood_queries(cfg, moods[0])
+    already = pool[: len(pool) - 3]
+    got = music._query_variants(cfg, moods[0], {music.USED_QUERIES_KEY: already}, limit=3)
+    assert all(g not in already for g in got), "generator returned an already-used query"
+
+    # it must not hard-fail when everything has been used (top-up, not empty)
+    got_all = music._query_variants(cfg, moods[0], {music.USED_QUERIES_KEY: pool}, limit=5)
+    assert len(got_all) == 5, "generator returned nothing once the palette was exhausted"
+
+
+def test_used_music_queries_is_persisted_and_pruned():
+    """The used-query list must be declared in defaults, pruned, and written on use."""
+    assert "used_music_queries" in config.default_memory(), \
+        "used_music_queries is not in the memory defaults"
+    harvest_src = (ROOT / "src" / "harvest.py").read_text(encoding="utf-8")
+    assert "used_music_queries" in harvest_src, \
+        "harvest never prunes used_music_queries, so it grows without bound"
+    run_src = (ROOT / "src" / "run_create.py").read_text(encoding="utf-8")
+    assert "USED_QUERIES_KEY" in run_src, \
+        "run_create never records the resolved query; the same track can return"
+
+
 def test_all_third_party_imports_are_declared_in_requirements():
     """Every third-party module the code imports must be in requirements.txt.
 
@@ -680,7 +790,8 @@ def test_all_third_party_imports_are_declared_in_requirements():
     # name -> the distribution that provides it (import name != package name)
     DIST = {"PIL": "pillow", "yaml": "pyyaml", "nacl": "pynacl",
             "soundfile": "soundfile", "librosa": "librosa", "numpy": "numpy",
-            "requests": "requests", "pytest": "pytest"}
+            "requests": "requests", "pytest": "pytest",
+            "imageio_ffmpeg": "imageio-ffmpeg"}
     STDLIB = set(sys.stdlib_module_names)
     LOCAL = {"src", "tests"}
 

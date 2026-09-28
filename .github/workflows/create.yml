@@ -55,6 +55,13 @@ jobs:
           cache: pip
       - name: Install deps
         run: pip install -r requirements.txt
+      - name: Verify ffmpeg is available
+        run: |
+          # ffmpeg is a hard runtime dependency (music, background, build_video,
+          # pinterest all shell out to it). Fail here with a clear message rather
+          # than halfway through a render.
+          python -c "from src import config; p=config.resolve_ffmpeg(); print('ffmpeg:', p)"
+          python -c "from src import config; import subprocess,sys; p=config.resolve_ffmpeg(); subprocess.run([p,'-version'],check=True,stdout=subprocess.DEVNULL)"
       - name: Create reel
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
