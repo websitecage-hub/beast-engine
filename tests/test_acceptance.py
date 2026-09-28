@@ -775,6 +775,26 @@ def test_used_music_queries_is_persisted_and_pruned():
         "run_create never records the resolved query; the same track can return"
 
 
+def test_probe_frames_works_without_ffprobe():
+    """Frame probing must work on CI, where ffprobe does not exist.
+
+    A previous version shelled out to a bare "ffprobe" and then fell through to a stub
+    that returned None unconditionally. On GitHub runners there is no ffprobe (only
+    imageio-ffmpeg's ffmpeg), so it reported "no frames" for a perfectly good render and
+    failed the build with 'assemble produced a file with no video frames'. Probe must
+    fall back to imageio-ffmpeg and then to an ffmpeg decode-count.
+    """
+    src = (ROOT / "src" / "build_video.py").read_text(encoding="utf-8")
+    fn = src.split("def _probe_frames", 1)[1].split("\ndef ", 1)[0]
+    assert "imageio_ffmpeg" in fn, "_probe_frames does not fall back to imageio_ffmpeg"
+    assert "shutil.which" in fn, "_probe_frames does not check whether ffprobe exists"
+    assert "return None" in fn, "probe should still allow an unknown result"
+
+    # a definite 0 frames is fatal; None (unknown) must NOT be treated as empty
+    assert "nframes == 0" in src, "assemble must reject a definite zero-frame render"
+    assert "return out_mp4.exists()" not in src
+
+
 def test_video_validity_rejects_empty_and_garbage_outputs():
     """A failed ffmpeg run leaves a 0-byte file that exists() reports as present.
 

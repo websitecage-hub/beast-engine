@@ -21,6 +21,7 @@ from __future__ import annotations
 import json
 import random
 import re
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -725,26 +726,55 @@ def loop_echo_ok(blocks: list) -> bool:
 # ---------------------------------------------------------------- assembly
 
 def _probe_frames(path) -> int | None:
-    """Frame count. Falls back to counting with ffmpeg when ffprobe is absent."""
+    """Frame count, or None when it genuinely cannot be determined.
+
+    Must work on CI, where `ffprobe` does NOT exist. GitHub runners have no system
+    ffprobe — only the imageio-ffmpeg `ffmpeg` binary is present. An earlier version of
+    this function shelled out to a bare "ffprobe" and then fell through to a stub that
+    returned None unconditionally, so it reported "no frames" for perfectly good video
+    and failed every CI render. Probing now goes: ffprobe (if truly on PATH) ->
+    imageio_ffmpeg.count_frames_and_secs -> ffmpeg decode-count. Returning None is a
+    last resort, and callers must treat None as "unknown", not as "empty".
+    """
+    # 1. ffprobe, but only when it is actually installed
+    if shutil.which("ffprobe"):
+        try:
+            r = subprocess.run(["ffprobe", "-v", "error", "-print_format", "json",
+                                "-show_streams", "-select_streams", "v", str(path)],
+                               capture_output=True, text=True, timeout=60)
+            s = (json.loads(r.stdout or "{}").get("streams") or [{}])[0]
+            for key in ("nb_frames", "nb_read_frames"):
+                nf = s.get(key)
+                if nf and str(nf).isdigit() and int(nf) > 0:
+                    return int(nf)
+            # a video stream exists even if the frame count is unstated
+            if s.get("codec_type") == "v":
+                return -1
+        except Exception:  # noqa: BLE001
+            pass
+
+    # 2. imageio-ffmpeg ships its own counter and is already a hard dependency
     try:
-        r = subprocess.run(["ffprobe", "-v", "error", "-print_format", "json",
-                            "-show_streams", "-select_streams", "v", str(path)],
-                           capture_output=True, text=True, timeout=60)
-        s = (json.loads(r.stdout or "{}").get("streams") or [{}])[0]
-        nf = s.get("nb_frames")
-        if nf and str(nf).isdigit():
-            return int(nf)
+        import imageio_ffmpeg
+        nframes, _secs = imageio_ffmpeg.count_frames_and_secs(str(path))
+        if nframes and int(nframes) > 0:
+            return int(nframes)
     except Exception:  # noqa: BLE001
         pass
-    # ffmpeg route: decode and count packets (no ffprobe needed)
+
+    # 3. decode with ffmpeg and count the frames it reports
     try:
-        r = subprocess.run([FFMPEG, "-v", "error", "-i", str(path),
-                            "-map", "0:v:0", "-c", "copy", "-f", "null", "-"],
-                           capture_output=True, text=True, timeout=180)
-        _ = r
-        return None
+        r = subprocess.run([FFMPEG, "-v", "info", "-i", str(path),
+                            "-map", "0:v:0", "-f", "null", "-"],
+                           capture_output=True, text=True, timeout=300)
+        counts = re.findall(r"frame=\s*(\d+)", r.stderr or "")
+        if counts:
+            n = max(int(c) for c in counts)
+            if n > 0:
+                return n
     except Exception:  # noqa: BLE001
-        return None
+        pass
+    return None
 
 
 def assemble(bg_mp4: Path, states: list, pngs: list, track_mp3: Path, out_mp4: Path,
@@ -819,9 +849,14 @@ def assemble(bg_mp4: Path, states: list, pngs: list, track_mp3: Path, out_mp4: P
         if not out_mp4.exists() or out_mp4.stat().st_size < 4096:
             print(f"[video] assemble produced no usable file ({out_mp4.stat().st_size if out_mp4.exists() else 0} bytes)")
             return False
-        if not _probe_frames(out_mp4):
+        nframes = _probe_frames(out_mp4)
+        # None means "could not determine" (no ffprobe on CI) and must NOT be read as
+        # "empty" — that mistake failed every CI render. Only a definite 0 is fatal.
+        if nframes == 0:
             print("[video] assemble produced a file with no video frames")
             return False
+        if nframes is None:
+            print("[video] frame count undetermined (no ffprobe); size check passed")
     except Exception as exc:  # noqa: BLE001
         print(f"[video] assemble validation failed: {exc}")
         return False
