@@ -423,6 +423,66 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18384062170228476",
+      "container_id": "17911243086538210",
+      "created_at": "2026-09-28T15:55:17.879041+00:00",
+      "hour_slot": "15:00",
+      "hook_text": "When you laugh at a joke you didn't hear",
+      "hook": "When you laugh at a joke you didn't hear",
+      "keyword": "HEARD",
+      "topic": "laughing at joke you didn't hear",
+      "caption": "That fake laugh isn't you being fake. It's survival.\nYour nervous system decides that asking \"what?\" twice is more dangerous than living with the shame of not knowing. So you laugh, you nod, you file it away as another moment where you were almost exposed. That's social anxiety scanning for rejection before it happens.\nIf you laugh at jokes you didn't hear because asking again feels impossible, you're not alone. Comment HEARD and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #introvertstruggles #quietpeople #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#introvertstruggles",
+        "#quietpeople",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "When you laugh at a joke you didn't hear",
+        "cluster": "the_sealed_mouth",
+        "topic": "neutral_as_negative",
+        "hook_length_chars": 40,
+        "num_text_blocks": 6,
+        "landing_text": "Comment HEARD and I'll send you the full breakdown.",
+        "bg_type": "sealed_mouth",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "hate that i made you love me",
+          "artist": "Ariana Grande",
+          "genre": "pop",
+          "trend_score": 75.4,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man silent while others around him talk dark cinematic. Overlay text reads: When you laugh at a joke you didn't hear You didn't catch the words. Your throat tightens. Asking \"what?\" once was already too much. Twice feels dangerous. So you laugh. You nod. You hope no one noticed. You're not fake. You're just... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "When you laugh at a joke you didn't hear\nYou didn't catch the words. Your throat tightens.\nAsking \"what?\" once was already too much. Twice feels dangerous.\nSo you laugh. You nod. You hope no one noticed.\nYou're not fake. You're just trying to stay invisible before they clock you.\nComment HEARD and I'll send you the full breakdown.",
+        "keyword": "HEARD",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#introvertstruggles",
+          "#quietpeople",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "15:00",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_sealed_mouth",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -465,6 +525,11 @@
       "id": "749075350559821950",
       "date": "2026-09-27",
       "pin_url": "https://www.pinterest.com/pin/749075350559821950/"
+    },
+    {
+      "id": "868420740661879450",
+      "date": "2026-09-28",
+      "pin_url": "https://www.pinterest.com/pin/868420740661879450/"
     }
   ],
   "used_tracks": [],
@@ -604,8 +669,8 @@
       "hook": "POV: the conversation pauses and your mind goes completely blank."
     }
   ],
-  "last_post_date": "2026-09-27",
-  "post_counter": 7,
+  "last_post_date": "2026-09-28",
+  "post_counter": 8,
   "last_keyword": "BLANK",
   "keyword_counts": {
     "HEARD": 1,
@@ -659,7 +724,33 @@
       "date": "2026-09-27",
       "source": "song",
       "query": "slowed reverb dark ambient muffled"
+    },
+    {
+      "profile": [
+        0.0036889950748038337,
+        0.01074680219127577,
+        0.04971602840245768,
+        0.1599898207408558,
+        0.16909886869647986,
+        0.21494820911688353,
+        0.12330427071935121,
+        0.04228123180949666,
+        0.0697997592752605,
+        0.04029343530144276,
+        0.03699643591386735,
+        0.020488085370167775,
+        0.017296734412540326,
+        0.01429573026480851,
+        0.018050179190382785,
+        0.0065303277360525365,
+        0.002475085783873022
+      ],
+      "date": "2026-09-28",
+      "source": "song",
+      "query": "grim ambient oppressive"
     }
   ],
-  "used_music_queries": []
+  "used_music_queries": [
+    "grim ambient oppressive"
+  ]
 }
