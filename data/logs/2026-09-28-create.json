@@ -540,5 +540,26 @@
     ],
     "errors": [],
     "result": "skipped"
+  },
+  {
+    "workflow": "create",
+    "started": "2026-09-28T16:03:06.953506+00:00",
+    "dry_run": true,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 1.38
+      },
+      {
+        "step": "scheduler",
+        "t": 1.38,
+        "post": false,
+        "reason": "already posted today (idempotency)",
+        "pre_jitter": true
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
   }
 ]
