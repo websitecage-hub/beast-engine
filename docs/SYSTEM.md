@@ -178,8 +178,14 @@ under CI conditions.
 
 OPERATIONS
 ----------
-- Publishing is idempotent: the scheduler refuses to post twice in a day.
+- TWO posts per day. Each has a due time and a retry, all in UTC:
+      post 1  due 13:30 UTC (19:00 IST)   retry 15:00 UTC (20:30 IST)
+      post 2  due 17:30 UTC (23:00 IST)   retry 19:00 UTC (00:30 IST next day)
+  A retry only publishes if its post is still missing, so a failed build is picked up
+  by the next run instead of losing the slot. The daily cap (2) is what prevents a
+  third post — forcing a manual run does NOT bypass it.
 - To run it by hand: dispatch create.yml (optionally with dry_run).
 - dry-run does a real build against the real services but publishes nothing, mutates
-  no state and sends no Telegram message.
+  no state and sends no Telegram message. It ignores the daily cap, since it publishes
+  nothing.
 - To send yourself a Telegram message: dispatch notify.yml with a "text" input.

@@ -364,6 +364,11 @@ def default_memory() -> dict:
         "candidate_log": [],
         "last_post_date": None,
         "post_counter": 0,
+        # Two posts are allowed per day. `post_counter` counts every post ever (used in
+        # alerts/learning), so the daily cap needs its own per-day counter — comparing
+        # last_post_date alone could only ever express "already posted once today".
+        "posts_today_date": None,
+        "posts_today_count": 0,
     }
 
 

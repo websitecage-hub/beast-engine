@@ -2,9 +2,15 @@ name: create
 
 on:
   schedule:
+    # ALL TIMES UTC. Two posts per day, each with a retry:
+    #   post 1  due 13:30 UTC (19:00 IST)  retry 15:00 UTC (20:30 IST)
+    #   post 2  due 17:30 UTC (23:00 IST)  retry 19:00 UTC (00:30 IST next day)
+    # These MUST match SLOT_GROUPS in src/run_create.py — the workflow only decides
+    # when to wake up, run_create decides whether the due post still needs publishing.
     - cron: "30 13 * * *"
     - cron: "0 15 * * *"
-    - cron: "30 16 * * *"
+    - cron: "30 17 * * *"
+    - cron: "0 19 * * *"
   workflow_dispatch:
     inputs:
       dry_run:

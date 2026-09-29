@@ -42,7 +42,34 @@ def _start_trending(cfg) -> tuple:
 
 # The exact times the create workflow's crons fire. Kept here so the scheduler and
 # the publish pipeline agree on what "today's slot" means.
-SLOT_HOURS = ("13:30", "15:00", "16:30")
+#
+# TWO POSTS PER DAY. Each post has a nominal due time plus a retry:
+#
+#   post 1  due 13:30 UTC (19:00 IST), retry 15:00 UTC (20:30 IST)
+#   post 2  due 17:30 UTC (23:00 IST), retry 19:00 UTC (00:30 IST)
+#
+# A retry only publishes if its post is still missing, so a failed build is picked up
+# by the next run instead of losing the day's slot. The retry is not a second post.
+SLOT_GROUPS = (("13:30", "15:00"), ("17:30", "19:00"))
+SLOT_HOURS = tuple(t for group in SLOT_GROUPS for t in group)
+DUE_HOURS = tuple(group[0] for group in SLOT_GROUPS)
+POSTS_PER_DAY = len(SLOT_GROUPS)
+
+
+def posts_today(memory, today=None) -> int:
+    """How many posts have already gone out today.
+
+    Needs its own per-day counter: `post_counter` counts every post ever, and
+    last_post_date can only express "posted at least once today" — neither can say
+    "one of today's two is done".
+    """
+    today = today or config.today_utc()
+    if str(memory.get("posts_today_date") or "") != today.isoformat():
+        return 0
+    try:
+        return int(memory.get("posts_today_count") or 0)
+    except (TypeError, ValueError):
+        return 0
 
 
 def scheduler_check(cfg, strategy, memory, offline=False, force=False,
@@ -50,32 +77,27 @@ def scheduler_check(cfg, strategy, memory, offline=False, force=False,
     """Returns (should_post, reason).
 
     force=True (workflow_dispatch, or BEAST_FORCE_POST=1) skips the warmup off-day
-    rule and the slot window, but NEVER the one-post-per-day idempotency check.
+    rule and the slot window, but NEVER the two-posts-per-day cap.
 
-    dry_run=True additionally bypasses that idempotency check. The check exists to
-    stop a second PUBLISH; a dry-run publishes nothing and mutates no state, but it
-    used to return "already posted today" before the render ever started, so the
-    render path was unexercisable on any day that had already posted — which is most
-    days, because the day's first success sets that flag. Every real run still gets
-    the guard, including forced ones.
+    dry_run=True bypasses the cap. It exists to stop extra PUBLISHES; a dry-run
+    publishes nothing and mutates no state, but it used to return before the render
+    started, so the render path was unexercisable on any day that had already posted.
+    Every real run still gets the cap, including forced ones.
 
-    The crons fire at SLOT_HOURS and are three RETRIES of one daily post, not three
-    posts. The old +/-35min window made the retries dead weight: the slots are 90
-    minutes apart, so only one cron could ever be inside the window and the other
-    two always skipped. Now any run before the day's last slot may post — if
-    slot 1 fails to build a reel, slot 2 picks the day up automatically.
+    The day's two posts each have a due time. A run publishes when a post is due and
+    not yet done, which makes the later cron a retry for the earlier post: if the
+    13:30 build fails, the 15:00 run publishes instead of skipping.
     """
     today = config.today_utc()
     if offline:
         return True, "offline"
-    if memory.get("last_post_date") == today.isoformat():
+
+    used = posts_today(memory, today)
+    if used >= POSTS_PER_DAY:
         if dry_run:
-            # A dry-run publishes nothing, so the double-publish guard does not apply
-            # to it. Without this it returned "already posted today" before the render
-            # started, making the render path unexercisable on any day that had already
-            # posted. Real runs — including forced ones — still get the guard.
-            return True, "dry-run (idempotency not applicable)"
-        return False, "already posted today (idempotency)"
+            return True, "dry-run (daily cap not applicable)"
+        return False, f"daily cap reached ({used}/{POSTS_PER_DAY})"
+
     warmup_until = strategy.get("warmup_until")
     try:
         in_warmup = today <= config.date.fromisoformat(str(warmup_until))
@@ -85,13 +107,23 @@ def scheduler_check(cfg, strategy, memory, offline=False, force=False,
         if today.toordinal() % 2 != 0:
             return False, f"warmup (until {warmup_until}) — off day"
     if force:
-        return True, "forced (manual dispatch)"
+        return True, f"forced (manual dispatch) — post {used + 1}/{POSTS_PER_DAY}"
+
     now = datetime.now(timezone.utc)
-    deadline = _slot_minutes(max(SLOT_HOURS))
-    if now.hour * 60 + now.minute > deadline:
-        return False, (f"past the last slot {max(SLOT_HOURS)} — today is a write-off, "
-                       "tomorrow's first run takes it")
-    return True, f"in the daily window (slots {', '.join(SLOT_HOURS)})"
+    now_min = now.hour * 60 + now.minute
+    due = sum(1 for t in DUE_HOURS if now_min >= _slot_minutes(t))
+    wanted = min(due, POSTS_PER_DAY)
+
+    if used < wanted:
+        return True, (f"post {used + 1}/{POSTS_PER_DAY} due "
+                      f"(nominal {DUE_HOURS[used]})")
+    # No write-off cutoff on purpose. GitHub fires scheduled crons minutes late
+    # (observed: a 19:00 slot starting at 19:07), so a strict "past the last slot"
+    # test would reject the very run that is post 2's retry. Publishing whenever a
+    # post is due and still missing is strictly safer: the cap above is what prevents
+    # a third post, and no cron fires after the last slot anyway.
+    return False, (f"post {used + 1}/{POSTS_PER_DAY} waits for its due time "
+                   f"{DUE_HOURS[used]} (now {now.strftime('%H:%M')} UTC)")
 
 
 def _slot_minutes(hhmm: str) -> int:
@@ -376,6 +408,13 @@ def _record_post(memory, content, result, strategy):
     })
     memory["last_post_date"] = config.today_utc().isoformat()
     memory["post_counter"] = int(memory.get("post_counter", 0)) + 1
+    # Per-day cap counter: reset when the date rolls over, then increment. This is what
+    # lets a second post through on the same day while still refusing a third.
+    today = config.today_utc().isoformat()
+    if str(memory.get("posts_today_date") or "") != today:
+        memory["posts_today_date"] = today
+        memory["posts_today_count"] = 0
+    memory["posts_today_count"] = int(memory.get("posts_today_count") or 0) + 1
 
 
 def main():

@@ -342,60 +342,122 @@ def test_scheduler_hours_match_the_workflow_crons():
     HOURS used to include 21:30 while create.yml only fires 13:30/15:00/16:30. The
     learner picked 21:30, so no scheduled run was ever inside the window and the
     machine stopped posting on its own while every unit test stayed green.
+
+    With two posts a day the crons are the DUE times plus their retries. The learner
+    must choose among the DUE times only, so it never aims a post at a retry slot —
+    but every due time still has to be one of the crons.
     """
     import re
     from pathlib import Path
     yml = (Path(config.ROOT) / ".github" / "workflows" / "create.yml").read_text()
     crons = set(re.findall(r'cron:\s*"(\d+)\s+(\d+)', yml))
     cron_times = {f"{int(h):02d}:{int(m):02d}" for m, h in crons}
-    assert cron_times == set(analyze.HOURS), (
-        f"analyze.HOURS {sorted(analyze.HOURS)} != cron times {sorted(cron_times)} — "
-        "the learner could pick an hour nothing triggers")
-    # and the scheduler's own slot list must agree with both
-    assert set(run_create.SLOT_HOURS) == cron_times
+
+    # the scheduler's slot list must be exactly what the crons fire
+    assert set(run_create.SLOT_HOURS) == cron_times, (
+        f"scheduler slots {sorted(run_create.SLOT_HOURS)} != crons {sorted(cron_times)}")
+
+    # the learner's hours must be real cron times, and specifically the due times
+    assert set(analyze.HOURS) <= cron_times, (
+        f"analyze.HOURS {sorted(analyze.HOURS)} includes an hour nothing triggers, "
+        f"crons are {sorted(cron_times)}")
+    assert set(analyze.HOURS) == set(run_create.DUE_HOURS), (
+        f"the learner should choose among due times {sorted(run_create.DUE_HOURS)}, "
+        f"got {sorted(analyze.HOURS)}")
+
+    # two posts a day, two due times
+    assert len(run_create.DUE_HOURS) == run_create.POSTS_PER_DAY == 2
 
 
-def test_scheduler_retries_are_not_dead_weight():
-    """A failed slot must be retryable by the next one.
+def test_scheduler_allows_two_posts_and_retries_each():
+    """TWO posts per day, each with its own retry, and never a third.
 
-    Slots are 90 minutes apart. The old +/-35min window meant only one cron could
-    ever post, so the other two were decorative and a failure lost the whole day.
+    Each post has a due time; a run publishes only when a post is due and still
+    missing. That makes the follow-up cron a RETRY for the earlier post: if the 13:30
+    build fails, the 15:00 run publishes instead of the day being lost. The cap then
+    stops a third post once both are out.
     """
     from datetime import datetime, timezone
+
     cfg = config.load_config()
-    strat = {"warmup_until": "2000-01-01", "next_post_hour": "15:00"}
-    # at slot 1 and slot 2 (with nothing posted yet) the day is still open
-    for slot in run_create.SLOT_HOURS[:2]:
-        hh, mm = (int(x) for x in slot.split(":"))
+    strat = {"warmup_until": "2000-01-01"}
+    today = config.today_utc().isoformat()
+
+    def at(hh, mm, mem):
         fake = datetime(2026, 9, 27, hh, mm, tzinfo=timezone.utc)
         real = run_create.datetime
+
         class _DT(real):
             @classmethod
             def now(cls, tz=None):
                 return fake
         run_create.datetime = _DT
         try:
-            ok, why = run_create.scheduler_check(cfg, strat, {}, offline=False, force=False)
+            return run_create.scheduler_check(cfg, strat, mem, offline=False, force=False)
         finally:
             run_create.datetime = real
-        assert ok, f"slot {slot} should be able to post: {why}"
-    # after the last slot the day is closed (so we never post at midnight)
-    fake = datetime(2026, 9, 27, 23, 30, tzinfo=timezone.utc)
-    real = run_create.datetime
-    class _DT2(real):
-        @classmethod
-        def now(cls, tz=None):
-            return fake
-    run_create.datetime = _DT2
-    try:
-        ok, why = run_create.scheduler_check(cfg, strat, {}, offline=False, force=False)
-    finally:
-        run_create.datetime = real
-    assert not ok and "last slot" in why, why
-    # idempotency beats everything, force included
-    ok, why = run_create.scheduler_check(cfg, strat, {"last_post_date": config.today_utc().isoformat()},
-                                        offline=False, force=True)
-    assert not ok and "already posted" in why
+
+    count = lambda n: {"posts_today_date": today, "posts_today_count": n}
+
+    # 13:30 — nothing posted yet: post 1 goes out
+    ok, why = at(13, 30, {})
+    assert ok, f"post 1 should publish at its due time: {why}"
+
+    # 15:00 — if post 1 FAILED, the retry must publish it
+    ok, why = at(15, 0, {})
+    assert ok, f"15:00 must retry post 1 after a failure: {why}"
+
+    # 15:00 — if post 1 succeeded, post 2 is not due yet
+    ok, why = at(15, 0, count(1))
+    assert not ok, f"post 2 must wait for its due time, got: {why}"
+
+    # 17:30 — post 2's due time
+    ok, why = at(17, 30, count(1))
+    assert ok, f"post 2 should publish at its due time: {why}"
+
+    # 19:00 — retry for post 2 if it failed
+    ok, why = at(19, 0, count(1))
+    assert ok, f"19:00 must retry post 2 after a failure: {why}"
+
+    # two done: there is no third post, forced or not
+    for hh, mm in ((19, 0), (22, 0)):
+        ok, why = at(hh, mm, count(2))
+        assert not ok, f"a third post must be refused at {hh}:{mm:02d}: {why}"
+
+    # and force does NOT bypass the daily cap
+    ok, why = run_create.scheduler_check(cfg, strat, count(2), offline=False, force=True)
+    assert not ok and "daily cap" in why, f"force must not exceed the cap: {why}"
+
+
+def test_scheduler_late_cron_still_publishes_the_due_post():
+    """A late cron must not be refused as 'past the last slot'.
+
+    GitHub fires scheduled crons minutes late (observed: a 19:00 slot starting at
+    19:07). A strict cutoff at the last slot would reject exactly the run that is
+    post 2's retry. Publishing whenever a post is due and missing is safe: the daily
+    cap is what prevents a third post.
+    """
+    from datetime import datetime, timezone
+    cfg = config.load_config()
+    strat = {"warmup_until": "2000-01-01"}
+    today = config.today_utc().isoformat()
+    mem = {"posts_today_date": today, "posts_today_count": 1}   # post 1 done, 2 pending
+
+    for hh, mm in ((19, 7), (19, 20), (20, 30)):
+        fake = datetime(2026, 9, 27, hh, mm, tzinfo=timezone.utc)
+        real = run_create.datetime
+
+        class _DT(real):
+            @classmethod
+            def now(cls, tz=None):
+                return fake
+        run_create.datetime = _DT
+        try:
+            ok, why = run_create.scheduler_check(cfg, strat, mem, offline=False,
+                                                 force=False)
+        finally:
+            run_create.datetime = real
+        assert ok, f"a late run at {hh}:{mm:02d} must still publish post 2: {why}"
 
 
 def test_skip_decision_happens_before_the_jitter_sleep():
@@ -775,24 +837,61 @@ def test_used_music_queries_is_persisted_and_pruned():
         "run_create never records the resolved query; the same track can return"
 
 
-def test_dry_run_bypasses_idempotency_but_real_runs_never_do():
-    """dry_run may bypass the one-post-per-day guard; real runs never may.
+def test_posts_today_counter_tracks_the_daily_cap():
+    """The per-day counter must count within a day, reset across days, and be safe
+    against a missing/legacy memory.
 
-    The guard prevents a second PUBLISH. A dry-run publishes nothing and mutates no
-    state, but it used to return "already posted today" before the render began, so
-    the render path could not be exercised on any day that had already posted — which
-    is most days, since the day's first success sets that flag. Forced real runs must
-    still be blocked, because force is also what a manual dispatch uses to publish.
+    The cap needs this separate counter: post_counter counts every post ever, and
+    last_post_date can only say "posted at least once today", so neither could allow
+    a second post while refusing a third.
+    """
+    from datetime import date
+    today = config.today_utc()
+
+    assert run_create.posts_today({}, today) == 0, "empty memory must read as 0"
+    assert run_create.posts_today({"posts_today_date": None}, today) == 0
+    # a counter from another day must not carry over
+    assert run_create.posts_today({"posts_today_date": "2000-01-01",
+                                   "posts_today_count": 2}, today) == 0
+    assert run_create.posts_today({"posts_today_date": today.isoformat(),
+                                   "posts_today_count": 1}, today) == 1
+    # garbage must not crash the scheduler
+    assert run_create.posts_today({"posts_today_date": today.isoformat(),
+                                   "posts_today_count": "not-a-number"}, today) == 0
+
+    # recording increments, and a new day resets to 1
+    mem = {}
+    run_create._record_post(mem, {}, {"media_id": "1"}, {})
+    assert mem["posts_today_count"] == 1, "first post of the day must set 1/2"
+    assert run_create.posts_today(mem, today) == 1
+    run_create._record_post(mem, {}, {"media_id": "2"}, {})
+    assert mem["posts_today_count"] == 2, "second post must set 2/2"
+    assert run_create.posts_today(mem, today) == 2
+    # a stale date resets instead of accumulating
+    mem["posts_today_date"] = "2000-01-01"
+    run_create._record_post(mem, {}, {"media_id": "3"}, {})
+    assert mem["posts_today_count"] == 1, "a new day must reset the daily counter"
+    assert mem["posts_today_date"] == today.isoformat()
+
+
+def test_dry_run_bypasses_the_cap_but_real_runs_never_do():
+    """dry_run may bypass the two-posts-per-day cap; real runs never may.
+
+    The cap prevents extra PUBLISHES. A dry-run publishes nothing and mutates no
+    state, but it used to return before the render began, so the render path could not
+    be exercised on any day that had already posted. Forced real runs must still be
+    blocked, because force is also what a manual dispatch uses to publish.
     """
     cfg = config.load_config()
     today = config.today_utc().isoformat()
-    mem = {"last_post_date": today}
+    mem = {"posts_today_date": today,
+           "posts_today_count": run_create.POSTS_PER_DAY}
 
     ok, _ = run_create.scheduler_check(cfg, {}, mem, force=False)
-    assert ok is False, "a real run after today's post must be blocked"
+    assert ok is False, "a real run at the daily cap must be blocked"
 
-    ok, _ = run_create.scheduler_check(cfg, {}, mem, force=True)
-    assert ok is False, "a FORCED real run must still be blocked (double-publish guard)"
+    ok, why = run_create.scheduler_check(cfg, {}, mem, force=True)
+    assert ok is False, f"a FORCED real run must still respect the cap: {why}"
 
     ok, why = run_create.scheduler_check(cfg, {}, mem, force=True, dry_run=True)
     assert ok is True, f"dry-run should proceed to exercise the render, got {why!r}"

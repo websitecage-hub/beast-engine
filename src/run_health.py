@@ -15,7 +15,7 @@ from datetime import datetime, timedelta, timezone
 
 import requests
 
-from . import alerts, config, llm, music, publish, state
+from . import alerts, config, llm, music, publish, run_create, state
 
 
 def run(dry_run: bool = False) -> int:
@@ -111,7 +111,11 @@ def run(dry_run: bool = False) -> int:
     else:
         stale = True
     log["staleness"] = {"last_post_date": last, "stale": stale,
-                        "paused": config.paused()}
+                        "paused": config.paused(),
+                        # with TWO posts per day, today's progress is the useful number:
+                        # a healthy day shows 2/2 by the end of it
+                        "posts_today": run_create.posts_today(memory),
+                        "posts_per_day": run_create.POSTS_PER_DAY}
     if stale and not config.paused() and not dry_run:
         alerts.fail(f"machine hasn't posted — last_post_date={last}")
     print(f"[health] staleness: {log['staleness']}")
