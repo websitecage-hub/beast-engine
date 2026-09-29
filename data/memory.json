@@ -578,6 +578,68 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18228418756327144",
+      "container_id": "17911422873538210",
+      "created_at": "2026-09-29T18:54:34.534780+00:00",
+      "hour_slot": "13:30",
+      "hook_text": "POV: you said \"yeah, I'm good\" while your chest was caving in.",
+      "hook": "POV: you said \"yeah, I'm good\" while your chest was caving in.",
+      "keyword": "MASK",
+      "topic": "performing fine while falling apart",
+      "caption": "That \"I'm good\" wasn't a lie. It was how you survived the day.\nYour nervous system learned to perform calm while your body stays in full alarm. This is what social anxiety actually does — you smile, you nod, you function, while your chest tightens and your heart races behind a locked door.\nIf you hold it together all day and only fall apart when you're finally alone, you're not alone.\nComment MASK and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts #quietpeople",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#latenightthoughts",
+        "#quietpeople"
+      ],
+      "dna": {
+        "hook_text": "POV: you said \"yeah, I'm good\" while your chest was caving in.",
+        "cluster": "the_mask",
+        "topic": "exposure_fear",
+        "hook_length_chars": 62,
+        "num_text_blocks": 5,
+        "landing_text": "Comment MASK and I'll send you the full breakdown.",
+        "bg_type": "mask",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Dancing In the Dark",
+          "artist": "Bruce Springsteen",
+          "genre": "alternative",
+          "trend_score": 76.3,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man in a crowd looking down alone dark cinematic. Overlay text reads: POV: you said \"yeah, I'm good\" while your chest was caving in. You nodded through meetings. You laughed on cue. You held it together. You got to your car and your hands wouldn't stop shaking. You're not faking it. You're holding the... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: you said \"yeah, I'm good\" while your chest was caving in.\nYou nodded through meetings. You laughed on cue. You held it together.\nYou got to your car and your hands wouldn't stop shaking.\nYou're not faking it. You're holding the collapse until you're finally alone.\nComment MASK and I'll send you the full breakdown.",
+        "keyword": "MASK",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#latenightthoughts",
+          "#quietpeople"
+        ],
+        "posted_hour": "13:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_mask",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -630,6 +692,11 @@
       "id": "60376451250086958",
       "date": "2026-09-29",
       "pin_url": "https://www.pinterest.com/pin/60376451250086958/"
+    },
+    {
+      "id": "1002825042034571500",
+      "date": "2026-09-29",
+      "pin_url": "https://www.pinterest.com/pin/1002825042034571500/"
     }
   ],
   "used_tracks": [],
@@ -770,7 +837,7 @@
     }
   ],
   "last_post_date": "2026-09-29",
-  "post_counter": 9,
+  "post_counter": 10,
   "last_keyword": "BLANK",
   "keyword_counts": {
     "HEARD": 1,
@@ -872,14 +939,39 @@
       "date": "2026-09-29",
       "source": "song",
       "query": "low drone sparse"
+    },
+    {
+      "profile": [
+        0.05290467884441096,
+        0.2104258058859276,
+        0.2625622049761918,
+        0.09338425908202948,
+        0.11014023055133113,
+        0.07143348905309703,
+        0.07067995991692866,
+        0.040426479768439494,
+        0.024551009767111505,
+        0.025715565373162098,
+        0.011285494946224484,
+        0.011462261373649184,
+        0.007469107151097947,
+        0.0028637364841199203,
+        0.001796985202430877,
+        0.0023050393999752184,
+        0.0005936922238726037
+      ],
+      "date": "2026-09-29",
+      "source": "song",
+      "query": "brooding ambient sustained"
     }
   ],
   "used_music_queries": [
     "grim ambient oppressive",
     "low drone sparse",
     "published-reel-Ddyv2XVjOte",
-    "slowed reverb dark ambient muffled"
+    "slowed reverb dark ambient muffled",
+    "brooding ambient sustained"
   ],
   "posts_today_date": "2026-09-29",
-  "posts_today_count": 1
+  "posts_today_count": 2
 }
