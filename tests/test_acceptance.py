@@ -368,6 +368,14 @@ def test_scheduler_hours_match_the_workflow_crons():
     # two posts a day, two due times
     assert len(run_create.DUE_HOURS) == run_create.POSTS_PER_DAY == 2
 
+    # posting_slots_utc is informational (nothing reads it), which is exactly how a
+    # stale list survives unnoticed and then misleads the next reader. Pin it to the
+    # scheduler so the config and the code cannot disagree.
+    slots = config.DEFAULT_CONFIG["posting_slots_utc"]
+    assert sorted(slots) == sorted(run_create.SLOT_HOURS), (
+        f"posting_slots_utc {slots} has drifted from the scheduler's "
+        f"SLOT_HOURS {sorted(run_create.SLOT_HOURS)}")
+
 
 def test_scheduler_allows_two_posts_and_retries_each():
     """TWO posts per day, each with its own retry, and never a third.

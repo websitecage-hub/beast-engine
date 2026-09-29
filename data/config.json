@@ -3,7 +3,7 @@
     "name": "Unleash The Beast",
     "handle": "unleashthe.b",
     "meaning": "The real person under the mask. Not aggression, not grind. The self buried under years of small retreats who still wants to be known.",
-    "voice": "Describe, never advise. Present tense, second person, his language — never a psychologist's. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
+    "voice": "Describe, never advise. Present tense, second person, his language \u2014 never a psychologist's. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
     "hook_examples": [
       "You know exactly what to say. You say nothing. Again.",
       "The conversation ends. The trial begins.",
@@ -205,8 +205,8 @@
   "posting_slots_utc": [
     "13:30",
     "15:00",
-    "16:30",
-    "21:30"
+    "17:30",
+    "19:00"
   ],
   "reel": {
     "min_s": 9.0,
@@ -320,7 +320,7 @@
       ]
     },
     "name_field": "Unleash The Beast | Social Anxiety Help",
-    "bio_template": "Overcoming social anxiety. Real posts for the ones who overthink every conversation. The book that gets it → link below.",
+    "bio_template": "Overcoming social anxiety. Real posts for the ones who overthink every conversation. The book that gets it \u2192 link below.",
     "hashtags_min": 6,
     "hashtags_max": 9
   },
