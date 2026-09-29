@@ -40,20 +40,34 @@ def _start_trending(cfg) -> tuple:
     return t, box
 
 
-# The exact times the create workflow's crons fire. Kept here so the scheduler and
-# the publish pipeline agree on what "today's slot" means.
+# The exact times the create workflow's crons fire (UTC). Kept here so the scheduler
+# and the publish pipeline agree on what "today's slot" means.
 #
-# TWO POSTS PER DAY. Each post has a nominal due time plus a retry:
+# GitHub's cron scheduler delays, coalesces and sometimes drops scheduled runs —
+# observed ~6h late on this repo, which lost whole slots. Waiting for an exact
+# posting time is therefore not reliable. The workflow now WAKES every 4 hours and
+# the scheduler decides whether a post is due; a delayed wake still lands inside the
+# day and publishes instead of the slot being lost.
 #
-#   post 1  due 13:30 UTC (19:00 IST), retry 15:00 UTC (20:30 IST)
-#   post 2  due 17:30 UTC (23:00 IST), retry 19:00 UTC (00:30 IST)
+# 4 hours is deliberate: comfortably longer than one create run (build + publish),
+# and the workflow's concurrency group is not cancel-in-progress, so a wake-up can
+# never collide with the previous run still working.
+RUN_HOURS = ("01:30", "05:30", "09:30", "13:30", "17:30", "21:30")
+
+# The two moments a post becomes due. Everything before the first is a quiet run:
+# `due` is counted from these, so the overnight wakes (01:30-09:30 UTC) never publish.
 #
-# A retry only publishes if its post is still missing, so a failed build is picked up
-# by the next run instead of losing the day's slot. The retry is not a second post.
-SLOT_GROUPS = (("13:30", "15:00"), ("17:30", "19:00"))
-SLOT_HOURS = tuple(t for group in SLOT_GROUPS for t in group)
-DUE_HOURS = tuple(group[0] for group in SLOT_GROUPS)
-POSTS_PER_DAY = len(SLOT_GROUPS)
+#   post 1  due 13:30 UTC (19:00 IST)
+#   post 2  due 17:30 UTC (23:00 IST)
+#
+# A post that is due but still missing is published by whichever later run sees it,
+# so a failed or delayed build is picked up instead of the day being lost. The daily
+# cap alone stops a third post, however many times we wake.
+DUE_HOURS = ("13:30", "17:30")
+POSTS_PER_DAY = len(DUE_HOURS)
+
+# Every wake-up time, in order. The acceptance suite pins this to the workflow crons.
+SLOT_HOURS = RUN_HOURS
 
 
 def posts_today(memory, today=None) -> int:
@@ -85,8 +99,8 @@ def scheduler_check(cfg, strategy, memory, offline=False, force=False,
     Every real run still gets the cap, including forced ones.
 
     The day's two posts each have a due time. A run publishes when a post is due and
-    not yet done, which makes the later cron a retry for the earlier post: if the
-    13:30 build fails, the 15:00 run publishes instead of skipping.
+    not yet done, which is what makes the later wakes retries: if the 13:30 build
+    fails or GitHub fires that cron late, a later run publishes instead of skipping.
     """
     today = config.today_utc()
     if offline:

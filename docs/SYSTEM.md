@@ -178,12 +178,18 @@ under CI conditions.
 
 OPERATIONS
 ----------
-- TWO posts per day. Each has a due time and a retry, all in UTC:
-      post 1  due 13:30 UTC (19:00 IST)   retry 15:00 UTC (20:30 IST)
-      post 2  due 17:30 UTC (23:00 IST)   retry 19:00 UTC (00:30 IST next day)
-  A retry only publishes if its post is still missing, so a failed build is picked up
-  by the next run instead of losing the slot. The daily cap (2) is what prevents a
-  third post — forcing a manual run does NOT bypass it.
+- Wakes every 4 hours (01:30, 05:30, 09:30, 13:30, 17:30, 21:30 UTC); the scheduler
+  decides whether a post is due. Two posts a day, due:
+      post 1  due 13:30 UTC (19:00 IST)
+      post 2  due 17:30 UTC (23:00 IST)
+  The 4h grid exists because GitHub's cron scheduler delays, coalesces and sometimes
+  drops scheduled runs — observed ~6h late on this repo, which lost whole slots. A
+  delayed wake still lands inside the day and publishes; a wake before the first due
+  time publishes nothing. The daily cap (2) is what prevents a third post — forcing a
+  manual run does NOT bypass it.
+- 4 hours is deliberately longer than one create run (build + publish), and the
+  workflow's concurrency group is not cancel-in-progress, so a wake can never collide
+  with the previous run still working.
 - To run it by hand: dispatch create.yml (optionally with dry_run).
 - dry-run does a real build against the real services but publishes nothing, mutates
   no state and sends no Telegram message. It ignores the daily cap, since it publishes

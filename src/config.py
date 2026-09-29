@@ -234,8 +234,8 @@ DEFAULT_CONFIG = {
                        "rnb": " moody", "lofi": " slowed reverb dark"},
     },
     # Nominal slots, informational only — the scheduler's authority is
-    # run_create.SLOT_GROUPS (two posts/day, each with a retry). Keep in sync.
-    "posting_slots_utc": ["13:30", "15:00", "17:30", "19:00"],
+    # run_create.RUN_HOURS (wakes every 4h; two posts/day). Keep in sync.
+    "posting_slots_utc": ["01:30", "05:30", "09:30", "13:30", "17:30", "21:30"],
     # Part 5.5 — 9-10 seconds, locked
     "reel": {"min_s": 9.0, "max_s": 10.0, "fps": 30, "w": 1080, "h": 1920},
     "timing": {"hook_end_frac": 0.45, "deepen_end_frac": 0.88},  # spec §4 (see build_video.state_map)
@@ -344,8 +344,11 @@ def default_strategy() -> dict:
             "bg_type": _null_family(BG_TYPES),
             "loop_technique": _null_family(LOOP_TECHNIQUES),
         },
-        "hour_scores": {"13:30": None, "15:00": None, "16:30": None, "21:30": None},
-        "next_post_hour": "21:30",
+        # Only the DUE hours — the learner must never aim a post at a wake that
+        # cannot publish. Mirrors run_create.DUE_HOURS (kept literal to avoid a
+        # circular import; the acceptance suite pins the two together).
+        "hour_scores": {"13:30": None, "17:30": None},
+        "next_post_hour": "13:30",
         "warmup_until": (BUILD_DATE + timedelta(days=8)).isoformat(),
         "experiments": [],
         "last_updated": None,

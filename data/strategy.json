@@ -187,11 +187,9 @@
   },
   "hour_scores": {
     "13:30": null,
-    "15:00": null,
-    "16:30": null,
-    "21:30": null
+    "17:30": null
   },
-  "next_post_hour": "15:00",
+  "next_post_hour": "13:30",
   "warmup_until": "2026-09-27",
   "experiments": [],
   "last_updated": null

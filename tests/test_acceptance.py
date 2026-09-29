@@ -378,12 +378,12 @@ def test_scheduler_hours_match_the_workflow_crons():
 
 
 def test_scheduler_allows_two_posts_and_retries_each():
-    """TWO posts per day, each with its own retry, and never a third.
+    """TWO posts per day, each recovered by a later wake, and never a third.
 
     Each post has a due time; a run publishes only when a post is due and still
-    missing. That makes the follow-up cron a RETRY for the earlier post: if the 13:30
-    build fails, the 15:00 run publishes instead of the day being lost. The cap then
-    stops a third post once both are out.
+    missing. That makes every later wake a RETRY for the earlier post: if the 13:30
+    build fails — or GitHub fires that cron hours late — the next wake publishes
+    instead of the day being lost. The cap then stops a third post once both are out.
     """
     from datetime import datetime, timezone
 
@@ -411,9 +411,9 @@ def test_scheduler_allows_two_posts_and_retries_each():
     ok, why = at(13, 30, {})
     assert ok, f"post 1 should publish at its due time: {why}"
 
-    # 15:00 — if post 1 FAILED, the retry must publish it
+    # 15:00 — if post 1 FAILED, a later wake must publish it
     ok, why = at(15, 0, {})
-    assert ok, f"15:00 must retry post 1 after a failure: {why}"
+    assert ok, f"15:00 must recover post 1 after a failure: {why}"
 
     # 15:00 — if post 1 succeeded, post 2 is not due yet
     ok, why = at(15, 0, count(1))
@@ -423,9 +423,9 @@ def test_scheduler_allows_two_posts_and_retries_each():
     ok, why = at(17, 30, count(1))
     assert ok, f"post 2 should publish at its due time: {why}"
 
-    # 19:00 — retry for post 2 if it failed
+    # 19:00 — recover post 2 if it failed
     ok, why = at(19, 0, count(1))
-    assert ok, f"19:00 must retry post 2 after a failure: {why}"
+    assert ok, f"19:00 must recover post 2 after a failure: {why}"
 
     # two done: there is no third post, forced or not
     for hh, mm in ((19, 0), (22, 0)):
@@ -437,13 +437,62 @@ def test_scheduler_allows_two_posts_and_retries_each():
     assert not ok and "daily cap" in why, f"force must not exceed the cap: {why}"
 
 
+def test_wakes_are_four_hours_apart_and_none_before_the_first_due_time():
+    """The wake grid must be 4-hourly, and the overnight wakes must be silent.
+
+    GitHub fires scheduled crons hours late (observed ~6h), so the workflow wakes on a
+    fixed 4-hour grid instead of at the two exact posting times. 4h is chosen to clear
+    a single create run and to never collide with the previous one (the concurrency
+    group is not cancel-in-progress).
+    """
+    mins = [run_create._slot_minutes(t) for t in run_create.RUN_HOURS]
+    assert len(mins) == len(set(mins)), f"duplicate wake times: {run_create.RUN_HOURS}"
+    assert len(mins) == 6, f"expected 6 wakes a day, got {len(mins)}"
+    for a, b in zip(mins, mins[1:]):
+        assert b - a == 240, (
+            f"wakes must be exactly 4h apart, got {b - a}min between "
+            f"{a // 60}:{a % 60:02d} and {b // 60}:{b % 60:02d}")
+
+    # the grid must start at 01:30 so that 13:30 and 17:30 are both on it
+    assert set(run_create.DUE_HOURS) <= set(run_create.RUN_HOURS), (
+        f"due times {run_create.DUE_HOURS} must be wake times "
+        f"{run_create.RUN_HOURS}")
+
+    # a wake before the first due time must publish nothing, at 0/2 and 1/2
+    from datetime import datetime, timezone
+    cfg = config.load_config()
+    strat = {"warmup_until": "2000-01-01"}
+    today = config.today_utc().isoformat()
+    for hhmm in ("01:30", "05:30", "09:30"):
+        hh, mm = (int(x) for x in hhmm.split(":"))
+        for used in (0, 1):
+            fake = datetime(2026, 9, 27, hh, mm, tzinfo=timezone.utc)
+            real = run_create.datetime
+
+            class _DT(real):
+                @classmethod
+                def now(cls, tz=None):
+                    return fake
+            run_create.datetime = _DT
+            try:
+                ok, why = run_create.scheduler_check(
+                    cfg, strat,
+                    {"posts_today_date": today, "posts_today_count": used},
+                    offline=False, force=False)
+            finally:
+                run_create.datetime = real
+            assert not ok, (
+                f"{hhmm} ({used}/2 posted) is before the first due time and must "
+                f"not publish, got: {why}")
+
+
 def test_scheduler_late_cron_still_publishes_the_due_post():
     """A late cron must not be refused as 'past the last slot'.
 
-    GitHub fires scheduled crons minutes late (observed: a 19:00 slot starting at
-    19:07). A strict cutoff at the last slot would reject exactly the run that is
-    post 2's retry. Publishing whenever a post is due and missing is safe: the daily
-    cap is what prevents a third post.
+    GitHub fires scheduled crons hours late on this repo, and a strict cutoff at the
+    last slot would reject exactly the run that is post 2's recovery. Publishing
+    whenever a post is due and missing is safe: the daily cap is what prevents a
+    third post.
     """
     from datetime import datetime, timezone
     cfg = config.load_config()
@@ -627,8 +676,8 @@ def test_learn_on_fixture_memory():
                        "topic": {}, "mood": {}, "bg_type": {}, "loop_technique": {}}
     strategy["n"] = {"archetype": {a: followers[a][1] for a in followers},
                      "topic": {}, "mood": {}, "bg_type": {}, "loop_technique": {}}
-    strategy["hour_scores"] = {"13:30": 0.06, "15:00": 0.12, "16:30": 0.03, "21:30": 0.2}
-    strategy["next_post_hour"] = "21:30"
+    strategy["hour_scores"] = {"13:30": 0.06, "17:30": 0.12}
+    strategy["next_post_hour"] = "17:30"
     strategy["experiments"] = [{"archetype": "the_freeze", "topic": "asking_coworker"}]
     text = analyze._write_report(memory, strategy, posts, G)
     assert "Self-improvement metrics" in text     # Part 7.3
@@ -648,7 +697,7 @@ def test_insufficient_data_report():
 def test_workflows_parse_and_contracts():
     wf = ROOT / ".github" / "workflows"
     expected = {
-        "create.yml": ("30 13 * * *", 30, "beast-create", "run_create"),
+        "create.yml": ("30 1 * * *", 30, "beast-create", "run_create"),
         "measure.yml": ("0 4,10,16 * * *", 10, "beast-measure", "run_measure"),
         "learn.yml": ("0 18 * * 0", 10, "beast-learn", "run_learn"),
         "health.yml": ("0 5 * * *", 10, "beast-health", "run_health"),
