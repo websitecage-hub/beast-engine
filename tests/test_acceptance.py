@@ -970,6 +970,78 @@ def test_dry_run_bypasses_the_cap_but_real_runs_never_do():
             f"scheduler_check call at line {c.lineno} omits dry_run: {sorted(kw)}"
 
 
+def test_scheduled_runs_are_not_forced_by_the_workflow():
+    """The workflow must NOT export BEAST_FORCE_POST for scheduled runs.
+
+    create.yml exported `BEAST_FORCE_POST=1` unconditionally, which sets force=True on
+    every run — scheduled ones included. force returns "post now" before the slot
+    window is consulted, so the whole schedule was dead: reels published the moment
+    any cron fired, including the 01:30/05:30 wakes meant to publish nothing. In the
+    live log, posts landed at 00:55 and 07:37 UTC.
+
+    A manual dispatch is ALREADY forced via GITHUB_EVENT_NAME in run_create, so the
+    export was both wrong and redundant. `force` must only be set from the explicit
+    workflow input, which is the supported way to force a manual run.
+    """
+    yml = (ROOT / ".github" / "workflows" / "create.yml").read_text(encoding="utf-8")
+
+    # the only permitted assignment is the one guarded by the `force` input
+    bare = [ln.strip() for ln in yml.splitlines()
+            if "BEAST_FORCE_POST" in ln and "inputs.force" not in ln
+            and "export BEAST_FORCE_POST=1" in ln]
+    assert not bare, (
+        f"create.yml still exports BEAST_FORCE_POST unconditionally, which forces "
+        f"every scheduled run and disables the slot schedule: {bare}")
+
+    assert "inputs.force" in yml, (
+        "create.yml must wire the `force` input to BEAST_FORCE_POST — otherwise a "
+        "manual dispatch has no way to publish immediately")
+
+    # and the dispatch path must still force, or the manual recovery route is gone
+    src = (ROOT / "src" / "run_create.py").read_text(encoding="utf-8")
+    assert 'GITHUB_EVENT_NAME") == "workflow_dispatch"' in src, (
+        "run_create must still force on workflow_dispatch, or the documented manual "
+        "publish route would be refused by the slot window")
+
+
+def test_recorded_hour_slot_is_the_real_publish_time_not_a_preference():
+    """`hour_slot` must reflect when the post actually went out.
+
+    It used to be `strategy["next_post_hour"]` — the learner's current PREFERENCE — so
+    every post was filed under the same hour no matter when it published. Live memory
+    had every post reading "13:30" including one published at 07:37 UTC. That fed the
+    hour learner its own preference back as if it were measured performance.
+    """
+    from datetime import datetime, timezone
+    mem = {}
+
+    # a post published at 07:37 is in the 05:30 wake's slot... but the due slots are
+    # 13:30/17:30, so anything before 13:30 belongs to the first due slot
+    for hh, mm, want in ((7, 37, "13:30"), (14, 0, "13:30"),
+                         (16, 29, "13:30"), (18, 54, "17:30"),
+                         (23, 59, "17:30"), (0, 40, "13:30")):
+        slot = run_create._slot_for(datetime(2026, 9, 30, hh, mm, tzinfo=timezone.utc), mem)
+        assert slot in run_create.DUE_HOURS, (
+            f"recorded slot {slot} must be one of the due times {run_create.DUE_HOURS}")
+        assert slot == want, f"published at {hh}:{mm:02d} should file under {want}, got {slot}"
+
+    # and the slot actually recorded on a post comes from the publish time
+    real = run_create.datetime
+
+    class _DT(real):
+        @classmethod
+        def now(cls, tz=None):
+            return datetime(2026, 9, 30, 18, 54, tzinfo=timezone.utc)
+    run_create.datetime = _DT
+    try:
+        run_create._record_post(mem, {}, {"media_id": "1"}, {"next_post_hour": "13:30"})
+    finally:
+        run_create.datetime = real
+    assert mem["posts"][0]["hour_slot"] == "17:30", (
+        "a post published at 18:54 must be filed under 17:30, not the learner's "
+        f"preference — got {mem['posts'][0]['hour_slot']!r}")
+
+
 def test_used_music_query_memory_records_and_backfills():
     """used_music_queries must actually accumulate, including queries only known via
     used_track_profiles.

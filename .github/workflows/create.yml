@@ -23,7 +23,7 @@ on:
         type: boolean
         default: false
       force:
-        description: "Ignore the off-day/window rules (never the one-post-per-day cap)"
+        description: "Publish at once, ignoring the slot window (never the daily cap)"
         type: boolean
         default: false
 
@@ -83,7 +83,13 @@ jobs:
         run: |
           ARGS=""
           if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
-          export BEAST_FORCE_POST=1
+          # Do NOT export BEAST_FORCE_POST here. force skips the slot window, and a
+          # manual dispatch is already forced via GITHUB_EVENT_NAME (see run_create).
+          # Exporting it made EVERY scheduled run forced, so runs published the moment
+          # any cron fired — the 4h grid was ignored and reels went out at 01:30/05:30,
+          # the overnight wakes meant to publish nothing. The `force` input is the
+          # supported way to force a manual run.
+          if [ "${{ inputs.force }}" = "true" ]; then export BEAST_FORCE_POST=1; fi
           python -m src.run_create $ARGS
       - name: Commit state
         if: always()

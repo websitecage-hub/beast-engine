@@ -70,6 +70,24 @@ POSTS_PER_DAY = len(DUE_HOURS)
 SLOT_HOURS = RUN_HOURS
 
 
+def _slot_for(now, memory) -> str:
+    """Which due slot this post belongs to.
+
+    The recorded slot used to be `strategy["next_post_hour"]`, which is just the
+    learner's current preference — so every post was filed under whatever hour the
+    learner happened to like, regardless of when it actually went out. Every post in
+    the live memory read "13:30" even when published at 07:37. That fed the hour
+    learner its own preference back as if it were performance data.
+
+    Derive it from the real publish time instead: the latest due time that has passed
+    today. Falls back to the first due time when called with a time before any of
+    them (e.g. a forced run overnight).
+    """
+    now_min = now.hour * 60 + now.minute
+    passed = [t for t in DUE_HOURS if now_min >= _slot_minutes(t)]
+    return passed[-1] if passed else DUE_HOURS[0]
+
+
 def posts_today(memory, today=None) -> int:
     """How many posts have already gone out today.
 
@@ -372,7 +390,7 @@ def _record_track(memory, mmeta):
 def _record_post(memory, content, result, strategy):
     """Part 7.1 — store the reel's full genetic code."""
     now = datetime.now(timezone.utc)
-    slot = strategy.get("next_post_hour")
+    slot = _slot_for(now, memory)
     hook = content.get("hook") or ""
     memory.setdefault("posts", []).append({
         "media_id": result["media_id"],
