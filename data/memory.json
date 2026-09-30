@@ -647,6 +647,68 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "17970112452156762",
+      "container_id": "17911453626538210",
+      "created_at": "2026-09-30T00:55:47.259989+00:00",
+      "hour_slot": "13:30",
+      "hook_text": "POV: you're in a group chat IRL and your throat locks shut.",
+      "hook": "POV: you're in a group chat IRL and your throat locks shut.",
+      "keyword": "SEEN",
+      "topic": "freezing in group conversations",
+      "caption": "Going mute in a group doesn't mean you have nothing to say. It means your body decided it was safer to say nothing at all.\nOne-on-one your nervous system only has to track one person. In a group it counts every pair of eyes at once and treats it like a trial. So your throat tightens, your chest locks, and you sit there watching the conversation move without you again.\nIf you rehearse a line, miss the window, and spend the night replaying how you sat there silent while everyone else looked effortless, you're not alone. Comment SEEN and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #introvertstruggles #quietpeople #latenightthoughts #overthinkers",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#introvertstruggles",
+        "#quietpeople",
+        "#latenightthoughts",
+        "#overthinkers"
+      ],
+      "dna": {
+        "hook_text": "POV: you're in a group chat IRL and your throat locks shut.",
+        "cluster": "the_freeze",
+        "topic": "freeze_at_work",
+        "hook_length_chars": 59,
+        "num_text_blocks": 6,
+        "landing_text": "Comment SEEN and I'll send you the full breakdown.",
+        "bg_type": "freeze",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Dancing In the Dark",
+          "artist": "Bruce Springsteen",
+          "genre": "alternative",
+          "trend_score": 76.3,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man standing apart from a group of people dark cinematic. Overlay text reads: POV: you're in a group chat IRL and your throat locks shut. One-on-one you can breathe. In a group of four you go mute. You have the line ready. You wait for a gap that never comes. By the time you try, they're already laughing at the... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: you're in a group chat IRL and your throat locks shut.\nOne-on-one you can breathe. In a group of four you go mute.\nYou have the line ready. You wait for a gap that never comes.\nBy the time you try, they're already laughing at the next thing.\nYou're not quiet. You just learned it's safer to be invisible than interrupted again.\nComment SEEN and I'll send you the full breakdown.",
+        "keyword": "SEEN",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#introvertstruggles",
+          "#quietpeople",
+          "#latenightthoughts",
+          "#overthinkers"
+        ],
+        "posted_hour": "13:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_freeze",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "drone"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -704,6 +766,11 @@
       "id": "1002825042034571500",
       "date": "2026-09-29",
       "pin_url": "https://www.pinterest.com/pin/1002825042034571500/"
+    },
+    {
+      "id": "230879918391596207",
+      "date": "2026-09-30",
+      "pin_url": "https://www.pinterest.com/pin/230879918391596207/"
     }
   ],
   "used_tracks": [],
@@ -843,8 +910,8 @@
       "hook": "POV: the conversation pauses and your mind goes completely blank."
     }
   ],
-  "last_post_date": "2026-09-29",
-  "post_counter": 10,
+  "last_post_date": "2026-09-30",
+  "post_counter": 11,
   "last_keyword": "BLANK",
   "keyword_counts": {
     "HEARD": 1,
@@ -979,6 +1046,6 @@
     "slowed reverb dark ambient muffled",
     "brooding ambient sustained"
   ],
-  "posts_today_date": "2026-09-29",
-  "posts_today_count": 2
+  "posts_today_date": "2026-09-30",
+  "posts_today_count": 1
 }
