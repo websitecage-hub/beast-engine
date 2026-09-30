@@ -709,6 +709,68 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18100081538637286",
+      "container_id": "17911516008538210",
+      "created_at": "2026-09-30T07:37:29.648668+00:00",
+      "hour_slot": "13:30",
+      "hook_text": "POV: you cancel plans and your chest finally stops racing.",
+      "hook": "POV: you cancel plans and your chest finally stops racing.",
+      "keyword": "FREE",
+      "topic": "cancel relief guilt cycle",
+      "caption": "That relief you feel right after canceling doesn't make you a bad friend. It makes you someone whose body was bracing all day for a test.\nSocial anxiety doesn't fear the plan, it fears being exposed during it. So your system begs you to escape, you get relief, then shame rushes in to punish the relief. It's a loop, not a character flaw.\nIf you make plans you want to want, cancel them, feel calm for an hour, then feel guilty about the calm, you're not alone. Comment FREE and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts #quietpeople",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#latenightthoughts",
+        "#quietpeople"
+      ],
+      "dna": {
+        "hook_text": "POV: you cancel plans and your chest finally stops racing.",
+        "cluster": "the_detour",
+        "topic": "lost_friendships",
+        "hook_length_chars": 58,
+        "num_text_blocks": 6,
+        "landing_text": "Comment FREE and I'll send you the full breakdown.",
+        "bg_type": "detour",
+        "bg_is_video": true,
+        "audio_mood": "muffled_world",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Dancing In the Dark",
+          "artist": "Bruce Springsteen",
+          "genre": "alternative",
+          "trend_score": 76.3,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man alone on couch at night dark room cinematic. Overlay text reads: POV: you cancel plans and your chest finally stops racing. You text 'sorry man, can't make it' and stare at the ceiling while relief floods your body. An hour later you feel the guilt creep in again and replay how flaky you must look... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: you cancel plans and your chest finally stops racing.\nYou text 'sorry man, can't make it' and stare at the ceiling while relief floods your body.\nAn hour later you feel the guilt creep in again and replay how flaky you must look.\nYou tell yourself you'll go next time but you already know you won't.\nYou're not unreliable. You picked relief over exposure because exposure feels like being found out.\nComment FREE and I'll send you the full breakdown.",
+        "keyword": "FREE",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#latenightthoughts",
+          "#quietpeople"
+        ],
+        "posted_hour": "13:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_detour",
+        "mood": "muffled_world",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -771,6 +833,11 @@
       "id": "230879918391596207",
       "date": "2026-09-30",
       "pin_url": "https://www.pinterest.com/pin/230879918391596207/"
+    },
+    {
+      "id": "898608931899366949",
+      "date": "2026-09-30",
+      "pin_url": "https://www.pinterest.com/pin/898608931899366949/"
     }
   ],
   "used_tracks": [],
@@ -911,7 +978,7 @@
     }
   ],
   "last_post_date": "2026-09-30",
-  "post_counter": 11,
+  "post_counter": 12,
   "last_keyword": "BLANK",
   "keyword_counts": {
     "HEARD": 1,
@@ -1037,6 +1104,30 @@
       "date": "2026-09-29",
       "source": "song",
       "query": "brooding ambient sustained"
+    },
+    {
+      "profile": [
+        0.0035976128784537304,
+        0.03413411104789162,
+        0.1619296187922183,
+        0.13490679438827846,
+        0.08569491288849039,
+        0.12163277542149062,
+        0.1037331455424356,
+        0.07833418101238661,
+        0.07513955913812338,
+        0.033682660490132785,
+        0.029169159785601147,
+        0.029215626542949073,
+        0.027179623397945128,
+        0.032054132384776494,
+        0.025726820701708272,
+        0.017004296747976638,
+        0.006864968839141634
+      ],
+      "date": "2026-09-30",
+      "source": "song",
+      "query": "hushed ambient distant"
     }
   ],
   "used_music_queries": [
@@ -1044,8 +1135,9 @@
     "low drone sparse",
     "published-reel-Ddyv2XVjOte",
     "slowed reverb dark ambient muffled",
-    "brooding ambient sustained"
+    "brooding ambient sustained",
+    "hushed ambient distant"
   ],
   "posts_today_date": "2026-09-30",
-  "posts_today_count": 1
+  "posts_today_count": 2
 }
