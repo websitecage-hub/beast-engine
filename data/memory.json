@@ -118,7 +118,7 @@
       },
       "score": 0.036057692307692304,
       "harvested": false,
-      "last_harvested": "2026-09-30T20:23:46.777013+00:00"
+      "last_harvested": "2026-10-01T10:33:15.818311+00:00"
     },
     {
       "media_id": "18121136690487842",
@@ -185,7 +185,7 @@
       },
       "score": 0.0040650406504065045,
       "harvested": false,
-      "last_harvested": "2026-09-30T20:23:46.777013+00:00"
+      "last_harvested": "2026-10-01T10:33:15.818311+00:00"
     },
     {
       "media_id": "18019035686728113",
@@ -254,7 +254,7 @@
       },
       "score": 0.0020491803278688526,
       "harvested": false,
-      "last_harvested": "2026-09-30T20:23:46.777013+00:00"
+      "last_harvested": "2026-10-01T10:33:15.818311+00:00"
     },
     {
       "media_id": "18371214331242157",
@@ -323,7 +323,7 @@
       },
       "score": 0.5,
       "harvested": false,
-      "last_harvested": "2026-09-30T20:23:46.777013+00:00"
+      "last_harvested": "2026-10-01T10:33:15.818311+00:00"
     },
     {
       "media_id": "17994488751042115",
@@ -390,7 +390,7 @@
       },
       "score": 0.01650943396226415,
       "harvested": false,
-      "last_harvested": "2026-09-30T20:23:46.777013+00:00"
+      "last_harvested": "2026-10-01T10:33:15.818311+00:00"
     },
     {
       "media_id": "18129372190747783",
@@ -457,7 +457,7 @@
       },
       "score": 0.0022727272727272726,
       "harvested": false,
-      "last_harvested": "2026-09-30T20:23:46.777013+00:00"
+      "last_harvested": "2026-10-01T10:33:15.818311+00:00"
     },
     {
       "media_id": "18384062170228476",
@@ -524,7 +524,7 @@
       },
       "score": 0.018691588785046728,
       "harvested": false,
-      "last_harvested": "2026-09-30T20:23:46.777013+00:00"
+      "last_harvested": "2026-10-01T10:33:15.818311+00:00"
     },
     {
       "media_id": "18129224467746810",
@@ -591,7 +591,7 @@
       },
       "score": 0.0,
       "harvested": false,
-      "last_harvested": "2026-09-30T20:23:46.777013+00:00"
+      "last_harvested": "2026-10-01T10:33:15.818311+00:00"
     },
     {
       "media_id": "18228418756327144",
@@ -660,7 +660,7 @@
       },
       "score": 0.0,
       "harvested": false,
-      "last_harvested": "2026-09-30T20:23:46.777013+00:00"
+      "last_harvested": "2026-10-01T10:33:15.818311+00:00"
     },
     {
       "media_id": "17970112452156762",
@@ -720,9 +720,16 @@
         "bg_source": "pinterest_video",
         "music_source": "drone"
       },
-      "metrics": {},
-      "score": null,
-      "harvested": false
+      "metrics": {
+        "reach": 104,
+        "likes": 0,
+        "comments": 0,
+        "saved": 0,
+        "shares": 0
+      },
+      "score": 0.0,
+      "harvested": false,
+      "last_harvested": "2026-10-01T10:33:15.818311+00:00"
     },
     {
       "media_id": "18100081538637286",
@@ -782,9 +789,16 @@
         "bg_source": "pinterest_video",
         "music_source": "song"
       },
-      "metrics": {},
-      "score": null,
-      "harvested": false
+      "metrics": {
+        "reach": 109,
+        "likes": 0,
+        "comments": 0,
+        "saved": 0,
+        "shares": 0
+      },
+      "score": 0.0,
+      "harvested": false,
+      "last_harvested": "2026-10-01T10:33:15.818311+00:00"
     }
   ],
   "used_pins": [
