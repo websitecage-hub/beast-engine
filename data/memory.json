@@ -799,6 +799,68 @@
       "score": 0.0,
       "harvested": false,
       "last_harvested": "2026-10-01T10:33:15.818311+00:00"
+    },
+    {
+      "media_id": "17936211696127495",
+      "container_id": "17911744023538210",
+      "created_at": "2026-10-01T16:58:53.085865+00:00",
+      "hour_slot": "13:30",
+      "hook_text": "When you laugh at a joke you didn't hear because asking \"what?\" twice feels dangerous.",
+      "hook": "When you laugh at a joke you didn't hear because asking \"what?\" twice feels dangerous.",
+      "keyword": "HEARD",
+      "topic": "fake laugh when you didn't hear",
+      "caption": "That laugh wasn't you being fake. It was you choosing a small shame now to avoid a bigger exposure later. That's what social anxiety does — it turns asking \"what?\" twice into a threat, so your nervous system makes you nod and fake it before you even get a vote.\nIf you do this, you're not alone. If you laugh at jokes you didn't hear and replay their faces for ten minutes after, checking if they saw through you, it's not because you don't care. It's because your brain would rather be invisible than be seen trying. Comment HEARD and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #quietpeople #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#quietpeople",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "When you laugh at a joke you didn't hear because asking \"what?\" twice feels dangerous.",
+        "cluster": "the_sealed_mouth",
+        "topic": "neutral_as_negative",
+        "hook_length_chars": 86,
+        "num_text_blocks": 6,
+        "landing_text": "Comment HEARD and I'll send you the full breakdown.",
+        "bg_type": "sealed_mouth",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Boston",
+          "artist": "STELLA LEFTY",
+          "genre": "pop",
+          "trend_score": 76.3,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man silent while others around him talk dark cinematic. Overlay text reads: When you laugh at a joke you didn't hear because asking \"what?\" twice feels dangerous. Everyone laughs. You laugh a half-second late, throat tight, nodding like you got it. You didn't hear a single word. But you felt your stomach drop... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "When you laugh at a joke you didn't hear because asking \"what?\" twice feels dangerous.\nEveryone laughs. You laugh a half-second late, throat tight, nodding like you got it.\nYou didn't hear a single word. But you felt your stomach drop.\nNow you're stuck pretending you understood while replaying if they saw through you.\nYou're not fake. You're just trying to stay invisible enough to not be exposed.\nComment HEARD and I'll send you the full breakdown.",
+        "keyword": "HEARD",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#quietpeople",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "13:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_sealed_mouth",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -866,6 +928,11 @@
       "id": "898608931899366949",
       "date": "2026-09-30",
       "pin_url": "https://www.pinterest.com/pin/898608931899366949/"
+    },
+    {
+      "id": "676173331576692497",
+      "date": "2026-10-01",
+      "pin_url": "https://www.pinterest.com/pin/676173331576692497/"
     }
   ],
   "used_tracks": [],
@@ -1005,8 +1072,8 @@
       "hook": "POV: the conversation pauses and your mind goes completely blank."
     }
   ],
-  "last_post_date": "2026-09-30",
-  "post_counter": 12,
+  "last_post_date": "2026-10-01",
+  "post_counter": 13,
   "last_keyword": "BLANK",
   "keyword_counts": {
     "HEARD": 1,
@@ -1156,6 +1223,30 @@
       "date": "2026-09-30",
       "source": "song",
       "query": "hushed ambient distant"
+    },
+    {
+      "profile": [
+        0.006826710485103163,
+        0.008977454324301418,
+        0.06905691128586353,
+        0.14501247583629648,
+        0.25019165407547717,
+        0.1263792296801161,
+        0.057277610193938136,
+        0.12317813977139717,
+        0.060235650412941454,
+        0.055365294969299796,
+        0.05807201346829007,
+        0.018335861910833383,
+        0.011571721819550195,
+        0.00674684442527252,
+        0.0018963299804322863,
+        0.0006490526348430579,
+        0.00022704472604409564
+      ],
+      "date": "2026-10-01",
+      "source": "song",
+      "query": "low ambient minimal"
     }
   ],
   "used_music_queries": [
@@ -1164,8 +1255,9 @@
     "published-reel-Ddyv2XVjOte",
     "slowed reverb dark ambient muffled",
     "brooding ambient sustained",
-    "hushed ambient distant"
+    "hushed ambient distant",
+    "low ambient minimal"
   ],
-  "posts_today_date": "2026-09-30",
-  "posts_today_count": 2
+  "posts_today_date": "2026-10-01",
+  "posts_today_count": 1
 }
