@@ -997,6 +997,66 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18113687575835843",
+      "container_id": "17911941624538210",
+      "created_at": "2026-10-02T21:47:01.343708+00:00",
+      "hour_slot": "17:30",
+      "hook_text": "POV: the conversation pauses and your throat locks shut.",
+      "hook": "POV: the conversation pauses and your throat locks shut.",
+      "keyword": "BLANK",
+      "topic": "going blank mid-conversation",
+      "caption": "That blank isn't you being slow or stupid. It's your nervous system pulling the emergency brake the second silence hits, because silence feels like a spotlight about to expose you. Your throat tightens, your heart spikes, and the words you had get locked behind a body that thinks it's safer to say nothing.\nIf you sit there nodding while the sentence dies in your chest and then say the perfect version out loud in the car later, you're not alone. This is what social anxiety really looks like at 1am.\nThe words don't disappear. They just come back when there's no one left to hear them. Comment BLANK and I'll send you the full breakdown - why the freeze happens and why the replay never stops.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "POV: the conversation pauses and your throat locks shut.",
+        "cluster": "the_freeze",
+        "topic": "mind_blank",
+        "hook_length_chars": 56,
+        "num_text_blocks": 6,
+        "landing_text": "Comment BLANK and you get the full breakdown.",
+        "bg_type": "freeze",
+        "bg_is_video": true,
+        "audio_mood": "quiet_devastating",
+        "audio_from_trending": true,
+        "trending_ref": {
+          "title": "hate that i made you love me",
+          "artist": "Ariana Grande",
+          "genre": "pop",
+          "trend_score": 75.1,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man frozen mid conversation with someone dark cinematic. Overlay text reads: POV: the conversation pauses and your throat locks shut. You know exactly what to say. The words are right there. But your mouth won't open. Your heart is hammering so loud you're sure they can hear it. So you nod again and swallow the... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: the conversation pauses and your throat locks shut.\nYou know exactly what to say. The words are right there.\nBut your mouth won't open. Your heart is hammering so loud you're sure they can hear it.\nSo you nod again and swallow the sentence and sit there feeling invisible in the middle of the room.\nYou're not awkward. You're frozen because your body thinks silence means you're about to be exposed.\nComment BLANK and you get the full breakdown.",
+        "keyword": "BLANK",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "17:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_freeze",
+        "mood": "quiet_devastating",
+        "bg_source": "pinterest_video",
+        "music_source": "trending_free"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -1079,6 +1139,11 @@
       "id": "396809417189349796",
       "date": "2026-10-02",
       "pin_url": "https://www.pinterest.com/pin/396809417189349796/"
+    },
+    {
+      "id": "476326098113819813",
+      "date": "2026-10-02",
+      "pin_url": "https://www.pinterest.com/pin/476326098113819813/"
     }
   ],
   "used_tracks": [],
@@ -1086,6 +1151,10 @@
     {
       "url": "https://archive.org/download/finale-beyond-silence-26-june-2026/（Finale）Beyond Silence_ 26 June 2026.mp3",
       "date": "2026-09-27"
+    },
+    {
+      "url": "https://archive.org/download/krosh-runs-1/Krosh Runs (1).mp3",
+      "date": "2026-10-02"
     }
   ],
   "used_hooks": [
@@ -1231,7 +1300,7 @@
     }
   ],
   "last_post_date": "2026-10-02",
-  "post_counter": 15,
+  "post_counter": 16,
   "last_keyword": "FREE",
   "keyword_counts": {
     "HEARD": 1,
@@ -1454,6 +1523,30 @@
       "date": "2026-10-02",
       "source": "song",
       "query": "shadow drone deep"
+    },
+    {
+      "profile": [
+        0.013494902110933907,
+        0.19594728873250056,
+        0.03493312270178626,
+        0.055387913574231486,
+        0.05187581842705387,
+        0.040761650075391224,
+        0.14850173958621282,
+        0.11316058587056183,
+        0.09907043984991253,
+        0.05938114970183052,
+        0.05940588599529664,
+        0.06498238340180751,
+        0.02253199587975183,
+        0.01619044468460523,
+        0.011565228514634452,
+        0.005656019331262475,
+        0.007153431562227036
+      ],
+      "date": "2026-10-02",
+      "source": "trending_free",
+      "query": "slow dark ambient reverb deep sub bass emotional soft dark phonk, slow, restrained"
     }
   ],
   "used_music_queries": [
@@ -1465,8 +1558,9 @@
     "hushed ambient distant",
     "low ambient minimal",
     "murk ambient low",
-    "shadow drone deep"
+    "shadow drone deep",
+    "slow dark ambient reverb deep sub bass emotional soft dark phonk, slow, restrained"
   ],
   "posts_today_date": "2026-10-02",
-  "posts_today_count": 1
+  "posts_today_count": 2
 }
