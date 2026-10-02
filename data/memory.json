@@ -923,6 +923,66 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18130266250742948",
+      "container_id": "17911903539538210",
+      "created_at": "2026-10-02T16:05:32.510040+00:00",
+      "hour_slot": "13:30",
+      "hook_text": "POV: you said \"yeah, I'm good\" while your chest was caving in.",
+      "hook": "POV: you said \"yeah, I'm good\" while your chest was caving in.",
+      "keyword": "MASK",
+      "topic": "performing fine while falling apart",
+      "caption": "Saying you're fine when you're falling apart doesn't make you fake. It makes you exhausted. Your brain learned that showing panic gets you judged, so it forces you to perform calm while your chest tightens and your pulse hammers in your ears.\nIf you smile through the whole day at work and shut down the second you get home alone, you're not alone. That's what high-functioning social anxiety actually looks like.\nComment MASK and I'll send you the full breakdown - why your body stays in survival mode even when you're safe, and why performing \"fine\" costs you everything after.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "POV: you said \"yeah, I'm good\" while your chest was caving in.",
+        "cluster": "the_mask",
+        "topic": "exposure_fear",
+        "hook_length_chars": 62,
+        "num_text_blocks": 6,
+        "landing_text": "Comment MASK and I'll send you the full breakdown.",
+        "bg_type": "mask",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "hate that i made you love me",
+          "artist": "Ariana Grande",
+          "genre": "pop",
+          "trend_score": 75.1,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man in a crowd looking down alone dark cinematic. Overlay text reads: POV: you said \"yeah, I'm good\" while your chest was caving in. You smiled on cue. You nodded at the right times. Your heart was hammering so loud you were sure they could hear it. You got home and collapsed because holding \"fine\" all... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: you said \"yeah, I'm good\" while your chest was caving in.\nYou smiled on cue. You nodded at the right times.\nYour heart was hammering so loud you were sure they could hear it.\nYou got home and collapsed because holding \"fine\" all day takes everything you have.\nYou're not fake. You're just trying to survive without being exposed.\nComment MASK and I'll send you the full breakdown.",
+        "keyword": "MASK",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "13:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_mask",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -1000,6 +1060,11 @@
       "id": "7599893117019918",
       "date": "2026-10-01",
       "pin_url": "https://www.pinterest.com/pin/7599893117019918/"
+    },
+    {
+      "id": "396809417189349796",
+      "date": "2026-10-02",
+      "pin_url": "https://www.pinterest.com/pin/396809417189349796/"
     }
   ],
   "used_tracks": [],
@@ -1139,8 +1204,8 @@
       "hook": "POV: the conversation pauses and your mind goes completely blank."
     }
   ],
-  "last_post_date": "2026-10-01",
-  "post_counter": 14,
+  "last_post_date": "2026-10-02",
+  "post_counter": 15,
   "last_keyword": "BLANK",
   "keyword_counts": {
     "HEARD": 1,
@@ -1338,6 +1403,30 @@
       "date": "2026-10-01",
       "source": "song",
       "query": "murk ambient low"
+    },
+    {
+      "profile": [
+        0.0030220233682446873,
+        0.005031482602542216,
+        0.05236804673686565,
+        0.08940082440784768,
+        0.08623420623468452,
+        0.03987200208813631,
+        0.44075605112673005,
+        0.08520212849102932,
+        0.010826345823244618,
+        0.11803848800076563,
+        0.017289010044471694,
+        0.02028385753515881,
+        0.006654236045781709,
+        0.006250649043355436,
+        0.006877042828527869,
+        0.004934450210343465,
+        0.006959155412270481
+      ],
+      "date": "2026-10-02",
+      "source": "song",
+      "query": "shadow drone deep"
     }
   ],
   "used_music_queries": [
@@ -1348,8 +1437,9 @@
     "brooding ambient sustained",
     "hushed ambient distant",
     "low ambient minimal",
-    "murk ambient low"
+    "murk ambient low",
+    "shadow drone deep"
   ],
-  "posts_today_date": "2026-10-01",
-  "posts_today_count": 2
+  "posts_today_date": "2026-10-02",
+  "posts_today_count": 1
 }
