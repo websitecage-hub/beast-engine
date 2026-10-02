@@ -1092,6 +1092,12 @@
       "date": "2026-09-28",
       "archetype": "the_freeze",
       "topic": "mind_blank"
+    },
+    {
+      "hook": "POV: you just canceled plans you actually wanted to go to",
+      "date": "2026-10-02",
+      "archetype": "the_detour",
+      "topic": "lost_friendships"
     }
   ],
   "candidate_log": [
@@ -1202,14 +1208,21 @@
       "keyword": "BLANK",
       "topic": "going blank mid-conversation",
       "hook": "POV: the conversation pauses and your mind goes completely blank."
+    },
+    {
+      "date": "2026-10-02",
+      "keyword": "FREE",
+      "topic": "cancel relief guilt cycle",
+      "hook": "POV: you just canceled plans you actually wanted to go to"
     }
   ],
   "last_post_date": "2026-10-02",
   "post_counter": 15,
-  "last_keyword": "BLANK",
+  "last_keyword": "FREE",
   "keyword_counts": {
     "HEARD": 1,
-    "BLANK": 1
+    "BLANK": 1,
+    "FREE": 1
   },
   "used_track_profiles": [
     {
