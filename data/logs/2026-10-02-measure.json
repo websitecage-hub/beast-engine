@@ -11,5 +11,18 @@
     },
     "logs_pruned": 0,
     "seconds": 4.32
+  },
+  {
+    "workflow": "measure",
+    "started": "2026-10-02T20:14:23.112254+00:00",
+    "dry_run": false,
+    "harvest": {
+      "updated": 13,
+      "skipped": 0,
+      "errors": [],
+      "total_posts": 15
+    },
+    "logs_pruned": 0,
+    "seconds": 7.67
   }
 ]
