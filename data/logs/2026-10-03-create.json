@@ -428,5 +428,26 @@
     ],
     "errors": [],
     "result": "skipped"
+  },
+  {
+    "workflow": "create",
+    "started": "2026-10-03T23:59:13.757706+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.81
+      },
+      {
+        "step": "scheduler",
+        "t": 0.82,
+        "post": false,
+        "reason": "daily cap reached (2/2)",
+        "pre_jitter": true
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
   }
 ]
