@@ -1119,6 +1119,68 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18144427675605909",
+      "container_id": "17912077713538210",
+      "created_at": "2026-10-03T17:49:29.293886+00:00",
+      "hour_slot": "17:30",
+      "hook_text": "POV: your phone rings and you watch it ring until it stops.",
+      "hook": "POV: your phone rings and you watch it ring until it stops.",
+      "keyword": "QUIET",
+      "topic": "phone call avoidance loop",
+      "caption": "That missed call wasn't you being rude. It was your body shutting down before you could even say hello.\nYour nervous system reads a ringing phone as a trial with no script and no face to read. Just your voice, exposed. So it freezes you first, then punishes you with guilt for freezing.\nIf you let calls ring out and text back like you just saw it, you're not alone. You're not ignoring people. You're trying to survive a moment that feels like being seen too closely.\nComment QUIET and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts #quietpeople",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#latenightthoughts",
+        "#quietpeople"
+      ],
+      "dna": {
+        "hook_text": "POV: your phone rings and you watch it ring until it stops.",
+        "cluster": "the_detour",
+        "topic": "phone_calls",
+        "hook_length_chars": 59,
+        "num_text_blocks": 6,
+        "landing_text": "Comment QUIET and I'll send you the full breakdown.",
+        "bg_type": "detour",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "hate that i made you love me",
+          "artist": "Ariana Grande",
+          "genre": "pop",
+          "trend_score": 75.1,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man alone holding phone looking at it dark room cinematic. Overlay text reads: POV: your phone rings and you watch it ring until it stops. You saw the name on the first ring. You wait 10 minutes. Then you type \"sorry, just saw this\" with your heart still pounding. You tell yourself you'll call back tomorrow. You... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: your phone rings and you watch it ring until it stops.\nYou saw the name on the first ring. You wait 10 minutes.\nThen you type \"sorry, just saw this\" with your heart still pounding.\nYou tell yourself you'll call back tomorrow. You never do.\nYou're not flaky. Your body treats a phone call like an exposure.\nComment QUIET and I'll send you the full breakdown.",
+        "keyword": "QUIET",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#latenightthoughts",
+          "#quietpeople"
+        ],
+        "posted_hour": "17:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_detour",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -1211,6 +1273,11 @@
       "id": "704109723036759065",
       "date": "2026-10-03",
       "pin_url": "https://www.pinterest.com/pin/704109723036759065/"
+    },
+    {
+      "id": "433964114113574914",
+      "date": "2026-10-03",
+      "pin_url": "https://www.pinterest.com/pin/433964114113574914/"
     }
   ],
   "used_tracks": [],
@@ -1367,7 +1434,7 @@
     }
   ],
   "last_post_date": "2026-10-03",
-  "post_counter": 17,
+  "post_counter": 18,
   "last_keyword": "FREE",
   "keyword_counts": {
     "HEARD": 1,
@@ -1638,6 +1705,30 @@
       "date": "2026-10-03",
       "source": "song",
       "query": "dark ambient drone sub bass emotional"
+    },
+    {
+      "profile": [
+        0.042138378800094245,
+        0.2952961742618702,
+        0.14595685958817567,
+        0.11396379621919524,
+        0.0777768056685039,
+        0.09025529167619971,
+        0.06417814428984255,
+        0.041070641394069386,
+        0.03857288078512768,
+        0.02768007157003394,
+        0.01561786178284599,
+        0.012914986221682202,
+        0.009984929498592296,
+        0.007716109064546506,
+        0.006345464773049813,
+        0.005491984724383296,
+        0.005039619681787436
+      ],
+      "date": "2026-10-03",
+      "source": "song",
+      "query": "shadow drone instrumental"
     }
   ],
   "used_music_queries": [
@@ -1651,8 +1742,9 @@
     "murk ambient low",
     "shadow drone deep",
     "slow dark ambient reverb deep sub bass emotional soft dark phonk, slow, restrained",
-    "dark ambient drone sub bass emotional"
+    "dark ambient drone sub bass emotional",
+    "shadow drone instrumental"
   ],
   "posts_today_date": "2026-10-03",
-  "posts_today_count": 1
+  "posts_today_count": 2
 }
