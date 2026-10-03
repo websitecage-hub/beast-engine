@@ -1057,6 +1057,68 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "17954611458255379",
+      "container_id": "17912047242538210",
+      "created_at": "2026-10-03T14:31:05.188025+00:00",
+      "hour_slot": "13:30",
+      "hook_text": "POV: you laugh at a joke you didn't hear and hope no one noticed.",
+      "hook": "POV: you laugh at a joke you didn't hear and hope no one noticed.",
+      "keyword": "HEARD",
+      "topic": "laughing at unheard jokes",
+      "caption": "That fake laugh isn't you being dishonest. It's you choosing embarrassment later over exposure now.\nYour nervous system decided that asking twice would confirm you're slow, so it made you nod and laugh on cue. It's not about the joke. It's about not giving the group another reason to clock you as different.\nIf you rewind that empty laugh for hours after everyone else forgot the punchline, you're not alone.\nComment HEARD and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #introvertstruggles #anxietyproblems #quietpeople #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#introvertstruggles",
+        "#anxietyproblems",
+        "#quietpeople",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "POV: you laugh at a joke you didn't hear and hope no one noticed.",
+        "cluster": "the_sealed_mouth",
+        "topic": "neutral_as_negative",
+        "hook_length_chars": 65,
+        "num_text_blocks": 6,
+        "landing_text": "Comment HEARD and I'll send you the full breakdown.",
+        "bg_type": "sealed_mouth",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "hate that i made you love me",
+          "artist": "Ariana Grande",
+          "genre": "pop",
+          "trend_score": 75.1,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man silent while others around him talk dark cinematic. Overlay text reads: POV: you laugh at a joke you didn't hear and hope no one noticed. Your ears ring. You missed the punchline again but you nod anyway. You know asking \"what?\" twice feels more dangerous than faking it. You replay your fake laugh on the... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: you laugh at a joke you didn't hear and hope no one noticed.\nYour ears ring. You missed the punchline again but you nod anyway.\nYou know asking \"what?\" twice feels more dangerous than faking it.\nYou replay your fake laugh on the walk home, cringing at how empty it sounded.\nYou're not fake. You're just trying to stay invisible in a group that already left you behind.\nComment HEARD and I'll send you the full breakdown.",
+        "keyword": "HEARD",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#introvertstruggles",
+          "#anxietyproblems",
+          "#quietpeople",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "13:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_sealed_mouth",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -1144,6 +1206,11 @@
       "id": "476326098113819813",
       "date": "2026-10-02",
       "pin_url": "https://www.pinterest.com/pin/476326098113819813/"
+    },
+    {
+      "id": "704109723036759065",
+      "date": "2026-10-03",
+      "pin_url": "https://www.pinterest.com/pin/704109723036759065/"
     }
   ],
   "used_tracks": [],
@@ -1299,8 +1366,8 @@
       "hook": "POV: you just canceled plans you actually wanted to go to"
     }
   ],
-  "last_post_date": "2026-10-02",
-  "post_counter": 16,
+  "last_post_date": "2026-10-03",
+  "post_counter": 17,
   "last_keyword": "FREE",
   "keyword_counts": {
     "HEARD": 1,
@@ -1547,6 +1614,30 @@
       "date": "2026-10-02",
       "source": "trending_free",
       "query": "slow dark ambient reverb deep sub bass emotional soft dark phonk, slow, restrained"
+    },
+    {
+      "profile": [
+        0.005564647699228356,
+        0.028615932122204132,
+        0.03466612506906026,
+        0.12525771182441267,
+        0.1636675503994535,
+        0.08168857386166056,
+        0.09308379512573786,
+        0.13384665484604003,
+        0.07886544030606872,
+        0.08359502816858964,
+        0.049053896254714784,
+        0.038215325345301955,
+        0.03048350935350455,
+        0.019389357947123577,
+        0.011523683898169393,
+        0.01343712825053218,
+        0.009045639528197844
+      ],
+      "date": "2026-10-03",
+      "source": "song",
+      "query": "dark ambient drone sub bass emotional"
     }
   ],
   "used_music_queries": [
@@ -1559,8 +1650,9 @@
     "low ambient minimal",
     "murk ambient low",
     "shadow drone deep",
-    "slow dark ambient reverb deep sub bass emotional soft dark phonk, slow, restrained"
+    "slow dark ambient reverb deep sub bass emotional soft dark phonk, slow, restrained",
+    "dark ambient drone sub bass emotional"
   ],
-  "posts_today_date": "2026-10-02",
-  "posts_today_count": 2
+  "posts_today_date": "2026-10-03",
+  "posts_today_count": 1
 }
