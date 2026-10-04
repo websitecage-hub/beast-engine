@@ -1195,6 +1195,66 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18142577965595600",
+      "container_id": "17912226432538210",
+      "created_at": "2026-10-04T15:04:40.672148+00:00",
+      "hour_slot": "13:30",
+      "hook_text": "POV: you said you're good 12 times today and meant it zero times.",
+      "hook": "POV: you said you're good 12 times today and meant it zero times.",
+      "keyword": "MASK",
+      "topic": "performing fine while falling apart",
+      "caption": "That 'you're good' wasn't a lie. It was survival.\nWhen your nervous system decides every interaction is a test, it locks you in performance mode. You run the script because letting people see your chest caving in feels more dangerous than disappearing. This is what social anxiety looks like when you've been masking for years just to get through the day.\nIf you hold it together at work and only fall apart when you're finally alone in your car, you're not alone. You're not fake. You're exhausted from hiding.\nComment MASK and I'll send you the full breakdown.\n#socialanxiety #socialanxietystruggles #overthinking #introvertstruggles #quietpeople #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#socialanxietystruggles",
+        "#overthinking",
+        "#introvertstruggles",
+        "#quietpeople",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "POV: you said you're good 12 times today and meant it zero times.",
+        "cluster": "the_mask",
+        "topic": "exposure_fear",
+        "hook_length_chars": 65,
+        "num_text_blocks": 6,
+        "landing_text": "Comment MASK and I'll send you the full breakdown.",
+        "bg_type": "mask",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": true,
+        "trending_ref": {
+          "title": "Dancing In the Dark",
+          "artist": "Bruce Springsteen",
+          "genre": "alternative",
+          "trend_score": 76.3,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man in a crowd looking down alone dark cinematic. Overlay text reads: POV: you said you're good 12 times today and meant it zero times. You smiled on cue. Nodded on time. Performed fine while your chest was caving in. You held it together until you got to your car. Then your hands started shaking again... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: you said you're good 12 times today and meant it zero times.\nYou smiled on cue. Nodded on time. Performed fine while your chest was caving in.\nYou held it together until you got to your car. Then your hands started shaking again.\nYou replay the day and wonder how no one noticed you were barely breathing.\nYou're not fake. You're just trained to disappear inside the performance.\nComment MASK and I'll send you the full breakdown.",
+        "keyword": "MASK",
+        "hashtags": [
+          "#socialanxiety",
+          "#socialanxietystruggles",
+          "#overthinking",
+          "#introvertstruggles",
+          "#quietpeople",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "13:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_mask",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "trending_free"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -1292,6 +1352,11 @@
       "id": "433964114113574914",
       "date": "2026-10-03",
       "pin_url": "https://www.pinterest.com/pin/433964114113574914/"
+    },
+    {
+      "id": "492649953933755",
+      "date": "2026-10-04",
+      "pin_url": "https://www.pinterest.com/pin/492649953933755/"
     }
   ],
   "used_tracks": [],
@@ -1303,6 +1368,10 @@
     {
       "url": "https://archive.org/download/krosh-runs-1/Krosh Runs (1).mp3",
       "date": "2026-10-02"
+    },
+    {
+      "url": "https://archive.org/download/jamendo-584024/01-2212141-Spoiled Egg-Spoiled Egg-Bedroom talk.mp3",
+      "date": "2026-10-04"
     }
   ],
   "used_hooks": [
@@ -1447,8 +1516,8 @@
       "hook": "POV: you just canceled plans you actually wanted to go to"
     }
   ],
-  "last_post_date": "2026-10-03",
-  "post_counter": 18,
+  "last_post_date": "2026-10-04",
+  "post_counter": 19,
   "last_keyword": "FREE",
   "keyword_counts": {
     "HEARD": 1,
@@ -1743,6 +1812,30 @@
       "date": "2026-10-03",
       "source": "song",
       "query": "shadow drone instrumental"
+    },
+    {
+      "profile": [
+        0.14595896447289744,
+        0.22698534228735745,
+        0.11771292519022816,
+        0.11075159771733961,
+        0.10598004639019647,
+        0.0633502742030307,
+        0.04238222676471349,
+        0.04656715630829923,
+        0.027228753672030048,
+        0.02276842970326343,
+        0.019640525155120176,
+        0.017991499037321182,
+        0.013964966255327142,
+        0.012429511570119183,
+        0.0111739013366783,
+        0.00879140492271511,
+        0.0063224750133627225
+      ],
+      "date": "2026-10-04",
+      "source": "trending_free",
+      "query": "dark ambient drone sub bass slowed reverb dark ambient, muffled"
     }
   ],
   "used_music_queries": [
@@ -1757,8 +1850,9 @@
     "shadow drone deep",
     "slow dark ambient reverb deep sub bass emotional soft dark phonk, slow, restrained",
     "dark ambient drone sub bass emotional",
-    "shadow drone instrumental"
+    "shadow drone instrumental",
+    "dark ambient drone sub bass slowed reverb dark ambient, muffled"
   ],
-  "posts_today_date": "2026-10-03",
-  "posts_today_count": 2
+  "posts_today_date": "2026-10-04",
+  "posts_today_count": 1
 }
