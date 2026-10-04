@@ -1255,6 +1255,68 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18117541925060013",
+      "container_id": "17912255484538210",
+      "created_at": "2026-10-04T18:08:57.755012+00:00",
+      "hour_slot": "17:30",
+      "hook_text": "POV: the silence hits mid-sentence and your throat locks shut.",
+      "hook": "POV: the silence hits mid-sentence and your throat locks shut.",
+      "keyword": "BLANK",
+      "topic": "going blank mid-conversation",
+      "caption": "That freeze mid-sentence isn't you being awkward. It's your body shutting down while your mind is still trying to speak.\nWhen silence hits, your nervous system reads it as exposure. Your throat tightens, your heart pounds, your mind empties. It mutes you before anyone can hear you mess up.\nIf you sit there nodding while the words you rehearsed die in your chest, you're not alone. Comment BLANK and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #quietpeople #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#quietpeople",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "POV: the silence hits mid-sentence and your throat locks shut.",
+        "cluster": "the_freeze",
+        "topic": "mind_blank",
+        "hook_length_chars": 62,
+        "num_text_blocks": 6,
+        "landing_text": "Comment BLANK and I'll send you the full breakdown.",
+        "bg_type": "freeze",
+        "bg_is_video": true,
+        "audio_mood": "quiet_devastating",
+        "audio_from_trending": true,
+        "trending_ref": {
+          "title": "Dancing In the Dark",
+          "artist": "Bruce Springsteen",
+          "genre": "alternative",
+          "trend_score": 76.3,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man frozen mid conversation with someone dark cinematic. Overlay text reads: POV: the silence hits mid-sentence and your throat locks shut. You know exactly what to say. The words are right there. But your mouth won't open. Your chest gets tight and your mind goes blank again. You nod. You stare at the floor... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: the silence hits mid-sentence and your throat locks shut.\nYou know exactly what to say. The words are right there.\nBut your mouth won't open. Your chest gets tight and your mind goes blank again.\nYou nod. You stare at the floor. You let them fill the silence for you.\nYou're not awkward. Your nervous system just hit mute before they could hear you fail.\nComment BLANK and I'll send you the full breakdown.",
+        "keyword": "BLANK",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#quietpeople",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "17:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_freeze",
+        "mood": "quiet_devastating",
+        "bg_source": "pinterest_video",
+        "music_source": "trending_free"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -1357,6 +1419,11 @@
       "id": "492649953933755",
       "date": "2026-10-04",
       "pin_url": "https://www.pinterest.com/pin/492649953933755/"
+    },
+    {
+      "id": "1045257394742997181",
+      "date": "2026-10-04",
+      "pin_url": "https://www.pinterest.com/pin/1045257394742997181/"
     }
   ],
   "used_tracks": [],
@@ -1371,6 +1438,10 @@
     },
     {
       "url": "https://archive.org/download/jamendo-584024/01-2212141-Spoiled Egg-Spoiled Egg-Bedroom talk.mp3",
+      "date": "2026-10-04"
+    },
+    {
+      "url": "https://archive.org/download/according-to-the-rules-rock-version/According to the Rules (Rock Version).mp3",
       "date": "2026-10-04"
     }
   ],
@@ -1517,7 +1588,7 @@
     }
   ],
   "last_post_date": "2026-10-04",
-  "post_counter": 19,
+  "post_counter": 20,
   "last_keyword": "FREE",
   "keyword_counts": {
     "HEARD": 1,
@@ -1836,6 +1907,30 @@
       "date": "2026-10-04",
       "source": "trending_free",
       "query": "dark ambient drone sub bass slowed reverb dark ambient, muffled"
+    },
+    {
+      "profile": [
+        0.0015157391127410744,
+        0.006979424397748662,
+        0.052018690345198744,
+        0.12361094318352905,
+        0.27355204039373643,
+        0.14915693037878072,
+        0.07774251796733002,
+        0.07760845843743024,
+        0.054351307843102506,
+        0.037966914792104935,
+        0.04554580064994276,
+        0.03146434675172834,
+        0.02023042966604051,
+        0.016420778295071364,
+        0.013081507472547788,
+        0.01026255598064348,
+        0.008491614332323334
+      ],
+      "date": "2026-10-04",
+      "source": "trending_free",
+      "query": "slow dark ambient reverb deep sub bass slowed reverb dark ambient, muffled"
     }
   ],
   "used_music_queries": [
@@ -1851,8 +1946,9 @@
     "slow dark ambient reverb deep sub bass emotional soft dark phonk, slow, restrained",
     "dark ambient drone sub bass emotional",
     "shadow drone instrumental",
-    "dark ambient drone sub bass slowed reverb dark ambient, muffled"
+    "dark ambient drone sub bass slowed reverb dark ambient, muffled",
+    "slow dark ambient reverb deep sub bass slowed reverb dark ambient, muffled"
   ],
   "posts_today_date": "2026-10-04",
-  "posts_today_count": 1
+  "posts_today_count": 2
 }
