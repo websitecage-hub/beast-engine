@@ -1,0 +1,32 @@
+[
+  {
+    "workflow": "health",
+    "started": "2026-10-04T11:01:33.709657+00:00",
+    "dry_run": false,
+    "checks": {
+      "meta": true,
+      "pinterest": true,
+      "audio_scraper": true
+    },
+    "trending_warm": {
+      "status": 200,
+      "results": 5
+    },
+    "token": {
+      "ok": true,
+      "account": "unleashthe.b"
+    },
+    "token_expiry": {
+      "expires_at": "2026-11-19",
+      "days_left": 46
+    },
+    "staleness": {
+      "last_post_date": "2026-10-03",
+      "stale": false,
+      "paused": false,
+      "posts_today": 0,
+      "posts_per_day": 2
+    },
+    "seconds": 1.79
+  }
+]
