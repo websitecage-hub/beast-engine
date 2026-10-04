@@ -386,5 +386,26 @@
       "host": "uguu",
       "video_url": "https://n.uguu.se/WmZMsGeT.mp4"
     }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-10-04T20:19:03.563625+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.44
+      },
+      {
+        "step": "scheduler",
+        "t": 0.44,
+        "post": false,
+        "reason": "daily cap reached (2/2)",
+        "pre_jitter": true
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
   }
 ]
