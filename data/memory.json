@@ -1331,6 +1331,68 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18095070899152018",
+      "container_id": "17912418150538210",
+      "created_at": "2026-10-05T18:49:03.110308+00:00",
+      "hour_slot": "17:30",
+      "hook_text": "POV: you laugh at the joke you didn't hear because asking again feels unsafe.",
+      "hook": "POV: you laugh at the joke you didn't hear because asking again feels unsafe.",
+      "keyword": "HEARD",
+      "topic": "laughing at unheard joke",
+      "caption": "That late laugh isn't you being fake. It's you choosing a small embarrassment over what feels like exposure.\nYour brain flags the second \"what?\" as danger, so your throat tightens and you perform understanding instead. It's not about the joke. It's your nervous system deciding that pretending is safer than being singled out.\nIf you laugh when you didn't hear, nod when you're lost, and still hear that fake laugh on the drive home, you're not alone.\nComment HEARD and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #introvertstruggles #anxietyproblems #quietpeople #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#introvertstruggles",
+        "#anxietyproblems",
+        "#quietpeople",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "POV: you laugh at the joke you didn't hear because asking again feels unsafe.",
+        "cluster": "the_sealed_mouth",
+        "topic": "neutral_as_negative",
+        "hook_length_chars": 77,
+        "num_text_blocks": 6,
+        "landing_text": "Comment HEARD and I'll send you the full breakdown.",
+        "bg_type": "sealed_mouth",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Dancing In the Dark",
+          "artist": "Bruce Springsteen",
+          "genre": "alternative",
+          "trend_score": 76.3,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man silent while others around him talk dark cinematic. Overlay text reads: POV: you laugh at the joke you didn't hear because asking again feels unsafe. You heard half a word. Everyone else laughs. Your chest tightens. You force a laugh half a second too late. You nod like you got it. Now you're stuck... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: you laugh at the joke you didn't hear because asking again feels unsafe.\nYou heard half a word. Everyone else laughs. Your chest tightens.\nYou force a laugh half a second too late. You nod like you got it.\nNow you're stuck replaying it, wondering if they know you faked it.\nYou're not fake. You're just trying to stay invisible in a moment that feels like a test.\nComment HEARD and I'll send you the full breakdown.",
+        "keyword": "HEARD",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#introvertstruggles",
+          "#anxietyproblems",
+          "#quietpeople",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "17:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_sealed_mouth",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -1438,6 +1500,11 @@
       "id": "1045257394742997181",
       "date": "2026-10-04",
       "pin_url": "https://www.pinterest.com/pin/1045257394742997181/"
+    },
+    {
+      "id": "63543044737376562",
+      "date": "2026-10-05",
+      "pin_url": "https://www.pinterest.com/pin/63543044737376562/"
     }
   ],
   "used_tracks": [],
@@ -1601,8 +1668,8 @@
       "hook": "POV: you just canceled plans you actually wanted to go to"
     }
   ],
-  "last_post_date": "2026-10-04",
-  "post_counter": 20,
+  "last_post_date": "2026-10-05",
+  "post_counter": 21,
   "last_keyword": "FREE",
   "keyword_counts": {
     "HEARD": 1,
@@ -1945,6 +2012,30 @@
       "date": "2026-10-04",
       "source": "trending_free",
       "query": "slow dark ambient reverb deep sub bass slowed reverb dark ambient, muffled"
+    },
+    {
+      "profile": [
+        0.01604549375547109,
+        0.17977965880693678,
+        0.2141120721048629,
+        0.050673694504211206,
+        0.1207091704791255,
+        0.13734480248664335,
+        0.18627620377689416,
+        0.019232095442516108,
+        0.034180113116652776,
+        0.02652881205954223,
+        0.007082032191193068,
+        0.0021022397728801758,
+        0.0008746965747115561,
+        0.000987297839424357,
+        0.0016293500176800518,
+        0.0010320538864311347,
+        0.0014102131848234857
+      ],
+      "date": "2026-10-05",
+      "source": "song",
+      "query": "heavy ambient minimal"
     }
   ],
   "used_music_queries": [
@@ -1961,8 +2052,9 @@
     "dark ambient drone sub bass emotional",
     "shadow drone instrumental",
     "dark ambient drone sub bass slowed reverb dark ambient, muffled",
-    "slow dark ambient reverb deep sub bass slowed reverb dark ambient, muffled"
+    "slow dark ambient reverb deep sub bass slowed reverb dark ambient, muffled",
+    "heavy ambient minimal"
   ],
-  "posts_today_date": "2026-10-04",
-  "posts_today_count": 2
+  "posts_today_date": "2026-10-05",
+  "posts_today_count": 1
 }
