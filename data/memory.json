@@ -1393,6 +1393,68 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18043310921831319",
+      "container_id": "17912431566538210",
+      "created_at": "2026-10-05T21:31:03.705937+00:00",
+      "hour_slot": "17:30",
+      "hook_text": "POV: your phone lights up and you watch it ring out.",
+      "hook": "POV: your phone lights up and you watch it ring out.",
+      "keyword": "QUIET",
+      "topic": "letting phone calls ring out",
+      "caption": "That missed call isn't you being rude. It's you sitting there with the phone in your hand, holding your breath until the ringing stops so you can finally breathe again.\nYour nervous system doesn't hear a ringtone. It hears a trial. One where your voice might shake, your mind might blank, and they might hear the flaw you've been hiding. So it freezes your hand until the threat passes. Texting feels safe because you can rewrite it until it sounds normal.\nIf you let calls ring out then text \"sorry, just saw this\" when you saw it on the first ring, you're not alone. Comment QUIET and I'll send you the full breakdown — the why behind the freeze and how to stop treating every call like a trial.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts #quietpeople",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#latenightthoughts",
+        "#quietpeople"
+      ],
+      "dna": {
+        "hook_text": "POV: your phone lights up and you watch it ring out.",
+        "cluster": "the_detour",
+        "topic": "phone_calls",
+        "hook_length_chars": 52,
+        "num_text_blocks": 6,
+        "landing_text": "Comment QUIET and I'll send you the full breakdown.",
+        "bg_type": "detour",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Dancing In the Dark",
+          "artist": "Bruce Springsteen",
+          "genre": "alternative",
+          "trend_score": 76.3,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man alone holding phone looking at it dark room cinematic. Overlay text reads: POV: your phone lights up and you watch it ring out. You saw the name on the first ring. You hold your breath until it stops. Then you wait 10 minutes and type \"sorry, just saw this\". Your chest is still tight. Your heart is still... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: your phone lights up and you watch it ring out.\nYou saw the name on the first ring. You hold your breath until it stops.\nThen you wait 10 minutes and type \"sorry, just saw this\".\nYour chest is still tight. Your heart is still racing over a call that never happened.\nYou're not flaky. You're trying to hide the panic before they hear it in your voice.\nComment QUIET and I'll send you the full breakdown.",
+        "keyword": "QUIET",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#latenightthoughts",
+          "#quietpeople"
+        ],
+        "posted_hour": "17:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_detour",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -1505,6 +1567,11 @@
       "id": "63543044737376562",
       "date": "2026-10-05",
       "pin_url": "https://www.pinterest.com/pin/63543044737376562/"
+    },
+    {
+      "id": "360147301469699337",
+      "date": "2026-10-05",
+      "pin_url": "https://www.pinterest.com/pin/360147301469699337/"
     }
   ],
   "used_tracks": [],
@@ -1669,7 +1736,7 @@
     }
   ],
   "last_post_date": "2026-10-05",
-  "post_counter": 21,
+  "post_counter": 22,
   "last_keyword": "FREE",
   "keyword_counts": {
     "HEARD": 1,
@@ -2036,6 +2103,30 @@
       "date": "2026-10-05",
       "source": "song",
       "query": "heavy ambient minimal"
+    },
+    {
+      "profile": [
+        0.02671007992105519,
+        0.2045104363707092,
+        0.30027205183501593,
+        0.09891483154157726,
+        0.07622261835219055,
+        0.0537720104429419,
+        0.02949907520675117,
+        0.035954033233445454,
+        0.02961720507884508,
+        0.033290184347087734,
+        0.034942288859880925,
+        0.021426106127076405,
+        0.014524841053891383,
+        0.017745325732307526,
+        0.012066790313216787,
+        0.006728242008211501,
+        0.003803879575796069
+      ],
+      "date": "2026-10-05",
+      "source": "song",
+      "query": "shadow drone sparse"
     }
   ],
   "used_music_queries": [
@@ -2053,8 +2144,9 @@
     "shadow drone instrumental",
     "dark ambient drone sub bass slowed reverb dark ambient, muffled",
     "slow dark ambient reverb deep sub bass slowed reverb dark ambient, muffled",
-    "heavy ambient minimal"
+    "heavy ambient minimal",
+    "shadow drone sparse"
   ],
   "posts_today_date": "2026-10-05",
-  "posts_today_count": 1
+  "posts_today_count": 2
 }

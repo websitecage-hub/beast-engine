@@ -234,5 +234,178 @@
       "host": "uguu",
       "video_url": "https://h.uguu.se/OwXhkqYg.mp4"
     }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-10-05T21:19:00.320457+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.57
+      },
+      {
+        "step": "jitter_start",
+        "t": 0.58,
+        "seconds": 466.2
+      },
+      {
+        "step": "trending_joined",
+        "t": 466.82,
+        "error": false
+      },
+      {
+        "step": "scheduler",
+        "t": 466.82,
+        "post": true,
+        "reason": "post 2/2 due (nominal 17:30)"
+      },
+      {
+        "step": "duration",
+        "t": 466.82,
+        "seconds": 9.28
+      },
+      {
+        "step": "generated",
+        "t": 510.04,
+        "hook": "POV: your phone lights up and you watch it ring out.",
+        "exploit": true
+      },
+      {
+        "step": "background",
+        "t": 554.95,
+        "source": "pinterest_video",
+        "is_video": true,
+        "alt_text": "Man alone holding phone looking at it dark room cinematic. Overlay tex..."
+      },
+      {
+        "step": "music",
+        "t": 631.25,
+        "source": "song"
+      },
+      {
+        "step": "built",
+        "t": 658.31,
+        "qa": {
+          "path": "/home/runner/work/beast-engine/beast-engine/outputs/reel.mp4",
+          "exists": true,
+          "checks": {
+            "duration_9_10s": true,
+            "resolution_1080x1920": true,
+            "h264_yuv420p": true,
+            "aac_audio": true,
+            "size_under_60mb": true,
+            "faststart": true,
+            "one_text_block": true,
+            "lines_in_bounds": true,
+            "cta_present": true,
+            "loop_echo": true,
+            "text_placement_verified": true,
+            "text_inside_safe_band": true,
+            "text_clears_ui": true,
+            "text_centred": true
+          },
+          "probed_via": "ffmpeg",
+          "width": 1080,
+          "height": 1920,
+          "duration": 9.28,
+          "size_mb": 4.14,
+          "faststart": true,
+          "has_audio": true,
+          "placement": {
+            "top": 255,
+            "ink_top_frac": 0.1417,
+            "ink_bot_frac": 0.7078,
+            "band_top": 249,
+            "band_bot": 1382,
+            "gap_above": 23,
+            "gap_below": 23,
+            "inside_band": true,
+            "clears_ui": true,
+            "centred": true
+          },
+          "problems": [],
+          "blocks": [
+            {
+              "kind": "message",
+              "px": 62,
+              "widest": 900,
+              "lines": 14
+            }
+          ],
+          "states": [
+            {
+              "index": 0,
+              "kind": "message",
+              "start": 0.0,
+              "end": 9.28
+            }
+          ],
+          "text_visibility": [
+            {
+              "t": 0.0,
+              "text_visible": true
+            },
+            {
+              "t": 0.25,
+              "text_visible": true
+            },
+            {
+              "t": 4.64,
+              "text_visible": true
+            },
+            {
+              "t": 9.03,
+              "text_visible": true
+            }
+          ],
+          "motion": true
+        }
+      },
+      {
+        "step": "seo",
+        "t": 658.31,
+        "keyword_on_screen": true,
+        "keyword_in_caption": true,
+        "keyword_is_dm_enabled": true,
+        "hashtags_5_to_7": true,
+        "hashtags_present": true,
+        "on_screen_has_searchable_phrase": true,
+        "alt_text_present": true,
+        "caption_describes_content": true
+      },
+      {
+        "step": "published",
+        "t": 723.39,
+        "media_id": "18043310921831319",
+        "container_id": "17912431566538210",
+        "caption": "That missed call isn't you being rude. It's you sitting there with the phone in your hand, holding your breath until the ringing stops so you can finally breathe again.\nYour nervous system doesn't hear a ringtone. It hears a trial. One where your voice might shake, your mind might blank, and they might hear the flaw you've been hiding. So it freezes your hand until the threat passes. Texting feels safe because you can rewrite it until it sounds normal.\nIf you let calls ring out then text \"sorry, just saw this\" when you saw it on the first ring, you're not alone. Comment QUIET and I'll send you the full breakdown — the why behind the freeze and how to stop treating every call like a trial.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts #quietpeople",
+        "alt_text": "Man alone holding phone looking at it dark room cinematic. Overlay text reads: POV: your phone lights up and you watch it ring out. You saw the name on the first ring. You hold your breath until it stops. Then you wait 10 minutes and type \"sorry, just saw this\". Your chest is still tight. Your heart is still... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "hide_like_count": true,
+        "manual_steps": [
+          "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+        ],
+        "ig_id": "35157222637226667",
+        "status": "FINISHED",
+        "host": "litterbox",
+        "video_url": "https://litter.catbox.moe/2bsi94.mp4"
+      }
+    ],
+    "errors": [],
+    "result": {
+      "media_id": "18043310921831319",
+      "container_id": "17912431566538210",
+      "caption": "That missed call isn't you being rude. It's you sitting there with the phone in your hand, holding your breath until the ringing stops so you can finally breathe again.\nYour nervous system doesn't hear a ringtone. It hears a trial. One where your voice might shake, your mind might blank, and they might hear the flaw you've been hiding. So it freezes your hand until the threat passes. Texting feels safe because you can rewrite it until it sounds normal.\nIf you let calls ring out then text \"sorry, just saw this\" when you saw it on the first ring, you're not alone. Comment QUIET and I'll send you the full breakdown — the why behind the freeze and how to stop treating every call like a trial.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts #quietpeople",
+      "alt_text": "Man alone holding phone looking at it dark room cinematic. Overlay text reads: POV: your phone lights up and you watch it ring out. You saw the name on the first ring. You hold your breath until it stops. Then you wait 10 minutes and type \"sorry, just saw this\". Your chest is still tight. Your heart is still... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+      "hide_like_count": true,
+      "manual_steps": [
+        "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+      ],
+      "ig_id": "35157222637226667",
+      "status": "FINISHED",
+      "host": "litterbox",
+      "video_url": "https://litter.catbox.moe/2bsi94.mp4"
+    }
   }
 ]
