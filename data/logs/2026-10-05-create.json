@@ -40,5 +40,26 @@
     ],
     "errors": [],
     "result": "skipped"
+  },
+  {
+    "workflow": "create",
+    "started": "2026-10-05T12:32:26.919836+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.49
+      },
+      {
+        "step": "scheduler",
+        "t": 0.49,
+        "post": false,
+        "reason": "post 1/2 waits for its due time 13:30 (now 12:32 UTC)",
+        "pre_jitter": true
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
   }
 ]
