@@ -1469,6 +1469,66 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "17882663745522549",
+      "container_id": "17912555058538210",
+      "created_at": "2026-10-06T16:17:46.698516+00:00",
+      "hour_slot": "13:30",
+      "hook_text": "POV: you said you're good today and your chest was caving in.",
+      "hook": "POV: you said you're good today and your chest was caving in.",
+      "keyword": "MASK",
+      "topic": "performing fine while falling apart",
+      "caption": "That \"you're good\" wasn't a lie. It was how you made it through the day without anyone asking for more.\nWhen you live with social anxiety, your nervous system learns that being seen struggling feels more dangerous than suffering alone. So you perform fine. You smile on cue. You nod. You keep your hands still while your chest tightens behind the mask.\nIf you sat in your car after work because you couldn't carry it one more minute, you're not alone. You're not faking it, you're just tired of hiding the cost. Comment MASK and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #quietpeople #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#quietpeople",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "POV: you said you're good today and your chest was caving in.",
+        "cluster": "the_mask",
+        "topic": "exposure_fear",
+        "hook_length_chars": 61,
+        "num_text_blocks": 6,
+        "landing_text": "Comment MASK and I'll send you the full breakdown.",
+        "bg_type": "mask",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Dancing In the Dark",
+          "artist": "Bruce Springsteen",
+          "genre": "alternative",
+          "trend_score": 76.3,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man in a crowd looking down alone dark cinematic. Overlay text reads: POV: you said you're good today and your chest was caving in. You nodded through the whole shift. Smiled on cue. No one noticed your hands shaking. You sat in your car for twenty minutes after because you couldn't do one more... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: you said you're good today and your chest was caving in.\nYou nodded through the whole shift. Smiled on cue. No one noticed your hands shaking.\nYou sat in your car for twenty minutes after because you couldn't do one more performance.\nAgain. Another day where you looked fine and felt like you were disappearing inside it.\nYou're not faking it. You're trying to survive without anyone seeing the cost.\nComment MASK and I'll send you the full breakdown.",
+        "keyword": "MASK",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#quietpeople",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "13:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_mask",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "song"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -1586,6 +1646,11 @@
       "id": "360147301469699337",
       "date": "2026-10-05",
       "pin_url": "https://www.pinterest.com/pin/360147301469699337/"
+    },
+    {
+      "id": "1149473504915177843",
+      "date": "2026-10-06",
+      "pin_url": "https://www.pinterest.com/pin/1149473504915177843/"
     }
   ],
   "used_tracks": [],
@@ -1749,8 +1814,8 @@
       "hook": "POV: you just canceled plans you actually wanted to go to"
     }
   ],
-  "last_post_date": "2026-10-05",
-  "post_counter": 22,
+  "last_post_date": "2026-10-06",
+  "post_counter": 23,
   "last_keyword": "FREE",
   "keyword_counts": {
     "HEARD": 1,
@@ -2141,6 +2206,30 @@
       "date": "2026-10-05",
       "source": "song",
       "query": "shadow drone sparse"
+    },
+    {
+      "profile": [
+        0.002455998638575774,
+        0.005461914307073871,
+        0.03304253442754957,
+        0.12236647366068168,
+        0.14341344561207298,
+        0.18574868615218457,
+        0.08688623271695001,
+        0.09408355335485395,
+        0.12805684635516673,
+        0.06921243553828033,
+        0.04822391857512209,
+        0.03444031899684514,
+        0.021945765781633406,
+        0.011647533654385181,
+        0.007494331945056193,
+        0.003540587780539001,
+        0.0019794225030296013
+      ],
+      "date": "2026-10-06",
+      "source": "song",
+      "query": "shadow drone minimal"
     }
   ],
   "used_music_queries": [
@@ -2159,8 +2248,9 @@
     "dark ambient drone sub bass slowed reverb dark ambient, muffled",
     "slow dark ambient reverb deep sub bass slowed reverb dark ambient, muffled",
     "heavy ambient minimal",
-    "shadow drone sparse"
+    "shadow drone sparse",
+    "shadow drone minimal"
   ],
-  "posts_today_date": "2026-10-05",
-  "posts_today_count": 2
+  "posts_today_date": "2026-10-06",
+  "posts_today_count": 1
 }
