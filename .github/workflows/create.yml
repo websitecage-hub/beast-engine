@@ -1,21 +1,11 @@
 name: create
+# SUPERSEDED by confess.yml. STRATEGY.md reverses this pipeline's format (two
+# posts a day, a static card readable at once, a "POV:" label, a comment-keyword
+# CTA). The scheduled triggers are removed so it cannot keep posting in the old
+# format; the file and its code path are kept intact for manual dispatch so the
+# previous setup stays auditable and revertible.
 
 on:
-  schedule:
-    # ALL TIMES UTC. Wakes every 4 hours; the scheduler in src/run_create.py decides
-    # whether a post is due, so a delayed wake still publishes instead of losing the
-    # slot. Two posts a day, due:
-    #   post 1  due 13:30 UTC (19:00 IST)
-    #   post 2  due 17:30 UTC (23:00 IST)
-    # The daily cap refuses a third post no matter how often this fires.
-    # These MUST match RUN_HOURS in src/run_create.py — the workflow only decides
-    # when to wake up, run_create decides whether the due post still needs publishing.
-    - cron: "30 1 * * *"
-    - cron: "30 5 * * *"
-    - cron: "30 9 * * *"
-    - cron: "30 13 * * *"
-    - cron: "30 17 * * *"
-    - cron: "30 21 * * *"
   workflow_dispatch:
     inputs:
       dry_run:

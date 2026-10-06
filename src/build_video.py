@@ -364,21 +364,143 @@ def is_cta(line: str) -> bool:
     return "comment" in low and "breakdown" in low
 
 
+def fit_common_px(lines: list, cfg, start_px: int = 64,
+                  y_band: tuple = (0.15, 0.70)) -> int:
+    """ONE font size that every line in the block fits at.
+
+    Needed because the confession renders each line as its own overlay layer.
+    Fitting each layer independently lets a short line render at the start size
+    while a long one drops several rungs, and the finished block ships visibly
+    mixed sizes — it reads as broken rather than as design.
+
+    The size is chosen for the LONGEST line after wrapping, and the total stacked
+    height is bounded by the band so six accumulating lines cannot run past the
+    safe area.
+    """
+    from PIL import ImageFont
+    w = int(cfg["reel"]["w"])
+    h = int(cfg["reel"]["h"])
+    usable = w - 2 * SIDE_MARGIN
+    font_file = str(config.ROOT / FONT_HOOK)
+    band_h = int(h * (y_band[1] - y_band[0]))
+    n = max(len(lines), 1)
+
+    for px in range(int(start_px), 29, -2):
+        f = ImageFont.truetype(font_file, px)
+        longest = 0
+        for ln in lines:
+            # a single line may itself wrap; measure the widest of its parts
+            words, cur, widest = str(ln).split(), "", 0
+            for word in words:
+                trial = f"{cur} {word}".strip()
+                if f.getbbox(trial)[2] <= usable or not cur:
+                    cur = trial
+                else:
+                    widest = max(widest, f.getbbox(cur)[2])
+                    cur = word
+            widest = max(widest, f.getbbox(cur)[2] if cur else 0)
+            longest = max(longest, widest)
+        # Each line gets one slot; a slot must hold the tallest wrapped line.
+        line_h = max(int(px * LINE_SPACING), 1)
+        wrapped_rows = 0
+        for ln in lines:
+            words, cur, rows = str(ln).split(), "", 1
+            for word in words:
+                trial = f"{cur} {word}".strip()
+                if f.getbbox(trial)[2] <= usable or not cur:
+                    cur = trial
+                else:
+                    rows += 1
+                    cur = word
+            wrapped_rows += rows
+        if longest <= usable and wrapped_rows * line_h <= band_h:
+            return px
+    return 30
+
+
+def render_single_line(text: str, out_png: Path, cfg, px: int = 64,
+                       y_frac: float = 0.35, font_path: str | None = None) -> Path:
+    """ONE line as a transparent PNG, for a beat-timed overlay chain.
+
+    The confession format shows lines one at a time, so each line gets its own
+    layer and its own enable= window. That is the opposite of render_block,
+    which is the old all-visible-at-once format and must not be used here.
+
+    No watermark and no handle: the strategy's render rules ban both ("No
+    watermark. No handle burned in."). That is a change from the previous
+    format, which burned ``UNLEASHTHE.B_`` into every reel.
+
+    The line is wrapped and fitted by MEASURED font metrics — the widest
+    rendered line is asserted against the usable width before painting, because
+    overflow has been the single most common cause of a rejected build here.
+    """
+    from PIL import Image, ImageDraw, ImageFilter, ImageFont
+    w = int(cfg["reel"]["w"])
+    h = int(cfg["reel"]["h"])
+    usable = w - 2 * SIDE_MARGIN
+    font_path = font_path or FONT_HOOK
+    font_file = str(config.ROOT / font_path)
+
+    # Fit: walk down from the asked size until every wrapped line fits.
+    chosen_px, wrapped = None, None
+    for cand_px in [p for p in range(int(px), 39, -2) if p >= 40]:
+        f = ImageFont.truetype(font_file, cand_px)
+        words, lines, cur = str(text or "").split(), [], ""
+        for word in words:
+            trial = f"{cur} {word}".strip()
+            if f.getbbox(trial)[2] <= usable or not cur:
+                cur = trial
+            else:
+                lines.append(cur)
+                cur = word
+        if cur:
+            lines.append(cur)
+        widest = max((f.getbbox(ln)[2] for ln in lines), default=0)
+        block_h = len(lines) * int(cand_px * LINE_SPACING)
+        if widest <= usable and block_h <= int(h * 0.30):
+            chosen_px, wrapped = cand_px, lines
+            break
+    if chosen_px is None:
+        chosen_px = 40
+        wrapped = [str(text or "")]
+    wrapped = wrapped or [str(text or "")]
+    font = ImageFont.truetype(font_file, chosen_px)
+
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    shadow = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    sd = ImageDraw.Draw(shadow)
+    # Create the drawing handle AFTER the layer exists and after any compositing
+    # (lesson: rebinding img after ImageDraw.Draw discards every glyph).
+    d = ImageDraw.Draw(img)
+
+    block_h = len(wrapped) * int(chosen_px * LINE_SPACING)
+    # Centre the whole wrapped block on y_frac, inside the safe band.
+    top = int(h * y_frac) - block_h // 2
+    top = max(int(h * TEXT_SAFE_TOP), min(top, int(h * TEXT_SAFE_BOTTOM) - block_h))
+
+    y = top
+    for ln in wrapped:
+        bb = font.getbbox(ln)
+        x = (w - (bb[2] - bb[0])) // 2 - bb[0]
+        sd.text((x + 2, y + 3), ln, font=font, fill=(0, 0, 0, SHADOW_ALPHA))
+        d.text((x, y), ln, font=font, fill=INK)
+        y += int(chosen_px * LINE_SPACING)
+
+    img = Image.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(SHADOW_BLUR)), img)
+    out_png.parent.mkdir(parents=True, exist_ok=True)
+    img.save(out_png)
+    return out_png
+
+
 def render_block(lines: list, px: int, font_path: str, watermark: str, out_png: Path,
                  cfg, fixed_top: int | None = None, bg_luma: float | None = None) -> Path:
     """ONE static text block as a transparent PNG — visible on every frame.
 
-    FINAL FORMAT §2: this is the single overlay composited over the whole reel.
-    `fixed_top` places the first line at the TEXT_TOP_FRAC anchor.
-
-    TEXT ENGINE: the CTA line renders at CTA_SCALE of the body size with a little
-    extra leading above it, so the ask reads as a footer rather than another
-    story beat. The body keeps the fitted size.
-
-    `bg_luma` (0-255 mean brightness of the background under the text) triggers the
-    optional feathered dark scrim, so light footage can't wash the text out. The
-    scrim MUST be composited before the text is drawn — see the ordering comment
-    inside, and its regression test.
+    LEGACY FORMAT (pre-confession). Kept because the loop-echo and placement
+    gates and their tests are built on it, but the confession engine does NOT
+    call this: see render_single_line for the beat-timed format the strategy
+    requires. Leaving it here rather than deleting it keeps the old gates
+    honest about what they measure.
     """
     from PIL import Image, ImageDraw, ImageFilter, ImageFont
     w = int(cfg["reel"]["w"])

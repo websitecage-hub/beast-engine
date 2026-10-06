@@ -1,0 +1,101 @@
+name: confess
+
+# THE CONFESSION ENGINE (docs/strategy/ENGINE_SPEC.md, "Daily loop").
+#
+# One post a day at 23:30 UTC. This workflow REPLACES the scheduled role of
+# create.yml — that pipeline posts two reels a day in the superseded
+# "(static card + POV + comment-keyword CTA)" format, which STRATEGY.md reverses.
+# create.yml is kept for manual dispatch only so the old path stays auditable.
+#
+# Wake grid rather than a single cron: GitHub's scheduler is measured on this
+# repo running ~6h late and sometimes dropping a slot entirely. A single 23:30
+# cron would therefore lose days. The wakes below bracket 23:30 so a delayed
+# fire still lands inside the posting window, and the scheduler in
+# src/run_confess.py decides whether the post is still due — the daily cap
+# refuses a second post however many times this fires.
+on:
+  schedule:
+    # ALL TIMES UTC. Brackets the 23:30 UTC publish moment.
+    - cron: "15 23 * * *"    # 23:15 — the guard rail before the slot
+    - cron: "35 23 * * *"    # 23:35 — the slot itself
+    - cron: "30 1 * * *"     # 01:30 — recovery window (still the same posting day)
+    - cron: "30 4 * * *"     # 04:30 — last recovery before the window closes
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build the reel but do not publish it"
+        type: boolean
+        default: false
+      force:
+        description: "Publish at once, ignoring the slot window (never the daily cap)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: beast-confess
+  cancel-in-progress: false
+
+jobs:
+  # Gate publishing on the full suite (both the legacy checks and the confession
+  # tests). A regression in the renderer reaching the live account while the
+  # suite sits green is the failure this job exists to prevent.
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Acceptance tests
+        run: python -m tests.test_acceptance
+
+  confess:
+    needs: test
+    runs-on: ubuntu-latest
+    # A confession render is 16-20s of 1080x1920 at CRF 16 / preset slow, plus a
+    # per-line overlay chain — measured at ~115s locally. 20 minutes leaves room
+    # for a cold Render service and a slow runner.
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Verify ffmpeg is available
+        run: |
+          python -c "from src import config; p=config.resolve_ffmpeg(); print('ffmpeg:', p)"
+          python -c "from src import config; import subprocess; p=config.resolve_ffmpeg(); subprocess.run([p,'-version'],check=True,stdout=subprocess.DEVNULL)"
+      - name: Create confession
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          # Never export a force flag unconditionally: it would bypass the slot
+          # window on SCHEDULED runs. force is wired to the explicit input only.
+          if [ "${{ inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
+          python -m src.run_confess $ARGS
+      - name: Commit state
+        if: always()
+        run: |
+          git config user.name "beast-engine[bot]"
+          git config user.email "beast-engine[bot]@users.noreply.github.com"
+          git pull --rebase --autostash || true
+          git add data/ outputs/ || true
+          git commit -m "confess: state update" || echo "nothing to commit"
+          git push || (git pull --rebase --autostash && git push) || echo "push failed, next run recovers"

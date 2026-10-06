@@ -32,7 +32,14 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python -m src.run_learn
+        run: |
+          # The legacy weekly analyser. It scores the OLD pipeline's attribute
+          # families (archetype/topic/mood/bg_type), which the confession format
+          # does not use, so it is kept only so the previous setup stays
+          # auditable — it is NOT what learns from confession reels.
+          # The confession learner runs in measure.yml (src/score.py), because
+          # ENGINE_SPEC.md needs insights read at 24h and 72h.
+          python -m src.run_learn
       - name: Commit state
         if: always()
         run: |

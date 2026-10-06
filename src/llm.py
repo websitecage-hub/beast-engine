@@ -158,7 +158,8 @@ def _json_largest(text: str):
     return best
 
 
-def chat(messages, expect_json: bool = False, retries: int = 3, timeout: int = CHAT_TIMEOUT):
+def chat(messages, expect_json: bool = False, retries: int = 3, timeout: int = CHAT_TIMEOUT,
+         temperature: float | None = None, system: str = ""):
     """Stateless chat completion. Returns text (or parsed object when expect_json).
 
     The upstream Meta endpoint IGNORES the `system` role — verified directly: a
@@ -168,14 +169,32 @@ def chat(messages, expect_json: bool = False, retries: int = 3, timeout: int = C
 
     So system instructions are folded into the user turn. That is correct whether or
     not the endpoint honours `system`, and it is the only form proven to work here.
+
+    `temperature` and `system` exist for the confession engine, which needs the
+    SAME endpoint to behave as two roles — a writer and a harsher critic. The
+    spec asks for two different model families; this service exposes one model id
+    (GET /v1/models -> ["meta-ai-thinking"]), so the separation is reproduced
+    with a cold temperature on the critic plus a code-enforced ban list the
+    critic cannot waive. Both parameters are best-effort and ignored if the
+    upstream rejects them.
     """
     wake()
     last_err = None
     msgs = _fold_system(messages)
+    if system:
+        # Folded into the user turn for the same reason as above.
+        if msgs and msgs[-1].get("role") == "user":
+            msgs[-1]["content"] = f"{system}\n\n{msgs[-1]['content']}"
     for attempt in range(retries):
         body = {"model": MODEL, "messages": msgs}
+        if temperature is not None:
+            body["temperature"] = temperature
         try:
             r = requests.post(f"{BASE}/v1/chat/completions", json=body, timeout=timeout)
+            if r.status_code >= 400 and temperature is not None:
+                # Retry once without the optional field rather than lose the call.
+                body.pop("temperature", None)
+                r = requests.post(f"{BASE}/v1/chat/completions", json=body, timeout=timeout)
             if r.status_code >= 500:
                 raise RuntimeError(f"upstream {r.status_code}")
             r.raise_for_status()

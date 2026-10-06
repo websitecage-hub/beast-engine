@@ -176,8 +176,16 @@ def media_publish(ig_id: str, container_id: str) -> str:
 
 
 def insights(media_id: str) -> dict:
-    """Full metric set, retry with the smaller set on 400. Partial results accepted."""
-    full = "reach,plays,likes,comments,saved,shares,total_interactions"
+    """Full metric set, retry with the smaller set on 400. Partial results accepted.
+
+    `metric=` must be ONE comma-joined string on this route. Sending the values
+    as a Python LIST makes the API fail EVERY metric at once (measured), which
+    is indistinguishable from a post having no data — so the two tiers below are
+    strings, and the reel-specific watch-time metrics are requested first
+    because the confession learner's `hold` depends on them.
+    """
+    full = ("ig_reels_avg_watch_time,ig_reels_video_view_total_time,"
+            "reach,views,likes,comments,saved,shares,total_interactions")
     small = "reach,likes,comments,saved,shares"
     for metric in (full, small):
         try:
@@ -189,10 +197,39 @@ def insights(media_id: str) -> dict:
                     vals = row.get("values") or []
                     if name and vals:
                         out[name] = vals[0].get("value")
-                return out
+                if out:
+                    return out
         except requests.RequestException:
             continue
     return {}
+
+
+def account_profile_views() -> dict:
+    """Account-level profile views / reach for the last days.
+
+    Media-level `profile_visits` is NOT supported on this route (measured: the
+    API answers "The Media Insights API does not support the profile_visits,
+    follows metric for this media product type"). The strategy wants "profile
+    visits per 1,000 reach" PER POST; the API only offers it at ACCOUNT level,
+    so it is stored as a daily account figure and never attributed to a post.
+
+    `metric=` must be ONE comma-joined string on this route — a list fails every
+    metric at once, which is how this silently returned nothing before.
+    """
+    out = {}
+    try:
+        r = _get("/me/insights", {"metric": "profile_views,reach", "period": "day"})
+        if r.status_code != 200:
+            return out
+        for row in (r.json() or {}).get("data", []):
+            name = row.get("name")
+            vals = [v for v in (row.get("values") or []) if isinstance(v, dict)]
+            if name and vals:
+                out[name] = [{"end_time": v.get("end_time"), "value": v.get("value")}
+                             for v in vals]
+    except requests.RequestException:
+        return out
+    return out
 
 
 def refresh_token() -> dict | None:

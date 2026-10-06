@@ -339,33 +339,43 @@ def test_hide_like_count_is_a_manual_step_not_a_false_claim():
 def test_scheduler_hours_match_the_workflow_crons():
     """The learner must only be offered hours a cron actually fires at.
 
-    HOURS used to include 21:30 while create.yml only fires 13:30/15:00/16:30. The
+    HOURS used to include 21:30 while the crons fired 13:30/15:00/16:30. The
     learner picked 21:30, so no scheduled run was ever inside the window and the
     machine stopped posting on its own while every unit test stayed green.
 
-    With two posts a day the crons are the DUE times plus their retries. The learner
-    must choose among the DUE times only, so it never aims a post at a retry slot —
-    but every due time still has to be one of the crons.
+    SUPERSESSION NOTE: create.yml's scheduled triggers were removed when the
+    confession engine (docs/strategy/STRATEGY.md) replaced this pipeline's
+    format, so run_create's grid is no longer driven by a cron. The invariant
+    that still matters and is still asserted: the constants are internally
+    consistent, the learner only ever picks a DUE time, and the config's
+    informational list has not drifted from the code.
     """
     import re
     from pathlib import Path
-    yml = (Path(config.ROOT) / ".github" / "workflows" / "create.yml").read_text()
-    crons = set(re.findall(r'cron:\s*"(\d+)\s+(\d+)', yml))
-    cron_times = {f"{int(h):02d}:{int(m):02d}" for m, h in crons}
 
-    # the scheduler's slot list must be exactly what the crons fire
-    assert set(run_create.SLOT_HOURS) == cron_times, (
-        f"scheduler slots {sorted(run_create.SLOT_HOURS)} != crons {sorted(cron_times)}")
+    create_yml = (Path(config.ROOT) / ".github" / "workflows" / "create.yml").read_text()
+    confess_yml = (Path(config.ROOT) / ".github" / "workflows" / "confess.yml").read_text()
 
-    # the learner's hours must be real cron times, and specifically the due times
-    assert set(analyze.HOURS) <= cron_times, (
-        f"analyze.HOURS {sorted(analyze.HOURS)} includes an hour nothing triggers, "
-        f"crons are {sorted(cron_times)}")
+    # create.yml must NOT be scheduled any more, or the old format keeps posting
+    assert "schedule:" not in create_yml, (
+        "create.yml is superseded by confess.yml and must not keep a schedule — "
+        "otherwise the account posts two reels a day in the old format")
+    # ...and the live workflow must actually be scheduled
+    live_crons = set(re.findall(r'cron:\s*"(\d+)\s+(\d+)', confess_yml))
+    assert live_crons, "confess.yml has no crons, so nothing publishes"
+
+    # internal consistency of the legacy scheduler's own constants
+    mins = [run_create._slot_minutes(t) for t in run_create.RUN_HOURS]
+    assert len(mins) == len(set(mins)), f"duplicate wake times: {run_create.RUN_HOURS}"
+    assert set(run_create.DUE_HOURS) <= set(run_create.RUN_HOURS), (
+        f"due times {run_create.DUE_HOURS} must be a subset of wakes "
+        f"{run_create.RUN_HOURS}")
+
+    # the learner's hours must be the DUE times, never a retry slot
     assert set(analyze.HOURS) == set(run_create.DUE_HOURS), (
         f"the learner should choose among due times {sorted(run_create.DUE_HOURS)}, "
         f"got {sorted(analyze.HOURS)}")
 
-    # two posts a day, two due times
     assert len(run_create.DUE_HOURS) == run_create.POSTS_PER_DAY == 2
 
     # posting_slots_utc is informational (nothing reads it), which is exactly how a
@@ -696,8 +706,13 @@ def test_insufficient_data_report():
 
 def test_workflows_parse_and_contracts():
     wf = ROOT / ".github" / "workflows"
+    # create.yml appears with NO schedule: it is superseded by confess.yml (the
+    # strategy reverses its format) and must stay unscheduled so two posts a day
+    # in the old format cannot keep going out. Its dispatch-only contract is
+    # still enforced below.
     expected = {
-        "create.yml": ("30 1 * * *", 30, "beast-create", "run_create"),
+        "create.yml": (None, 30, "beast-create", "run_create"),
+        "confess.yml": ("35 23 * * *", 20, "beast-confess", "run_confess"),
         "measure.yml": ("0 4,10,16 * * *", 10, "beast-measure", "run_measure"),
         "learn.yml": ("0 18 * * 0", 10, "beast-learn", "run_learn"),
         "health.yml": ("0 5 * * *", 10, "beast-health", "run_health"),
@@ -706,8 +721,12 @@ def test_workflows_parse_and_contracts():
         doc = yaml.safe_load((wf / name).read_text(encoding="utf-8"))
         triggers = doc.get("on") or doc.get(True)
         assert triggers is not None, f"{name}: no trigger block"
-        crons = [c["cron"] for c in triggers["schedule"]]
-        assert cron in crons, f"{name}: missing cron {cron} (has {crons})"
+        if cron is None:
+            assert "schedule" not in triggers, \
+                f"{name}: must not have a schedule (superseded pipeline)"
+        else:
+            crons = [c["cron"] for c in triggers["schedule"]]
+            assert cron in crons, f"{name}: missing cron {cron} (has {crons})"
         assert "workflow_dispatch" in triggers
         assert "pull_request" not in triggers, f"{name}: pull_request trigger forbidden"
         perms = doc["permissions"]
@@ -1552,7 +1571,12 @@ def test_workflows_use_only_valid_permission_scopes():
 def test_workflows_invoke_modules_not_file_paths():
     """`python src/run_x.py` breaks the package's relative imports
     ("attempted relative import with no known parent package") — every scheduled run
-    died instantly. The entrypoints must be invoked as modules."""
+    died instantly. The entrypoints must be invoked as modules.
+
+    Comment lines are stripped first. A comment that MENTIONS a module file path
+    ("run_learn", "src/score.py" in a note explaining the pipeline) is not an
+    invocation, and matching it made this guard fail on documentation.
+    """
     import glob as _glob
     import yaml
     for f in sorted(_glob.glob(str(ROOT / ".github" / "workflows" / "*.yml"))):
@@ -1560,9 +1584,11 @@ def test_workflows_invoke_modules_not_file_paths():
         for job in (d.get("jobs") or {}).values():
             for step in job.get("steps", []):
                 cmd = str(step.get("run", "") or "")
-                if "run_" in cmd and ".py" in cmd:
+                code = "\n".join(ln for ln in cmd.splitlines()
+                                 if not ln.strip().startswith("#"))
+                if "run_" in code and ".py" in code:
                     raise AssertionError(
-                        f"{f}: runs a script path ({cmd!r}); use -m src.run_x instead")
+                        f"{f}: runs a script path ({code!r}); use -m src.run_x instead")
 
 
 def test_entrypoint_modules_are_importable_as_modules():
@@ -1732,7 +1758,19 @@ def test_audio_repeat_guard_uses_content_not_urls():
 
 
 if __name__ == "__main__":
-    fns = [v for k, v in sorted(globals().items()) if k.startswith("test_") and callable(v)]
+    # The confession engine's suite runs in the SAME pass, so a spec rewrite and
+    # the old format cannot each be green on their own. Collect from both modules
+    # and run every `test_*` in definition order.
+    fns = [v for k, v in sorted(globals().items())
+           if k.startswith("test_") and callable(v)]
+    try:
+        import tests.test_confession as _conf  # noqa: E402
+        conf_fns = [v for k, v in sorted(vars(_conf).items())
+                    if k.startswith("test_") and callable(v)]
+        fns += conf_fns
+    except Exception as exc:  # noqa: BLE001
+        print(f"FAIL  (importing tests.test_confession): {exc}")
+        raise SystemExit(1)
     failed = 0
     for fn in fns:
         try:

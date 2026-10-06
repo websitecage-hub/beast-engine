@@ -32,7 +32,13 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python -m src.run_measure
+        run: |
+          # The confession learner FIRST (ENGINE_SPEC.md "Scoring"): it reads
+          # insights at 24h and 72h, derives sends-per-1k and hold, assigns
+          # win/flop/neither, and mutates the family weights every 6 scored
+          # posts. Then the legacy harvest, which the old pipeline still uses.
+          python -m src.score || echo "score failed; continuing"
+          python -m src.run_measure
       - name: Commit state
         if: always()
         run: |

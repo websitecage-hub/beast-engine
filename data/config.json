@@ -3,7 +3,7 @@
     "name": "Unleash The Beast",
     "handle": "unleashthe.b",
     "meaning": "The real person under the mask. Not aggression, not grind. The self buried under years of small retreats who still wants to be known.",
-    "voice": "Describe, never advise. Present tense, second person, his language \u2014 never a psychologist's. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
+    "voice": "Describe, never advise. Present tense, second person, his language — never a psychologist's. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
     "hook_examples": [
       "You know exactly what to say. You say nothing. Again.",
       "The conversation ends. The trial begins.",
@@ -11,7 +11,8 @@
       "She matched with you. And you're suspicious.",
       "Your manager thinks you're less competent than you are.",
       "You pull out your phone when someone walks by. Nothing's on it."
-    ]
+    ],
+    "bio_required": "For the person who says I'm fine.\nThe private version is in the book. ."
   },
   "archetypes": [
     "the_mask",
@@ -322,10 +323,75 @@
       ]
     },
     "name_field": "Unleash The Beast | Social Anxiety Help",
-    "bio_template": "Overcoming social anxiety. Real posts for the ones who overthink every conversation. The book that gets it \u2192 link below.",
+    "bio_template": "Overcoming social anxiety. Real posts for the ones who overthink every conversation. The book that gets it → link below.",
     "hashtags_min": 6,
-    "hashtags_max": 9
+    "hashtags_max": 9,
+    "hashtags": false,
+    "note": "The strategy bans the hashtag block entirely. Kept as a flag rather than deleted so the old layer is auditable."
   },
   "bg_grade": false,
-  "hide_like_count": true
+  "hide_like_count": true,
+  "confession": {
+    "publish_at_utc": "23:30",
+    "posts_per_day": 1,
+    "min_s": 16.0,
+    "max_s": 20.0,
+    "line_one_by_s": 1.2,
+    "last_line_hold_s": 2.5,
+    "first_line_at_s": 0.35,
+    "push_in": 1.06,
+    "still_min_px": 900,
+    "max_face_fraction": 0.34,
+    "banned_query_words": [
+      "aesthetic",
+      "moody",
+      "cinematic",
+      "vibe"
+    ]
+  },
+  "bed": {
+    "mode": "silence",
+    "kinds": [
+      "room_tone",
+      "rain",
+      "vibration",
+      "turn_signal"
+    ]
+  },
+  "consideration": {
+    "win_sends_per_1k": 15.0,
+    "win_reach_mult": 3.0,
+    "win_min_sends": 3,
+    "flop_reach_under": 200,
+    "flop_reach_over": 500,
+    "score_after_h": 72,
+    "mutate_every": 6,
+    "win_mult": 1.2,
+    "flop_mult": 0.7,
+    "min_samples": 8
+  },
+  "mix": {
+    "confession": 0.7,
+    "argument": 0.2,
+    "door": 0.1,
+    "enabled": false
+  },
+  "door_gate": {
+    "min_wins_14d": 3,
+    "min_followers": 500,
+    "every_n": 10,
+    "off_days_after_2_flops": 21
+  },
+  "trial_reels": {
+    "enabled": false,
+    "min_followers": 200
+  },
+  "dm": {
+    "enabled": false,
+    "first_reply_within_h": 1,
+    "link_after_h": 18,
+    "link_within_h": 24,
+    "first_reply_is_link": false,
+    "third_message": false
+  }
 }
