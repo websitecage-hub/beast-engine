@@ -1529,6 +1529,66 @@
       "metrics": {},
       "score": null,
       "harvested": false
+    },
+    {
+      "media_id": "18051362456804535",
+      "container_id": "17912575401538210",
+      "created_at": "2026-10-06T19:21:18.593552+00:00",
+      "hour_slot": "17:30",
+      "hook_text": "POV: the conversation pauses and your throat locks shut.",
+      "hook": "POV: the conversation pauses and your throat locks shut.",
+      "keyword": "BLANK",
+      "topic": "going blank mid-conversation",
+      "caption": "That blank isn't you being awkward. It's your body pulling the emergency brake mid-sentence. Your throat tightens, your mind empties, you nod like you heard something you didn't.\nWhen silence hits, your nervous system reads it as danger. It shuts down speech before you can say the wrong thing and get exposed. That's why you freeze when you actually know what to say. If your mind goes blank right when you need it most, you're not alone.\nComment BLANK and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "POV: the conversation pauses and your throat locks shut.",
+        "cluster": "the_freeze",
+        "topic": "mind_blank",
+        "hook_length_chars": 56,
+        "num_text_blocks": 6,
+        "landing_text": "Comment BLANK and I'll send you the full breakdown.",
+        "bg_type": "freeze",
+        "bg_is_video": true,
+        "audio_mood": "quiet_devastating",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Dancing In the Dark",
+          "artist": "Bruce Springsteen",
+          "genre": "alternative",
+          "trend_score": 76.3,
+          "phase": "phase2"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man frozen mid conversation with someone dark cinematic. Overlay text reads: POV: the conversation pauses and your throat locks shut. You knew exactly what to say two seconds ago. Now your mind is empty. Your mouth won't open. You nod. You force a sound. You watch yourself disappear from the conversation. You're... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "POV: the conversation pauses and your throat locks shut.\nYou knew exactly what to say two seconds ago.\nNow your mind is empty. Your mouth won't open.\nYou nod. You force a sound. You watch yourself disappear from the conversation.\nYou're not awkward. Your nervous system hit the kill switch before you could speak.\nComment BLANK and I'll send you the full breakdown.",
+        "keyword": "BLANK",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "17:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_freeze",
+        "mood": "quiet_devastating",
+        "bg_source": "pinterest_video",
+        "music_source": "drone"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -1651,6 +1711,11 @@
       "id": "1149473504915177843",
       "date": "2026-10-06",
       "pin_url": "https://www.pinterest.com/pin/1149473504915177843/"
+    },
+    {
+      "id": "603834262544241292",
+      "date": "2026-10-06",
+      "pin_url": "https://www.pinterest.com/pin/603834262544241292/"
     }
   ],
   "used_tracks": [],
@@ -1815,7 +1880,7 @@
     }
   ],
   "last_post_date": "2026-10-06",
-  "post_counter": 23,
+  "post_counter": 24,
   "last_keyword": "FREE",
   "keyword_counts": {
     "HEARD": 1,
@@ -2252,5 +2317,5 @@
     "shadow drone minimal"
   ],
   "posts_today_date": "2026-10-06",
-  "posts_today_count": 1
+  "posts_today_count": 2
 }
