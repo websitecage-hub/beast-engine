@@ -407,5 +407,26 @@
       "host": "litterbox",
       "video_url": "https://litter.catbox.moe/soazv5.mp4"
     }
+  },
+  {
+    "workflow": "create",
+    "started": "2026-10-06T21:47:29.383090+00:00",
+    "dry_run": false,
+    "offline": false,
+    "steps": [
+      {
+        "step": "services_awake",
+        "t": 0.51
+      },
+      {
+        "step": "scheduler",
+        "t": 0.51,
+        "post": false,
+        "reason": "daily cap reached (2/2)",
+        "pre_jitter": true
+      }
+    ],
+    "errors": [],
+    "result": "skipped"
   }
 ]
