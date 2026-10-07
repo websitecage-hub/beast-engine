@@ -353,7 +353,12 @@ def build_reel(still: Path, lines: list, audio: Path | None, out_mp4: Path,
     w = int(cfg["reel"]["w"])
     h = int(cfg["reel"]["h"])
     fps = int(cfg["reel"]["fps"])
-    times = line_times(len(lines), duration_s)
+    # cfg is passed so the RENDERER and the GATE compute the same times. The
+    # gate calls line_times(n, dur, cfg) and build_reel called the default-arg
+    # form, which is the "gate measures a different path than the renderer"
+    # failure — a config change to first_line_at_s or last_line_hold_s would
+    # have been honoured by the gate and ignored by the actual build.
+    times = line_times(len(lines), duration_s, cfg)
 
     # Text layers, centred inside the safe band.
     #
@@ -381,18 +386,41 @@ def build_reel(still: Path, lines: list, audio: Path | None, out_mp4: Path,
         build_video.render_single_line(ln, png, cfg, px=common_px, y_frac=centre)
         text_pngs.append(png)
 
-    inputs = ["-loop", "1", "-t", f"{duration_s:.3f}", "-i", str(still)]
+    # ONE frame from the still, NOT a looped input.
+    #
+    # zoompan's d= counts OUTPUT frames PER INPUT FRAME. The still was fed as
+    # "-loop 1 -t 18" (540 input frames) and zoompan was told d=540, so it
+    # produced 540 x 540 = 291,600 frames instead of 540 and the encode ran
+    # until the 900s timeout (verified: subprocess.TimeoutExpired, and the
+    # partial file was unplayable — "moov atom not found"). One input frame
+    # with d=540 yields exactly the 540 frames the reel needs.
+    #
+    # The text PNGs stay looped: an overlay stream must not END during its
+    # enable= window, and the graph terminates on the bg's 540 frames.
+    inputs = ["-i", str(still)]
     for png in text_pngs:
         inputs += ["-loop", "1", "-i", str(png)]
     if audio and Path(audio).exists():
         inputs += ["-i", str(audio)]
 
-    # Slow push-in: zoompan on the still so the frame is never frozen.
+    # Slow push-in, and FORCE SQUARE PIXELS.
+    #
+    # zoompan emitted non-square pixels (measured: SAR 555:416, so the reel
+    # displayed as 3:4 DAR 0.75 instead of 9:16 DAR 0.5625) — Instagram would
+    # letterbox or stretch it. Two causes had to be fixed together:
+    #   1. the still was not 9:16 to begin with, and scale to a mismatched
+    #      aspect carries the difference into the pixel aspect ratio;
+    #   2. zoompan's output inherits that ratio unless it is normalized.
+    # `setsar=1` after zoompan is what actually pins it, and the crop below
+    # means the picture is never distorted to get there.
     filters = [
-        f"[0:v]scale={int(w * PUSH_IN)}:{int(h * PUSH_IN)},"
+        # pre-crop to the target aspect from the centre (no distortion), then
+        # scale up for the push-in headroom
+        f"[0:v]crop='min(iw,ih*{w}/{h})':'min(ih,iw*{h}/{w})',"
+        f"scale={int(w * PUSH_IN)}:{int(h * PUSH_IN)},setsar=1,"
         f"zoompan=z='min(zoom+0.0004,{PUSH_IN})':"
         f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={int(duration_s * fps)}:"
-        f"s={w}x{h}:fps={fps}[bg]"
+        f"s={w}x{h}:fps={fps},setsar=1[bg]"
     ]
     prev = "bg"
     for i, t in enumerate(times):

@@ -4,3 +4,5 @@ tmp/
 __pycache__/
 *.pyc
 .env
+outputs/sample_confession.mp4
+outputs/sample_still.jpg
