@@ -97,6 +97,45 @@ VERDICTS = ("rude", "flaky", "fake", "cold", "boring", "too much", "broken",
             "bad at this", "stuck up", "stuck-up", "cold", "fake friend",
             "bad friend", "ridiculous", "stupid", "a burden", "selfish")
 
+def gold_overlap(onscreen: str) -> str | None:
+    """A real COPY: a gold LINE reused whole (normalised), not a shared phrase.
+
+    WHY THIS IS CODE AND NOT A CRITIC RULE. The bank rows were derived from the
+    gold set — 7 of the 30 rows ARE gold examples by design (phone_ring_out is the
+    gold "Phone.", aisle_turn is the gold "Aisle."). A critic told to "fail a copy
+    of the gold set" therefore failed good drafts for writing the scene it had
+    been assigned, which is the writer doing exactly what it was told.
+
+    The measure has to be tight, too. A first attempt flagged any shared 7-word
+    run, and that misfired on the SCENE ITSELF: the row's action string is
+    "typed 'just saw this'", so a draft containing "then you type sorry, just saw
+    this" was marked as plagiarism of the gold line that describes the same act.
+    Sharing the facts of a scene is not copying it.
+
+    What "copies one of these" actually means is a whole line lifted. That is
+    precise, has no false positives on gold-derived scenes, and leaves the critic
+    free to judge what only judgment can decide.
+    """
+    raw = _spec_prompts()["raw"]
+    gold = _section(raw, "Gold set")
+    if not gold or not onscreen:
+        return None
+
+    def norm(s: str) -> str:
+        return " ".join(re.findall(r"[a-z']+", str(s).lower()))
+
+    # The whole block, INCLUDING the label lines ("Phone.", "Aisle."). Comparing
+    # against only the knife lines still flagged the gold set against itself when
+    # a gold example was fed in — a "copy" check must never fire on the bar it is
+    # measuring against.
+    gold_lines = {norm(ln) for ln in gold.splitlines() if norm(ln)}
+    for ln in lines_of(onscreen):
+        n = norm(ln)
+        if len(n.split()) >= 5 and n in gold_lines:
+            return ln.strip()
+    return None
+
+
 # ABSTRACTIONS THE LAST LINE MAY NOT HIDE BEHIND. The user's rule: rename a
 # verdict the viewer already uses ("rude, cold, fake, flaky, weird") in PLAIN
 # words. "You're trying not to get caught off guard" fails — it names a state,
@@ -222,21 +261,22 @@ def _unbound_pronoun(lines: list, row: dict | None = None) -> str | None:
     line is unreadable to a viewer who is one second into the reel.
     """
     named_before = False
+    seen_any = False          # has ANY earlier line named something?
     for ln in lines:
         low = ln.lower()
-        # does THIS line (or an earlier one) name something?
         names_line, _ = _names_a_person_or_thing([ln], row)
-        if named_before:
-            return None
+        if names_line:
+            seen_any = True
         for pron in BARE_PERSON_PRONOUNS:
             if re.search(rf"\b{re.escape(pron)}\b", low):
-                # A pronoun is fine when the same line names its referent
-                # ("your brother texts and you leave him on read").
-                if names_line:
+                # A pronoun is fine when ITS OWN line names the referent
+                # ("your brother texts and you leave him on read"), and fine when
+                # an EARLIER line already named one ("Your manager asked... Three
+                # seconds too late he said it"). Both are normal English. Only a
+                # pronoun with NOTHING yet on screen is unreadable.
+                if names_line or seen_any:
                     break
                 return pron
-        if names_line:
-            named_before = True
     return None
 
 
@@ -344,7 +384,15 @@ def filler_lines(lines: list, row: dict | None = None) -> list:
             out.append(f"line {i + 1} is a bare body sensation with no cause: "
                        f"{ln.strip()[:60]!r}")
             continue
-        if not has_picture and not has_thing:
+        # A line carrying a BODY SENSATION or a TIME FACT is doing work even with
+        # no noun from the list: "Thirty seconds at the register" is a real,
+        # concrete, picturable line, and the first version of this gate rejected
+        # it for containing no enumerated noun. The critic is the backstop for
+        # genuine vagueness, so the mechanical gate stays conservative.
+        has_time = bool(re.search(
+            r"\b(\d+|ten|twenty|thirty|forty|five|two|three|four|six|seven|"
+            r"eight|nine|hour|minute|second|night|morning|evening|week)\b", low))
+        if not has_picture and not has_thing and not (has_time or body_hit):
             out.append(f"line {i + 1} names nothing and shows no action: "
                        f"{ln.strip()[:60]!r}")
     return out
@@ -510,6 +558,13 @@ def problems(onscreen: str, row: dict | None = None) -> list:
     # §no filler: every line must show an action or name a thing
     for f in filler_lines(lines, row):
         out.append(f)
+
+    # §a real COPY of the gold set, measured (see gold_overlap for why this is
+    # code and not a critic rule)
+    lifted = gold_overlap(body)
+    if lifted:
+        out.append(f"lifts {len(lifted.split())} words verbatim from the gold set: "
+                   f"{lifted!r}")
     return out
 
 
@@ -680,11 +735,12 @@ def critic_prompt(onscreen: str, row: dict, memory: dict | None = None) -> str:
         "behaviour is the format.\n"
         "- REPEATING A RECENT POST: the same object AND the same verdict as one "
         "of the RECENT POSTS listed above. Repeating a SCENE IDENTITY is what "
-        "this means. It does NOT mean the scene resembles a gold example.\n"
-        "- A VERBATIM COPY: a gold line reused word-for-word. Paraphrase is not a "
-        "copy. The bank scenes ARE the gold scenes, so writing one in fresh words "
-        "is exactly what is wanted — the gold set is the BAR, not a quarantine "
-        "list. Only wording lifted from it fails.\n"
+        "this means.\n"
+        "  IMPORTANT: the scene the writer was ASSIGNED may be the same scene as "
+        "a gold example — several bank scenes were derived from the gold set on "
+        "purpose. Writing the assigned scene in fresh words is CORRECT and must "
+        "PASS. Do not fail a draft for resembling the gold scene it was told to "
+        "write. Verbatim copying is checked elsewhere; ignore it here.\n"
         "- Too broad: a person without this problem would nod. That fails too.\n\n"
         f"THE GOLD SET (the quality BAR — do not treat it as a list of used "
         f"scenes):\n{gold[:2500]}\n\n"

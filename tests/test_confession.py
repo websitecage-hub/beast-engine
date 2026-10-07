@@ -63,15 +63,47 @@ You're not bad at this. You heard yourself the way you think they will.""",
 # ------------------------------------------------- the spec must pass its own bar
 
 def test_the_gold_set_passes_every_hard_ban():
-    """Every gold line must survive problems(). A gate that rejects the spec's
-    own quality bar aborts all valid work — which is exactly what the first
-    version of this gate did, on all eight lines."""
+    """Every gold line must survive problems(), EXCEPT the copy rule.
+
+    A gate that rejects the spec's own quality bar aborts all valid work — which
+    is exactly what the first version of this gate did, on all eight lines.
+
+    The copy rule is excluded here for a reason that is not a loophole: this test
+    feeds the gold set back through the gates, so by definition every line "lifts
+    words verbatim from the gold set". The rule firing is CORRECT and is asserted
+    separately (see test_a_lifted_gold_line_is_caught). Including it here would
+    only test that the gold set is not itself.
+    """
     bad = {}
     for name, text in GOLD.items():
-        probs = confession.problems(text, None)
+        probs = [p for p in confession.problems(text, None)
+                 if not p.startswith("lifts ")]
         if probs:
             bad[name] = probs
     assert not bad, f"the gold set fails the code bans: {bad}"
+
+
+def test_a_lifted_gold_line_is_caught():
+    """A real copy must still fail, or "copying one of these fails" is unenforced.
+
+    Only a whole LINE reused counts. Sharing the facts of a scene does not: the
+    bank rows were derived from the gold set, so a draft that describes the phone
+    scene is not plagiarising it.
+    """
+    lifted = ("Your phone lights up with a name you already know.\n"
+              "You watch it ring out.\n"
+              "You're not rude. You were trying to arrive in the room before your "
+              "voice did.")
+    probs = confession.problems(lifted, None)
+    assert any(p.startswith("lifts ") for p in probs), (
+        f"a lifted gold line was NOT caught: {probs}")
+
+    # The same scene, in fresh words, must pass the copy rule.
+    original = ("Your mother's name lights up your phone.\n"
+                "You watch it ring out on the counter.\n"
+                "You're not rude. You're buying time before your voice has to work.")
+    assert confession.gold_overlap(original) is None, (
+        "an original draft describing the same scene was wrongly flagged as a copy")
 
 
 def test_the_bans_still_bite_after_being_relaxed():
