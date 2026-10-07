@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-07T16:31:43.780208+00:00",
+  "beat_count": 1,
+  "token_alive": false,
+  "token_days_left": 43,
+  "days_since_last_post": 1,
+  "alerts": [
+    "TOKEN IS DEAD or IG_ACCESS_TOKEN is unset \u2014 posting cannot work. Regenerate at developers.facebook.com -> your app -> Instagram -> API setup with Instagram login."
+  ]
+}

@@ -34,7 +34,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from . import bed as bed_mod
-from . import build_video, confession, config, language, publish, state, still
+from . import build_video, confession, config, language, publish, render_gate, state, still
 
 PUBLISH_AT = "23:30"          # UTC, fixed by the strategy
 DUE_MINUTES = 23 * 60 + 30
@@ -85,6 +85,16 @@ def should_run(now: datetime, cfg: dict, memory: dict, force: bool = False,
         if dry_run:
             return True, "dry-run (daily cap not applicable)"
         return False, f"already posted for {day} ({posted}/1)"
+
+    # A claim recorded but never resolved means the previous run died after
+    # Instagram may have accepted the reel and before the state commit. Treating
+    # it as a skip is the conservative choice: one missed post beats a duplicate.
+    pend = memory.get("pending_publish") or {}
+    if pend and str(pend.get("day")) == day and not dry_run and not force:
+        return False, (f"a publish was claimed for {day} at "
+                       f"{str(pend.get('claimed_at'))[11:16]}Z and never resolved "
+                       f"— skipping rather than risking a duplicate")
+
     if force or dry_run:
         return True, "forced" if force else "dry-run"
 
@@ -158,12 +168,31 @@ def run(dry_run: bool = False, offline: bool = False, force: bool = False) -> in
     beds = bed_mod.choose(cfg, draft, memory, duration, out_dir=out_dir, offline=offline)
     step("bed", {"source": beds.get("source"), "kind": beds.get("kind"),
                  "reason": beds.get("reason")})
-    times = still.line_times(len(lines), duration)
+    times = still.line_times(len(lines), duration, cfg)
     try:
         still.build_reel(Path(shot["path"]), lines, beds.get("path"), out_mp4,
                          cfg, duration)
     except Exception as exc:  # noqa: BLE001
-        return skip(f"render failed: {exc}", scene=row["id"])
+        return skip(f"render failed: {exc}", scene=row["id"],
+                    gate={"stage": "encode", "error": str(exc)})
+
+    # THE UPLOAD GATE, ON THE FINISHED FILE (requirement 2).
+    #
+    # still.qa() above checks the NUMBERS the build intended; this checks the
+    # ARTEFACT it produced. They are not the same thing, and the difference is
+    # exactly the bug that shipped an unplayable reel: the encode was killed by
+    # its own timeout and left a file with no moov atom, and every layer above
+    # reported success because nothing ever opened the file.
+    #
+    # This runs BEFORE publish and refuses to publish on any failure. It does not
+    # retry — a bad file is a skip, not a re-render loop.
+    audio_expected = bool(beds.get("path"))
+    gate_ok, gate = render_gate.check(out_mp4, expect_audio=audio_expected)
+    step("render_gate", gate)
+    print(f"[confess] {render_gate.describe(gate)}")
+    if not gate_ok:
+        return skip(f"upload gate failed: {'; '.join(gate.get('failures') or [])}",
+                    scene=row["id"], gate=gate)
 
     qa_ok, qa = still.qa({"ok": True, "duration": duration, "times": times})
     step("rendered", {"qa": qa, "path": str(out_mp4)})
@@ -178,6 +207,30 @@ def run(dry_run: bool = False, offline: bool = False, force: bool = False) -> in
         print("[confess] dry-run complete")
         return 0
 
+    # WRITE THE INTENT *BEFORE* PUBLISHING (idempotency).
+    #
+    # The daily cap lives in memory.json, and memory was only updated AFTER the
+    # publish returned. If the job died between Instagram accepting the reel and
+    # the state commit — a runner shutdown, a network cut, the 20-minute timeout
+    # — then posts_today_count was still 0, and the next recovery wake at 01:30
+    # or 04:30 would have seen a clean day and published a SECOND reel.
+    #
+    # So the claim is recorded first, with the scene and the fact that a publish
+    # is in flight. should_run() treats a same-day in-flight claim as a skip. A
+    # crash therefore costs one missed post, which is the failure the format is
+    # designed to prefer over a duplicate.
+    memory["pending_publish"] = {
+        "day": posting_day(now),
+        "claimed_at": now.isoformat(),
+        "scene_id": row["id"],
+        "media_id": None,
+    }
+    config.save_memory(memory)
+    try:
+        state.commit_all("confess: publish claimed", dry_run=dry_run)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[confess] claim commit failed (continuing): {exc}")
+
     try:
         res = publish.publish_reel(out_mp4, draft["caption"], cfg)
         media_id = res.get("media_id") or res.get("id")
@@ -187,6 +240,13 @@ def run(dry_run: bool = False, offline: bool = False, force: bool = False) -> in
         step("publish_failed", {"error": str(exc)})
         log["errors"].append(str(exc))
         log["result"] = {"published": False, "error": str(exc)}
+        # Release the claim: the publish demonstrably did not happen, so the day
+        # stays open for a later recovery wake rather than being written off.
+        try:
+            memory.pop("pending_publish", None)
+            config.save_memory(memory)
+        except Exception:  # noqa: BLE001
+            pass
         state.write_log("confess", log)
         state.commit_all("confess: publish failed", dry_run=dry_run)
         return 1
@@ -226,6 +286,9 @@ def run(dry_run: bool = False, offline: bool = False, force: bool = False) -> in
     memory["used_pins"] = list({*(memory.get("used_pins") or []), str(shot.get("pin_id"))})
     memory["post_counter"] = int(memory.get("post_counter") or 0) + 1
     memory["last_post_date"] = now.date().isoformat()
+    # The claim is resolved: the reel is published AND its row is recorded, so a
+    # later wake must see a clean, completed day rather than an in-flight one.
+    memory.pop("pending_publish", None)
     # Stored under the POSTING day, not the calendar day: the recovery wakes run
     # after midnight and must see this post as already made for that day.
     memory["posts_today_date"] = posting_day(now)

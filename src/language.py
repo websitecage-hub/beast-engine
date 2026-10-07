@@ -154,6 +154,60 @@ VERDICTS = ("rude", "flaky", "fake", "cold", "boring", "too much", "broken",
             "weird", "annoying", "useless", "dull", "liar", "obsessive",
             "fake friend", "bad friend", "ridiculous", "stupid", "stuck-up")
 
+# ------------------------------------------------------- the named referent
+#
+# WHY THIS EXISTS: the first live sample shipped "Aisle ends and you see them."
+# — "them" with no referent. A viewer cannot picture "them". The spec's own gold
+# set never does this: every line that mentions a person names them ("the invite",
+# "your hands", "the words", "a name you already know"), and the two breakout
+# April reels name the thing ("that dark room", "that cancelled plan").
+#
+# So every row now carries a SUBJECT: the concrete person or thing that line one
+# can be built on. Pronouns for a person ("them", "they", "someone") are only
+# allowed when the subject has already been named in the draft. That is the rule
+# the gate enforces, and it is the rule the old engine had no way to state.
+SUBJECT = {
+    "phone_ring_out":       "your mother",
+    "late_laugh":           "the table you were sitting at",
+    "deleted_line":         "the group chat",
+    "said_im_good":         "your manager",
+    "cancel_relief":        "the friend whose plan you cancelled",
+    "invite_unread":        "the invite",
+    "aisle_turn":           "the old coworker",
+    "voice_note":           "the friend waiting on the voice note",
+    "name_across_room":     "your old flatmate",
+    "not_much":             "your manager",
+    "should_hang_out":      "the guy from the gym",
+    "left_on_read":         "your brother",
+    "group_photo":          "the group photo",
+    "cashier_question":     "the cashier",
+    "party_door":           "the host",
+    "thanks_too_many":      "the woman who complimented you",
+    "their_plan_cancelled": "the friend who cancelled",
+    "practised_no":         "your cousin",
+    "longer_route":         "the neighbour at the mailbox",
+    "joke_in_head":         "the joke",
+    "meeting_answer":       "your manager in the meeting",
+    "home_still_mute":      "your partner",
+    "blue_ticks":           "the message",
+    "you_good":             "your brother",
+    "story_didnt_hear":     "the story",
+    "stayed_too_long":      "the host",
+    "filled_the_pause":     "the new starter",
+    "deflected_compliment": "the compliment",
+    "deleted_real_message": "your oldest friend",
+    "woke_in_replay":       "yesterday's conversation",
+}
+
+# The head noun of a subject, which is what a draft must actually contain for the
+# referent to be on the screen. "the friend whose plan you cancelled" -> "friend".
+def subject_head(subject: str) -> str:
+    """The one word a draft has to contain for the referent to be named."""
+    s = re.sub(r"^(your|the|a|an|that|this)\s+", "", str(subject or "").strip().lower())
+    # drop any relative clause and keep the head noun
+    s = re.split(r"\s+(?:whose|who|that|in|at|from|on|you)\b", s)[0].strip()
+    return s
+
 # Object families that may appear twice in ten posts and then must rest. Kept
 # coarse on purpose: "phone" and "message" and "draft" are one object to a
 # viewer, so counting them separately would let the grid repeat itself.
@@ -180,10 +234,28 @@ def object_key(row) -> str:
 
 
 def rows() -> list:
-    """The seed bank as dicts."""
+    """The seed bank as dicts, each with its named referent."""
     return [{"id": r[0], "family": r[1], "object": r[2], "action": r[3],
              "body": r[4], "time": r[5], "verdict": r[6],
+             "subject": SUBJECT.get(r[0], r[2]),
+             "subject_head": subject_head(SUBJECT.get(r[0], r[2])),
              "status": "seed", "source": "seed"} for r in SEED]
+
+
+# Two posts in a row about the same kind of person reads as one post. A subject's
+# slot is its head noun when that is a person ("friend", "manager"), otherwise
+# the row's object family. An object is fine twice; the same person twice running
+# is not.
+PERSON_HEADS = ("friend", "manager", "brother", "partner", "cousin", "neighbour",
+                "host", "cashier", "coworker", "flatmate", "starter", "mother",
+                "father", "sister", "guy", "woman")
+
+
+def subject_slot(row) -> str:
+    head = str(row.get("subject_head") or "").strip().lower()
+    if head in PERSON_HEADS:
+        return head
+    return object_key(row)
 
 
 def _norm(s: str) -> str:
@@ -198,8 +270,9 @@ def signature(row) -> str:
 
 
 def usable(row, memory, recent_limit: int = ROW_REST_POSTS) -> tuple:
-    """(ok, reason). A row may not repeat inside its rest window, and its object
-    family may not exceed OBJECT_MAX_PER_10 in the last ten posts."""
+    """(ok, reason). A row may not repeat inside its rest window, its object
+    family may not exceed OBJECT_MAX_PER_10 in the last ten posts, and the same
+    KIND OF PERSON may not appear in two consecutive posts."""
     posts = (memory.get("posts") or [])[-recent_limit:]
     rid = row.get("id") if isinstance(row, dict) else row[0]
     for p in posts:
@@ -211,6 +284,15 @@ def usable(row, memory, recent_limit: int = ROW_REST_POSTS) -> tuple:
     used = sum(1 for p in recent10 if (p.get("object_key") or "") == key)
     if used >= OBJECT_MAX_PER_10:
         return False, f"object '{key}' used {used} times in the last 10 posts"
+
+    # The named referent must rotate too. "your manager" on Monday and "your
+    # manager in the meeting" on Tuesday is one post shown twice.
+    slot = subject_slot(row)
+    last = (memory.get("posts") or [])[-1:] or []
+    if last:
+        prev_slot = last[0].get("subject_slot") or ""
+        if prev_slot and prev_slot == slot:
+            return False, f"same referent slot '{slot}' as the previous post"
     return True, "ok"
 
 
@@ -279,7 +361,10 @@ def record_use(memory: dict, row: dict):
     """Stamped onto the post row so rotation and dedup can see it."""
     return {"scene_id": row["id"], "family": row["family"],
             "object": row["object"], "object_key": object_key(row),
-            "verdict": row["verdict"]}
+            "verdict": row["verdict"],
+            "subject": row.get("subject") or "",
+            "subject_head": row.get("subject_head") or "",
+            "subject_slot": subject_slot(row)}
 
 
 def from_search(items: list, memory: dict) -> list:

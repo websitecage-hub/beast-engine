@@ -327,8 +327,29 @@ def fetch_still(cfg, content: dict, row: dict, memory: dict, offline: bool = Fal
             ok, why = inspect_still(target)
             print(f"[still] {pid} -> {why}")
             if ok:
+                # PROVENANCE (requirement 5): record the source URL, the licence
+                # and the author for every image that reaches a reel. Written
+                # next to the artefact and appended to data/provenance/images.jsonl.
+                try:
+                    from . import provenance
+                    prov = provenance.record(
+                        target, source=provenance.source_mode(cfg),
+                        source_url=url, pin_id=pid, query=attempt,
+                        author=str(entry.get("author") or
+                                   entry.get("pinner") or ""),
+                        extra={"alt_text": entry.get("alt_text") or "",
+                               "image_source_mode": provenance.source_mode(cfg)})
+                    print(f"[still] provenance {prov['source']} "
+                          f"licence={prov['licence']}")
+                except Exception as exc:  # noqa: BLE001
+                    # A provenance failure must not stop a reel, but it MUST be
+                    # visible — silently losing the record is the thing this
+                    # requirement exists to prevent.
+                    prov = {"error": str(exc)}
+                    print(f"[still] PROVENANCE FAILED: {exc}")
                 return {"ok": True, "path": target, "pin_id": pid, "query": attempt,
-                        "reason": "ok", "alt": entry.get("alt_text") or ""}
+                        "reason": "ok", "alt": entry.get("alt_text") or "",
+                        "source_url": url, "provenance": prov}
     return {"ok": False, "path": None, "pin_id": None, "query": query_for(row),
             "reason": "no pin passed the quality gates"}
 

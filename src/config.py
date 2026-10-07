@@ -238,6 +238,13 @@ DEFAULT_CONFIG = {
     "posting_slots_utc": ["01:30", "05:30", "09:30", "13:30", "17:30", "21:30"],
     # Part 5.5 — 9-10 seconds, locked
     "reel": {"min_s": 9.0, "max_s": 10.0, "fps": 30, "w": 1080, "h": 1920},
+    # WHERE IMAGES COME FROM — the one-line switch (requirement 5).
+    # "pinterest" is the operator's choice and the current mode. Pins are others'
+    # photographs with no reuse licence granted, so every image is recorded with
+    # its source URL and licence in data/provenance/images.jsonl. The other modes
+    # are one edit away: "pexels" / "unsplash" (license-free, need a key) or
+    # "generated" (this stack's own endpoint).
+    "image_source": "pinterest",
     "timing": {"hook_end_frac": 0.45, "deepen_end_frac": 0.88},  # spec §4 (see build_video.state_map)
     "text_limits": {"hook": 60, "deepening": 90, "landing": 70,
                     # TEXT ENGINE §3: 6-9 lines on screen (5-10 absolute bounds in §8.8).

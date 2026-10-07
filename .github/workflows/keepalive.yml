@@ -1,0 +1,61 @@
+name: keepalive
+
+# WHY THIS EXISTS: GitHub DISABLES scheduled workflows on a repository that has
+# had no activity for 60 days. With confess.yml's schedule currently switched
+# OFF pending the owner's approval, and with the post count sitting at zero, the
+# repo can look dormant — and the failure mode is silent and total: the crons do
+# not error, they simply never fire again, so the account goes quiet with nothing
+# in the logs to explain it.
+#
+# This job writes a dated heartbeat into the repo and commits it. That is real
+# repository activity, so the 60-day rule never triggers.
+#
+# It also does something useful while it is here: it reports the two numbers that
+# go stale without anyone noticing — the Instagram token's days remaining, and
+# how long since the last post. Both are the "everything is fine until it isn't"
+# class of failure, and both are cheap to check.
+#
+# IT PUBLISHES NOTHING. No Instagram call, no post, no render.
+on:
+  schedule:
+    # Weekly, Monday 06:00 UTC. Far inside the 60-day window, so up to eight
+    # consecutive failures still cannot disarm the repo.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: beast-keepalive
+  cancel-in-progress: false
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+
+      - name: Write heartbeat and report staleness
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python -m src.keepalive
+
+      - name: Commit
+        run: |
+          git config user.name "beast-engine[bot]"
+          git config user.email "beast-engine[bot]@users.noreply.github.com"
+          git pull --rebase --autostash || true
+          git add data/ || true
+          git commit -m "keepalive: heartbeat $(date -u +%Y-%m-%d)" || echo "nothing to commit"
+          git push || (git pull --rebase --autostash && git push) || echo "push failed; next run recovers"

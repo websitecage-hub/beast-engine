@@ -360,9 +360,28 @@ def test_scheduler_hours_match_the_workflow_crons():
     assert "schedule:" not in create_yml, (
         "create.yml is superseded by confess.yml and must not keep a schedule — "
         "otherwise the account posts two reels a day in the old format")
-    # ...and the live workflow must actually be scheduled
-    live_crons = set(re.findall(r'cron:\s*"(\d+)\s+(\d+)', confess_yml))
-    assert live_crons, "confess.yml has no crons, so nothing publishes"
+    # ...and confess.yml's schedule is DISABLED on purpose while publish is off.
+    #
+    # This assertion used to require live crons ("confess.yml has no crons, so
+    # nothing publishes"). That is still exactly why live crons will be needed at
+    # go-live — and exactly why their ABSENCE is now the thing to pin: the owner
+    # asked that nothing publish until they approve, so a test that demands crons
+    # would push the repo back into publishing on every run.
+    #
+    # What is asserted instead is the property that matters today: the crons are
+    # commented out, and a bare dispatch is a dry run. That way the safe state is
+    # enforced by the suite, and re-arming it cannot happen quietly.
+    cron_lines = [ln for ln in confess_yml.splitlines()
+                  if re.search(r'cron:\s*"', ln)]
+    live = [ln for ln in cron_lines if not ln.strip().startswith("#")]
+    assert not live, (
+        f"confess.yml has LIVE crons ({live}) while publishing is meant to be "
+        f"disabled — publishing must not resume without the owner's approval")
+    assert cron_lines, ("confess.yml has no cron lines at all, not even commented "
+                        "ones — the go-live config was lost rather than parked")
+    assert re.search(
+        r'dry_run:.*?default:\s*true', confess_yml, re.S), (
+        "a bare confess.yml dispatch must default to dry_run=true")
 
     # internal consistency of the legacy scheduler's own constants
     mins = [run_create._slot_minutes(t) for t in run_create.RUN_HOURS]
@@ -710,9 +729,16 @@ def test_workflows_parse_and_contracts():
     # strategy reverses its format) and must stay unscheduled so two posts a day
     # in the old format cannot keep going out. Its dispatch-only contract is
     # still enforced below.
+    #
+    # confess.yml ALSO has no schedule now, and that is a deliberate SAFETY state
+    # rather than an oversight: publishing is disabled until the owner approves
+    # go-live. The assertion is inverted for it — the test pins that its crons are
+    # ABSENT and that a bare dispatch defaults to a DRY RUN, so re-arming
+    # publishing takes an explicit, reviewable edit instead of happening by
+    # accident.
     expected = {
         "create.yml": (None, 30, "beast-create", "run_create"),
-        "confess.yml": ("35 23 * * *", 20, "beast-confess", "run_confess"),
+        "confess.yml": (None, 20, "beast-confess", "run_confess"),
         "measure.yml": ("0 4,10,16 * * *", 10, "beast-measure", "run_measure"),
         "learn.yml": ("0 18 * * 0", 10, "beast-learn", "run_learn"),
         "health.yml": ("0 5 * * *", 10, "beast-health", "run_health"),

@@ -1,0 +1,6 @@
+{
+  "last_beat": "2026-10-07T16:31:43.780208+00:00",
+  "beat_count": 1,
+  "first_beat": "2026-10-07T16:31:43.780208+00:00",
+  "purpose": "Keeps GitHub's 60-day scheduled-workflow disable from firing. Publishes nothing."
+}
