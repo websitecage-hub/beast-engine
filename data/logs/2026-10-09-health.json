@@ -1,7 +1,7 @@
 [
   {
     "workflow": "health",
-    "started": "2026-09-29T11:13:00.999878+00:00",
+    "started": "2026-10-09T11:44:16.136327+00:00",
     "dry_run": false,
     "checks": {
       "meta": true,
@@ -18,15 +18,15 @@
     },
     "token_expiry": {
       "expires_at": "2026-11-19",
-      "days_left": 51
+      "days_left": 41
     },
     "staleness": {
-      "last_post_date": "2026-09-28",
-      "stale": false,
+      "last_post_date": "2026-10-06",
+      "stale": true,
       "paused": false,
       "posts_today": 0,
       "posts_per_day": 2
     },
-    "seconds": 1.42
+    "seconds": 152.26
   }
 ]
