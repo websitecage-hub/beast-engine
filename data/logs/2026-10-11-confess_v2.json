@@ -69,5 +69,82 @@
         "error": "paced assembly failed"
       }
     ]
+  },
+  {
+    "log": [
+      {
+        "at": "2026-10-11T11:20:57.231134+00:00",
+        "step": "selected",
+        "series": "small_steps",
+        "hook_type": "permission",
+        "layout": "single",
+        "voice": "none",
+        "length_bucket": "18-24",
+        "scene_family": "buried_anger",
+        "slot": "00:30",
+        "bg_source": "pinterest",
+        "cta_type": "send",
+        "music_mood": "restrained_anger",
+        "explore_rate": 0.3
+      },
+      {
+        "at": "2026-10-11T11:24:37.487435+00:00",
+        "step": "drafted",
+        "hook": "You're allowed to need ten minutes alone first.",
+        "lines": 7,
+        "duration_s": 22.06,
+        "attempt": 3
+      },
+      {
+        "at": "2026-10-11T11:27:21.481684+00:00",
+        "step": "background",
+        "source": "pinterest_video",
+        "path": "/home/testflowthrowout/beast-engine/outputs/bg.mp4"
+      },
+      {
+        "at": "2026-10-11T11:27:42.223273+00:00",
+        "step": "music",
+        "ok": true,
+        "source": null,
+        "file": null
+      },
+      {
+        "at": "2026-10-11T11:31:57.567610+00:00",
+        "step": "rendered",
+        "path": "/home/testflowthrowout/beast-engine/outputs/reel.mp4",
+        "bytes": 4186301
+      },
+      {
+        "at": "2026-10-11T11:32:00.433401+00:00",
+        "step": "upload_gate",
+        "ok": true,
+        "failures": []
+      },
+      {
+        "at": "2026-10-11T11:32:00.433471+00:00",
+        "step": "dry_run",
+        "would_publish": "You're allowed to need ten minutes alone first.",
+        "cta": "send"
+      }
+    ],
+    "dry_run": true,
+    "content": {
+      "hook": "You're allowed to need ten minutes alone first.",
+      "beats": [
+        "Your coat still on against your door.",
+        "Notice your lock clicks and your jaw finally softens.",
+        "Your shoes still laced, you haven't moved yet.",
+        "You hold your I'm good face until the hallway lights.",
+        "Your nervous system isn't quitting, it's putting your face down.",
+        "You're allowed your ten minutes alone first."
+      ],
+      "caption": "social anxiety and needing ten minutes alone after performing fine.\n\nYour body doesn't clock out the moment you leave. It stays braced until it gets proof you're safe. That pause with your coat still on isn't you being dramatic, it's your system putting the face down.\n\nFor the friend who vanishes to the bathroom at every gathering, this is what it looks like at home. What do your ten minutes alone actually look like?",
+      "cta_type": "send",
+      "series": "small_steps",
+      "hook_type": "permission",
+      "layout": "single",
+      "duration_s": 22.06,
+      "words": 59
+    }
   }
 ]

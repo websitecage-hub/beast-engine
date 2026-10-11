@@ -92,7 +92,6 @@ def _best_file(video: dict) -> str:
 
 def download(url: str, out_mp4: Path, timeout: int = 120) -> bool:
     """Fetch a rendition to disk. ffmpeg is used so the container is normalised."""
-    from .still import FFMPEG
 
     out_mp4.parent.mkdir(parents=True, exist_ok=True)
     req = urllib.request.Request(url, headers={"User-Agent": "beast-engine"})
@@ -111,7 +110,7 @@ def download(url: str, out_mp4: Path, timeout: int = 120) -> bool:
     # Normalise to h264/mp4 and cut to a usable length. A Pexels download can be
     # any codec; the renderer needs something ffmpeg reads reliably.
     r = subprocess.run(
-        [FFMPEG, "-y", "-v", "error", "-i", str(tmp), "-t", "20",
+        [config.resolve_ffmpeg(), "-y", "-v", "error", "-i", str(tmp), "-t", "20",
          "-an", "-c:v", "libx264", "-preset", "medium", "-crf", "20",
          "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(out_mp4)],
         capture_output=True, text=True, timeout=300)

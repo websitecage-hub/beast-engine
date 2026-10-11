@@ -49,7 +49,6 @@ def _render_slide(text: str, out_jpg: Path, cfg, bg: Path | None = None) -> bool
     reels instead of looking like a different account.
     """
     from . import build_video
-    from .still import FFMPEG
 
     out_jpg.parent.mkdir(parents=True, exist_ok=True)
     png = out_jpg.with_suffix(".png")
@@ -64,13 +63,13 @@ def _render_slide(text: str, out_jpg: Path, cfg, bg: Path | None = None) -> bool
 
     src = str(bg) if bg and Path(bg).exists() else None
     if src:
-        cmd = [FFMPEG, "-y", "-v", "error", "-stream_loop", "-1", "-i", src,
+        cmd = [config.resolve_ffmpeg(), "-y", "-v", "error", "-stream_loop", "-1", "-i", src,
                "-i", str(png), "-filter_complex",
                f"[0:v]scale={W}:{H}:force_original_aspect_ratio=increase,"
                f"crop={W}:{H},setsar=1[bg];[bg][1:v]overlay=0:0[o]",
                "-map", "[o]", "-frames:v", "1", "-q:v", "2", str(out_jpg)]
     else:
-        cmd = [FFMPEG, "-y", "-v", "error", "-f", "lavfi",
+        cmd = [config.resolve_ffmpeg(), "-y", "-v", "error", "-f", "lavfi",
                "-i", f"color=c=0x0d0d10:s={W}x{H}", "-i", str(png),
                "-filter_complex", "[0:v][1:v]overlay=0:0[o]",
                "-map", "[o]", "-frames:v", "1", "-q:v", "2", str(out_jpg)]

@@ -69,7 +69,11 @@ jobs:
       - name: Install deps
         run: pip install -r requirements.txt
       - name: Acceptance tests
-        run: python -m tests.test_acceptance
+        run: |
+          python -m tests.test_acceptance
+          python -m tests.test_v2
+          python -m tests.test_learner
+          python -m src.lint --selftest
 
   confess:
     needs: test
@@ -103,7 +107,7 @@ jobs:
           # Never export a force flag unconditionally: it would bypass the slot
           # window on SCHEDULED runs. force is wired to the explicit input only.
           if [ "${{ inputs.force }}" = "true" ]; then ARGS="$ARGS --force"; fi
-          python -m src.run_confess $ARGS
+          python -m src.run_v2 $ARGS
       - name: Commit state
         if: always()
         run: |

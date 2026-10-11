@@ -738,7 +738,7 @@ def test_workflows_parse_and_contracts():
     # accident.
     expected = {
         "create.yml": (None, 30, "beast-create", "run_create"),
-        "confess.yml": (None, 20, "beast-confess", "run_confess"),
+        "confess.yml": (None, 20, "beast-confess", "run_v2"),
         "measure.yml": ("0 4,10,16 * * *", 10, "beast-measure", "run_measure"),
         "learn.yml": ("0 18 * * 0", 10, "beast-learn", "run_learn"),
         "health.yml": ("0 5 * * *", 10, "beast-health", "run_health"),
@@ -1784,19 +1784,12 @@ def test_audio_repeat_guard_uses_content_not_urls():
 
 
 if __name__ == "__main__":
-    # The confession engine's suite runs in the SAME pass, so a spec rewrite and
-    # the old format cannot each be green on their own. Collect from both modules
-    # and run every `test_*` in definition order.
+    # The v2 suites run in the SAME pass here, so the legacy pipeline and the v2
+    # content layer cannot each be green on their own. The retired confession
+    # stack's tests are gone with the stack; tests/test_v2.py and
+    # tests/test_learner.py cover their replacements.
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]
-    try:
-        import tests.test_confession as _conf  # noqa: E402
-        conf_fns = [v for k, v in sorted(vars(_conf).items())
-                    if k.startswith("test_") and callable(v)]
-        fns += conf_fns
-    except Exception as exc:  # noqa: BLE001
-        print(f"FAIL  (importing tests.test_confession): {exc}")
-        raise SystemExit(1)
     failed = 0
     for fn in fns:
         try:

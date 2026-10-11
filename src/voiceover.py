@@ -69,7 +69,6 @@ def build(lines: list, starts: list, duration_s: float, out_dir: Path,
     under the voice (ENGINE_SPEC §3.3) rather than replaced, so the reel keeps its
     bed while the voice is intelligible.
     """
-    from .still import FFMPEG
 
     if not available():
         return {"ok": False, "reason": "no TTS service configured"}
@@ -96,7 +95,7 @@ def build(lines: list, starts: list, duration_s: float, out_dir: Path,
                    f"duration=longest:normalize=0[voice]")
 
     voice = out_dir / "voice.wav"
-    r = subprocess.run([FFMPEG, "-y", "-v", "error", *inputs,
+    r = subprocess.run([config.resolve_ffmpeg(), "-y", "-v", "error", *inputs,
                         "-filter_complex", ";".join(filters),
                         "-map", "[voice]", "-t", f"{duration_s:.3f}",
                         str(voice)],
@@ -106,7 +105,7 @@ def build(lines: list, starts: list, duration_s: float, out_dir: Path,
 
     # QA: the voice must not outlast the video.
     try:
-        probe = subprocess.run([FFMPEG, "-i", str(voice)], capture_output=True,
+        probe = subprocess.run([config.resolve_ffmpeg(), "-i", str(voice)], capture_output=True,
                                text=True, timeout=60)
         for ln in probe.stderr.splitlines():
             if "Duration:" in ln:
@@ -122,7 +121,7 @@ def build(lines: list, starts: list, duration_s: float, out_dir: Path,
     if music and Path(music).exists():
         final = out_dir / "vo_mixed.m4a"
         r = subprocess.run(
-            [FFMPEG, "-y", "-v", "error", "-i", str(music), "-i", str(voice),
+            [config.resolve_ffmpeg(), "-y", "-v", "error", "-i", str(music), "-i", str(voice),
              "-filter_complex",
              # music bed at -22 LUFS, voice on top, music ducked 8 dB while speaking
              "[0:a]loudnorm=I=-22:TP=-1.5:LRA=11[m];"
