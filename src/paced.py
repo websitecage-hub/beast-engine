@@ -95,7 +95,7 @@ def assemble_paced(bg_mp4: Path, pngs: list, starts: list, duration_s: float,
         cta_idx = 2 + len(pngs)
         inputs += ["-loop", "1", "-t", f"{duration_s:.3f}", "-i", str(cta_png)]
     audio_idx = None
-    if audio and Path(audio).exists():
+    if audio and str(audio).strip() and Path(audio).is_file():
         audio_idx = (cta_idx + 1) if cta_idx is not None else (2 + len(pngs))
         inputs += ["-stream_loop", "-1", "-t", f"{duration_s:.3f}", "-i", str(audio)]
 
