@@ -87,16 +87,23 @@ def assemble_paced(bg_mp4: Path, pngs: list, starts: list, duration_s: float,
     inputs = []
     if not bg_is_video:
         inputs += ["-loop", "1", "-t", f"{duration_s:.3f}"]
+    # Indices are assigned AS INPUTS ARE APPENDED. `len(inputs)` counts FLAG
+    # ARGUMENTS, not inputs (each -i brings 4-5 flags), which produced [48:a] on
+    # an 8-input graph. The index of the next input is the number of "-i" flags
+    # seen so far.
+    def _n_inputs(seq) -> int:
+        return sum(1 for x in seq if x == "-i")
+
     inputs += ["-stream_loop", "-1", "-t", f"{duration_s:.3f}", "-i", str(bg_mp4)]
     for p in pngs:
         inputs += ["-loop", "1", "-t", f"{duration_s:.3f}", "-i", str(p)]
     cta_idx = None
     if cta_png is not None:
-        cta_idx = 2 + len(pngs)
+        cta_idx = _n_inputs(inputs)
         inputs += ["-loop", "1", "-t", f"{duration_s:.3f}", "-i", str(cta_png)]
     audio_idx = None
     if audio and str(audio).strip() and Path(audio).is_file():
-        audio_idx = (cta_idx + 1) if cta_idx is not None else (2 + len(pngs))
+        audio_idx = _n_inputs(inputs)
         inputs += ["-stream_loop", "-1", "-t", f"{duration_s:.3f}", "-i", str(audio)]
 
     # The background ships as shot (same rule as the one-block render): scale and

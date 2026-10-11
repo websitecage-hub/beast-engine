@@ -62,10 +62,18 @@ def _notify(text: str) -> None:
             if env.exists():
                 for line in env.read_text(encoding="utf-8").splitlines():
                     line = line.strip()
-                    if line.startswith("TELEGRAM_BOT_TOKEN="):
-                        token = token or line.split("=", 1)[1].strip().strip('"').strip("'")
-                    elif line.startswith("TELEGRAM_CHAT_ID="):
-                        chat = chat or line.split("=", 1)[1].strip().strip('"').strip("'")
+                    # the file stores `export KEY=value` — a literal parse keeps
+                    # "export " in the key and finds nothing, which is how the
+                    # sample-reel send failed with 404 before this
+                    if line.startswith("export "):
+                        line = line[len("export "):]
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    k, v = line.split("=", 1)
+                    if k.strip() == "TELEGRAM_BOT_TOKEN":
+                        token = token or v.strip().strip('"').strip("'")
+                    elif k.strip() == "TELEGRAM_CHAT_ID":
+                        chat = chat or v.strip().strip('"').strip("'")
         if token and chat:
             notify_send.send(token, chat, text)
         else:
@@ -260,8 +268,17 @@ def run(dry_run: bool = False, offline: bool = False, force: bool = False,
                            "duration_s": content["duration_s"], "attempt": res["attempt"]})
 
     # 3. the visual
-    bg_scene = {"scene": reel["hook"], "cluster": choice.get("scene_family"),
-                "bg_type": choice.get("scene_family"), "scene_queries": reel["scene_queries"]}
+    # THE SEARCH QUERY IS A VISUAL, NOT THE SCRIPT.
+    # The first dry run searched Pinterest for the HOOK SENTENCE ("You're allowed
+    # to need ten minutes alone first.") and the pins that came back were junk —
+    # quote cards with burned-in text, exactly what the QA gate is supposed to
+    # reject. A sentence is not a search query. The visual identity is the
+    # scene FAMILY (buried_anger -> person clenching jaw in a car, etc.) plus the
+    # writer's own scene_queries when it produced them; the hook words are not
+    # part of that.
+    bg_scene = {"scene": "", "cluster": choice.get("scene_family"),
+                "bg_type": choice.get("scene_family"),
+                "scene_queries": reel["scene_queries"]}
     bg_path, bg_source = None, ""
     use_pexels = pexels.should_use_pexels(cfg, memory.get("post_counter") or 0,
                                           forced=(choice.get("bg_source") == "pexels"))
@@ -283,7 +300,10 @@ def run(dry_run: bool = False, offline: bool = False, force: bool = False,
             state.write_log("confess_v2", {"log": log})
             return 0
     content["bg_source"] = bg_source
-    content["bg_is_video"] = str(bg_path).lower().endswith((".mp4", ".mov", ".webm"))
+    # The background's TYPE comes from the FILE we actually have, not from a
+    # default set earlier in the dict: trusting the stale flag fed a video clip
+    # down the still path (-loop 1) and the render failed.
+    content["bg_is_video"] = str(bg_path).lower().endswith((".mp4", ".mov", ".webm", ".mkv"))
     _step(log, "background", {"source": bg_source, "path": str(bg_path)})
     try:
         content["provenance"] = provenance.record(
@@ -299,17 +319,16 @@ def run(dry_run: bool = False, offline: bool = False, force: bool = False,
                                         None, content["duration_s"],
                                         dry_run=dry_run, offline=offline)
         if ok_music:
-            raw = str((mmeta or {}).get("path") or (mmeta or {}).get("mp3") or "").strip()
-            # `Path("")` is `Path(".")` and `.exists()` is True, so an empty path
-            # from a music tier that reported ok but named no file became the
-            # CURRENT DIRECTORY — ffmpeg then failed with "Is a directory" and the
-            # reel was skipped. Require a real, non-empty file.
-            cand = Path(raw) if raw else None
-            track_mp3 = cand if (cand and cand.is_file()) else None
+            # music.acquire writes to a FIXED path (outputs/track.mp3) and returns
+            # only the source name — there is no "path"/"mp3" key in the meta. The
+            # old lookup read the meta dict, found nothing, and every reel rendered
+            # SILENT while a perfectly good track sat on disk.
+            cand = config.OUTPUTS / "track.mp3"
+            track_mp3 = cand if (cand.is_file() and cand.stat().st_size > 4096) else None
             if track_mp3 is None:
-                print(f"[v2] music reported ok but named no usable file ({raw!r}); "
+                print(f"[v2] music reported ok but produced no usable track; "
                       f"rendering silent")
-        _step(log, "music", {"ok": ok_music, "source": (mmeta or {}).get("source"),
+        _step(log, "music", {"ok": ok_music, "source": (mmeta or {}).get("music_source"),
                              "file": str(track_mp3) if track_mp3 else None})
     except Exception as exc:  # noqa: BLE001
         _step(log, "music", {"error": str(exc)[:160]})

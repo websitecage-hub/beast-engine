@@ -402,8 +402,18 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
     # FINAL FORMAT §3 — rotate the query list, LLM scene first when we have one.
     # Every query must yield a PERSON in frame, so the cluster synonyms are
     # backed by the explicit person-bearing query list, then the §3 backups.
+    #
+    # V2: the writer emits 3 visual scene_queries for exactly this purpose (no
+    # faces, no text, night/evening). They are the BEST queries available — they
+    # describe the scene the words were written against — so they lead, and a
+    # whole sentence in `scene` is demoted: a sentence is prose, and Pinterest
+    # search on prose returns quote cards with burned-in text, which is the
+    # failure the burned-text QA gate exists for.
     queries = []
-    for q in [scene, *synonyms]:
+    for q in [*(content.get("scene_queries") or []),
+              *([scene] if scene and len(scene.split()) <= 4 else []),
+              *synonyms]:
+        q = str(q or "").strip()
         if q and q not in queries:
             queries.append(q)
     random.shuffle(synonyms)
