@@ -33,8 +33,8 @@ import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from . import bed as bed_mod
-from . import build_video, confession, config, language, publish, render_gate, state, still
+from . import (background, bed as bed_mod, build_video, confession, config,
+               language, provenance, publish, render_gate, state, still)
 
 PUBLISH_AT = "23:30"          # UTC, fixed by the strategy
 DUE_MINUTES = 23 * 60 + 30
@@ -155,11 +155,33 @@ def run(dry_run: bool = False, offline: bool = False, force: bool = False) -> in
     step("drafted", {"lines": len(lines), "attempt": draft.get("attempt"),
                      "duration": duration, "last_line": lines[-1][:80]})
 
-    # 5. the still — two attempts, then skip. Never words over the wrong picture.
-    shot = still.fetch_still(cfg, draft, row, memory, offline=offline)
-    if not shot.get("ok"):
-        return skip(f"no acceptable still: {shot.get('reason')}", scene=row["id"])
-    step("still", {"pin_id": shot["pin_id"], "query": shot["query"]})
+    # 5. THE BACKGROUND — a moving clip, from the SAME module the proven pipeline
+    # uses. Two attempts, then skip: never words over the wrong picture.
+    #
+    # This replaces the old still-only fetch. The reel must have a moving
+    # background clip, and background.py already owns that job end to end
+    # (Pinterest video search, normalise to 9:16, loop to length, and fall back
+    # to an animated still if no clip qualifies). Reusing it means one
+    # implementation of "get a backdrop", not two.
+    bg_scene = {
+        "scene": row.get("subject") or row.get("object") or "",
+        "cluster": row.get("family"),
+        "bg_type": (row.get("family") or "").replace("_", " "),
+    }
+    try:
+        bg_path, bg_source = background.build(cfg, bg_scene, memory, duration,
+                                              offline=offline, dry_run=dry_run)
+    except Exception as exc:  # noqa: BLE001
+        return skip(f"no background: {exc}", scene=row["id"])
+    step("background", {"source": bg_source, "path": str(bg_path)})
+
+    # Record the image provenance for the asset that is actually on screen.
+    try:
+        provenance.record(bg_path, source=bg_source,
+                          query=row.get("subject") or row.get("object") or "",
+                          cfg=cfg)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[confess] provenance not recorded: {exc}")
 
     # 6-7. render lines on the beat, then attach the bed or go silent
     out_dir = config.OUTPUTS
@@ -170,7 +192,7 @@ def run(dry_run: bool = False, offline: bool = False, force: bool = False) -> in
                  "reason": beds.get("reason")})
     times = still.line_times(len(lines), duration, cfg)
     try:
-        still.build_reel(Path(shot["path"]), lines, beds.get("path"), out_mp4,
+        still.build_reel(Path(bg_path), lines, beds.get("path"), out_mp4,
                          cfg, duration)
     except Exception as exc:  # noqa: BLE001
         return skip(f"render failed: {exc}", scene=row["id"],
@@ -276,14 +298,18 @@ def run(dry_run: bool = False, offline: bool = False, force: bool = False) -> in
             "duration_s": duration,
             "audio_source": beds.get("source"),
             "audio_kind": beds.get("kind"),
-            "pin_id": shot.get("pin_id"),
-            "pin_query": shot.get("query"),
+            "pin_id": bg_source,
+            "pin_query": row.get("subject") or row.get("object"),
+            "bg_source": bg_source,
             "format": "confession_v1",
             "critic": draft.get("critic"),
         },
     }
     memory.setdefault("posts", []).append(post)
-    memory["used_pins"] = list({*(memory.get("used_pins") or []), str(shot.get("pin_id"))})
+    # The background is remembered by OBJECT so the next pick avoids the same
+    # visual, which is what language.usable() reads when it rotates scenes.
+    memory["used_pins"] = list({*(memory.get("used_pins") or []),
+                                str(row.get("object") or "")})
     memory["post_counter"] = int(memory.get("post_counter") or 0) + 1
     memory["last_post_date"] = now.date().isoformat()
     # The claim is resolved: the reel is published AND its row is recorded, so a

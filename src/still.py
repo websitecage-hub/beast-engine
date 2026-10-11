@@ -356,17 +356,21 @@ def fetch_still(cfg, content: dict, row: dict, memory: dict, offline: bool = Fal
 
 # ------------------------------------------------------------------- render
 
-def build_reel(still: Path, lines: list, audio: Path | None, out_mp4: Path,
+def build_reel(bg: Path, lines: list, audio: Path | None, out_mp4: Path,
                cfg: dict, duration_s: float, font_px: int = 64) -> Path:
-    """Compose the beat-timed confession: still + slow push-in + lines on cue.
+    """Compose the beat-timed confession over a moving background.
+
+    `bg` is whatever background.py produced for this scene: a normalised, already
+    looped .mp4 (Pinterest clip, an animated still, or the bundled fallback). A
+    plain image path still works and gets the slow push-in instead.
 
     Text is drawn onto a transparent PNG per line and each is overlaid with its
     own enable= window, so a line appears once and stays. That is the format the
     strategy asks for ("lines arriving on the beat") and it is the opposite of
     the previous build's single all-visible block.
 
-    `-loop 1` on the still and on every text layer: a one-frame input ends at
-    t=0, so every enable= past the first frame silently renders nothing and the
+    Every input is looped and cut to on-screen length: a one-frame input ends at
+    t=0, so any enable= past the first frame silently renders nothing and the
     encode still "succeeds" with the text only on frame 0.
     """
     from . import build_video
@@ -418,12 +422,6 @@ def build_reel(still: Path, lines: list, audio: Path | None, out_mp4: Path,
     #
     # The text PNGs stay looped: an overlay stream must not END during its
     # enable= window, and the graph terminates on the bg's 540 frames.
-    inputs = ["-i", str(still)]
-    for png in text_pngs:
-        inputs += ["-loop", "1", "-i", str(png)]
-    if audio and Path(audio).exists():
-        inputs += ["-i", str(audio)]
-
     # Slow push-in, and FORCE SQUARE PIXELS.
     #
     # zoompan emitted non-square pixels (measured: SAR 555:416, so the reel
@@ -434,15 +432,75 @@ def build_reel(still: Path, lines: list, audio: Path | None, out_mp4: Path,
     #   2. zoompan's output inherits that ratio unless it is normalized.
     # `setsar=1` after zoompan is what actually pins it, and the crop below
     # means the picture is never distorted to get there.
-    filters = [
-        # pre-crop to the target aspect from the centre (no distortion), then
-        # scale up for the push-in headroom
-        f"[0:v]crop='min(iw,ih*{w}/{h})':'min(ih,iw*{h}/{w})',"
-        f"scale={int(w * PUSH_IN)}:{int(h * PUSH_IN)},setsar=1,"
-        f"zoompan=z='min(zoom+0.0004,{PUSH_IN})':"
-        f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={int(duration_s * fps)}:"
-        f"s={w}x{h}:fps={fps},setsar=1[bg]"
-    ]
+    # DOWNSCALE FIRST — MEMORY, NOT SPEED.
+    #
+    # The crop+scale+zoompan chain ran on the ORIGINAL still, and Pinterest pins
+    # are huge: one measured 3060x4080 (12.5 MP). ffmpeg was OOM-killed building
+    # the filter graph (kernel log: "Memory cgroup out of memory: Killed process
+    # (ffmpeg-linux-x8) total-vm:2958124kB"), so the render failed outright and the
+    # day would have been skipped on a perfectly good still.
+    #
+    # The source is reduced to ~1.25x the output BEFORE the crop. This did NOT fix
+    # the out-of-memory kill (measured peak RSS was ~1.59 GB with and without it —
+    # see the note on concurrency below); it is kept because it is faster and
+    # quality-neutral. The reel is 1080x1920 (2.07 MP), so 1.25x is already more
+    # detail than the push-in can show: the zoom never exceeds PUSH_IN.
+    #
+    # MEMORY, MEASURED: one 16s render peaks at ~1.59 GB RSS. That fits a 7.9 GB
+    # runner and a GitHub Actions runner comfortably, so a single render is fine.
+    # The observed kills were "Memory cgroup out of memory: Killed process
+    # (ffmpeg-linux-x8)" and they happened when TWO renders ran at once — a proof
+    # run started while the acceptance suite (which also renders a test reel) was
+    # still going. In CI that cannot happen: confess.yml's test job finishes
+    # before the confess job starts (`needs: test`), and create.yml renders once.
+    # So this is an operational constraint, not a code defect: do not run two
+    # rendering processes concurrently on one machine.
+    # ---------------------------------------------------------------- background
+    #
+    # ONE code path for both a CLIP and a STILL. The reel must have a moving
+    # background clip (the user's correction: "it dont have bg, no background
+    # viral clips"), so the background is fetched by background.py — the SAME
+    # module the proven pipeline uses — and whatever it returns is composited
+    # here. background.py returns a normalised, already-looped .mp4, so this
+    # function does not need to know or care whether it came from a Pinterest
+    # video, a Pinterest still animated into motion, or the bundled fallback.
+    #
+    # That is the whole point: background.py owns "get me a moving 9:16 backdrop
+    # for this scene" and its QA gate, and this function owns "put the lines on
+    # it on the beat". Neither duplicates the other.
+    is_video = str(bg).lower().endswith((".mp4", ".mov", ".webm", ".mkv"))
+
+    # Text layers must never END inside their enable= window, and the graph runs
+    # to duration_s, so every layer is looped and cut to length.
+    inputs = ["-stream_loop", "-1", "-t", f"{duration_s:.3f}", "-i", str(bg)] \
+        if is_video else ["-loop", "1", "-t", f"{duration_s:.3f}", "-i", str(bg)]
+    for png in text_pngs:
+        inputs += ["-loop", "1", "-t", f"{duration_s:.3f}", "-i", str(png)]
+    if audio and Path(audio).exists():
+        inputs += ["-stream_loop", "-1", "-t", f"{duration_s:.3f}", "-i", str(audio)]
+
+    if is_video:
+        # A CLIP already moves: cover-crop to 9:16 and leave the motion alone.
+        # No zoompan — pushing in on a moving shot reads as a mistake, and it
+        # would double the decode cost for no benefit.
+        filters = [
+            f"[0:v]scale={w}:{h}:force_original_aspect_ratio=increase,"
+            f"crop={w}:{h},setsar=1,fps={fps},format=yuv420p[bg]"
+        ]
+    else:
+        # A PHOTO has no motion, so it gets the slow push-in — the only movement
+        # it can have. Downscaled to ~1.25x the output before the crop so the
+        # working set stays small; the zoom never exceeds PUSH_IN, so nothing
+        # visible is thrown away.
+        src_w, src_h = int(w * 1.25), int(h * 1.25)
+        filters = [
+            f"[0:v]scale='min(iw,{src_w})':'min(ih,{src_h})':"
+            f"force_original_aspect_ratio=decrease,setsar=1[src]",
+            f"[src]crop='min(iw,ih*{w}/{h})':'min(ih,iw*{h}/{w})',"
+            f"zoompan=z='min(zoom+0.0004,{PUSH_IN})':"
+            f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={int(duration_s * fps)}:"
+            f"s={w}x{h}:fps={fps},setsar=1[bg]"
+        ]
     prev = "bg"
     for i, t in enumerate(times):
         label = f"t{i}"

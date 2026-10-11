@@ -1,0 +1,53 @@
+[
+  {
+    "series": "caught_in_the_act",
+    "hook_type": "accusation_tender",
+    "hook": "You didn't miss the call. You watched it ring.",
+    "beats": [
+      "You saw the name on the first ring.",
+      "Your chest tightened. Your hands went cold.",
+      "You waited ten minutes, then typed \"sorry, just saw this.\"",
+      "Not flaky. Not rude.",
+      "You were scared they'd hear it in your voice.",
+      "So you watched it ring. Again."
+    ],
+    "cta_type": "none",
+    "cta_text": "",
+    "caption": "Letting calls ring out isn't rudeness. It's social anxiety doing what it does: protecting you from being heard. If you've ever texted \"sorry, just saw this\" with your heart pounding, you're not the only one. What's the call you've been avoiding this week?",
+    "hashtags": ["#socialanxiety", "#overthinking", "#introvertstruggles", "#anxietyawareness", "#relatable"]
+  },
+  {
+    "series": "show_them_this",
+    "hook_type": "outside_view",
+    "hook": "What your silence looks like from the outside.",
+    "beats": [
+      "They see someone bored.",
+      "Or cold. Or \"not that into it.\"",
+      "They don't see you rehearsing one sentence for four minutes.",
+      "They don't see the laugh you timed.",
+      "Quiet isn't always distance.",
+      "Sometimes it's someone working very hard to stay in the room."
+    ],
+    "cta_type": "send",
+    "cta_text": "Send this to someone who'd get it.",
+    "caption": "Quiet isn't always distance. For a lot of people with social anxiety, silence is the visible part of a lot of effort. If someone in your life goes quiet in groups, this might help you read it differently.",
+    "hashtags": ["#socialanxiety", "#quietpeople", "#introvertstruggles", "#mentalhealthawareness"]
+  },
+  {
+    "series": "why_you_do_that",
+    "hook_type": "open_loop",
+    "hook": "Why you're fine one-on-one but silent in groups.",
+    "beats": [
+      "One person feels safe. You can read their face.",
+      "Four people feels like a stage.",
+      "Everyone could look at once. Your mind starts rehearsing.",
+      "The line you had is gone before the gap arrives.",
+      "That's not shyness. That's a brain scanning for judgment.",
+      "Silent in the group. Loud in your head."
+    ],
+    "cta_type": "guide",
+    "cta_text": "Free one-page guide for this. Comment GUIDE.",
+    "caption": "Why you're fine one-on-one but silent in groups: social anxiety scales with how many people could judge you. It isn't a personality flaw. Comment GUIDE and I'll send a free one-page guide to the freeze moment.",
+    "hashtags": ["#socialanxiety", "#overthinking", "#introvertproblems", "#anxietyawareness"]
+  }
+]

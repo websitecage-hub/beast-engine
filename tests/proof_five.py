@@ -26,8 +26,8 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from src import (config, confession, critic_model, language, provenance,
-                 render_gate, state, still)
+from src import (background, config, confession, critic_model, language,
+                 provenance, render_gate, state, still)
 
 OUT = config.ROOT / "outputs" / "proof"
 SCENES = ["phone_ring_out", "cancel_relief", "aisle_turn", "cashier_question",
@@ -91,27 +91,27 @@ def main() -> int:
         if rec["soft_signals"]:
             print(f"   soft signals: {rec['soft_signals']}")
 
-        # --- still, real Pinterest
-        shot = still.fetch_still(cfg, {}, row, memory, offline=False,
-                                 out_dir=OUT / sid)
-        rec["still_ok"] = shot.get("ok")
-        rec["pin_id"] = shot.get("pin_id")
-        rec["pin_query"] = shot.get("query")
-        if shot.get("provenance"):
-            rec["provenance"] = shot["provenance"]
-        if not shot.get("ok"):
-            print(f"   STILL: none usable ({shot.get('reason')})")
-            rec["outcome"] = "no_still"
-            results.append(rec)
-            continue
-        print(f"   still: pin {shot.get('pin_id')} via {shot.get('query')!r}")
-
-        # --- render, real ffmpeg
+        # --- background: a MOVING clip, from the same module the pipeline uses
         lines = confession.lines_of(rec["text"])
         dur = still.duration_for(len(lines), cfg)
+        bg_scene = {"scene": row.get("subject") or row.get("object") or "",
+                    "cluster": row.get("family"),
+                    "bg_type": row.get("family")}
+        try:
+            bg_path, bg_source = background.build(cfg, bg_scene, memory, dur,
+                                                  offline=False, dry_run=True)
+        except Exception as exc:  # noqa: BLE001
+            print(f"   NO BACKGROUND: {str(exc)[:110]}")
+            rec["outcome"] = "no_background"
+            results.append(rec)
+            continue
+        rec["bg_source"] = bg_source
+        print(f"   background: {bg_source}")
+
+        # --- render, real ffmpeg
         mp4 = OUT / f"{i}_{sid}.mp4"
         try:
-            still.build_reel(Path(shot["path"]), lines, None, mp4, cfg, dur)
+            still.build_reel(Path(bg_path), lines, None, mp4, cfg, dur)
         except Exception as exc:  # noqa: BLE001
             print(f"   RENDER FAILED: {str(exc)[:120]}")
             rec["outcome"] = "render_failed"

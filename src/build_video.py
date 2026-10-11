@@ -1186,9 +1186,69 @@ def qa_gate(reel: Path, cfg, blocks: list | None = None) -> tuple:
 
 # ------------------------------------------------------------------- build
 
+def _build_paced(cfg, content, duration_s: float, track_mp3: Path, bg_mp4: Path,
+                 out_mp4: Path):
+    """The v2 paced reveal (STRATEGY §3.2), rendered by paced.py.
+
+    Why this delegates instead of inlining the filtergraph here: the pacing rules
+    (one reading-time per line, 55% dim on the older lines, CTA in the last 2.5s)
+    are the format's whole identity, and they have their own gate. Keeping them in
+    paced.py means the renderer and the gate that measures it read the same code.
+    """
+    from . import lint as _lint
+    from . import paced
+
+    lines = [str(x).strip() for x in (content.get("beats") or []) if str(x).strip()]
+    hook = str(content.get("hook") or "").strip()
+    screen = ([hook] if hook else []) + lines
+    if len(screen) < 2:
+        raise RuntimeError("paced content needs a hook plus at least one beat")
+
+    # The schedule is recomputed here from the final text, never trusted from an
+    # earlier stage: the text can be edited between drafting and render, and a
+    # stale schedule would put the wrong line on screen at the wrong time.
+    starts, dur = _lint.reveal_schedule(screen)
+    if abs(dur - float(duration_s)) > 0.01:
+        print(f"[video] duration corrected {duration_s} -> {dur}s "
+              f"(from the reveal schedule)")
+    duration_s = dur
+
+    pngs, px = paced.render_layers(screen, cfg, config.OUTPUTS,
+                                   layout=str(content.get("layout") or "stack"))
+
+    # The CTA footer is part of the block for stack layout (it is the last line and
+    # already carries the keyword), so only a separate footer needs its own layer.
+    cta_png, cta_at = None, None
+
+    bg_is_video = bool(content.get("bg_is_video"))
+    if not paced.assemble_paced(bg_mp4, pngs, starts, duration_s, out_mp4, cfg,
+                                audio=track_mp3, cta_png=cta_png, cta_at=cta_at,
+                                bg_is_video=bg_is_video):
+        raise RuntimeError("paced assembly failed")
+
+    cover_from_frame0(out_mp4, config.OUTPUTS / "cover.jpg")
+
+    ok, info = paced.qa_paced(screen, starts, duration_s, cfg, out_mp4)
+    if not ok:
+        raise RuntimeError(f"QA gate failed (paced): {info.get('problems')}")
+    print(f"[video] paced: {len(screen)} lines @{px}px, {duration_s}s, "
+          f"schedule={starts}")
+    return {"ok": True, "path": str(out_mp4), "duration_s": duration_s,
+            "starts": starts, "lines": len(screen), "px": px}
+
+
 def build(cfg, content, duration_s: float, track_mp3: Path, track_wav: Path, bg_mp4: Path,
           out_mp4: Path | None = None, offline: bool = False):
     out_mp4 = out_mp4 or (config.OUTPUTS / "reel.mp4")
+
+    # V2 PACED FORMAT (STRATEGY §3.2). When the content declares the paced format
+    # this renderer takes over: lines revealed one at a time on their own reading
+    # time, earlier lines dimming to 55%, instead of one static block that shipped
+    # at 8.2 words/s. Older content dicts have no "format" key and keep the
+    # one-block path below, so nothing that already renders is disturbed.
+    if str(content.get("format") or "") == "paced_text":
+        return _build_paced(cfg, content, duration_s, track_mp3, bg_mp4, out_mp4)
+
     blocks = text_blocks(content)
     if not blocks:
         raise RuntimeError("no text: content produced an empty message")

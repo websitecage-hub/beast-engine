@@ -27,7 +27,14 @@ from pathlib import Path
 # smaller practical ceiling — 60MB is this pipeline's own working limit from the
 # superseded build and is kept because it is the number already proven to upload.
 MAX_BYTES = 60 * 1024 * 1024
-MIN_S, MAX_S = 16.0, 20.0
+# v2 (STRATEGY §3.2 / ENGINE_SPEC §1.2): the paced reveal format runs 14-34 s, not
+# the old 16-20 s window. The old window belonged to the one-block format where
+# every word was on screen at once; those reels were unreadable precisely because
+# they were short. Imports the bound from lint so the gate, the renderer and the
+# linter cannot disagree about what "too long" means.
+from . import lint as _lint  # noqa: E402
+
+MIN_S, MAX_S = _lint.MIN_DUR, _lint.MAX_DUR
 W, H = 1080, 1920
 FPS = 30
 

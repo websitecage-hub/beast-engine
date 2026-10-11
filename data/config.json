@@ -100,6 +100,26 @@
     "quiet_hope": [
       "person standing sunrise silhouette video",
       "man walking dawn light video aesthetic"
+    ],
+    "phone_and_messages": [
+      "phone glowing in dark room night video aesthetic",
+      "person staring at phone screen dark room video"
+    ],
+    "leaving_and_dodging": [
+      "person walking away down dark street night video aesthetic",
+      "empty aisle supermarket walking away video"
+    ],
+    "the_body_in_the_room": [
+      "hands close up fidgeting dark room video aesthetic",
+      "person sitting still quiet room night video"
+    ],
+    "the_performance_of_fine": [
+      "person alone at party night video aesthetic",
+      "forced smile crowd night city video"
+    ],
+    "after_alone": [
+      "empty room night window rain video aesthetic",
+      "person alone after event night video"
     ]
   },
   "archetype_bg_map": {
@@ -233,7 +253,7 @@
     "lines_target_max": 9
   },
   "bg_darken": 0.0,
-  "explore_rate": 0.2,
+  "explore_rate": 0.3,
   "whisper_every_n_posts": 7,
   "hope_every_n_posts": 10,
   "whisper_line": "the ebook in my bio was written for the person who felt this.",
@@ -400,5 +420,77 @@
     "pexels": "License-free. Needs PEXELS_API_KEY.",
     "unsplash": "License-free. Needs UNSPLASH_API_KEY.",
     "generated": "This stack's own image endpoint. No third-party rights."
+  },
+  "hashtag_pool": [
+    "#socialanxiety",
+    "#socialanxietyawareness",
+    "#overthinking",
+    "#introvertstruggles",
+    "#introvertproblems",
+    "#quietpeople",
+    "#anxietyawareness",
+    "#mentalhealthawareness",
+    "#relatable",
+    "#groupchat",
+    "#smalltalk",
+    "#shyness",
+    "#peoplepleasing",
+    "#selfawareness",
+    "#mentalhealth",
+    "#anxiety",
+    "#introvert",
+    "#socialanxietysupport",
+    "#sociallyawkward",
+    "#introvertlife",
+    "#shy",
+    "#unleashthebeast",
+    "#thequietones",
+    "#2amthoughts",
+    "#innerwork",
+    "#understoods",
+    "#nightscroll"
+  ],
+  "hashtag_min": 3,
+  "hashtag_max": 5,
+  "slots_utc": [
+    "00:30",
+    "12:30",
+    "17:30"
+  ],
+  "cta_shares": {
+    "none": 0.5,
+    "send": 0.25,
+    "guide": 0.2,
+    "book": 0.05
+  },
+  "cta_texts": {
+    "none": "",
+    "send": "Send this to someone who'd get it.",
+    "guide": "Free one-page guide for this. Comment GUIDE.",
+    "book": "The full book is $4. Comment BOOK."
+  },
+  "hook_pov_cap": 0.2,
+  "pin_cooldown": 60,
+  "bg_source_share": {
+    "pinterest": 0.85,
+    "pexels": 0.15
+  },
+  "bg_share": {
+    "video": 0.6,
+    "still": 0.4
+  },
+  "trial_enabled": false,
+  "trial_follower_min": 200,
+  "daily_cap": 2,
+  "reward_weights": {
+    "watch": 1.0,
+    "shares_over_reach": 20.0,
+    "saves_over_reach": 8.0,
+    "comments_over_reach": 3.0,
+    "likes_over_reach": 1.0,
+    "skip_penalty": 0.5,
+    "skip_threshold": 0.5,
+    "reach_floor": 25,
+    "watch_cap": 2.0
   }
 }

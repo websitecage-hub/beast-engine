@@ -1,0 +1,59 @@
+{
+  "_note": "Seed bank. The writer model must generate NEW hooks from the type skeletons; these exist to anchor quality and to be used verbatim only until the engine has produced its own winners. Every hook is <= 9 words.",
+  "series": {
+    "caught_in_the_act": "Mirror a specific behaviour so exactly the viewer feels watched. Send trigger: 'this is literally me'.",
+    "why_you_do_that": "One mechanism explained plainly. Send trigger: 'this is why I am like this'.",
+    "show_them_this": "Written to be forwarded to the people who misread the viewer. Send trigger: 'read this about me'.",
+    "the_quiet_cost": "What avoidance quietly takes. Save and send trigger: 'I needed to hear that'.",
+    "small_steps": "Permission and one tiny, non-clinical thing to notice. Save trigger."
+  },
+  "hooks": [
+    {"type": "accusation_tender", "series": "caught_in_the_act", "text": "You didn't miss the call. You watched it ring."},
+    {"type": "accusation_tender", "series": "caught_in_the_act", "text": "You're not tired. You're avoiding the group chat."},
+    {"type": "accusation_tender", "series": "caught_in_the_act", "text": "You didn't forget to text back. You froze."},
+
+    {"type": "specific_timeline", "series": "caught_in_the_act", "text": "The 10 minutes between a missed call and 'sorry'."},
+    {"type": "specific_timeline", "series": "caught_in_the_act", "text": "The three seconds before you say your name."},
+    {"type": "specific_timeline", "series": "caught_in_the_act", "text": "That one second before you answer 'how are you'."},
+
+    {"type": "contrarian_myth", "series": "why_you_do_that", "text": "'Just be confident' is making your anxiety worse."},
+    {"type": "contrarian_myth", "series": "why_you_do_that", "text": "More small talk practice won't help. Here's why."},
+    {"type": "contrarian_myth", "series": "why_you_do_that", "text": "Confidence isn't what you're missing."},
+
+    {"type": "named_audience", "series": "caught_in_the_act", "text": "For the person who rehearses ordering coffee."},
+    {"type": "named_audience", "series": "caught_in_the_act", "text": "If you reread a text five times before sending."},
+    {"type": "named_audience", "series": "caught_in_the_act", "text": "If you leave parties without saying goodbye."},
+
+    {"type": "open_loop", "series": "why_you_do_that", "text": "Why you're fine one-on-one but silent in groups."},
+    {"type": "open_loop", "series": "why_you_do_that", "text": "Why texting feels safe and calling doesn't."},
+    {"type": "open_loop", "series": "why_you_do_that", "text": "The reason you go blank mid-sentence."},
+
+    {"type": "secret_cost", "series": "the_quiet_cost", "text": "What 'I'm just tired' keeps costing you."},
+    {"type": "secret_cost", "series": "the_quiet_cost", "text": "Every cancelled plan teaches your brain one thing."},
+    {"type": "secret_cost", "series": "the_quiet_cost", "text": "The quiet price of always staying invisible."},
+
+    {"type": "outside_view", "series": "show_them_this", "text": "What your silence looks like from the outside."},
+    {"type": "outside_view", "series": "show_them_this", "text": "How 'I'm fine' sounds to people who care."},
+    {"type": "outside_view", "series": "show_them_this", "text": "They don't see the panic. They see distance."},
+
+    {"type": "for_someone_else", "series": "show_them_this", "text": "Send this to the friend who 'never replies'."},
+    {"type": "for_someone_else", "series": "show_them_this", "text": "Partner goes quiet in crowds? Show them this."},
+    {"type": "for_someone_else", "series": "show_them_this", "text": "Read this before you call them rude."},
+
+    {"type": "number_list", "series": "small_steps", "text": "5 things anxious people do that look like rudeness."},
+    {"type": "number_list", "series": "small_steps", "text": "4 signs it's social anxiety, not shyness."},
+    {"type": "number_list", "series": "small_steps", "text": "3 lies you tell to leave early."},
+
+    {"type": "permission", "series": "small_steps", "text": "You're allowed to need ten minutes alone first."},
+    {"type": "permission", "series": "small_steps", "text": "You don't owe anyone a perfect first impression."},
+    {"type": "permission", "series": "small_steps", "text": "It's okay if you replied late again."},
+
+    {"type": "reframe", "series": "why_you_do_that", "text": "It's not laziness. It's dread wearing a disguise."},
+    {"type": "reframe", "series": "the_quiet_cost", "text": "Staying home isn't peace. It's protection."},
+    {"type": "reframe", "series": "why_you_do_that", "text": "That's not rudeness. That's a nervous system."},
+
+    {"type": "confession", "series": "the_quiet_cost", "text": "Nobody warns you how tiring 'being normal' is."},
+    {"type": "confession", "series": "the_quiet_cost", "text": "Nobody sees you rehearse the sentence first."},
+    {"type": "confession", "series": "the_quiet_cost", "text": "The loneliest part is smiling through it."}
+  ]
+}

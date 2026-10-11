@@ -468,16 +468,21 @@ def test_the_run_skips_rather_than_publishing_a_filler(monkeypatch=None):
     rc.publish.publish_reel = lambda *a, **k: published.append(a) or {"media_id": "X"}
     rc.state.write_log = lambda *a, **k: Path("/tmp/_skip_log.json")
     rc.state.commit_all = lambda *a, **k: True
-    # force the bank, then make the STILL fail (the spec's own skip path)
-    real_fetch = rc.still.fetch_still
-    rc.still.fetch_still = lambda *a, **k: {"ok": False, "reason": "no pin passed"}
+    # force the bank, then make the BACKGROUND fail (the spec's own skip path).
+    # run_confess now sources its backdrop from background.build(), not
+    # still.fetch_still(), so patching fetch_still would leave the real fetch in
+    # place: the test would either hit the network or take the success path, and
+    # "a skipped day must exit 0" would stop being exercised.
+    real_bg = rc.background.build
+    rc.background.build = lambda *a, **k: (_ for _ in ()).throw(
+        RuntimeError("no background passed"))
     try:
         code = rc.run(dry_run=False, offline=False, force=True)
     finally:
         rc.publish.publish_reel = real_pub
         rc.state.write_log = real_write
         rc.state.commit_all = real_commit
-        rc.still.fetch_still = real_fetch
+        rc.background.build = real_bg
     assert code == 0, f"a skipped day must exit 0, got {code}"
     assert not published, "a failed step must NOT publish a fallback reel"
 

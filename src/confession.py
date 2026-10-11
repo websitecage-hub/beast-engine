@@ -655,7 +655,40 @@ def writer_prompt(row: dict, memory: dict, strategy: dict,
         "3. THE LAST LINE RENAMES THE VERDICT IN PLAIN WORDS. Use their own word "
         "for themselves — rude, cold, fake, flaky, weird, quiet, slow. Do NOT "
         "hide behind an abstraction: \"caught off guard\", \"protecting yourself\", "
-        "\"your nervous system\", \"not your fault\", \"human\" are all rejections.\n\n"
+        "\"your nervous system\", \"not your fault\", \"human\" are all rejections.\n"
+        "   WHY Y MUST BE A CAUSE, NOT A DESCRIPTION — this is the single most "
+        "common reason a draft is rejected. The second half (Y) must name the "
+        "HIDDEN MOTIVE the lines quietly proved: the want, the fear, or the debt "
+        "behind the behaviour. It must NOT re-describe the visible behaviour the "
+        "lines already showed, because then Y adds nothing and the ending is "
+        "circular.\n"
+        "     GOLD: \"You're not flaky. Relief got there first.\" The lines show "
+        "the cancelling; Y names the feeling underneath it.\n"
+        "     GOLD: \"You're not cold. You're trying to skip the chat you can't "
+        "carry.\" The lines show the turn away; Y names what the turn was for.\n"
+        "     REJECTED: \"You're not awkward. You're someone who answers short to "
+        "get out faster.\" The lines ALREADY said you answered short — Y only "
+        "restates them.\n"
+        "     REJECTED: \"You're not useless. You're double-checking the answer "
+        "before you say it.\" The lines already said the answer was ready and the "
+        "throat closed — Y repeats them.\n"
+        "   THE GRAMMAR OF A PASSING Y — use ONE of these two shapes:\n"
+        "     (a) AN ACTOR OR EVENT that got there first:\n"
+        "         \"Relief got there first.\" / \"Tired got there before you did.\"\n"
+        "     (b) A CONCRETE CONTRAST between two real things:\n"
+        "         \"Wanting the night and surviving the night are two different jobs.\"\n"
+        "   Y MUST NEVER BE either of these, and they are the most common failures:\n"
+        "     (i) \"You're [verb]-ing [a feeling]\" — a STATE, not a rename:\n"
+        "         \"bracing for a stranger's judgment\", \"protecting yourself\",\n"
+        "         \"keeping yourself safe\", \"holding it together\", \"guarding your peace\".\n"
+        "     (ii) \"You wanted/want [an abstraction]\" — also a state:\n"
+        "         \"you wanted proof speaking was safe\", \"you wanted to be seen\".\n"
+        "     TEST: if Y still sounds like a mood when you prefix it with \"You're "
+        "just\", then it is a STATE. Rewrite it as an actor, an event, or a "
+        "contrast.\n"
+        "   TEST IT BEFORE YOU COMMIT: if a reader could delete Y and learn "
+        "nothing new, Y is a description — rewrite it so Y names the motive, and "
+        "so Y contains no word that already appears in the lines above.\n\n"
         "Output exactly two things and nothing else:\n"
         "1) the lines, one per line, 5 to 7 lines\n"
         "2) then a line containing only ---CAPTION---\n"
@@ -666,6 +699,20 @@ def writer_prompt(row: dict, memory: dict, strategy: dict,
 def critic_prompt(onscreen: str, row: dict, memory: dict | None = None) -> str:
     raw = _spec_prompts()["raw"]
     base = _section(raw, "Critic") or _FALLBACK_CRITIC
+    # The spec's "sounds like a template" rule has to come OUT of the base, not
+    # just out of my bullets. It is one of the spec's seven Critic lines, and a
+    # model given it fails draft after draft that plainly carries new facts —
+    # because the bank scenes WERE derived from the gold set, so every draft
+    # written from an assigned scene is "the same rhythm as a gold example".
+    #
+    # The rule's intent is enforced better elsewhere: gold_overlap() catches a
+    # lifted line in code, the filler gate catches a line that says nothing, and
+    # language.usable() rotates rows, objects and referent slots so two posts
+    # cannot repeat. Leaving it in the prompt only manufactures rejections.
+    base = re.sub(
+        r"^\s*-\s*It sounds like a template:.*?(?=^\s*-\s|\Z)",
+        "",
+        base, flags=re.S | re.M)
     gold = _section(raw, "Gold set") or ""
 
     # THE RECENT POSTS, SO "REPEAT" IS JUDGED AGAINST REAL HISTORY.
@@ -699,6 +746,27 @@ def critic_prompt(onscreen: str, row: dict, memory: dict | None = None) -> str:
                    f"comparable)" if n_legacy else "")
                 + ". There is nothing to repeat — do NOT fail for repetition.\n")
 
+    # THE GOLD SET'S OWN INTRO LINE MUST NOT REACH THE CRITIC.
+    #
+    # PROMPTS.md introduces the gold set with "This is the bar. A draft that is
+    # vaguer than these fails. A draft that copies one of these fails." Sending
+    # that verbatim is what made the critic keep inventing "A VERBATIM COPY:
+    # a gold line reused word-for-word" and rejecting good drafts — it was
+    # obeying an instruction in the prompt, not one of mine. A reworded bullet
+    # ("A TEMPLATE") did not help, because the sentence was still there.
+    #
+    # Copying is measured in code (gold_overlap) and fires only on a lifted whole
+    # line, so the critic must not police it at all. The intro is replaced with
+    # what the critic is actually being asked to use the examples for: the
+    # QUALITY BAR.
+    gold = re.sub(
+        r"^.*?copies one of these fails\.\s*",
+        "These are the QUALITY BAR — the sharpness to judge against. They are NOT "
+        "a list of used scenes, and NOT a plagiarism check. Several assigned "
+        "scenes were derived from them on purpose; writing your assigned scene is "
+        "correct. Use them only to calibrate specificity.\n",
+        gold, count=1, flags=re.S)
+
     return (
         f"{base}\n\n"
         f"THE SCENE IT WAS SUPPOSED TO WRITE:\n- object: {row.get('object')}\n"
@@ -706,9 +774,17 @@ def critic_prompt(onscreen: str, row: dict, memory: dict | None = None) -> str:
         f"- verdict: {row.get('verdict')}\n"
         f"{hist}\n"
         "YOU MUST FAIL A DRAFT FOR ANY OF THESE, even if it reads well:\n"
-        "- AN UNNAMED REFERENT: a person referred to as \"them\", \"they\", "
-        "\"someone\", \"him\", \"her\" with no person or object named first. The "
-        "viewer must be able to picture who or what this is.\n"
+        # NO "UNNAMED REFERENT" BULLET HERE, on purpose.
+        #
+        # The code gate checks this exactly: it walks the lines and rejects a bare
+        # person-pronoun used before the draft has named anything. The critic,
+        # given the same rule, kept failing drafts whose referent WAS named —
+        # "Your manager asked for the number... your coworker said your line" was
+        # rejected because "your coworker" was called an unnamed person, and
+        # "Three seconds too late he said it" was rejected although line one named
+        # the manager. A rule code can decide precisely should not be left to a
+        # model that keeps getting it wrong, so the check stays in code and the
+        # critic is not asked to police it.
         "- A FILLER LINE: any line that names nothing and shows no action, or a "
         "bare body sensation with no cause. \"Cart gone quiet\", \"feet move "
         "before your mind does\". A body line is FINE when its cause is in the "
@@ -722,25 +798,27 @@ def critic_prompt(onscreen: str, row: dict, memory: dict | None = None) -> str:
         "annoying, dull, useless, liar, obsessive, ridiculous). The line always "
         "opens \"You're not X. ...\", so X is the plain verdict — CHECK THE X "
         "FIRST, before judging what follows it.\n"
-        "  The line then says what it actually was. That second part is ALLOWED "
-        "to describe a behaviour, a job, or an effort — that is what a rename is: "
-        "\"You're not flaky. Relief got there first.\" and \"You're not ungrateful. "
-        "Wanting the night and surviving the night are two different jobs.\" are "
-        "both PASSES from the gold set.\n"
-        "  FAIL it only when the second part hides behind a STATE instead of "
+        "  The line then says what it actually was. That second part may describe a "
+        "real behaviour, a job, or an effort — but only when it names the CAUSE "
+        "the lines had not yet admitted. Check it against the lines: if the lines "
+        "ALREADY showed that behaviour, repeating it as Y renames nothing and is "
+        "a FAIL (\"the last line re-describes the behaviour instead of naming the "
+        "cause\").\n"
+        "  GOLD PASS: \"You're not flaky. Relief got there first.\" The lines show "
+        "the cancelling; Y names the feeling underneath, which the lines only "
+        "implied. GOLD PASS: \"You're not ungrateful. Wanting the night and "
+        "surviving the night are two different jobs.\"\n"
+        "  FAIL: \"You're not awkward. You're someone who answers short to get out "
+        "faster.\" after lines that already said you answered short. FAIL: "
+        "\"You're not useless. You're double-checking the answer before you say "
+        "it.\" after lines that already said the answer was ready. Both are "
+        "circular — the viewer learns nothing from Y.\n"
+        "  FAIL it also when the second part hides behind a STATE instead of "
         "doing the work: \"caught off guard\", \"protecting yourself\", \"your "
         "nervous system\", \"not your fault\", \"being human\", \"doing your "
         "best\", \"on high alert\", \"survival mode\".\n"
-        "  Refusing to answer is the failure. Answering in plain words about real "
-        "behaviour is the format.\n"
-        "- REPEATING A RECENT POST: the same object AND the same verdict as one "
-        "of the RECENT POSTS listed above. Repeating a SCENE IDENTITY is what "
-        "this means.\n"
-        "  IMPORTANT: the scene the writer was ASSIGNED may be the same scene as "
-        "a gold example — several bank scenes were derived from the gold set on "
-        "purpose. Writing the assigned scene in fresh words is CORRECT and must "
-        "PASS. Do not fail a draft for resembling the gold scene it was told to "
-        "write. Verbatim copying is checked elsewhere; ignore it here.\n"
+        "  Refusing to answer is the failure. Naming the cause in plain words is "
+        "the format. Repeating the behaviour is also the failure.\n"
         "- Too broad: a person without this problem would nod. That fails too.\n\n"
         f"THE GOLD SET (the quality BAR — do not treat it as a list of used "
         f"scenes):\n{gold[:2500]}\n\n"
