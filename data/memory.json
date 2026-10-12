@@ -62,18 +62,32 @@
           "ig_reels_avg_watch_time": 3083,
           "ig_reels_video_view_total_time": 339213,
           "reels_skip_rate": 85.1
+        },
+        "24h": {
+          "views": 112,
+          "reach": 99,
+          "saved": 0,
+          "shares": 0,
+          "likes": 2,
+          "comments": 0,
+          "total_interactions": 2,
+          "ig_reels_avg_watch_time": 3083,
+          "ig_reels_video_view_total_time": 339213,
+          "reels_skip_rate": 85.1
         }
       },
-      "score": 0.005050505050505051,
+      "score": -40.279798,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:47:59.996692+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:31.065957+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.181
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:44.083794+00:00"
     },
     {
       "media_id": "18188315185408018",
@@ -153,18 +167,32 @@
           "ig_reels_avg_watch_time": 5059,
           "ig_reels_video_view_total_time": 591912,
           "reels_skip_rate": 61.7
+        },
+        "24h": {
+          "views": 122,
+          "reach": 105,
+          "saved": 0,
+          "shares": 0,
+          "likes": 3,
+          "comments": 3,
+          "total_interactions": 6,
+          "ig_reels_avg_watch_time": 5059,
+          "ig_reels_video_view_total_time": 591912,
+          "reels_skip_rate": 61.7
         }
       },
-      "score": 0.036057692307692304,
+      "score": -28.485714,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:00.541798+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:31.751563+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.298
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:44.670977+00:00"
     },
     {
       "media_id": "18121136690487842",
@@ -243,18 +271,32 @@
           "ig_reels_avg_watch_time": 5087,
           "ig_reels_video_view_total_time": 676621,
           "reels_skip_rate": 63.5
+        },
+        "24h": {
+          "views": 156,
+          "reach": 123,
+          "saved": 0,
+          "shares": 0,
+          "likes": 2,
+          "comments": 0,
+          "total_interactions": 2,
+          "ig_reels_avg_watch_time": 5087,
+          "ig_reels_video_view_total_time": 676621,
+          "reels_skip_rate": 63.5
         }
       },
-      "score": 0.0040650406504065045,
+      "score": -29.48374,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:01.029796+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:32.181796+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.299
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:45.388255+00:00"
     },
     {
       "media_id": "18019035686728113",
@@ -335,18 +377,32 @@
           "ig_reels_avg_watch_time": 6611,
           "ig_reels_video_view_total_time": 833057,
           "reels_skip_rate": 47.5
+        },
+        "24h": {
+          "views": 172,
+          "reach": 122,
+          "saved": 0,
+          "shares": 0,
+          "likes": 1,
+          "comments": 0,
+          "total_interactions": 1,
+          "ig_reels_avg_watch_time": 6611,
+          "ig_reels_video_view_total_time": 833057,
+          "reels_skip_rate": 47.5
         }
       },
-      "score": 0.0020491803278688526,
+      "score": -21.491803,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:01.582836+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:32.529915+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.389
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:46.111648+00:00"
     },
     {
       "media_id": "18371214331242157",
@@ -427,18 +483,32 @@
           "ig_reels_avg_watch_time": 8923,
           "ig_reels_video_view_total_time": 89235,
           "reels_skip_rate": 80
+        },
+        "24h": {
+          "views": 9,
+          "reach": 5,
+          "saved": 0,
+          "shares": 0,
+          "likes": 2,
+          "comments": 2,
+          "total_interactions": 4,
+          "ig_reels_avg_watch_time": 8923,
+          "ig_reels_video_view_total_time": 89235,
+          "reels_skip_rate": 80
         }
       },
-      "score": 0.5,
+      "score": null,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:02.171048+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:33.006517+00:00",
       "verdict": "flop",
-      "verdict_reason": "reach 5 < 55 at 342h (spec floor 200, account-median floor)",
+      "verdict_reason": "reach 5 < 55 at 357h (spec floor 200, account-median floor)",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.525
-      }
+      },
+      "learnable": false,
+      "scored_at": "2026-10-12T11:26:46.711512+00:00"
     },
     {
       "media_id": "17994488751042115",
@@ -517,18 +587,32 @@
           "ig_reels_avg_watch_time": 4534,
           "ig_reels_video_view_total_time": 503381,
           "reels_skip_rate": 60.4
+        },
+        "24h": {
+          "views": 126,
+          "reach": 106,
+          "saved": 0,
+          "shares": 0,
+          "likes": 3,
+          "comments": 1,
+          "total_interactions": 4,
+          "ig_reels_avg_watch_time": 4534,
+          "ig_reels_video_view_total_time": 503381,
+          "reels_skip_rate": 60.4
         }
       },
-      "score": 0.01650943396226415,
+      "score": -27.893396,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:02.638421+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:33.541943+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.267
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:47.356915+00:00"
     },
     {
       "media_id": "18129372190747783",
@@ -607,18 +691,32 @@
           "ig_reels_avg_watch_time": 5828,
           "ig_reels_video_view_total_time": 670302,
           "reels_skip_rate": 52.8
+        },
+        "24h": {
+          "views": 143,
+          "reach": 110,
+          "saved": 0,
+          "shares": 0,
+          "likes": 1,
+          "comments": 0,
+          "total_interactions": 1,
+          "ig_reels_avg_watch_time": 5828,
+          "ig_reels_video_view_total_time": 670302,
+          "reels_skip_rate": 52.8
         }
       },
-      "score": 0.0022727272727272726,
+      "score": -24.140909,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:03.187063+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:33.829803+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.343
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:48.136689+00:00"
     },
     {
       "media_id": "18384062170228476",
@@ -697,18 +795,32 @@
           "ig_reels_avg_watch_time": 6288,
           "ig_reels_video_view_total_time": 716841,
           "reels_skip_rate": 60.7
+        },
+        "24h": {
+          "views": 143,
+          "reach": 107,
+          "saved": 0,
+          "shares": 0,
+          "likes": 0,
+          "comments": 2,
+          "total_interactions": 2,
+          "ig_reels_avg_watch_time": 6288,
+          "ig_reels_video_view_total_time": 716841,
+          "reels_skip_rate": 60.7
         }
       },
-      "score": 0.018691588785046728,
+      "score": -28.043925,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:03.772895+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:34.209590+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.37
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:49.095704+00:00"
     },
     {
       "media_id": "18129224467746810",
@@ -787,18 +899,32 @@
           "ig_reels_avg_watch_time": 5981,
           "ig_reels_video_view_total_time": 699840,
           "reels_skip_rate": 64.9
+        },
+        "24h": {
+          "views": 150,
+          "reach": 109,
+          "saved": 0,
+          "shares": 0,
+          "likes": 0,
+          "comments": 0,
+          "total_interactions": 0,
+          "ig_reels_avg_watch_time": 5981,
+          "ig_reels_video_view_total_time": 699840,
+          "reels_skip_rate": 64.9
         }
       },
-      "score": 0.0,
+      "score": -30.2,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:04.339391+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:35.899444+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.352
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:49.942522+00:00"
     },
     {
       "media_id": "18228418756327144",
@@ -879,18 +1005,32 @@
           "ig_reels_avg_watch_time": 4741,
           "ig_reels_video_view_total_time": 341373,
           "reels_skip_rate": 58.5
+        },
+        "24h": {
+          "views": 76,
+          "reach": 64,
+          "saved": 0,
+          "shares": 0,
+          "likes": 0,
+          "comments": 0,
+          "total_interactions": 0,
+          "ig_reels_avg_watch_time": 4741,
+          "ig_reels_video_view_total_time": 341373,
+          "reels_skip_rate": 58.5
         }
       },
-      "score": 0.0,
+      "score": -27.0,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:04.899199+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:36.564347+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.279
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:51.385877+00:00"
     },
     {
       "media_id": "17970112452156762",
@@ -971,18 +1111,32 @@
           "ig_reels_avg_watch_time": 4701,
           "ig_reels_video_view_total_time": 517182,
           "reels_skip_rate": 61.5
+        },
+        "24h": {
+          "views": 127,
+          "reach": 105,
+          "saved": 0,
+          "shares": 0,
+          "likes": 0,
+          "comments": 0,
+          "total_interactions": 0,
+          "ig_reels_avg_watch_time": 4701,
+          "ig_reels_video_view_total_time": 517182,
+          "reels_skip_rate": 61.5
         }
       },
-      "score": 0.0,
+      "score": -28.5,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:05.517761+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:36.990006+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.277
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:52.218304+00:00"
     },
     {
       "media_id": "18100081538637286",
@@ -1063,18 +1217,32 @@
           "ig_reels_avg_watch_time": 5171,
           "ig_reels_video_view_total_time": 615445,
           "reels_skip_rate": 59.8
+        },
+        "24h": {
+          "views": 143,
+          "reach": 110,
+          "saved": 0,
+          "shares": 0,
+          "likes": 0,
+          "comments": 0,
+          "total_interactions": 0,
+          "ig_reels_avg_watch_time": 5171,
+          "ig_reels_video_view_total_time": 615445,
+          "reels_skip_rate": 59.8
         }
       },
-      "score": 0.0,
+      "score": -27.65,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:05.964747+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:37.491252+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.304
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:52.826801+00:00"
     },
     {
       "media_id": "17936211696127495",
@@ -1155,18 +1323,32 @@
           "ig_reels_avg_watch_time": 8998,
           "ig_reels_video_view_total_time": 1205860,
           "reels_skip_rate": 44.5
+        },
+        "24h": {
+          "views": 185,
+          "reach": 127,
+          "saved": 4,
+          "shares": 0,
+          "likes": 1,
+          "comments": 0,
+          "total_interactions": 5,
+          "ig_reels_avg_watch_time": 8998,
+          "ig_reels_video_view_total_time": 1205860,
+          "reels_skip_rate": 44.5
         }
       },
-      "score": 0.09645669291338582,
+      "score": -19.740157,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:06.525038+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:37.850052+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.529
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:53.516974+00:00"
     },
     {
       "media_id": "18146480107562226",
@@ -1247,18 +1429,32 @@
           "ig_reels_avg_watch_time": 5721,
           "ig_reels_video_view_total_time": 617965,
           "reels_skip_rate": 56.9
+        },
+        "24h": {
+          "views": 132,
+          "reach": 99,
+          "saved": 0,
+          "shares": 0,
+          "likes": 0,
+          "comments": 0,
+          "total_interactions": 0,
+          "ig_reels_avg_watch_time": 5721,
+          "ig_reels_video_view_total_time": 617965,
+          "reels_skip_rate": 56.9
         }
       },
-      "score": 0.0,
+      "score": -26.2,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:07.085111+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:38.265807+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.337
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:54.112533+00:00"
     },
     {
       "media_id": "18130266250742948",
@@ -1337,18 +1533,32 @@
           "ig_reels_avg_watch_time": 7855,
           "ig_reels_video_view_total_time": 282796,
           "reels_skip_rate": 56.7
+        },
+        "24h": {
+          "views": 43,
+          "reach": 29,
+          "saved": 0,
+          "shares": 0,
+          "likes": 0,
+          "comments": 0,
+          "total_interactions": 0,
+          "ig_reels_avg_watch_time": 7855,
+          "ig_reels_video_view_total_time": 282796,
+          "reels_skip_rate": 56.7
         }
       },
-      "score": 0.0,
+      "score": -26.1,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:07.676740+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:38.951109+00:00",
       "verdict": "flop",
-      "verdict_reason": "reach 29 < 55 at 220h (spec floor 200, account-median floor)",
+      "verdict_reason": "reach 29 < 55 at 235h (spec floor 200, account-median floor)",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.462
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:54.572601+00:00"
     },
     {
       "media_id": "18113687575835843",
@@ -1427,18 +1637,32 @@
           "ig_reels_avg_watch_time": 5694,
           "ig_reels_video_view_total_time": 694719,
           "reels_skip_rate": 48.3
+        },
+        "24h": {
+          "views": 150,
+          "reach": 117,
+          "saved": 0,
+          "shares": 0,
+          "likes": 0,
+          "comments": 0,
+          "total_interactions": 0,
+          "ig_reels_avg_watch_time": 5694,
+          "ig_reels_video_view_total_time": 694719,
+          "reels_skip_rate": 48.3
         }
       },
-      "score": 0.0,
+      "score": -21.9,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:08.239911+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:39.369336+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.335
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:54.908850+00:00"
     },
     {
       "media_id": "17954611458255379",
@@ -1519,18 +1743,32 @@
           "ig_reels_avg_watch_time": 5260,
           "ig_reels_video_view_total_time": 683888,
           "reels_skip_rate": 59.3
+        },
+        "24h": {
+          "views": 154,
+          "reach": 122,
+          "saved": 0,
+          "shares": 0,
+          "likes": 2,
+          "comments": 0,
+          "total_interactions": 2,
+          "ig_reels_avg_watch_time": 5260,
+          "ig_reels_video_view_total_time": 683888,
+          "reels_skip_rate": 59.3
         }
       },
-      "score": 0.004098360655737705,
+      "score": -27.383607,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:08.717813+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:39.765465+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.309
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:55.532724+00:00"
     },
     {
       "media_id": "18144427675605909",
@@ -1611,18 +1849,32 @@
           "ig_reels_avg_watch_time": 4502,
           "ig_reels_video_view_total_time": 508822,
           "reels_skip_rate": 65.1
+        },
+        "24h": {
+          "views": 131,
+          "reach": 104,
+          "saved": 0,
+          "shares": 0,
+          "likes": 0,
+          "comments": 0,
+          "total_interactions": 0,
+          "ig_reels_avg_watch_time": 4502,
+          "ig_reels_video_view_total_time": 508822,
+          "reels_skip_rate": 65.1
         }
       },
-      "score": 0.0,
+      "score": -30.3,
       "harvested": true,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:09.299999+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:40.307762+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.265
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:56.029737+00:00"
     },
     {
       "media_id": "18142577965595600",
@@ -1701,18 +1953,32 @@
           "ig_reels_avg_watch_time": 5470,
           "ig_reels_video_view_total_time": 634558,
           "reels_skip_rate": 42.5
+        },
+        "24h": {
+          "views": 135,
+          "reach": 113,
+          "saved": 0,
+          "shares": 0,
+          "likes": 1,
+          "comments": 0,
+          "total_interactions": 1,
+          "ig_reels_avg_watch_time": 5470,
+          "ig_reels_video_view_total_time": 634558,
+          "reels_skip_rate": 42.5
         }
       },
-      "score": 0.0022123893805309734,
+      "score": -18.99115,
       "harvested": false,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:09.956844+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:40.941040+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.322
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:56.713616+00:00"
     },
     {
       "media_id": "18117541925060013",
@@ -1793,18 +2059,32 @@
           "ig_reels_avg_watch_time": 3605,
           "ig_reels_video_view_total_time": 407431,
           "reels_skip_rate": 67.6
+        },
+        "24h": {
+          "views": 122,
+          "reach": 112,
+          "saved": 1,
+          "shares": 0,
+          "likes": 1,
+          "comments": 0,
+          "total_interactions": 2,
+          "ig_reels_avg_watch_time": 3605,
+          "ig_reels_video_view_total_time": 407431,
+          "reels_skip_rate": 67.6
         }
       },
-      "score": 0.029017857142857144,
+      "score": -31.469643,
       "harvested": false,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:10.499313+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:41.581304+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.212
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:57.245356+00:00"
     },
     {
       "media_id": "18095070899152018",
@@ -1885,18 +2165,32 @@
           "ig_reels_avg_watch_time": 7237,
           "ig_reels_video_view_total_time": 832345,
           "reels_skip_rate": 46.4
+        },
+        "24h": {
+          "views": 159,
+          "reach": 114,
+          "saved": 0,
+          "shares": 0,
+          "likes": 0,
+          "comments": 0,
+          "total_interactions": 0,
+          "ig_reels_avg_watch_time": 7237,
+          "ig_reels_video_view_total_time": 832345,
+          "reels_skip_rate": 46.4
         }
       },
-      "score": 0.0,
+      "score": -20.95,
       "harvested": false,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:10.978432+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:41.840041+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.426
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:59.027104+00:00"
     },
     {
       "media_id": "18043310921831319",
@@ -1977,18 +2271,32 @@
           "ig_reels_avg_watch_time": 2123,
           "ig_reels_video_view_total_time": 229346,
           "reels_skip_rate": 81.6
+        },
+        "24h": {
+          "views": 109,
+          "reach": 104,
+          "saved": 0,
+          "shares": 0,
+          "likes": 0,
+          "comments": 0,
+          "total_interactions": 0,
+          "ig_reels_avg_watch_time": 2123,
+          "ig_reels_video_view_total_time": 229346,
+          "reels_skip_rate": 81.6
         }
       },
-      "score": 0.0,
+      "score": -38.55,
       "harvested": false,
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00",
-      "insights_checked_at": "2026-10-11T19:48:11.604577+00:00",
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "insights_checked_at": "2026-10-12T11:26:42.391295+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.125
-      }
+      },
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:59.571977+00:00"
     },
     {
       "media_id": "17882663745522549",
@@ -2067,18 +2375,32 @@
           "ig_reels_avg_watch_time": 6055,
           "ig_reels_video_view_total_time": 944715,
           "reels_skip_rate": 51.3
+        },
+        "24h": {
+          "views": 206,
+          "reach": 151,
+          "saved": 0,
+          "shares": 0,
+          "likes": 1,
+          "comments": 0,
+          "total_interactions": 1,
+          "ig_reels_avg_watch_time": 6055,
+          "ig_reels_video_view_total_time": 944715,
+          "reels_skip_rate": 51.3
         }
       },
-      "score": 0.0016556291390728477,
+      "score": -23.393377,
       "harvested": false,
-      "insights_checked_at": "2026-10-11T19:48:12.261534+00:00",
+      "insights_checked_at": "2026-10-12T11:26:43.046945+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.356
       },
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00"
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "learnable": true,
+      "scored_at": "2026-10-12T11:26:59.996342+00:00"
     },
     {
       "media_id": "18051362456804535",
@@ -2157,18 +2479,32 @@
           "ig_reels_avg_watch_time": 6582,
           "ig_reels_video_view_total_time": 809590,
           "reels_skip_rate": 44.4
+        },
+        "24h": {
+          "views": 156,
+          "reach": 118,
+          "saved": 4,
+          "shares": 1,
+          "likes": 1,
+          "comments": 0,
+          "total_interactions": 6,
+          "ig_reels_avg_watch_time": 6582,
+          "ig_reels_video_view_total_time": 809590,
+          "reels_skip_rate": 44.4
         }
       },
-      "score": 0.15466101694915255,
+      "score": -19.500847,
       "harvested": false,
-      "insights_checked_at": "2026-10-11T19:48:12.804644+00:00",
+      "insights_checked_at": "2026-10-12T11:26:43.544433+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
         "sends_per_1k_reach": 8.475,
         "hold": 0.387
       },
-      "last_harvested": "2026-10-11T19:48:12.933125+00:00"
+      "last_harvested": "2026-10-12T11:26:43.681014+00:00",
+      "learnable": true,
+      "scored_at": "2026-10-12T11:27:00.788063+00:00"
     }
   ],
   "used_pins": [
@@ -2901,11 +3237,11 @@
   "account_profile_views": {
     "reach": [
       {
-        "end_time": "2026-10-10T07:00:00+0000",
+        "end_time": "2026-10-11T07:00:00+0000",
         "value": 0
       },
       {
-        "end_time": "2026-10-11T07:00:00+0000",
+        "end_time": "2026-10-12T07:00:00+0000",
         "value": 0
       }
     ]
