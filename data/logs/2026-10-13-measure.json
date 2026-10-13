@@ -1,0 +1,39 @@
+[
+  {
+    "workflow": "measure",
+    "started": "2026-10-13T11:16:15.204053+00:00",
+    "dry_run": false,
+    "version": "v2",
+    "collect": {
+      "updated": 22,
+      "skipped": 0,
+      "errors": [],
+      "metrics_unavailable": [
+        "reposts"
+      ],
+      "total_posts": 24,
+      "pruned": {
+        "before": {
+          "used_pins": 25,
+          "used_tracks": 0,
+          "used_track_urls": 4,
+          "used_track_profiles": 17,
+          "used_music_queries": 17,
+          "used_hooks": 4,
+          "candidate_log": 4
+        },
+        "after": {
+          "used_pins": 25,
+          "used_tracks": 0,
+          "used_track_urls": 4,
+          "used_track_profiles": 17,
+          "used_music_queries": 17,
+          "used_hooks": 4,
+          "candidate_log": 4
+        }
+      }
+    },
+    "logs_pruned": 0,
+    "seconds": 14.32
+  }
+]
