@@ -139,16 +139,24 @@ def _sar_is_square(sar: str) -> bool:
     return b != 0 and a == b
 
 
-def check(path, expect_audio: bool | None = None) -> tuple:
+def check(path, expect_audio: bool | None = None,
+          duration_bounds: tuple | None = None) -> tuple:
     """(ok, report). The full upload gate.
 
     expect_audio: True = an audio stream is required, False = it must be ABSENT,
     None = either is acceptable. The silence case is approved by STRATEGY.md, so
     a reel with no audio is valid — but it must be ABSENT ON PURPOSE, which means
     the caller states which it expects rather than the gate guessing.
+
+    duration_bounds: (min_s, max_s) to override the v2 14-34s window for a format
+    with a different contract (e.g. the v3 two-beat short at 6-12s). Defaults to
+    (MIN_S, MAX_S) so every existing caller keeps the exact v2 behaviour. A
+    format-specific window is a contract, not a loosened gate: the file must still
+    fall inside the bounds the caller declares.
     """
+    lo, hi = duration_bounds if duration_bounds else (MIN_S, MAX_S)
     p = Path(path)
-    report: dict = {"file": str(p)}
+    report: dict = {"file": str(p), "duration_bounds": [lo, hi]}
 
     # 1. exists and is non-trivial
     if not p.exists():
@@ -219,8 +227,8 @@ def check(path, expect_audio: bool | None = None) -> tuple:
     report["duration_s"] = dur
     if dur is None:
         failures.append("no duration in container")
-    elif not (MIN_S - 0.05 <= dur <= MAX_S + 0.05):
-        failures.append(f"duration {dur:.2f}s outside {MIN_S:.0f}-{MAX_S:.0f}s")
+    elif not (lo - 0.05 <= dur <= hi + 0.05):
+        failures.append(f"duration {dur:.2f}s outside {lo:.0f}-{hi:.0f}s")
 
     # 4. audio: present only if it was meant to be
     report["audio"] = bool(audio)

@@ -36,7 +36,8 @@ def beat_times(duration_s: float) -> tuple:
 
 # ------------------------------------------------------------------ text drawing
 
-def _wrap(text: str, max_chars: int) -> list:
+def _wrap(text: str, max_chars: int, max_lines: int | None = None) -> list:
+    """Greedy word wrap. If max_lines is set the result is truncated to it."""
     words_list = text.split()
     lines, cur = [], ""
     for w in words_list:
@@ -47,20 +48,81 @@ def _wrap(text: str, max_chars: int) -> list:
             cur = f"{cur} {w}".strip()
     if cur:
         lines.append(cur)
-    return lines[:2]  # §4: max 2 lines per beat
+    return lines[:max_lines] if max_lines else lines
 
 
-def _drawtext_filter(text: str, fontsize: int, y_expr: str, start: float, end: float,
-                     font_path: str) -> str:
-    """White text, black stroke, fade-in 0.2s at its reveal time."""
-    esc = (text.replace("\\", "\\\\").replace(":", "\\:").replace("'", "\u2019")
-           .replace("%", "\\%"))
-    return (
-        f"drawtext=fontfile={font_path}:text='{esc}':"
-        f"fontcolor=white:fontsize={fontsize}:borderw={max(3, fontsize // 12)}:"
-        f"bordercolor=black:x=(w-text_w)/2:{y_expr}:"
-        f"enable='between(t,{start:.2f},{end:.2f})'"
-    )
+def _fit_beat(text: str, max_width: int = 780, max_lines: int = 3,
+              start_size: int = 74) -> tuple:
+    """Choose a font size (and wrapping) that shows ALL of the beat's words.
+
+    §4 caps a beat at a few lines. Rather than silently truncating a 14-word
+    hook to fit two lines (which would ship an incomplete hook), shrink the font
+    from `start_size` until the whole text wraps within `max_lines`. Returns
+    (lines, fontsize). A word that cannot fit even at the floor is left on its
+    own line rather than dropped.
+    """
+    words = text.split()
+    joined = " ".join(words)
+    size = start_size
+    while size >= 40:
+        cpl = max(6, int(max_width / (size * 0.56)))
+        lines = _wrap(text, cpl)
+        if len(lines) <= max_lines and " ".join(lines) == joined:
+            return lines, size
+        size -= 2
+    # floor reached: keep every word, allow more lines
+    cpl = max(6, int(max_width / (40 * 0.56)))
+    return _wrap(text, cpl), 40
+
+
+# The pinned static FFmpeg has libass but NOT the drawtext filter, so text is
+# burned in via an ASS subtitle track. This is also the more readable route:
+# libass gives real centring (\an5), per-beat font sizes and outlines, and the
+# Dialogue start/end times ARE the beat timing, so what renders is what the
+# timeline specified.
+FONT_FAMILY = "DejaVu Sans"
+_ASS_HEADER = """[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Base,{font},74,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,{outline},0,5,40,40,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+"""
+
+
+def _ass_time(t: float) -> str:
+    t = max(0.0, float(t))
+    h, m = int(t // 3600), int((t % 3600) // 60)
+    s = t - h * 3600 - m * 60
+    return f"{h}:{m:02d}:{s:05.2f}"
+
+
+def _ass_escape(s) -> str:
+    # braces open override blocks in ASS; backslashes are control sequences.
+    return str(s).replace("{", "(").replace("}", ")").replace("\\", "/")
+
+
+def _ass_path(path) -> str:
+    """Escape a path for use as a filtergraph value."""
+    return str(path).replace("\\", "\\\\").replace(":", "\\:")
+
+
+def write_ass(path, events: list, outline: int = 4) -> str:
+    """Write an ASS file. Each event: {start, end, size, lines[]}."""
+    out = [_ASS_HEADER.format(font=FONT_FAMILY, outline=outline)]
+    for e in events:
+        text = "\\N".join(_ass_escape(ln) for ln in e["lines"])
+        out.append(
+            f"Dialogue: 0,{_ass_time(e['start'])},{_ass_time(e['end'])},Base,,0,0,0,,"
+            f"{{\\an5\\fs{int(e['size'])}}}{text}")
+    Path(path).write_text("\n".join(out) + "\n", encoding="utf-8")
+    return str(path)
 
 
 def _scrim_filter(opacity: float = 0.45) -> str:
@@ -114,15 +176,18 @@ def _text_post_bg(out: Path, duration_s: float, seed_hue: int = 226) -> dict:
     """Arm C: plain dark background with a subtle vertical shade — no photo."""
     ffmpeg = config.resolve_ffmpeg()
     out.parent.mkdir(parents=True, exist_ok=True)
-    # deep navy-black with a faint centre glow; static, so a still png suffices
+    # Deep navy-black with a faint centre glow. The glow is a SINGLE frame
+    # (r=1:d=1) that overlay repeats for the whole clip: without the pinned
+    # duration the expensive geq expression was evaluated once per output frame
+    # and a 9s reel took ~134s instead of ~2s.
     cmd = [ffmpeg, "-y",
            "-f", "lavfi", "-i",
            f"color=c=0x0e1220:s=1080x1920:d={duration_s:.2f}:r={FPS}",
            "-f", "lavfi", "-i",
-           "color=c=0x1a2340:s=1080x1080",
+           "color=c=0x1a2340:s=1080x1080:r=1:d=1",
            "-filter_complex",
            "[1:v]geq=r='40+20*sin(2*PI*X/1080)':g='35+18*sin(2*PI*X/1080)':b='64+30*sin(2*PI*X/1080)'[glow];"
-           "[0:v][glow]overlay=(W-w)/2:(H-h)/2:format=auto,format=yuv420p[v]",
+           "[0:v][glow]overlay=(W-w)/2:(H-h)/2:eof_action=repeat:format=auto,format=yuv420p[v]",
            "-map", "[v]", "-t", f"{duration_s:.2f}",
            "-c:v", "libx264", "-preset", "veryfast", "-crf", "22",
            str(out)]
@@ -175,47 +240,33 @@ def build(reel: dict, memory: dict, out_path: Path | None = None,
             return {"ok": False, "stage": "bg", "why": bg.get("why")}
 
     bg_path = Path(bg["path"]) if bg.get("path") else config.OUTPUTS / "bg_short.mp4"
-    is_still = bg.get("is_video") is False or bg.get("source") == "textpost"
+    # `-loop 1` is an image-demuxer option; every arm's background here is an MP4
+    # (stills are animated by background.build), so loop by extension, not by the
+    # arm's label. `-loop 1` on an mp4 was 'Option loop not found'.
+    _bg_is_image = str(bg_path).lower().endswith((".png", ".jpg", ".jpeg", ".webp", ".bmp"))
 
     # 2. the text treatment
     ffmpeg = config.resolve_ffmpeg()
-    font = str((config.ASSETS / "fonts" / "DejaVuSans-Bold.ttf"))
-    if not Path(font).exists():
-        # the repo ships Coolvetica; DejaVu is the guaranteed bold sans fallback
-        import shutil
-        cand = shutil.which("fc-match")
-        font = ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf")
-        if not Path(font).exists():
-            font = str(config.DEFAULT_CONFIG.get("font_path") or "")
-            font = str(config.ROOT / font) if not Path(font).is_absolute() else font
-    hook_lines = _wrap(hook, 22)
-    payoff_lines = _wrap(payoff, 24)
     hook_at, payoff_at, total = beat_times(duration_s)
 
-    # hook larger than payoff (§4)
-    hook_size = 74
-    payoff_size = 58
-    n_h = max(1, len(hook_lines))
-    n_p = max(1, len(payoff_lines))
-    hook_y = f"(h-text_h)/2-{int(hook_size * 0.75 * n_h / 2)}"
-    payoff_y = f"(h-text_h)/2+{int(payoff_size * 0.9 * n_p / 2)}"
+    # §4: hook larger than payoff. Auto-fit so no lint-valid beat loses words.
+    hook_lines, hook_size = _fit_beat(hook, start_size=74, max_lines=3)
+    payoff_lines, payoff_size = _fit_beat(payoff, start_size=58, max_lines=3)
+    if verbose:
+        print(f"[short] hook {len(hook_lines)}L@{hook_size}px  "
+              f"payoff {len(payoff_lines)}L@{payoff_size}px", flush=True)
 
-    filters = [_scrim_filter(0.45)]
-    # hook: on screen from 0 to payoff reveal (fade handled by enable + one beat at a time)
-    for i, ln in enumerate(hook_lines):
-        filters.append(_drawtext_filter(
-            ln, hook_size if i == 0 else int(hook_size * 0.92),
-            hook_y if i == 0 else f"(h-text_h)/2-{int(hook_size*0.75*(n_h - i - 1)/2)}",
-            hook_at, payoff_at + 0.001, font))
-    # payoff: from its reveal to the end; hook disappears the moment it lands
-    for i, ln in enumerate(payoff_lines):
-        filters.append(_drawtext_filter(
-            ln, payoff_size if i == 0 else int(payoff_size * 0.92),
-            payoff_y if i == 0 else f"(h-text_h)/2+{int(payoff_size*0.9*(n_p - i - 1)/2)}",
-            payoff_at, total, font))
-
-    vf = ",".join(filters)
-    if is_still:
+    # one beat on screen at a time: the hook's Dialogue ends exactly where the
+    # payoff's begins, so the hook disappears the moment the payoff lands.
+    ass_path = config.OUTPUTS / "short_text.ass"
+    write_ass(ass_path, [
+        {"start": hook_at, "end": payoff_at + 0.001, "size": hook_size,
+         "lines": hook_lines},
+        {"start": payoff_at, "end": total, "size": payoff_size,
+         "lines": payoff_lines},
+    ])
+    vf = f"{_scrim_filter(0.45)},ass={_ass_path(ass_path)}"
+    if _bg_is_image:
         inputs = ["-loop", "1", "-t", f"{duration_s:.2f}", "-i", str(bg_path)]
     else:
         inputs = ["-stream_loop", "-1", "-t", f"{duration_s:.2f}", "-i", str(bg_path)]
@@ -229,7 +280,7 @@ def build(reel: dict, memory: dict, out_path: Path | None = None,
                    "aresample=48000,pan=stereo|c0=c0|c1=c1")
         cmd = [ffmpeg, "-y", *inputs, "-i", str(track),
                "-filter_complex",
-               f"[0:v]{vf}[v];[2:a]{afilter}[a]",
+               f"[0:v]{vf}[v];[1:a]{afilter}[a]",
                "-map", "[v]", "-map", "[a]",
                "-c:v", "libx264", "-preset", "medium", "-crf", "21",
                "-pix_fmt", "yuv420p", "-r", str(FPS),
@@ -238,12 +289,13 @@ def build(reel: dict, memory: dict, out_path: Path | None = None,
                "-movflags", "+faststart", str(out_path)]
     else:
         # §5: silence is not an option — synthesize a quiet room tone so the reel
-        # never ships truly silent and never trips a "no audio" gate.
+        # never ships truly silent and never trips a "no audio" gate. anullsrc is
+        # a SOURCE filter (no input), so it carries no input label; labeling it
+        # with one was the render bug (it has 0 inputs, the graph gave it 1).
         afilter = (f"anullsrc=r=48000:cl=stereo,atrim=0:{duration_s:.2f}{fade_out}")
         cmd = [ffmpeg, "-y", *inputs,
-               "-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo",
                "-filter_complex",
-               f"[0:v]{vf}[v];[2:a]{afilter}[a]",
+               f"[0:v]{vf}[v];{afilter}[a]",
                "-map", "[v]", "-map", "[a]",
                "-c:v", "libx264", "-preset", "medium", "-crf", "21",
                "-pix_fmt", "yuv420p", "-r", str(FPS),
