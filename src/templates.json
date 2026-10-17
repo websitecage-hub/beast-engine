@@ -1,0 +1,104 @@
+{
+ "version": "v3-2026-10-15",
+ "note": "T1-T10 structures seen in the breakout research (346 hashtag reels, 300 reels from 20 accounts, 2026-10-15/16). Examples are ORIGINAL wording and must never be copied into a reel - lint_short rejects any 6+-word overlap with them. Write new wording every time.",
+ "length_s": [
+  6,
+  12
+ ],
+ "words": [
+  8,
+  22
+ ],
+ "payoff_frac": [
+  0.55,
+  0.65
+ ],
+ "hook_first": "The hook (beat 1) is on screen at frame 0 and must work as the setup on its own.",
+ "topic_rule": "Humour targets the BEHAVIOUR or the SITUATION, never the person, never a diagnosis, medication, self-harm or suicide. No joke may trivialise mental illness.",
+ "topics": [
+  "social battery",
+  "group chats",
+  "replying late",
+  "cancelled plans",
+  "phone calls",
+  "small talk",
+  "saying I'm fine",
+  "leaving parties early",
+  "3am replays of old conversations",
+  "rehearsing sentences before saying them",
+  "reading a text five times before answering",
+  "being fine alone, quiet in groups"
+ ],
+ "templates": [
+  {
+   "code": "T1",
+   "structure": "People think X. It's actually Y.",
+   "example": "People think I'm ignoring them. I'm drafting a reply. It's been three hours.",
+   "send_trigger": "the friend who takes hours to reply",
+   "beats": 2
+  },
+  {
+   "code": "T2",
+   "structure": "X before / Y after",
+   "example": "Confidence before pressing send. / Regret at \"delivered\".",
+   "send_trigger": "the friend who drafts and redrafts",
+   "beats": 2
+  },
+  {
+   "code": "T3",
+   "structure": "Send this to the friend who...",
+   "example": "Send this to the friend who says \"just an hour\" and means \"home by 8:30\".",
+   "send_trigger": "explicit forward",
+   "beats": 2
+  },
+  {
+   "code": "T4",
+   "structure": "Not X. Just Y.",
+   "example": "Not rude. Just replying to a text I read four days ago.",
+   "send_trigger": "the friend accused of being distant",
+   "beats": 2
+  },
+  {
+   "code": "T5",
+   "structure": "Therapist / me dialogue",
+   "example": "Therapist: Have you tried just saying how you feel? / Me: *types \"haha yeah\"*",
+   "send_trigger": "the friend in therapy memes",
+   "beats": 2
+  },
+  {
+   "code": "T6",
+   "structure": "Me vs. me",
+   "example": "Me: I should go out more. / Me, when invited:",
+   "send_trigger": "the friend who cancels",
+   "beats": 2
+  },
+  {
+   "code": "T7",
+   "structure": "Battery / counter",
+   "example": "Social battery at the party: 100%... 12% after \"so what do you do?\"",
+   "send_trigger": "the friend drained by small talk",
+   "beats": 2
+  },
+  {
+   "code": "T8",
+   "structure": "3am brain",
+   "example": "3am brain: remember what you said in 2019?",
+   "send_trigger": "the friend who replays conversations",
+   "beats": 2
+  },
+  {
+   "code": "T9",
+   "structure": "Introverts when...",
+   "example": "Introverts when plans get cancelled: \"Oh no.\" (internal: parade)",
+   "send_trigger": "the friend who celebrates cancelled plans",
+   "beats": 2
+  },
+  {
+   "code": "T10",
+   "structure": "POV (max 1 in 5 reels)",
+   "example": "POV: the group chat says \"who's free Saturday\"",
+   "send_trigger": "tagging the group chat",
+   "beats": 2
+  }
+ ]
+}

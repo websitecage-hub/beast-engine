@@ -1,156 +1,119 @@
 # Beast Engine — weekly brain report
 
-Generated: 2026-10-18T20:23:05+00:00
+Generated: 2026-10-11T17:08:18+00:00
 
-Posts scored this cycle: **23**
-Weighted mean score: **-26.6683**
+Posts scored this cycle: **10**
+Weighted mean score: **0.0832**
 
 ## Attribute adjustments (value | adj | n)
 
 ### archetype
 | value | adj | n |
 |---|---|---|
-| the_sealed_mouth | -25.7107 | 4 |
-| the_mask | -25.7953 | 5 |
-| the_freeze | -26.1526 | 4 |
-| the_rehearsal | -26.6683 | 0 |
-| the_bodys_betrayal | -26.6683 | 0 |
-| the_craving | -26.6683 | 0 |
-| the_buried_anger | -26.6683 | 0 |
-| quiet_hope | -26.6683 | 0 |
-| the_aftermath | -26.8594 | 1 |
-| the_losses | -26.9651 | 1 |
-| the_detour | -27.6234 | 7 |
+| the_mask | 0.0881 | 1 |
+| the_detour | 0.0873 | 1 |
+| the_freeze | 0.0866 | 1 |
+| the_sealed_mouth | 0.0865 | 1 |
+| the_losses | 0.0834 | 1 |
+| the_buried_anger | 0.0832 | 0 |
+| the_aftermath | 0.0828 | 1 |
+| quiet_hope | 0.0809 | 1 |
+| the_rehearsal | 0.0795 | 1 |
+| the_craving | 0.0790 | 1 |
+| the_bodys_betrayal | 0.0783 | 1 |
 
 ### topic
 | value | adj | n |
 |---|---|---|
-| neutral_as_negative | -25.7107 | 4 |
-| exposure_fear | -25.7953 | 5 |
-| mind_blank | -25.9457 | 3 |
-| fake_phone | -26.6683 | 0 |
-| ordering_food | -26.6683 | 0 |
-| asking_coworker | -26.6683 | 0 |
-| party_bathroom | -26.6683 | 0 |
-| replay_2am | -26.6683 | 0 |
-| read_receipts | -26.6683 | 0 |
-| meetings_voice | -26.6683 | 0 |
-| dating_app_freeze | -26.6683 | 0 |
-| dying_alone_thought | -26.6683 | 0 |
-| behind_at_25 | -26.6683 | 0 |
-| buried_anger | -26.6683 | 0 |
-| therapy_irony | -26.6683 | 0 |
-| the_grandma_win | -26.6683 | 0 |
-| lost_friendships | -26.7832 | 3 |
-| post_interaction_hate | -26.8594 | 1 |
-| freeze_at_work | -26.8726 | 1 |
-| phone_calls | -27.8702 | 5 |
 
 ### mood
 | value | adj | n |
 |---|---|---|
-| quiet_devastating | -26.1393 | 4 |
-| heavy_shadow | -26.4328 | 15 |
-| restrained_anger | -26.6683 | 0 |
-| gentle_hope | -26.6683 | 0 |
-| muffled_world | -26.7832 | 3 |
 
 ### bg_type
 | value | adj | n |
 |---|---|---|
-| sealed_mouth | -25.7107 | 4 |
-| mask | -25.7953 | 5 |
-| freeze | -26.1526 | 4 |
-| rehearsal | -26.6683 | 0 |
-| bodys_betrayal | -26.6683 | 0 |
-| craving | -26.6683 | 0 |
-| buried_anger | -26.6683 | 0 |
-| quiet_hope | -26.6683 | 0 |
-| aftermath | -26.8594 | 1 |
-| losses | -26.9651 | 1 |
-| detour | -27.6234 | 7 |
 
 ### loop_technique
 | value | adj | n |
 |---|---|---|
-| visual_echo | -26.2504 | 21 |
-| mid_thought | -26.6683 | 0 |
-| audio_echo | -26.8594 | 1 |
 
 ## Hour scores
 
 | hour | adj |
 |---|---|
-| 13:30 | -25.9320 |
-| 17:30 | -26.8226 |
+| 13:30 | 0.0600 |
+| 17:30 | 0.1200 |
 
-Next post hour: **13:30**
+Next post hour: **17:30**
 
 ## Top 5 hooks
 
 | hook | score | cluster | topic | mood | exploit |
 |---|---|---|---|---|---|
-| POV: you said you're good 12 times today and meant it zero t | -18.9912 | the_mask | exposure_fear | heavy_shadow | True |
-| POV: the conversation pauses and your throat locks shut. | -19.5008 | the_freeze | mind_blank | quiet_devastating | True |
-| When you laugh at a joke you didn't hear because asking "wha | -19.7402 | the_sealed_mouth | neutral_as_negative | heavy_shadow | True |
-| POV: you laugh at the joke you didn't hear because asking ag | -20.9500 | the_sealed_mouth | neutral_as_negative | heavy_shadow | True |
-| POV: your phone rings and you watch it ring out. | -21.4918 | the_detour | phone_calls | heavy_shadow | True |
+| Your manager thinks you're less competent than you are. | 0.1493 | the_mask | meetings_voice | muffled_world | True |
+| You know exactly what to say. You say nothing. Again. | 0.1414 | the_freeze | exposure_fear | quiet_devastating | True |
+| You want to talk. Your mouth disagrees. | 0.1348 | the_sealed_mouth | mind_blank | quiet_devastating | True |
+| The bathroom is the only room where you can breathe. | 0.1318 | the_detour | party_bathroom | heavy_shadow | True |
+| You often think of dying alone. | 0.0848 | the_losses | dying_alone_thought | quiet_devastating | True |
 
 ## Self-improvement metrics (Part 7.3)
 
-- posts with metrics: **23**
-- sends per reach: mean **0.04%** (target >2%)
-- saves per reach: mean **0.32%**
-- reels above the send target: **0/23**
-
-## SEO: is the search channel compounding? (spec §8)
-
-| metric | value | what good looks like |
-|---|---|---|
-| reels shipping alt text | 22/22 | all of them |
-| reels with 5-7 hashtags | 21/22 | all of them |
-| reels at >=5% saves/reach | 0/23 | above 5% |
-_profile visits from search, reach from non-followers and bio link clicks live in Instagram Insights — rising month over month means search discovery is working._
-
-### comment keywords used (DM automation triggers)
-
-| keyword | reels |
-|---|---|
-| QUIET | 5 |
-| MASK | 5 |
-| HEARD | 4 |
-| BLANK | 3 |
-| FREE | 2 |
-| GHOST | 1 |
-| SEEN | 1 |
+- posts with metrics: **10**
+- sends per reach: mean **0.31%** (target >2%)
+- saves per reach: mean **0.99%**
+- reels above the send target: **0/10**
 
 ## Which clusters earn the most saves? (Part 7.2 Q1)
 
 | cluster | mean saves/reach | n |
 |---|---|---|
-| the_freeze | 1.06% | 4 |
-| the_sealed_mouth | 0.79% | 4 |
-| pain_callout | 0.00% | 1 |
-| the_aftermath | 0.00% | 1 |
-| the_losses | 0.00% | 1 |
-| the_detour | 0.00% | 7 |
-| the_mask | 0.00% | 5 |
+| the_sealed_mouth | 1.48% | 1 |
+| the_detour | 1.44% | 1 |
+| the_mask | 1.18% | 1 |
+| the_freeze | 1.13% | 1 |
+| the_losses | 1.07% | 1 |
+| the_aftermath | 0.92% | 1 |
+| quiet_hope | 0.79% | 1 |
+| the_craving | 0.66% | 1 |
+| the_rehearsal | 0.62% | 1 |
+| the_bodys_betrayal | 0.58% | 1 |
+
+## Background type vs completion proxy (Part 7.2 Q3)
+
+| bg_type | mean plays/reach | n |
+|---|---|---|
+| freeze_detour | 1.60 | 1 |
+| aftermath | 1.60 | 2 |
+| sealed_mouth | 1.60 | 2 |
+| craving | 1.60 | 1 |
+| mask | 1.60 | 1 |
+| rehearsal | 1.60 | 1 |
+| losses | 1.60 | 1 |
+| quiet_hope | 1.60 | 1 |
+
+## Loop technique vs rewatch proxy (Part 7.2 Q7)
+
+| loop_technique | mean plays/reach | n |
+|---|---|---|
+| audio_echo | 1.60 | 3 |
+| mid_thought | 1.60 | 3 |
+| visual_echo | 1.60 | 4 |
 
 ## Does trending audio help sends? (Part 7.2 Q6)
 
-- trending audio: n=4 mean sends/reach=0.00%
-- non-trending: n=19 mean sends/reach=0.04%
+- trending audio: n=7 mean sends/reach=0.40%
+- non-trending: n=3 mean sends/reach=0.10%
 
 ## Exploit vs explore
-- exploit: n=23 mean=-26.8543
-- explore: n=0
+- exploit: n=8 mean=0.1019
+- explore: n=2 mean=0.0253
 
 ## Trending alignment (does riding the trend help THIS audience?)
 
-- trending-aligned: n=23 mean=-26.8543
-- not aligned: n=0
+- trending-aligned: n=5 mean=0.1168
+- not aligned: n=5 mean=0.0564
 
 ## Next week's experiments
 
-- the_mask x fake_phone
-- the_mask x ordering_food
+- the_freeze x asking_coworker
