@@ -103,7 +103,7 @@
       "score": -40.279798,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:10.031932+00:00",
+      "insights_checked_at": "2026-10-17T13:21:08.647138+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -232,7 +232,7 @@
       "score": -28.485714,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:10.333392+00:00",
+      "insights_checked_at": "2026-10-17T13:21:08.964872+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -360,7 +360,7 @@
       "score": -29.48374,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:10.644783+00:00",
+      "insights_checked_at": "2026-10-17T13:21:09.342436+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -490,7 +490,7 @@
       "score": -21.491803,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:11.024597+00:00",
+      "insights_checked_at": "2026-10-17T13:21:09.693573+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -620,9 +620,9 @@
       "score": null,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:11.281818+00:00",
+      "insights_checked_at": "2026-10-17T13:21:10.166004+00:00",
       "verdict": "flop",
-      "verdict_reason": "reach 5 < 55 at 474h (spec floor 200, account-median floor)",
+      "verdict_reason": "reach 5 < 55 at 479h (spec floor 200, account-median floor)",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.525
@@ -748,7 +748,7 @@
       "score": -27.893396,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:11.513802+00:00",
+      "insights_checked_at": "2026-10-17T13:21:10.497139+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -876,7 +876,7 @@
       "score": -24.140909,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:11.815950+00:00",
+      "insights_checked_at": "2026-10-17T13:21:10.804361+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1004,7 +1004,7 @@
       "score": -28.043925,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:12.183967+00:00",
+      "insights_checked_at": "2026-10-17T13:21:11.237453+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1132,7 +1132,7 @@
       "score": -30.2,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:12.609306+00:00",
+      "insights_checked_at": "2026-10-17T13:21:11.545702+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1262,7 +1262,7 @@
       "score": -27.0,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:12.844031+00:00",
+      "insights_checked_at": "2026-10-17T13:21:11.875960+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1392,7 +1392,7 @@
       "score": -28.5,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:13.094526+00:00",
+      "insights_checked_at": "2026-10-17T13:21:12.233751+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1522,7 +1522,7 @@
       "score": -27.65,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:13.377750+00:00",
+      "insights_checked_at": "2026-10-17T13:21:12.601720+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1652,7 +1652,7 @@
       "score": -19.740157,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:13.627789+00:00",
+      "insights_checked_at": "2026-10-17T13:21:13.025222+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1782,7 +1782,7 @@
       "score": -26.2,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:13.982306+00:00",
+      "insights_checked_at": "2026-10-17T13:21:13.339997+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1910,9 +1910,9 @@
       "score": -26.1,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:14.305851+00:00",
+      "insights_checked_at": "2026-10-17T13:21:13.651738+00:00",
       "verdict": "flop",
-      "verdict_reason": "reach 29 < 55 at 352h (spec floor 200, account-median floor)",
+      "verdict_reason": "reach 29 < 55 at 357h (spec floor 200, account-median floor)",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.462
@@ -2038,7 +2038,7 @@
       "score": -21.9,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:14.577383+00:00",
+      "insights_checked_at": "2026-10-17T13:21:14.037824+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2168,7 +2168,7 @@
       "score": -27.383607,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:14.858711+00:00",
+      "insights_checked_at": "2026-10-17T13:21:14.330182+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2298,7 +2298,7 @@
       "score": -30.3,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:15.127779+00:00",
+      "insights_checked_at": "2026-10-17T13:21:14.591789+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2426,7 +2426,7 @@
       "score": -18.99115,
       "harvested": false,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:15.438114+00:00",
+      "insights_checked_at": "2026-10-17T13:21:14.925543+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2556,7 +2556,7 @@
       "score": -31.469643,
       "harvested": false,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:15.731637+00:00",
+      "insights_checked_at": "2026-10-17T13:21:15.330766+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2686,7 +2686,7 @@
       "score": -20.95,
       "harvested": false,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:15.974964+00:00",
+      "insights_checked_at": "2026-10-17T13:21:15.788224+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2816,7 +2816,7 @@
       "score": -38.55,
       "harvested": false,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-17T08:07:16.239422+00:00",
+      "insights_checked_at": "2026-10-17T13:21:16.281291+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2883,10 +2883,10 @@
         "music_source": "song"
       },
       "metrics": {
-        "ig_reels_avg_watch_time": 6054,
-        "ig_reels_video_view_total_time": 950485,
-        "reach": 151,
-        "views": 206,
+        "ig_reels_avg_watch_time": 6058,
+        "ig_reels_video_view_total_time": 957239,
+        "reach": 152,
+        "views": 207,
         "likes": 1,
         "comments": 0,
         "saved": 0,
@@ -2943,7 +2943,7 @@
       },
       "score": -23.393377,
       "harvested": false,
-      "insights_checked_at": "2026-10-17T08:07:16.612084+00:00",
+      "insights_checked_at": "2026-10-17T13:21:16.618721+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -3011,15 +3011,15 @@
         "music_source": "drone"
       },
       "metrics": {
-        "ig_reels_avg_watch_time": 6582,
-        "ig_reels_video_view_total_time": 816278,
-        "reach": 119,
-        "views": 157,
+        "ig_reels_avg_watch_time": 6838,
+        "ig_reels_video_view_total_time": 868511,
+        "reach": 120,
+        "views": 160,
         "likes": 1,
-        "comments": 0,
+        "comments": 3,
         "saved": 4,
         "shares": 1,
-        "total_interactions": 6,
+        "total_interactions": 9,
         "2h": {
           "views": 156,
           "reach": 118,
@@ -3071,12 +3071,12 @@
       },
       "score": -19.500847,
       "harvested": false,
-      "insights_checked_at": "2026-10-17T08:07:16.978751+00:00",
+      "insights_checked_at": "2026-10-17T13:21:16.926574+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
-        "sends_per_1k_reach": 8.403,
-        "hold": 0.387
+        "sends_per_1k_reach": 8.333,
+        "hold": 0.402
       },
       "last_harvested": "2026-10-13T20:53:57.798571+00:00",
       "learnable": true,
@@ -3818,7 +3818,7 @@
       },
       {
         "end_time": "2026-10-17T07:00:00+0000",
-        "value": 0
+        "value": 1
       }
     ]
   }
