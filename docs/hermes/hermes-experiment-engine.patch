@@ -1,0 +1,2831 @@
+From a473b681d5eadc609e42e5c62a98c5c4a430bf70 Mon Sep 17 00:00:00 2001
+From: "beast-engine[bot]" <beast-engine[bot]@users.noreply.github.com>
+Date: Sat, 17 Oct 2026 13:55:56 +0000
+Subject: [PATCH] feat(hermes): research audit, content blueprint, format
+ registry, dry-run runner
+
+Implements Steps 0-3 of the master architecture (Step 4 evaluated and skipped:
+no rights-cleared cinematic asset path, so cinematic_v1 is registered
+not_eligible rather than built).
+
+New:
+- src/research/{normalize,analyze,report}.py + docs/research/RESEARCH_AUDIT.md:
+  offline evidence layer; observed/hypothesis/unsupported kept separate.
+- src/blueprint.py: the ContentBlueprint contract (single schema for v2/v3).
+- src/formats/{registry,renderers}.py: declarative format table + one 4-method
+  renderer interface with TwoBeatV3Renderer and PacedV2Renderer adapters.
+- src/experiment.py: arm schedule, cooldowns, maturity, replication state.
+- src/run_experiment.py: dry-run-default orchestrator; never calls publishing.
+- tests for the schema, registry, experiment engine and a real-ffmpeg v3 render.
+
+Fixed pre-existing v3 renderer bugs found while wiring it end to end:
+- missing `y=` in the drawtext filter; hook truncated at 2 lines dropping words
+  (now auto-fit); audio input label off-by-one; `-loop 1` on an MP4; anullsrc
+  given an input label; and a 134s geq hotspot (glow now a single frame).
+- drawtext is absent from the pinned static ffmpeg, so text is burned in via an
+  ASS track (libass), which also carries the beat timing.
+- render_gate.check gains an optional, backward-compatible duration_bounds.
+
+Publishing remains disabled; no media_publish call; data/PAUSE untouched.
+---
+ docs/research/RESEARCH_AUDIT.md | 110 ++++++++++++
+ src/blueprint.py                | 218 +++++++++++++++++++++++
+ src/build_short.py              | 164 ++++++++++++------
+ src/experiment.py               | 237 +++++++++++++++++++++++++
+ src/formats/__init__.py         |  12 ++
+ src/formats/registry.py         | 184 ++++++++++++++++++++
+ src/formats/renderers.py        | 234 +++++++++++++++++++++++++
+ src/render_gate.py              |  16 +-
+ src/research/__init__.py        |  11 ++
+ src/research/analyze.py         | 113 ++++++++++++
+ src/research/normalize.py       | 276 +++++++++++++++++++++++++++++
+ src/research/report.py          | 205 ++++++++++++++++++++++
+ src/run_experiment.py           | 299 ++++++++++++++++++++++++++++++++
+ tests/test_blueprint.py         | 128 ++++++++++++++
+ tests/test_experiment.py        | 152 ++++++++++++++++
+ tests/test_formats.py           | 154 ++++++++++++++++
+ tests/test_render_short.py      |  73 ++++++++
+ 17 files changed, 2526 insertions(+), 60 deletions(-)
+ create mode 100644 docs/research/RESEARCH_AUDIT.md
+ create mode 100644 src/blueprint.py
+ create mode 100644 src/experiment.py
+ create mode 100644 src/formats/__init__.py
+ create mode 100644 src/formats/registry.py
+ create mode 100644 src/formats/renderers.py
+ create mode 100644 src/research/__init__.py
+ create mode 100644 src/research/analyze.py
+ create mode 100644 src/research/normalize.py
+ create mode 100644 src/research/report.py
+ create mode 100644 src/run_experiment.py
+ create mode 100644 tests/test_blueprint.py
+ create mode 100644 tests/test_experiment.py
+ create mode 100644 tests/test_formats.py
+ create mode 100644 tests/test_render_short.py
+
+diff --git a/docs/research/RESEARCH_AUDIT.md b/docs/research/RESEARCH_AUDIT.md
+new file mode 100644
+index 0000000..4a9b4a4
+--- /dev/null
++++ b/docs/research/RESEARCH_AUDIT.md
+@@ -0,0 +1,110 @@
++# Research Audit — beast-engine
++
++Generated: 2026-10-17T12:44:26.488576+00:00
++
++This audit is produced by `src/research/report.py` from whatever is actually on disk. It does not download anything and does not spend credits. Observed facts and hypotheses are kept in separate sections.
++
++## 1. Artefacts audited (observed)
++
++| file | records parsed |
++|---|---|
++| `data/research/AvPD_top_year.xml` | 0 |
++| `data/research/avpd_top_year.xml` | 0 |
++| `data/research/introvert_top_year.xml` | 0 |
++| `data/research/lonely_top_year.xml` | 25 |
++| `data/research/sa_new.xml` | 0 |
++| `data/research/sa_top_all.xml` | 25 |
++| `data/research/sa_top_year.xml` | 25 |
++| `data/research/socialskills_top_year.xml` | 0 |
++| `data/research/sw_top.xml` | 0 |
++| `data/research/corpus.json` | 75 |
++
++Total records: **150** ({'reddit': 150}).
++
++## 2. What the local corpus actually contains
++
++- Languages: {'en': 108, 'unknown': 42}
++- Subreddits: {'lonely': 50, 'socialanxiety': 100}
++- Duplicate groups (cleaned-text collision): **43**
++- Performance data present (views/baseline): **False**
++
++### Field coverage (reel schema)
++
++| field | present | missing | present % |
++|---|---|---|---|
++| platform | 150 | 0 | 100.0% |
++| canonical_url | 75 | 75 | 50.0% |
++| creator_handle | 0 | 150 | 0.0% |
++| content_id | 150 | 0 | 100.0% |
++| posted_at | 75 | 75 | 50.0% |
++| captured_at | 150 | 0 | 100.0% |
++| views | 0 | 150 | 0.0% |
++| likes | 0 | 150 | 0.0% |
++| comments | 0 | 150 | 0.0% |
++| shares | 0 | 150 | 0.0% |
++| saves | 0 | 150 | 0.0% |
++| reach | 0 | 150 | 0.0% |
++| followers | 0 | 150 | 0.0% |
++| creator_baseline_views | 0 | 150 | 0.0% |
++| outlier_multiple | 0 | 150 | 0.0% |
++| duration_s | 0 | 150 | 0.0% |
++| language | 150 | 0 | 100.0% |
++| niche | 150 | 0 | 100.0% |
++| hook_text | 0 | 150 | 0.0% |
++| format_family | 0 | 150 | 0.0% |
++
++## 3. The reported 346 + 300 reel dataset and the eight vidIQ analyses
++
++**Observed:** no raw file for the reported *346 hashtag Reels* or *300 Reels across 20 accounts* exists in this environment. No `videos.json`, no Apify export and no vidIQ export are present. The only structured performance-shaped artefact referenced anywhere is the plan summary in the owner's notes, which reports derived numbers (median length 10s, 74% ≤15s, share rates 4–13%, per-account medians) and is **not** independently verifiable here.
++
++**Consequence:** the outlier table below is empty because the corpus has no views/baseline fields. Building it would require re-collection, which Section 7 (spend) forbids until a specific gap is identified.
++
++### Outliers and same-creator controls (from local performance data)
++
++_(none present in the local corpus)_
++
++### Same-creator controls
++
++_(none present in the local corpus)_
++
++## 4. Third-party visual observations (vidIQ set, observational)
++
++These eight are **selected public outliers** — survivorship-biased, third-party view figures, not verified Insights. Listed as OBSERVATIONS with the HYPOTHESIS each suggests; neither is a fact about our account.
++
++| handle | reported | observed structure | hypothesis |
++|---|---|---|---|
++| @rock.s.w | 964K / 31x | ~6.7s POV walk, static line, comic final clause, seamless loop | specific social truth + punchline can beat a generic paragraph, even with minimal editing. |
++| @lifeliftman | 2.1M / 143x | ~12s atmospheric shot, static curiosity hook; promised list deferred to caption | caption-led curiosity may work for this creator; test whether it earns watch, sends and profile actions for our account. |
++| @sam_socialanxiety | 796K / 33x | ~83s real phone-call challenge, tension, real interaction, emotional resolution | real stakes create a payoff an automated text card cannot fake; use as story-structure evidence, not a directive to fabricate experiences. |
++| @sadiealdis | 1.3M / 17x | ~35s direct-to-camera list with live delivery and phrase-synced captions | identity framing plus recognizable specifics can hold attention; human presence is a dependency. |
++| @_jeffmarr | 1.2M / 6.8x | ~96s reflective voiceover, night-driving visuals, kinetic captions, open question | motion can come from text timing and narrative rather than many cuts; long narration only works when the material earns it. |
++| @tamaniaaa | 836K / 154x | ~72s casual in-car book reading, repeated daily motif accumulating to insight | a tangible prop and conversational delivery can create trust; do not copy the passage or imply endorsement. |
++| @pedronfrey | 4.6M / 318x | ~26s ten-item countdown, persistent title, fast captions, emotional turn in final item | progress indicators and escalation may increase completion; needs item-level timeline support. |
++| @huntrex_ | 970K / 27x | ~19s multi-scene cinematic montage, short phrases synced to voiceover, contrast reframe | visual progression can help a short idea feel like a story; requires semantic b-roll matching. |
++
++**Structural read (hypothesis, not proof):** a *creative mechanic* — a specific, sendable punchline — separates winners from a dense, generic, all-at-once paragraph. This is exactly what v3 (two-beat short) tests against v2 (paced reveal) as a control.
++
++## 5. Unsupported claims (kept out of the engine)
++
++- No competitor sales/conversion numbers exist in the corpus; none are inferred. Sales evidence is `unknown` unless measured on our own account.
++- The 8 examples are not a controlled experiment and cannot attribute causality to any single production choice.
++
++## 6. Pattern acceptance gate (Section 5.4)
++
++No pattern from this evidence set is promoted. The set fails the gate as written: it is not ≥3 examples from ≥2 creators *with same-creator controls measured locally*, and it is not reproducible from the raw data available here. The video templates T1–T10 already encoded from the owner's 2026-10-15/16 run remain **hypotheses to test**, not proven facts.
++
++## 7. Remaining research questions (before any paid action)
++
++1. Do v3 two-beat shorts beat v2 paced reels on **share/send rate per reach** on *this* account? (first-party; needs publishing approval)
++2. Does a plain-text (arm C) short hold attention competitively against footage (arm A) and still (arm B)? (in-repo render tests + first-party)
++3. Is a caption-led curiosity hook (as in one third-party example) worth a test, or does it only work with an established audience? (needs first-party)
++4. What is the local corpus **situation coverage** gap, if any, versus the v3 topic list? (computable now — see below)
++
++## 8. Spend decision
++
++**No paid research is authorized by this audit.** vidIQ balance is reported at 45 credits; keep ≥25 (Section 7 / 16). Apify pricing must be verified live before any run. The local corpus is qualitative Reddit text and cannot be extended into performance evidence by spending — that requires this account's own mature Insights, which is a publishing-phase dependency, not a scraping one.
++
++## 9. Cinematic arm decision (Step 4 gate)
++
++**Not justified yet.** The only cinematic evidence is third-party, uncontrolled, and depends on human presence / real footage (examples 2–8) or authentic props, which the current rights-cleared pipeline cannot supply. Per Section 16 decision 3, no `build_cinematic.py` is added; Format C is registered in the format registry as **not eligible** and stays declarative until first-party evidence justifies the build.
++
+diff --git a/src/blueprint.py b/src/blueprint.py
+new file mode 100644
+index 0000000..fea28f7
+--- /dev/null
++++ b/src/blueprint.py
+@@ -0,0 +1,218 @@
++"""blueprint.py — the single Content Blueprint contract (Section 6).
++
++Every candidate creative is described here *before* prose is written and before
++a renderer is chosen. v2 and v3 both adapt to this one schema, so validation,
++critic scoring, evidence references and rights requirements live in one place.
++
++This module is deliberately standalone (no import of renderers or models) so it
++can be unit-tested and reused by the critic, the registry and the runners. It
++validates STRUCTURE and HARD POLICY only; format-specific constraints (word
++counts, duration window, allowed arms) are validated by the format registry and
++the renderer's ``validate_blueprint``.
++
++Key principles enforced here:
++  * one clear viewer payoff (a `payoff` beat must exist);
++  * evidence references are mandatory (no unsourced candidate);
++  * a missing metric is ``None`` — never coerced to 0 (see ``as_metric``);
++  * unknown fields are rejected, so a typo cannot silently become a no-op.
++"""
++from __future__ import annotations
++
++import copy
++import datetime as _dt
++
++SCHEMA_VERSION = "1.0"
++
++# --- top-level fields allowed by the contract (Section 6 JSON) ---------------
++FIELD_ORDER = [
++    "schema_version", "experiment_id", "format_id", "series_id", "topic_id",
++    "audience_hypothesis", "viewer_moment", "hook_mechanic", "beats", "caption",
++    "cta_variant", "scene_query", "audio_plan", "evidence_refs", "hypothesis",
++    "variant_of", "rights_requirements", "risk_flags", "critic",
++    # v3 production fields (the doc's schema is "suggested"; the v3 path needs a
++    # declared visual arm and length bucket, so they are part of the contract).
++    "visual_arm", "length_bucket",
++]
++ALLOWED_FIELDS = set(FIELD_ORDER)
++
++# Critic rubric (Section 6.2). The blueprint carries a subset (the doc's six);
++# other rubric dimensions are evaluated by the critic and stored separately.
++CRITIC_KEYS = ["specificity", "payoff", "sendability", "novelty",
++               "truthfulness", "brand_fit"]
++CRITIC_MIN = 0
++CRITIC_MAX = 5
++# Highest score for a dimension; brand_fit is advisory-only (matches v2 writer).
++CRITIC_GATE_KEYS = ["specificity", "payoff", "sendability", "novelty",
++                    "truthfulness"]
++CRITIC_GATE_MIN = 4
++
++AUDIO_MODES = ["licensed_ambient", "licensed_track", "silent", "trending_licensed"]
++
++# A candidate carrying any of these flags is rejected outright: they are the
++# clinical / fabricated-experience / copied-material hard rules (Section 15).
++HARD_REJECT_FLAGS = {
++    "clinical_overclaim", "diagnosis_claim", "cure_claim", "medical_advice",
++    "fake_testimony", "fake_story", "copied_wording", "unsupported_claim",
++    "unlicensed_audio", "unlicensed_visual", "promised_result",
++}
++
++# Rights labels that are explicitly NOT sufficient to publish (Section 7.1).
++UNSUPPORTED_RIGHTS = {
++    "pinterest_url_only", "instagram_scraped", "unknown", "none", "unverified",
++    "trending_audio",
++}
++
++
++def now_iso() -> str:
++    return _dt.datetime.now(_dt.timezone.utc).isoformat()
++
++
++def as_metric(value):
++    """Metric null semantics (Section 9): a missing metric is None.
++
++    ``None`` and "" (not measured) stay None; a genuine 0 stays 0.0. This is the
++    only sanctioned coercion, so later scoring can distinguish "not measured"
++    from "measured zero".
++    """
++    if value is None:
++        return None
++    if isinstance(value, str) and value.strip() == "":
++        return None
++    try:
++        return float(value)
++    except (TypeError, ValueError):
++        return None
++
++
++def new(format_id: str, *, experiment_id=None, **fields) -> dict:
++    """Build a blueprint with sane defaults; caller fills the creative fields."""
++    bp = {
++        "schema_version": SCHEMA_VERSION,
++        "experiment_id": experiment_id,
++        "format_id": format_id,
++        "series_id": None,
++        "topic_id": None,
++        "audience_hypothesis": None,
++        "viewer_moment": None,
++        "hook_mechanic": None,
++        "beats": [],
++        "caption": None,
++        "cta_variant": "none_or_caption_only",
++        "scene_query": None,
++        "audio_plan": {"mode": "silent", "track_id": None},
++        "evidence_refs": [],
++        "hypothesis": None,
++        "variant_of": None,
++        "rights_requirements": ["visual license", "audio license"],
++        "risk_flags": [],
++        "critic": {},
++    }
++    bp.update(fields)
++    return bp
++
++
++def validate(bp: dict) -> list:
++    """Return a list of error strings; empty means structurally valid.
++
++    Structural + hard-policy only. Format duration/word constraints are checked
++    by ``formats.registry.validate_for_format``.
++    """
++    errors = []
++    if not isinstance(bp, dict):
++        return ["blueprint is not an object"]
++
++    unknown = sorted(set(bp) - ALLOWED_FIELDS)
++    if unknown:
++        errors.append(f"unsupported field(s): {', '.join(unknown)}")
++
++    if bp.get("schema_version") != SCHEMA_VERSION:
++        errors.append(f"schema_version must be {SCHEMA_VERSION!r}, "
++                      f"got {bp.get('schema_version')!r}")
++    for f in ("format_id", "hook_mechanic"):
++        if not str(bp.get(f) or "").strip():
++            errors.append(f"{f} is required")
++
++    beats = bp.get("beats")
++    if not isinstance(beats, list) or not beats:
++        errors.append("beats must be a non-empty list")
++        beats = []
++    prev = -1.0
++    for i, b in enumerate(beats):
++        if not isinstance(b, dict):
++            errors.append(f"beat[{i}] is not an object")
++            continue
++        if not str(b.get("text") or "").strip():
++            errors.append(f"beat[{i}].text is required")
++        r = b.get("start_ratio")
++        if not isinstance(r, (int, float)) or not (0.0 <= r <= 1.0):
++            errors.append(f"beat[{i}].start_ratio must be within 0..1")
++        else:
++            if r < prev:
++                errors.append(f"beat[{i}].start_ratio regresses (not ascending)")
++            prev = r
++    if beats and isinstance(beats[0], dict) and beats[0].get("start_ratio") != 0.0:
++        errors.append("first beat must start at ratio 0.0")
++    kinds = {b.get("kind") for b in beats if isinstance(b, dict)}
++    if beats and "payoff" not in kinds:
++        errors.append("a 'payoff' beat is required (one clear viewer payoff)")
++
++    refs = bp.get("evidence_refs")
++    if not isinstance(refs, list) or not refs:
++        errors.append("evidence_refs is required (no unsourced candidate)")
++
++    ap = bp.get("audio_plan")
++    if not isinstance(ap, dict):
++        errors.append("audio_plan must be an object")
++    elif ap.get("mode") not in AUDIO_MODES:
++        errors.append(f"audio_plan.mode must be one of {AUDIO_MODES}")
++
++    flags = bp.get("risk_flags")
++    if flags is None:
++        flags = []
++    if not isinstance(flags, list):
++        errors.append("risk_flags must be a list")
++        flags = []
++    hard = sorted(set(flags) & HARD_REJECT_FLAGS)
++    if hard:
++        errors.append(f"hard-reject risk flag(s): {', '.join(hard)}")
++
++    rr = bp.get("rights_requirements")
++    if not isinstance(rr, list) or not rr:
++        errors.append("rights_requirements must be a non-empty list")
++    else:
++        bad = sorted({r for r in rr if isinstance(r, str)
++                      and r.strip().lower().replace(" ", "_") in UNSUPPORTED_RIGHTS})
++        if bad:
++            errors.append(f"unsupported rights state(s): {', '.join(bad)}")
++
++    critic = bp.get("critic")
++    if critic is not None and not isinstance(critic, dict):
++        errors.append("critic must be an object")
++    return errors
++
++
++def critic_passed(critic: dict) -> tuple:
++    """(ok, reasons). Every gate dimension must be present and >= CRITIC_GATE_MIN.
++
++    `brand_fit` is advisory. A missing dimension fails closed (Section 6.2).
++    """
++    reasons = []
++    if not isinstance(critic, dict):
++        return False, ["critic missing"]
++    for k in CRITIC_GATE_KEYS:
++        v = critic.get(k)
++        if not isinstance(v, (int, float)):
++            reasons.append(f"critic.{k} missing")
++        elif v < CRITIC_GATE_MIN:
++            reasons.append(f"critic.{k}={v} < {CRITIC_GATE_MIN}")
++    return (not reasons), reasons
++
++
++def timeline_ratios(bp: dict) -> list:
++    """Beat start ratios in order — the timeline hooks the renderer consumes."""
++    return [float(b.get("start_ratio") or 0.0)
++            for b in bp.get("beats", []) if isinstance(b, dict)]
++
++
++def clone(bp: dict) -> dict:
++    return copy.deepcopy(bp)
+diff --git a/src/build_short.py b/src/build_short.py
+index 16d45e3..0be87b0 100644
+--- a/src/build_short.py
++++ b/src/build_short.py
+@@ -36,7 +36,8 @@ def beat_times(duration_s: float) -> tuple:
+ 
+ # ------------------------------------------------------------------ text drawing
+ 
+-def _wrap(text: str, max_chars: int) -> list:
++def _wrap(text: str, max_chars: int, max_lines: int | None = None) -> list:
++    """Greedy word wrap. If max_lines is set the result is truncated to it."""
+     words_list = text.split()
+     lines, cur = [], ""
+     for w in words_list:
+@@ -47,20 +48,81 @@ def _wrap(text: str, max_chars: int) -> list:
+             cur = f"{cur} {w}".strip()
+     if cur:
+         lines.append(cur)
+-    return lines[:2]  # §4: max 2 lines per beat
++    return lines[:max_lines] if max_lines else lines
+ 
+ 
+-def _drawtext_filter(text: str, fontsize: int, y_expr: str, start: float, end: float,
+-                     font_path: str) -> str:
+-    """White text, black stroke, fade-in 0.2s at its reveal time."""
+-    esc = (text.replace("\\", "\\\\").replace(":", "\\:").replace("'", "\u2019")
+-           .replace("%", "\\%"))
+-    return (
+-        f"drawtext=fontfile={font_path}:text='{esc}':"
+-        f"fontcolor=white:fontsize={fontsize}:borderw={max(3, fontsize // 12)}:"
+-        f"bordercolor=black:x=(w-text_w)/2:{y_expr}:"
+-        f"enable='between(t,{start:.2f},{end:.2f})'"
+-    )
++def _fit_beat(text: str, max_width: int = 780, max_lines: int = 3,
++              start_size: int = 74) -> tuple:
++    """Choose a font size (and wrapping) that shows ALL of the beat's words.
++
++    §4 caps a beat at a few lines. Rather than silently truncating a 14-word
++    hook to fit two lines (which would ship an incomplete hook), shrink the font
++    from `start_size` until the whole text wraps within `max_lines`. Returns
++    (lines, fontsize). A word that cannot fit even at the floor is left on its
++    own line rather than dropped.
++    """
++    words = text.split()
++    joined = " ".join(words)
++    size = start_size
++    while size >= 40:
++        cpl = max(6, int(max_width / (size * 0.56)))
++        lines = _wrap(text, cpl)
++        if len(lines) <= max_lines and " ".join(lines) == joined:
++            return lines, size
++        size -= 2
++    # floor reached: keep every word, allow more lines
++    cpl = max(6, int(max_width / (40 * 0.56)))
++    return _wrap(text, cpl), 40
++
++
++# The pinned static FFmpeg has libass but NOT the drawtext filter, so text is
++# burned in via an ASS subtitle track. This is also the more readable route:
++# libass gives real centring (\an5), per-beat font sizes and outlines, and the
++# Dialogue start/end times ARE the beat timing, so what renders is what the
++# timeline specified.
++FONT_FAMILY = "DejaVu Sans"
++_ASS_HEADER = """[Script Info]
++ScriptType: v4.00+
++PlayResX: 1080
++PlayResY: 1920
++WrapStyle: 2
++
++[V4+ Styles]
++Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
++Style: Base,{font},74,&H00FFFFFF,&H000000FF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,{outline},0,5,40,40,0,1
++
++[Events]
++Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
++"""
++
++
++def _ass_time(t: float) -> str:
++    t = max(0.0, float(t))
++    h, m = int(t // 3600), int((t % 3600) // 60)
++    s = t - h * 3600 - m * 60
++    return f"{h}:{m:02d}:{s:05.2f}"
++
++
++def _ass_escape(s) -> str:
++    # braces open override blocks in ASS; backslashes are control sequences.
++    return str(s).replace("{", "(").replace("}", ")").replace("\\", "/")
++
++
++def _ass_path(path) -> str:
++    """Escape a path for use as a filtergraph value."""
++    return str(path).replace("\\", "\\\\").replace(":", "\\:")
++
++
++def write_ass(path, events: list, outline: int = 4) -> str:
++    """Write an ASS file. Each event: {start, end, size, lines[]}."""
++    out = [_ASS_HEADER.format(font=FONT_FAMILY, outline=outline)]
++    for e in events:
++        text = "\\N".join(_ass_escape(ln) for ln in e["lines"])
++        out.append(
++            f"Dialogue: 0,{_ass_time(e['start'])},{_ass_time(e['end'])},Base,,0,0,0,,"
++            f"{{\\an5\\fs{int(e['size'])}}}{text}")
++    Path(path).write_text("\n".join(out) + "\n", encoding="utf-8")
++    return str(path)
+ 
+ 
+ def _scrim_filter(opacity: float = 0.45) -> str:
+@@ -114,15 +176,18 @@ def _text_post_bg(out: Path, duration_s: float, seed_hue: int = 226) -> dict:
+     """Arm C: plain dark background with a subtle vertical shade — no photo."""
+     ffmpeg = config.resolve_ffmpeg()
+     out.parent.mkdir(parents=True, exist_ok=True)
+-    # deep navy-black with a faint centre glow; static, so a still png suffices
++    # Deep navy-black with a faint centre glow. The glow is a SINGLE frame
++    # (r=1:d=1) that overlay repeats for the whole clip: without the pinned
++    # duration the expensive geq expression was evaluated once per output frame
++    # and a 9s reel took ~134s instead of ~2s.
+     cmd = [ffmpeg, "-y",
+            "-f", "lavfi", "-i",
+            f"color=c=0x0e1220:s=1080x1920:d={duration_s:.2f}:r={FPS}",
+            "-f", "lavfi", "-i",
+-           "color=c=0x1a2340:s=1080x1080",
++           "color=c=0x1a2340:s=1080x1080:r=1:d=1",
+            "-filter_complex",
+            "[1:v]geq=r='40+20*sin(2*PI*X/1080)':g='35+18*sin(2*PI*X/1080)':b='64+30*sin(2*PI*X/1080)'[glow];"
+-           "[0:v][glow]overlay=(W-w)/2:(H-h)/2:format=auto,format=yuv420p[v]",
++           "[0:v][glow]overlay=(W-w)/2:(H-h)/2:eof_action=repeat:format=auto,format=yuv420p[v]",
+            "-map", "[v]", "-t", f"{duration_s:.2f}",
+            "-c:v", "libx264", "-preset", "veryfast", "-crf", "22",
+            str(out)]
+@@ -175,47 +240,33 @@ def build(reel: dict, memory: dict, out_path: Path | None = None,
+             return {"ok": False, "stage": "bg", "why": bg.get("why")}
+ 
+     bg_path = Path(bg["path"]) if bg.get("path") else config.OUTPUTS / "bg_short.mp4"
+-    is_still = bg.get("is_video") is False or bg.get("source") == "textpost"
++    # `-loop 1` is an image-demuxer option; every arm's background here is an MP4
++    # (stills are animated by background.build), so loop by extension, not by the
++    # arm's label. `-loop 1` on an mp4 was 'Option loop not found'.
++    _bg_is_image = str(bg_path).lower().endswith((".png", ".jpg", ".jpeg", ".webp", ".bmp"))
+ 
+     # 2. the text treatment
+     ffmpeg = config.resolve_ffmpeg()
+-    font = str((config.ASSETS / "fonts" / "DejaVuSans-Bold.ttf"))
+-    if not Path(font).exists():
+-        # the repo ships Coolvetica; DejaVu is the guaranteed bold sans fallback
+-        import shutil
+-        cand = shutil.which("fc-match")
+-        font = ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf")
+-        if not Path(font).exists():
+-            font = str(config.DEFAULT_CONFIG.get("font_path") or "")
+-            font = str(config.ROOT / font) if not Path(font).is_absolute() else font
+-    hook_lines = _wrap(hook, 22)
+-    payoff_lines = _wrap(payoff, 24)
+     hook_at, payoff_at, total = beat_times(duration_s)
+ 
+-    # hook larger than payoff (§4)
+-    hook_size = 74
+-    payoff_size = 58
+-    n_h = max(1, len(hook_lines))
+-    n_p = max(1, len(payoff_lines))
+-    hook_y = f"(h-text_h)/2-{int(hook_size * 0.75 * n_h / 2)}"
+-    payoff_y = f"(h-text_h)/2+{int(payoff_size * 0.9 * n_p / 2)}"
+-
+-    filters = [_scrim_filter(0.45)]
+-    # hook: on screen from 0 to payoff reveal (fade handled by enable + one beat at a time)
+-    for i, ln in enumerate(hook_lines):
+-        filters.append(_drawtext_filter(
+-            ln, hook_size if i == 0 else int(hook_size * 0.92),
+-            hook_y if i == 0 else f"(h-text_h)/2-{int(hook_size*0.75*(n_h - i - 1)/2)}",
+-            hook_at, payoff_at + 0.001, font))
+-    # payoff: from its reveal to the end; hook disappears the moment it lands
+-    for i, ln in enumerate(payoff_lines):
+-        filters.append(_drawtext_filter(
+-            ln, payoff_size if i == 0 else int(payoff_size * 0.92),
+-            payoff_y if i == 0 else f"(h-text_h)/2+{int(payoff_size*0.9*(n_p - i - 1)/2)}",
+-            payoff_at, total, font))
+-
+-    vf = ",".join(filters)
+-    if is_still:
++    # §4: hook larger than payoff. Auto-fit so no lint-valid beat loses words.
++    hook_lines, hook_size = _fit_beat(hook, start_size=74, max_lines=3)
++    payoff_lines, payoff_size = _fit_beat(payoff, start_size=58, max_lines=3)
++    if verbose:
++        print(f"[short] hook {len(hook_lines)}L@{hook_size}px  "
++              f"payoff {len(payoff_lines)}L@{payoff_size}px", flush=True)
++
++    # one beat on screen at a time: the hook's Dialogue ends exactly where the
++    # payoff's begins, so the hook disappears the moment the payoff lands.
++    ass_path = config.OUTPUTS / "short_text.ass"
++    write_ass(ass_path, [
++        {"start": hook_at, "end": payoff_at + 0.001, "size": hook_size,
++         "lines": hook_lines},
++        {"start": payoff_at, "end": total, "size": payoff_size,
++         "lines": payoff_lines},
++    ])
++    vf = f"{_scrim_filter(0.45)},ass={_ass_path(ass_path)}"
++    if _bg_is_image:
+         inputs = ["-loop", "1", "-t", f"{duration_s:.2f}", "-i", str(bg_path)]
+     else:
+         inputs = ["-stream_loop", "-1", "-t", f"{duration_s:.2f}", "-i", str(bg_path)]
+@@ -229,7 +280,7 @@ def build(reel: dict, memory: dict, out_path: Path | None = None,
+                    "aresample=48000,pan=stereo|c0=c0|c1=c1")
+         cmd = [ffmpeg, "-y", *inputs, "-i", str(track),
+                "-filter_complex",
+-               f"[0:v]{vf}[v];[2:a]{afilter}[a]",
++               f"[0:v]{vf}[v];[1:a]{afilter}[a]",
+                "-map", "[v]", "-map", "[a]",
+                "-c:v", "libx264", "-preset", "medium", "-crf", "21",
+                "-pix_fmt", "yuv420p", "-r", str(FPS),
+@@ -238,12 +289,13 @@ def build(reel: dict, memory: dict, out_path: Path | None = None,
+                "-movflags", "+faststart", str(out_path)]
+     else:
+         # §5: silence is not an option — synthesize a quiet room tone so the reel
+-        # never ships truly silent and never trips a "no audio" gate.
++        # never ships truly silent and never trips a "no audio" gate. anullsrc is
++        # a SOURCE filter (no input), so it carries no input label; labeling it
++        # with one was the render bug (it has 0 inputs, the graph gave it 1).
+         afilter = (f"anullsrc=r=48000:cl=stereo,atrim=0:{duration_s:.2f}{fade_out}")
+         cmd = [ffmpeg, "-y", *inputs,
+-               "-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo",
+                "-filter_complex",
+-               f"[0:v]{vf}[v];[2:a]{afilter}[a]",
++               f"[0:v]{vf}[v];{afilter}[a]",
+                "-map", "[v]", "-map", "[a]",
+                "-c:v", "libx264", "-preset", "medium", "-crf", "21",
+                "-pix_fmt", "yuv420p", "-r", str(FPS),
+diff --git a/src/experiment.py b/src/experiment.py
+new file mode 100644
+index 0000000..2af792e
+--- /dev/null
++++ b/src/experiment.py
+@@ -0,0 +1,237 @@
++"""experiment.py — predeclared arm schedule, cooldowns, maturity, replication.
++
++Section 9 in code. This module is pure bookkeeping over `data/experiments.json`:
++it decides which eligible arm goes next and records assignments, but it never
++renders, never publishes and never scores a missing metric as zero.
++
++Phases:
++  A  calibration (first 15 valid posts): BALANCED, predeclared round-robin over
++     the eligible formats, with a cooldown so one arm cannot run away with the
++     schedule. Only formats the registry marks eligible are ever chosen — a
++     disabled arm is never "tested" by pretending.
++  B  every captured snapshot is kept (2h/24h/72h/7d); maturity uses 72h/7d.
++  C  a first high outlier is a BREAKOUT CANDIDATE, not a win. A mechanism is only
++     promoted after >= 3 independent supporting examples (replication).
++  D  a conservative explore/exploit switch after >= 5 valid mature samples per
++     arm, with a >= 30% exploration floor.
++
++Maturity is a property of the DATA ("this post has a 72h snapshot"), never of the
++wall clock of a later run.
++"""
++from __future__ import annotations
++
++import datetime as _dt
++import json
++from pathlib import Path
++
++SCHEMA_VERSION = "1.0"
++CALIBRATION_SIZE = 15
++MIN_MATURE_PER_ARM = 5
++EXPLORE_FLOOR = 0.30
++MAX_CONSECUTIVE_SAME_ARM = 2
++MATURE_SNAPSHOTS = ["72h", "7d"]
++EARLY_SNAPSHOTS = ["2h", "24h"]
++SNAPSHOTS = EARLY_SNAPSHOTS + MATURE_SNAPSHOTS
++# Rate per reach is the primary resonance signal (Section 8.3).
++PRIMARY_METRIC = "share_rate"
++
++
++def now_iso() -> str:
++    return _dt.datetime.now(_dt.timezone.utc).isoformat()
++
++
++# ------------------------------------------------------------------ storage
++
++def empty() -> dict:
++    return {"schema_version": SCHEMA_VERSION, "plans": [], "assignments": []}
++
++
++def load(path) -> dict:
++    p = Path(path)
++    if not p.exists() or p.stat().st_size == 0:
++        return empty()
++    try:
++        data = json.loads(p.read_text(encoding="utf-8"))
++    except json.JSONDecodeError:
++        return empty()
++    for k in ("plans", "assignments"):
++        data.setdefault(k, [])
++    data.setdefault("schema_version", SCHEMA_VERSION)
++    return data
++
++
++def save(exp: dict, path) -> None:
++    p = Path(path)
++    p.parent.mkdir(parents=True, exist_ok=True)
++    p.write_text(json.dumps(exp, indent=2, ensure_ascii=False), encoding="utf-8")
++
++
++# ------------------------------------------------------------------ plans
++
++def new_plan(arms: list, *, size: int = CALIBRATION_SIZE, note: str = "") -> dict:
++    """A predeclared, balanced arm plan. `arms` are eligible format ids."""
++    if not arms:
++        raise ValueError("a plan needs at least one eligible arm")
++    return {"experiment_id": f"exp-{_dt.datetime.now(_dt.timezone.utc):%Y%m}-cal",
++            "phase": "calibration", "arms": list(arms), "size": int(size),
++            "created_at": now_iso(), "note": note}
++
++
++# ------------------------------------------------------------------ counts
++
++def _valid(a: dict) -> bool:
++    return bool(a.get("valid", True)) and not a.get("publish_error")
++
++
++def mature_counts(exp: dict) -> dict:
++    """Valid MATURE assignments per arm (a post with a 72h/7d snapshot)."""
++    counts: dict = {}
++    for a in exp.get("assignments", []):
++        if not _valid(a) or not a.get("mature"):
++            continue
++        counts[a.get("arm")] = counts.get(a.get("arm"), 0) + 1
++    return counts
++
++
++def valid_counts(exp: dict) -> dict:
++    counts: dict = {}
++    for a in exp.get("assignments", []):
++        if _valid(a):
++            counts[a.get("arm")] = counts.get(a.get("arm"), 0) + 1
++    return counts
++
++
++def _consecutive_same(recent_arms: list) -> int:
++    n = 0
++    for a in reversed(recent_arms or []):
++        if a is None:
++            break
++        if n == 0:
++            last = a
++        if a == last:
++            n += 1
++        else:
++            break
++    return n
++
++
++def _blocked_from(recent_arms: list, arms: list) -> set:
++    """Arms blocked by the consecutive-run cooldown."""
++    if not recent_arms:
++        return set()
++    last = recent_arms[-1]
++    if _consecutive_same(recent_arms) >= MAX_CONSECUTIVE_SAME_ARM:
++        return {last}
++    return set()
++
++
++def sample_maturity(age_hours) -> dict:
++    """Which snapshots a post of this age can have, and whether it is mature."""
++    age = float(age_hours or 0)
++    avail = [s for s, h in (("2h", 2), ("24h", 24), ("72h", 72), ("7d", 168))
++             if age >= h]
++    return {"snapshots_available": avail, "mature": any(
++        s in avail for s in MATURE_SNAPSHOTS)}
++
++
++# ------------------------------------------------------------------ selection
++
++def recommend_arm(exp: dict, eligible: list, recent_arms=None,
++                  rng=None) -> dict:
++    """Pick the next arm. Returns {"arm", "phase", "reason"}.
++
++    Only `eligible` arms are ever returned (fail closed: empty -> error).
++    """
++    import random
++    rng = rng or random
++    elig = [a for a in eligible if a]
++    if not elig:
++        raise ValueError("no eligible arms to schedule")
++    recent_arms = list(recent_arms or [])
++    blocked = _blocked_from(recent_arms, elig)
++    candidates = [a for a in elig if a not in blocked] or elig
++
++    total_valid = sum(valid_counts(exp).values())
++    counts = valid_counts(exp)
++
++    # Phase A: balanced calibration — pick the least-used eligible arm.
++    if total_valid < CALIBRATION_SIZE:
++        min_used = min(counts.get(a, 0) for a in candidates)
++        least = [a for a in candidates if counts.get(a, 0) == min_used]
++        arm = rng.choice(least)
++        return {"arm": arm, "phase": "calibration",
++                "reason": f"balanced (used {counts.get(arm, 0)}, "
++                          f"valid total {total_valid})"}
++
++    # Phase D: conservative explore/exploit once maturity supports it.
++    mature = mature_counts(exp)
++    if all(mature.get(a, 0) >= MIN_MATURE_PER_ARM for a in elig):
++        if rng.random() < EXPLORE_FLOOR:
++            arm = rng.choice(candidates)
++            return {"arm": arm, "phase": "explore",
++                    "reason": f"exploration floor {EXPLORE_FLOOR:.0%}"}
++        best = max(candidates, key=lambda a: _arm_score(exp, a))
++        return {"arm": best, "phase": "exploit",
++                "reason": f"best mature {PRIMARY_METRIC}"}
++
++    # Not enough mature data for the bandit: stay balanced but never repeat the
++    # same arm more than the cooldown allows.
++    min_used = min(counts.get(a, 0) for a in candidates)
++    least = [a for a in candidates if counts.get(a, 0) == min_used]
++    arm = rng.choice(least)
++    return {"arm": arm, "phase": "calibration",
++            "reason": "awaiting mature samples per arm"}
++
++
++def _arm_score(exp: dict, arm: str):
++    vals = [a.get("metrics", {}).get(PRIMARY_METRIC) for a in exp.get("assignments", [])
++            if a.get("arm") == arm and _valid(a) and a.get("mature")]
++    vals = [v for v in vals if isinstance(v, (int, float))]
++    return sum(vals) / len(vals) if vals else float("-inf")
++
++
++# ------------------------------------------------------------------ logging
++
++def log_assignment(exp: dict, *, arm: str, post_id=None, slot=None, topic=None,
++                   metrics=None, snapshots=None, valid: bool = True) -> dict:
++    """Append an assignment. Maturity is derived from which snapshots exist.
++
++    `metrics` is the flat, mature decision table (e.g. {"share_rate": 0.04}).
++    `snapshots` is the list of captured snapshot labels (e.g. ["2h","72h"]).
++    A post is mature only when a mature snapshot (72h/7d) is present — never
++    inferred from the fact that a later run happened to look at it.
++    """
++    snaps = sorted(set(snapshots or []))
++    mature = any(s in snaps for s in MATURE_SNAPSHOTS)
++    entry = {
++        "ts": now_iso(), "experiment_id": None, "arm": arm, "post_id": post_id,
++        "slot": slot, "topic": topic, "valid": bool(valid),
++        "publish_error": None, "mature": bool(mature),
++        "snapshots": snaps, "metrics": dict(metrics or {}),
++        "breakout": False, "replicate_of": None,
++    }
++    exp.setdefault("assignments", []).append(entry)
++    return entry
++
++
++def replication_support(exp: dict, arm: str, threshold: float = 3.0) -> int:
++    """Independent supporting examples for this arm's mechanism.
++
++    A breakout candidate is any mature assignment whose PRIMARY_METRIC is at
++    least `threshold` x the arm's own mature median. Promotion needs >= 3; a
++    single viral post is never proof (Section 9 Phase C). Returns the count.
++    """
++    rows = [a for a in exp.get("assignments", [])
++            if a.get("arm") == arm and _valid(a) and a.get("mature")
++            and isinstance(a.get("metrics", {}).get(PRIMARY_METRIC), (int, float))]
++    vals = sorted(a["metrics"][PRIMARY_METRIC] for a in rows)
++    if len(vals) < 3:
++        return 0
++    median = vals[len(vals) // 2]
++    if median <= 0:
++        return 0
++    return sum(1 for v in vals if v >= threshold * median)
++
++
++def ready_to_promote(exp: dict, arm: str) -> bool:
++    return replication_support(exp, arm) >= 3
+diff --git a/src/formats/__init__.py b/src/formats/__init__.py
+new file mode 100644
+index 0000000..a59c78d
+--- /dev/null
++++ b/src/formats/__init__.py
+@@ -0,0 +1,12 @@
++"""src/formats — declarative format contracts and the shared renderer interface.
++
++registry.py  : the FORMATS table (purpose, input schema, duration bounds,
++               pacing, gates, eligibility, status) plus eligibility/duration
++               checks. Declarative: adding a format is data, not a new agent.
++renderers.py : the four-method renderer interface and the adapters that put the
++               existing v2 (paced.py) and v3 (build_short.py) code behind it.
++
++Adding a third (cinematic) renderer is intentionally NOT done here; it is
++registered as `not_eligible` until first-party evidence justifies the build
++(Section 16, decision 3).
++"""
+diff --git a/src/formats/registry.py b/src/formats/registry.py
+new file mode 100644
+index 0000000..d84fbbd
+--- /dev/null
++++ b/src/formats/registry.py
+@@ -0,0 +1,184 @@
++"""registry.py — declarative format contracts (Section 6, Section 12).
++
++A *format* is data: its purpose, the input fields it needs, its duration window,
++its pacing rules, the gates it must pass, its eligibility conditions and its
++status. The runner reads this table; it does not hard-code format behavior.
++
++Status is one of:
++  * "active"        — eligible to be scheduled by the experiment engine.
++  * "not_eligible"  — registered but deliberately NOT scheduled (e.g. the
++                      cinematic arm, which has no rights-cleared asset path yet).
++
++`validate_for_format` layers FORMAT-SPECIFIC constraints on top of the
++structural `blueprint.validate`, and `duration_ok` is the per-format version of
++the old single 14-34s rule (acceptance: "format-specific durations are allowed").
++"""
++from __future__ import annotations
++
++from .. import blueprint as _bp
++
++CONTRACT_VERSION = "1.0"
++
++# Declarative format table. Keep additions minimal and reversible.
++FORMATS = {
++    "two_beat_v3": {
++        "id": "two_beat_v3",
++        "name": "Two-beat short (v3)",
++        "status": "active",
++        "purpose": "One specific situation delivered as a hook then a payoff, "
++                   "short enough to loop and specific enough to send.",
++        "renderer": "two_beat_v3",
++        "duration_bounds": [6.0, 12.0],
++        "pacing": {"hook_alone_at_frame0": True, "payoff_start_ratio": 0.60,
++                   "text_chunk": "phrase", "loop_seamless": True},
++        "text_constraints": {"words": [8, 22], "hook_words_max": 14,
++                             "payoff_words_max": 12},
++        "arms": ["A", "B", "C"],
++        "gates": ["lint_short", "render_gate"],
++        "eligibility": {
++            "requires_rights": [],
++            "requires_assets": False,
++            "notes": "Arm C (plain text) needs no asset; arms A/B need "
++                     "rights-cleared visual + audio.",
++        },
++        "publishing": "disabled",
++        "contract_version": CONTRACT_VERSION,
++    },
++    "paced_v2": {
++        "id": "paced_v2",
++        "name": "Paced-reveal confession (v2)",
++        "status": "active",
++        "purpose": "Baseline controlled arm: a short confession where each line "
++                   "reveals in turn and prior lines dim.",
++        "renderer": "paced_v2",
++        "duration_bounds": [14.0, 34.0],
++        "pacing": {"dim_alpha": 0.55, "cta_tail_s": 2.5, "reveal": "per_line",
++                   "final_hold_s": 2.0},
++        "text_constraints": {"lines": [5, 8]},
++        "arms": ["A", "B"],
++        "gates": ["lint", "render_gate"],
++        "eligibility": {"requires_rights": [], "requires_assets": False,
++                        "notes": "Existing production format; kept as control."},
++        "publishing": "disabled",
++        "contract_version": CONTRACT_VERSION,
++    },
++    "cinematic_v1": {
++        "id": "cinematic_v1",
++        "name": "Cinematic multi-scene phrase-synced (v1)",
++        "status": "not_eligible",
++        "purpose": "Multi-shot montage with phrase-synced captions and "
++                   "voiceover (the third-party visual evidence's structure).",
++        "renderer": None,
++        "duration_bounds": None,
++        "pacing": None,
++        "text_constraints": None,
++        "arms": [],
++        "gates": [],
++        "eligibility": {
++            "requires_rights": ["visual license", "audio license"],
++            "requires_assets": True,
++            "reason": "No rights-cleared semantic b-roll source or verified "
++                      "authentic footage pipeline; the only supporting evidence "
++                      "is third-party and uncontrolled. Not scheduled. "
++                      "See docs/research/RESEARCH_AUDIT.md section 9.",
++        },
++        "publishing": "disabled",
++        "contract_version": CONTRACT_VERSION,
++    },
++}
++
++
++def all_formats() -> dict:
++    return FORMATS
++
++
++def get(format_id: str) -> dict:
++    if format_id not in FORMATS:
++        raise KeyError(f"unknown format_id {format_id!r}; "
++                       f"known: {sorted(FORMATS)}")
++    return FORMATS[format_id]
++
++
++def list_formats() -> list:
++    """Compact summaries for reports/logs."""
++    return [{"id": f["id"], "name": f["name"], "status": f["status"],
++             "duration_bounds": f["duration_bounds"], "renderer": f["renderer"],
++             "publishing": f["publishing"]} for f in FORMATS.values()]
++
++
++def eligible() -> list:
++    """Format ids the experiment engine may schedule."""
++    return [f["id"] for f in FORMATS.values() if f["status"] == "active"]
++
++
++def is_eligible(format_id: str) -> bool:
++    return format_id in FORMATS and FORMATS[format_id]["status"] == "active"
++
++
++def duration_ok(format_id: str, seconds) -> bool:
++    """Per-format duration window. Unknown/None bounds => not ok (fail closed)."""
++    bounds = get(format_id).get("duration_bounds")
++    if not bounds or seconds is None:
++        return False
++    lo, hi = bounds
++    return (lo - 0.05) <= float(seconds) <= (hi + 0.05)
++
++
++def validate_for_format(bp: dict) -> list:
++    """Structural validation + this format's constraints. Returns error list."""
++    errors = list(_bp.validate(bp))
++    fmt_id = bp.get("format_id")
++    if fmt_id not in FORMATS:
++        errors.append(f"unknown format_id {fmt_id!r}")
++        return errors
++    fmt = FORMATS[fmt_id]
++    if fmt["status"] != "active":
++        errors.append(f"format {fmt_id!r} is not eligible "
++                      f"(status={fmt['status']})")
++
++    tc = fmt.get("text_constraints") or {}
++    beats = [b for b in bp.get("beats", []) if isinstance(b, dict)]
++    if "words" in tc:
++        wmin, wmax = tc["words"]
++        total = sum(len(str(b.get("text") or "").split()) for b in beats)
++        if not (wmin <= total <= wmax):
++            errors.append(f"total words {total} outside {wmin}-{wmax} "
++                          f"for {fmt_id}")
++    if "hook_words_max" in tc:
++        hook = next((b for b in beats if b.get("kind") == "hook"), None)
++        if hook and len(str(hook.get("text") or "").split()) > tc["hook_words_max"]:
++            errors.append(f"hook exceeds {tc['hook_words_max']} words")
++    if "payoff_words_max" in tc:
++        po = next((b for b in beats if b.get("kind") == "payoff"), None)
++        if po and len(str(po.get("text") or "").split()) > tc["payoff_words_max"]:
++            errors.append(f"payoff exceeds {tc['payoff_words_max']} words")
++    if "lines" in tc and beats:
++        lmin, lmax = tc["lines"]
++        if not (lmin <= len(beats) <= lmax):
++            errors.append(f"{len(beats)} beats outside {lmin}-{lmax} lines "
++                          f"for {fmt_id}")
++
++    arm = bp.get("visual_arm")
++    if arm and fmt.get("arms") and arm not in fmt["arms"]:
++        errors.append(f"visual_arm {arm!r} not allowed for {fmt_id} "
++                      f"(allowed {fmt['arms']})")
++    return errors
++
++
++def renderer_for(format_id: str, **kw):
++    """Instantiate the renderer declared by the format (lazy import).
++
++    Extra kwargs (memory=, offline=, cfg=) are passed to the adapter's
++    constructor so the caller can inject run context.
++    """
++    fmt = get(format_id)
++    if not fmt.get("renderer"):
++        raise RuntimeError(f"format {format_id!r} has no renderer "
++                           f"(status={fmt['status']})")
++    from . import renderers
++    return renderers.build(fmt["renderer"], **kw)
++
++
++if __name__ == "__main__":
++    import json
++    print(json.dumps(list_formats(), indent=2))
+diff --git a/src/formats/renderers.py b/src/formats/renderers.py
+new file mode 100644
+index 0000000..6a28a4b
+--- /dev/null
++++ b/src/formats/renderers.py
+@@ -0,0 +1,234 @@
++"""renderers.py — the shared renderer interface + adapters (Section 7.2).
++
++Every renderer implements exactly four methods so the orchestrator can treat a
++two-beat short and a paced confession the same way:
++
++    validate_blueprint(blueprint) -> errors
++    build_timeline(blueprint, assets, audio) -> timeline
++    render(timeline, output_path) -> artifact
++    qa(artifact, blueprint) -> report
++
++This module adds NO new visual technique. It puts the already-working v3
++(`generate_short`/`lint_short`/`build_short`) and v2 (`paced`/`build_video`) code
++behind one interface. A timeline is explicit: beat start/end seconds, the text
++safe band, the audio plan and the intended motion. `qa` reuses the real
++`render_gate` (no mocks) so a rendered file is judged by the same gate the
++production path uses.
++
++The cinematic renderer is intentionally absent (Section 16, decision 3); the
++registry marks `cinematic_v1` not_eligible instead.
++"""
++from __future__ import annotations
++
++from pathlib import Path
++
++from .. import blueprint as bp_mod
++from . import registry
++
++FPS = 30
++SIZE = "1080x1920"
++TEXT_BAND = [150, 930]          # v3 §4 / v2 text-safe band
++
++# v3 length buckets → (lo, hi) seconds. Mirrors build_short.build()'s own map.
++_V3_BUCKETS = {"6-8": (6.0, 8.0), "8-10": (8.0, 10.0), "10-12": (10.0, 12.0)}
++_V3_WORDS_PER_SEC = 2.3         # two-beat on-screen reading pace
++
++
++class Renderer:
++    """Base interface. Subclasses set ``id`` and implement the four methods."""
++
++    id = "base"
++
++    def validate_blueprint(self, blueprint: dict) -> list:
++        raise NotImplementedError
++
++    def build_timeline(self, blueprint: dict, assets=None, audio=None) -> dict:
++        raise NotImplementedError
++
++    def render(self, timeline: dict, output_path) -> dict:
++        raise NotImplementedError
++
++    def qa(self, artifact: dict, blueprint: dict) -> dict:
++        raise NotImplementedError
++
++    # -- shared helpers -------------------------------------------------------
++    def _gate(self, path, expect_audio, duration_bounds) -> dict:
++        from .. import render_gate
++        ok, report = render_gate.check(path, expect_audio=expect_audio,
++                                       duration_bounds=tuple(duration_bounds))
++        return {"ok": ok, "gate": report, "why": None if ok else
++                render_gate.describe(report)}
++
++
++class TwoBeatV3Renderer(Renderer):
++    """Adapter over the existing v3 modules. No v3 logic is duplicated."""
++
++    id = "two_beat_v3"
++
++    def __init__(self, memory=None, offline: bool = False, verbose: bool = True):
++        self.memory = memory if memory is not None else {}
++        self.offline = offline
++        self.verbose = verbose
++
++    def validate_blueprint(self, blueprint: dict) -> list:
++        errors = list(registry.validate_for_format(blueprint))
++        beats = [b for b in blueprint.get("beats", []) if isinstance(b, dict)]
++        kinds = [b.get("kind") for b in beats]
++        if kinds != ["hook", "payoff"]:
++            errors.append("two_beat_v3 needs exactly beats [hook, payoff]")
++        arm = blueprint.get("visual_arm") or "C"
++        rr = blueprint.get("rights_requirements") or []
++        # Arm C is a generated plain background and needs no third-party rights;
++        # arms A/B require declared visual + audio rights.
++        if arm in ("A", "B"):
++            joined = " ".join(str(r).lower() for r in rr)
++            if "visual" not in joined or "audio" not in joined:
++                errors.append(f"arm {arm} requires visual+audio rights declared")
++        return errors
++
++    def build_timeline(self, blueprint: dict, assets=None, audio=None) -> dict:
++        duration = _v3_duration(blueprint)
++        ratios = bp_mod.timeline_ratios(blueprint)
++        beats = []
++        for i, b in enumerate(blueprint.get("beats", [])):
++            start = round(float(ratios[i]) * duration, 2)
++            end = (round(float(ratios[i + 1]) * duration, 2) if i + 1 < len(ratios)
++                   else duration)
++            beats.append({"kind": b.get("kind"), "text": str(b.get("text") or ""),
++                          "start_s": start, "end_s": end,
++                          "visual_intent": b.get("visual_intent")})
++        return {
++            "format_id": "two_beat_v3", "renderer": self.id, "fps": FPS,
++            "size": SIZE, "duration_s": duration, "beats": beats,
++            "text_band": list(TEXT_BAND), "loop_seamless": True,
++            "motion_intent": "hook holds, payoff reframes at 60%",
++            "audio": audio or blueprint.get("audio_plan"),
++            "visual_arm": blueprint.get("visual_arm") or "C",
++            "scene_queries": _scene_queries(blueprint, assets),
++        }
++
++    def render(self, timeline: dict, output_path) -> dict:
++        from .. import build_short
++        reel = {
++            "hook": _beat_text(timeline, "hook"),
++            "payoff": _beat_text(timeline, "payoff"),
++            "visual_arm": timeline.get("visual_arm") or "C",
++            "scene_queries": timeline.get("scene_queries") or [],
++            "length_bucket": timeline.get("length_bucket") or "8-10",
++            "audio_type": (timeline.get("audio") or {}).get("mode"),
++        }
++        res = build_short.build(reel, self.memory, Path(output_path),
++                                offline=self.offline,
++                                duration_s=timeline.get("duration_s"),
++                                verbose=self.verbose)
++        return res
++
++    def qa(self, artifact: dict, blueprint: dict) -> dict:
++        if not artifact.get("ok"):
++            return {"ok": False, "why": artifact.get("why") or artifact.get("stage"),
++                    "stage": artifact.get("stage")}
++        bounds = registry.get("two_beat_v3")["duration_bounds"]
++        rep = self._gate(artifact["path"], expect_audio=True, duration_bounds=bounds)
++        return {"ok": rep["ok"], "gate": rep["gate"], "why": rep["why"],
++                "bounds": bounds, "path": artifact["path"]}
++
++
++class PacedV2Renderer(Renderer):
++    """Adapter over the existing v2 render path.
++
++    validate/build_timeline are fully implemented and deterministic. render()
++    delegates to the real `build_video.build`, so it requires the orchestrated v2
++    production inputs (background mp4 + optional track) that run_v2 already
++    assembles; when they are absent it fails closed with a clear reason rather
++    than inventing a background here.
++    """
++
++    id = "paced_v2"
++
++    def __init__(self, cfg=None, memory=None, offline: bool = False):
++        self.cfg = cfg
++        self.memory = memory if memory is not None else {}
++        self.offline = offline
++
++    def validate_blueprint(self, blueprint: dict) -> list:
++        return list(registry.validate_for_format(blueprint))
++
++    def build_timeline(self, blueprint: dict, assets=None, audio=None) -> dict:
++        from .. import lint
++        lines = [str(b.get("text") or "") for b in blueprint.get("beats", [])]
++        starts, duration = lint.reveal_schedule(lines)
++        beats = []
++        for i, text in enumerate(lines):
++            start = starts[i] if i < len(starts) else duration
++            end = starts[i + 1] if i + 1 < len(starts) else duration
++            beats.append({"kind": (blueprint["beats"][i].get("kind")
++                                   if i < len(blueprint["beats"]) else "line"),
++                          "text": text, "start_s": start, "end_s": end})
++        return {
++            "format_id": "paced_v2", "renderer": self.id, "fps": FPS, "size": SIZE,
++            "duration_s": duration, "beats": beats, "text_band": list(TEXT_BAND),
++            "pacing": registry.get("paced_v2")["pacing"],
++            "audio": audio or blueprint.get("audio_plan"),
++        }
++
++    def render(self, timeline: dict, output_path) -> dict:
++        content = timeline.get("content")
++        bg_mp4 = timeline.get("bg_mp4")
++        if not content or not bg_mp4:
++            return {"ok": False, "stage": "precondition",
++                    "why": "paced_v2 render needs orchestrated `content` and "
++                           "`bg_mp4` in the timeline; use run_v2 for the full path"}
++        try:
++            from .. import build_video
++            track = timeline.get("track")
++            build_video.build(self.cfg, content, timeline["duration_s"], track,
++                              None, Path(bg_mp4), Path(output_path))
++        except Exception as exc:  # noqa: BLE001
++            return {"ok": False, "stage": "render", "why": str(exc)[:300]}
++        return {"ok": True, "path": str(output_path)}
++
++    def qa(self, artifact: dict, blueprint: dict) -> dict:
++        if not artifact.get("ok"):
++            return {"ok": False, "why": artifact.get("why") or artifact.get("stage"),
++                    "stage": artifact.get("stage")}
++        bounds = registry.get("paced_v2")["duration_bounds"]
++        rep = self._gate(artifact["path"], expect_audio=True, duration_bounds=bounds)
++        return {"ok": rep["ok"], "gate": rep["gate"], "why": rep["why"],
++                "bounds": bounds, "path": artifact["path"]}
++
++
++# ------------------------------------------------------------------- helpers
++
++def _v3_duration(blueprint: dict) -> float:
++    bucket = blueprint.get("length_bucket")
++    if bucket in _V3_BUCKETS:
++        lo, hi = _V3_BUCKETS[bucket]
++        return round((lo + hi) / 2, 2)
++    words = sum(len(str(b.get("text") or "").split())
++                for b in blueprint.get("beats", []))
++    return max(6.0, min(12.0, round(words / _V3_WORDS_PER_SEC, 2)))
++
++
++def _beat_text(timeline: dict, kind: str) -> str:
++    for b in timeline.get("beats", []):
++        if b.get("kind") == kind:
++            return str(b.get("text") or "")
++    return ""
++
++
++def _scene_queries(blueprint: dict, assets) -> list:
++    if blueprint.get("scene_query"):
++        return [str(blueprint["scene_query"])]
++    if isinstance(assets, dict):
++        return list(assets.get("scene_queries") or [])
++    return []
++
++
++_REGISTRY = {"two_beat_v3": TwoBeatV3Renderer, "paced_v2": PacedV2Renderer}
++
++
++def build(name: str, **kw) -> Renderer:
++    """Factory used by registry.renderer_for."""
++    if name not in _REGISTRY:
++        raise KeyError(f"no renderer adapter for {name!r}")
++    return _REGISTRY[name](**kw)
+diff --git a/src/render_gate.py b/src/render_gate.py
+index 32e2ba4..9c8edbb 100644
+--- a/src/render_gate.py
++++ b/src/render_gate.py
+@@ -139,16 +139,24 @@ def _sar_is_square(sar: str) -> bool:
+     return b != 0 and a == b
+ 
+ 
+-def check(path, expect_audio: bool | None = None) -> tuple:
++def check(path, expect_audio: bool | None = None,
++          duration_bounds: tuple | None = None) -> tuple:
+     """(ok, report). The full upload gate.
+ 
+     expect_audio: True = an audio stream is required, False = it must be ABSENT,
+     None = either is acceptable. The silence case is approved by STRATEGY.md, so
+     a reel with no audio is valid — but it must be ABSENT ON PURPOSE, which means
+     the caller states which it expects rather than the gate guessing.
++
++    duration_bounds: (min_s, max_s) to override the v2 14-34s window for a format
++    with a different contract (e.g. the v3 two-beat short at 6-12s). Defaults to
++    (MIN_S, MAX_S) so every existing caller keeps the exact v2 behaviour. A
++    format-specific window is a contract, not a loosened gate: the file must still
++    fall inside the bounds the caller declares.
+     """
++    lo, hi = duration_bounds if duration_bounds else (MIN_S, MAX_S)
+     p = Path(path)
+-    report: dict = {"file": str(p)}
++    report: dict = {"file": str(p), "duration_bounds": [lo, hi]}
+ 
+     # 1. exists and is non-trivial
+     if not p.exists():
+@@ -219,8 +227,8 @@ def check(path, expect_audio: bool | None = None) -> tuple:
+     report["duration_s"] = dur
+     if dur is None:
+         failures.append("no duration in container")
+-    elif not (MIN_S - 0.05 <= dur <= MAX_S + 0.05):
+-        failures.append(f"duration {dur:.2f}s outside {MIN_S:.0f}-{MAX_S:.0f}s")
++    elif not (lo - 0.05 <= dur <= hi + 0.05):
++        failures.append(f"duration {dur:.2f}s outside {lo:.0f}-{hi:.0f}s")
+ 
+     # 4. audio: present only if it was meant to be
+     report["audio"] = bool(audio)
+diff --git a/src/research/__init__.py b/src/research/__init__.py
+new file mode 100644
+index 0000000..e14cd43
+--- /dev/null
++++ b/src/research/__init__.py
+@@ -0,0 +1,11 @@
++"""src/research — the evidence layer (Section 12 of the master architecture).
++
++normalize.py  : pull every local research artefact into one schema.
++analyze.py    : coverage, duplication, missing-field and outlier analysis.
++report.py     : write docs/research/RESEARCH_AUDIT.md.
++
++These modules are pure data transforms with NO network and NO publishing side
++effects, so they are safe to run in CI and by hand. They exist so that a claim
++about "the research" can be traced to a record and a source URL instead of a
++summary paragraph.
++"""
+diff --git a/src/research/analyze.py b/src/research/analyze.py
+new file mode 100644
+index 0000000..5fc36dc
+--- /dev/null
++++ b/src/research/analyze.py
+@@ -0,0 +1,113 @@
++"""analyze.py — coverage, duplication, missing fields and (when possible) outliers.
++
++Section 15 (Research acceptance) asks for: source URLs, data timestamps, creator
++baselines, duplicated items, language and missing-field analysis, plus outliers
++with same-creator controls.
++
++This module reports exactly what the local corpus supports. When the corpus has
++no performance fields (the current state: Reddit text only), it says so in
++``performance_available = False`` and the outlier/control tables are empty —
++rather than inventing a baseline from qualitative text.
++"""
++from __future__ import annotations
++
++import collections
++
++from . import normalize
++
++PERF_FIELDS = ["views", "likes", "comments", "shares", "saves", "reach",
++               "creator_baseline_views", "outlier_multiple"]
++
++
++def _norm_text(rec: dict) -> str:
++    return (str(rec.get("title") or "") + " " + str(rec.get("text") or "")).strip().lower()
++
++
++def duplicates(records: list) -> list:
++    """Groups of records whose cleaned text collides. Returns list of groups."""
++    seen: dict = collections.defaultdict(list)
++    for r in records:
++        key = _norm_text(r)[:280]
++        if key:
++            seen[key].append(r)
++    return [g for g in seen.values() if len(g) > 1]
++
++
++def coverage(records: list) -> dict:
++    """Per-field populated counts across records (of the reel schema fields)."""
++    cov = {}
++    for f in normalize.REEL_FIELDS:
++        cov[f] = sum(1 for r in records if r.get(f) not in (None, ""))
++    return cov
++
++
++def missing_field_summary(records: list) -> dict:
++    n = len(records)
++    cov = coverage(records)
++    return {f: {"present": c, "missing": n - c,
++                "present_pct": round(100.0 * c / n, 1) if n else 0.0}
++            for f, c in cov.items()}
++
++
++def language_breakdown(records: list) -> dict:
++    return dict(collections.Counter(r.get("language") or "unknown" for r in records))
++
++
++def subreddit_breakdown(records: list) -> dict:
++    return dict(collections.Counter(
++        r.get("subreddit") for r in records if r.get("subreddit")))
++
++
++def performance_available(records: list) -> bool:
++    return any(r.get("views") not in (None, "") or
++               r.get("creator_baseline_views") not in (None, "") for r in records)
++
++
++def compute_outlier_multiple(views, baseline) -> float | None:
++    """views / creator_baseline_views. Returns None when either is missing or the
++    baseline is zero — an unknown multiple is None, never 0 or infinity."""
++    try:
++        v, b = float(views), float(baseline)
++    except (TypeError, ValueError):
++        return None
++    if b <= 0:
++        return None
++    return round(v / b, 2)
++
++
++def outliers_and_controls(records: list, mult_threshold: float = 3.0) -> dict:
++    """Outliers (multiple >= threshold) plus same-creator normal controls.
++
++    A control is a same-creator record whose multiple is < threshold, so a
++    breakout is always read against its own creator's baseline rather than raw
++    views. Empty when the corpus carries no performance data (current state).
++    """
++    out, controls = [], []
++    for r in records:
++        if r.get("views") in (None, "") or r.get("creator_baseline_views") in (None, ""):
++            continue
++        m = compute_outlier_multiple(r.get("views"), r.get("creator_baseline_views"))
++        if m is None:
++            continue
++        row = {"record_id": r["record_id"], "creator": r.get("creator_handle"),
++               "url": r.get("canonical_url"), "views": r.get("views"),
++               "baseline": r.get("creator_baseline_views"), "multiple": m,
++               "duration_s": r.get("duration_s"), "format": r.get("format_family")}
++        (out if m >= mult_threshold else controls).append(row)
++    out.sort(key=lambda x: x["multiple"], reverse=True)
++    return {"outliers": out, "controls": controls,
++            "threshold": mult_threshold}
++
++
++def summarize(records: list) -> dict:
++    return {
++        "n_records": len(records),
++        "by_source": dict(collections.Counter(r["source"] for r in records)),
++        "by_platform": dict(collections.Counter(
++            r.get("platform") or "unknown" for r in records)),
++        "subreddits": subreddit_breakdown(records),
++        "languages": language_breakdown(records),
++        "duplicate_groups": len(duplicates(records)),
++        "performance_available": performance_available(records),
++        "missing": missing_field_summary(records),
++    }
+diff --git a/src/research/normalize.py b/src/research/normalize.py
+new file mode 100644
+index 0000000..9890d96
+--- /dev/null
++++ b/src/research/normalize.py
+@@ -0,0 +1,276 @@
++"""normalize.py — one schema for every research artefact on disk.
++
++The master architecture (Section 5.3) asks for a record that preserves the raw
++evidence and separates observed facts from interpretation. This module produces
++that record shape for whatever is actually present locally, and records what is
++MISSING rather than filling it with a zero or a guess.
++
++Supported local sources, all optional:
++  * Reddit Atom/RSS feeds  (data/research/*.xml)
++  * a pre-extracted Reddit corpus (data/research/corpus.json)
++  * external reel records, if any exist (videos.json / Apify / vidIQ exports),
++    normalised through ``normalize_reel_record`` so a future paid scrape would
++    land in the same schema — but nothing here calls a network or a paid API.
++
++The reel schema is populated only for fields the source genuinely supplies. A
++metric the source does not carry is listed in ``missing`` and left ``None``;
++this is what stops a missing view count from later being scored as zero.
++"""
++from __future__ import annotations
++
++import datetime as _dt
++import hashlib
++import json
++import re
++from pathlib import Path
++
++# Fields a fully-populated performance record would carry. Absence of any of
++# these is recorded per-record in `missing`, never invented.
++REEL_FIELDS = [
++    "platform", "canonical_url", "creator_handle", "content_id", "posted_at",
++    "captured_at", "views", "likes", "comments", "shares", "saves", "reach",
++    "followers", "creator_baseline_views", "outlier_multiple", "duration_s",
++    "language", "niche", "hook_text", "format_family",
++]
++
++_HTML_TAG = re.compile(r"<[^>]+>")
++_WS = re.compile(r"\s+")
++_NONASCII = re.compile(r"[^\x00-\x7f]")
++# A rough English signal. Research audit only; not a language classifier.
++_EN_WORDS = {"the", "you", "and", "that", "have", "people", "when", "with",
++             "this", "your", "they", "just", "like", "what"}
++
++
++def _now_iso() -> str:
++    return _dt.datetime.now(_dt.timezone.utc).isoformat()
++
++
++def _stable_id(*parts) -> str:
++    blob = "|".join(str(p) for p in parts if p is not None)
++    return hashlib.sha1(blob.encode("utf-8", "ignore")).hexdigest()[:16]
++
++
++def _clean(text: str) -> str:
++    """Strip Reddit HTML wrappers and collapse whitespace."""
++    if not text:
++        return ""
++    t = _HTML_TAG.sub(" ", str(text))
++    t = (t.replace("&amp;", "&").replace("&lt;", "<").replace("&gt;", ">")
++         .replace("&quot;", '"').replace("&#39;", "'").replace("&nbsp;", " "))
++    return _WS.sub(" ", t).strip()
++
++
++def looks_english(text: str) -> str:
++    """'en' | 'unknown'. Deliberately conservative: only labels English when it
++    can see common function words. Everything else stays 'unknown' rather than
++    being silently treated as English."""
++    words = set(re.findall(r"[a-z']+", (text or "").lower()))
++    if not words:
++        return "unknown"
++    hits = len(words & _EN_WORDS)
++    if hits >= 3 or (hits >= 1 and len(words) <= 8):
++        return "en"
++    # non-ascii heavy and no function words -> not confidently English
++    return "en" if hits >= 1 and not _NONASCII.search(text or "") else "unknown"
++
++
++def _record(source: str, **kw) -> dict:
++    # record_id and captured_at are popped up front; captured_at is re-seeded so
++    # the REEL_FIELDS loop below (which includes it) can fill it without clobber.
++    record_id = kw.pop("record_id", None) or _stable_id(
++        source, kw.get("content_id"), kw.get("title"), kw.get("text"))
++    kw.setdefault("captured_at", _now_iso())
++    rec = {"record_id": record_id, "source": source}
++    for f in REEL_FIELDS:
++        rec[f] = kw.pop(f, None)
++    rec.update(kw)  # remaining bespoke fields (subreddit, title, text, ...)
++    missing = [f for f in REEL_FIELDS if rec.get(f) in (None, "")]
++    rec["missing"] = missing
++    return rec
++
++
++# ------------------------------------------------------------------ reddit xml
++
++def parse_reddit_xml(path: Path) -> list:
++    """Parse an Atom feed of Reddit posts. Returns [] for an empty/broken file."""
++    import xml.etree.ElementTree as ET
++    path = Path(path)
++    if not path.exists() or path.stat().st_size == 0:
++        return []
++    try:
++        root = ET.parse(path).getroot()
++    except ET.ParseError:
++        return []
++    ns = "{http://www.w3.org/2005/Atom}"
++    out = []
++    for e in root.findall(ns + "entry"):
++        title = _clean(e.findtext(ns + "title"))
++        content = _clean(e.findtext(ns + "content"))
++        link = e.find(ns + "link")
++        url = link.get("href") if link is not None else None
++        published = e.findtext(ns + "published") or e.findtext(ns + "updated")
++        cat = e.find(ns + "category")
++        sub = (cat.get("term") if cat is not None else None)
++        cid = e.findtext(ns + "id")
++        mtime = _dt.datetime.fromtimestamp(
++            path.stat().st_mtime, _dt.timezone.utc).isoformat()
++        if not title and not content:
++            continue
++        out.append(_record(
++            "reddit_xml", platform="reddit", content_id=cid,
++            canonical_url=url, posted_at=published, captured_at=mtime,
++            subreddit=sub, title=title, text=content,
++            language=looks_english(title + " " + content),
++            niche=sub, source_file=path.name))
++    return out
++
++
++# --------------------------------------------------------------- reddit corpus
++
++def load_corpus(path: Path) -> list:
++    """The pre-extracted {sub,title,text} corpus, normalised to records."""
++    path = Path(path)
++    if not path.exists() or path.stat().st_size == 0:
++        return []
++    try:
++        data = json.loads(path.read_text(encoding="utf-8"))
++    except json.JSONDecodeError:
++        return []
++    if isinstance(data, dict):
++        data = data.get("posts") or data.get("items") or []
++    mtime = _dt.datetime.fromtimestamp(
++        path.stat().st_mtime, _dt.timezone.utc).isoformat()
++    out = []
++    for item in data if isinstance(data, list) else []:
++        if not isinstance(item, dict):
++            continue
++        sub = item.get("sub") or item.get("subreddit")
++        title = _clean(item.get("title") or "")
++        text = _clean(item.get("text") or item.get("selftext") or "")
++        out.append(_record(
++            "reddit_corpus", platform="reddit",
++            content_id=item.get("id") or _stable_id(sub, title, text),
++            canonical_url=item.get("url") or item.get("permalink"),
++            posted_at=item.get("created") or item.get("created_utc"),
++            captured_at=mtime, subreddit=sub, title=title, text=text,
++            language=looks_english(title + " " + text), niche=sub,
++            source_file=path.name))
++    return out
++
++
++# ------------------------------------------------------------- external reels
++
++# Map many possible supplier field names onto the one schema. A supplier that
++# names a field something else still normalises; nothing is guessed.
++_ALIASES = {
++    "canonical_url": ("canonical_url", "url", "link", "reel_url", "post_url"),
++    "creator_handle": ("creator_handle", "ownerUsername", "username",
++                       "handle", "creator", "account"),
++    "content_id": ("content_id", "id", "shortCode", "shortcode", "pk"),
++    "posted_at": ("posted_at", "timestamp", "taken_at", "created_at", "date"),
++    "views": ("views", "view_count", "play_count", "plays", "videoViewCount",
++              "videoPlayCount"),
++    "likes": ("likes", "like_count", "likesCount"),
++    "comments": ("comments", "comments_count", "commentsCount"),
++    "shares": ("shares", "share_count", "sharesCount"),
++    "saves": ("saves", "save_count", "savesCount"),
++    "followers": ("followers", "follower_count", "followersCount"),
++    "creator_baseline_views": ("creator_baseline_views", "baseline_views",
++                               "median_views"),
++    "outlier_multiple": ("outlier_multiple", "outlier", "multiple"),
++    "duration_s": ("duration_s", "duration", "videoDuration"),
++    "hook_text": ("hook_text", "caption", "description", "text", "title"),
++}
++
++
++def _first(d: dict, keys) -> object:
++    for k in keys:
++        if k in d and d[k] not in (None, ""):
++            return d[k]
++    return None
++
++
++def normalize_reel_record(item: dict, source: str = "external") -> dict:
++    """Map one supplier record into the shared reel schema."""
++    if not isinstance(item, dict):
++        raise TypeError("reel record must be a dict")
++    kw = {}
++    for field, aliases in _ALIASES.items():
++        kw[field] = _first(item, aliases)
++    platform = item.get("platform") or "instagram"
++    lang = item.get("language") or looks_english(str(kw.get("hook_text") or ""))
++    rec = _record(source, platform=platform, language=lang, niche=item.get("niche"),
++                  raw=item, **kw)
++    # keep any explicit analyst fields the supplier already provided
++    for f in ("format_family", "rights_notes", "observations", "hypotheses",
++              "confidence", "analyst_version"):
++        if item.get(f) is not None:
++            rec[f] = item[f]
++    return rec
++
++
++def discover_external(dir_or_file) -> list:
++    """Load any local external reel dataset (videos.json / Apify / vidIQ export)
++    and normalise it. Returns [] when nothing is present. Never hits a network."""
++    p = Path(dir_or_file)
++    candidates = []
++    if p.is_file() and p.suffix == ".json":
++        candidates = [p]
++    elif p.is_dir():
++        candidates = sorted(p.glob("*.json"))
++    out = []
++    for f in candidates:
++        try:
++            data = json.loads(f.read_text(encoding="utf-8"))
++        except (json.JSONDecodeError, OSError):
++            continue
++        items = []
++        if isinstance(data, list):
++            items = data
++        elif isinstance(data, dict):
++            for key in ("items", "posts", "reels", "data", "results", "videos"):
++                if isinstance(data.get(key), list):
++                    items = data[key]
++                    break
++            if not items and data:
++                items = [data]
++        for it in items:
++            if isinstance(it, dict):
++                out.append(normalize_reel_record(it, source=f.stem))
++    return out
++
++
++def normalize_all(research_dir) -> dict:
++    """Normalise every local source under ``research_dir``.
++
++    Returns {"records": [...], "by_source": {source: count}, "files": [...]}.
++    """
++    d = Path(research_dir)
++    records = []
++    files = []
++    for f in sorted(d.glob("*.xml")) if d.is_dir() else []:
++        got = parse_reddit_xml(f)
++        records += got
++        files.append((f.name, len(got)))
++    for f in sorted(d.glob("*.json")) if d.is_dir() else []:
++        if f.name == "corpus.json" or f.name.endswith("_corpus.json"):
++            got = load_corpus(f)
++        else:
++            got = discover_external(f)
++        records += got
++        files.append((f.name, len(got)))
++    by_source: dict = {}
++    for r in records:
++        by_source[r["source"]] = by_source.get(r["source"], 0) + 1
++    return {"records": records, "by_source": by_source, "files": files}
++
++
++if __name__ == "__main__":
++    import argparse
++    from .. import config
++    ap = argparse.ArgumentParser(description="Normalize local research artefacts")
++    ap.add_argument("--dir", default=str(config.ROOT / "data" / "research"))
++    a = ap.parse_args()
++    res = normalize_all(a.dir)
++    print(json.dumps({"by_source": res["by_source"], "files": res["files"],
++                      "total": len(res["records"])}, indent=2))
+diff --git a/src/research/report.py b/src/research/report.py
+new file mode 100644
+index 0000000..bf57368
+--- /dev/null
++++ b/src/research/report.py
+@@ -0,0 +1,205 @@
++"""report.py — write docs/research/RESEARCH_AUDIT.md from the local evidence.
++
++No publishing side effects. The report separates:
++  * OBSERVED FACTS  — what a source actually supplies (counts, fields, urls)
++  * THIRD-PARTY OBSERVATIONS — the eight selected vidIQ analyses (observational,
++    survivorship-biased, not verified Instagram Insights)
++  * HYPOTHESES      — interpretations that still require first-party testing
++  * UNSUPPORTED     — sales/conversion claims the corpus cannot support
++"""
++from __future__ import annotations
++
++import datetime as _dt
++from pathlib import Path
++
++from . import analyze, normalize
++
++# The eight public Reel analyses recorded in the master architecture, Section 2.
++# These are THIRD-PARTY, SELECTED OUTLIERS: not this account's data and not
++# controlled. Kept here so the report cites them without implying they are proof.
++VIDIQ_OBSERVATIONS = [
++    {"handle": "@rock.s.w", "url": "https://www.instagram.com/reel/Ddwm1XUx5Nw/",
++     "reported": "964K / 31x",
++     "structure": "~6.7s POV walk, static line, comic final clause, seamless loop",
++     "hypothesis": "specific social truth + punchline can beat a generic paragraph, even with minimal editing."},
++    {"handle": "@lifeliftman", "url": "https://www.instagram.com/reel/DeRsolMAyoa/",
++     "reported": "2.1M / 143x",
++     "structure": "~12s atmospheric shot, static curiosity hook; promised list deferred to caption",
++     "hypothesis": "caption-led curiosity may work for this creator; test whether it earns watch, sends and profile actions for our account."},
++    {"handle": "@sam_socialanxiety", "url": "https://www.instagram.com/reel/Dd3Y6dAT_vP/",
++     "reported": "796K / 33x",
++     "structure": "~83s real phone-call challenge, tension, real interaction, emotional resolution",
++     "hypothesis": "real stakes create a payoff an automated text card cannot fake; use as story-structure evidence, not a directive to fabricate experiences."},
++    {"handle": "@sadiealdis", "url": "https://www.instagram.com/reel/DdlzBcjAYBf/",
++     "reported": "1.3M / 17x",
++     "structure": "~35s direct-to-camera list with live delivery and phrase-synced captions",
++     "hypothesis": "identity framing plus recognizable specifics can hold attention; human presence is a dependency."},
++    {"handle": "@_jeffmarr", "url": "https://www.instagram.com/reel/DeGUSSQg_Xa/",
++     "reported": "1.2M / 6.8x",
++     "structure": "~96s reflective voiceover, night-driving visuals, kinetic captions, open question",
++     "hypothesis": "motion can come from text timing and narrative rather than many cuts; long narration only works when the material earns it."},
++    {"handle": "@tamaniaaa", "url": "https://www.instagram.com/reel/Dd2TCaOOI84/",
++     "reported": "836K / 154x",
++     "structure": "~72s casual in-car book reading, repeated daily motif accumulating to insight",
++     "hypothesis": "a tangible prop and conversational delivery can create trust; do not copy the passage or imply endorsement."},
++    {"handle": "@pedronfrey", "url": "https://www.instagram.com/reel/DeRxq8Th_KV/",
++     "reported": "4.6M / 318x",
++     "structure": "~26s ten-item countdown, persistent title, fast captions, emotional turn in final item",
++     "hypothesis": "progress indicators and escalation may increase completion; needs item-level timeline support."},
++    {"handle": "@huntrex_", "url": "https://www.instagram.com/reel/DeVgtPbucy7/",
++     "reported": "970K / 27x",
++     "structure": "~19s multi-scene cinematic montage, short phrases synced to voiceover, contrast reframe",
++     "hypothesis": "visual progression can help a short idea feel like a story; requires semantic b-roll matching."},
++]
++
++
++def _table(headers: list, rows: list) -> str:
++    if not rows:
++        return "_(none present in the local corpus)_\n"
++    out = ["| " + " | ".join(headers) + " |",
++           "|" + "|".join("---" for _ in headers) + "|"]
++    for r in rows:
++        out.append("| " + " | ".join(str(c) if c is not None else "—" for c in r) + " |")
++    return "\n".join(out) + "\n"
++
++
++def build_report(research_dir, out_path) -> str:
++    research_dir = Path(research_dir)
++    res = normalize.normalize_all(research_dir)
++    records = res["records"]
++    summary = analyze.summarize(records)
++    oc = analyze.outliers_and_controls(records)
++    dups = analyze.duplicates(records)
++    now = _dt.datetime.now(_dt.timezone.utc).isoformat()
++
++    lines = []
++    a = lines.append
++    a("# Research Audit — beast-engine")
++    a("")
++    a(f"Generated: {now}")
++    a("")
++    a("This audit is produced by `src/research/report.py` from whatever is "
++      "actually on disk. It does not download anything and does not spend credits. "
++      "Observed facts and hypotheses are kept in separate sections.")
++    a("")
++    a("## 1. Artefacts audited (observed)")
++    a("")
++    a("| file | records parsed |")
++    a("|---|---|")
++    for name, n in res["files"]:
++        a(f"| `data/research/{name}` | {n} |")
++    a("")
++    a(f"Total records: **{summary['n_records']}** "
++      f"({summary['by_platform']}).")
++    a("")
++    a("## 2. What the local corpus actually contains")
++    a("")
++    a(f"- Languages: {summary['languages']}")
++    a(f"- Subreddits: {summary['subreddits']}")
++    a(f"- Duplicate groups (cleaned-text collision): **{summary['duplicate_groups']}**")
++    a(f"- Performance data present (views/baseline): **{summary['performance_available']}**")
++    a("")
++    a("### Field coverage (reel schema)")
++    a("")
++    cov_rows = [(f, v["present"], v["missing"], f'{v["present_pct"]}%')
++                for f, v in summary["missing"].items()]
++    a(_table(["field", "present", "missing", "present %"], cov_rows))
++    a("## 3. The reported 346 + 300 reel dataset and the eight vidIQ analyses")
++    a("")
++    a("**Observed:** no raw file for the reported *346 hashtag Reels* or *300 "
++      "Reels across 20 accounts* exists in this environment. No `videos.json`, "
++      "no Apify export and no vidIQ export are present. The only structured "
++      "performance-shaped artefact referenced anywhere is the plan summary in the "
++      "owner's notes, which reports derived numbers (median length 10s, 74% ≤15s, "
++      "share rates 4–13%, per-account medians) and is **not** independently "
++      "verifiable here.")
++    a("")
++    a("**Consequence:** the outlier table below is empty because the corpus has no "
++      "views/baseline fields. Building it would require re-collection, which "
++      "Section 7 (spend) forbids until a specific gap is identified.")
++    a("")
++    a("### Outliers and same-creator controls (from local performance data)")
++    a("")
++    a(_table(["creator", "views", "baseline", "multiple", "url"], [
++        (r["creator"], r["views"], r["baseline"], r["multiple"], r["url"])
++        for r in oc["outliers"]]))
++    a("### Same-creator controls")
++    a("")
++    a(_table(["creator", "views", "baseline", "multiple", "url"], [
++        (r["creator"], r["views"], r["baseline"], r["multiple"], r["url"])
++        for r in oc["controls"][:20]]))
++    a("## 4. Third-party visual observations (vidIQ set, observational)")
++    a("")
++    a("These eight are **selected public outliers** — survivorship-biased, "
++      "third-party view figures, not verified Insights. Listed as OBSERVATIONS "
++      "with the HYPOTHESIS each suggests; neither is a fact about our account.")
++    a("")
++    a(_table(["handle", "reported", "observed structure", "hypothesis"], [
++        (o["handle"], o["reported"], o["structure"], o["hypothesis"])
++        for o in VIDIQ_OBSERVATIONS]))
++    a("**Structural read (hypothesis, not proof):** a *creative mechanic* — a "
++      "specific, sendable punchline — separates winners from a dense, generic, "
++      "all-at-once paragraph. This is exactly what v3 (two-beat short) tests "
++      "against v2 (paced reveal) as a control.")
++    a("")
++    a("## 5. Unsupported claims (kept out of the engine)")
++    a("")
++    a("- No competitor sales/conversion numbers exist in the corpus; none are "
++      "inferred. Sales evidence is `unknown` unless measured on our own account.")
++    a("- The 8 examples are not a controlled experiment and cannot attribute "
++      "causality to any single production choice.")
++    a("")
++    a("## 6. Pattern acceptance gate (Section 5.4)")
++    a("")
++    a("No pattern from this evidence set is promoted. The set fails the gate as "
++      "written: it is not ≥3 examples from ≥2 creators *with same-creator "
++      "controls measured locally*, and it is not reproducible from the raw data "
++      "available here. The video templates T1–T10 already encoded from the "
++      "owner's 2026-10-15/16 run remain **hypotheses to test**, not proven facts.")
++    a("")
++    a("## 7. Remaining research questions (before any paid action)")
++    a("")
++    a("1. Do v3 two-beat shorts beat v2 paced reels on **share/send rate per "
++      "reach** on *this* account? (first-party; needs publishing approval)")
++    a("2. Does a plain-text (arm C) short hold attention competitively against "
++      "footage (arm A) and still (arm B)? (in-repo render tests + first-party)")
++    a("3. Is a caption-led curiosity hook (as in one third-party example) worth a "
++      "test, or does it only work with an established audience? (needs first-party)")
++    a("4. What is the local corpus **situation coverage** gap, if any, versus the "
++      "v3 topic list? (computable now — see below)")
++    a("")
++    a("## 8. Spend decision")
++    a("")
++    a("**No paid research is authorized by this audit.** vidIQ balance is "
++      "reported at 45 credits; keep ≥25 (Section 7 / 16). Apify pricing must be "
++      "verified live before any run. The local corpus is qualitative Reddit text "
++      "and cannot be extended into performance evidence by spending — that "
++      "requires this account's own mature Insights, which is a publishing-phase "
++      "dependency, not a scraping one.")
++    a("")
++    a("## 9. Cinematic arm decision (Step 4 gate)")
++    a("")
++    a("**Not justified yet.** The only cinematic evidence is third-party, "
++      "uncontrolled, and depends on human presence / real footage (examples 2–8) "
++      "or authentic props, which the current rights-cleared pipeline cannot "
++      "supply. Per Section 16 decision 3, no `build_cinematic.py` is added; "
++      "Format C is registered in the format registry as **not eligible** and "
++      "stays declarative until first-party evidence justifies the build.")
++    a("")
++    text = "\n".join(lines) + "\n"
++    out_path = Path(out_path)
++    out_path.parent.mkdir(parents=True, exist_ok=True)
++    out_path.write_text(text, encoding="utf-8")
++    return text
++
++
++if __name__ == "__main__":
++    import argparse
++    from .. import config
++    ap = argparse.ArgumentParser()
++    ap.add_argument("--dir", default=str(config.ROOT / "data" / "research"))
++    ap.add_argument("--out", default=str(config.ROOT / "docs" / "research"
++                                         / "RESEARCH_AUDIT.md"))
++    a = ap.parse_args()
++    build_report(a.dir, a.out)
++    print(f"wrote {a.out}")
+diff --git a/src/run_experiment.py b/src/run_experiment.py
+new file mode 100644
+index 0000000..e7ee148
+--- /dev/null
++++ b/src/run_experiment.py
+@@ -0,0 +1,299 @@
++"""run_experiment.py — dry-run-default orchestrator (Section 13, Step 3).
++
++It can drive the v3 two-beat renderer (format `two_beat_v3`) end to end through
++the shared interface: pick an eligible arm -> select a real corpus situation ->
++write a candidate -> rule prefilter -> independent critic -> render -> QA/gate.
++For the v2 control arm (`paced_v2`) it delegates to the existing `run_v2` path so
++no v2 logic is duplicated.
++
++HARD SAFETY:
++  * `data/PAUSE` is checked first and aborts the run.
++  * This module NEVER imports or calls the publishing path — `dry_run` is the
++    only mode. There is no `media_publish`, no `publish_reel`, no schedule change.
++  * Model/asset steps fail closed; a failure is reported, not papered over.
++  * Dry-run assignments are written to the run log, NOT appended to the
++    experiment assignment ledger (a dry run is not a valid published sample).
++
++Outputs (preview mp4, blueprint, timeline, gate report, logs, checksum) land
++under `outputs/experiments/<run-id>/` or `--out-dir`.
++"""
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++import sys
++from datetime import datetime, timezone
++from pathlib import Path
++
++from . import blueprint as bp_mod
++from . import config, generate_short
++from .formats import registry
++
++# The publishing path is intentionally absent. This constant documents the guard
++# the test suite enforces: run_experiment must not reference these symbols.
++FORBIDDEN_SYMBOLS = ("media_publish", "publish_reel", "publish.publish")
++
++
++def _log(entries: list, step: str, payload=None) -> None:
++    e = {"at": datetime.now(timezone.utc).isoformat(), "step": step}
++    if payload:
++        e.update(payload)
++    entries.append(e)
++    print(f"[exp] {step}: {payload if payload else ''}", flush=True)
++
++
++def _corpus_evidence(topic: str, research_dir=None) -> list:
++    """Return [{record_id, source, url, excerpt}] for the most relevant record."""
++    from .research import normalize as rnorm
++    rdir = research_dir or (config.ROOT / "data" / "research")
++    res = rnorm.normalize_all(rdir)
++    recs = res["records"]
++    key = (topic or "").lower().split()[0] if topic else ""
++    for r in recs:
++        blob = (str(r.get("title") or "") + " " + str(r.get("text") or "")).lower()
++        if key and key in blob:
++            return [{"record_id": r["record_id"], "source": r["source"],
++                     "url": r.get("canonical_url"),
++                     "excerpt": (str(r.get("title") or "") or
++                                 str(r.get("text") or ""))[:160]}]
++    if recs:
++        r = recs[0]
++        return [{"record_id": r["record_id"], "source": r["source"],
++                 "url": r.get("canonical_url"),
++                 "excerpt": (str(r.get("title") or "") or str(r.get("text") or ""))[:160]}]
++    return []
++
++
++def _offline_reel() -> dict:
++    """A deterministic, lint-clean two-beat pair so the render path is testable
++    with no network. Wording is the lint_short selftest fixture (known clean)."""
++    return {
++        "template": "T3", "topic": "saying I'm fine",
++        "hook": "Send this to the friend who types 'haha' and means 'I'm fine'.",
++        "payoff": "She typed 'haha' and sat there shaking.",
++        "visual_arm": "C", "scene_queries": ["empty room night window rain"],
++        "audio_type": "quiet_ambient", "length_bucket": "8-10",
++        "caption": "the haha that isn't fine", "hashtags": ["#relatable"],
++    }
++
++
++def blueprint_from_reel(reel: dict, format_id: str, evidence: list,
++                        experiment_id=None, arm=None) -> dict:
++    """Adapt a v3 reel dict to the shared ContentBlueprint contract."""
++    hook = str(reel.get("hook") or "")
++    payoff = str(reel.get("payoff") or "")
++    return bp_mod.new(
++        format_id, experiment_id=experiment_id,
++        series_id=reel.get("template"), topic_id=reel.get("topic"),
++        audience_hypothesis=reel.get("topic"),
++        viewer_moment=hook, hook_mechanic=reel.get("template"),
++        beats=[{"kind": "hook", "text": hook, "start_ratio": 0.0,
++                "visual_intent": (reel.get("scene_queries") or [None])[0]},
++               {"kind": "payoff", "text": payoff, "start_ratio": 0.60,
++                "visual_intent": "reframe"}],
++        caption=reel.get("caption"), cta_variant="none_or_caption_only",
++        scene_query=(reel.get("scene_queries") or [None])[0],
++        audio_plan={"mode": _audio_mode(reel.get("audio_type")), "track_id": None},
++        evidence_refs=[e["record_id"] for e in evidence],
++        hypothesis="A specific, sendable two-beat short earns a higher share/send "
++                   "rate per reach than the paced-reveal control.",
++        rights_requirements=["visual license", "audio license"],
++        risk_flags=[], critic={},
++        visual_arm=reel.get("visual_arm") or "C",
++        length_bucket=reel.get("length_bucket") or "8-10",
++    )
++
++
++def _audio_mode(audio_type) -> str:
++    # v3 audio types are all "licensed ambient/track" families; silent arm is
++    # handled inside build_short (a quiet room tone), never truly silent.
++    return "licensed_ambient" if audio_type else "silent"
++
++
++def _map_critic(verdict: dict) -> dict:
++    """Map the v3 critic keys onto the shared rubric where names differ."""
++    if not isinstance(verdict, dict):
++        return {}
++    return {
++        "specificity": verdict.get("specificity"),
++        "payoff": verdict.get("sendability"),      # sendability is the v3 payoff bar
++        "sendability": verdict.get("sendability"),
++        "novelty": verdict.get("originality"),
++        "truthfulness": 5 if verdict.get("claims_ok") else 0,
++        "brand_fit": verdict.get("tone_safety"),
++    }
++
++
++def _candidate_v3(offline: bool, entries: list, evidence: list,
++                  experiment_id: str, seed=None, arm=None) -> dict:
++    """One v3 candidate: model-backed writer+critic, or the offline fixture."""
++    import random
++    rng = random.Random(seed)
++    topics = list(generate_short.SCENE_NOUNS.keys())
++    topic = rng.choice(topics)
++    arm = arm or rng.choice(["A", "B", "C"])
++    audio = rng.choice(generate_short.AUDIO_TYPES)
++    if offline:
++        reel = _offline_reel()
++        reel["visual_arm"] = arm          # honour a forced arm even offline
++        _log(entries, "candidate_offline", {"topic": topic, "arm": arm})
++        return {"reel": reel, "critic": {}, "notes": "offline fixture",
++                "model_backed": False}
++    template = generate_short.pick_template([])
++    res = generate_short.write_one(template, topic, arm, audio,
++                                   length_bucket="8-10", recent_lines=[],
++                                   verbose=True)
++    return {"reel": res.get("reel"), "critic": _map_critic(res.get("critic") or {}),
++            "notes": res.get("notes"), "model_backed": True,
++            "ok": bool(res.get("ok")), "stage": res.get("stage"),
++            "raw_critic": res.get("critic") or {}}
++
++
++def run(format_id: str = "auto", offline: bool = False, count: int = 1,
++        out_dir=None, cards: int = 3, seed=None, arm=None) -> int:
++    cfg = config.load_config()
++    memory = config.load_memory()
++    entries: list = []
++    now = datetime.now(timezone.utc)
++    run_id = f"exp-{now:%Y%m%d-%H%M%S}"
++
++    if config.paused():
++        _log(entries, "paused", {"file": "data/PAUSE"})
++        return 0
++
++    elig = registry.eligible()
++    if format_id == "auto":
++        from . import experiment
++        exp = experiment.load(config.ROOT / "data" / "experiments.json")
++        recent = [a.get("arm") for a in (exp.get("assignments") or [])][-4:]
++        rec = experiment.recommend_arm(exp, elig, recent_arms=recent)
++        format_id = rec["arm"]
++        _log(entries, "arm_selected", rec)
++    elif format_id not in elig:
++        _log(entries, "format_not_eligible", {"format_id": format_id,
++                                              "eligible": elig})
++        return 2
++
++    _log(entries, "start", {"run_id": run_id, "format_id": format_id,
++                            "offline": offline, "count": count, "dry_run": True})
++
++    # The v2 control arm is delegated to the existing pipeline (no duplication).
++    if format_id == "paced_v2":
++        _log(entries, "delegate_v2", {"note": "using run_v2 dry-run path"})
++        from . import run_v2
++        code = run_v2.run(dry_run=True, offline=offline, force=True,
++                          no_publish=True)
++        _log(entries, "v2_done", {"exit": code})
++        _write_run_bundle(out_dir, run_id, entries, None, None, None, None)
++        return code
++
++    # v3: blueprint -> timeline -> render -> qa, via the shared interface.
++    evidence = _corpus_evidence("")
++    _log(entries, "evidence", {"refs": [e["record_id"] for e in evidence],
++                               "url": evidence[0]["url"] if evidence else None})
++    renderer = registry.renderer_for("two_beat_v3", memory=memory, offline=offline)
++
++    chosen = None
++    for i in range(max(1, cards)):
++        cand = _candidate_v3(offline, entries, evidence, run_id, seed=seed, arm=arm)
++        if not cand.get("ok", True) and cand.get("reel") is None:
++            _log(entries, "candidate_rejected", {"i": i, "stage": cand.get("stage"),
++                                                 "notes": str(cand.get("notes"))[:200]})
++            continue
++        bp = blueprint_from_reel(cand["reel"], "two_beat_v3", evidence,
++                                 experiment_id=run_id)
++        bp["critic"] = cand.get("critic") or {}
++        errs = renderer.validate_blueprint(bp)
++        if errs:
++            _log(entries, "candidate_rejected", {"i": i, "errors": errs})
++            continue
++        if cand.get("model_backed"):
++            from . import blueprint as _b
++            ok, reasons = _b.critic_passed(bp["critic"])
++            if not ok:
++                _log(entries, "critic_failed", {"i": i, "reasons": reasons})
++                continue
++        _log(entries, "candidate_accepted", {"i": i,
++                                             "model_backed": cand.get("model_backed")})
++        chosen = bp
++        break
++
++    if chosen is None:
++        _log(entries, "no_candidate", {"note": "no candidate passed prefilter/critic;"
++                                               " nothing rendered"})
++        _write_run_bundle(out_dir, run_id, entries, None, None, None, None)
++        return 1
++
++    timeline = renderer.build_timeline(chosen)
++    _log(entries, "timeline", {"duration_s": timeline.get("duration_s"),
++                               "beats": [b["kind"] for b in timeline["beats"]]})
++
++    out_base = Path(out_dir) if out_dir else (config.OUTPUTS / "experiments" / run_id)
++    out_base.mkdir(parents=True, exist_ok=True)
++    out_path = out_base / f"{format_id}.mp4"
++    artifact = renderer.render(timeline, out_path)
++    if not artifact.get("ok"):
++        _log(entries, "render_failed", {"stage": artifact.get("stage"),
++                                        "why": str(artifact.get("why"))[:300]})
++        _write_run_bundle(out_base, run_id, entries, chosen, timeline, None, artifact)
++        return 1
++    _log(entries, "rendered", {"path": str(out_path),
++                               "bytes": out_path.stat().st_size})
++
++    qa = renderer.qa(artifact, chosen)
++    _log(entries, "qa", {"ok": qa.get("ok"), "why": qa.get("why"),
++                         "failures": (qa.get("gate") or {}).get("failures")})
++
++    checksum = _sha256(out_path)
++    _log(entries, "checksum", {"sha256": checksum})
++    _log(entries, "dry_run", {"would_publish": chosen["beats"][0]["text"],
++                              "note": "no publishing API called"})
++    _write_run_bundle(out_base, run_id, entries, chosen, timeline, out_path, qa)
++    return 0 if qa.get("ok") else 1
++
++
++def _sha256(path: Path) -> str:
++    h = hashlib.sha256()
++    h.update(Path(path).read_bytes())
++    return h.hexdigest()
++
++
++def _write_run_bundle(out_dir, run_id, entries, blueprint, timeline, preview, qa):
++    base = Path(out_dir) if out_dir else (config.OUTPUTS / "experiments" / run_id)
++    base.mkdir(parents=True, exist_ok=True)
++    (base / "run.json").write_text(
++        json.dumps({"run_id": run_id, "dry_run": True, "log": entries,
++                    "qa": qa}, indent=2, ensure_ascii=False), encoding="utf-8")
++    if blueprint is not None:
++        (base / "blueprint.json").write_text(
++            json.dumps(blueprint, indent=2, ensure_ascii=False), encoding="utf-8")
++    if timeline is not None:
++        (base / "timeline.json").write_text(
++            json.dumps(timeline, indent=2, ensure_ascii=False), encoding="utf-8")
++    if preview is not None and Path(preview).exists():
++        (base / "checksum.sha256").write_text(_sha256(preview) + "\n",
++                                              encoding="utf-8")
++    print(f"[exp] bundle -> {base}", flush=True)
++
++
++def main() -> int:
++    ap = argparse.ArgumentParser(description="dry-run experiment orchestrator")
++    ap.add_argument("--format", default="auto",
++                    help="two_beat_v3 | paced_v2 | auto (default: auto)")
++    ap.add_argument("--offline", action="store_true",
++                    help="no network; deterministic fixture for CI")
++    ap.add_argument("--count", type=int, default=1)
++    ap.add_argument("--cards", type=int, default=3,
++                    help="max candidate blueprints to try")
++    ap.add_argument("--out-dir", default=None)
++    ap.add_argument("--seed", type=int, default=None)
++    ap.add_argument("--arm", default=None, choices=["A", "B", "C"],
++                    help="force the v3 visual arm (A pexels, B pinterest, C text)")
++    a = ap.parse_args()
++    return run(format_id=a.format, offline=a.offline, count=a.count,
++               out_dir=a.out_dir, cards=a.cards, seed=a.seed, arm=a.arm)
++
++
++if __name__ == "__main__":
++    sys.exit(main())
+diff --git a/tests/test_blueprint.py b/tests/test_blueprint.py
+new file mode 100644
+index 0000000..77c4ad9
+--- /dev/null
++++ b/tests/test_blueprint.py
+@@ -0,0 +1,128 @@
++"""Step 2 acceptance: ContentBlueprint schema validation.
++
++Covers the brief's list — schema validation, unsupported fields, unsupported
++rights state and metric null semantics — plus critic fail-closed behaviour.
++"""
++from __future__ import annotations
++
++import sys
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++
++from src import blueprint as bp  # noqa: E402
++
++
++def _valid() -> dict:
++    return bp.new(
++        "two_beat_v3", experiment_id="exp-1",
++        hook_mechanic="T3", evidence_refs=["rec-1"],
++        beats=[{"kind": "hook", "text": "Send this to the friend who types haha",
++                "start_ratio": 0.0},
++               {"kind": "payoff", "text": "She typed haha and shook",
++                "start_ratio": 0.6}],
++        audio_plan={"mode": "licensed_ambient", "track_id": None},
++        visual_arm="C", length_bucket="8-10")
++
++
++def test_valid_blueprint_passes():
++    assert bp.validate(_valid()) == []
++
++
++def test_unsupported_field_is_rejected():
++    b = _valid()
++    b["totally_bogus"] = 1
++    errs = bp.validate(b)
++    assert any("unsupported field" in e for e in errs), errs
++
++
++def test_missing_payoff_beat_is_rejected():
++    b = _valid()
++    b["beats"] = [{"kind": "hook", "text": "only a hook here", "start_ratio": 0.0}]
++    assert any("payoff" in e for e in bp.validate(b))
++
++
++def test_first_beat_must_start_at_zero():
++    b = _valid()
++    b["beats"][0]["start_ratio"] = 0.2
++    assert any("first beat" in e for e in bp.validate(b))
++
++
++def test_beat_ratios_must_ascend():
++    b = _valid()
++    b["beats"] = [
++        {"kind": "hook", "text": "a", "start_ratio": 0.0},
++        {"kind": "line", "text": "b", "start_ratio": 0.5},
++        {"kind": "payoff", "text": "c", "start_ratio": 0.2},
++    ]
++    assert any("regress" in e for e in bp.validate(b))
++
++
++def test_evidence_refs_are_mandatory():
++    b = _valid()
++    b["evidence_refs"] = []
++    assert any("evidence_refs" in e for e in bp.validate(b))
++
++
++def test_hard_reject_risk_flag():
++    b = _valid()
++    b["risk_flags"] = ["clinical_overclaim"]
++    assert any("hard-reject" in e for e in bp.validate(b))
++
++
++def test_unsupported_rights_state_is_rejected():
++    b = _valid()
++    b["rights_requirements"] = ["pinterest_url_only"]
++    assert any("unsupported rights" in e for e in bp.validate(b))
++
++
++def test_invalid_audio_mode_is_rejected():
++    b = _valid()
++    b["audio_plan"] = {"mode": "whatever", "track_id": None}
++    assert any("audio_plan.mode" in e for e in bp.validate(b))
++
++
++# ---------------------------------------------------- metric null semantics
++
++def test_missing_metric_is_none_not_zero():
++    assert bp.as_metric(None) is None
++    assert bp.as_metric("") is None
++    assert bp.as_metric("  ") is None
++    assert bp.as_metric("n/a") is None
++
++
++def test_real_zero_stays_zero():
++    assert bp.as_metric(0) == 0.0
++    assert bp.as_metric("0") == 0.0
++
++
++def test_numeric_string_coerces():
++    assert bp.as_metric("12.5") == 12.5
++
++
++# ---------------------------------------------------- critic fail-closed
++
++def test_critic_missing_dimension_fails_closed():
++    ok, reasons = bp.critic_passed({"specificity": 5})
++    assert ok is False
++    assert any("missing" in r for r in reasons)
++
++
++def test_critic_below_bar_fails():
++    c = {k: 4 for k in bp.CRITIC_GATE_KEYS}
++    c["payoff"] = 3
++    ok, reasons = bp.critic_passed(c)
++    assert ok is False and any("payoff" in r for r in reasons)
++
++
++def test_critic_all_pass():
++    c = {k: 4 for k in bp.CRITIC_GATE_KEYS}
++    ok, reasons = bp.critic_passed(c)
++    assert ok is True and reasons == []
++
++
++def test_new_defaults_are_structural_only():
++    b = bp.new("two_beat_v3")
++    # new() intentionally returns an incomplete blueprint; validate reports it.
++    assert bp.validate(b)
++    assert b["schema_version"] == bp.SCHEMA_VERSION
+diff --git a/tests/test_experiment.py b/tests/test_experiment.py
+new file mode 100644
+index 0000000..ff38972
+--- /dev/null
++++ b/tests/test_experiment.py
+@@ -0,0 +1,152 @@
++"""Step 2/3 acceptance: experiment engine bookkeeping + dry-run safety guard."""
++from __future__ import annotations
++
++import random
++import re
++import sys
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++
++from src import experiment  # noqa: E402
++
++ARM_A = "two_beat_v3"
++ARM_B = "paced_v2"
++
++
++def _raises(exc, fn, *a, **k) -> bool:
++    try:
++        fn(*a, **k)
++    except exc:
++        return True
++    return False
++
++
++# ----------------------------------------------------------------- storage
++
++def test_empty_and_roundtrip(tmp_path):
++    p = tmp_path / "experiments.json"
++    exp = experiment.load(p)
++    assert exp["assignments"] == []
++    experiment.log_assignment(exp, arm=ARM_A, snapshots=["2h"])
++    experiment.save(exp, p)
++    again = experiment.load(p)
++    assert len(again["assignments"]) == 1
++    assert again["assignments"][0]["arm"] == ARM_A
++
++
++def test_corrupt_file_loads_empty(tmp_path):
++    p = tmp_path / "experiments.json"
++    p.write_text("{not json", encoding="utf-8")
++    assert experiment.load(p)["assignments"] == []
++
++
++# ----------------------------------------------------------------- maturity
++
++def test_sample_maturity():
++    assert experiment.sample_maturity(1)["mature"] is False
++    assert experiment.sample_maturity(25)["mature"] is False
++    assert experiment.sample_maturity(80)["mature"] is True
++    assert experiment.sample_maturity(200)["mature"] is True
++    assert experiment.sample_maturity(80)["snapshots_available"] == ["2h", "24h", "72h"]
++
++
++def test_maturity_comes_from_snapshots_not_wallclock():
++    exp = experiment.empty()
++    a = experiment.log_assignment(exp, arm=ARM_A, snapshots=["2h", "24h"])
++    assert a["mature"] is False
++    b = experiment.log_assignment(exp, arm=ARM_A, snapshots=["2h", "72h"])
++    assert b["mature"] is True
++
++
++def test_mature_counts_excludes_invalid():
++    exp = experiment.empty()
++    experiment.log_assignment(exp, arm=ARM_A, snapshots=["72h"], valid=True)
++    experiment.log_assignment(exp, arm=ARM_A, snapshots=["72h"], valid=False)
++    assert experiment.mature_counts(exp) == {ARM_A: 1}
++
++
++# ----------------------------------------------------------------- selection
++
++def test_recommend_only_returns_eligible():
++    exp = experiment.empty()
++    rec = experiment.recommend_arm(exp, [ARM_A, ARM_B], rng=random.Random(1))
++    assert rec["arm"] in (ARM_A, ARM_B)
++    assert rec["phase"] == "calibration"
++
++
++def test_recommend_balancing_prefers_least_used():
++    exp = experiment.empty()
++    experiment.log_assignment(exp, arm=ARM_A, snapshots=["2h"])
++    rec = experiment.recommend_arm(exp, [ARM_A, ARM_B], rng=random.Random(0))
++    assert rec["arm"] == ARM_B
++
++
++def test_cooldown_blocks_third_consecutive():
++    exp = experiment.empty()
++    rec = experiment.recommend_arm(exp, [ARM_A, ARM_B],
++                                   recent_arms=[ARM_A, ARM_A],
++                                   rng=random.Random(0))
++    assert rec["arm"] == ARM_B
++
++
++def test_recommend_raises_when_no_arms():
++    assert _raises(ValueError, experiment.recommend_arm, experiment.empty(), [])
++
++
++def test_phase_d_switches_when_mature():
++    exp = experiment.empty()
++    # past the calibration size AND >= MIN_MATURE_PER_ARM mature per arm
++    for _ in range(8):
++        experiment.log_assignment(exp, arm=ARM_A, snapshots=["72h"],
++                                  metrics={"share_rate": 0.10})
++        experiment.log_assignment(exp, arm=ARM_B, snapshots=["72h"],
++                                  metrics={"share_rate": 0.02})
++    # many draws must all be exploit/explore, never the calibration label
++    rng = random.Random(7)
++    phases = {experiment.recommend_arm(exp, [ARM_A, ARM_B], rng=rng)["phase"]
++              for _ in range(50)}
++    assert phases <= {"exploit", "explore"}, phases
++
++
++# ----------------------------------------------------------------- replication
++
++def test_replication_needs_three_supporting_examples():
++    exp = experiment.empty()
++    # 4 baseline posts + 3 that clear 3x the median -> exactly 3 supports
++    for _ in range(4):
++        experiment.log_assignment(exp, arm=ARM_A, snapshots=["72h"],
++                                  metrics={"share_rate": 0.01})
++    for _ in range(3):
++        experiment.log_assignment(exp, arm=ARM_A, snapshots=["72h"],
++                                  metrics={"share_rate": 0.10})
++    assert experiment.replication_support(exp, ARM_A) == 3
++    assert experiment.ready_to_promote(exp, ARM_A) is True
++
++
++def test_single_viral_post_is_not_enough():
++    exp = experiment.empty()
++    experiment.log_assignment(exp, arm=ARM_A, snapshots=["72h"],
++                              metrics={"share_rate": 0.40})
++    assert experiment.ready_to_promote(exp, ARM_A) is False
++
++
++# ----------------------------------------------------------------- safety guard
++
++def test_run_experiment_cannot_publish():
++    src = (Path(__file__).resolve().parents[1]
++           / "src" / "run_experiment.py").read_text(encoding="utf-8")
++    # no actual publish call (the constant that merely names them is allowed)
++    assert not re.search(r"media_publish\s*\(", src)
++    assert not re.search(r"publish_reel\s*\(", src)
++    assert "import publish" not in src
++    assert "from . import publish" not in src
++    assert ", publish" not in src
++
++
++def test_run_experiment_defaults_are_dry_run():
++    src = (Path(__file__).resolve().parents[1]
++           / "src" / "run_experiment.py").read_text(encoding="utf-8")
++    # the only publish-related word allowed is the FORBIDDEN_SYMBOLS constant
++    assert "dry_run" in src
++    assert 'default="auto"' in src
+diff --git a/tests/test_formats.py b/tests/test_formats.py
+new file mode 100644
+index 0000000..cd81906
+--- /dev/null
++++ b/tests/test_formats.py
+@@ -0,0 +1,154 @@
++"""Step 2 acceptance: format registry, renderer interface, duration bounds.
++
++Covers format eligibility, per-format duration constraints, unsupported rights
++state at the format layer, and the renderer's deterministic timeline build.
++"""
++from __future__ import annotations
++
++import sys
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++
++from src import blueprint as bp  # noqa: E402
++from src.formats import registry, renderers  # noqa: E402
++
++
++def _raises(exc, fn, *a, **k) -> bool:
++    """Local raises helper so the test needs no third-party import (the
++    acceptance gate requires every test import to be declared in requirements)."""
++    try:
++        fn(*a, **k)
++    except exc:
++        return True
++    return False
++
++
++def _v3(arm="C", rights=("visual license", "audio license")) -> dict:
++    return bp.new(
++        "two_beat_v3", evidence_refs=["rec-1"], hook_mechanic="T3",
++        beats=[{"kind": "hook", "text": "Send this to the friend who types haha",
++                "start_ratio": 0.0},
++               {"kind": "payoff", "text": "She typed haha and shook",
++                "start_ratio": 0.6}],
++        audio_plan={"mode": "licensed_ambient", "track_id": None},
++        rights_requirements=list(rights), visual_arm=arm, length_bucket="8-10")
++
++
++# ----------------------------------------------------------------- registry
++
++def test_unknown_format_raises():
++    assert _raises(KeyError, registry.get, "nope")
++
++
++def test_eligible_is_active_only():
++    elig = registry.eligible()
++    assert "two_beat_v3" in elig and "paced_v2" in elig
++    assert "cinematic_v1" not in elig
++
++
++def test_cinematic_is_not_eligible():
++    assert registry.is_eligible("cinematic_v1") is False
++    assert registry.get("cinematic_v1")["status"] == "not_eligible"
++
++
++def test_duration_bounds_are_format_specific():
++    assert registry.duration_ok("two_beat_v3", 10.0) is True
++    assert registry.duration_ok("two_beat_v3", 20.0) is False
++    assert registry.duration_ok("paced_v2", 20.0) is True
++    assert registry.duration_ok("paced_v2", 40.0) is False
++    # unknown bounds / value fail closed
++    assert registry.duration_ok("cinematic_v1", 10.0) is False
++    assert registry.duration_ok("two_beat_v3", None) is False
++
++
++def test_validate_for_format_word_budget():
++    b = _v3()
++    b["beats"][0]["text"] = ("way too many words in this single hook beat here "
++                             "right now ok friend sure")
++    errs = registry.validate_for_format(b)
++    assert any("hook exceeds" in e for e in errs), errs
++
++
++def test_validate_for_format_rejects_ineligible():
++    b = _v3()
++    b["format_id"] = "cinematic_v1"
++    assert any("not eligible" in e for e in registry.validate_for_format(b))
++
++
++def test_validate_for_format_rejects_bad_arm():
++    b = _v3(arm="Z")
++    assert any("visual_arm" in e for e in registry.validate_for_format(b))
++
++
++def test_renderer_for_returns_adapted_renderer():
++    r = registry.renderer_for("two_beat_v3")
++    assert isinstance(r, renderers.TwoBeatV3Renderer)
++    assert _raises(RuntimeError, registry.renderer_for, "cinematic_v1")
++
++
++# ----------------------------------------------------------------- renderer
++
++def test_renderer_validate_accepts_clean_v3():
++    assert renderers.TwoBeatV3Renderer().validate_blueprint(_v3()) == []
++
++
++def test_renderer_rejects_wrong_beat_kinds():
++    b = _v3()
++    b["beats"][0]["kind"] = "line"
++    assert any("hook, payoff" in e
++               for e in renderers.TwoBeatV3Renderer().validate_blueprint(b))
++
++
++def test_arm_ab_requires_declared_rights():
++    r = renderers.TwoBeatV3Renderer()
++    b = _v3(arm="A", rights=["visual license"])
++    assert any("rights" in e for e in r.validate_blueprint(b))
++
++
++def test_arm_c_needs_no_third_party_rights():
++    # generic declared labels satisfy structure; arm C adds no extra asset rights
++    assert renderers.TwoBeatV3Renderer().validate_blueprint(_v3(arm="C")) == []
++
++
++def test_v3_timeline_is_deterministic_and_in_bounds():
++    r = renderers.TwoBeatV3Renderer()
++    t = r.build_timeline(_v3())
++    assert registry.duration_ok("two_beat_v3", t["duration_s"])
++    assert t["beats"][0]["start_s"] == 0.0
++    assert abs(t["beats"][1]["start_s"] - 0.6 * t["duration_s"]) < 0.05
++    # same input -> same timeline
++    assert t == r.build_timeline(_v3())
++
++
++def test_v2_timeline_uses_reveal_schedule():
++    from src import lint
++    b = bp.new("paced_v2", evidence_refs=["rec-1"], hook_mechanic="recognition",
++               beats=[{"kind": "hook", "text": "I rehearse the call",
++                       "start_ratio": 0.0},
++                      {"kind": "line", "text": "then I don't make it",
++                       "start_ratio": 0.2},
++                      {"kind": "line", "text": "and I say I was busy",
++                       "start_ratio": 0.4},
++                      {"kind": "line", "text": "busy being scared",
++                       "start_ratio": 0.6},
++                      {"kind": "payoff", "text": "every single time",
++                       "start_ratio": 0.8}],
++               audio_plan={"mode": "silent", "track_id": None})
++    r = renderers.PacedV2Renderer()
++    t = r.build_timeline(b)
++    _, dur = lint.reveal_schedule([x["text"] for x in b["beats"]])
++    assert t["duration_s"] == dur
++    assert len(t["beats"]) == len(b["beats"])
++
++
++def test_qa_fails_closed_without_artifact():
++    r = renderers.TwoBeatV3Renderer()
++    q = r.qa({"ok": False, "stage": "render", "why": "boom"}, _v3())
++    assert q["ok"] is False and q["why"] == "boom"
++
++
++def test_v2_render_without_preconditions_fails_closed():
++    r = renderers.PacedV2Renderer()
++    out = r.render({"format_id": "paced_v2", "duration_s": 20.0}, "/tmp/none.mp4")
++    assert out["ok"] is False and out["stage"] == "precondition"
+diff --git a/tests/test_render_short.py b/tests/test_render_short.py
+new file mode 100644
+index 0000000..aaa3a28
+--- /dev/null
++++ b/tests/test_render_short.py
+@@ -0,0 +1,73 @@
++"""Step 3/4 acceptance: the v3 renderer produces a REAL file that passes the gate.
++
++NO MOCKS: this runs the actual v3 renderer (offline arm C, generated background)
++with the real ffmpeg binary and asserts the finished MP4 passes `render_gate` in
++the v3 6-12s window. It also checks the ASS text layer that replaced drawtext
++(the pinned static ffmpeg has libass but not drawtext).
++
++Run: python3 -m tests.test_render_short
++"""
++from __future__ import annotations
++
++import sys
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
++
++from src import build_short, config, render_gate  # noqa: E402
++
++
++def _reel(arm="C") -> dict:
++    return {
++        "template": "T3", "topic": "saying I'm fine",
++        "hook": "Send this to the friend who types 'haha' and means 'I'm fine'.",
++        "payoff": "She typed 'haha' and sat there shaking.",
++        "visual_arm": arm, "scene_queries": ["empty room night window rain"],
++        "audio_type": "quiet_ambient", "length_bucket": "8-10",
++    }
++
++
++def test_ass_layer_keeps_every_word():
++    # _fit_beat must never drop words from a lint-valid beat.
++    text = "Send this to the friend who types 'haha' and means 'I'm fine'."
++    lines, size = build_short._fit_beat(text, start_size=74, max_lines=3)
++    assert " ".join(lines) == " ".join(text.split())
++    assert 40 <= size <= 74
++
++
++def test_write_ass_has_two_timed_events(tmp_path):
++    p = tmp_path / "x.ass"
++    build_short.write_ass(p, [
++        {"start": 0.0, "end": 5.4, "size": 60, "lines": ["hook a", "hook b"]},
++        {"start": 5.4, "end": 9.0, "size": 58, "lines": ["payoff"]},
++    ])
++    txt = p.read_text(encoding="utf-8")
++    assert txt.count("Dialogue:") == 2
++    assert "\\an5" in txt and "\\fs60" in txt
++    assert "0:00:00.00,0:00:05.40" in txt
++
++
++def test_offline_render_passes_gate():
++    out = config.OUTPUTS / "test_short_gate.mp4"
++    res = build_short.build(_reel("C"), {}, out_path=out, offline=True,
++                            duration_s=9.0, verbose=False)
++    assert res.get("ok"), f"render failed: {res.get('stage')} {res.get('why')}"
++    assert out.exists() and out.stat().st_size > 0
++    ok, report = render_gate.check(out, expect_audio=True, duration_bounds=(6.0, 12.0))
++    assert ok, f"gate failed: {report.get('failures')}"
++    assert report["width"] == 1080 and report["height"] == 1920
++    # the v3 window, not the v2 14-34s window
++    assert 6.0 - 0.05 <= report["duration_s"] <= 12.0 + 0.05
++
++
++def test_short_format_duration_rejected_by_v2_window():
++    """A valid 9s short must FAIL the old 14-34s window — proving the duration
++    bound is per-format, not global."""
++    out = config.OUTPUTS / "test_short_gate.mp4"
++    if not out.exists():
++        res = build_short.build(_reel("C"), {}, out_path=out, offline=True,
++                                duration_s=9.0, verbose=False)
++        assert res.get("ok")
++    ok, report = render_gate.check(out, expect_audio=True)
++    assert ok is False
++    assert any("outside" in f for f in report.get("failures", []))
+-- 
+2.43.0
+
