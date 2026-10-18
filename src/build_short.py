@@ -51,28 +51,29 @@ def _wrap(text: str, max_chars: int, max_lines: int | None = None) -> list:
     return lines[:max_lines] if max_lines else lines
 
 
-def _fit_beat(text: str, max_width: int = 780, max_lines: int = 3,
+def _fit_beat(text: str, max_width: int = 780, max_lines: int = 2,
               start_size: int = 74) -> tuple:
     """Choose a font size (and wrapping) that shows ALL of the beat's words.
 
-    §4 caps a beat at a few lines. Rather than silently truncating a 14-word
-    hook to fit two lines (which would ship an incomplete hook), shrink the font
-    from `start_size` until the whole text wraps within `max_lines`. Returns
-    (lines, fontsize). A word that cannot fit even at the floor is left on its
-    own line rather than dropped.
+    §4 caps a beat at TWO lines. Rather than silently truncating a 14-word hook
+    (which would ship an incomplete joke), shrink the font from `start_size`
+    until the whole text wraps within `max_lines`. Returns (lines, fontsize).
+    Floor is 30px — a 14-word hook fits two lines at 780px width by ~30px, and
+    the lint already caps hooks at 14 words, so the floor is reachable for every
+    lint-valid beat.
     """
     words = text.split()
     joined = " ".join(words)
     size = start_size
-    while size >= 40:
-        cpl = max(6, int(max_width / (size * 0.56)))
+    while size >= 30:
+        cpl = max(8, int(max_width / (size * 0.56)))
         lines = _wrap(text, cpl)
         if len(lines) <= max_lines and " ".join(lines) == joined:
             return lines, size
         size -= 2
-    # floor reached: keep every word, allow more lines
-    cpl = max(6, int(max_width / (40 * 0.56)))
-    return _wrap(text, cpl), 40
+    # floor reached: keep every word, allow more lines rather than drop any
+    cpl = max(8, int(max_width / (30 * 0.56)))
+    return _wrap(text, cpl), 30
 
 
 # The pinned static FFmpeg has libass but NOT the drawtext filter, so text is
@@ -250,8 +251,8 @@ def build(reel: dict, memory: dict, out_path: Path | None = None,
     hook_at, payoff_at, total = beat_times(duration_s)
 
     # §4: hook larger than payoff. Auto-fit so no lint-valid beat loses words.
-    hook_lines, hook_size = _fit_beat(hook, start_size=74, max_lines=3)
-    payoff_lines, payoff_size = _fit_beat(payoff, start_size=58, max_lines=3)
+    hook_lines, hook_size = _fit_beat(hook, start_size=74, max_lines=2)
+    payoff_lines, payoff_size = _fit_beat(payoff, start_size=58, max_lines=2)
     if verbose:
         print(f"[short] hook {len(hook_lines)}L@{hook_size}px  "
               f"payoff {len(payoff_lines)}L@{payoff_size}px", flush=True)
