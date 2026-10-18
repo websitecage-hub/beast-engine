@@ -52,7 +52,8 @@ def build_one(memory: dict, dry_run: bool = True, verbose: bool = True) -> dict:
         memory,
         recent_topics=[p.get("topic") for p in (memory.get("posts") or [])],
         recent_templates=[p.get("template") for p in (memory.get("posts") or [])],
-        explore_rate=learn_short.exploration_rate(memory))
+        explore_rate=learn_short.exploration_rate(memory),
+        recent_pov_count=_recent_pov_count(memory))
     template_code = picks.get("template", "T4")
     templates = {t["code"]: t for t in generate_short.templates()["templates"]}
     template = templates.get(template_code) or templates["T4"]

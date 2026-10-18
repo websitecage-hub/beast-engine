@@ -87,21 +87,26 @@ def length_bucket_v3(duration_s) -> str:
 
 
 def choose_v3(memory: dict, recent_topics: list, recent_templates: list,
-              explore_rate: float = 0.3) -> dict:
+              explore_rate: float = 0.3, recent_pov_count: int = 0) -> dict:
     """One draw per attribute under the v3 hard constraints.
 
     Constraints (constraints ALWAYS beat the draw):
       - topic: no repeat within the last 3 reels (§7 topic cooldown)
       - template: no repeat within the last 4 reels
-      - POV (T10): capped 1-in-5 by the lint, so here T10 is simply available;
-        the writer+lint enforce the cap itself.
+      - POV (T10): capped 1-in-5. The cap is enforced HERE, not in the writer:
+        offering T10 when a POV is already in the last 4 sends the writer into
+        max_rewrites unwinnable lint failures and kills the whole slot
+        (observed live: 3 drafts, 3 lint rejections, slot dead).
     """
     stats, G = arm_stats_v3(memory)
     recent_topics = [str(t) for t in (recent_topics or [])[-3:]]
     recent_templates = [str(t) for t in (recent_templates or [])[-4:]]
+    template_pool = [t for t in [f"T{i}" for i in range(1, 11)]
+                     if t not in recent_templates] or [f"T{i}" for i in range(1, 11)]
+    if recent_pov_count >= 1:
+        template_pool = [t for t in template_pool if t != "T10"] or ["T1"]
     allowed = {
-        "template": [t for t in [f"T{i}" for i in range(1, 11)]
-                     if t not in recent_templates] or [f"T{i}" for i in range(1, 11)],
+        "template": template_pool,
         "visual_arm": VISUAL_ARMS_V3[:],
         "topic": [t for t in _topics() if t not in recent_topics] or _topics(),
         "length_bucket": LENGTH_BUCKETS_V3[:],

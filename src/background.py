@@ -17,6 +17,7 @@ import subprocess
 from pathlib import Path
 
 from . import config, llm, pinterest
+from .pinterest import media_url  # noqa: F401 — re-exported for pick_clip/best_source_url
 
 # ffmpeg is resolved centrally: PATH first, then imageio-ffmpeg's bundled
 # binary. Hard-coding "ffmpeg" assumed a system install that CI does not have.
@@ -149,11 +150,11 @@ def _variants(e: dict) -> list:
 
 
 def best_source_url(e: dict, target_w: int = 1080) -> str:
-    """The highest-quality MP4 for a pin, falling back to `best_video`.
+    """The highest-quality PLAYABLE url for a pin.
 
-    Prefers a variant at least as wide as the reel (no upscaling). If none reaches
-    it, takes the widest available — still better than accepting a 720p default
-    when a 906p or 1440p variant exists.
+    Prefers a variant at least as wide as the reel (no upscaling). If none
+    reaches it, takes the widest available. Falls back to `best_video`, then to
+    the .m3u8 (USAGE.md §0.3 — HLS-only pins are playable, not dead).
     """
     vs = _variants(e)
     for w, _h, url in vs:
@@ -161,21 +162,26 @@ def best_source_url(e: dict, target_w: int = 1080) -> str:
             return url
     if vs:
         return vs[0][2]
-    return str(e.get("best_video") or "")
+    return media_url(e)
 
 
 def pick_clip(results: list, used: set):
-    """Spec §2.3 selection: video with MP4, >=3s, croppable to 9:16, motion-leaning.
+    """Spec §2.3 selection: playable video (MP4 or HLS), >=3s, 9:16-croppable.
 
-    FINAL FORMAT §3 additionally prefers clips that evidence a PERSON. Portrait
-    shape and longer duration still count, but a human-figure signal outranks both.
+    USAGE.md §0.3: many video pins are HLS-only — `best_video` null with a
+    .m3u8 in videos[]. Those are PLAYABLE (ffmpeg remuxes), so the old
+    `not e.get("best_video")` filter was discarding over half the pool for no
+    reason. `pinterest.media_url()` accepts either.
+
+    FINAL FORMAT §3 still prefers clips that evidence a PERSON; portrait shape
+    and duration still count, and a human-figure signal outranks both.
     Returns the chosen entry or None.
     """
     pool = []
     for e in results:
         if str(e.get("id")) in used:
             continue
-        if (e.get("type") or "image") != "video" or not e.get("best_video"):
+        if (e.get("type") or "image") != "video" or not media_url(e):
             continue
         ms = _duration_ms(e)
         if ms and ms < MIN_CLIP_S * 1000:
@@ -462,7 +468,7 @@ def build(cfg, content, memory, duration_s: float, offline: bool = False,
             entry = pick_clip(results, used)
             if not entry:
                 continue
-            url = entry.get("best_video")
+            url = best_source_url(entry)   # MP4 or HLS — download() handles both
             if url and pinterest.download(url, raw) and process_clip(raw, looped, duration_s, fps, cfg):
                 if loop_clip(looped, out_norm, duration_s, fps):
                     _record(memory, entry, dry_run)

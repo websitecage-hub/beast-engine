@@ -174,23 +174,22 @@ def _pinterest_still(queries: list, duration_s: float, out: Path, memory: dict,
 
 
 def _text_post_bg(out: Path, duration_s: float, seed_hue: int = 226) -> dict:
-    """Arm C: plain dark background with a subtle vertical shade — no photo."""
+    """Arm C: an animated gradient background — NOT a flat black screen.
+
+    The owner rejected the flat `color=c=...` background as "just black". This is
+    a 4-colour animated gradient (deep navy → indigo → violet) drifting slowly,
+    with a vignette and fine animated grain so it reads as a designed text-post
+    background instead of an off frame. Still no photo, still licence-free.
+    """
     ffmpeg = config.resolve_ffmpeg()
     out.parent.mkdir(parents=True, exist_ok=True)
-    # Deep navy-black with a faint centre glow. The glow is a SINGLE frame
-    # (r=1:d=1) that overlay repeats for the whole clip: without the pinned
-    # duration the expensive geq expression was evaluated once per output frame
-    # and a 9s reel took ~134s instead of ~2s.
     cmd = [ffmpeg, "-y",
            "-f", "lavfi", "-i",
-           f"color=c=0x0e1220:s=1080x1920:d={duration_s:.2f}:r={FPS}",
-           "-f", "lavfi", "-i",
-           "color=c=0x1a2340:s=1080x1080:r=1:d=1",
-           "-filter_complex",
-           "[1:v]geq=r='40+20*sin(2*PI*X/1080)':g='35+18*sin(2*PI*X/1080)':b='64+30*sin(2*PI*X/1080)'[glow];"
-           "[0:v][glow]overlay=(W-w)/2:(H-h)/2:eof_action=repeat:format=auto,format=yuv420p[v]",
-           "-map", "[v]", "-t", f"{duration_s:.2f}",
-           "-c:v", "libx264", "-preset", "veryfast", "-crf", "22",
+           ("gradients=s=1080x1920:c0=0x0d1026:c1=0x2a2350:c2=0x101a3a:"
+            f"c3=0x1c1035:nb_colors=4:speed=0.015:d={duration_s:.2f}:r={FPS}"),
+           "-vf", "vignette=PI/4,noise=alls=6:allf=t+u,format=yuv420p",
+           "-t", f"{duration_s:.2f}",
+           "-c:v", "libx264", "-preset", "veryfast", "-crf", "21",
            str(out)]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
     if r.returncode != 0 or not out.exists():
