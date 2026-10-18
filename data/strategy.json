@@ -1,71 +1,71 @@
 {
   "weights": {
     "archetype": {
-      "the_mask": 0.05460201460845096,
-      "the_rehearsal": 0.09017315197641183,
-      "the_freeze": 0.1956688462170237,
-      "the_detour": 0.04430217908561179,
-      "the_aftermath": 0.09038609185663381,
-      "the_bodys_betrayal": 0.09017315197641183,
-      "the_sealed_mouth": 0.08379798314236023,
-      "the_craving": 0.09017315197641183,
-      "the_losses": 0.08037712520786024,
-      "the_buried_anger": 0.09017315197641183,
-      "quiet_hope": 0.09017315197641183
+      "the_mask": 0.09090909090909088,
+      "the_rehearsal": 0.09090909090909088,
+      "the_freeze": 0.09090909090909088,
+      "the_detour": 0.09090909090909088,
+      "the_aftermath": 0.09090909090909088,
+      "the_bodys_betrayal": 0.09090909090909088,
+      "the_sealed_mouth": 0.09090909090909088,
+      "the_craving": 0.09090909090909088,
+      "the_losses": 0.09090909090909088,
+      "the_buried_anger": 0.09090909090909088,
+      "quiet_hope": 0.09090909090909088
     },
     "topic": {
-      "exposure_fear": 0.029678709763589578,
-      "fake_phone": 0.04901326123526899,
-      "ordering_food": 0.04901326123526899,
-      "phone_calls": 0.027765366313218767,
-      "freeze_at_work": 0.1133982411397393,
-      "asking_coworker": 0.04901326123526899,
-      "party_bathroom": 0.04901326123526899,
-      "mind_blank": 0.06218823184356465,
-      "post_interaction_hate": 0.049129003867615435,
-      "replay_2am": 0.04901326123526899,
-      "read_receipts": 0.04901326123526899,
-      "neutral_as_negative": 0.045548063350603116,
-      "meetings_voice": 0.04901326123526899,
-      "dating_app_freeze": 0.04901326123526899,
-      "dying_alone_thought": 0.04901326123526899,
-      "lost_friendships": 0.035119987663172536,
-      "behind_at_25": 0.04901326123526899,
-      "buried_anger": 0.04901326123526899,
-      "therapy_irony": 0.04901326123526899,
-      "the_grandma_win": 0.04901326123526899
+      "exposure_fear": 0.049999999999999975,
+      "fake_phone": 0.049999999999999975,
+      "ordering_food": 0.049999999999999975,
+      "phone_calls": 0.049999999999999975,
+      "freeze_at_work": 0.049999999999999975,
+      "asking_coworker": 0.049999999999999975,
+      "party_bathroom": 0.049999999999999975,
+      "mind_blank": 0.049999999999999975,
+      "post_interaction_hate": 0.049999999999999975,
+      "replay_2am": 0.049999999999999975,
+      "read_receipts": 0.049999999999999975,
+      "neutral_as_negative": 0.049999999999999975,
+      "meetings_voice": 0.049999999999999975,
+      "dating_app_freeze": 0.049999999999999975,
+      "dying_alone_thought": 0.049999999999999975,
+      "lost_friendships": 0.049999999999999975,
+      "behind_at_25": 0.049999999999999975,
+      "buried_anger": 0.049999999999999975,
+      "therapy_irony": 0.049999999999999975,
+      "the_grandma_win": 0.049999999999999975
     },
     "mood": {
-      "quiet_devastating": 0.2498792653072907,
-      "heavy_shadow": 0.20604043486448495,
-      "muffled_world": 0.14351178561536027,
-      "restrained_anger": 0.20028425710643205,
-      "gentle_hope": 0.20028425710643205
+      "quiet_devastating": 0.2,
+      "heavy_shadow": 0.2,
+      "muffled_world": 0.2,
+      "restrained_anger": 0.2,
+      "gentle_hope": 0.2
     },
     "bg_type": {
-      "mask": 0.05460201460845096,
-      "rehearsal": 0.09017315197641183,
-      "freeze": 0.1956688462170237,
-      "detour": 0.04430217908561179,
-      "aftermath": 0.09038609185663381,
-      "bodys_betrayal": 0.09017315197641183,
-      "sealed_mouth": 0.08379798314236023,
-      "craving": 0.09017315197641183,
-      "losses": 0.08037712520786024,
-      "buried_anger": 0.09017315197641183,
-      "quiet_hope": 0.09017315197641183
+      "mask": 0.09090909090909088,
+      "rehearsal": 0.09090909090909088,
+      "freeze": 0.09090909090909088,
+      "detour": 0.09090909090909088,
+      "aftermath": 0.09090909090909088,
+      "bodys_betrayal": 0.09090909090909088,
+      "sealed_mouth": 0.09090909090909088,
+      "craving": 0.09090909090909088,
+      "losses": 0.09090909090909088,
+      "buried_anger": 0.09090909090909088,
+      "quiet_hope": 0.09090909090909088
     },
     "loop_technique": {
-      "visual_echo": 0.3380076146742945,
-      "audio_echo": 0.33138654813911256,
-      "mid_thought": 0.330605837186593
+      "visual_echo": 0.3333333333333333,
+      "audio_echo": 0.3333333333333333,
+      "mid_thought": 0.3333333333333333
     }
   },
   "n": {
     "archetype": {
       "the_mask": 5,
       "the_rehearsal": 0,
-      "the_freeze": 5,
+      "the_freeze": 4,
       "the_detour": 7,
       "the_aftermath": 1,
       "the_bodys_betrayal": 0,
@@ -80,7 +80,7 @@
       "fake_phone": 0,
       "ordering_food": 0,
       "phone_calls": 5,
-      "freeze_at_work": 2,
+      "freeze_at_work": 1,
       "asking_coworker": 0,
       "party_bathroom": 0,
       "mind_blank": 3,
@@ -99,7 +99,7 @@
     },
     "mood": {
       "quiet_devastating": 4,
-      "heavy_shadow": 16,
+      "heavy_shadow": 15,
       "muffled_world": 3,
       "restrained_anger": 0,
       "gentle_hope": 0
@@ -107,7 +107,7 @@
     "bg_type": {
       "mask": 5,
       "rehearsal": 0,
-      "freeze": 5,
+      "freeze": 4,
       "detour": 7,
       "aftermath": 1,
       "bodys_betrayal": 0,
@@ -118,90 +118,90 @@
       "quiet_hope": 0
     },
     "loop_technique": {
-      "visual_echo": 22,
+      "visual_echo": 21,
       "audio_echo": 1,
       "mid_thought": 0
     }
   },
   "adj": {
     "archetype": {
-      "the_mask": 0.021420631383406982,
-      "the_rehearsal": 0.03537535863864808,
-      "the_freeze": 0.07676182386469493,
-      "the_detour": 0.017379956664230756,
-      "the_aftermath": 0.03545889597172582,
-      "the_bodys_betrayal": 0.03537535863864808,
-      "the_sealed_mouth": 0.03287434942533477,
-      "the_craving": 0.03537535863864808,
-      "the_losses": 0.03153233050249111,
-      "the_buried_anger": 0.03537535863864808,
-      "quiet_hope": 0.03537535863864808
+      "the_mask": -25.795341004492947,
+      "the_rehearsal": -26.668330490609833,
+      "the_freeze": -26.15264031302123,
+      "the_detour": -27.623352922187646,
+      "the_aftermath": -26.859379482552427,
+      "the_bodys_betrayal": -26.668330490609833,
+      "the_sealed_mouth": -25.710667767217885,
+      "the_craving": -26.668330490609833,
+      "the_losses": -26.96506208278191,
+      "the_buried_anger": -26.668330490609833,
+      "quiet_hope": -26.668330490609833
     },
     "topic": {
-      "exposure_fear": 0.021420631383406982,
-      "fake_phone": 0.03537535863864808,
-      "ordering_food": 0.03537535863864808,
-      "phone_calls": 0.020039674290368847,
-      "freeze_at_work": 0.08184526693815623,
-      "asking_coworker": 0.03537535863864808,
-      "party_bathroom": 0.03537535863864808,
-      "mind_blank": 0.04488440371289693,
-      "post_interaction_hate": 0.03545889597172582,
-      "replay_2am": 0.03537535863864808,
-      "read_receipts": 0.03537535863864808,
-      "neutral_as_negative": 0.03287434942533477,
-      "meetings_voice": 0.03537535863864808,
-      "dating_app_freeze": 0.03537535863864808,
-      "dying_alone_thought": 0.03537535863864808,
-      "lost_friendships": 0.025347877853017273,
-      "behind_at_25": 0.03537535863864808,
-      "buried_anger": 0.03537535863864808,
-      "therapy_irony": 0.03537535863864808,
-      "the_grandma_win": 0.03537535863864808
+      "exposure_fear": -25.795341004492947,
+      "fake_phone": -26.668330490609833,
+      "ordering_food": -26.668330490609833,
+      "phone_calls": -27.87021316484924,
+      "freeze_at_work": -26.872636074900036,
+      "asking_coworker": -26.668330490609833,
+      "party_bathroom": -26.668330490609833,
+      "mind_blank": -25.945737153181113,
+      "post_interaction_hate": -26.859379482552427,
+      "replay_2am": -26.668330490609833,
+      "read_receipts": -26.668330490609833,
+      "neutral_as_negative": -25.710667767217885,
+      "meetings_voice": -26.668330490609833,
+      "dating_app_freeze": -26.668330490609833,
+      "dying_alone_thought": -26.668330490609833,
+      "lost_friendships": -26.78323281272252,
+      "behind_at_25": -26.668330490609833,
+      "buried_anger": -26.668330490609833,
+      "therapy_irony": -26.668330490609833,
+      "the_grandma_win": -26.668330490609833
     },
     "mood": {
-      "quiet_devastating": 0.04413511453329011,
-      "heavy_shadow": 0.036392047895810825,
-      "muffled_world": 0.025347877853017273,
-      "restrained_anger": 0.03537535863864808,
-      "gentle_hope": 0.03537535863864808
+      "quiet_devastating": -26.13926271694387,
+      "heavy_shadow": -26.43275333363639,
+      "muffled_world": -26.78323281272252,
+      "restrained_anger": -26.668330490609833,
+      "gentle_hope": -26.668330490609833
     },
     "bg_type": {
-      "mask": 0.021420631383406982,
-      "rehearsal": 0.03537535863864808,
-      "freeze": 0.07676182386469493,
-      "detour": 0.017379956664230756,
-      "aftermath": 0.03545889597172582,
-      "bodys_betrayal": 0.03537535863864808,
-      "sealed_mouth": 0.03287434942533477,
-      "craving": 0.03537535863864808,
-      "losses": 0.03153233050249111,
-      "buried_anger": 0.03537535863864808,
-      "quiet_hope": 0.03537535863864808
+      "mask": -25.795341004492947,
+      "rehearsal": -26.668330490609833,
+      "freeze": -26.15264031302123,
+      "detour": -27.623352922187646,
+      "aftermath": -26.859379482552427,
+      "bodys_betrayal": -26.668330490609833,
+      "sealed_mouth": -25.710667767217885,
+      "craving": -26.668330490609833,
+      "losses": -26.96506208278191,
+      "buried_anger": -26.668330490609833,
+      "quiet_hope": -26.668330490609833
     },
     "loop_technique": {
-      "visual_echo": 0.03616736078664141,
-      "audio_echo": 0.03545889597172582,
-      "mid_thought": 0.03537535863864808
+      "visual_echo": -26.250396613651223,
+      "audio_echo": -26.859379482552427,
+      "mid_thought": -26.668330490609833
     }
   },
   "hour_scores": {
-    "13:30": 0.02140119171025881,
-    "17:30": 0.031145340966160052
+    "13:30": -25.931953687066834,
+    "17:30": -26.822601509158446
   },
-  "next_post_hour": "17:30",
+  "next_post_hour": "13:30",
   "warmup_until": "2026-09-27",
   "experiments": [
     {
       "archetype": "the_mask",
       "topic": "fake_phone",
-      "enqueued": "2026-10-11"
+      "enqueued": "2026-10-18"
     },
     {
       "archetype": "the_mask",
       "topic": "ordering_food",
-      "enqueued": "2026-10-11"
+      "enqueued": "2026-10-18"
     }
   ],
-  "last_updated": "2026-10-11T21:42:14.539864+00:00"
+  "last_updated": "2026-10-18T20:23:05.844314+00:00"
 }

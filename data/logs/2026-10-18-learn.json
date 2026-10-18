@@ -1,0 +1,91 @@
+[
+  {
+    "workflow": "learn",
+    "started": "2026-10-18T20:23:05.840665+00:00",
+    "dry_run": false,
+    "analyze": {
+      "n": 23,
+      "G": -26.668330490609833,
+      "weights": {
+        "archetype": {
+          "the_mask": 0.09090909090909088,
+          "the_rehearsal": 0.09090909090909088,
+          "the_freeze": 0.09090909090909088,
+          "the_detour": 0.09090909090909088,
+          "the_aftermath": 0.09090909090909088,
+          "the_bodys_betrayal": 0.09090909090909088,
+          "the_sealed_mouth": 0.09090909090909088,
+          "the_craving": 0.09090909090909088,
+          "the_losses": 0.09090909090909088,
+          "the_buried_anger": 0.09090909090909088,
+          "quiet_hope": 0.09090909090909088
+        },
+        "topic": {
+          "exposure_fear": 0.049999999999999975,
+          "fake_phone": 0.049999999999999975,
+          "ordering_food": 0.049999999999999975,
+          "phone_calls": 0.049999999999999975,
+          "freeze_at_work": 0.049999999999999975,
+          "asking_coworker": 0.049999999999999975,
+          "party_bathroom": 0.049999999999999975,
+          "mind_blank": 0.049999999999999975,
+          "post_interaction_hate": 0.049999999999999975,
+          "replay_2am": 0.049999999999999975,
+          "read_receipts": 0.049999999999999975,
+          "neutral_as_negative": 0.049999999999999975,
+          "meetings_voice": 0.049999999999999975,
+          "dating_app_freeze": 0.049999999999999975,
+          "dying_alone_thought": 0.049999999999999975,
+          "lost_friendships": 0.049999999999999975,
+          "behind_at_25": 0.049999999999999975,
+          "buried_anger": 0.049999999999999975,
+          "therapy_irony": 0.049999999999999975,
+          "the_grandma_win": 0.049999999999999975
+        },
+        "mood": {
+          "quiet_devastating": 0.2,
+          "heavy_shadow": 0.2,
+          "muffled_world": 0.2,
+          "restrained_anger": 0.2,
+          "gentle_hope": 0.2
+        },
+        "bg_type": {
+          "mask": 0.09090909090909088,
+          "rehearsal": 0.09090909090909088,
+          "freeze": 0.09090909090909088,
+          "detour": 0.09090909090909088,
+          "aftermath": 0.09090909090909088,
+          "bodys_betrayal": 0.09090909090909088,
+          "sealed_mouth": 0.09090909090909088,
+          "craving": 0.09090909090909088,
+          "losses": 0.09090909090909088,
+          "buried_anger": 0.09090909090909088,
+          "quiet_hope": 0.09090909090909088
+        },
+        "loop_technique": {
+          "visual_echo": 0.3333333333333333,
+          "audio_echo": 0.3333333333333333,
+          "mid_thought": 0.3333333333333333
+        }
+      },
+      "hour_scores": {
+        "13:30": -25.931953687066834,
+        "17:30": -26.822601509158446
+      },
+      "next_post_hour": "13:30",
+      "experiments": [
+        {
+          "archetype": "the_mask",
+          "topic": "fake_phone",
+          "enqueued": "2026-10-18"
+        },
+        {
+          "archetype": "the_mask",
+          "topic": "ordering_food",
+          "enqueued": "2026-10-18"
+        }
+      ]
+    },
+    "seconds": 0.01
+  }
+]
