@@ -167,6 +167,15 @@ def write_one(template: dict, topic: str, visual_arm: str, audio_type: str,
             last = {"ok": False, "stage": "lint", "reel": None, "lint": errs,
                     "critic": {}, "notes": notes, "attempt": attempt,
                     "draft": beats}
+            # persist every rejected draft — the owner reviews these
+            try:
+                from . import draftlog
+                draftlog.append({"ok": False, "stage": "lint",
+                                 "template": template["code"], "topic": topic,
+                                 "hook": hook, "payoff": payoff, "lint": errs,
+                                 "attempt": attempt})
+            except Exception:  # noqa: BLE001
+                pass
             continue
 
         # hard re-check passes; now the critic
@@ -209,6 +218,11 @@ def write_one(template: dict, topic: str, visual_arm: str, audio_type: str,
             last = {"ok": False, "stage": "critic", "reel": None, "lint": [],
                     "critic": verdict, "notes": notes, "attempt": attempt,
                     "draft": beats}
+            from . import draftlog
+            draftlog.append({"ok": False, "stage": "critic",
+                             "template": template["code"], "topic": topic,
+                             "hook": hook, "payoff": payoff,
+                             "notes": notes, "attempt": attempt})
             continue
 
         reel = {
