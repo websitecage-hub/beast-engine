@@ -100,5 +100,32 @@
    "send_trigger": "tagging the group chat",
    "beats": 2
   }
+ ],
+ "few_shot": [
+  {
+   "code": "F1",
+   "template": "T4",
+   "text": "Not avoiding you. / Just opened your text at 11pm and answered it in my head."
+  },
+  {
+   "code": "F2",
+   "template": "T2",
+   "text": "Replied in my head before lunch. / Replied for real on Thursday."
+  },
+  {
+   "code": "F3",
+   "template": "T3",
+   "text": "Send this to the friend who rehearsed a two-word hello for four blocks."
+  },
+  {
+   "code": "F4",
+   "template": "T7",
+   "text": "Battery full at the door. / 4% at \"so what do you do?\""
+  },
+  {
+   "code": "F5",
+   "template": "T8",
+   "text": "3am: remember that thing you said in 2019? / It was fine. It was one word."
+  }
  ]
 }

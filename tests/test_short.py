@@ -44,6 +44,16 @@ class TestTemplates(unittest.TestCase):
         self.assertEqual(t["length_s"], [6, 12])
         self.assertEqual(t["words"], [8, 22])
 
+    def test_few_shot_copy_is_blocked(self):
+        """The few-shot examples are in the prompt, so copying one must fail."""
+        from src import generate_short
+        shots = generate_short.templates().get("few_shot") or []
+        self.assertTrue(shots, "few-shot register examples must exist")
+        first = shots[0]["text"].split(" / ")
+        errs = lint_short.check(first, template=shots[0]["template"])
+        self.assertTrue(any("template example" in e for e in errs),
+                        f"copying a few-shot must be rejected, got {errs}")
+
     def test_every_template_has_trigger(self):
         from src import generate_short
         for x in generate_short.templates()["templates"]:

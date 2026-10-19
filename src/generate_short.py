@@ -70,6 +70,8 @@ def writer_prompt(template: dict, topic: str, visual_arm: str, audio_type: str,
                   length_bucket: str, recent_lines: list, notes: str = "") -> str:
     t = templates()
     recent_block = "\n".join(f"- {ln}" for ln in (recent_lines or [])[-30:]) or "(none yet)"
+    shots = t.get("few_shot") or []
+    shot_block = "\n".join(f"- ({s['code']}, {s['template']}) {s['text']}" for s in shots)
     notes_block = ""
     if notes:
         notes_block = ("YOUR PREVIOUS DRAFT WAS REJECTED. The editor said:\n" + notes.strip()
@@ -77,6 +79,10 @@ def writer_prompt(template: dict, topic: str, visual_arm: str, audio_type: str,
     return f"""You write ultra-short comedy reels for @unleashthe.b (social anxiety, relatable humour,
 audience 18-30 in the US/UK/Canada, scrolling at night). The reel wins when a stranger
 sends it to ONE specific friend. Funny first, tender second. One idea per reel.
+
+THE REGISTER YOU ARE WRITING IN (match this aim, NEVER copy these words — a linter
+rejects any 5-content-word overlap with them):
+{shot_block}
 
 TEMPLATE THIS REEL: {template['code']} - "{template['structure']}"
 Example of the STRUCTURE (never copy its words): {template['example']}

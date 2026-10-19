@@ -473,5 +473,5 @@
     "reach_floor": 25,
     "watch_cap": 2.0
   },
-  "short_publish_enabled": true
+  "short_publish_enabled": false
 }

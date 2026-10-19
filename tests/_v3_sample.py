@@ -19,6 +19,24 @@ from src import (build_short, config, generate_short, learn_short, lint_short,
 DRAFTS = config.OUTPUTS / "v3_drafts.jsonl"
 
 
+def load_telegram_env():
+    """Local runs: the creds live in ~/.beast-secrets/telegram.env, but alerts.py
+    reads os.environ. Load them here so delivery works outside Actions."""
+    import os
+    path = Path.home() / ".beast-secrets" / "telegram.env"
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[len("export "):]
+        if "=" in line:
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
+
+
 def log_draft(entry: dict):
     config.OUTPUTS.mkdir(parents=True, exist_ok=True)
     with DRAFTS.open("a", encoding="utf-8") as f:
@@ -52,7 +70,20 @@ def main() -> int:
                    "payoff": draft[1] if len(draft) > 1 else "",
                    "notes": res.get("notes", ""), "critic": res.get("critic", {})})
         print(f"[sample] REJECTED at {res['stage']}: {res.get('notes','')[:200]}")
-        return 1
+        if not FORCE_DELIVER or len(draft) < 2:
+            return 1
+        # FORCE_DELIVER: the owner asked to SEE the reel. Render the last draft
+        # anyway, clearly marked as critic-rejected. Nothing is published.
+        reel = {"format": "short2", "template": template_code, "hook": draft[0],
+                "payoff": draft[1], "topic": topic, "visual_arm": arm,
+                "scene_queries": generate_short.scene_queries_for(topic, draft[0],
+                                                                 draft[1]),
+                "audio_type": "quiet_ambient", "length_bucket": "8-10",
+                "caption": "(critic rejected — preview only)",
+                "hashtags": []}
+        rejected_only = True
+    else:
+        rejected_only = False
 
     log_draft({"ok": True, "template": template_code, "topic": topic,
                "hook": reel["hook"], "payoff": reel["payoff"],

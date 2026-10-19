@@ -67,11 +67,13 @@ def build_one(memory: dict, dry_run: bool = True, verbose: bool = True) -> dict:
         print(f"[v3] picked: {template_code} {topic} arm{visual_arm} "
               f"{audio_type} {length_bucket}", flush=True)
 
-    # 2. write -> lint -> critic
+    # 2. write -> lint -> critic. A 3/day deployment can afford 5 drafts per slot:
+    #    the critic's originality bar rejects ~2 of every 3 drafts, and a slot that
+    #    dies after 3 attempts loses the whole posting window.
     res = generate_short.write_one(
         template, topic, visual_arm, audio_type, length_bucket,
         recent_lines=_recent(memory, "hook", 12) + _recent(memory, "payoff", 12),
-        recent_pov_count=_recent_pov_count(memory), verbose=verbose)
+        recent_pov_count=_recent_pov_count(memory), max_rewrites=4, verbose=verbose)
     if not res.get("ok"):
         print(f"[v3] REJECTED at {res.get('stage')}: {res.get('notes', '')[:140]}",
               flush=True)

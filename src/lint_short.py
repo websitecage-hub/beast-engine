@@ -71,7 +71,16 @@ def overlap(a: str, b: str, n: int = 5) -> bool:
 
 
 def template_examples() -> list:
-    return [t["example"] for t in _TEMPLATES["templates"]]
+    """Every example the writer must not copy: template skeletons AND few-shots.
+
+    The few-shot register examples are in the prompt, so they must be in the
+    copy check too — otherwise the model's easiest way to satisfy the prompt is
+    to parrot the examples, which is exactly the originality failure the critic
+    keeps rejecting.
+    """
+    t = _TEMPLATES
+    return ([x["example"] for x in t["templates"]]
+            + [x["text"] for x in t.get("few_shot") or []])
 
 
 def check(beats: list, template: str = "", topic: str = "", recent_beats=None,
