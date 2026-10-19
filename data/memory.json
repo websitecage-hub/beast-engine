@@ -3081,6 +3081,51 @@
       "last_harvested": "2026-10-13T20:53:57.798571+00:00",
       "learnable": true,
       "scored_at": "2026-10-12T11:27:00.788063+00:00"
+    },
+    {
+      "ok": true,
+      "format": "short2",
+      "template": "T6",
+      "topic": "saying I'm fine",
+      "visual_arm": "C",
+      "audio_type": "quiet_ambient",
+      "length_bucket": "6-8",
+      "slot": "18:37",
+      "hook": "Me: yeah I'm totally fine",
+      "payoff": "Me also: typing haha three times so it sounds fine",
+      "caption": "the extra haha for credibility",
+      "hashtags": [
+        "#relatable",
+        "#introvert",
+        "#overthinking"
+      ],
+      "duration_s": 7.0,
+      "scene_queries": [
+        "person faint smile mirror night",
+        "tired eyes close up dark",
+        "totally close up aesthetic video",
+        "typing close up aesthetic video"
+      ],
+      "created_at": "2026-10-19T18:37:44.351877+00:00",
+      "published_at_utc": null,
+      "media_id": null,
+      "critic": {
+        "specificity": 4,
+        "sendability": 5,
+        "tone_safety": 4,
+        "originality": 4,
+        "loop_ok": true,
+        "claims_ok": true,
+        "sendability_who": "The friend who triple-hahas to prove they're okay — they'd reply 'hahaha' (three times, deliberately) or 'the extra haha for credibility is a personal attack'.",
+        "rewrite_notes": "'Typing haha three times' is the exact behavior — good. But hook 'totally fine' is generic; let the hahas carry it. Caption 'extra haha for credibility' duplicates payoff; either use it as the payoff line or drop it."
+      },
+      "attempt": 2,
+      "bg": {
+        "ok": true,
+        "source": "textpost"
+      },
+      "dry_run": true,
+      "score": null
     }
   ],
   "used_pins": [
@@ -3821,5 +3866,53 @@
         "value": 0
       }
     ]
-  }
+  },
+  "short_posts": [
+    {
+      "ok": true,
+      "format": "short2",
+      "template": "T6",
+      "topic": "saying I'm fine",
+      "visual_arm": "C",
+      "audio_type": "quiet_ambient",
+      "length_bucket": "6-8",
+      "slot": "18:37",
+      "hook": "Me: yeah I'm totally fine",
+      "payoff": "Me also: typing haha three times so it sounds fine",
+      "caption": "the extra haha for credibility",
+      "hashtags": [
+        "#relatable",
+        "#introvert",
+        "#overthinking"
+      ],
+      "duration_s": 7.0,
+      "scene_queries": [
+        "person faint smile mirror night",
+        "tired eyes close up dark",
+        "totally close up aesthetic video",
+        "typing close up aesthetic video"
+      ],
+      "created_at": "2026-10-19T18:37:44.351877+00:00",
+      "published_at_utc": null,
+      "media_id": null,
+      "critic": {
+        "specificity": 4,
+        "sendability": 5,
+        "tone_safety": 4,
+        "originality": 4,
+        "loop_ok": true,
+        "claims_ok": true,
+        "sendability_who": "The friend who triple-hahas to prove they're okay — they'd reply 'hahaha' (three times, deliberately) or 'the extra haha for credibility is a personal attack'.",
+        "rewrite_notes": "'Typing haha three times' is the exact behavior — good. But hook 'totally fine' is generic; let the hahas carry it. Caption 'extra haha for credibility' duplicates payoff; either use it as the payoff line or drop it."
+      },
+      "attempt": 2,
+      "bg": {
+        "ok": true,
+        "source": "textpost"
+      },
+      "dry_run": true
+    }
+  ],
+  "short_posts_today_date": "2026-10-19",
+  "short_posts_today_count": 1
 }
