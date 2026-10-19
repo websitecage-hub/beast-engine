@@ -3126,6 +3126,54 @@
       },
       "dry_run": true,
       "score": null
+    },
+    {
+      "ok": true,
+      "format": "short2",
+      "template": "T2",
+      "topic": "cancelled plans",
+      "visual_arm": "pin_video",
+      "audio_type": "trending_spedup",
+      "length_bucket": "8-10",
+      "slot": "19:51",
+      "hook": "typed a formal apology paragraph before cancelling the group chat",
+      "payoff": "phone face-down in pyjamas after cancelling",
+      "caption": "the apology text took more energy than the plans did",
+      "hashtags": [
+        "#relatable",
+        "#overthinking",
+        "#introvertmemes",
+        "#socialbattery"
+      ],
+      "duration_s": 9.0,
+      "scene_queries": [
+        "phone showing cancelled plan notification",
+        "person relieved on couch at night",
+        "typed close up aesthetic video",
+        "formal close up aesthetic video"
+      ],
+      "created_at": "2026-10-19T19:51:09.443919+00:00",
+      "published_at_utc": null,
+      "media_id": null,
+      "critic": {
+        "specificity": 4,
+        "sendability": 5,
+        "tone_safety": 5,
+        "originality": 4,
+        "loop_ok": true,
+        "claims_ok": true,
+        "sendability_who": "The friend who over-apologises before bailing — they'd reply 'the formal apology is TOO real' or 'why did you call me out like this'",
+        "rewrite_notes": "'Phone face-down in pyjamas' is a good fresh concrete beat, but payoff still hinges on 'cancelling' — the apology paragraph is the actual joke and payoff drops it. Echo 'apology' or make the send the payoff beat."
+      },
+      "attempt": 5,
+      "bg": {
+        "ok": true,
+        "source": "pinterest_video",
+        "path": "/home/testflowthrowout/beast-engine/outputs/bg.mp4",
+        "is_video": true
+      },
+      "dry_run": true,
+      "score": null
     }
   ],
   "used_pins": [
@@ -3253,6 +3301,11 @@
       "id": "603834262544241292",
       "date": "2026-10-06",
       "pin_url": "https://www.pinterest.com/pin/603834262544241292/"
+    },
+    {
+      "id": "e1_AfqPShycxN8bCuI9YqmnYShU-Syi1I9_1cf-htOXu0VMGvXDZZ99",
+      "date": "2026-10-19",
+      "pin_url": "https://www.pinterest.com/pin/e1_AfqPShycxN8bCuI9YqmnYShU-Syi1I9_1cf-htOXu0VMGvXDZZ99/"
     }
   ],
   "used_tracks": [],
@@ -3912,8 +3965,55 @@
       },
       "dry_run": true,
       "public_url": "https://litter.catbox.moe/4xps3c.mp4"
+    },
+    {
+      "ok": true,
+      "format": "short2",
+      "template": "T2",
+      "topic": "cancelled plans",
+      "visual_arm": "pin_video",
+      "audio_type": "trending_spedup",
+      "length_bucket": "8-10",
+      "slot": "19:51",
+      "hook": "typed a formal apology paragraph before cancelling the group chat",
+      "payoff": "phone face-down in pyjamas after cancelling",
+      "caption": "the apology text took more energy than the plans did",
+      "hashtags": [
+        "#relatable",
+        "#overthinking",
+        "#introvertmemes",
+        "#socialbattery"
+      ],
+      "duration_s": 9.0,
+      "scene_queries": [
+        "phone showing cancelled plan notification",
+        "person relieved on couch at night",
+        "typed close up aesthetic video",
+        "formal close up aesthetic video"
+      ],
+      "created_at": "2026-10-19T19:51:09.443919+00:00",
+      "published_at_utc": null,
+      "media_id": null,
+      "critic": {
+        "specificity": 4,
+        "sendability": 5,
+        "tone_safety": 5,
+        "originality": 4,
+        "loop_ok": true,
+        "claims_ok": true,
+        "sendability_who": "The friend who over-apologises before bailing — they'd reply 'the formal apology is TOO real' or 'why did you call me out like this'",
+        "rewrite_notes": "'Phone face-down in pyjamas' is a good fresh concrete beat, but payoff still hinges on 'cancelling' — the apology paragraph is the actual joke and payoff drops it. Echo 'apology' or make the send the payoff beat."
+      },
+      "attempt": 5,
+      "bg": {
+        "ok": true,
+        "source": "pinterest_video",
+        "path": "/home/testflowthrowout/beast-engine/outputs/bg.mp4",
+        "is_video": true
+      },
+      "dry_run": true
     }
   ],
   "short_posts_today_date": "2026-10-19",
-  "short_posts_today_count": 1
+  "short_posts_today_count": 2
 }
