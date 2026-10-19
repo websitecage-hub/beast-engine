@@ -118,19 +118,26 @@ class TestBuildShort(unittest.TestCase):
         self.assertGreaterEqual(lines[1], 30)
 
     def test_arm_c_text_post_renders_offline(self):
-        """Arm C needs no network: a full render must pass the gate offline."""
+        """Offline (no network): the renderer must still produce a real reel.
+
+        With Pinterest-only arms, offline falls back to background.build's
+        bundled source — flagged by name so it is never reported as Pinterest.
+        """
         from src import build_short, config
         reel = {"format": "short2", "template": "T4", "hook": "Not rude today.",
                 "payoff": "Rude. Out of battery.", "topic": "replying late",
-                "visual_arm": "C", "audio_type": "quiet_ambient",
+                "visual_arm": "pin_video", "audio_type": "quiet_ambient",
                 "length_bucket": "8-10",
                 "scene_queries": ["phone dark room"], "caption": "every time",
                 "hashtags": ["#relatable"]}
         built = build_short.build(reel, {}, duration_s=9.0, offline=True,
                                   verbose=False)
         self.assertTrue(built.get("ok"), f"render failed: {built}")
+        self.assertNotIn("pinterest", str(built.get("bg", {}).get("source", ""))
+                         .lower().replace("bundled", ""),
+                         "an offline render must not claim a Pinterest source")
         p = Path(built["path"])
-        # flat-colour 9s clip at CRF 22 is legitimately small; 45KB+ proves a
+        # flat-colour 9s clip at CRF 22 is legitimately small; 20KB+ proves a
         # real encode with audio, not a placeholder
         self.assertGreater(p.stat().st_size, 20_000)
 

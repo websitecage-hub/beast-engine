@@ -24,7 +24,7 @@ ATTRIBUTES_V3 = ["template", "visual_arm", "topic", "length_bucket",
                  "audio_type", "slot"]
 
 LENGTH_BUCKETS_V3 = ["6-8", "8-10", "10-12"]
-VISUAL_ARMS_V3 = ["A", "B", "C"]
+VISUAL_ARMS_V3 = ["pin_video", "pin_still"]
 AUDIO_TYPES_V3 = ["soft_instrumental", "trending_spedup", "quiet_ambient"]
 
 REWARD_WEIGHTS = {"shares_over_reach": 25.0, "saves_over_reach": 8.0,

@@ -20,7 +20,7 @@ import json
 import subprocess
 from pathlib import Path
 
-from . import background, config, lint_short, pexels, pinterest
+from . import background, config, lint_short, pin_still, pinterest
 
 TEXT_X0, TEXT_X1 = 150, 930          # §4 text safe band
 FPS = 30
@@ -136,27 +136,18 @@ def _scrim_filter(opacity: float = 0.45) -> str:
 
 # ------------------------------------------------------------------ backgrounds
 
-def _pexels_clip(queries: list, duration_s: float, out: Path, memory: dict,
-                 offline: bool = False) -> dict:
-    """Arm A: a real 6-10s stock clip, licence-clean."""
-    if offline or not pexels.available():
-        return {"ok": False, "why": "pexels unavailable (no key or offline)"}
-    for q in queries:
-        res = pexels.fetch(q, out)
-        if res.get("ok") and out.exists():
-            return {"ok": True, "source": "pexels", "query": q}
-    return {"ok": False, "why": "no pexels result for " + " | ".join(queries)}
 
-
-def _pinterest_still(queries: list, duration_s: float, out: Path, memory: dict,
-                     offline: bool = False) -> dict:
-    """Arm B: Pinterest still/clip via background.build.
+def _pinterest_clip(queries: list, duration_s: float, memory: dict,
+                    offline: bool = False) -> dict:
+    """Pinterest clip via background.build (video first, still push-in inside).
 
     build() returns (bg_mp4_path, bg_source) — an already-normalised, loop-ready
     1080x1920 mp4 (a still is animated with the push-in inside build()).
+
+    `offline=True` is NOT short-circuited: background.build owns that mode and
+    returns its bundled fallback, flagged by source name, so an offline render
+    is still a real reel and the source is never misreported as Pinterest.
     """
-    if offline:
-        return {"ok": False, "why": "offline"}
     content = {"scene_queries": queries, "scene": queries[0] if queries else "",
                "bg_type": "short", "cluster": "short", "archetype": "short",
                "topic": "short", "topic_label": "short"}
@@ -173,69 +164,44 @@ def _pinterest_still(queries: list, duration_s: float, out: Path, memory: dict,
             "is_video": True}
 
 
-def _text_post_bg(out: Path, duration_s: float, seed_hue: int = 226) -> dict:
-    """Arm C: an animated gradient background — NOT a flat black screen.
-
-    The owner rejected the flat `color=c=...` background as "just black". This is
-    a 4-colour animated gradient (deep navy → indigo → violet) drifting slowly,
-    with a vignette and fine animated grain so it reads as a designed text-post
-    background instead of an off frame. Still no photo, still licence-free.
-    """
-    ffmpeg = config.resolve_ffmpeg()
-    out.parent.mkdir(parents=True, exist_ok=True)
-    cmd = [ffmpeg, "-y",
-           "-f", "lavfi", "-i",
-           ("gradients=s=1080x1920:c0=0x0d1026:c1=0x2a2350:c2=0x101a3a:"
-            f"c3=0x1c1035:nb_colors=4:speed=0.015:d={duration_s:.2f}:r={FPS}"),
-           "-vf", "vignette=PI/4,noise=alls=6:allf=t+u,format=yuv420p",
-           "-t", f"{duration_s:.2f}",
-           "-c:v", "libx264", "-preset", "veryfast", "-crf", "21",
-           str(out)]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
-    if r.returncode != 0 or not out.exists():
-        return {"ok": False, "why": (r.stderr or "")[-200:]}
-    return {"ok": True, "source": "textpost"}
-
 
 # ------------------------------------------------------------------ assembly
 
 def build(reel: dict, memory: dict, out_path: Path | None = None,
           offline: bool = False, duration_s: float | None = None,
           verbose: bool = True) -> dict:
-    """Render one short reel. Returns {"ok", "path", "gate", "bg", ...}."""
+    """Render one short reel. Returns {"ok", "path", "gate", "bg", ...}.
+
+    Backgrounds are ALWAYS Pinterest (owner directive): arm "pin_video" uses
+    background.build (Pinterest clip, still push-in as its own internal
+    fallback); arm "pin_still" uses the Pinterest still push-in directly. There
+    is no synthetic background arm.
+    """
     cfg = config.load_config()
     out_path = out_path or (config.OUTPUTS / "reel_short.mp4")
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     hook, payoff = str(reel["hook"]), str(reel["payoff"])
-    arm = reel.get("visual_arm", "C")
+    arm = reel.get("visual_arm", "pin_video")
     bucket = reel.get("length_bucket", "8-10")
     if duration_s is None:
         lo, hi = {"6-8": (6.0, 8.0), "8-10": (8.0, 10.0),
                   "10-12": (10.0, 12.0)}.get(bucket, (8.0, 10.0))
         duration_s = round((lo + hi) / 2, 2)
 
-    # 1. the background per arm
+    # 1. the background — Pinterest, always
     queries = reel.get("scene_queries") or ["night window rain aesthetic"]
     bg = {"ok": False, "why": "not built"}
-    if arm == "A":
-        bg = _pexels_clip(queries, duration_s, config.OUTPUTS / "bg_short.mp4",
-                          memory, offline)
-        if not bg.get("ok"):
-            if verbose:
-                print(f"[short] arm A unavailable ({bg.get('why')}) -> falling to C",
-                      flush=True)
-            arm = "C"
-    if arm == "B":
-        bg = _pinterest_still(queries, duration_s, config.OUTPUTS / "bg_short.mp4",
-                              memory, offline)
-        if not bg.get("ok"):
-            if verbose:
-                print(f"[short] arm B unavailable ({bg.get('why')}) -> falling to C",
-                      flush=True)
-            arm = "C"
-    if arm == "C":
-        bg = _text_post_bg(config.OUTPUTS / "bg_short.mp4", duration_s)
+    if arm in ("pin_still", "C"):
+        path, source = pin_still.still_clip(cfg, {"scene_queries": queries}, memory,
+                                            duration_s)
+        if path:
+            bg = {"ok": True, "source": source, "path": str(path), "is_video": True}
+        elif verbose:
+            print(f"[short] pin_still unavailable ({source}) -> pin_video", flush=True)
+    if not bg.get("ok"):
+        bg = _pinterest_clip(queries, duration_s, memory, offline)
+        arm = "pin_video"
         if not bg.get("ok"):
             return {"ok": False, "stage": "bg", "why": bg.get("why")}
 

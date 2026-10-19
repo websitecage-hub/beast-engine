@@ -20,12 +20,12 @@ from . import config, critic_model, lint_short, llm
 
 _TEMPLATES_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates.json")
 
-# §4 — the three visual arms the engine tests
-VISUAL_ARMS = ["A", "B", "C"]
+# §4 — the visual arms the engine tests. BOTH are Pinterest assets (owner
+# directive: "use pinterest as assets"); the arms differ in treatment, not source.
+VISUAL_ARMS = ["pin_video", "pin_still"]
 ARM_JOB = {
-    "A": "6-10s vertical stock clip (hallway, night street, rain, phone typing) with the two-beat text over it",
-    "B": "a Pinterest still with a slow push-in plus the same text",
-    "C": "no photo: text on a plain dark or soft-colour background (tweet/notes-app look)",
+    "pin_video": "a 6-10s Pinterest video clip with the two-beat text over it",
+    "pin_still": "a Pinterest still image with a slow push-in plus the same text",
 }
 
 # §5 — audio arms
