@@ -1,0 +1,10 @@
+{
+  "at": "2026-10-19T11:46:33.198174+00:00",
+  "beat_count": 3,
+  "token_alive": true,
+  "token_days_left": 31,
+  "days_since_last_post": 13,
+  "alerts": [
+    "NO POST FOR 13 DAYS. Either the schedule is off (expected while publish is disabled) or the pipeline is failing silently."
+  ]
+}
