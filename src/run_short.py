@@ -208,10 +208,14 @@ def main(argv=None) -> int:
         url, host = upload_host.publicize(video)
         record["public_url"] = url
         config.save_memory(memory)
-        alerts.telegram_video(video, caption=(f"v3 {record['template']} · "
+        sent = alerts.telegram_video(video, caption=(f"v3 {record['template']} · "
                                           f"{record['topic']} · "
                                           f"{record['duration_s']}s\n"
                                           f"{record['hook']} / {record['payoff']}\n{url}"))
+        # never silent: a False here used to look exactly like a success
+        print(f"[v3] telegram delivery: {sent} ({url})", flush=True)
+        record["telegram_delivered"] = bool(sent)
+        config.save_memory(memory)
     except Exception as exc:  # noqa: BLE001
         print(f"[v3] telegram delivery failed: {exc}", flush=True)
     print(f"[v3] DONE ok=True url={record.get('public_url', '')}")

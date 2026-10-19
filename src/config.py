@@ -407,8 +407,46 @@ DEFAULTS = {
 
 
 def env(name: str, default=None):
+    """Environment with a local-file fallback.
+
+    GitHub Actions exports secrets as env vars; a local run has them in
+    ~/.beast-secrets/*.env instead. Load those once (never overriding a real
+    env var) so `alerts`, `publish` and friends behave the same in both places.
+    Values are never logged.
+    """
+    val = os.environ.get(name)
+    if val not in (None, ""):
+        return val
+    _load_secret_files()
     val = os.environ.get(name)
     return val if val not in (None, "") else default
+
+
+_SECRETS_LOADED = False
+
+
+def _load_secret_files():
+    global _SECRETS_LOADED
+    if _SECRETS_LOADED:
+        return
+    _SECRETS_LOADED = True
+    d = Path(os.environ.get("BEAST_SECRETS_DIR",
+                            str(Path.home() / ".beast-secrets")))
+    if not d.is_dir():
+        return
+    for p in sorted(d.glob("*.env")):
+        try:
+            lines = p.read_text(encoding="utf-8").splitlines()
+        except OSError:
+            continue
+        for line in lines:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            if line.startswith("export "):
+                line = line[len("export "):]
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 
 def load_json(path, default=None):

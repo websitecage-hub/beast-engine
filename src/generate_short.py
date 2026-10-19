@@ -128,7 +128,11 @@ Score 1-5, be stingy, 5 is rare:
   them = max 2. This is the score that matters most.
 - tone_safety: funny about behaviour, never mocking the person, no diagnosis/claim, nothing
   that trivialises mental illness.
-- originality: fresh wording? template-feel or stale meme phrasing = max 3.
+- originality: is the WORDING fresh? Judge the words, not the structure: this writer is
+  REQUIRED to use an assigned template (T1-T10), so using one is never a penalty. Score
+  down only for genuinely stale meme phrasing or a line already seen in the wild
+  ("...it's giving", "name a more iconic duo", "tell me you're X without telling me") = max 3.
+  A fresh, concrete, specific line that happens to fit a template scores 4-5.
 Also: loop_ok (does the payoff share a word with the hook / does it loop cleanly?) and
 claims_ok (no banned claims).
 Return JSON only: {{"specificity":n,"sendability":n,"tone_safety":n,"originality":n,
