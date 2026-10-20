@@ -4110,7 +4110,9 @@
         "path": "/home/testflowthrowout/beast-engine/outputs/bg.mp4",
         "is_video": true
       },
-      "dry_run": true
+      "dry_run": true,
+      "public_url": "https://n.uguu.se/qxnNKgbR.mp4",
+      "telegram_delivered": true
     }
   ],
   "short_posts_today_date": "2026-10-20",

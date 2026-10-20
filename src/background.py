@@ -260,7 +260,7 @@ def process_clip(src: Path, out: Path, duration_s: float, fps: int,
     start = max((src_dur - duration_s) / 2.0, 0.0)
     # Spec §3.1 + §3.2 + §3.5 in one pass.
     vf = (f"scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
-          f"fps={fps},{_grade_segments(cfg, 0.0)},format=yuv420p".replace(",,", ","))
+          f"fps={fps},{_grade_segments(cfg, 0.0)},setsar=1,format=yuv420p".replace(",,", ","))
     cmd = [FFMPEG, "-y", "-v", "error", "-ss", f"{start:.3f}", "-i", str(src),
            "-t", f"{duration_s:.3f}", "-vf", vf, "-an",
            "-c:v", "libx264", "-preset", "slower", "-crf", "16", str(out)]
@@ -308,7 +308,7 @@ def loop_clip(src: Path, out: Path, duration_s: float, fps: int,
     filt = (f"[0:v]split[a][b];"
             f"[a]trim=0:{offset:.3f},setpts=PTS-STARTPTS[ha];"
             f"[b]trim={offset:.3f}:{duration_s:.3f},setpts=PTS-STARTPTS[tb];"
-            f"[ha][tb]concat=n=2:v=1:a=0,format=yuv420p[v]")
+            f"[ha][tb]concat=n=2:v=1:a=0,setsar=1,format=yuv420p[v]")
     cmd = [FFMPEG, "-y", "-v", "error", "-i", str(src),
            "-filter_complex", filt, "-map", "[v]", "-an",
            "-c:v", "libx264", "-preset", "slower", "-crf", "16", "-r", str(fps), str(out)]
@@ -329,7 +329,7 @@ def animate_still(src: Path, out: Path, duration_s: float, fps: int,
           f"zoompan=z='1.0+0.10*on/{frames - 1}':"
           f"x='iw/2-(iw/zoom/2)+8*sin(on/12)':y='ih/2-(ih/zoom/2)+6*cos(on/15)':"
           f"d={frames}:s=1080x1920:fps={fps},"
-          f"gblur=sigma=0.6,{_grade_segments(cfg, darken)},format=yuv420p".replace(",,", ","))
+          f"gblur=sigma=0.6,{_grade_segments(cfg, darken)},setsar=1,format=yuv420p".replace(",,", ","))
     cmd = [FFMPEG, "-y", "-v", "error", "-loop", "1", "-i", str(src),
            "-t", f"{duration_s:.3f}", "-vf", vf,
            "-c:v", "libx264", "-preset", "slower", "-crf", "16", str(out)]
