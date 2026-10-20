@@ -3174,6 +3174,53 @@
       },
       "dry_run": true,
       "score": null
+    },
+    {
+      "ok": true,
+      "format": "short2",
+      "template": "T1",
+      "topic": "small talk",
+      "visual_arm": "pin_video",
+      "audio_type": "trending_spedup",
+      "length_bucket": "10-12",
+      "slot": "13:55",
+      "hook": "People think I'm chatty at parties.",
+      "payoff": "I'm actually buffering a reply behind my smile.",
+      "caption": "my brain buffering mid small talk again",
+      "hashtags": [
+        "#relatable",
+        "#introvert",
+        "#overthinking"
+      ],
+      "duration_s": 11.0,
+      "scene_queries": [
+        "two people small talk office kitchen",
+        "awkward hallway nod",
+        "people close up aesthetic video",
+        "chatty close up aesthetic video"
+      ],
+      "created_at": "2026-10-20T13:55:13.929739+00:00",
+      "published_at_utc": null,
+      "media_id": null,
+      "critic": {
+        "specificity": 4,
+        "sendability": 5,
+        "tone_safety": 5,
+        "originality": 4,
+        "loop_ok": true,
+        "claims_ok": true,
+        "sendability_who": "The friend who goes visibly quiet mid-conversation at parties — they'd reply 'buffering behind my smile is TOO accurate' or 'why am i being read like this'",
+        "rewrite_notes": "'Buffering a reply behind my smile' is fresh and concrete; 'chatty at parties' is a solid specific before-beat. Small tweak: hook and caption both say 'chatty/small talk' — cut caption redundancy, let caption add a new beat ('the smile is doing all the work')."
+      },
+      "attempt": 2,
+      "bg": {
+        "ok": true,
+        "source": "pinterest_video",
+        "path": "/home/testflowthrowout/beast-engine/outputs/bg.mp4",
+        "is_video": true
+      },
+      "dry_run": true,
+      "score": null
     }
   ],
   "used_pins": [
@@ -3306,6 +3353,11 @@
       "id": "e1_AfqPShycxN8bCuI9YqmnYShU-Syi1I9_1cf-htOXu0VMGvXDZZ99",
       "date": "2026-10-19",
       "pin_url": "https://www.pinterest.com/pin/e1_AfqPShycxN8bCuI9YqmnYShU-Syi1I9_1cf-htOXu0VMGvXDZZ99/"
+    },
+    {
+      "id": "e1_AfqPShwlyTGhZ28gEUXzPd1BhOiJYEvSx5ADhNZTd66THVCdHfdU",
+      "date": "2026-10-20",
+      "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwlyTGhZ28gEUXzPd1BhOiJYEvSx5ADhNZTd66THVCdHfdU/"
     }
   ],
   "used_tracks": [],
@@ -4013,8 +4065,54 @@
       },
       "dry_run": true,
       "public_url": "https://litter.catbox.moe/uho259.mp4"
+    },
+    {
+      "ok": true,
+      "format": "short2",
+      "template": "T1",
+      "topic": "small talk",
+      "visual_arm": "pin_video",
+      "audio_type": "trending_spedup",
+      "length_bucket": "10-12",
+      "slot": "13:55",
+      "hook": "People think I'm chatty at parties.",
+      "payoff": "I'm actually buffering a reply behind my smile.",
+      "caption": "my brain buffering mid small talk again",
+      "hashtags": [
+        "#relatable",
+        "#introvert",
+        "#overthinking"
+      ],
+      "duration_s": 11.0,
+      "scene_queries": [
+        "two people small talk office kitchen",
+        "awkward hallway nod",
+        "people close up aesthetic video",
+        "chatty close up aesthetic video"
+      ],
+      "created_at": "2026-10-20T13:55:13.929739+00:00",
+      "published_at_utc": null,
+      "media_id": null,
+      "critic": {
+        "specificity": 4,
+        "sendability": 5,
+        "tone_safety": 5,
+        "originality": 4,
+        "loop_ok": true,
+        "claims_ok": true,
+        "sendability_who": "The friend who goes visibly quiet mid-conversation at parties — they'd reply 'buffering behind my smile is TOO accurate' or 'why am i being read like this'",
+        "rewrite_notes": "'Buffering a reply behind my smile' is fresh and concrete; 'chatty at parties' is a solid specific before-beat. Small tweak: hook and caption both say 'chatty/small talk' — cut caption redundancy, let caption add a new beat ('the smile is doing all the work')."
+      },
+      "attempt": 2,
+      "bg": {
+        "ok": true,
+        "source": "pinterest_video",
+        "path": "/home/testflowthrowout/beast-engine/outputs/bg.mp4",
+        "is_video": true
+      },
+      "dry_run": true
     }
   ],
-  "short_posts_today_date": "2026-10-19",
-  "short_posts_today_count": 2
+  "short_posts_today_date": "2026-10-20",
+  "short_posts_today_count": 3
 }
