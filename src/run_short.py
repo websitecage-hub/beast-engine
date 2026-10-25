@@ -37,7 +37,8 @@ def _recent_pov_count(memory: dict, n: int = 4) -> int:
                if p.get("template") == "T10" or "pov" in str(p.get("hook", "")).lower())
 
 
-def build_one(memory: dict, dry_run: bool = True, verbose: bool = True) -> dict:
+def build_one(memory: dict, dry_run: bool = True, verbose: bool = True,
+              offline: bool = False) -> dict:
     """One full reel through the v3 pipeline. Returns the post record."""
     now = datetime.now(timezone.utc)
     slot = f"{now.hour}:{now.minute:02d}"
@@ -98,7 +99,7 @@ def build_one(memory: dict, dry_run: bool = True, verbose: bool = True) -> dict:
     # 4. render + gate
     built = build_short.build(reel, memory,
                               out_path=config.OUTPUTS / "reel_short.mp4",
-                              verbose=verbose)
+                              offline=offline, verbose=verbose)
     if not built.get("ok"):
         print(f"[v3] RENDER FAILED at {built.get('stage')}: "
               f"{str(built.get('why'))[:200]}", flush=True)
@@ -151,6 +152,9 @@ def main(argv=None) -> int:
     ap.add_argument("--force", action="store_true",
                     help="ignore the PAUSE file and the daily cap (still dry unless publishing on)")
     ap.add_argument("--no-publish", action="store_true")
+    ap.add_argument("--offline", action="store_true",
+                    help="render with no asset network calls (bundled background); "
+                         "the writer/critic still need their endpoints")
     args = ap.parse_args(argv)
 
     if config.paused() and not args.force:
@@ -168,7 +172,7 @@ def main(argv=None) -> int:
             print(f"[v3] daily cap {cap} reached")
             return 0
 
-    record = build_one(memory, dry_run=dry)
+    record = build_one(memory, dry_run=dry, offline=args.offline)
     if not record.get("ok"):
         alerts.telegram(f"[v3] slot skipped at {record.get('stage')}: "
                     f"{str(record.get('why') or record.get('notes') or '')[:120]}")

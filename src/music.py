@@ -409,6 +409,54 @@ def _unused_marker():
 
 # ------------------------------------------------------- trending fetching
 
+def _trending_payload(api: str, keyword: str | None = None,
+                      hashtag: str | None = None, limit: int = 20,
+                      budget_s: float = 150.0) -> dict:
+    """One trending payload, honouring the service's ASYNC contract.
+
+    The service scrapes on demand, so the response is status-driven rather than
+    code-driven: `202`/`status: processing` means poll `poll_with` (which always
+    carries `fresh=false`, so polling can never restart the scrape), and the
+    finished result arrives as `status: ready` with the rows under **`data`**.
+
+    Returns the ready body, or {} on any failure. Never raises.
+    """
+    params: dict = {"limit": max(1, min(int(limit), 50))}   # the API's own cap
+    if keyword:
+        params["keyword"] = keyword
+    if hashtag:
+        params["hashtag"] = hashtag
+    deadline = time.time() + budget_s
+    try:
+        r = requests.get(f"{api}/v1/trending", params=params, timeout=150)
+    except Exception:  # noqa: BLE001
+        return {}
+    for _ in range(12):
+        try:
+            body = r.json() or {}
+        except Exception:  # noqa: BLE001
+            return {}
+        if body.get("status") != "processing":
+            return body if body.get("status") == "ready" else {}
+        nxt = body.get("poll_with")
+        wait_s = float(body.get("retry_after_seconds") or 5)
+        if not nxt or time.time() + wait_s >= deadline:
+            return {}
+        time.sleep(max(2.0, min(wait_s, 20.0)))          # respect the service's pace
+        try:
+            r = requests.get(nxt, timeout=150)
+        except Exception:  # noqa: BLE001
+            return {}
+    return {}
+
+
+def trending_rows(api: str, keyword: str, limit: int = 20,
+                  budget_s: float = 150.0) -> list:
+    """Ready rows for a keyword ([] on any failure)."""
+    return (_trending_payload(api, keyword=keyword, limit=limit,
+                              budget_s=budget_s).get("data") or [])
+
+
 def fetch_trending(cfg) -> dict | None:
     """Fetch today's trending reference — Part 4.5 Phase 2 window.
 
@@ -425,35 +473,49 @@ def fetch_trending(cfg) -> dict | None:
         if not niche:
             continue
         try:
-            r = requests.get(f"{api}/v1/trending/{niche}", params={"limit": 25},
-                             timeout=150)
-            if r.status_code != 200:
+            rows = trending_rows(api, niche, 25)
+            if not rows:
                 continue
-            rows = (r.json() or {}).get("results") or []
-            good = [x for x in rows
-                    if float(x.get("confidence") or 0) >= float(music.get("min_confidence", 0.5))]
-            if not good:
-                continue
-            scores = [float(x.get("trend_score") or 0) for x in good]
-            smin, smax = min(scores), max(scores)
-            span = max(smax - smin, 1.0)
+            # Real fields only: this API returns usage counts and rights flags,
+            # not the confidence/category scores an earlier client assumed.
+            good = [x for x in rows if x.get("title")]
+            # A brand account must not build on audio flagged as copyrighted and
+            # not licensed for commercial use. If nothing qualifies, fall back to
+            # the rows for their MOOD signal only — the engine never ships the
+            # trending track itself, it picks a licensed bed in the same family.
+            safe = [x for x in good
+                    if not x.get("is_copyrighted")
+                    and x.get("is_commercial_use_allowed") is not False]
+            pool = safe or good
+            counts = sorted(float(x.get("video_count") or 0) for x in pool)
+            span = max(counts[-1] - counts[0], 1.0)
 
             def norm(x):
-                return (float(x.get("trend_score") or 0) - smin) / span
+                return (float(x.get("video_count") or 0) - counts[0]) / span
 
-            # Phase 2 = the rising middle, not the peak and not the floor
-            phase2 = [x for x in good if lo <= norm(x) <= hi]
-            pool = phase2 or good
-            pool.sort(key=lambda x: float(x.get("trend_score") or 0), reverse=True)
-            top = pool[0]
-            category = str(top.get("category") or "")
-            genre = category.split(":", 1)[1].strip() if ":" in category else ""
+            # Phase 2 = the rising middle of real usage, not the peaked top and
+            # not the floor, approximated on video_count (the API's own signal).
+            phase2 = [x for x in pool if lo <= norm(x) <= hi]
+            chosen = phase2 or pool
+            chosen.sort(key=lambda x: (bool(x.get("is_niche")),
+                                       float(x.get("video_count") or 0)), reverse=True)
+            top = chosen[0]
+            tags = top.get("sources") or []
+            genre = next((t.split(":", 1)[1] for t in tags
+                          if isinstance(t, str) and t.startswith("hashtag:")
+                          and t.split(":", 1)[1].lower() in
+                          (music.get("genre_hint") or {})), "")
             return {
                 "title": str(top.get("title") or ""),
                 "artist": str(top.get("artist") or ""),
                 "genre": genre,
-                "trend_score": top.get("trend_score"),
+                "trend_score": top.get("video_count"),
                 "phase": "phase2" if phase2 else "fallback",
+                "is_niche": bool(top.get("is_niche")),
+                "commercial_ok": bool(safe),
+                "duration_seconds": top.get("duration_seconds"),
+                "play_link": str(top.get("play_link") or ""),
+                "id": str(top.get("id") or ""),
             }
         except Exception:  # noqa: BLE001 — trending failure is never fatal
             continue
