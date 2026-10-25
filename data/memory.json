@@ -103,7 +103,7 @@
       "score": -40.279798,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:21.236647+00:00",
+      "insights_checked_at": "2026-10-20T08:59:48.193337+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -232,7 +232,7 @@
       "score": -28.485714,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:21.725311+00:00",
+      "insights_checked_at": "2026-10-20T08:59:48.488258+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -360,7 +360,7 @@
       "score": -29.48374,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:22.280882+00:00",
+      "insights_checked_at": "2026-10-20T08:59:48.852285+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -490,7 +490,7 @@
       "score": -21.491803,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:22.799024+00:00",
+      "insights_checked_at": "2026-10-20T08:59:49.461471+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -620,9 +620,9 @@
       "score": null,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:23.354417+00:00",
+      "insights_checked_at": "2026-10-20T08:59:49.793070+00:00",
       "verdict": "flop",
-      "verdict_reason": "reach 5 < 55 at 667h (spec floor 200, account-median floor)",
+      "verdict_reason": "reach 5 < 55 at 547h (spec floor 200, account-median floor)",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.525
@@ -748,7 +748,7 @@
       "score": -27.893396,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:23.774776+00:00",
+      "insights_checked_at": "2026-10-20T08:59:50.544253+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -876,7 +876,7 @@
       "score": -24.140909,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:24.236540+00:00",
+      "insights_checked_at": "2026-10-20T08:59:50.967290+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1004,7 +1004,7 @@
       "score": -28.043925,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:24.650661+00:00",
+      "insights_checked_at": "2026-10-20T08:59:51.383391+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1132,7 +1132,7 @@
       "score": -30.2,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:25.098409+00:00",
+      "insights_checked_at": "2026-10-20T08:59:51.813622+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1262,7 +1262,7 @@
       "score": -27.0,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:25.528421+00:00",
+      "insights_checked_at": "2026-10-20T08:59:52.235577+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1392,7 +1392,7 @@
       "score": -28.5,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:25.934030+00:00",
+      "insights_checked_at": "2026-10-20T08:59:52.542131+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1522,7 +1522,7 @@
       "score": -27.65,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:26.916070+00:00",
+      "insights_checked_at": "2026-10-20T08:59:52.844259+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1652,7 +1652,7 @@
       "score": -19.740157,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:27.374257+00:00",
+      "insights_checked_at": "2026-10-20T08:59:53.213979+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1782,7 +1782,7 @@
       "score": -26.2,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:27.888771+00:00",
+      "insights_checked_at": "2026-10-20T08:59:53.557251+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -1910,9 +1910,9 @@
       "score": -26.1,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:28.346763+00:00",
+      "insights_checked_at": "2026-10-20T08:59:54.038696+00:00",
       "verdict": "flop",
-      "verdict_reason": "reach 29 < 55 at 545h (spec floor 200, account-median floor)",
+      "verdict_reason": "reach 29 < 55 at 425h (spec floor 200, account-median floor)",
       "derived": {
         "sends_per_1k_reach": 0.0,
         "hold": 0.462
@@ -2038,7 +2038,7 @@
       "score": -21.9,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:28.778351+00:00",
+      "insights_checked_at": "2026-10-20T08:59:54.351591+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2168,7 +2168,7 @@
       "score": -27.383607,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:29.335147+00:00",
+      "insights_checked_at": "2026-10-20T08:59:54.808277+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2298,7 +2298,7 @@
       "score": -30.3,
       "harvested": true,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:29.917888+00:00",
+      "insights_checked_at": "2026-10-20T08:59:55.386214+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2426,7 +2426,7 @@
       "score": -18.99115,
       "harvested": false,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:30.428547+00:00",
+      "insights_checked_at": "2026-10-20T08:59:55.906482+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2556,7 +2556,7 @@
       "score": -31.469643,
       "harvested": false,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:30.978924+00:00",
+      "insights_checked_at": "2026-10-20T08:59:56.284973+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2686,7 +2686,7 @@
       "score": -20.95,
       "harvested": false,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:31.498730+00:00",
+      "insights_checked_at": "2026-10-20T08:59:56.613288+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2816,7 +2816,7 @@
       "score": -38.55,
       "harvested": false,
       "last_harvested": "2026-10-13T11:16:15.205349+00:00",
-      "insights_checked_at": "2026-10-25T08:48:31.967694+00:00",
+      "insights_checked_at": "2026-10-20T08:59:56.860248+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -2943,7 +2943,7 @@
       },
       "score": -23.393377,
       "harvested": false,
-      "insights_checked_at": "2026-10-25T08:48:32.418415+00:00",
+      "insights_checked_at": "2026-10-20T08:59:57.197662+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -3071,7 +3071,7 @@
       },
       "score": -19.500847,
       "harvested": false,
-      "insights_checked_at": "2026-10-25T08:48:32.874102+00:00",
+      "insights_checked_at": "2026-10-20T08:59:57.555488+00:00",
       "verdict": "neither",
       "verdict_reason": "not a win, not a flop — leave the weights alone",
       "derived": {
@@ -3267,9 +3267,62 @@
       },
       "dry_run": true,
       "score": null
+    },
+    {
+      "ok": true,
+      "format": "short2",
+      "template": "T4",
+      "topic": "phone calls",
+      "visual_arm": "pin_video",
+      "audio_type": "soft_instrumental",
+      "length_bucket": "6-8",
+      "slot": "13:37",
+      "hook": "Not dodging your call.",
+      "payoff": "Just letting your call hit voicemail so i can text back",
+      "caption": "my voicemail to text pipeline is unmatched tbh",
+      "hashtags": [
+        "#relatable",
+        "#introvert",
+        "#socialanxiety",
+        "#overthinking"
+      ],
+      "duration_s": 7.0,
+      "scene_queries": [
+        "phone ringing on table dark",
+        "hand hesitating over phone",
+        "dodging close up aesthetic video",
+        "letting close up aesthetic video"
+      ],
+      "created_at": "2026-10-25T13:37:48.230000+00:00",
+      "published_at_utc": null,
+      "media_id": null,
+      "critic": {
+        "specificity": 4,
+        "sendability": 5,
+        "tone_safety": 4,
+        "originality": 4,
+        "loop_ok": true,
+        "claims_ok": true,
+        "sendability_who": "The friend who never picks up but texts back instantly — they'd reply 'the voicemail-to-text pipeline is real' or 'i felt this in my bones'",
+        "rewrite_notes": "'Letting it hit voicemail so I can text back' is a fresh, specific behaviour and loops on 'call'. Drop #socialanxiety (diagnosis-adjacent, tone safety). Caption 'pipeline is unmatched tbh' is filler — replace with something concrete like 'pick up? never. reply in 3 secs? always.'"
+      },
+      "attempt": 1,
+      "bg": {
+        "ok": true,
+        "source": "pinterest_video",
+        "path": "/home/testflowthrowout/beast-engine/outputs/bg.mp4",
+        "is_video": true
+      },
+      "dry_run": true,
+      "score": null
     }
   ],
   "used_pins": [
+    {
+      "id": "465911523974442921",
+      "date": "2026-09-20",
+      "pin_url": "https://www.pinterest.com/pin/465911523974442921/"
+    },
     {
       "id": "168392473564181011",
       "date": "2026-09-27",
@@ -3404,6 +3457,11 @@
       "id": "e1_AfqPShwc2IMECR_L1HzIy8JjPQttt_0i0LLeCAjOT85UfqJUgSQx",
       "date": "2026-10-25",
       "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwc2IMECR_L1HzIy8JjPQttt_0i0LLeCAjOT85UfqJUgSQx/"
+    },
+    {
+      "id": "e1_AfqPShzmrmWC4egvS7dZkKrSaYevI6DGu33iaHv94mx0IXXdJxtt",
+      "date": "2026-10-25",
+      "pin_url": "https://www.pinterest.com/pin/e1_AfqPShzmrmWC4egvS7dZkKrSaYevI6DGu33iaHv94mx0IXXdJxtt/"
     }
   ],
   "used_tracks": [],
@@ -4009,11 +4067,11 @@
   "account_profile_views": {
     "reach": [
       {
-        "end_time": "2026-10-24T07:00:00+0000",
-        "value": 1
+        "end_time": "2026-10-19T07:00:00+0000",
+        "value": 0
       },
       {
-        "end_time": "2026-10-25T07:00:00+0000",
+        "end_time": "2026-10-20T07:00:00+0000",
         "value": 0
       }
     ]
@@ -4203,9 +4261,58 @@
         "path": "/home/testflowthrowout/beast-engine/outputs/bg.mp4",
         "is_video": true
       },
+      "dry_run": true,
+      "public_url": "https://litter.catbox.moe/vg3f2u.mp4",
+      "telegram_delivered": true
+    },
+    {
+      "ok": true,
+      "format": "short2",
+      "template": "T4",
+      "topic": "phone calls",
+      "visual_arm": "pin_video",
+      "audio_type": "soft_instrumental",
+      "length_bucket": "6-8",
+      "slot": "13:37",
+      "hook": "Not dodging your call.",
+      "payoff": "Just letting your call hit voicemail so i can text back",
+      "caption": "my voicemail to text pipeline is unmatched tbh",
+      "hashtags": [
+        "#relatable",
+        "#introvert",
+        "#socialanxiety",
+        "#overthinking"
+      ],
+      "duration_s": 7.0,
+      "scene_queries": [
+        "phone ringing on table dark",
+        "hand hesitating over phone",
+        "dodging close up aesthetic video",
+        "letting close up aesthetic video"
+      ],
+      "created_at": "2026-10-25T13:37:48.230000+00:00",
+      "published_at_utc": null,
+      "media_id": null,
+      "critic": {
+        "specificity": 4,
+        "sendability": 5,
+        "tone_safety": 4,
+        "originality": 4,
+        "loop_ok": true,
+        "claims_ok": true,
+        "sendability_who": "The friend who never picks up but texts back instantly — they'd reply 'the voicemail-to-text pipeline is real' or 'i felt this in my bones'",
+        "rewrite_notes": "'Letting it hit voicemail so I can text back' is a fresh, specific behaviour and loops on 'call'. Drop #socialanxiety (diagnosis-adjacent, tone safety). Caption 'pipeline is unmatched tbh' is filler — replace with something concrete like 'pick up? never. reply in 3 secs? always.'"
+      },
+      "attempt": 1,
+      "bg": {
+        "ok": true,
+        "source": "pinterest_video",
+        "path": "/home/testflowthrowout/beast-engine/outputs/bg.mp4",
+        "is_video": true
+      },
       "dry_run": true
     }
   ],
   "short_posts_today_date": "2026-10-25",
-  "short_posts_today_count": 4
+  "short_posts_today_count": 5
 }
