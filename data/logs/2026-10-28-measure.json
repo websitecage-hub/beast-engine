@@ -33,5 +33,40 @@
     },
     "logs_pruned": 0,
     "seconds": 0.31
+  },
+  {
+    "workflow": "measure",
+    "started": "2026-10-28T20:40:34.269348+00:00",
+    "dry_run": false,
+    "version": "v2",
+    "collect": {
+      "updated": 0,
+      "skipped": 0,
+      "errors": [],
+      "metrics_unavailable": [],
+      "total_posts": 30,
+      "pruned": {
+        "before": {
+          "used_pins": 22,
+          "used_tracks": 0,
+          "used_track_urls": 3,
+          "used_track_profiles": 17,
+          "used_music_queries": 17,
+          "used_hooks": 4,
+          "candidate_log": 4
+        },
+        "after": {
+          "used_pins": 22,
+          "used_tracks": 0,
+          "used_track_urls": 3,
+          "used_track_profiles": 17,
+          "used_music_queries": 17,
+          "used_hooks": 4,
+          "candidate_log": 4
+        }
+      }
+    },
+    "logs_pruned": 1,
+    "seconds": 0.29
   }
 ]
