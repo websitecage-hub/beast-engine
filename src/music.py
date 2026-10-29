@@ -1,11 +1,18 @@
-"""music.py — provider chain: TrendingFree -> Library -> Drone. First success wins, never fatal.
+"""music.py — provider chain: TrendingFree -> Drone. First success wins, never fatal.
 
 TrendingFreeProvider:
-  a. Trending fetch from the user's audio service (slow on first call of the day).
+  a. Trending fetch from the deployed trending service: GET /v1/trending, which
+     answers 202 + poll_with while it scrapes, then status=ready with rows under
+     `data`. The service returns metadata and a signed play_link; it does NOT
+     store or serve audio files (that was a previous service generation).
   b. Search query = mood_search[mood] + genre_hint[genre] + random trending_style.
   c. Resolve free direct-MP3 URLs (Pixabay, then Internet Archive).
-  d. Acquire through the audio service: POST /v1/download, then GET /v1/file/reels/<name>.
+  d. Fetch the audio directly from that source, then transcode to mp3.
   e. QA with ffprobe; loop if shorter than the reel.
+
+The old name-lookup and library tiers are gone: the deployed service has no
+name-lookup, download, library or per-file routes, and calling them only
+produced 404s that a broad except hid.
 """
 from __future__ import annotations
 
@@ -606,27 +613,6 @@ def _download_direct(url: str, out_path) -> bool:
 
 # --------------------------------------------------------- provider chain
 
-def _acquire(api: str, url: str, title: str, artist: str) -> bytes | None:
-    """POST /v1/download then GET /v1/file/reels/<filename>. Returns bytes or None."""
-    try:
-        r = requests.post(f"{api}/v1/download",
-                          json={"url": url, "niche": "reels", "title": title, "artist": artist},
-                          timeout=300)
-        data = r.json() if r.headers.get("content-type", "").startswith("application/json") else {}
-        if r.status_code != 200 or not data.get("ok"):
-            return None
-        path = str(data.get("path") or "")
-        fname = path.rsplit("/", 1)[-1]
-        if not fname:
-            return None
-        fr = requests.get(f"{api}/v1/file/reels/{fname}", timeout=180)
-        if fr.status_code == 200 and len(fr.content) > 10240:
-            return fr.content
-    except Exception:  # noqa: BLE001
-        return None
-    return None
-
-
 MOOD_TEMPO_BANDS = {
     # mood -> (min_bpm, max_bpm) — a quiet_devastating reel must not get a 140bpm
     # banger; a restrained_anger reel must not get a lullaby. Measured, not guessed.
@@ -667,7 +653,9 @@ def mood_matches(mood: str, track_path) -> bool:
     t = tempo_of(track_path)
     r = rms_of(track_path)
     if t is None:
-        return True            # analysis failed -> don't block the chain
+        # Unmeasured is NOT a pass: an unverified track must be recorded as
+        # unverified (preview-only), not silently treated as mood-matched.
+        return None
     lo, hi = band
     if not (lo <= t <= hi):
         print(f"[music] mood gate: {t:.0f}bpm outside {mood} band {lo}-{hi} — rejecting")
@@ -696,130 +684,15 @@ def _spec5_safe_query(cfg, mood: str) -> str:
     return "dark ambient drone sub bass" if _spec5_violates(base, cfg) else base
 
 
-def song_provider(cfg, content, memory, track_mp3, track_wav, duration_s: float):
-    """Resolve by SONG NAME through the audio service's /v1/song (Instagram-first).
-
-    The service resolves a title/artist across Instagram -> SoundCloud -> YouTube
-    and returns {"ok": true, "path": "/data/reels/src-<hash>.mp3"} — there is no
-    URL field, so the bytes come back via the same two-step as /v1/download:
-    read `path`, then GET /v1/file/reels/<filename>.
-
-    Spec §4.5 note: an outdoor-concert pop track is *not* the right bed for these
-    reels, whose audio is the one element the strategy treats as fixed. The
-    trending reference is used for its *mood* signal (genre/tempo), never as a
-    literal song request, so the sound is always inside the §5 palette.
-    """
-    import requests
-
-    music = cfg.get("music") or {}
-    api = music.get("trending_api")
-    if not api:
-        return False, {}
-    mood = content.get("mood") or "heavy_shadow"
-    if not content.get("mood"):
-        cluster = content.get("cluster") or content.get("archetype")
-        mood = (cfg.get("cluster_mood_map") or {}).get(cluster, mood)
-
-    # spec §5 palette, informed by the trending genre/mood signal
-    ref = content.get("_trending_ref") or {}
-    genre = (ref.get("genre") or "").strip().lower()
-    query = _spec5_safe_query(cfg, mood)
-    hint = (music.get("genre_hint") or {}).get(genre, "")
-    if hint and not _spec5_violates(query + hint, cfg):
-        query = f"{query}{hint}".strip()
-    if _spec5_violates(query, cfg):
-        query = _spec5_safe_query(cfg, mood)
-
-    music["_song_title"] = query
-    title = query
-
-    # One query maps to exactly one track at the service (measured), so walk several
-    # UNUSED queries and reject anything already used. The canonical palette phrase is
-    # folded into the pool but is no longer forced to the front — always trying it
-    # first is what made the same handful of tracks resurface.
-    variants = _query_variants(cfg, mood, memory)
-    if title not in variants:
-        variants.append(title)
-    # keep the canonical phrase in the pool, just not privileged
-    if len(variants) > 1:
-        random.shuffle(variants)
-
-    last_reason = ""
-    for vi, q in enumerate(variants):
-        try:
-            wake(api)
-            raw = _song_by_title(api, q)
-        except Exception as exc:  # noqa: BLE001
-            print(f"[music] /v1/song failed ({q!r}): {exc}")
-            continue
-        if not raw:
-            continue
-        tmp = config.OUTPUTS / "song_dl.bin"
-        tmp.write_bytes(raw)
-        if not any(c.exists() and to_mp3(c, track_mp3)
-                   for c in (tmp, config.OUTPUTS / "song_dl.webm")):
-            continue
-        if not has_audio_stream(track_mp3) or ffprobe_duration(track_mp3) < 5:
-            last_reason = "too short / no audio"
-            continue
-        if not mood_matches(mood, track_mp3):
-            last_reason = "mood mismatch"
-            continue
-        # THE repeat guard: refuse audio we have already published, regardless of the
-        # URL, filename or encoding it arrived under.
-        prof = audio_profile(track_mp3)
-        if _is_dup_profile(prof, memory):
-            last_reason = "already used (spectral match)"
-            print(f"[music] rejected duplicate track via {q!r}")
-            continue
-        if not to_wav(track_mp3, track_wav):
-            continue
-        return True, {"music_source": "song", "music_query": q,
-                      "music_mood": mood, "duration_s": ffprobe_duration(track_mp3),
-                      "profile": prof, "fingerprint": audio_fingerprint(track_mp3),
-                      "query_index": vi}
-    if last_reason:
-        print(f"[music] song tier exhausted: {last_reason}")
-    return False, {}
-
-
-def _song_by_title(api: str, title: str) -> bytes | None:
-    """POST /v1/song with a NAME, then fetch the file it produced.
-
-    Response shape (verified live): {"ok":true, "path":"/data/reels/src-<hash>.mp3",
-    "duration_s":...} — no URL, so the bytes come from /v1/file/reels/<filename>.
-    """
-    try:
-        r = requests.post(f"{api}/v1/song",
-                          json={"title": title, "artist": "", "niche": "reels"},
-                          timeout=300)
-        ct = r.headers.get("content-type", "")
-        if r.status_code != 200 or not ct.startswith("application/json"):
-            return None
-        data = r.json() or {}
-        if not data.get("ok"):
-            return None
-        path = str(data.get("path") or "")
-        fname = path.rsplit("/", 1)[-1]
-        if not fname:
-            return None
-        fr = requests.get(f"{api}/v1/file/reels/{fname}", timeout=180)
-        if fr.status_code == 200 and len(fr.content) > 10240:
-            return fr.content
-    except Exception:  # noqa: BLE001
-        return None
-    return None
-
-
 def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_mp3, track_wav,
                            duration_s: float):
     """Returns (True, meta) on success. Never raises.
 
-    Candidates are tried in order. Each one is first pushed through the user's audio
-    service (POST /v1/download) and fetched from /v1/file/reels/<name>; if that service
-    cannot take a URL we already have a direct public URL, so we fall back to fetching it
-    ourselves rather than losing the track entirely. Every acquired track must pass the
-    measured mood gate (tempo band + RMS) before it is accepted.
+    Candidates are tried in order and fetched directly from their public URL. The
+    trending service only returns a signed, expiring play_link; it never serves the
+    bytes itself, so there is no service round-trip to attempt first. Every acquired
+    track must pass the measured mood gate (tempo band + RMS); an UNMEASURED track is
+    reported as unverified rather than silently accepted as a match.
     """
     music = cfg["music"]
     api = music["trending_api"]
@@ -861,24 +734,20 @@ def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_m
 
     for url, source in candidates[:6]:
         got = None
-        raw = _acquire(api, url, title, artist)
-        if raw:
-            tmp = config.OUTPUTS / "track_dl.bin"
-            tmp.write_bytes(raw)
-            for cand in (tmp, config.OUTPUTS / "track_dl.webm"):
-                if cand.exists() and to_mp3(cand, track_mp3):
-                    got = "service"
-                    break
-        if not got:
-            tmp = config.OUTPUTS / "track_direct.bin"
-            if _download_direct(url, tmp) and to_mp3(tmp, track_mp3):
-                got = "direct"
+        # Direct fetch only: the deployed service has no download route, so
+        # asking it first cost a guaranteed 404 on every candidate.
+        tmp = config.OUTPUTS / "track_direct.bin"
+        if _download_direct(url, tmp) and to_mp3(tmp, track_mp3):
+            got = "direct"
         if not got:
             continue
         if not has_audio_stream(track_mp3) or ffprobe_duration(track_mp3) < 5:
             continue
-        if not mood_matches(mood, track_mp3):
-            continue                      # tempo/silence mismatch — try the next one
+        verdict = mood_matches(mood, track_mp3)
+        if verdict is False:
+            continue                      # measured mismatch — try the next one
+        if verdict is None:
+            print("[music] mood gate: tempo unmeasured — accepting as UNVERIFIED")
         # same content-level repeat guard as the song tier
         prof = audio_profile(track_mp3)
         if _is_dup_profile(prof, memory):
@@ -890,41 +759,6 @@ def trending_free_provider(cfg, content, strategy, memory, trending_ref, track_m
                       "acquired_via": got, "query": full_query, "trending_ref": trending_ref,
                       "profile": prof}
     return False, {}
-
-
-def library_provider(cfg, content, memory, track_mp3, track_wav, duration_s: float):
-    """assets/audio/manifest.json fallback. Empty library -> skip."""
-    try:
-        manifest = config.load_json(config.AUDIO_MANIFEST_PATH, [])
-    except Exception:  # noqa: BLE001
-        return False, {}
-    if not manifest:
-        return False, {}
-    mood = content.get("mood")
-    used = set(memory.get("used_tracks", []))
-    pool = [m for m in manifest if mood in (m.get("moods") or []) and m.get("file") not in used]
-    if not pool:
-        pool = [m for m in manifest if m.get("file") not in used]
-    if not pool:
-        return False, {}
-    pick = random.choice(pool)
-    src = config.ASSETS / "audio" / pick["file"]
-    if not src.exists():
-        return False, {}
-    fade = 0.8
-    r = subprocess.run(
-        [FFMPEG, "-y", "-v", "error", "-stream_loop", "-1", "-i", str(src),
-         "-t", f"{duration_s:.3f}", "-af", f"afade=t=out:st={max(duration_s - fade, 0):.3f}:d={fade}",
-         "-ar", "44100", "-ac", "2", str(track_mp3)],
-        capture_output=True, text=True, timeout=300)
-    if r.returncode != 0 or not has_audio_stream(track_mp3):
-        return False, {}
-    prof = audio_profile(track_mp3)
-    if _is_dup_profile(prof, memory):
-        return False, {}
-    to_wav(track_mp3, track_wav)
-    return True, {"music_source": "library", "track": pick.get("file"),
-                  "profile": prof}
 
 
 def drone_provider(cfg, content, track_mp3, track_wav, duration_s: float):
@@ -967,14 +801,11 @@ def acquire(cfg, content, strategy, memory, trending_ref, duration_s: float,
                                           track_mp3, track_wav, duration_s)
         if ok:
             return True, meta
-        # /v1/song resolves a NAME (Instagram-first) — the trending-audio path
-        content.setdefault("_trending_ref", trending_ref or {})
-        ok, meta = song_provider(cfg, content, memory, track_mp3, track_wav, duration_s)
-        if ok:
-            return True, meta
-        ok, meta = library_provider(cfg, content, memory, track_mp3, track_wav, duration_s)
-        if ok:
-            return True, meta
+        # The name-lookup and library tiers were removed: the deployed
+        # audi0-scraper (v2.3.0) exposes only /v1/trending (+/health, /hashtags,
+        # /countries) and never had those routes. They 404'd behind a broad
+        # except, so audio still arrived via the direct fetch and the failure was
+        # invisible. Do not reintroduce a tier without checking the live OpenAPI.
     ok, meta = drone_provider(cfg, content, track_mp3, track_wav, duration_s)
     if ok:
         return True, meta

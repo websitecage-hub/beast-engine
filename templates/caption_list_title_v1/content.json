@@ -1,0 +1,26 @@
+{
+  "format_id": "A-caption-list-title",
+  "duration_s": 12,
+  "title_text": "8 things you do after a conversation when you're worried you sounded weird",
+  "title_lines": [
+    "8 things you do after",
+    "a conversation when",
+    "you're worried you",
+    "sounded weird"
+  ],
+  "caption_items": [],
+  "caption_takeaway": "",
+  "caption_status": "owner_to_supply_the_8_items",
+  "text_style": "large white title with dark outline; max 4 lines; list stays in the caption",
+  "background_asset_id": "pinvid_5cced687408a5a9d",
+  "background_local_path": "formats/A-caption-list-title/template/assets/media/bg.mp4",
+  "background_pin_url": "https://www.pinterest.com/pin/e1_AfqPShx6gSMqzlNa_OvbdzzAtLLHh1pQ7JO651PY03Lf7Tft-EP-/",
+  "background_creator": "emmawatsonbarbe",
+  "background_usage_clearance": "unknown",
+  "audio_sound_id": "6777323236687349761",
+  "audio_title": "Simplicity",
+  "audio_tiktok_url": "https://www.tiktok.com/music/Simplicity-6777323236687349761",
+  "audio_local_path": "formats/A-caption-list-title/template/assets/audio/bgm.m4a",
+  "audio_state": "downloaded_validated_rights_unverified",
+  "publish_enabled": false
+}

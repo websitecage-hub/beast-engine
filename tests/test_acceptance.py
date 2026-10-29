@@ -1441,13 +1441,20 @@ def test_spec5_safe_query_never_returns_banned_term():
         assert not music._spec5_violates(q, cfg), q
 
 
-def test_spec_audio_chain_includes_song_provider():
-    """The /v1/song tier must be wired into acquire() (name -> audio, IG-first)."""
+def test_spec_audio_chain_uses_only_the_deployed_contract():
+    """/v1/song was removed: the deployed service never had it.
+
+    audi0-scraper v2.3.0 exposes only /v1/trending (+ /v1/health, /hashtags,
+    /countries). The old tier 404'd behind a broad except, so audio still arrived
+    via the direct fetch and the dead call was invisible. The chain must carry the
+    live client and no obsolete route.
+    """
     import inspect
     src = inspect.getsource(music.acquire)
-    assert "song_provider" in src
-    src_song = inspect.getsource(music.song_provider)
-    assert "/v1/song" in src_song
+    assert "song_provider" not in src
+    assert "library_provider" not in src
+    assert "trending_free_provider" in src
+    assert hasattr(music, "trending_rows"), "the live async trending client is gone"
 
 
 def test_seo_checklist_matches_the_current_text_engine():

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* BEAST ENGINE — Format A: caption-delivered list / title-on-background.
+         Clone of @lifeliftman rel/DeRsolMAyoa mechanics:
+         one calm walking B-roll shot, large centered 4-line white title with
+         heavy dark outline, title static for the whole clip; the list itself
+         belongs in the post caption, never on screen. */
+      @font-face {
+        font-family: "Montserrat";
+        src: url("assets/fonts/montserrat.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: block;
+      }
+      :root {
+        --ink: #ffffff;
+        --outline: #0b0b0c;
+        --font-display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        font-family: var(--font-display);
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Per-variant grade: the engine writes --bg-filter so every background
+           lands inside the reference's measured luma/saturation band. The
+           reference has NO scrim, so legibility comes from the outline alone. */
+        filter: var(--bg-filter, none);
+      }
+      #title {
+        /* Centred by its own middle, not its top: the auto-fit step shrinks the
+           type for long lines, and a top-anchored block would then drift upward.
+           Flex-centring + bottom padding biases the optical centre to 43%. */
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 54px 268px;
+        text-align: center;
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 98px;
+        line-height: 1.06;
+        letter-spacing: -0.01em;
+        text-transform: none;
+        /* Measured from the reference at native 720p: outline ≈4-6px, which is
+           ≈7px on this 1080p canvas. No drop shadow in the reference. */
+        -webkit-text-stroke: 7px var(--outline);
+        paint-order: stroke fill;
+      }
+      #title .line { display: block; white-space: nowrap; }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="12"
+      data-width="1080"
+      data-height="1920"
+    >
+      <video id="bg" class="clip" src="assets/media/bg.mp4" muted playsinline
+             data-start="0" data-duration="12" data-media-start="0"></video>
+      <div id="title" class="clip" data-start="0" data-duration="12" data-track-index="1"></div>
+      <audio id="bgm" src="assets/audio/bgm.m4a" class="clip" data-start="0" data-duration="12"
+             data-volume="0.35" data-fade-in="0.6" data-fade-out="1.2"></audio>
+    </div>
+    <script>
+      /* CONTENT is replaced per variant by the factory pipeline (see content.json).
+         Rules from the reference: max 4 lines, sentence case, no emoji. */
+      const CONTENT = {
+        titleLines: [
+          "8 things you do after",
+          "a conversation when",
+          "you're worried you",
+          "sounded weird",
+        ],
+        captionItems: [],
+        captionTakeaway: "",
+      };
+      // Render copy from CONTENT so a variant is a pure data swap.
+      document.getElementById("title").innerHTML = CONTENT.titleLines
+        .map((line) => `<span class="line">${line}</span>`).join("");
+      // Auto-fit: shrink the type until the longest authored line fits, so
+      // variant copy never re-wraps into a 5th line (format allows max 4).
+      {
+        const el = document.getElementById("title");
+        let fs = 98;
+        el.style.fontSize = fs + "px";
+        while (el.scrollWidth > el.clientWidth && fs > 52) {
+          fs -= 2;
+          el.style.fontSize = fs + "px";
+        }
+      }
+      window.__timelines = window.__timelines || {};
+      // Reference mechanics: the title is STATIC from the very first frame —
+      // no fade, no slide, no scale, and the background is a locked shot (no
+      // push-in). The timeline exists only to register the composition.
+      const tl = gsap.timeline({ paused: true });
+      tl.set("#title", { opacity: 1 }, 0);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

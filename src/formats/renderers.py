@@ -229,6 +229,11 @@ _REGISTRY = {"two_beat_v3": TwoBeatV3Renderer, "paced_v2": PacedV2Renderer}
 
 def build(name: str, **kw) -> Renderer:
     """Factory used by registry.renderer_for."""
+    # Template renderers are imported lazily: template_renderer imports Renderer
+    # from this module, so a top-level import would be circular.
+    if name in ("caption_list_title_v1", "social_moment_loop_v1"):
+        from .template_renderer import TemplateRenderer
+        return TemplateRenderer(name)
     if name not in _REGISTRY:
         raise KeyError(f"no renderer adapter for {name!r}")
     return _REGISTRY[name](**kw)
