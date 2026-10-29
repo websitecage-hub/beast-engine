@@ -140,6 +140,38 @@ Return JSON only: {{"specificity":n,"sendability":n,"tone_safety":n,"originality
 Pass = all scores >= 4, loop_ok and claims_ok true."""
 
 
+def _ask_critic(draft: dict, template: dict) -> dict | None:
+    """Ask the critic, retrying JSON parsing ONCE at the protocol level.
+
+    A malformed reply is a transport/protocol failure, not a creative verdict.
+    Retrying the writer in that case burns an attempt with no notes and can still
+    ship an unchecked reel, so this returns None and the caller fails closed with
+    `stage: critic_unparseable`.
+    """
+    import re
+    for attempt in (0, 1):
+        content = critic_prompt(draft, template)
+        if attempt:
+            content += ("\n\nIMPORTANT: reply with ONLY the JSON object. "
+                        "No prose, no markdown fences, no trailing text.")
+        try:
+            raw = critic_model.chat([{"role": "user", "content": content}],
+                                    temperature=0.0, max_tokens=400)
+        except Exception:  # noqa: BLE001 — a dead critic must never look like a pass
+            return None
+        text = raw if isinstance(raw, str) else json.dumps(raw)
+        m = re.search(r"\{.*\}", text, re.S)
+        if not m:
+            continue
+        try:
+            verdict = json.loads(m.group(0))
+        except json.JSONDecodeError:
+            continue
+        if isinstance(verdict, dict) and verdict.get("specificity") is not None:
+            return verdict
+    return None
+
+
 def write_one(template: dict, topic: str, visual_arm: str, audio_type: str,
               length_bucket: str = "8-10", recent_lines=None, recent_pov_count: int = 0,
               max_rewrites: int = 2, verbose: bool = True) -> dict:
@@ -189,35 +221,28 @@ def write_one(template: dict, topic: str, visual_arm: str, audio_type: str,
             continue
 
         # hard re-check passes; now the critic
-        try:
-            vraw = critic_model.chat([{"role": "user",
-                                       "content": critic_prompt(
-                                           {"template": template["code"], "hook": hook,
-                                            "payoff": payoff, "caption": raw.get("caption", ""),
-                                            "hashtags": raw.get("hashtags", [])},
-                                           template)}],
-                                      temperature=0.0, max_tokens=400)
-        except Exception as exc:  # noqa: BLE001
-            # FAIL CLOSED — a missing critic must never look like a pass.
-            return {"ok": False, "stage": "critic_error", "reel": None, "lint": [],
-                    "critic": {}, "notes": str(exc)[:200], "attempt": attempt}
-        import re
-        m = re.search(r"\{.*\}", vraw if isinstance(vraw, str) else json.dumps(vraw), re.S)
-        verdict = {}
-        if m:
-            try:
-                verdict = json.loads(m.group(0))
-            except json.JSONDecodeError:
-                verdict = {}
+        verdict = _ask_critic({"template": template["code"], "hook": hook,
+                               "payoff": payoff, "caption": raw.get("caption", ""),
+                               "hashtags": raw.get("hashtags", []), "beats": beats},
+                              template)
+        if verdict is None:
+            # Fail closed. A malformed critic reply is a PROTOCOL failure, not a
+            # creative verdict: retrying the writer blind would burn an attempt
+            # with no notes and could still ship an unchecked reel.
+            return {"ok": False, "stage": "critic_unparseable", "reel": None,
+                    "lint": [], "critic": {},
+                    "notes": "critic returned no parseable JSON after one protocol retry",
+                    "attempt": attempt}
         scores = [verdict.get(k) for k in
                   ("specificity", "sendability", "tone_safety", "originality")]
         try:
             scores = [float(s) for s in scores]
         except (TypeError, ValueError):
-            passed, verdict = False, {"stage": "critic_unparseable"}
-        else:
-            passed = (all(s >= 4 for s in scores)
-                      and bool(verdict.get("loop_ok")) and bool(verdict.get("claims_ok")))
+            return {"ok": False, "stage": "critic_unparseable", "reel": None,
+                    "lint": [], "critic": verdict,
+                    "notes": "critic JSON lacked numeric scores", "attempt": attempt}
+        passed = (all(s >= 4 for s in scores)
+                  and bool(verdict.get("loop_ok")) and bool(verdict.get("claims_ok")))
         if not passed:
             if verbose:
                 print(f"[gen] attempt {attempt} failed critic: "

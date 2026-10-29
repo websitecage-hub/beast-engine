@@ -141,7 +141,7 @@ def _content_for(format_id: str, payload: dict) -> dict:
 
 
 def stage_project(format_id: str, payload: dict, *, run_id: str | None = None,
-                  background=None, audio=None) -> tuple[Path, dict]:
+                  background=None, audio=None, fixed_grade: dict | None = None) -> tuple[Path, dict]:
     """Copy the engine-owned template into a run-scoped scratch dir and inject data.
 
     Returns (project_dir, info). The engine-owned template is read-only here.
@@ -165,7 +165,14 @@ def stage_project(format_id: str, payload: dict, *, run_id: str | None = None,
         shutil.copy2(audio, dest / "assets" / "audio" / "bgm.m4a")
 
     # 2) bounded grade as a CSS variable (the template's documented hook).
-    css, gvals = grade_for(format_id, bg_metrics)
+    if fixed_grade:
+        gvals = dict(fixed_grade)
+        css = (f"brightness({gvals['brightness']:.3f}) "
+               f"saturate({gvals['saturate']:.3f}) contrast(1.02)")
+        gvals.setdefault("natural_fit", False)
+        gvals.setdefault("corrected", True)
+    else:
+        css, gvals = grade_for(format_id, bg_metrics)
     html = (dest / "index.html").read_text(encoding="utf-8")
     if CONTENT_RE.search(html) is None:
         raise RuntimeError("template CONTENT block not found; refusing to guess")
@@ -211,34 +218,99 @@ def render_project(project_dir: Path, output_path: Path, *, quality: str = "deli
             "log": str(logfile)}
 
 
+def frame0_text_metrics(path, format_id: str) -> dict:
+    """Is text actually painted in the expected band on the FIRST frame?
+
+    The template guarantees text from frame zero, but a broken injection would
+    still render a perfectly valid video of an empty background. This counts
+    near-white / pale-yellow pixels inside the text band at t=0 — a measurement,
+    not an assumption. Run through ffmpeg + PIL so it needs no OCR.
+    """
+    import numpy as np
+    from PIL import Image
+    band = (0.22, 0.58, 190) if format_id == "caption_list_title_v1" else (0.30, 0.61, 165)
+    lo, hi, threshold = band
+    png = SCRATCH / "frames" / f"{Path(path).stem}-f0.png"
+    png.parent.mkdir(parents=True, exist_ok=True)
+    r = subprocess.run([_ffmpeg(), "-y", "-v", "error", "-i", str(path),
+                        "-frames:v", "1", str(png)], capture_output=True, timeout=120)
+    if r.returncode != 0 or not png.exists():
+        return {"ok": None, "why": "frame 0 could not be extracted"}
+    img = np.asarray(Image.open(png).convert("L")).astype(np.uint8)
+    h = img.shape[0]
+    band_px = img[int(h * lo):int(h * hi), :]
+    bright = float((band_px > threshold).mean())
+    # The reference title covers several percent of the band; an empty shot is ~0.
+    return {"ok": bright >= 0.005, "bright_fraction": round(bright, 4),
+            "band": [lo, hi], "threshold": threshold}
+
+
 def render_preview(format_id: str, payload: dict, out_path, *, quality: str = "delivery",
                    background=None, audio=None, run_id: str | None = None,
-                   keep_project: bool = False) -> dict:
-    """End-to-end: validate → stage → render → measure → QA. Returns the record."""
+                   keep_project: bool = False, allow_correction: bool = True) -> dict:
+    """End-to-end: validate → stage → render → measure → (one) correct → QA."""
     errors = template_payloads.validate(payload, format_id)
     if errors:
         raise ValueError("invalid payload: " + "; ".join(errors))
     payload = template_payloads.normalise(payload, format_id)
     out_path = Path(out_path)
+    prof = PROFILES[format_id]
+    run_id = run_id or f"{time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())}-{uuid.uuid4().hex[:6]}"
+
     proj, info = stage_project(format_id, payload, run_id=run_id,
                                background=background, audio=audio)
     rinfo = render_project(proj, out_path, quality=quality)
-    prof = PROFILES[format_id]
+    measured = measure_luma_sat(out_path)
+    attempts = 1
+    corrections = []
+
+    def band_ok(m):
+        if m.get("yavg") is None:
+            return None
+        return (abs(m["yavg"] - prof["yavg"]) <= prof["yavg_tol"]
+                and abs((m.get("sat") or 0) - prof["sat"]) <= prof["sat_tol"])
+
+    # One bounded correction pass, only when the colour drifted and the needed
+    # grade still fits inside the declared limits. Never a loop.
+    if allow_correction and band_ok(measured) is False:
+        lim = prof["grade_limits"]
+        g = info["grade"]
+        corr = {
+            "brightness": max(lim["brightness"][0], min(
+                lim["brightness"][1],
+                g["brightness"] * (prof["yavg"] / max(measured.get("yavg") or prof["yavg"], 1)))),
+            "saturate": max(lim["saturate"][0], min(
+                lim["saturate"][1],
+                g["saturate"] * (prof["sat"] / max(measured.get("sat") or prof["sat"], 0.5)))),
+        }
+        proj2, info2 = stage_project(format_id, payload, run_id=f"{run_id}-c1",
+                                     background=background, audio=audio,
+                                     fixed_grade=corr)
+        render_project(proj2, out_path, quality=quality)
+        measured2 = measure_luma_sat(out_path)
+        corrections.append({"grade_before": g, "grade_after": info2["grade"],
+                            "measured_before": measured, "measured_after": measured2})
+        info = {**info2, "grade": info2["grade"]}
+        measured = measured2
+        attempts = 2
+
     ok, gate = render_gate.check(out_path, expect_audio=True,
                                  duration_bounds=prof["duration_bounds"])
-    measured = measure_luma_sat(out_path)
+    text = frame0_text_metrics(out_path, format_id)
     drift = {}
     if measured.get("yavg") is not None:
         drift = {"yavg_delta": round(measured["yavg"] - prof["yavg"], 1),
                  "sat_delta": round((measured.get("sat") or 0) - prof["sat"], 2)}
     record = {
         "format_id": format_id, "schema_version": template_payloads.SCHEMA_VERSION,
-        "run_id": info["run_id"], "output": str(out_path),
+        "run_id": run_id, "output": str(out_path),
         "sha256": _sha256(out_path), "bytes": out_path.stat().st_size,
         "duration_s": round(_duration(out_path), 3),
         "template_sha256": _sha256(TEMPLATES / format_id / "index.html"),
         "payload": payload, "grade": info["grade"], "bg_metrics": info["bg_metrics"],
-        "measured": measured, "drift": drift, "gate_ok": bool(ok), "gate": gate,
+        "measured": measured, "drift": drift, "band_ok": band_ok(measured),
+        "gate_ok": bool(ok), "gate": gate, "text_frame0": text,
+        "attempts": attempts, "corrections": corrections,
         "render": rinfo, "project_dir": str(proj) if keep_project else None,
         "rendered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
