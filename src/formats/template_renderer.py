@@ -223,6 +223,56 @@ def render_project(project_dir: Path, output_path: Path, *, quality: str = "deli
             "log": str(logfile)}
 
 
+
+
+def first_frame_luma(path) -> float | None:
+    """Mean luma of frame 0, used to decide whether the flash repair is needed."""
+    r = subprocess.run([_ffmpeg(), "-v", "info", "-ss", "0", "-i", str(path),
+                        "-frames:v", "1", "-vf", "signalstats,metadata=print",
+                        "-f", "null", "-"], capture_output=True, text=True, timeout=180)
+    m = re.search(r"YAVG=([\d.]+)", (r.stderr or "") + (r.stdout or ""))
+    return float(m.group(1)) if m else None
+
+
+# Below this, frame 0 is a capture warm-up artefact rather than a dark shot.
+DARK_FIRST_FRAME = 60.0
+
+
+def drop_dark_first_frame(path, fps: int = 30) -> dict:
+    """Remove the capture warm-up frame and shift audio to match.
+
+    HyperFrames' first captured frame is consistently dark (measured YAVG ~28 vs
+    ~97 on frame 2): the <video> element has not painted yet when capture starts.
+    Instagram uses frame 0 as the feed cover, so that flash is a real defect.
+    The template is NOT touched — the artifact is corrected and the edit is
+    recorded, then the result is measured again.
+    """
+    import tempfile
+    # Temp on SCRATCH, never beside the output: the output lives on the small
+    # persistent mount, and a killed re-encode must not leave an orphan there.
+    SCRATCH.mkdir(parents=True, exist_ok=True)
+    tmp = Path(tempfile.mkstemp(suffix=".mp4", dir=str(SCRATCH))[1])
+    step = 1.0 / float(fps)
+    r = subprocess.run([_ffmpeg(), "-y", "-v", "error", "-i", str(path),
+                        "-vf", "trim=start_frame=1,setpts=PTS-STARTPTS",
+                        "-af", f"atrim=start={step:.6f},asetpts=PTS-STARTPTS",
+                        "-r", str(fps), "-c:v", "libx264", "-crf", "18",
+                        "-preset", "medium", "-pix_fmt", "yuv420p",
+                        "-c:a", "aac", "-b:a", "128k", str(tmp)],
+                       capture_output=True, text=True, timeout=600)
+    if r.returncode != 0 or not tmp.exists() or tmp.stat().st_size < 10240:
+        tmp.unlink(missing_ok=True)
+        return {"applied": False, "why": (r.stderr or "")[:200]}
+    # SCRATCH and the output can be different mounts, where os.replace raises
+    # EXDEV; copy then swap, and only remove the temp once the output is in place.
+    try:
+        tmp.replace(path)
+    except OSError:
+        shutil.copy2(tmp, path)
+        tmp.unlink(missing_ok=True)
+    return {"applied": True, "dropped_frames": 1, "audio_shift_s": round(step, 4)}
+
+
 def frame0_text_metrics(path, format_id: str) -> dict:
     """Is text actually painted in the expected band on the FIRST frame?
 
@@ -299,6 +349,13 @@ def render_preview(format_id: str, payload: dict, out_path, *, quality: str = "d
         measured = measured2
         attempts = 2
 
+    # Only repair a genuinely dark frame 0; a legitimately dark shot (format B
+    # measures 59-98 luma) must not lose a frame to a blanket rule.
+    f0 = first_frame_luma(out_path)
+    if f0 is not None and f0 < DARK_FIRST_FRAME:
+        fix = drop_dark_first_frame(out_path, fps=30)
+    else:
+        fix = {"applied": False, "first_frame_luma": f0, "why": "frame 0 not dark"}
     ok, gate = render_gate.check(out_path, expect_audio=True,
                                  duration_bounds=prof["duration_bounds"])
     text = frame0_text_metrics(out_path, format_id)
@@ -315,7 +372,7 @@ def render_preview(format_id: str, payload: dict, out_path, *, quality: str = "d
         "payload": payload, "grade": info["grade"], "bg_metrics": info["bg_metrics"],
         "measured": measured, "drift": drift, "band_ok": band_ok(measured),
         "gate_ok": bool(ok), "gate": gate, "text_frame0": text,
-        "attempts": attempts, "corrections": corrections,
+        "attempts": attempts, "corrections": corrections, "first_frame_fix": fix,
         "render": rinfo, "project_dir": str(proj) if keep_project else None,
         "rendered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
@@ -389,4 +446,6 @@ class TemplateRenderer(Renderer):
                 "targets": {"yavg": prof["yavg"], "yavg_tol": prof["yavg_tol"],
                             "sat": prof["sat"], "sat_tol": prof["sat_tol"]},
                 "gate": artifact.get("gate"), "measured": m,
-                "drift": artifact.get("drift"), "duration_s": artifact.get("duration_s")}
+                "drift": artifact.get("drift"), "duration_s": artifact.get("duration_s"),
+                "text_frame0": artifact.get("text_frame0"),
+                "attempts": artifact.get("attempts")}

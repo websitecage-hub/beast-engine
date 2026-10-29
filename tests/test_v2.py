@@ -20,6 +20,8 @@ from __future__ import annotations
 import json
 import os
 import sys
+
+import pytest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -27,6 +29,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src import lint, paced, render_gate, writer  # noqa: E402
 
 SRC = Path(__file__).resolve().parents[1] / "src"
+
+# Model-backed tests hit the live writer/critic. They used to run unconditionally
+# (the docstring claimed they were marked, but no marker existed), so a suite run
+# while the wrapper was returning 500s blocked for minutes on a socket read.
+network = pytest.mark.skipif(
+    os.environ.get("BEAST_RUN_LIVE_TESTS") != "1",
+    reason="model-backed; set BEAST_RUN_LIVE_TESTS=1 to run")
 
 
 def _samples() -> list:
@@ -129,6 +138,7 @@ def _models_up() -> bool:
         return False
 
 
+@network
 def test_gold_samples_pass_the_critic():
     """What this test guards: a SYSTEMATICALLY miscalibrated critic.
 
@@ -179,6 +189,7 @@ def test_gold_samples_pass_the_critic():
         f"firing across the set")
 
 
+@network
 def test_writer_clears_the_guide_cta_case():
     """The writer previously could not pass a guide-CTA reel at all: the critic
     docked sendability for the CTA that STRATEGY §5.2 mandates."""
