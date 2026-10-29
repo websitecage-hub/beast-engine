@@ -45,11 +45,16 @@ PROFILES = {
         "duration_s": 12.2, "duration_bounds": (11.6, 12.8),
         "yavg": 105.0, "yavg_tol": 14.0, "sat": 14.2, "sat_tol": 5.0,
         "grade_limits": {"brightness": (0.85, 1.32), "saturate": (0.60, 1.45)},
+        # measured from the reference reel's audio (dBFS, not LUFS)
+        "music": {"ref_tempo_bpm": 139.7, "ref_spectral_centroid_hz": 951.4,
+                  "ref_rms_db": -16.9, "ref_onset_density_per_s": 2.73},
     },
     "social_moment_loop_v1": {
         "duration_s": 7.0, "duration_bounds": (6.4, 7.8),
         "yavg": 78.6, "yavg_tol": 20.0, "sat": 8.34, "sat_tol": 4.0,
         "grade_limits": {"brightness": (0.80, 1.45), "saturate": (0.60, 1.60)},
+        "music": {"ref_tempo_bpm": 79.5, "ref_spectral_centroid_hz": 1537.0,
+                  "ref_rms_db": -16.3, "ref_onset_density_per_s": 1.79},
     },
 }
 
