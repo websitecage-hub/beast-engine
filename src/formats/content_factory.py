@@ -54,8 +54,22 @@ def _prompt(format_id: str, topic: str | None, notes: str = "", strict: bool = F
     if format_id == "caption_list_title_v1":
         body = f"""Write ONE reel in this format.
 
-Format A — a numbered promise on screen, the list in the caption.
+Format A - a numbered promise on screen, the list in the caption.
 {topic_line}
+
+WRITE THE HUMAN MOMENT BEFORE THE HOOK. First decide, silently: the setting,
+the action, the social stakes, the private reaction. Then compress that moment
+into a title. Recognition beats explanation: the reader should think "that's me
+on a Tuesday", not "that's an interesting topic".
+
+Title grammar (all three parts, in any order):
+  [specific identity or familiar inner experience]
++ [unexpected interpretation / visible pattern they had not named]
++ [finite numbered promise, 4-8]
+Example of the GRAMMAR only, never reuse the wording:
+  "you can spot a man who grew up emotionally alone by these 8 habits" =
+  identity + hidden truth + bounded promise.
+
 Return ONLY this JSON:
 {{"topic_id": "kebab-case-id",
   "headline": "8 things you do after ...",
@@ -67,16 +81,37 @@ Return ONLY this JSON:
 
 Hard rules:
 - headline starts with a number 4-8; list_items length MUST equal it exactly;
-- every list item is distinct, concrete, 3-9 words, and appears in the caption;
-- titleLines: at most 4, each at most 34 characters, sentence case, no emoji;
-- caption delivers the promised value without a comment being required;
+- every list item is a DIFFERENT behaviour: no near-synonyms, no item that is a
+  paraphrase of another. Eight ways of saying "rehearse the conversation" is
+  one item, not eight;
+- every item is an observable moment, internal reaction, or the context around
+  it ("replay the last sentence in the shower"), not a broad label ("overthink");
+- 3-9 words per item, concrete object/action/time where possible;
+- every item appears in the caption, in order, and the caption delivers exactly
+  the promised number - the title is a contract, not clickbait;
+- titleLines: at most 4, each at most 24 characters, sentence case, no emoji;
+- never label a normal behaviour as a diagnosis, disorder, symptom or clinical
+  condition; no cure/medical claims; no "high-functioning X" style labels;
+- do not put the full list on screen;
 - background_query: concrete objects/actions/place (e.g. "person walking forest
   trail morning light"), never a mood word like "dark aesthetic"."""
     else:
         body = f"""Write ONE reel in this format.
 
-Format B — a 7-second static lowercase thought, hook then payoff.
+Format B - a 7-second static lowercase thought: one social moment, one tension.
 {topic_line}
+
+WRITE THE MOMENT, NOT THE TOPIC. Decide silently: ordinary social context ->
+one specific awkward action or thought -> the private friction or contradiction
+-> a small payoff, reversal or self-aware line. Then compress it.
+
+Text grammar:
+  [ordinary context] + [one specific action/thought] + [friction] + [payoff]
+A concrete object or gesture anchors it (a glass of water, an old chat, a call
+button, a photo, a desk task). First person is welcome ("me...", "i hate when",
+"when i'm..."). Humour comes from the disproportion between a tiny situation and
+the reaction, never from calling the reader defective.
+
 Return ONLY this JSON:
 {{"topic_id": "kebab-case-id",
   "hookLines": ["line", "line"],
@@ -86,8 +121,14 @@ Return ONLY this JSON:
   "background_query": "concrete scene nouns for ONE continuous POV shot"}}
 
 Hard rules:
-- at most 8 lines on screen total, each at most 42 characters;
-- one specific behaviour or thought, readable within 7 seconds;
+- ONE thought per reel. Do not add a second unrelated issue or turn it into an
+  essay; if two ideas compete, keep the one with a concrete object;
+- at most 8 lines on screen, each at most 24 characters, at most 45 words total;
+- readable in 7 seconds; the last line must be able to flow back into the first
+  (closure, not merely chopped wording);
+- concrete beats broad: prefer time, place, object, message, pause or gesture
+  over abstract words like anxiety, healing, confidence, trauma;
+- never diagnose or label a condition, and keep the reader's dignity;
 - lowercase is applied by the template, so write naturally, no emoji;
 - background_query: concrete objects/actions/place, never a mood word."""
     out = f"{AUDIENCE}\n\n{body}\n\nReturn JSON only."
@@ -124,6 +165,60 @@ def _writer_chat(content: str) -> tuple[str, str]:
     return raw, "deepseek-bridge"
 
 
+
+# Copy rules the model cannot argue its way out of. These run BEFORE the critic
+# so a structurally valid but creatively hollow payload never spends a critic
+# call or reaches a render.
+_BANNED = re.compile(
+    r"\b(diagnos\w*|disorder\w*|syndrome\w*|symptom\w*|clinical\w*|cure[sd]?|"
+    r"mental illness|mental health|high[- ]functioning|therapist|therapy)\b", re.I)
+_STOP = set("a an the and or but to of in on at for with you your i me my it is are "
+            "was were be been do does did that this so if when then than as by from".split())
+
+
+def _words(text: str) -> list[str]:
+    return [w for w in re.findall(r"[a-z0-9']+", (text or "").lower()) if w not in _STOP]
+
+
+def _too_similar(a: str, b: str) -> bool:
+    """Two items sharing most of their content words are one behaviour written
+    twice, which breaks the promised count."""
+    wa, wb = set(_words(a)), set(_words(b))
+    if not wa or not wb:
+        return True
+    shared = wa & wb
+    return len(shared) >= 3 and len(shared) / min(len(wa), len(wb)) >= 0.6
+
+
+def creative_errors(payload: dict, format_id: str) -> list[str]:
+    errs: list[str] = []
+    if format_id == "caption_list_title_v1":
+        items = payload.get("list_items") or []
+        headline = payload.get("headline") or ""
+        labels = [("headline", headline)] + [(f"item {i+1}", str(it)) for i, it in enumerate(items)]
+        for label, text in labels:
+            if _BANNED.search(text or ""):
+                errs.append(f"{label} uses a clinical/medical label")
+                break
+        for i in range(len(items)):
+            for j in range(i + 1, len(items)):
+                if _too_similar(str(items[i]), str(items[j])):
+                    errs.append(f"items {i+1} and {j+1} are the same behaviour reworded")
+                    break
+            if errs:
+                break
+    else:
+        lines = (payload.get("hookLines") or []) + (payload.get("payoffLines") or [])
+        total = sum(len(str(x).split()) for x in lines)
+        if total > 45:
+            errs.append(f"block is {total} words; one thought must fit in 45")
+        for line in lines:
+            if _BANNED.search(str(line)):
+                errs.append("copy uses a clinical/medical label")
+                break
+    return errs
+
+
 def _attach_rights(payload: dict, format_id: str) -> dict:
     """Rights are an evidence question, never a writer choice."""
     payload.setdefault("audio", {"source": "audi0-scraper", "rights": "preview_only"})
@@ -149,6 +244,17 @@ def critic_verdict(payload: dict, format_id: str) -> dict | None:
 5 = unmistakably specific; 3 = generic; pass needs every score >= 4 and both booleans true.
 originality judges the WORDING only; the format/structure is fixed and is not a penalty.
 claims_ok is false for any diagnosis, cure, disorder or medical claim.
+
+Judge the mechanics, not the vibe:
+- recognition: does it name a moment the reader has actually lived, with a
+  concrete object, place, time, message, pause or gesture?
+- one tension: exactly one social moment, not two mixed ideas?
+- promise: for a list, is every item a different behaviour rather than a
+  paraphrase of its neighbour, and does the number match what is delivered?
+- dignity: is the joke the disproportion of the situation, never the reader
+  being defective?
+Generic abstraction ("social anxiety is hard", "healing takes time") is a 3 at
+most, however smooth the sentence reads.
 
 HOOK: {hook}
 PAYOFF: {payoff}
@@ -194,6 +300,15 @@ def generate(format_id: str, topic: str | None = None, *, verbose: bool = True) 
             history.append({"attempt": attempt, "stage": "schema", "errors": errors})
             if verbose:
                 print(f"[content] attempt {attempt} failed schema: {notes[:140]}", flush=True)
+            continue
+
+        creative = creative_errors(payload, format_id)
+        if creative:
+            notes = "; ".join(creative[:3])
+            history.append({"attempt": attempt, "stage": "creative", "errors": creative})
+            if verbose:
+                print(f"[content] attempt {attempt} failed creative rules: {notes[:140]}",
+                      flush=True)
             continue
 
         verdict = critic_verdict(payload, format_id)

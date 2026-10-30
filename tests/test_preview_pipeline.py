@@ -159,3 +159,57 @@ def test_audio_refuses_unmeasurable_tracks(monkeypatch, tmp_path):
     with pytest.raises(asset_broker.AssetError) as exc:
         asset_broker.trending_audio("social_moment_loop_v1", tmp_path, keyword="k")
     assert "first unused" in str(exc.value)
+
+# ---------------------------------------------------------------- content brain
+def _bad_a(items, headline="8 things you do after a conversation"):
+    return {"topic_id": "t", "headline": headline,
+            "titleLines": ["8 things you do", "after a", "conversation", "when"],
+            "list_items": items,
+            "caption": headline + ":\n" + "\n".join(f"{i+1}. {t}" for i, t in enumerate(items)),
+            "closing": "read the caption", "background_query": "person walking forest trail"}
+
+
+def test_a_rejects_items_that_are_one_behaviour_reworded():
+    items = ["replay the conversation in your head", "replay the conversation in your head at night",
+             "check their story", "draft an apology", "ask a friend",
+             "reread the chat", "plan a better reply", "go quiet"]
+    errs = content_factory.creative_errors(_bad_a(items), "caption_list_title_v1")
+    assert any("same behaviour reworded" in e for e in errs), errs
+
+
+def test_a_rejects_clinical_labels():
+    items = ["replay the last sentence", "check their story", "draft an apology",
+             "ask a friend", "reread the chat", "plan a better reply",
+             "go quiet", "leave them on read"]
+    errs = content_factory.creative_errors(
+        _bad_a(items, headline="8 signs of high-functioning anxiety"), "caption_list_title_v1")
+    assert any("clinical" in e for e in errs), errs
+
+
+def test_b_rejects_more_than_one_thought():
+    payload = {"topic_id": "t",
+               "hookLines": ["i rehearse the message " * 3, "and then never send it " * 3],
+               "payoffLines": ["they think i forgot " * 3, "and i think about it at 2am " * 3],
+               "loop_hypothesis": "the last line re-reads as the first",
+               "caption": "", "background_query": "phone on a table"}
+    errs = content_factory.creative_errors(payload, "social_moment_loop_v1")
+    assert any("one thought" in e for e in errs), errs
+
+
+def test_prompts_carry_the_mechanics():
+    a = content_factory._prompt("caption_list_title_v1", None)
+    b = content_factory._prompt("social_moment_loop_v1", None)
+    assert "WRITE THE HUMAN MOMENT BEFORE THE HOOK" in a
+    assert "no near-synonyms" in a and "title is a contract" in a
+    assert "WRITE THE MOMENT, NOT THE TOPIC" in b
+    assert "ONE thought per reel" in b and "concrete object" in b
+
+
+def test_generate_retries_a_creative_rejection_then_fails(monkeypatch):
+    dupes = ["replay the conversation in your head", "replay the conversation in your head again",
+             "check their story", "draft an apology", "ask a friend",
+             "reread the chat", "plan a better reply", "go quiet"]
+    _mock_writer(monkeypatch, _bad_a(dupes))
+    with pytest.raises(RuntimeError) as exc:
+        content_factory.generate("caption_list_title_v1", "after a conversation")
+    assert "creative" in str(exc.value), exc.value
