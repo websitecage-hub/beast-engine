@@ -413,3 +413,47 @@ def test_run_preview_releases_reservations_on_a_failed_run(monkeypatch, tmp_path
     data = json.loads(ledger.read_text())
     assert data["visual"]["pin:5"]["status"] == "released"
     assert data["visual"]["pin:5"].get("last_used_at") is None
+
+def test_delivered_but_needs_review_run_exits_nonzero(monkeypatch, tmp_path):
+    """A run whose footage missed the minimum must not report ok:true."""
+    from src import run_preview, alerts
+    monkeypatch.setenv("BEAST_LEDGER", str(tmp_path / "ledger.json"))
+    monkeypatch.setattr(run_preview.config, "load_config",
+                        lambda: {"short_publish_enabled": False})
+    monkeypatch.setattr(run_preview.config, "env", lambda k, d=None: str(tmp_path))
+    monkeypatch.setattr(run_preview.content_factory, "generate", lambda *a, **k: {
+        "payload": {"topic_id": "t", "titleLines": ["a"], "caption": "",
+                    "background_query": "night bus window"},
+        "attempts": 1, "critic": {}, "ladder": [{"level": 3}],
+        "audience_moment": {}, "card_compiled_by": "test", "card_degraded": False})
+    monkeypatch.setattr(run_preview.asset_intent, "compile_intent",
+                        lambda *a, **k: {"video_queries": ["night bus window"],
+                                         "compiled_by": "test", "degraded": False})
+
+    def fake_acquire(intent, fmt, scratch, run_id="adhoc", **k):
+        asset_ledger.reserve(run_id, key="pin:7", kind="visual", pin_id="7")
+        return {"reserve_key": "pin:7", "pin_id": "7", "path": "p",
+                "width": 720, "height": 1280, "score": {"total": 61},
+                "passes_minimum": False, "review_status": "needs_human_review",
+                "motion": {}, "band_busy": 0.1, "candidates": [], "rejected": []}
+    monkeypatch.setattr(run_preview.asset_broker, "acquire", fake_acquire)
+    monkeypatch.setattr(run_preview.asset_broker, "trending_audio",
+                        lambda *a, **k: {"path": "a", "stable_id": "s", "features": {},
+                                         "score": {"total": 80}, "source": "test",
+                                         "usage_clearance": "unknown", "distance": 0.3})
+    def fake_render(fmt, payload, out, **k):
+        Path(out).parent.mkdir(parents=True, exist_ok=True)
+        Path(out).write_bytes(b"x" * 2048)      # the runner copies a real artifact back
+        return {"render": {"seconds": 1}, "attempts": 1, "gate_ok": True, "gate": {},
+                "template_sha256": "x", "measured": {"yavg": 100.0}, "drift": {},
+                "text_frame0": {"ok": True}}
+    monkeypatch.setattr(run_preview.template_renderer, "render_preview", fake_render)
+    monkeypatch.setattr(run_preview.template_renderer.TemplateRenderer, "qa",
+                        lambda self, rec, payload: {"band_ok": True})
+    monkeypatch.setattr(run_preview.render_gate, "probe",
+                        lambda p: {"streams": [{"codec_type": "video"},
+                                               {"codec_type": "audio"}]})
+    from src import alerts as _alerts
+    monkeypatch.setattr(_alerts, "telegram_video", lambda *a, **k: True)
+    rc = run_preview.main(["--format", "A"])
+    assert rc == 1, "needs_review must not exit 0"

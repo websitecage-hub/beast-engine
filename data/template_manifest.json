@@ -2197,5 +2197,2515 @@
    "sha256": "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21"
   },
   "topic_id": "calendar-invite-regret"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "dramatic crescendo",
+     "upbeat corporate ukulele",
+     "tense horror drone",
+     "loud vocal chops",
+     "high-energy EDM drop"
+    ],
+    "emotional_role": "hold the awkward pause with gentle warm humor without making it dramatic",
+    "energy": 0.25,
+    "instrumentation": [
+     "mellow piano",
+     "soft brushed percussion",
+     "warm pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "lo-fi",
+     "intimate",
+     "light room tone"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#relatable",
+     "#workhumor"
+    ],
+    "trend_keywords": [
+     "quiet office morning",
+     "soft awkward humor",
+     "gentle daily ritual"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-10-30T18:31:24Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "office-kitchenette-903-microwave-wait",
+   "core_human_moment": "You are hovering with lunch at 9:03 doing small fake-busy ballets to avoid interrupting the toaster chat even though the microwave is free.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "self-conscious",
+   "format_id": "caption_list_title_v1",
+   "human_action": "holding lunch container like a prop, stirring coffee, checking phone then microwave, stepping half back to look not waiting",
+   "humour": 0.65,
+   "intentional_contrast": null,
+   "literal_scene": "A person in a small office kitchenette in morning light holding a lunch container near a microwave and toaster, stirring coffee and checking phone while half-stepping back",
+   "literalness": "literal",
+   "motion_intent": "near-static calm handheld with tiny idle hand movements and weight shifts, no cuts",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos",
+    "people talking to camera",
+    "staged product hero"
+   ],
+   "palette_intent": [
+    "warm soft whites",
+    "muted beige greys"
+   ],
+   "rationale": "Footage must stay in the literal kitchenette moment where waiting looks like small ballets, keeping it phone-real and calm for the 12s title; audio stays soft, sparse and lightly warm to make the awkwardness funny not anxious.",
+   "scene_entities": [
+    "microwave",
+    "lunch container",
+    "coffee mug",
+    "toaster",
+    "office kitchenette"
+   ],
+   "schema_version": "1.0",
+   "setting": "office kitchenette",
+   "tension": 0.55,
+   "text_safe_zone": "centre 41-59% vertical band, keep walls and upper cabinets clear behind text",
+   "time_of_day": "morning",
+   "valence": -0.15,
+   "video_queries": [
+    "office kitchenette morning microwave lunch container",
+    "hands stirring coffee mug near microwave toaster",
+    "person half stepped back holding lunch phone check"
+   ],
+   "visual_mood": [
+    "quiet",
+    "mundane"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.45
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Kamimura Mahiro",
+    "candidates": [
+     {
+      "artist": "Ark Patrol & Aaron",
+      "distance": 0.3549,
+      "fresh": true,
+      "id": "7385586638095321105",
+      "score": 55,
+      "title": "Let Go",
+      "video_count": 274900
+     },
+     {
+      "artist": "liana flores",
+      "distance": 0.1719,
+      "fresh": true,
+      "id": "6732310655564515329",
+      "score": 55,
+      "title": "rises the moon",
+      "video_count": 523700
+     },
+     {
+      "artist": "Kamimura Mahiro",
+      "distance": 0.704,
+      "fresh": true,
+      "id": "6839369555425363969",
+      "score": 89,
+      "title": "Gymnopedie No.1 [Piano famous song](204824)",
+      "video_count": 416500
+     },
+     {
+      "artist": "racoa_production",
+      "distance": 0.4966,
+      "fresh": true,
+      "id": "6839371346904877057",
+      "score": 79,
+      "title": "[Nocturne No. 2] Piano Chopin(155315)",
+      "video_count": 294100
+     }
+    ],
+    "distance": 0.704,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "quiet office morning",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7525638458142885905",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "duration_loop_edit_fit": {
+       "evidence": "185.9s vs 12.2s needed",
+       "points": 5
+      },
+      "energy_and_tempo_fit": {
+       "evidence": "83.4 BPM vs preference slow (40, 92)",
+       "points": 20
+      },
+      "freshness": {
+       "evidence": "fresh in the no-repeat window",
+       "points": 5
+      },
+      "loudness_dynamic_fit": {
+       "evidence": "RMS -25.1 dBFS (bed target ~-18)",
+       "points": 4
+      },
+      "rhythm_onset_density": {
+       "evidence": "onsets/s 1.01 vs sparse (0.0, 1.5)",
+       "points": 10
+      },
+      "semantic_emotional_intent_fit": {
+       "evidence": "onset 1.01 vs intended energy 0.25",
+       "points": 28
+      },
+      "texture_spectral_similarity": {
+       "evidence": "centroid 678.5 Hz vs reference 951 Hz",
+       "points": 12
+      },
+      "trend_relevance": {
+       "evidence": "video_count 416500",
+       "points": 5
+      }
+     },
+     "passes": true,
+     "total": 89
+    },
+    "stable_id": "6839369555425363969",
+    "title": "Gymnopedie No.1 [Piano famous song](204824)"
+   },
+   "pair": {
+    "dimensions": {
+     "combined_emotional_interpretation": {
+      "evidence": "motion 0.115 vs intended arousal 0.20; onset density None vs intended 0.20 (audio valence -0.10)",
+      "points": 22
+     },
+     "novelty_vs_recent": {
+      "evidence": "fresh assets under the no-repeat window",
+      "points": 5
+     },
+     "pacing_compatibility": {
+      "evidence": "movement vs measured audio rhythm",
+      "points": 9
+     },
+     "text_legibility_over_footage": {
+      "evidence": "text-band edge density 0.0572",
+      "points": 10
+     },
+     "text_to_scene_semantic_fit": {
+      "evidence": "derived from semantic_scene_fit",
+      "points": 9
+     },
+     "tone_coherence_or_contrast": {
+      "evidence": "compatible tones (no contrast declared)",
+      "points": 9
+     }
+    },
+    "passes": false,
+    "rationale": "The literal shot 'hidden coffee / barista corner' makes 'You are hovering with lunch at 9:03 doing small fake-busy ballets to a' tangible; the 'Gymnopedie No.1 [Piano famous song](2048' bed supports 'awkward' without overpowering the text on a caption-list-format static-text reel.",
+    "total": 64
+   },
+   "visual": {
+    "band_busy": 0.0572,
+    "candidates": [
+     {
+      "band_busy": 0.0223,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzhQzutc_AYdVC4MSjFUZ_opK6L5SAqnEHRgsDpJZ8xyZTV",
+      "query": "person half stepped back holding lunch phone check",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [
+        "grade can only reach luma 125.5 vs target 105.0+-14, sat 12.3 vs 14.2+-5 within the fixed limits"
+       ],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=True (persistent glyph-like band (64, 80)); flags: 1",
+         "points": 0
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.153 vs arousal target 0.056 (arousal 0.20)",
+         "points": 8
+        },
+        "format_profile_fit": {
+         "evidence": "luma 147.7 vs 105.0+-14.0, sat 8.47 vs 14.2+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.202, mean motion 0.153",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "emotional lane, 8/43 scene tokens matched (back, half, holding, lunch, person, phone, the, with)",
+         "points": 7
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 14.6s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.022 (lower is calmer)",
+         "points": 18
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 51,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [
+        [
+         64,
+         80
+        ],
+        [
+         88,
+         96
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (64, 80)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0572,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwUENLOfn9jIw90xbF_4H76M1vtUHTp39oWqevdRUyzXA",
+      "query": "office kitchenette morning",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band); flags: 1",
+         "points": 4
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.115 vs arousal target 0.056 (arousal 0.20)",
+         "points": 11
+        },
+        "format_profile_fit": {
+         "evidence": "luma 114.5 vs 105.0+-14.0, sat 15.52 vs 14.2+-5.0, natural_fit=True",
+         "points": 6
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.220, mean motion 0.115",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "literal lane, 6/43 scene tokens matched (and, coffee, kitchenette, morning, office, the)",
+         "points": 8
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 16.6s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.057 (lower is calmer)",
+         "points": 14
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0328,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxm1D-B3AoD7DxdygEDW7Ggdn5do9zFADPsW3-QdqVcyIY",
+      "query": "office kitchenette morning",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band); flags: 1",
+         "points": 4
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.203 vs arousal target 0.056 (arousal 0.20)",
+         "points": 5
+        },
+        "format_profile_fit": {
+         "evidence": "luma 136.0 vs 105.0+-14.0, sat 9.77 vs 14.2+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "3 scene cut(s), max jump 0.250, mean motion 0.203",
+         "points": 0
+        },
+        "semantic_scene_fit": {
+         "evidence": "literal lane, 9/43 scene tokens matched (and, coffee, kitchenette, morning, office, the, though, with)",
+         "points": 13
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 31.1s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.033 (lower is calmer)",
+         "points": 16
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 46,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0757,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxx-bhHPKV5Gcw1UKCmU7DfWkBRqBdnMCFAIcd0rZJy",
+      "query": "office kitchenette morning",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=True (persistent glyph-like band (320, 320))",
+         "points": 0
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.199 vs arousal target 0.056 (arousal 0.20)",
+         "points": 5
+        },
+        "format_profile_fit": {
+         "evidence": "luma 83.0 vs 105.0+-14.0, sat 12.79 vs 14.2+-5.0, natural_fit=True",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "2 scene cut(s), max jump 0.269, mean motion 0.199",
+         "points": 0
+        },
+        "semantic_scene_fit": {
+         "evidence": "literal lane, 5/43 scene tokens matched (and, kitchenette, morning, office, the)",
+         "points": 7
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 30.9s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.076 (lower is calmer)",
+         "points": 12
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 32,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         320,
+         320
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (320, 320)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0549,
+      "height": 1280,
+      "pin_id": "e1_AfqPShx4a7oekeoELSHN-3ckp_MGx48TGen7bsMMZcGVEH4TMfY",
+      "query": "hands stirring coffee mug near",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band); flags: 1",
+         "points": 4
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.060 vs arousal target 0.056 (arousal 0.20)",
+         "points": 15
+        },
+        "format_profile_fit": {
+         "evidence": "luma 116.0 vs 105.0+-14.0, sat 10.47 vs 14.2+-5.0, natural_fit=True",
+         "points": 5
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.084, mean motion 0.060",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 4/43 scene tokens matched (coffee, mug, near, stirring)",
+         "points": 5
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 15.0s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.055 (lower is calmer)",
+         "points": 14
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0396,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwW-oTtBMibenM40_4LLqV2-re72OQS-PzwG0F0YykP8Ug",
+      "query": "hands stirring coffee mug near",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.101 vs arousal target 0.056 (arousal 0.20)",
+         "points": 12
+        },
+        "format_profile_fit": {
+         "evidence": "luma 85.4 vs 105.0+-14.0, sat 12.16 vs 14.2+-5.0, natural_fit=True",
+         "points": 1
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.161, mean motion 0.101",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 8/43 scene tokens matched (and, coffee, holding, mug, near, person, stirring, the)",
+         "points": 9
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 15.5s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.040 (lower is calmer)",
+         "points": 16
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "eym0280",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 2,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.2198,
+     "motion": 0.115,
+     "ok": true,
+     "samples": 8
+    },
+    "passes_minimum": false,
+    "pin_id": "e1_AfqPShwUENLOfn9jIw90xbF_4H76M1vtUHTp39oWqevdRUyzXA",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwUENLOfn9jIw90xbF_4H76M1vtUHTp39oWqevdRUyzXA/",
+    "query": "office kitchenette morning",
+    "query_lane": "literal",
+    "query_log": [
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "office kitchenette morning microwave lunch container",
+      "returned": 0
+     },
+     {
+      "kept": 0,
+      "lane": "adjacent",
+      "query": "hands stirring coffee mug near microwave toaster",
+      "returned": 0
+     },
+     {
+      "kept": 2,
+      "lane": "emotional",
+      "query": "person half stepped back holding lunch phone check",
+      "returned": 2
+     },
+     {
+      "kept": 7,
+      "lane": "literal",
+      "query": "office kitchenette morning",
+      "returned": 7
+     },
+     {
+      "kept": 25,
+      "lane": "adjacent",
+      "query": "hands stirring coffee mug near",
+      "returned": 25
+     },
+     {
+      "kept": 25,
+      "lane": "emotional",
+      "query": "person half stepped back holding",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShy9iq1nyMkhZK6-1migQetDLg55HtMfiT8mw0VmFAuAqgTL",
+      "why": "too short 9.6s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzqHHUMVhay0wGb_HeocNze44I5CJiAZFcV9PaWIx0ksiU",
+      "why": "too short 5.68s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzPubt1Fc5hulPWqIiC1TYDBKlK8O6y8xkYJMXcFncu0A",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShyTY7K21bZaRZPxMtXWEix8YcLYEYA8qTK2QQOo43eQvamD",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwFh5JyB3w5veIf3J5SU-IHux_kNfzN58XrwgRismPWfDE",
+      "why": "too short 9.17s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShztg_P0OkkbHnQIz13bNJxuCXJBL6GsLRaYA8-yS1IpoXqp",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShxccgdltJ1XFg8FOyLU-l35jITA9RByPse49zNK6sawcY8g",
+      "why": "too short 6.77s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxFZD5XxK8hHDoVenec7GmpIUPf0qUH3OSAxeXfl0Y1ig",
+      "why": "unusable crop 234x416"
+     }
+    ],
+    "review_status": "needs_human_review",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "cleanliness_provenance": {
+       "evidence": "text_suspected=False (no persistent glyph-like band); flags: 1",
+       "points": 4
+      },
+      "emotional_fit": {
+       "evidence": "motion 0.115 vs arousal target 0.056 (arousal 0.20)",
+       "points": 11
+      },
+      "format_profile_fit": {
+       "evidence": "luma 114.5 vs 105.0+-14.0, sat 15.52 vs 14.2+-5.0, natural_fit=True",
+       "points": 6
+      },
+      "motion_compatibility": {
+       "evidence": "0 scene cut(s), max jump 0.220, mean motion 0.115",
+       "points": 10
+      },
+      "semantic_scene_fit": {
+       "evidence": "literal lane, 6/43 scene tokens matched (and, coffee, kitchenette, morning, office, the)",
+       "points": 8
+      },
+      "technical_quality": {
+       "evidence": "720x1280, 16.6s (need 12.2s+)",
+       "points": 8
+      },
+      "text_safe_composition": {
+       "evidence": "text-band edge density 0.057 (lower is calmer)",
+       "points": 14
+      }
+     },
+     "minimum": 75,
+     "passes": false,
+     "review_status": "reject",
+     "total": 61,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "hidden coffee / barista corner"
+   }
+  },
+  "audio": {
+   "bytes": 3023886,
+   "creator": null,
+   "path": "/opt/work/beast-run/live3/20261030T182905Z-5fb7bb/assets/track_6839369555425363969.m4a",
+   "pin_url": null,
+   "sha256": "0b49b045fd667562fefbf78298b7142f88c565ebdb62214e3377c33aa024d327",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6839369555425363969",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 39.5,
+    "high": 0.0,
+    "mid": 60.5
+   },
+   "duration_s": 185.92,
+   "file": "track_6839369555425363969.m4a",
+   "key_estimate": "A major",
+   "loudness_curve_db": [
+    -24.2,
+    -25.9,
+    -25.4
+   ],
+   "onset_density_per_s": 1.01,
+   "peak_db": -6.6,
+   "rms_db": -25.1,
+   "spectral_centroid_hz": 678.5,
+   "tempo_bpm": 83.4,
+   "zero_crossing_rate": 0.0418
+  },
+  "background": {
+   "bytes": 2233272,
+   "creator": "eym0280",
+   "path": "/opt/work/beast-run/live3/20261030T182905Z-5fb7bb/assets/cand_1_1.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwUENLOfn9jIw90xbF_4H76M1vtUHTp39oWqevdRUyzXA/",
+   "sha256": "fa53495bfb92fa47fe65d83ab09e6198094fb3661fbb5a208be3d17ec1f2c8a0",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShwUENLOfn9jIw90xbF_4H76M1vtUHTp39oWqevdRUyzXA",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "You want to belong to the tiny morning ritual and also want to be invisible until you feel ready to be perceived.",
+    "observable_behaviour": "you stir the same mug of coffee for 20 seconds, glance at your phone, then at the microwave, but don't step forward while they're there",
+    "private_worry": "that hovering in silence looks rude and aloof, but speaking up out of nowhere looks like you're forcing your way in",
+    "situation": "Wednesday 9:03am, office kitchenette, two teammates are by the toaster chatting and you're standing with your lunch container waiting for the microwave"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 4.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "'the microwave is free but the chat isn't' \u2014 precise office kitchenette scene, and 'stir same coffee for 20 seconds', 'check phone then microwave then phone', 'step half back to look not waiting' are lived, not guessed.",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 4,
+    "passed": true,
+    "product_trust": 4,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Hook misdirects: '6 ballets' is a typo for '6 habits' \u2014 and the list is actions, not ballets. Item 2 is good but 'rehearse sorry, quick microwave?' duplicates item 4's waiting beat. Payoff adds a second idea (belonging + invisibility) not set up by the hook. Fix the typo first.",
+    "scene_specificity": 5,
+    "sendability_who": "A 22-30 year old office worker who'd send it to the one work friend or ex-colleague who gets the kitchenette hover \u2014 'this is literally 9:03 every day'.",
+    "shareability": 5,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "office-kitchenette-903-microwave-wait"
+  },
+  "delivery": {
+   "at": "2026-10-30T18:39:42Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -2.22,
+   "yavg_delta": -2.9
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.917,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 0.917,
+    "saturate": 0.915
+   },
+   "saturate": 0.915
+  },
+  "measured": {
+   "sat": 11.98,
+   "yavg": 102.1
+  },
+  "output": {
+   "bytes": 8383446,
+   "duration_s": 12.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261030T182905Z-5fb7bb.mp4",
+   "sha256": "c275803e124972f2d9472fe22d4f66ac9fddb4149879071ade89d94e311beb1e"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6839369555425363969",
+    "title": "Gymnopedie No.1 [Piano famous song](204824)"
+   },
+   "background_query": "office kitchenette morning light microwave toaster coffee mug lunch container hands stirring",
+   "caption": "6 things you do when the microwave is free but the toaster chat isn't:\n1. hold lunch container like a prop\n2. stir same coffee for 20 seconds\n3. check phone then microwave then phone\n4. step half back to look not waiting\n5. rehearse 'sorry, quick microwave?' silently\n6. replay your nod on way to desk",
+   "closing": "You wanted to belong to the ritual and be invisible until ready \u2014 both can be true.",
+   "headline": "6 things you do when the microwave is free but the toaster chat isn't",
+   "list_items": [
+    "hold lunch container like a prop",
+    "stir same coffee for 20 seconds",
+    "check phone then microwave then phone",
+    "step half back to look not waiting",
+    "rehearse 'sorry, quick microwave?' silently",
+    "replay your nod on way to desk"
+   ],
+   "provenance": {
+    "creator": "eym0280",
+    "pin_id": "e1_AfqPShwUENLOfn9jIw90xbF_4H76M1vtUHTp39oWqevdRUyzXA",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwUENLOfn9jIw90xbF_4H76M1vtUHTp39oWqevdRUyzXA/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "You brought lunch at",
+    "9:03 and the microwave",
+    "is free but the chat",
+    "isn't: 6 ballets"
+   ],
+   "topic_id": "office-kitchenette-903-microwave-wait"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.22,
+    "yavg_delta": -2.9
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/opt/work/beast-run/live3/20261030T182905Z-5fb7bb/caption_list_title_v1-live-20261030T182905Z-5fb7bb.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 8383446,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 11.98,
+    "yavg": 102.1
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1067,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 266.7
+  },
+  "rendered_at": "2026-10-30T18:39:36Z",
+  "run_id": "20261030T182905Z-5fb7bb",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "You are hovering with lunch at 9:03 doing small fake-busy ballets to avoid interrupting the toaster chat even though the microwave is free.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "office kitchenette morning microwave lunch container",
+     "hands stirring coffee mug near microwave toaster",
+     "person half stepped back holding lunch phone check"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.704,
+    "keywords": [
+     {
+      "keyword": "quiet office morning",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 89,
+    "stable_id": "6839369555425363969",
+    "title": "Gymnopedie No.1 [Piano famous song](204824)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.704
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 4,
+     "product_trust": 4,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "office-kitchenette-903-microwave-wait"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261030T182905Z-5fb7bb.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": false,
+    "rationale": "The literal shot 'hidden coffee / barista corner' makes 'You are hovering with lunch at 9:03 doing small fake-busy ballets to a' tangible; the 'Gymnopedie No.1 [Piano famous song](2048' bed supports '",
+    "score": 64
+   },
+   "pinterest": {
+    "candidates": 6,
+    "hls": false,
+    "lane": "literal",
+    "metrics": {
+     "sat": 15.52,
+     "yavg": 114.5
+    },
+    "ok": true,
+    "passes_minimum": false,
+    "pin_id": "e1_AfqPShwUENLOfn9jIw90xbF_4H76M1vtUHTp39oWqevdRUyzXA",
+    "query": "office kitchenette morning",
+    "review_status": "needs_human_review",
+    "score": 61,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "hidden coffee / barista corner"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 266.7
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/opt/work/beast-run/live3/20261030T182905Z-5fb7bb/caption_list_title_v1-live-20261030T182905Z-5fb7bb.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 8383446,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": -2.22,
+     "yavg_delta": -2.9
+    },
+    "measured": {
+     "sat": 11.98,
+     "yavg": 102.1
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1067,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "fa13af1aa2efc2538f042bd2c7edae6690b213a3c2719900aa11339df3de50fc"
+  },
+  "topic_id": "office-kitchenette-903-microwave-wait"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "loud drums",
+     "dramatic swells",
+     "comedy boing sfx",
+     "tense thriller bass",
+     "upbeat dance beat"
+    ],
+    "emotional_role": "hold the awkward pause and make 20 seconds feel sweet and wry not tense",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "warm pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "intimate",
+     "lo-fi"
+    ],
+    "trend_hashtags": [
+     "#softmorning",
+     "#relatable"
+    ],
+    "trend_keywords": [
+     "soft morning routine",
+     "quiet awkward moment"
+    ],
+    "valence": 0.35,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-10-30T18:42:19Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "lift-floor-number-stare",
+   "core_human_moment": "trying to look casually occupied in a 20 second elevator ride so a brief hello does not feel awkward",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "fond",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "staring at floor numbers while holding phone off and keeping half smile ready",
+   "humour": 0.35,
+   "intentional_contrast": null,
+   "literal_scene": "POV inside small elevator watching floor indicator tick from 2 to 3, hand holding phone with black screen off, closed brushed metal doors",
+   "literalness": "literal",
+   "motion_intent": "gentle almost still elevator hum with subtle vertical drift and slow light tick",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "pale cool steel",
+    "soft desaturated beige"
+   ],
+   "rationale": "The copy lives in real elevator details so footage must stay literal POV of floor lights, phone off, and metal doors with gentle motion to sell 7 seconds; soft sparse piano holds the awkward-fond pause without turning it into comedy or tension.",
+   "scene_entities": [
+    "floor indicator lights",
+    "phone with black screen",
+    "elevator"
+   ],
+   "schema_version": "1.0",
+   "setting": "inside small residential lift between floors",
+   "tension": 0.55,
+   "text_safe_zone": "centre 30-61% vertical, keep lowercase pale text clear of indicator lights",
+   "time_of_day": "early morning",
+   "valence": 0.3,
+   "video_queries": [
+    "elevator floor indicator lights ticking 2 to 3",
+    "pov hand holding phone black screen in elevator",
+    "closed metal elevator doors reflecting soft light"
+   ],
+   "visual_mood": [
+    "quiet",
+    "lived-in"
+   ],
+   "visual_profile_target": {
+    "luma": "78.6+-20",
+    "saturation": "8.34+-4"
+   },
+   "warmth": 0.6
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Tollan Kim\ud83c\udf38",
+    "candidates": [
+     {
+      "artist": "Ark Patrol & Aaron",
+      "distance": 0.6238,
+      "fresh": true,
+      "id": "7385586638095321105",
+      "score": 56,
+      "title": "Let Go",
+      "video_count": 274900
+     },
+     {
+      "artist": "karaokey",
+      "distance": 0.386,
+      "fresh": true,
+      "id": "7423045556513703952",
+      "score": 68,
+      "title": "the american dawn",
+      "video_count": 143300
+     },
+     {
+      "artist": "Tollan Kim\ud83c\udf38",
+      "distance": 0.2947,
+      "fresh": true,
+      "id": "7072513628145977346",
+      "score": 78,
+      "title": "Aesthetic",
+      "video_count": 23300000
+     },
+     {
+      "artist": "Wxoda",
+      "distance": 0.4151,
+      "fresh": true,
+      "id": "7668271352941742081",
+      "score": 60,
+      "title": "Vibin",
+      "video_count": 533400
+     }
+    ],
+    "distance": 0.2947,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "soft morning routine",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7467450862064879632",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "duration_loop_edit_fit": {
+       "evidence": "60.0s vs 7.0s needed",
+       "points": 5
+      },
+      "energy_and_tempo_fit": {
+       "evidence": "86.1 BPM vs preference slow (40, 92)",
+       "points": 20
+      },
+      "freshness": {
+       "evidence": "fresh in the no-repeat window",
+       "points": 5
+      },
+      "loudness_dynamic_fit": {
+       "evidence": "RMS -21.4 dBFS (bed target ~-18)",
+       "points": 7
+      },
+      "rhythm_onset_density": {
+       "evidence": "onsets/s 2.45 vs sparse (0.0, 1.5)",
+       "points": 4
+      },
+      "semantic_emotional_intent_fit": {
+       "evidence": "onset 2.45 vs intended energy 0.25",
+       "points": 20
+      },
+      "texture_spectral_similarity": {
+       "evidence": "centroid 1004.5 Hz vs reference 1537 Hz",
+       "points": 12
+      },
+      "trend_relevance": {
+       "evidence": "video_count 23300000",
+       "points": 5
+      }
+     },
+     "passes": true,
+     "total": 78
+    },
+    "stable_id": "7072513628145977346",
+    "title": "Aesthetic"
+   },
+   "pair": {
+    "dimensions": {
+     "combined_emotional_interpretation": {
+      "evidence": "motion 0.0393 vs intended arousal 0.20; onset density None vs intended 0.20 (audio valence +0.35)",
+      "points": 24
+     },
+     "novelty_vs_recent": {
+      "evidence": "fresh assets under the no-repeat window",
+      "points": 5
+     },
+     "pacing_compatibility": {
+      "evidence": "movement vs measured audio rhythm",
+      "points": 10
+     },
+     "text_legibility_over_footage": {
+      "evidence": "text-band edge density 0.0204",
+      "points": 13
+     },
+     "text_to_scene_semantic_fit": {
+      "evidence": "derived from semantic_scene_fit",
+      "points": 9
+     },
+     "tone_coherence_or_contrast": {
+      "evidence": "compatible tones (no contrast declared)",
+      "points": 10
+     }
+    },
+    "passes": true,
+    "rationale": "The adjacent shot 'the chosen clip' makes 'trying to look casually occupied in a 20 second elevator ride so a bri' tangible; the 'Aesthetic' bed supports 'awkward' without overpowering the text on a 7s loop-format static-text reel.",
+    "total": 71
+   },
+   "visual": {
+    "band_busy": 0.0204,
+    "candidates": [
+     {
+      "band_busy": 0.0221,
+      "height": 1280,
+      "pin_id": "e1_AfqPShx-Ya7zScnLrPBjqie2yfa_fAZOhfUKklSrCjqN8_tfyJlcTg",
+      "query": "pov hand holding phone black screen in elevator",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.172 vs arousal target 0.056 (arousal 0.20)",
+         "points": 7
+        },
+        "format_profile_fit": {
+         "evidence": "luma 114.5 vs 78.6+-14.0, sat 8.28 vs 8.34+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "2 scene cut(s), max jump 0.301, mean motion 0.172",
+         "points": 0
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 7/45 scene tokens matched (black, elevator, hand, holding, phone, pov, screen)",
+         "points": 8
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 9.5s (need 7.0s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.022 (lower is calmer)",
+         "points": 18
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 46,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0204,
+      "height": 1280,
+      "pin_id": "e1_AfqPShys4S3bjOfIFxaiepeSYH0RMO23acBOOmsIcfNt0NixYg",
+      "query": "pov hand holding phone black",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.039 vs arousal target 0.056 (arousal 0.20)",
+         "points": 14
+        },
+        "format_profile_fit": {
+         "evidence": "luma 63.2 vs 78.6+-14.0, sat 5.17 vs 8.34+-5.0, natural_fit=False",
+         "points": 2
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.064, mean motion 0.039",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 7/45 scene tokens matched (black, hand, holding, phone, pov, screen, with)",
+         "points": 8
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 12.9s (need 7.0s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.020 (lower is calmer)",
+         "points": 18
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 65,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.122,
+         "rows": [
+          562,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.109,
+         "rows": [
+          570,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.105,
+         "rows": [
+          573,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(562, 640), (570, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         562,
+         640
+        ],
+        [
+         570,
+         640
+        ],
+        [
+         573,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0467,
+      "height": 1280,
+      "pin_id": "e1_AfqPShz0PBipfC4bGn3KQQwCSKO2mDAf2Tvx-1xA_NjDohV_vSBO",
+      "query": "pov hand holding phone black",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.078 vs arousal target 0.056 (arousal 0.20)",
+         "points": 14
+        },
+        "format_profile_fit": {
+         "evidence": "luma 61.8 vs 78.6+-14.0, sat 5.78 vs 8.34+-5.0, natural_fit=True",
+         "points": 3
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.122, mean motion 0.078",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 6/45 scene tokens matched (and, black, hand, holding, phone, pov)",
+         "points": 7
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 14.3s (need 7.0s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.047 (lower is calmer)",
+         "points": 15
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 62,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0371,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwC3HxTecn7GndbYQRxYi3RMjtlDwel-JMOgVX9JQeHaR8E",
+      "query": "pov hand holding phone black",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [
+        "grade can only reach luma 55.1 vs target 78.6+-20, sat 6.9 vs 8.34+-4 within the fixed limits"
+       ],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.062 vs arousal target 0.056 (arousal 0.20)",
+         "points": 15
+        },
+        "format_profile_fit": {
+         "evidence": "luma 38.0 vs 78.6+-14.0, sat 4.3 vs 8.34+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.100, mean motion 0.062",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 6/45 scene tokens matched (black, hand, holding, phone, pov, with)",
+         "points": 7
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 8.2s (need 7.0s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.037 (lower is calmer)",
+         "points": 16
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.091,
+         "rows": [
+          582,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(582, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         582,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzeF-hYu_R8PvqmlOT-2PGNGpEIxjnpEKqi3MbgvypvouI",
+      "query": "pov hand holding phone black",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.035 vs arousal target 0.056 (arousal 0.20)",
+         "points": 14
+        },
+        "format_profile_fit": {
+         "evidence": "luma 41.4 vs 78.6+-14.0, sat 7.26 vs 8.34+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.039, mean motion 0.035",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 6/45 scene tokens matched (and, black, hand, holding, phone, pov)",
+         "points": 7
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 7.8s (need 7.0s+)",
+         "points": 6
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.000 (lower is calmer)",
+         "points": 20
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 62,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.161,
+         "rows": [
+          5,
+          108
+         ]
+        },
+        {
+         "fraction_of_height": 0.106,
+         "rows": [
+          572,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(5, 108), (572, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         5,
+         108
+        ],
+        [
+         572,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0995,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxN_c4ugBvikhM_Az7SuFd4f3U_5PxpJVZ20zomvcsKWLlO",
+      "query": "pov hand holding phone black",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [
+        "grade can only reach luma 78.6 vs target 78.6+-20, sat 17.4 vs 8.34+-4 within the fixed limits"
+       ],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.056 vs arousal target 0.056 (arousal 0.20)",
+         "points": 15
+        },
+        "format_profile_fit": {
+         "evidence": "luma 97.9 vs 78.6+-14.0, sat 28.95 vs 8.34+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.091, mean motion 0.056",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 7/45 scene tokens matched (black, hand, holding, phone, pov, while, with)",
+         "points": 8
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 9.4s (need 7.0s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.100 (lower is calmer)",
+         "points": 9
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 55,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "jujuaird97",
+    "flags": [],
+    "lane_expansions": 2,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0642,
+     "motion": 0.0393,
+     "ok": true,
+     "samples": 8
+    },
+    "passes_minimum": false,
+    "pin_id": "e1_AfqPShys4S3bjOfIFxaiepeSYH0RMO23acBOOmsIcfNt0NixYg",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShys4S3bjOfIFxaiepeSYH0RMO23acBOOmsIcfNt0NixYg/",
+    "query": "pov hand holding phone black",
+    "query_lane": "adjacent",
+    "query_log": [
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "elevator floor indicator lights ticking 2 to 3",
+      "returned": 0
+     },
+     {
+      "kept": 1,
+      "lane": "adjacent",
+      "query": "pov hand holding phone black screen in elevator",
+      "returned": 1
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "closed metal elevator doors reflecting soft light",
+      "returned": 0
+     },
+     {
+      "kept": 3,
+      "lane": "literal",
+      "query": "elevator floor indicator lights",
+      "returned": 3
+     },
+     {
+      "kept": 24,
+      "lane": "adjacent",
+      "query": "pov hand holding phone black",
+      "returned": 24
+     },
+     {
+      "kept": 20,
+      "lane": "emotional",
+      "query": "closed metal elevator doors",
+      "returned": 20
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShxNkDPkvgka3iYLoBf1vM2tYlnek9oLC0GJauInpjlf1UYr",
+      "why": "unusable crop 1280x772"
+     },
+     {
+      "id": "e1_AfqPShwHALTWHpGkbwUoto5JKyz199jXuLFtnWz7TAM7SYgkviaE",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShy6n4SmlzsjPyFYajDko1sPSJHIW9ml9ZKEzCDUJn7FA-BK",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShxkU_aqQVZEyOprdpfag4VUPF3SaSNtgfbSesFigyQLgHc",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShwAzw8dhw9jUrvFfx1EqvF6Pc2qQo8Ars72bQGrko62oDE",
+      "why": "too short 6.84s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShygp7ZQ_7Wc9zxQQ5_ImBGHbI2A56cQwgS1qKcpdc3B5kM",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShyKz00ML-RD0lil-JHiglKf-KHTo-dUt0ujRC2Tg5NoofOzfA",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShz4FNwdeznA27tp6SUY-JVxlwa91-0xzKcPwnDy74iaDLxzhQ",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShxFFdUKds2xC4xhUweFOGcJ7Gf-4fK3gEbGjI1tnH--sBE4",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShyAPqN5PccGqsc89lKkJkj_t3pybZWfKJiSPNzK03QSfzc",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "e1_AfqPShzA5QHFj8inHVoV2AmC9Ca3iCh8YGwxMXgNECrldfZQukZM",
+      "why": "too short 6.5s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShxQx-YLlKSc_emxHTZn2qk2vtdWzdTqwXdVgOC7PtNs7p7Y",
+      "why": "unusable crop 464x848"
+     }
+    ],
+    "review_status": "needs_human_review",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "cleanliness_provenance": {
+       "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+       "points": 5
+      },
+      "emotional_fit": {
+       "evidence": "motion 0.039 vs arousal target 0.056 (arousal 0.20)",
+       "points": 14
+      },
+      "format_profile_fit": {
+       "evidence": "luma 63.2 vs 78.6+-14.0, sat 5.17 vs 8.34+-5.0, natural_fit=False",
+       "points": 2
+      },
+      "motion_compatibility": {
+       "evidence": "0 scene cut(s), max jump 0.064, mean motion 0.039",
+       "points": 10
+      },
+      "semantic_scene_fit": {
+       "evidence": "adjacent lane, 7/45 scene tokens matched (black, hand, holding, phone, pov, screen, with)",
+       "points": 8
+      },
+      "technical_quality": {
+       "evidence": "720x1280, 12.9s (need 7.0s+)",
+       "points": 8
+      },
+      "text_safe_composition": {
+       "evidence": "text-band edge density 0.020 (lower is calmer)",
+       "points": 18
+      }
+     },
+     "minimum": 75,
+     "passes": false,
+     "review_status": "reject",
+     "total": 65,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": true,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.122,
+       "rows": [
+        562,
+        640
+       ]
+      },
+      {
+       "fraction_of_height": 0.109,
+       "rows": [
+        570,
+        640
+       ]
+      },
+      {
+       "fraction_of_height": 0.105,
+       "rows": [
+        573,
+        640
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(562, 640), (570, 640)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       562,
+       640
+      ],
+      [
+       570,
+       640
+      ],
+      [
+       573,
+       640
+      ]
+     ]
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 1007740,
+   "creator": null,
+   "path": "/opt/work/beast-run/live3/20261030T183947Z-f0866f/assets/track_7072513628145977346.m4a",
+   "pin_url": null,
+   "sha256": "81d9143611ef1ed4e4de908fb1468121c6a2987590c87b34157fe19130a84385",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7072513628145977346",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 55.1,
+    "high": 0.6,
+    "mid": 44.3
+   },
+   "duration_s": 60.0,
+   "file": "track_7072513628145977346.m4a",
+   "key_estimate": "D major",
+   "loudness_curve_db": [
+    -23.5,
+    -20.4,
+    -21.0
+   ],
+   "onset_density_per_s": 2.45,
+   "peak_db": -4.4,
+   "rms_db": -21.4,
+   "spectral_centroid_hz": 1004.5,
+   "tempo_bpm": 86.1,
+   "zero_crossing_rate": 0.0447
+  },
+  "background": {
+   "bytes": 618280,
+   "creator": "jujuaird97",
+   "path": "/opt/work/beast-run/live3/20261030T183947Z-f0866f/assets/cand_1_1.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShys4S3bjOfIFxaiepeSYH0RMO23acBOOmsIcfNt0NixYg/",
+   "sha256": "7bc39c6ce5215eaeb089ae52aa2288e2d6ce172841f7756da424541d95f43c43",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShys4S3bjOfIFxaiepeSYH0RMO23acBOOmsIcfNt0NixYg",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "wants to seem warm and effortless but treats 20 seconds of lift airtime like a live audition",
+    "observable_behaviour": "eyes locked on the floor numbers ticking, phone clutched in hand with screen off, tight half-smile on standby, blurting 'morning!' at floor 2",
+    "private_worry": "that the silence makes you look cold, rude, or like you think you're too good to chat",
+    "situation": "8:47am lift, just you and the person from marketing you kind of know, lobby to floor 3"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "'phone off in my hand half smile on standby' and 'timed my morning for floor two so i don't seem rude for 20 seconds' \u2014 exact lift ritual, real private worry, no diagnosis.",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 4,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Hook is a scene, not a promise \u2014 'half smile on standby' is great but '8:47am lift' doesn't set up the 8-item/Format B payoff. Payoff's 'timed my morning for floor two' adds a second idea (timing) beyond the elevator silence. Caption 'one perfectly timed hey' repeats the payoff rather than extending.",
+    "scene_specificity": 5,
+    "sendability_who": "A 22-30 year old who rides the same morning lift with a colleague they vaguely know \u2014 sent to the one work friend who does the floor-2 blurt too, with 'floor two, every time'.",
+    "shareability": 5,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 2,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=False"
+     ]
+    }
+   ],
+   "topic_id": "lift-floor-number-stare"
+  },
+  "delivery": {
+   "at": "2026-10-30T18:49:02Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 0.67,
+   "yavg_delta": 1.3
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 1.1953349633251833,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 1.0465882352941176
+  },
+  "measured": {
+   "sat": 9.01,
+   "yavg": 79.9
+  },
+  "output": {
+   "bytes": 2894413,
+   "duration_s": 7.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261030T183947Z-f0866f.mp4",
+   "sha256": "8f2da3cae0d6d3995011725ca73214002c0626229094aca255cc966911cf5427"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7072513628145977346",
+    "title": "Aesthetic"
+   },
+   "background_query": "elevator floor indicator lights ticking, hand holding phone with black screen off, closed metal lift doors",
+   "caption": "20 seconds, 3 floors, one perfectly timed hey",
+   "hookLines": [
+    "8:47am lift, just us",
+    "staring at the numbers",
+    "phone off in my hand",
+    "half smile on standby"
+   ],
+   "loop_hypothesis": "the final line gives the private reason so looping back makes the whole lift watch feel like intentional effort to stay warm",
+   "payoffLines": [
+    "timed my morning for",
+    "floor two so i don't",
+    "seem rude for 20 seconds"
+   ],
+   "provenance": {
+    "creator": "jujuaird97",
+    "pin_id": "e1_AfqPShys4S3bjOfIFxaiepeSYH0RMO23acBOOmsIcfNt0NixYg",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShys4S3bjOfIFxaiepeSYH0RMO23acBOOmsIcfNt0NixYg/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "topic_id": "lift-floor-number-stare"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 0.67,
+    "yavg_delta": 1.3
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/opt/work/beast-run/live3/20261030T183947Z-f0866f/social_moment_loop_v1-live-20261030T183947Z-f0866f.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 2894413,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 9.01,
+    "yavg": 79.9
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.3021,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 116.7
+  },
+  "rendered_at": "2026-10-30T18:48:56Z",
+  "run_id": "20261030T183947Z-f0866f",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "trying to look casually occupied in a 20 second elevator ride so a brief hello does not feel awkward",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "elevator floor indicator lights ticking 2 to 3",
+     "pov hand holding phone black screen in elevator",
+     "closed metal elevator doors reflecting soft light"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.2947,
+    "keywords": [
+     {
+      "keyword": "soft morning routine",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 78,
+    "stable_id": "7072513628145977346",
+    "title": "Aesthetic"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.2947
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 4,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 2,
+    "ok": true,
+    "topic_id": "lift-floor-number-stare"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261030T183947Z-f0866f.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": true,
+    "rationale": "The adjacent shot 'the chosen clip' makes 'trying to look casually occupied in a 20 second elevator ride so a bri' tangible; the 'Aesthetic' bed supports 'awkward' without overpowering the text on a 7",
+    "score": 71
+   },
+   "pinterest": {
+    "candidates": 6,
+    "hls": false,
+    "lane": "adjacent",
+    "metrics": {
+     "sat": 5.17,
+     "yavg": 63.2
+    },
+    "ok": true,
+    "passes_minimum": false,
+    "pin_id": "e1_AfqPShys4S3bjOfIFxaiepeSYH0RMO23acBOOmsIcfNt0NixYg",
+    "query": "pov hand holding phone black",
+    "review_status": "needs_human_review",
+    "score": 65,
+    "size": "720x1280",
+    "stretch_pick": true,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 116.7
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/opt/work/beast-run/live3/20261030T183947Z-f0866f/social_moment_loop_v1-live-20261030T183947Z-f0866f.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 2894413,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": 0.67,
+     "yavg_delta": 1.3
+    },
+    "measured": {
+     "sat": 9.01,
+     "yavg": 79.9
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.3021,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21"
+  },
+  "topic_id": "lift-floor-number-stare"
+ },
+ {
+  "asset_intent": {
+   "compiled_by": "test",
+   "degraded": false,
+   "video_queries": [
+    "night bus window"
+   ]
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": null,
+    "candidates": null,
+    "distance": 0.3,
+    "fresh": null,
+    "keywords_tried": null,
+    "rejected": null,
+    "score": {
+     "total": 80
+    },
+    "stable_id": "s",
+    "title": null
+   },
+   "pair": {
+    "dimensions": {
+     "combined_emotional_interpretation": {
+      "evidence": "motion None vs intended arousal 0.30; onset density None vs intended 0.30 (audio valence +0.00)",
+      "points": 11
+     },
+     "novelty_vs_recent": {
+      "evidence": "fresh assets under the no-repeat window",
+      "points": 2
+     },
+     "pacing_compatibility": {
+      "evidence": "movement vs measured audio rhythm",
+      "points": 5
+     },
+     "text_legibility_over_footage": {
+      "evidence": "text-band edge density 0.1",
+      "points": 7
+     },
+     "text_to_scene_semantic_fit": {
+      "evidence": "derived from semantic_scene_fit",
+      "points": 0
+     },
+     "tone_coherence_or_contrast": {
+      "evidence": "compatible tones (no contrast declared)",
+      "points": 6
+     }
+    },
+    "passes": false,
+    "rationale": "The literal shot 'the chosen clip' makes '' tangible; the 'the chosen bed' bed supports 'the intended mood' without overpowering the text on a caption-list-format static-text reel.",
+    "total": 31
+   },
+   "visual": {
+    "band_busy": 0.1,
+    "candidates": [],
+    "creator": null,
+    "flags": null,
+    "lane_expansions": null,
+    "motion": {},
+    "passes_minimum": false,
+    "pin_id": "7",
+    "pin_url": null,
+    "query": null,
+    "query_lane": null,
+    "query_log": null,
+    "rejected": [],
+    "review_status": "needs_human_review",
+    "score": {
+     "total": 61
+    },
+    "stretch_pick": null,
+    "text": null,
+    "title": null
+   }
+  },
+  "audio": {
+   "bytes": null,
+   "creator": null,
+   "path": "a",
+   "pin_url": null,
+   "sha256": null,
+   "source": "test",
+   "stable_id": "s",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {},
+  "background": {
+   "bytes": null,
+   "creator": null,
+   "path": "p",
+   "pin_url": null,
+   "sha256": null,
+   "source": "pinterest",
+   "stable_id": "7",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {},
+   "card_compiled_by": "test",
+   "card_degraded": false,
+   "critic": {},
+   "ladder": [
+    {
+     "level": 3
+    }
+   ],
+   "topic_id": "t"
+  },
+  "delivery": {
+   "at": "2026-10-30T18:50:31Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {},
+  "format_id": "caption_list_title_v1",
+  "grade": null,
+  "measured": {
+   "yavg": 100.0
+  },
+  "output": {
+   "bytes": 2048,
+   "duration_s": null,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261030T185031Z-8599e3.mp4",
+   "sha256": "1d1801f753ccd9fa57966c46f360585caf83337a394a5f238d4e4e7d6005788d"
+  },
+  "payload": {
+   "audio": {
+    "rights": "preview_only",
+    "source": "test",
+    "stable_id": "s",
+    "title": null
+   },
+   "background_query": "night bus window",
+   "caption": "",
+   "provenance": {
+    "creator": null,
+    "pin_id": "7",
+    "pin_url": null,
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "a"
+   ],
+   "topic_id": "t"
+  },
+  "qa": {
+   "band_ok": true,
+   "ok": false
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 1
+  },
+  "rendered_at": "2026-10-30T18:50:31Z",
+  "run_id": "20261030T185031Z-8599e3",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "test",
+    "core_human_moment": null,
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "night bus window"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3,
+    "keywords": null,
+    "ok": true,
+    "score": 80,
+    "stable_id": "s",
+    "title": null
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3
+   },
+   "content": {
+    "attempts": 1,
+    "card": "test",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": null,
+     "distinctiveness": null,
+     "emotional_truth_dignity": null,
+     "format_fit": null,
+     "hard_fail": null,
+     "natural_voice": null,
+     "product_trust": null,
+     "recognition_authenticity": null,
+     "scene_specificity": null,
+     "shareability": null
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "t"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261030T185031Z-8599e3.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": false,
+    "rationale": "The literal shot 'the chosen clip' makes '' tangible; the 'the chosen bed' bed supports 'the intended mood' without overpowering the text on a caption-list-format static-text reel.",
+    "score": 31
+   },
+   "pinterest": {
+    "candidates": 0,
+    "hls": null,
+    "lane": null,
+    "metrics": null,
+    "ok": true,
+    "passes_minimum": false,
+    "pin_id": "7",
+    "query": null,
+    "review_status": "needs_human_review",
+    "score": 61,
+    "size": "720x1280",
+    "stretch_pick": null,
+    "text_suspected": null,
+    "title": null
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 1
+   },
+   "structural_qa": {
+    "gate": {},
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {},
+    "measured": {
+     "yavg": 100.0
+    },
+    "ok": true,
+    "text_frame0": {
+     "ok": true
+    }
+   }
+  },
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "x"
+  },
+  "topic_id": "t"
  }
 ]

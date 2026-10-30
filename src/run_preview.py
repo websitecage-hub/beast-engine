@@ -258,7 +258,8 @@ def main(argv=None) -> int:
     for kind, key in reserved:
         asset_ledger.commit(run_id, key=key, kind=kind)
 
-    report = {"ok": all(s["ok"] for s in stages.values()), "run_id": run_id,
+    report = {"ok": all(s["ok"] for s in stages.values()) and entry["status"] == "rendered",
+              "status": entry["status"], "run_id": run_id,
               "format_id": fmt, "output": str(final_path), "scratch_output": str(out),
               "sha256": entry["output"]["sha256"],
               "measured": rec.get("measured"), "band_ok": qa.get("band_ok"),
@@ -266,9 +267,15 @@ def main(argv=None) -> int:
               "asset_scores": {"video": bg["score"]["total"],
                                "audio": (au.get("score") or {}).get("total"),
                                "pair": pair["total"]},
+              "needs_review_because": [k for k, v in
+                                       (("visual_minimum", bg.get("passes_minimum")),
+                                        ("pair_fit", pair.get("passes")),
+                                        ("qa_ok", entry["qa_ok"])) if not v] or None,
               "stages": stages, "delivered": delivered,
               "seconds": round(time.time() - t0, 1)}
     print(json.dumps(report, indent=1))
+    # A delivered artifact that is marked needs_review is NOT a clean run: the exit
+    # code has to agree with the status the manifest recorded.
     return 0 if report["ok"] else 1
 
 
