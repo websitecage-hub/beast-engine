@@ -7,6 +7,7 @@ network. Outputs land in scratch first; the caller copies the final artefacts.
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -15,7 +16,7 @@ sys.path.insert(0, "/home/testflowthrowout/beast-engine")
 
 from src.formats import run_manifest, template_payloads, template_renderer  # noqa: E402
 
-OUT = Path("/tmp/beast-run2/out")
+OUT = Path(os.environ.get("BEAST_SCRATCH", "/tmp/beast-preview")) / "out"
 OUT.mkdir(parents=True, exist_ok=True)
 
 A_ITEMS = [

@@ -11,7 +11,7 @@
            - ONE continuous lo-fi POV shot, locked camera, no cuts
            - ONE static caption block, pale-yellow lowercase, present from the
              very first frame (no hook/payoff swap, no entrance animation)
-           - centered, block occupies the ~30-61% height band (center ≈45.5%)
+           - centred, block occupies 50.8-84.2% of height (centre 67.5%)
            - no scrim: the background keeps natural brightness
            - runtime ≈7s (loop-friendly) */
       @font-face {
@@ -22,7 +22,7 @@
         font-display: block;
       }
       :root {
-        --ink: #f2ebb0;
+        --ink: #feffac;
         --font-display: "Inter", "Helvetica Neue", Arial, sans-serif;
       }
       * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -51,24 +51,32 @@
         filter: var(--bg-filter, none);
       }
       #caption {
-        /* Centred by its own middle (bottom padding biases the optical centre to
-           the reference band at 45.5%); auto-fit shrinking cannot move it. */
+        /* The reference block sits low: measured 50.8-84.2% of height, centre
+           67.5%. Anchoring the flex box from 35% puts its centre there, and
+           auto-fit shrinking cannot move it. */
         position: absolute;
-        inset: 0;
+        left: 0;
+        right: 0;
+        top: 35%;
+        bottom: 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 0 72px 172px;
+        padding: 0 72px;
         text-align: center;
         color: var(--ink);
         font-weight: 700;
-        font-size: 76px;
-        line-height: 1.2;
+        /* Measured: pitch 107-113px -> 86px at line-height 1.28; 55% of the
+           glyph ring is near-black (median luma 40), so this is a hard 3px
+           outline plus a soft shadow, not a shadow alone. */
+        font-size: 86px;
+        line-height: 1.28;
         letter-spacing: 0;
         text-transform: lowercase;
-        /* Reference: no outline, just a soft dark shadow for separation. */
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+        -webkit-text-stroke: 3px #000000;
+        paint-order: stroke fill;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
       }
       .line { display: block; white-space: nowrap; }
     </style>
@@ -109,7 +117,7 @@
       // width, so variant copy never re-wraps (reference is a fixed 7-line block).
       {
         const el = document.getElementById("caption");
-        let fs = 76;
+        let fs = 86;
         el.style.fontSize = fs + "px";
         while (el.scrollWidth > el.clientWidth && fs > 44) {
           fs -= 2;

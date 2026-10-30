@@ -9,7 +9,7 @@ nothing schedules them, and publishing stays off.
 | format id | `caption_list_title_v1` | `social_moment_loop_v1` |
 | duration | 12.2 s | 7.0 s |
 | canvas | 1080×1920 @ 30 fps | 1080×1920 @ 30 fps |
-| structure | one continuous shot; 4-line white Montserrat 700 title at 98 px with a 7 px `#0b0b0c` outline, block centre ≈43 %, visible from frame 0, no scrim, no entrance animation | one continuous POV shot; one static lowercase Inter 700 block in `#f2ebb0` at 76 px, soft shadow, band 30–61 %, visible from frame 0 |
+| structure | one continuous shot; 4-line white **Inter 700** title at **81 px / 1.00** with a **4 px `#09090b`** outline, block **42.0–57.7 %** (centre 49.9 %), visible from frame 0, no scrim, no entrance animation | one continuous POV shot; one static lowercase **Inter 700** block in **`#feffac`** at **86 px / 1.28** with a 3 px black outline plus a soft shadow, block **50.8–84.2 %** (centre 67.5 %), visible from frame 0 |
 | copy lives in | the title (4 lines max) + the caption (the promised list) | the on-screen block: hook lines then payoff lines, max 8 lines |
 | luma / sat target | 105 ±14 / 14.2 ±5 | 78.6 ±20 / 8.34 ±4 |
 | grade limits | brightness 0.85–1.32, saturate 0.60–1.45 | brightness 0.80–1.45, saturate 0.60–1.60 |
@@ -112,3 +112,19 @@ python3 tests/_template_preview.py           # both formats, fixture media
 All bundled and downloaded media is `usage_clearance=unknown` /
 `rights=preview_only`. **Preview only. Nothing here is publication-cleared, and
 `short_publish_enabled` stays `false`.**
+
+## Typography provenance (v2)
+
+Both formats were re-derived from the two-format reference library with Hypit
+(`hypit download`, `hypit media probe|frames|tiles`) and rebuilt as Hypit SVML sources.
+The engine copies those measurements; it does not re-guess them.
+
+* Typeface: **Inter**, not Montserrat. The reference lowercase `g` is single-storey, and
+  within-title line-width ratios match Inter to 1.3 % while Montserrat runs ~9 % wider.
+* Format A at 81 px, not 98 px: the reference source is 720-wide and was upscaled, so the
+  old 98 px was measured off a scaled frame. 946 px of measured line width needs 81 px.
+* Format B fill is `#feffac` (measured glyph core), not `#f2ebb0`, and carries a hard 3 px
+  outline in addition to the soft shadow: 55 % of the 4 px glyph ring is near-black.
+* B's block sits low (50.8–84.2 %), not in the 30–61 % band assumed from the factory spec.
+* Verified against the references on the rendered frame: A 4/4 lines, block −0.5/+0.4 %,
+  pitch −0.5 px; B 6/6 lines, block +0.3/−0.2 %, pitch −1.0 px.

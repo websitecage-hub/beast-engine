@@ -91,9 +91,9 @@ def test_cleared_audio_requires_evidence():
 # ------------------------------------------------------- template immutability
 EXPECTED_INDEX = {
     "caption_list_title_v1":
-        "4b6ebd9d470e02060612e6c21a7ef02a80ece68f011f6442be04a5fe1b65f487",
+        "fa13af1aa2efc2538f042bd2c7edae6690b213a3c2719900aa11339df3de50fc",
     "social_moment_loop_v1":
-        "9d75c1ad71541a59681b97b1d05e97533299c9c0a4f1f722cfda65ca2a25b673",
+        "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21",
 }
 
 
