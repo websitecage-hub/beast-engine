@@ -1,0 +1,2201 @@
+[
+ {
+  "audio": {
+   "bytes": 206152,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/audio/bgm.m4a",
+   "pin_url": null,
+   "sha256": "ce50e27a5f018edaa1670156ceece72ff8fe935a2e1f77d6becac557652cf275",
+   "source": "template-fixture",
+   "stable_id": "6777323236687349761",
+   "usage_clearance": "unknown"
+  },
+  "background": {
+   "bytes": 4036191,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/media/bg.mp4",
+   "pin_url": null,
+   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
+   "source": "template-fixture",
+   "stable_id": "pinvid_5cced687408a5a9d",
+   "usage_clearance": "unknown"
+  },
+  "delivery": {
+   "at": null,
+   "channel": null,
+   "ok": null
+  },
+  "drift": {
+   "sat_delta": 6.81,
+   "yavg_delta": 18.6
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 1.0,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 1.0,
+    "saturate": 1.0
+   },
+   "saturate": 1.0
+  },
+  "measured": {
+   "sat": 21.01,
+   "yavg": 123.6
+  },
+  "output": {
+   "bytes": 26047120,
+   "duration_s": 12.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-preview.mp4",
+   "sha256": "b5842ad99a7556c34f7825044b333991ee6d6defffe64a920b31a3a368815edd"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper",
+    "stable_id": "6777323236687349761",
+    "title": "Simplicity"
+   },
+   "background_query": "person walking forest trail morning light",
+   "caption": "8 things you do after a conversation when you're worried you sounded weird:\n1. replay the exact sentence you said\n2. decide they secretly hate you\n3. rehearse a better version in the shower\n4. check if they posted since\n5. draft an apology you never send\n6. ask a friend if it was weird\n7. promise to be quieter next time\n8. replay it again at 2am",
+   "headline": "8 things you do after a conversation when you're worried you sounded weird",
+   "list_items": [
+    "replay the exact sentence you said",
+    "decide they secretly hate you",
+    "rehearse a better version in the shower",
+    "check if they posted since",
+    "draft an apology you never send",
+    "ask a friend if it was weird",
+    "promise to be quieter next time",
+    "replay it again at 2am"
+   ],
+   "provenance": {
+    "creator": "emmawatsonbarbe",
+    "pin_id": "pinvid_5cced687408a5a9d",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "8 things you do after",
+    "a conversation when",
+    "you're worried you",
+    "sounded weird"
+   ],
+   "topic_id": "post-conversation-replay"
+  },
+  "qa": {
+   "band_ok": false,
+   "drift": {
+    "sat_delta": 6.81,
+    "yavg_delta": 18.6
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/tmp/beast-run2/out/caption_list_title_v1-preview.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 26047120,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 21.01,
+    "yavg": 123.6
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 296.2
+  },
+  "rendered_at": "2026-10-29T18:05:02Z",
+  "run_id": "20261029T175952Z-463a80",
+  "schema_version": "1.0",
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "4b6ebd9d470e02060612e6c21a7ef02a80ece68f011f6442be04a5fe1b65f487"
+  },
+  "topic_id": "post-conversation-replay"
+ },
+ {
+  "audio": {
+   "bytes": 114075,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/audio/bgm.m4a",
+   "pin_url": null,
+   "sha256": "6b8a6a8863ed9dcf77f39b1e5e4ce825520e2343d7eb78b914e643515453e970",
+   "source": "template-fixture",
+   "stable_id": "6696371042123778818",
+   "usage_clearance": "unknown"
+  },
+  "background": {
+   "bytes": 1205165,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/media/bg.mp4",
+   "pin_url": null,
+   "sha256": "9a3e0b5c2aa42c0fbea9efb0085a339846b52ce1eefad5cb5d55609bc4a0883b",
+   "source": "template-fixture",
+   "stable_id": "pinvid_44d38b7087ea5936",
+   "usage_clearance": "unknown"
+  },
+  "delivery": {
+   "at": null,
+   "channel": null,
+   "ok": null
+  },
+  "drift": {
+   "sat_delta": 0.7,
+   "yavg_delta": -17.0
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 1.0,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 1.0,
+    "saturate": 1.0
+   },
+   "saturate": 1.0
+  },
+  "measured": {
+   "sat": 9.04,
+   "yavg": 61.6
+  },
+  "output": {
+   "bytes": 10459263,
+   "duration_s": 7.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-preview.mp4",
+   "sha256": "3b706a1a846c54cf76738cb2867379cbd3a4fb6bf26ad6ffd194fce8204c318e"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper",
+    "stable_id": "6696371042123778818",
+    "title": "hate myself"
+   },
+   "background_query": "quiet night window rain bokeh pov",
+   "caption": "the two hours after \u201chey.\u201d",
+   "hook_lines": [
+    "you sent \u201chey.\u201d",
+    "two hours ago."
+   ],
+   "loop_hypothesis": "The last line ('you're not.') re-reads as the first ('you sent hey') on a loop: waiting again.",
+   "payoff_lines": [
+    "they're online.",
+    "you're not."
+   ],
+   "provenance": {
+    "creator": "unknown",
+    "pin_id": "pinvid_44d38b7087ea5936",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "topic_id": "hey-then-silence"
+  },
+  "qa": {
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 0.7,
+    "yavg_delta": -17.0
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/tmp/beast-run2/out/social_moment_loop_v1-preview.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 10459263,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 9.04,
+    "yavg": 61.6
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 153.6
+  },
+  "rendered_at": "2026-10-29T18:07:42Z",
+  "run_id": "20261029T180502Z-c854ff",
+  "schema_version": "1.0",
+  "status": "rendered",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "9d75c1ad71541a59681b97b1d05e97533299c9c0a4f1f722cfda65ca2a25b673"
+  },
+  "topic_id": "hey-then-silence"
+ },
+ {
+  "audio": {
+   "bytes": 206152,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/audio/bgm.m4a",
+   "pin_url": null,
+   "sha256": "ce50e27a5f018edaa1670156ceece72ff8fe935a2e1f77d6becac557652cf275",
+   "source": "template-fixture",
+   "stable_id": "6777323236687349761",
+   "usage_clearance": "unknown"
+  },
+  "background": {
+   "bytes": 4036191,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/media/bg.mp4",
+   "pin_url": null,
+   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
+   "source": "template-fixture",
+   "stable_id": "pinvid_5cced687408a5a9d",
+   "usage_clearance": "unknown"
+  },
+  "delivery": {
+   "at": null,
+   "channel": null,
+   "ok": null
+  },
+  "drift": {
+   "sat_delta": -2.17,
+   "yavg_delta": 4.0
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.85,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.6758686339838171
+  },
+  "measured": {
+   "sat": 12.03,
+   "yavg": 109.0
+  },
+  "output": {
+   "bytes": 22460659,
+   "duration_s": 12.0,
+   "path": "/tmp/beast-run2/out/caption_list_title_v1-preview.mp4",
+   "sha256": "858df98b13c910d3b99745c620ee844076d7b76f0a5b4f81d7408dce071cd9aa"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper",
+    "stable_id": "6777323236687349761",
+    "title": "Simplicity"
+   },
+   "background_query": "person walking forest trail morning light",
+   "caption": "8 things you do after a conversation when you're worried you sounded weird:\n1. replay the exact sentence you said\n2. decide they secretly hate you\n3. rehearse a better version in the shower\n4. check if they posted since\n5. draft an apology you never send\n6. ask a friend if it was weird\n7. promise to be quieter next time\n8. replay it again at 2am",
+   "headline": "8 things you do after a conversation when you're worried you sounded weird",
+   "list_items": [
+    "replay the exact sentence you said",
+    "decide they secretly hate you",
+    "rehearse a better version in the shower",
+    "check if they posted since",
+    "draft an apology you never send",
+    "ask a friend if it was weird",
+    "promise to be quieter next time",
+    "replay it again at 2am"
+   ],
+   "provenance": {
+    "creator": "emmawatsonbarbe",
+    "pin_id": "pinvid_5cced687408a5a9d",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "8 things you do after",
+    "a conversation when",
+    "you're worried you",
+    "sounded weird"
+   ],
+   "topic_id": "post-conversation-replay"
+  },
+  "qa": {
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.17,
+    "yavg_delta": 4.0
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/tmp/beast-run2/out/caption_list_title_v1-preview.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 22460659,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 12.03,
+    "yavg": 109.0
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 247.2
+  },
+  "rendered_at": "2026-10-29T18:31:40Z",
+  "run_id": "20261029T182239Z-a5bd17",
+  "schema_version": "1.0",
+  "status": "rendered",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "4b6ebd9d470e02060612e6c21a7ef02a80ece68f011f6442be04a5fe1b65f487"
+  },
+  "topic_id": "post-conversation-replay"
+ },
+ {
+  "audio": {
+   "bytes": 533557,
+   "creator": null,
+   "path": "/tmp/beast-run2/live/20261029T191600Z-0b3391/assets/track_7115246182422562817.m4a",
+   "pin_url": null,
+   "sha256": "34e9fdf40a0e117a7136b741e62ca623c1621326963ce67f7d77d2db465b06c6",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7115246182422562817",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 77.1,
+    "high": 1.1,
+    "mid": 21.8
+   },
+   "duration_s": 32.6,
+   "file": "track_7115246182422562817.m4a",
+   "key_estimate": "E major",
+   "loudness_curve_db": [
+    -22.7,
+    -22.1,
+    -23.8
+   ],
+   "onset_density_per_s": 3.34,
+   "peak_db": -11.1,
+   "rms_db": -22.8,
+   "spectral_centroid_hz": 1495.0,
+   "tempo_bpm": 152.0,
+   "zero_crossing_rate": 0.0378
+  },
+  "background": {
+   "bytes": 9553791,
+   "creator": "olimpmotorsvl",
+   "path": "/tmp/beast-run2/live/20261029T191600Z-0b3391/assets/bg_1.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwjasoMYzx0tG8vGuFzoEI84aJ1qXyG5-RxmkcLRP4EBg/",
+   "sha256": "45d56fec2810803737272d8758a2e4d132531b63a7ad5abf0190c6e06b422c1d",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShwjasoMYzx0tG8vGuFzoEI84aJ1qXyG5-RxmkcLRP4EBg",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "critic": {
+    "claims_ok": true,
+    "loop_ok": true,
+    "originality": 5,
+    "rewrite_notes": "Very strong. 'Check your phone with the screen off' and 'Stare at the window like it's news' are the standout lines. Only small note: item 5 slightly overlaps the payoff; could instead be 'Get off at the wrong stop to escape'.",
+    "sendability": 5,
+    "sendability_who": "A 20-30 year old commuter who'd send it to the one friend they text on the bus \u2014 'literally me this morning, number 5' \u2014 usually after an awkward window-seat encounter.",
+    "specificity": 5,
+    "tone_safety": 5
+   },
+   "topic_id": "after-someone-sits-next-to-you-on-the-bus"
+  },
+  "delivery": {
+   "at": "2026-10-29T20:26:48Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -0.78,
+   "yavg_delta": -2.7
+  },
+  "first_frame_fix": {
+   "applied": true,
+   "audio_shift_s": 0.0333,
+   "dropped_frames": 1
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 1.116,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 1.116,
+    "saturate": 0.771
+   },
+   "saturate": 0.771
+  },
+  "measured": {
+   "sat": 13.42,
+   "yavg": 102.3
+  },
+  "output": {
+   "bytes": 11261192,
+   "duration_s": 11.98,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261029T191600Z-0b3391.mp4",
+   "sha256": "4be128bb9ed42a48fb8b622348c796068fa15c5e72144c3ff818685c40406d3a"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7115246182422562817",
+    "title": "Getting Over You"
+   },
+   "background_query": "bus window seat, empty seats behind, passenger's jacket sleeve beside armrest, rainy afternoon light on glass",
+   "caption": "5 things you do after someone sits next to you on the bus:\n1. Freeze your elbow against your side\n2. Stare at the window like it's news\n3. Check your phone with the screen off\n4. Practise the stop name in your head\n5. Stand up two stops early anyway",
+   "closing": "Eleven stops. You made it to nine.",
+   "headline": "5 things you do after someone sits next to you on the bus",
+   "list_items": [
+    "Freeze your elbow against your side",
+    "Stare at the window like it's news",
+    "Check your phone with the screen off",
+    "Practise the stop name in your head",
+    "Stand up two stops early anyway"
+   ],
+   "provenance": {
+    "creator": "olimpmotorsvl",
+    "pin_id": "e1_AfqPShwjasoMYzx0tG8vGuFzoEI84aJ1qXyG5-RxmkcLRP4EBg",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwjasoMYzx0tG8vGuFzoEI84aJ1qXyG5-RxmkcLRP4EBg/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "The bus is half empty.",
+    "They chose this seat.",
+    "Now you're both here",
+    "for eleven stops."
+   ],
+   "topic_id": "after-someone-sits-next-to-you-on-the-bus"
+  },
+  "qa": {
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -0.78,
+    "yavg_delta": -2.6
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/tmp/beast-run2/live/20261029T191600Z-0b3391/caption_list_title_v1-live-20261029T191600Z-0b3391.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 12990425,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 13.42,
+    "yavg": 102.4
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.448,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 227.9
+  },
+  "rendered_at": "2026-10-29T19:22:30Z",
+  "run_id": "20261029T191600Z-0b3391",
+  "schema_version": "1.0",
+  "stages": {
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3478,
+    "ok": true,
+    "stable_id": "7115246182422562817",
+    "title": "Getting Over You"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3478
+   },
+   "content": {
+    "attempts": 1,
+    "critic": {
+     "claims_ok": true,
+     "loop_ok": true,
+     "originality": 5,
+     "sendability": 5,
+     "specificity": 5,
+     "tone_safety": 5
+    },
+    "ok": true,
+    "topic_id": "after-someone-sits-next-to-you-on-the-bus"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261029T191600Z-0b3391.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pinterest": {
+    "hls": false,
+    "metrics": {
+     "sat": 18.42,
+     "yavg": 94.1
+    },
+    "ok": true,
+    "pin_id": "e1_AfqPShwjasoMYzx0tG8vGuFzoEI84aJ1qXyG5-RxmkcLRP4EBg",
+    "size": "720x1280",
+    "stretch_pick": false
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 227.9
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/tmp/beast-run2/live/20261029T191600Z-0b3391/caption_list_title_v1-live-20261029T191600Z-0b3391.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 12990425,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": -0.78,
+     "yavg_delta": -2.6
+    },
+    "measured": {
+     "sat": 13.42,
+     "yavg": 102.4
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1447,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "rendered",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "4b6ebd9d470e02060612e6c21a7ef02a80ece68f011f6442be04a5fe1b65f487"
+  },
+  "topic_id": "after-someone-sits-next-to-you-on-the-bus"
+ },
+ {
+  "audio": {
+   "bytes": 818753,
+   "creator": null,
+   "path": "/tmp/beast-run2/live/20261029T192337Z-2c4f7e/assets/track_7239111762301306881.m4a",
+   "pin_url": null,
+   "sha256": "cfc8b25c6b52159586218f9acf98b0494675bb22bde06bfd3a7248116422fd9f",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7239111762301306881",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 79.1,
+    "high": 1.3,
+    "mid": 19.6
+   },
+   "duration_s": 48.09,
+   "file": "track_7239111762301306881.m4a",
+   "key_estimate": "D# major",
+   "loudness_curve_db": [
+    -20.0,
+    -20.5,
+    -29.9
+   ],
+   "onset_density_per_s": 4.45,
+   "peak_db": -8.3,
+   "rms_db": -21.8,
+   "spectral_centroid_hz": 1935.2,
+   "tempo_bpm": 129.2,
+   "zero_crossing_rate": 0.0792
+  },
+  "background": {
+   "bytes": 1709557,
+   "creator": "pin12345670",
+   "path": "/tmp/beast-run2/live/20261029T192337Z-2c4f7e/assets/bg_1.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShz_rzsNbfCRW3peWc1dBOHtcTSX5NlPx8FInkQATT7RKVP8/",
+   "sha256": "d096fc46a4f72b0f4cbdfb7ac4a8d2e66b9d536575e4e9f96e2fea5877a22bff",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShz_rzsNbfCRW3peWc1dBOHtcTSX5NlPx8FInkQATT7RKVP8",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "critic": {
+    "claims_ok": true,
+    "loop_ok": true,
+    "originality": 5,
+    "rewrite_notes": "Very strong. 'Mostly ice' and 'waiting for someone to need the bin' are the whole thing. Consider swapping the caption for something that adds rather than repeats \u2014 e.g. 'two drinks in, still by the bin'.",
+    "sendability": 5,
+    "sendability_who": "A 20-28 year old who agrees to house parties then orbits the kitchen all night \u2014 the friend who'd send it mid-party with 'don't look at me' or the next morning with 'this was us'.",
+    "specificity": 5,
+    "tone_safety": 5
+   },
+   "topic_id": "hovering-near-the-kitchen-at-a-party"
+  },
+  "delivery": {
+   "at": "2026-10-29T20:28:10Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 3.57,
+   "yavg_delta": -19.4
+  },
+  "first_frame_fix": {
+   "applied": true,
+   "audio_shift_s": 0.0333,
+   "dropped_frames": 1
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 1.256,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 1.256,
+    "saturate": 0.728
+   },
+   "saturate": 0.728
+  },
+  "measured": {
+   "sat": 11.91,
+   "yavg": 59.2
+  },
+  "output": {
+   "bytes": 4535141,
+   "duration_s": 6.99,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261029T192337Z-2c4f7e.mp4",
+   "sha256": "a4618f65a4867378a2f3c96017686a556427e9e3683db451e3a40fd1c7d83b09"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7239111762301306881",
+    "title": "bounce (i just wanna dance)"
+   },
+   "background_query": "POV hand holding a glass of ice near a kitchen doorway, party noise beyond, fridge magnets, someone's coat on a chair",
+   "caption": "the bin is the only reason you're standing there",
+   "hookLines": [
+    "you said you'd come for one drink",
+    "now you're in the kitchen doorway"
+   ],
+   "loop_hypothesis": "The last line lands mid-scene with no resolution, so the eye drops back to 'one drink' and re-reads the doorway as the same unresolved moment, just longer.",
+   "payoffLines": [
+    "holding a glass that's mostly ice",
+    "waiting for someone to need the bin"
+   ],
+   "provenance": {
+    "creator": "pin12345670",
+    "pin_id": "e1_AfqPShz_rzsNbfCRW3peWc1dBOHtcTSX5NlPx8FInkQATT7RKVP8",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShz_rzsNbfCRW3peWc1dBOHtcTSX5NlPx8FInkQATT7RKVP8/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "topic_id": "hovering-near-the-kitchen-at-a-party"
+  },
+  "qa": {
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 3.57,
+    "yavg_delta": -19.4
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/tmp/beast-run2/live/20261029T192337Z-2c4f7e/social_moment_loop_v1-live-20261029T192337Z-2c4f7e.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 5093055,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 11.91,
+    "yavg": 59.2
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.1137,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 117.1
+  },
+  "rendered_at": "2026-10-29T19:28:01Z",
+  "run_id": "20261029T192337Z-2c4f7e",
+  "schema_version": "1.0",
+  "stages": {
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.681,
+    "ok": true,
+    "stable_id": "7239111762301306881",
+    "title": "bounce (i just wanna dance)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.681
+   },
+   "content": {
+    "attempts": 1,
+    "critic": {
+     "claims_ok": true,
+     "loop_ok": true,
+     "originality": 5,
+     "sendability": 5,
+     "specificity": 5,
+     "tone_safety": 5
+    },
+    "ok": true,
+    "topic_id": "hovering-near-the-kitchen-at-a-party"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261029T192337Z-2c4f7e.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pinterest": {
+    "hls": false,
+    "metrics": {
+     "sat": 11.45,
+     "yavg": 62.6
+    },
+    "ok": true,
+    "pin_id": "e1_AfqPShz_rzsNbfCRW3peWc1dBOHtcTSX5NlPx8FInkQATT7RKVP8",
+    "size": "720x1280",
+    "stretch_pick": false
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 117.1
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/tmp/beast-run2/live/20261029T192337Z-2c4f7e/social_moment_loop_v1-live-20261029T192337Z-2c4f7e.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 5093055,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": 3.57,
+     "yavg_delta": -19.4
+    },
+    "measured": {
+     "sat": 11.91,
+     "yavg": 59.2
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.1137,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "rendered",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "9d75c1ad71541a59681b97b1d05e97533299c9c0a4f1f722cfda65ca2a25b673"
+  },
+  "topic_id": "hovering-near-the-kitchen-at-a-party"
+ },
+ {
+  "audio": {
+   "bytes": 206152,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/audio/bgm.m4a",
+   "pin_url": null,
+   "sha256": "ce50e27a5f018edaa1670156ceece72ff8fe935a2e1f77d6becac557652cf275",
+   "source": "template-fixture",
+   "stable_id": "6777323236687349761",
+   "usage_clearance": "unknown"
+  },
+  "background": {
+   "bytes": 4036191,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/media/bg.mp4",
+   "pin_url": null,
+   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
+   "source": "template-fixture",
+   "stable_id": "pinvid_5cced687408a5a9d",
+   "usage_clearance": "unknown"
+  },
+  "delivery": {
+   "at": null,
+   "channel": null,
+   "ok": null
+  },
+  "drift": {
+   "sat_delta": -2.14,
+   "yavg_delta": 3.1
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.8522727272727273,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.6466302367941712
+  },
+  "measured": {
+   "sat": 12.06,
+   "yavg": 108.1
+  },
+  "output": {
+   "bytes": 22905276,
+   "duration_s": 12.0,
+   "path": "/opt/work/beast-preview/out/caption_list_title_v1-preview.mp4",
+   "sha256": "41d780279c3c5baa105aaad79d4a991e9d6ef6e740dde750e31ea0c2e3db31b7"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper",
+    "stable_id": "6777323236687349761",
+    "title": "Simplicity"
+   },
+   "background_query": "person walking forest trail morning light",
+   "caption": "8 things you do after a conversation when you're worried you sounded weird:\n1. replay the exact sentence you said\n2. decide they secretly hate you\n3. rehearse a better version in the shower\n4. check if they posted since\n5. draft an apology you never send\n6. ask a friend if it was weird\n7. promise to be quieter next time\n8. replay it again at 2am",
+   "headline": "8 things you do after a conversation when you're worried you sounded weird",
+   "list_items": [
+    "replay the exact sentence you said",
+    "decide they secretly hate you",
+    "rehearse a better version in the shower",
+    "check if they posted since",
+    "draft an apology you never send",
+    "ask a friend if it was weird",
+    "promise to be quieter next time",
+    "replay it again at 2am"
+   ],
+   "provenance": {
+    "creator": "emmawatsonbarbe",
+    "pin_id": "pinvid_5cced687408a5a9d",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "8 things you do after",
+    "a conversation when",
+    "you're worried you",
+    "sounded weird"
+   ],
+   "topic_id": "post-conversation-replay"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.14,
+    "yavg_delta": 3.1
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/opt/work/beast-preview/out/caption_list_title_v1-preview.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 22905276,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 12.06,
+    "yavg": 108.1
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0901,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 342.8
+  },
+  "rendered_at": "2026-10-30T16:10:15Z",
+  "run_id": "20261030T155853Z-f0380e",
+  "schema_version": "1.0",
+  "status": "rendered",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "fa13af1aa2efc2538f042bd2c7edae6690b213a3c2719900aa11339df3de50fc"
+  },
+  "topic_id": "post-conversation-replay"
+ },
+ {
+  "audio": {
+   "bytes": 114075,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/audio/bgm.m4a",
+   "pin_url": null,
+   "sha256": "6b8a6a8863ed9dcf77f39b1e5e4ce825520e2343d7eb78b914e643515453e970",
+   "source": "template-fixture",
+   "stable_id": "6696371042123778818",
+   "usage_clearance": "unknown"
+  },
+  "background": {
+   "bytes": 1205165,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/media/bg.mp4",
+   "pin_url": null,
+   "sha256": "9a3e0b5c2aa42c0fbea9efb0085a339846b52ce1eefad5cb5d55609bc4a0883b",
+   "source": "template-fixture",
+   "stable_id": "pinvid_44d38b7087ea5936",
+   "usage_clearance": "unknown"
+  },
+  "delivery": {
+   "at": null,
+   "channel": null,
+   "ok": null
+  },
+  "drift": {
+   "sat_delta": 0.6,
+   "yavg_delta": -15.6
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 1.0,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 1.0,
+    "saturate": 1.0
+   },
+   "saturate": 1.0
+  },
+  "measured": {
+   "sat": 8.94,
+   "yavg": 63.0
+  },
+  "output": {
+   "bytes": 9945789,
+   "duration_s": 7.0,
+   "path": "/opt/work/beast-preview/out/social_moment_loop_v1-preview.mp4",
+   "sha256": "04049094787a47134d6b09287f731c9fac8bbe4bcb82f45c979b89f5072a5eb4"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper",
+    "stable_id": "6696371042123778818",
+    "title": "hate myself"
+   },
+   "background_query": "quiet night window rain bokeh pov",
+   "caption": "the two hours after \u201chey.\u201d",
+   "hook_lines": [
+    "you sent \u201chey.\u201d",
+    "two hours ago."
+   ],
+   "loop_hypothesis": "The last line ('you're not.') re-reads as the first ('you sent hey') on a loop: waiting again.",
+   "payoff_lines": [
+    "they're online.",
+    "you're not."
+   ],
+   "provenance": {
+    "creator": "unknown",
+    "pin_id": "pinvid_44d38b7087ea5936",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "topic_id": "hey-then-silence"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 0.6,
+    "yavg_delta": -15.6
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/opt/work/beast-preview/out/social_moment_loop_v1-preview.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 9945789,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 8.94,
+    "yavg": 63.0
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0256,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 172.1
+  },
+  "rendered_at": "2026-10-30T16:13:15Z",
+  "run_id": "20261030T161015Z-bc7f4a",
+  "schema_version": "1.0",
+  "status": "rendered",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21"
+  },
+  "topic_id": "hey-then-silence"
+ },
+ {
+  "audio": {
+   "bytes": 891434,
+   "creator": null,
+   "path": "/opt/work/beast-run/live/20261030T162955Z-79242d/assets/track_7685279849666054171.m4a",
+   "pin_url": null,
+   "sha256": "714f16e1eea00f1485a9ba813da8d137ed37b663c6f4e3f3061448038cd3daad",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7685279849666054171",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 87.1,
+    "high": 0.7,
+    "mid": 12.3
+   },
+   "duration_s": 53.31,
+   "file": "track_7685279849666054171.m4a",
+   "key_estimate": "F# minor",
+   "loudness_curve_db": [
+    -19.4,
+    -18.9,
+    -19.5
+   ],
+   "onset_density_per_s": 3.81,
+   "peak_db": -5.9,
+   "rms_db": -19.3,
+   "spectral_centroid_hz": 1709.6,
+   "tempo_bpm": 123.0,
+   "zero_crossing_rate": 0.0425
+  },
+  "background": {
+   "bytes": 1174168,
+   "creator": "themeparkhipste",
+   "path": "/opt/work/beast-run/live/20261030T162955Z-79242d/assets/bg_3.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShzmrmWC4egvS7dZkKrSaYevI6DGu33iaHv94mx0IXXdJxtt/",
+   "sha256": "bfe2ddde1f35132ed07937193fb27260c5cdd73396482221f37d27b9a41c3521",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShzmrmWC4egvS7dZkKrSaYevI6DGu33iaHv94mx0IXXdJxtt",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "critic": {
+    "claims_ok": true,
+    "loop_ok": true,
+    "originality": 4,
+    "rewrite_notes": "Strong list: 'where'd you go text' and 'story on mute' are lived-in. Hook is overloaded ('apologising for it: 8 habits') \u2014 trim to 'You left the party at 9pm. Now you're apologising for it.' Item 6 is the weakest ('search how to exit') \u2014 swap for a concrete object beat. Payoff sets dignity well.",
+    "sendability": 5,
+    "sendability_who": "A 20-28 year old who leaves parties at 9pm and spends the bus home drafting apologies they never send \u2014 'number 3 lives in my notes app' to the one friend who leaves with them.",
+    "specificity": 5,
+    "tone_safety": 5
+   },
+   "topic_id": "leaving-party-early-apology-loop"
+  },
+  "delivery": {
+   "at": "2026-10-30T16:36:22Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -2.55,
+   "yavg_delta": 7.2
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.85,
+   "natural_fit": false,
+   "raw": {
+    "brightness": 0.816,
+    "saturate": 0.628
+   },
+   "saturate": 0.628
+  },
+  "measured": {
+   "sat": 11.65,
+   "yavg": 112.2
+  },
+  "output": {
+   "bytes": 9202264,
+   "duration_s": 12.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261030T162955Z-79242d.mp4",
+   "sha256": "0e7c927e66e666578c63be4686c595b47bfe5d093b5b3b385e4afaa9c063da8c"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7685279849666054171",
+    "title": "Different Vibe"
+   },
+   "background_query": "person sitting on night bus looking out window city lights passing",
+   "caption": "8 things you do after leaving the party early:\n1. clock the exact time you left\n2. check for a where'd you go text\n3. draft sorry-I-left-early paragraph in notes\n4. watch their story on mute\n5. replay the goodbye hug in slow motion\n6. search how to exit without seeming rude\n7. put phone face-down on nightstand\n8. promise yourself you'll stay next time",
+   "closing": "you weren't rude, you were just done.",
+   "headline": "8 things you do after leaving the party early",
+   "list_items": [
+    "clock the exact time you left",
+    "check for a where'd you go text",
+    "draft sorry-I-left-early paragraph in notes",
+    "watch their story on mute",
+    "replay the goodbye hug in slow motion",
+    "search how to exit without seeming rude",
+    "put phone face-down on nightstand",
+    "promise yourself you'll stay next time"
+   ],
+   "provenance": {
+    "creator": "themeparkhipste",
+    "pin_id": "e1_AfqPShzmrmWC4egvS7dZkKrSaYevI6DGu33iaHv94mx0IXXdJxtt",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShzmrmWC4egvS7dZkKrSaYevI6DGu33iaHv94mx0IXXdJxtt/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "If you leave parties",
+    "at 9pm and spend the",
+    "bus ride apologising",
+    "for it: 8 habits"
+   ],
+   "topic_id": "leaving-party-early-apology-loop"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.55,
+    "yavg_delta": 7.2
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/opt/work/beast-run/live/20261030T162955Z-79242d/caption_list_title_v1-live-20261030T162955Z-79242d.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 9202264,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 11.65,
+    "yavg": 112.2
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1867,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 242.0
+  },
+  "rendered_at": "2026-10-30T16:36:15Z",
+  "run_id": "20261030T162955Z-79242d",
+  "schema_version": "1.0",
+  "stages": {
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3801,
+    "ok": true,
+    "stable_id": "7685279849666054171",
+    "title": "Different Vibe"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3801
+   },
+   "content": {
+    "attempts": 1,
+    "critic": {
+     "claims_ok": true,
+     "loop_ok": true,
+     "originality": 4,
+     "sendability": 5,
+     "specificity": 5,
+     "tone_safety": 5
+    },
+    "ok": true,
+    "topic_id": "leaving-party-early-apology-loop"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261030T162955Z-79242d.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pinterest": {
+    "hls": false,
+    "metrics": {
+     "sat": 22.61,
+     "yavg": 128.6
+    },
+    "ok": true,
+    "pin_id": "e1_AfqPShzmrmWC4egvS7dZkKrSaYevI6DGu33iaHv94mx0IXXdJxtt",
+    "size": "720x1280",
+    "stretch_pick": true
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 242.0
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/opt/work/beast-run/live/20261030T162955Z-79242d/caption_list_title_v1-live-20261030T162955Z-79242d.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 9202264,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": -2.55,
+     "yavg_delta": 7.2
+    },
+    "measured": {
+     "sat": 11.65,
+     "yavg": 112.2
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1867,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "rendered",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "fa13af1aa2efc2538f042bd2c7edae6690b213a3c2719900aa11339df3de50fc"
+  },
+  "topic_id": "leaving-party-early-apology-loop"
+ },
+ {
+  "audio": {
+   "bytes": 2167190,
+   "creator": null,
+   "path": "/opt/work/beast-run/live/20261030T164221Z-b1c64a/assets/track_6873501791145691137.m4a",
+   "pin_url": null,
+   "sha256": "295f850c8cf46c16cadbe8aeeac4a2b60771d2c7e8574736698da8fac36d2e12",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6873501791145691137",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 64.1,
+    "high": 0.5,
+    "mid": 35.4
+   },
+   "duration_s": 133.21,
+   "file": "track_6873501791145691137.m4a",
+   "key_estimate": "D minor",
+   "loudness_curve_db": [
+    -22.7,
+    -22.0,
+    -23.0
+   ],
+   "onset_density_per_s": 3.24,
+   "peak_db": -6.2,
+   "rms_db": -22.5,
+   "spectral_centroid_hz": 1332.1,
+   "tempo_bpm": 152.0,
+   "zero_crossing_rate": 0.0591
+  },
+  "background": {
+   "bytes": 852946,
+   "creator": "albinaaidarova1",
+   "path": "/opt/work/beast-run/live/20261030T164221Z-b1c64a/assets/bg_3.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShyABzL_0pDY0b__5K5KPpG8Srxs-19zL6gtNToxTR_C/",
+   "sha256": "0390d820e42fef4b6208258446043f93ee27dd17028b1320051d9ef0bdf33cae",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShyABzL_0pDY0b__5K5KPpG8Srxs-19zL6gtNToxTR_C",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "critic": {
+    "claims_ok": true,
+    "loop_ok": true,
+    "originality": 5,
+    "rewrite_notes": "Very strong. 'Hold my coat for twenty minutes' and the payoff's 'waiting for a gap that never comes' are the same one moment, told straight. Caption line ('my coat has been in more conversations than me') is the best sentence here \u2014 keep it. No changes needed.",
+    "sendability": 5,
+    "sendability_who": "A 20-30 year old who's spent whole parties in a coat, waiting for an exit \u2014 the friend who'd send it with 'the coat thing, you know the coat thing' or just 'me'.",
+    "specificity": 5,
+    "tone_safety": 5
+   },
+   "topic_id": "party-exit-with-coat"
+  },
+  "delivery": {
+   "at": "2026-10-30T16:48:10Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 5.75,
+   "yavg_delta": 27.3
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 0.8,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.6
+  },
+  "measured": {
+   "sat": 14.09,
+   "yavg": 105.9
+  },
+  "output": {
+   "bytes": 3411624,
+   "duration_s": 7.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261030T164221Z-b1c64a.mp4",
+   "sha256": "387e839ec690757cefebe439db8b5737bcdf8f12b2bd9876eebb3c5d84bad113"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6873501791145691137",
+    "title": "Epic Music(863502)"
+   },
+   "background_query": "pov handheld shot holding coat over arm by front door at house party with people chatting behind",
+   "caption": "my coat has been in more conversations than me",
+   "hookLines": [
+    "when i want to leave",
+    "a party early",
+    "i hold my coat for",
+    "twenty minutes"
+   ],
+   "loop_hypothesis": "last line leaves you still holding the coat and still wanting to leave, so first line becomes true again and the waiting loop restarts",
+   "payoffLines": [
+    "waiting for a gap",
+    "in conversation",
+    "that never comes",
+    "so i stay with my coat"
+   ],
+   "provenance": {
+    "creator": "albinaaidarova1",
+    "pin_id": "e1_AfqPShyABzL_0pDY0b__5K5KPpG8Srxs-19zL6gtNToxTR_C",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShyABzL_0pDY0b__5K5KPpG8Srxs-19zL6gtNToxTR_C/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "topic_id": "party-exit-with-coat"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": 5.75,
+    "yavg_delta": 27.3
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/opt/work/beast-run/live/20261030T164221Z-b1c64a/social_moment_loop_v1-live-20261030T164221Z-b1c64a.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 3411624,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 14.09,
+    "yavg": 105.9
+   },
+   "ok": false,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.1889,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 120.9
+  },
+  "rendered_at": "2026-10-30T16:48:03Z",
+  "run_id": "20261030T164221Z-b1c64a",
+  "schema_version": "1.0",
+  "stages": {
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.6578,
+    "ok": true,
+    "stable_id": "6873501791145691137",
+    "title": "Epic Music(863502)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.6578
+   },
+   "content": {
+    "attempts": 1,
+    "critic": {
+     "claims_ok": true,
+     "loop_ok": true,
+     "originality": 5,
+     "sendability": 5,
+     "specificity": 5,
+     "tone_safety": 5
+    },
+    "ok": true,
+    "topic_id": "party-exit-with-coat"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261030T164221Z-b1c64a.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pinterest": {
+    "hls": false,
+    "metrics": {
+     "sat": 26.15,
+     "yavg": 121.3
+    },
+    "ok": true,
+    "pin_id": "e1_AfqPShyABzL_0pDY0b__5K5KPpG8Srxs-19zL6gtNToxTR_C",
+    "size": "720x1280",
+    "stretch_pick": true
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 120.9
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/opt/work/beast-run/live/20261030T164221Z-b1c64a/social_moment_loop_v1-live-20261030T164221Z-b1c64a.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 3411624,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": 5.75,
+     "yavg_delta": 27.3
+    },
+    "measured": {
+     "sat": 14.09,
+     "yavg": 105.9
+    },
+    "ok": false,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.1889,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21"
+  },
+  "topic_id": "party-exit-with-coat"
+ },
+ {
+  "audio": {
+   "bytes": 982178,
+   "creator": null,
+   "path": "/opt/work/beast-run/live/20261030T164943Z-4b42aa/assets/track_7162670084778821634.m4a",
+   "pin_url": null,
+   "sha256": "88ef10a41570e3f490bb3efadf889b280f7939aee836294c5b4fb94855c831a6",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7162670084778821634",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 14.7,
+    "high": 1.2,
+    "mid": 84.1
+   },
+   "duration_s": 60.0,
+   "file": "track_7162670084778821634.m4a",
+   "key_estimate": "A minor",
+   "loudness_curve_db": [
+    -26.5,
+    -27.1,
+    -27.2
+   ],
+   "onset_density_per_s": 4.87,
+   "peak_db": -11.6,
+   "rms_db": -26.9,
+   "spectral_centroid_hz": 1411.0,
+   "tempo_bpm": 89.1,
+   "zero_crossing_rate": 0.086
+  },
+  "background": {
+   "bytes": 9308285,
+   "creator": "twoplaidaprons",
+   "path": "/opt/work/beast-run/live/20261030T164943Z-4b42aa/assets/bg_2.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY/",
+   "sha256": "8ea0c48ecfc16baaf914b8c4b29f0340d689bd3d47989800cf42f743069d71a2",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "critic": {
+    "claims_ok": true,
+    "loop_ok": true,
+    "originality": 4,
+    "rewrite_notes": "Hook is cut off mid-sentence ('staring at the' \u2014 staring at what? the calendar? their reply?). Payoff is strong and specific ('three whole days'). Caption is a decent separate thought but doesn't connect to the payoff's calendar image. Fix the broken hook before anything else.",
+    "sendability": 4,
+    "sendability_who": "A 20-30 year old who agrees to plans and quietly hopes they fall through \u2014 the friend who'd send it with 'this is us and you know it' right after a vague 'let's hang soon' exchange.",
+    "specificity": 4,
+    "tone_safety": 5
+   },
+   "topic_id": "calendar-invite-regret"
+  },
+  "delivery": {
+   "at": "2026-10-30T16:56:15Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 3.68,
+   "yavg_delta": 6.6
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 0.8,
+   "natural_fit": false,
+   "raw": {
+    "brightness": 0.791,
+    "saturate": 0.397
+   },
+   "saturate": 0.6
+  },
+  "measured": {
+   "sat": 12.02,
+   "yavg": 85.2
+  },
+  "output": {
+   "bytes": 6210523,
+   "duration_s": 7.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261030T164943Z-4b42aa.mp4",
+   "sha256": "1dc5d0f4e1befd6ee31fb232111fdd644cbb0e1a29d8fe7568b4d4595d61c31a"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7162670084778821634",
+    "title": "Magic Glockenspiel"
+   },
+   "background_query": "pov phone screen showing calendar invite on kitchen table afternoon",
+   "caption": "waiting for you to cancel first",
+   "hookLines": [
+    "i say yeah lets hang",
+    "soon staring at the"
+   ],
+   "loop_hypothesis": "final it points back to the hangout promise at start so replay restarts the cycle",
+   "payoffLines": [
+    "invite in my calendar",
+    "for three whole days",
+    "hoping you forgot",
+    "i said it"
+   ],
+   "provenance": {
+    "creator": "twoplaidaprons",
+    "pin_id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "topic_id": "calendar-invite-regret"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 3.68,
+    "yavg_delta": 6.6
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/opt/work/beast-run/live/20261030T164943Z-4b42aa/social_moment_loop_v1-live-20261030T164943Z-4b42aa.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 6210523,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 12.02,
+    "yavg": 85.2
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0649,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 222.7
+  },
+  "rendered_at": "2026-10-30T16:56:09Z",
+  "run_id": "20261030T164943Z-4b42aa",
+  "schema_version": "1.0",
+  "stages": {
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.4492,
+    "ok": true,
+    "stable_id": "7162670084778821634",
+    "title": "Magic Glockenspiel"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.4492
+   },
+   "content": {
+    "attempts": 2,
+    "critic": {
+     "claims_ok": true,
+     "loop_ok": true,
+     "originality": 4,
+     "sendability": 4,
+     "specificity": 4,
+     "tone_safety": 5
+    },
+    "ok": true,
+    "topic_id": "calendar-invite-regret"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261030T164943Z-4b42aa.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pinterest": {
+    "hls": false,
+    "metrics": {
+     "sat": 21.02,
+     "yavg": 99.4
+    },
+    "ok": true,
+    "pin_id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
+    "size": "720x1280",
+    "stretch_pick": true
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 222.7
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/opt/work/beast-run/live/20261030T164943Z-4b42aa/social_moment_loop_v1-live-20261030T164943Z-4b42aa.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 6210523,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": 3.68,
+     "yavg_delta": 6.6
+    },
+    "measured": {
+     "sat": 12.02,
+     "yavg": 85.2
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.0649,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "rendered",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21"
+  },
+  "topic_id": "calendar-invite-regret"
+ }
+]

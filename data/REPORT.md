@@ -1,6 +1,6 @@
 # Beast Engine — weekly brain report
 
-Generated: 2026-10-18T20:26:12+00:00
+Generated: 2026-10-29T18:20:24+00:00
 
 **insufficient data (n=0)** — strategy held steady.
 

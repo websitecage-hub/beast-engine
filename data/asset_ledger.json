@@ -1,0 +1,105 @@
+{
+ "audio": {
+  "6696371042123778818": {
+   "last_used_at": "2026-10-30T18:34:57Z",
+   "status": "delivered",
+   "used_by": "20261030T161015Z-bc7f4a"
+  },
+  "6777323236687349761": {
+   "last_used_at": "2026-10-30T18:34:57Z",
+   "status": "delivered",
+   "used_by": "20261030T155853Z-f0380e"
+  },
+  "6839369555425363969": {
+   "first_seen_at": "2026-10-30T18:34:57Z",
+   "last_used_at": null,
+   "review_status": "pending",
+   "sha256": "0b49b045fd667562fefbf78298b7142f88c565ebdb62214e3377c33aa024d327",
+   "status": "reserved",
+   "used_by": null
+  },
+  "7115246182422562817": {
+   "last_used_at": "2026-10-29T20:26:48Z",
+   "status": "delivered",
+   "used_by": "20261029T191600Z-0b3391"
+  },
+  "7162670084778821634": {
+   "last_used_at": "2026-10-30T16:56:15Z",
+   "status": "delivered",
+   "used_by": "20261030T164943Z-4b42aa"
+  },
+  "7239111762301306881": {
+   "last_used_at": "2026-10-29T20:28:10Z",
+   "status": "delivered",
+   "used_by": "20261029T192337Z-2c4f7e"
+  },
+  "7685279849666054171": {
+   "last_used_at": "2026-10-30T16:36:22Z",
+   "status": "delivered",
+   "used_by": "20261030T162955Z-79242d"
+  }
+ },
+ "reservations": {
+  "20261030T182905Z-5fb7bb": {
+   "audio": "6839369555425363969",
+   "visual": "pin:e1_AfqPShwUENLOfn9jIw90xbF_4H76M1vtUHTp39oWqevdRUyzXA"
+  }
+ },
+ "updated_at": "2026-10-30T18:34:57Z",
+ "version": 1,
+ "visual": {
+  "pin:e1_AfqPShwUENLOfn9jIw90xbF_4H76M1vtUHTp39oWqevdRUyzXA": {
+   "first_seen_at": "2026-10-30T18:33:17Z",
+   "lane": "literal",
+   "last_used_at": null,
+   "pin_id": "e1_AfqPShwUENLOfn9jIw90xbF_4H76M1vtUHTp39oWqevdRUyzXA",
+   "query": "office kitchenette morning",
+   "review_status": "reject",
+   "sha256": "fa53495bfb92fa47fe65d83ab09e6198094fb3661fbb5a208be3d17ec1f2c8a0",
+   "status": "reserved",
+   "used_by": null
+  },
+  "pin:e1_AfqPShwjasoMYzx0tG8vGuFzoEI84aJ1qXyG5-RxmkcLRP4EBg": {
+   "last_used_at": "2026-10-29T20:26:48Z",
+   "pin_id": "e1_AfqPShwjasoMYzx0tG8vGuFzoEI84aJ1qXyG5-RxmkcLRP4EBg",
+   "sha256": "45d56fec2810803737272d8758a2e4d132531b63a7ad5abf0190c6e06b422c1d",
+   "status": "delivered",
+   "used_by": "20261029T191600Z-0b3391"
+  },
+  "pin:e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY": {
+   "last_used_at": "2026-10-30T16:56:15Z",
+   "pin_id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
+   "sha256": "8ea0c48ecfc16baaf914b8c4b29f0340d689bd3d47989800cf42f743069d71a2",
+   "status": "delivered",
+   "used_by": "20261030T164943Z-4b42aa"
+  },
+  "pin:e1_AfqPShz_rzsNbfCRW3peWc1dBOHtcTSX5NlPx8FInkQATT7RKVP8": {
+   "last_used_at": "2026-10-29T20:28:10Z",
+   "pin_id": "e1_AfqPShz_rzsNbfCRW3peWc1dBOHtcTSX5NlPx8FInkQATT7RKVP8",
+   "sha256": "d096fc46a4f72b0f4cbdfb7ac4a8d2e66b9d536575e4e9f96e2fea5877a22bff",
+   "status": "delivered",
+   "used_by": "20261029T192337Z-2c4f7e"
+  },
+  "pin:e1_AfqPShzmrmWC4egvS7dZkKrSaYevI6DGu33iaHv94mx0IXXdJxtt": {
+   "last_used_at": "2026-10-30T16:36:22Z",
+   "pin_id": "e1_AfqPShzmrmWC4egvS7dZkKrSaYevI6DGu33iaHv94mx0IXXdJxtt",
+   "sha256": "bfe2ddde1f35132ed07937193fb27260c5cdd73396482221f37d27b9a41c3521",
+   "status": "delivered",
+   "used_by": "20261030T162955Z-79242d"
+  },
+  "pin:pinvid_44d38b7087ea5936": {
+   "last_used_at": "2026-10-30T18:34:57Z",
+   "pin_id": "pinvid_44d38b7087ea5936",
+   "sha256": "9a3e0b5c2aa42c0fbea9efb0085a339846b52ce1eefad5cb5d55609bc4a0883b",
+   "status": "delivered",
+   "used_by": "20261030T161015Z-bc7f4a"
+  },
+  "pin:pinvid_5cced687408a5a9d": {
+   "last_used_at": "2026-10-30T18:34:57Z",
+   "pin_id": "pinvid_5cced687408a5a9d",
+   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
+   "status": "delivered",
+   "used_by": "20261030T155853Z-f0380e"
+  }
+ }
+}

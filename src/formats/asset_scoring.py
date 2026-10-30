@@ -181,6 +181,39 @@ def cleanliness(entry: dict, measured: dict, flags: list[str]) -> tuple[int, str
                                          + (f"; flags: {len(flags)}" if flags else ""))
 
 
+def gradeable(prof: dict, measured: dict, grade: dict) -> tuple[bool, str]:
+    """Can the BOUNDED grade land inside the measured tolerance?
+
+    `natural_fit` only says the ideal multiplier was inside the limits; a clip can
+    miss the ideal and still be brought within tolerance (measured: a 99-luma clip
+    graded to 79.5 against B's 78.6 target). Conversely a bright clip cannot be
+    darkened past the limit. This decides on the achievable value, not the ideal.
+    """
+    met = measured.get("metrics") or {}
+    y, sat = met.get("yavg"), met.get("sat")
+    if y is None or sat is None:
+        return False, "luma/saturation unmeasured"
+    lim = prof.get("grade_limits") or {}
+    blo, bhi = (lim.get("brightness") or [0.85, 1.32])
+    slo, shi = (lim.get("saturate") or [0.6, 1.45])
+    y = float(y)
+    b = min(bhi, max(blo, float(prof.get("yavg") or y) / max(y, 1.0)))
+    reachable_luma = y * b
+    dtol = float(prof.get("yavg_tol") or 14)
+    s = float(sat)
+    s_used = min(shi, max(slo, float(prof.get("sat") or s) / max(s, 0.5)))
+    reachable_sat = s * s_used
+    stol = float(prof.get("sat_tol") or 5)
+    dl = abs(reachable_luma - float(prof.get("yavg") or reachable_luma))
+    ds = abs(reachable_sat - float(prof.get("sat") or reachable_sat))
+    if dl <= dtol and ds <= stol:
+        return True, (f"grade reaches luma {reachable_luma:.1f} (target "
+                      f"{prof.get('yavg')}+-{dtol:.0f}) and sat {reachable_sat:.1f}")
+    return False, (f"grade can only reach luma {reachable_luma:.1f} vs target "
+                   f"{prof.get('yavg')}+-{dtol:.0f}, sat {reachable_sat:.1f} vs "
+                   f"{prof.get('sat')}+-{stol:.0f} within the fixed limits")
+
+
 def score_candidate(entry: dict, *, intent: dict, lane: str, measured: dict,
                     prof: dict, grade: dict, flags: list[str] | None = None) -> dict:
     """Assemble the 100-point breakdown with per-dimension evidence."""
@@ -200,8 +233,9 @@ def score_candidate(entry: dict, *, intent: dict, lane: str, measured: dict,
     # A 75/100 clip that the bounded grade cannot bring into the measured band is
     # still a wasted render (measured: a 121-luma clip landed 27 above B's band).
     blockers = []
-    if not grade.get("natural_fit"):
-        blockers.append("grade cannot reach the visual band within the fixed limits")
+    ok_grade, why_grade = gradeable(prof, measured, grade)
+    if not ok_grade:
+        blockers.append(why_grade)
     review = ("needs_human_review" if unknown else
               "reject" if (blockers or total < MIN_SCORE) else "accept")
     return {

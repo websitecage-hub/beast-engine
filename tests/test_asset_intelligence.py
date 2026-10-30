@@ -166,11 +166,22 @@ def test_score_candidate_forces_review_when_something_is_unmeasured():
 
 
 def test_score_candidate_refuses_a_clip_the_grade_cannot_fix():
+    """A bright daytime clip cannot be darkened into a night-loop band."""
+    bright = _measured(metrics={"yavg": 210.0, "sat": 30.0})
     score = asset_scoring.score_candidate(_entry(), intent=INTENT, lane="literal",
-                                          measured=_measured(), prof=PROF,
-                                          grade={"natural_fit": False, "brightness": 1.45})
+                                          measured=bright, prof=PROF,
+                                          grade={"natural_fit": False, "brightness": 0.85})
     assert score["passes"] is False
-    assert any("band" in b for b in score["blockers"])
+    assert any("grade can only reach" in b for b in score["blockers"])
+
+
+def test_gradeable_accepts_a_clip_the_bounded_grade_can_land():
+    """99 luma graded at the 0.85 limit reaches ~84, inside 105+-14? No - so it must fail,
+    but a 105-luma clip with a non-ideal saturate must still pass."""
+    at_target = _measured(metrics={"yavg": 105.0, "sat": 22.0})
+    ok, why = asset_scoring.gradeable(PROF, at_target,
+                                      {"natural_fit": False, "saturate": 0.65})
+    assert ok is True and "reaches luma" in why
 
 
 def test_uniform_dark_areas_are_framing_not_text():
