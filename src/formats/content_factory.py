@@ -26,7 +26,7 @@ import time
 from .. import critic_model, llm
 from . import template_payloads
 
-MAX_ATTEMPTS = 2
+MAX_ATTEMPTS = 3
 
 AUDIENCE = ("@unleashthe.b — social anxiety, 18-30, US/UK. Dry, specific, "
             "recognisable. Never clinical: no diagnosis, cure, disorder or "
@@ -66,9 +66,9 @@ Title grammar (all three parts, in any order):
   [specific identity or familiar inner experience]
 + [unexpected interpretation / visible pattern they had not named]
 + [finite numbered promise, 4-8]
-Example of the GRAMMAR only, never reuse the wording:
-  "you can spot a man who grew up emotionally alone by these 8 habits" =
-  identity + hidden truth + bounded promise.
+Worked grammar (abstract on purpose, so you invent the words):
+  "[a specific person or familiar experience] + [a visible pattern they have not
+  named] + [N things/signs/habits they do about it]"
 
 Return ONLY this JSON:
 {{"topic_id": "kebab-case-id",
@@ -124,8 +124,9 @@ Hard rules:
 - ONE thought per reel. Do not add a second unrelated issue or turn it into an
   essay; if two ideas compete, keep the one with a concrete object;
 - at most 8 lines on screen, each at most 24 characters, at most 45 words total;
-- readable in 7 seconds; the last line must be able to flow back into the first
-  (closure, not merely chopped wording);
+- readable in 7 seconds; the LAST line must answer or complete the FIRST so a
+  replay lands as a deliberate turn, not a chopped sentence. Write the pair as
+  one closed loop, then split it into lines;
 - concrete beats broad: prefer time, place, object, message, pause or gesture
   over abstract words like anxiety, healing, confidence, trauma;
 - never diagnose or label a condition, and keep the reader's dignity;
@@ -241,7 +242,9 @@ def critic_verdict(payload: dict, format_id: str) -> dict | None:
  "sendability_who":"the exact person who would send it",
  "rewrite_notes":"<=40 words, concrete"}}
 
-5 = unmistakably specific; 3 = generic; pass needs every score >= 4 and both booleans true.
+5 = unmistakably specific; 3 = generic; pass needs every score >= 4.
+loop_ok applies to looping formats only: for a static-title list it is not a
+gate - return true and judge nothing by it. claims_ok must be true.
 originality judges the WORDING only; the format/structure is fixed and is not a penalty.
 claims_ok is false for any diagnosis, cure, disorder or medical claim.
 
@@ -319,8 +322,10 @@ def generate(format_id: str, topic: str | None = None, *, verbose: bool = True) 
         scores = [verdict.get(k) for k in
                   ("specificity", "sendability", "tone_safety", "originality")]
         try:
+            loop_ok = (True if format_id != "social_moment_loop_v1"
+                       else bool(verdict.get("loop_ok")))
             passed = (all(float(s) >= 4 for s in scores)
-                      and bool(verdict.get("loop_ok")) and bool(verdict.get("claims_ok")))
+                      and loop_ok and bool(verdict.get("claims_ok")))
         except (TypeError, ValueError):
             history.append({"attempt": attempt, "stage": "critic_scores"})
             continue
@@ -337,8 +342,9 @@ def generate(format_id: str, topic: str | None = None, *, verbose: bool = True) 
             notes += f" (needed to reach: {verdict['sendability_who']})"
         history.append({"attempt": attempt, "stage": "critic", "verdict": verdict})
         if verbose:
-            print(f"[content] attempt {attempt} rejected: {json.dumps(verdict)[:120]}",
-                  flush=True)
+            first = (payload.get("titleLines") or payload.get("hookLines") or [""])[0]
+            print(f"[content] attempt {attempt} rejected: {json.dumps(verdict)[:120]}"
+                  f" | copy={first[:90]!r}", flush=True)
     raise RuntimeError(f"content generation failed after {MAX_ATTEMPTS} attempts: "
                        f"{json.dumps(history[-2:])[:300]}")
 
