@@ -1,7 +1,7 @@
 [
   {
     "workflow": "health",
-    "started": "2026-10-17T09:06:20.536604+00:00",
+    "started": "2026-10-30T11:15:05.734273+00:00",
     "dry_run": false,
     "checks": {
       "meta": true,
@@ -9,8 +9,8 @@
       "audio_scraper": true
     },
     "trending_warm": {
-      "status": 200,
-      "results": 5
+      "status": 404,
+      "results": 0
     },
     "token": {
       "ok": true,
@@ -18,7 +18,11 @@
     },
     "token_expiry": {
       "expires_at": "2026-11-19",
-      "days_left": 33
+      "days_left": 20
+    },
+    "token_refresh": {
+      "rotated": true,
+      "expires_at": "2026-12-28"
     },
     "staleness": {
       "last_post_date": "2026-10-06",
@@ -27,6 +31,6 @@
       "posts_today": 0,
       "posts_per_day": 2
     },
-    "seconds": 152.46
+    "seconds": 5.27
   }
 ]
