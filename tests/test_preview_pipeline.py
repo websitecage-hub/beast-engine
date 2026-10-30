@@ -11,7 +11,8 @@ from pathlib import Path
 
 import pytest
 
-from src.formats import asset_broker, content_factory, run_manifest, template_renderer
+from src.formats import (asset_broker, asset_intent, asset_ledger, content_factory,
+                         run_manifest, template_renderer)
 
 GOOD_A = {
     "topic_id": "post-chat-replay",
@@ -26,22 +27,57 @@ GOOD_A = {
 }
 GOOD_B = {
     "topic_id": "hey-two-hours",
-    "hookLines": ["you sent hey.", "two hours ago."],
-    "payoffLines": ["they're online.", "you're not."],
+    "hookLines": ["you typed a reply", "and deleted it"],
+    "payoffLines": ["sent haha instead", "then checked the chat twice"],
     "loop_hypothesis": "the last line re-reads as the first",
     "caption": "the two hours after hey",
     "background_query": "night window rain bokeh",
 }
-PASS_VERDICT = {"specificity": 5, "sendability": 5, "tone_safety": 5, "originality": 4,
-                "loop_ok": True, "claims_ok": True,
-                "sendability_who": "the friend who over-explains"}
+PASS_VERDICT = {
+    "scene_specificity": 5, "recognition_authenticity": 5, "natural_voice": 5,
+    "emotional_truth_dignity": 5, "format_fit": 5, "distinctiveness": 4,
+    "shareability": 4, "caption_value": 4, "product_trust": 5,
+    "hard_fail": None, "evidence": "the draft names the exact moment",
+    "sendability_who": "the friend who over-explains",
+    "rewrite_notes": "",
+}
+CARD = {
+    "audience_moment": {"situation": "the bus home after a party",
+                        "observable_behaviour": "re-reading the goodbye",
+                        "private_worry": "that leaving early was noticed",
+                        "emotional_tension": "relief and guilt at once",
+                        "audience_cluster": "parties and social events"},
+    "concepts": [{"concept_id": "a", "situation": "the bus home after a party",
+                  "behaviour": "replaying the goodbye", "private_meaning": "they noticed",
+                  "turn": "nobody did", "format": "caption_list_title_v1"},
+                 {"concept_id": "b", "situation": "the group chat at midnight",
+                  "behaviour": "drafting a reply", "private_meaning": "sounding needy",
+                  "turn": "sending haha", "format": "social_moment_loop_v1"},
+                 {"concept_id": "c", "situation": "the kitchen at a party",
+                  "behaviour": "hovering near the snacks", "private_meaning": "not belonging",
+                  "turn": "nobody noticed", "format": "social_moment_loop_v1"}],
+    "chosen": 0, "why": "strongest recognition", "topic_id": "post-chat-replay",
+    "compiled_by": "llm:test", "degraded": False,
+}
 
 
-def _mock_writer(monkeypatch, payload):
-    monkeypatch.setattr(content_factory.llm, "chat",
-                        lambda *a, **k: json.dumps(payload))
+def _mock_writer(monkeypatch, payload, card=None):
+    """The writer is also the card compiler here: answer by prompt content."""
+    def chat(*a, **k):
+        content = a[0][0]["content"] if a and a[0] else k.get("content", "")
+        if isinstance(content, str) and "audience moment card" in content:
+            return json.dumps(card or CARD)
+        return json.dumps(payload)
+    monkeypatch.setattr(content_factory.llm, "chat", chat)
     monkeypatch.setattr(content_factory.critic_model, "chat",
                         lambda *a, **k: json.dumps(PASS_VERDICT))
+
+
+@pytest.fixture(autouse=True)
+def _no_recent(monkeypatch):
+    """Recent-content dedupe reads the real manifest; keep tests hermetic."""
+    monkeypatch.setattr(content_factory, "recent_context",
+                        lambda limit=8: {"topics": [], "lines": []})
 
 
 def test_a_generates_and_validates(monkeypatch):
@@ -105,27 +141,68 @@ def test_run_preview_refuses_when_publishing_is_on(monkeypatch):
 
 
 # ------------------------------------------------------------------ asset broker
-def test_broker_returns_first_usable_clip(monkeypatch, tmp_path):
+GOOD_MEASURED = {
+    "width": 1080, "height": 1920, "duration_s": 20.0, "has_audio": False,
+    "metrics": {"yavg": 105.0, "sat": 14.2},
+    "motion": {"ok": True, "motion": 0.03, "max_jump": 0.05, "cuts": 0, "samples": 8},
+    "text": {"text_suspected": False, "reason": "no persistent text band",
+             "bands": [], "uniform": []},
+    "band_busy": 0.04,
+}
+
+
+def _mock_pinterest(monkeypatch, entries):
     monkeypatch.setattr(asset_broker.pinterest, "search_videos",
-                        lambda q, page_size=25: [{"id": "1", "pin_url": "u",
-                                                  "creator": "c", "title": "t"}])
+                        lambda q, page_size=25: entries)
     monkeypatch.setattr(asset_broker.pinterest, "media_url", lambda e: "https://x/v.mp4")
     monkeypatch.setattr(asset_broker.pinterest, "download",
-                        lambda url, dest: (Path(dest).write_bytes(b"x" * 4096), True)[1])
+                        lambda url, dest, **k: (Path(dest).write_bytes(b"x" * 4096), True)[1])
     monkeypatch.setattr(asset_broker.render_gate, "probe",
                         lambda p: {"streams": [{"codec_type": "video", "width": 1080,
                                                 "height": 1920}],
-                                   "format": {"duration": "12.0"}})
+                                   "format": {"duration": "20.0"}})
     monkeypatch.setattr(template_renderer, "measure_luma_sat",
                         lambda p: {"yavg": 105.0, "sat": 14.2})
-    rec = asset_broker.pinterest_background("forest trail", "caption_list_title_v1",
-                                            tmp_path)
+    monkeypatch.setattr(asset_broker.asset_probe, "analyze",
+                        lambda p, fmt: dict(GOOD_MEASURED))
+
+
+def test_broker_selects_a_scored_clip_and_reserves_it(monkeypatch, tmp_path):
+    _mock_pinterest(monkeypatch, [{"id": "1", "pin_url": "u", "creator": "c",
+                                   "title": "night bus window city lights",
+                                   "domain": "Uploaded by user"}])
+    monkeypatch.setenv("BEAST_LEDGER", str(tmp_path / "ledger.json"))
+    rec = asset_broker.acquire(
+        asset_intent.fallback({"background_query": "night bus window city lights",
+                               "topic_id": "bus"}, "caption_list_title_v1"),
+        "caption_list_title_v1", tmp_path, run_id="t1")
     assert rec["pin_id"] == "1" and rec["usage_clearance"] == "unknown"
     assert rec["width"] == 1080 and rec["stretch_pick"] is False
+    assert rec["score"]["total"] >= 75 and rec["passes_minimum"] is True
+    assert rec["query_lane"] == "literal"
+    assert asset_ledger.load()["reservations"]["t1"]["visual"] == "pin:1"
+
+
+def test_broker_rejects_ads_before_downloading(monkeypatch, tmp_path):
+    _mock_pinterest(monkeypatch, [
+        {"id": "ad", "title": "FOCUS | shop now", "is_promoted": True},
+        {"id": "brand", "title": "night city poster", "domain": "shopify.com"},
+        {"id": "ig", "title": "night bus window city lights", "domain": "instagram.com"},
+        {"id": "ok", "title": "night bus window city lights", "domain": "Uploaded by user"}])
+    monkeypatch.setenv("BEAST_LEDGER", str(tmp_path / "ledger.json"))
+    rec = asset_broker.acquire(
+        asset_intent.fallback({"background_query": "night bus window city lights",
+                               "topic_id": "bus"}, "caption_list_title_v1"),
+        "caption_list_title_v1", tmp_path, run_id="t2")
+    assert rec["pin_id"] in ("ok", "ig")          # social domains are usable footage
+    why = {r["id"]: r["why"] for r in rec["rejected"]}
+    assert "ad" in why and "promoted" in why["ad"]
+    assert "brand" in why and "commerce" in why["brand"]
 
 
 def test_broker_fails_when_nothing_is_usable(monkeypatch, tmp_path):
     monkeypatch.setattr(asset_broker.pinterest, "search_videos", lambda q, page_size=25: [])
+    monkeypatch.setenv("BEAST_LEDGER", str(tmp_path / "ledger.json"))
     with pytest.raises(asset_broker.AssetError):
         asset_broker.pinterest_background("x", "social_moment_loop_v1", tmp_path)
 

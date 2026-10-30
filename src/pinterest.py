@@ -92,13 +92,16 @@ def media_url(e: dict) -> str:
     return ""
 
 
-def download(url: str, out_path, retries: int = 3) -> bool:
+def download(url: str, out_path, retries: int = 3, max_bytes: int = 0) -> bool:
     """Fetch a Pinterest video to disk as a playable file.
 
     Routes:
       * .m3u8 -> ffmpeg remux always (requests cannot read HLS at all).
       * direct MP4 -> /download?url= proxy first (the documented route; it also
         covers opaque-id pins and is CDN-cached), raw CDN as the fallback.
+
+    `max_bytes` is a bounded-download guard for CI runners: a clip that exceeds it
+    is discarded rather than silently filling the workspace.
     """
     url = str(url or "")
     if not url:
@@ -111,10 +114,17 @@ def download(url: str, out_path, retries: int = 3) -> bool:
             r = requests.get(proxied, timeout=180, stream=True,
                              headers={"User-Agent": UA})
             if r.status_code == 200:
+                total = 0
                 with open(out_path, "wb") as fh:
                     for chunk in r.iter_content(1 << 16):
-                        if chunk:
-                            fh.write(chunk)
+                        if not chunk:
+                            continue
+                        total += len(chunk)
+                        if max_bytes and total > max_bytes:
+                            fh.close()
+                            Path(out_path).unlink(missing_ok=True)
+                            return False
+                        fh.write(chunk)
                 if Path(out_path).stat().st_size > 0:
                     return True
             elif r.status_code in (403, 404, 410):
