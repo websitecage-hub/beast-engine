@@ -341,6 +341,11 @@ def _normalise_scales(intent: dict) -> list[str]:
     for obj, keys in targets:
         for key in keys:
             v = obj.get(key)
+            if isinstance(v, str):
+                # models answer "40", "40%", "0.4 of 1" - take the number
+                import re as _re
+                m = _re.search(r"-?\d+(?:\.\d+)?", v)
+                v = m.group(0) if m else v
             try:
                 f = float(v)
             except (TypeError, ValueError):

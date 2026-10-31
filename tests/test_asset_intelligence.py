@@ -487,3 +487,16 @@ def test_ocr_without_any_engine_is_unknown_not_clean(monkeypatch):
     monkeypatch.setattr(asset_probe, "_grab", lambda *a, **k: [])
     out = asset_probe.ocr_check("x.mp4")
     assert out["has_text"] is None
+
+
+def test_percent_strings_in_an_intent_are_rescaled():
+    raw = dict(INTENT)
+    raw["arousal"] = "40%"
+    raw["audio_intent"] = {**INTENT["audio_intent"], "energy": "70%"}
+    out = asset_intent.compile_intent({"background_query": "night bus", "topic_id": "t"},
+                                      "social_moment_loop_v1",
+                                      chat=lambda p: (json.dumps(raw), "test"),
+                                      verbose=False)
+    assert out["degraded"] is False
+    assert abs(float(out["arousal"]) - 0.4) < 1e-6
+    assert abs(float(out["audio_intent"]["energy"]) - 0.7) < 1e-6
