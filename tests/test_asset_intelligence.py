@@ -457,3 +457,31 @@ def test_delivered_but_needs_review_run_exits_nonzero(monkeypatch, tmp_path):
     monkeypatch.setattr(_alerts, "telegram_video", lambda *a, **k: True)
     rc = run_preview.main(["--format", "A"])
     assert rc == 1, "needs_review must not exit 0"
+
+
+def test_zero_to_one_hundred_scales_are_coerced_not_discarded():
+    """Measured: a 0-100 arousal killed the whole brief and fell back to two lanes."""
+    raw = {"video_queries": ["night bus window city lights", "bus window at night",
+                             "city lights through glass"], **{k: v for k, v in INTENT.items()
+                                                              if k != "video_queries"}}
+    raw["arousal"] = 40
+    raw["audio_intent"] = {**INTENT["audio_intent"], "energy": 70, "arousal": 35}
+    from src.formats import content_factory
+    out = asset_intent.compile_intent({"background_query": "night bus window",
+                                       "topic_id": "t"}, "social_moment_loop_v1",
+                                      chat=lambda p: (json.dumps(raw), "test"),
+                                      verbose=False)
+    assert out["degraded"] is False
+    assert abs(float(out["arousal"]) - 0.4) < 1e-6
+    assert abs(float(out["audio_intent"]["energy"]) - 0.7) < 1e-6
+    assert out.get("normalised_fields")
+
+
+def test_candidates_are_ranked_by_scene_overlap_before_download():
+    entries = [
+        {"id": "a", "title": "aesthetic wallpaper", "_lane": "literal"},
+        {"id": "b", "title": "night bus window city lights", "_lane": "literal"},
+        {"id": "c", "title": "bus window", "_lane": "emotional"},
+    ]
+    ranked = asset_broker._pre_rank(entries, INTENT)
+    assert [e["id"] for e in ranked][0] == "b"

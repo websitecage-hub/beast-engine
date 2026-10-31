@@ -308,6 +308,12 @@ def compile_intent(payload: dict, format_id: str, *, chat=None,
         intent.setdefault("schema_version", SCHEMA_VERSION)
         intent["content_id"] = str(intent.get("content_id") or content_id)
         intent["format_id"] = format_id          # the router owns the format
+        # Models frequently answer on a 0-100 scale ("arousal: 40"). Rescaling with
+        # the correction recorded is better than throwing the whole three-lane
+        # brief away, which is what a hard rejection did in production.
+        fixed = _normalise_scales(intent)
+        if fixed:
+            intent["normalised_fields"] = fixed
         errs = validate(intent)
         if errs:
             raise ValueError("; ".join(errs[:4]))
@@ -320,6 +326,31 @@ def compile_intent(payload: dict, format_id: str, *, chat=None,
             print(f"[assets] intent compile fell back to the copy-derived brief: "
                   f"{str(exc)[:140]}", flush=True)
         return fallback(payload, format_id, reason=f"({exc})")
+
+
+_ZERO_ONE = ("arousal", "tension", "warmth", "humour", "energy")
+
+
+def _normalise_scales(intent: dict) -> list[str]:
+    """Rescale out-of-range 0-100 answers to 0-1 and report which were rescaled."""
+    fixed: list[str] = []
+    targets = [(intent, _ZERO_ONE + ("valence",))]
+    ai = intent.get("audio_intent")
+    if isinstance(ai, dict):
+        targets.append((ai, ("valence", "arousal", "energy")))
+    for obj, keys in targets:
+        for key in keys:
+            v = obj.get(key)
+            try:
+                f = float(v)
+            except (TypeError, ValueError):
+                continue
+            if abs(f) <= 1.0:
+                continue
+            if abs(f) <= 100.0:
+                obj[key] = round(f / 100.0, 3)
+                fixed.append(f"{key}:{f}->{obj[key]}")
+    return fixed
 
 
 def _extract(raw) -> dict | None:

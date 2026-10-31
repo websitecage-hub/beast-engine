@@ -4707,5 +4707,2720 @@
    "sha256": "x"
   },
   "topic_id": "t"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "tense ticking-clock percussion",
+     "corporate stock-music cheer",
+     "dramatic strings swells",
+     "lyrics about ambition or hustle"
+    ],
+    "emotional_role": "keep the stalling wry and light \u2014 an easy bed that lets the bag-zipper fidget read as funny, not tense",
+    "energy": 0.2,
+    "instrumentation": [
+     "muted electric piano",
+     "soft brushed drums",
+     "upright bass"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "moderate",
+    "texture": [
+     "dry",
+     "close",
+     "unpolished"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#workdiaries",
+     "#meetingroom"
+    ],
+    "trend_keywords": [
+     "quiet jazz loop",
+     "soft office ambience",
+     "low-key keys"
+    ],
+    "valence": 0.05,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-10-31T17:29:00Z",
+   "compiled_by": "llm:deepseek-bridge",
+   "content_id": "packing-up-slowly-reel",
+   "core_human_moment": "The meeting is over but they keep fidgeting with their bag and mugs rather than ask the senior colleague the question they actually came for.",
+   "degraded": false,
+   "emotional_primary": "hesitation",
+   "emotional_secondary": "warmth",
+   "format_id": "caption_list_title_v1",
+   "human_action": "Zipping a bag, unzipping it again, and stacking mugs that aren't theirs while glancing down the table",
+   "humour": 0.55,
+   "intentional_contrast": null,
+   "literal_scene": "An empty meeting room in afternoon light: a long table, stacked mugs, a closed laptop, and one person still in their chair zipping and unzipping a tote bag while a colleague stands packing a notebook at the far end.",
+   "literalness": "literal",
+   "motion_intent": "minimal \u2014 one steady shot, only small hand movements on the bag and mugs",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "cool neutral office greys",
+    "warm afternoon window light"
+   ],
+   "rationale": "The copy is one table, a bag and a few mugs, so a plain afternoon meeting-room shot with visible zipping and mug-stacking gives the list a believable world; wry low-key jazz keeps the stalling human rather than anxious.",
+   "scene_entities": [
+    "tote bag zipper",
+    "stacked coffee mugs",
+    "closed laptop",
+    "meeting room table"
+   ],
+   "schema_version": "1.0",
+   "setting": "empty meeting room, long table by a window",
+   "tension": 0.4,
+   "text_safe_zone": "centre band 41\u201359% of frame height, clear of hands and mugs",
+   "time_of_day": "mid-afternoon",
+   "valence": -0.05,
+   "video_queries": [
+    "empty meeting room table mugs afternoon window",
+    "hands zipping tote bag meeting room table",
+    "person packing notebook empty meeting room chairs"
+   ],
+   "visual_mood": [
+    "ordinary",
+    "quiet"
+   ],
+   "visual_profile_target": {
+    "luma": "105\u00b114",
+    "saturation": "14.2\u00b15"
+   },
+   "warmth": 0.5
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "L.Dre",
+    "candidates": [
+     {
+      "artist": "L.Dre",
+      "distance": 0.1591,
+      "fresh": true,
+      "id": "6795585271782967298",
+      "score": 72,
+      "title": "Steven Universe",
+      "video_count": 8300000
+     },
+     {
+      "artist": "Yago",
+      "distance": 0.3362,
+      "fresh": true,
+      "id": "7390827024250292241",
+      "score": 68,
+      "title": "Central Cee",
+      "video_count": 207900
+     },
+     {
+      "artist": "800 cherries",
+      "distance": 0.4541,
+      "fresh": true,
+      "id": "7174706764636489729",
+      "score": 61,
+      "title": "through(Remastered)",
+      "video_count": 198600
+     }
+    ],
+    "distance": 0.1591,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "quiet jazz loop",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6781572601882970886",
+      "why": "shorter than 12.2s"
+     },
+     {
+      "id": "7345590198675015682",
+      "why": "shorter than 12.2s"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "duration_loop_edit_fit": {
+       "evidence": "60.0s vs 12.2s needed",
+       "points": 5
+      },
+      "energy_and_tempo_fit": {
+       "evidence": "136.0 BPM vs preference moderate (88, 122)",
+       "points": 12
+      },
+      "freshness": {
+       "evidence": "fresh in the no-repeat window",
+       "points": 5
+      },
+      "loudness_dynamic_fit": {
+       "evidence": "RMS -19.7 dBFS (bed target ~-18)",
+       "points": 9
+      },
+      "rhythm_onset_density": {
+       "evidence": "onsets/s 2.37 vs sparse (0.0, 1.5)",
+       "points": 4
+      },
+      "semantic_emotional_intent_fit": {
+       "evidence": "onset 2.37 vs intended energy 0.20",
+       "points": 20
+      },
+      "texture_spectral_similarity": {
+       "evidence": "centroid 674.5 Hz vs reference 951 Hz",
+       "points": 12
+      },
+      "trend_relevance": {
+       "evidence": "video_count 8300000",
+       "points": 5
+      }
+     },
+     "passes": true,
+     "total": 72
+    },
+    "stable_id": "6795585271782967298",
+    "title": "Steven Universe"
+   },
+   "pair": {
+    "dimensions": {
+     "combined_emotional_interpretation": {
+      "evidence": "motion 0.0228 vs intended arousal 0.20; onset density None vs intended 0.20 (audio valence +0.05)",
+      "points": 23
+     },
+     "novelty_vs_recent": {
+      "evidence": "fresh assets under the no-repeat window",
+      "points": 5
+     },
+     "pacing_compatibility": {
+      "evidence": "movement vs measured audio rhythm",
+      "points": 9
+     },
+     "text_legibility_over_footage": {
+      "evidence": "text-band edge density 0.0011",
+      "points": 15
+     },
+     "text_to_scene_semantic_fit": {
+      "evidence": "derived from semantic_scene_fit",
+      "points": 9
+     },
+     "tone_coherence_or_contrast": {
+      "evidence": "compatible tones (no contrast declared)",
+      "points": 9
+     }
+    },
+    "passes": true,
+    "rationale": "The literal shot 'P\u00f3s plant\u00e3o \ud83d\udc69\ud83c\udffb\\u200d\u2695\ufe0f' makes 'The meeting is over but they keep fidgeting with their bag and mugs ra' tangible; the 'Steven Universe' bed supports 'hesitation' without overpowering the text on a caption-list-format static-text reel.",
+    "total": 70
+   },
+   "visual": {
+    "band_busy": 0.0011,
+    "candidates": [
+     {
+      "band_busy": 0.0011,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwnBeNGfcQfUEuB6gaVJazwucHiCEv33A26bkfo6iK6Izop",
+      "query": "empty meeting room table mugs",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [
+        "grade can only reach luma 73.5 vs target 105.0+-14, sat 4.4 vs 14.2+-5 within the fixed limits"
+       ],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.023 vs arousal target 0.056 (arousal 0.20)",
+         "points": 13
+        },
+        "format_profile_fit": {
+         "evidence": "luma 55.7 vs 105.0+-14.0, sat 3.03 vs 14.2+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.036, mean motion 0.023",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "literal lane, 7/53 scene tokens matched (empty, laptop, meeting, mugs, person, room, table)",
+         "points": 8
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 21.8s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.001 (lower is calmer)",
+         "points": 20
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 64,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.323,
+         "rows": [
+          0,
+          207
+         ]
+        },
+        {
+         "fraction_of_height": 0.319,
+         "rows": [
+          0,
+          204
+         ]
+        },
+        {
+         "fraction_of_height": 0.309,
+         "rows": [
+          0,
+          198
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 207), (0, 204)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         207
+        ],
+        [
+         0,
+         204
+        ],
+        [
+         0,
+         198
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0223,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzhQzutc_AYdVC4MSjFUZ_opK6L5SAqnEHRgsDpJZ8xyZTV",
+      "query": "empty meeting room table mugs",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [
+        "grade can only reach luma 125.5 vs target 105.0+-14, sat 12.3 vs 14.2+-5 within the fixed limits"
+       ],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=True (persistent glyph-like band (64, 80)); flags: 1",
+         "points": 0
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.153 vs arousal target 0.056 (arousal 0.20)",
+         "points": 8
+        },
+        "format_profile_fit": {
+         "evidence": "luma 147.7 vs 105.0+-14.0, sat 8.47 vs 14.2+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.202, mean motion 0.153",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "literal lane, 8/53 scene tokens matched (empty, for, meeting, mugs, room, table, the, with)",
+         "points": 9
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 14.6s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.022 (lower is calmer)",
+         "points": 18
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [
+        [
+         64,
+         80
+        ],
+        [
+         88,
+         96
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (64, 80)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0226,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwrky6p8Yo7WK4daFLUOFN_pFXuGjmXxxJNxUwBWsvHLSrh",
+      "query": "hands zipping tote bag meeting",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band); flags: 2",
+         "points": 4
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.188 vs arousal target 0.056 (arousal 0.20)",
+         "points": 6
+        },
+        "format_profile_fit": {
+         "evidence": "luma 117.2 vs 105.0+-14.0, sat 16.9 vs 14.2+-5.0, natural_fit=True",
+         "points": 5
+        },
+        "motion_compatibility": {
+         "evidence": "1 scene cut(s), max jump 0.224, mean motion 0.188",
+         "points": 3
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 5/53 scene tokens matched (bag, for, meeting, tote, zipping)",
+         "points": 5
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 43.1s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.023 (lower is calmer)",
+         "points": 17
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 48,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0691,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyegA_q_ygoUcfqz5hXPXFTM4DVb_AkUSBjGk0NlH7fgw",
+      "query": "hands zipping tote bag meeting",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=True (persistent glyph-like band (64, 72)); flags: 1",
+         "points": 0
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.160 vs arousal target 0.056 (arousal 0.20)",
+         "points": 8
+        },
+        "format_profile_fit": {
+         "evidence": "luma 123.4 vs 105.0+-14.0, sat 8.78 vs 14.2+-5.0, natural_fit=False",
+         "points": 1
+        },
+        "motion_compatibility": {
+         "evidence": "4 scene cut(s), max jump 0.273, mean motion 0.160",
+         "points": 0
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 6/53 scene tokens matched (bag, for, laptop, meeting, tote, zipping)",
+         "points": 6
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 15.1s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.069 (lower is calmer)",
+         "points": 12
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 35,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [
+        [
+         64,
+         72
+        ]
+       ],
+       "framing": [
+        {
+         "fraction_of_height": 0.127,
+         "rows": [
+          559,
+          640
+         ]
+        }
+       ],
+       "reason": "persistent glyph-like band (64, 72)",
+       "text_suspected": true,
+       "uniform": [
+        [
+         559,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyPpgRhlTOgBX3-8bCBNT535bHkfWgU2W2LPldAj94xTu0",
+      "query": "person packing notebook empty",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [
+        "grade can only reach luma 45.1 vs target 105.0+-14, sat 8.2 vs 14.2+-5 within the fixed limits"
+       ],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.048 vs arousal target 0.056 (arousal 0.20)",
+         "points": 14
+        },
+        "format_profile_fit": {
+         "evidence": "luma 34.2 vs 105.0+-14.0, sat 5.66 vs 14.2+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.065, mean motion 0.048",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "emotional lane, 5/53 scene tokens matched (empty, notebook, packing, person, table)",
+         "points": 3
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 39.6s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.000 (lower is calmer)",
+         "points": 20
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.159,
+         "rows": [
+          0,
+          102
+         ]
+        },
+        {
+         "fraction_of_height": 0.131,
+         "rows": [
+          556,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.18,
+         "rows": [
+          0,
+          115
+         ]
+        },
+        {
+         "fraction_of_height": 0.125,
+         "rows": [
+          560,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.564,
+         "rows": [
+          0,
+          361
+         ]
+        },
+        {
+         "fraction_of_height": 0.123,
+         "rows": [
+          561,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 102), (556, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         102
+        ],
+        [
+         556,
+         640
+        ],
+        [
+         0,
+         115
+        ],
+        [
+         560,
+         640
+        ],
+        [
+         0,
+         361
+        ],
+        [
+         561,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0302,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzruvUXsfRz6Qgj05q2I_YfmMxhFUnEpoI6GmWX1OQ8mnjbIA",
+      "query": "person packing notebook empty",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.213 vs arousal target 0.056 (arousal 0.20)",
+         "points": 4
+        },
+        "format_profile_fit": {
+         "evidence": "luma 130.2 vs 105.0+-14.0, sat 8.45 vs 14.2+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "5 scene cut(s), max jump 0.308, mean motion 0.213",
+         "points": 0
+        },
+        "semantic_scene_fit": {
+         "evidence": "emotional lane, 7/53 scene tokens matched (and, empty, notebook, packing, person, the, with)",
+         "points": 5
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 28.4s (need 12.2s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.030 (lower is calmer)",
+         "points": 17
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 39,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "ccarolinaaugusta",
+    "flags": [],
+    "lane_expansions": 2,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0363,
+     "motion": 0.0228,
+     "ok": true,
+     "samples": 8
+    },
+    "passes_minimum": false,
+    "pin_id": "e1_AfqPShwnBeNGfcQfUEuB6gaVJazwucHiCEv33A26bkfo6iK6Izop",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwnBeNGfcQfUEuB6gaVJazwucHiCEv33A26bkfo6iK6Izop/",
+    "query": "empty meeting room table mugs",
+    "query_lane": "literal",
+    "query_log": [
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "empty meeting room table mugs afternoon window",
+      "returned": 0
+     },
+     {
+      "kept": 0,
+      "lane": "adjacent",
+      "query": "hands zipping tote bag meeting room table",
+      "returned": 0
+     },
+     {
+      "kept": 2,
+      "lane": "emotional",
+      "query": "person packing notebook empty meeting room chairs",
+      "returned": 2
+     },
+     {
+      "kept": 3,
+      "lane": "literal",
+      "query": "empty meeting room table mugs",
+      "returned": 3
+     },
+     {
+      "kept": 10,
+      "lane": "adjacent",
+      "query": "hands zipping tote bag meeting",
+      "returned": 10
+     },
+     {
+      "kept": 24,
+      "lane": "emotional",
+      "query": "person packing notebook empty",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShySYXsL8ccgafEKO3uARAHQkGsDNU8zUaQ1I_OvTtL4hTv3",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShyWXKQhATagl_I-fYSJHD8d3JA4_ei4Q-TEybxUfJe27Bsp",
+      "lane": "emotional",
+      "query": "person packing notebook empty meeting room chairs",
+      "why": "advertising call-to-action: 'coupon'"
+     },
+     {
+      "id": "e1_AfqPShy5QeRWTK8ms-HhPjBkRXiXu4YOX3xIQZsVcBL3vSoZ7R2z",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShxIVpelPYbuJgSlHx1S1boyd6xIPou8kjq0ZpBl3ww-DccOaw",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwOm-agxXZmzO3N-TCz7gF2x0_yKVQZSMggXpJlX5Afl612Sw",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwGa1vBkJTH3ZOZzV84Iuw7I_BygyirHxuFti4F3SNwg8XE",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShz6a91joiFdGz4WJzDqFx7FIBAVDvGjL4yBwCHEc29C37uZ",
+      "why": "unusable crop 594x1056"
+     },
+     {
+      "id": "e1_AfqPShwbWjZOBmI7fGZvPLdgJbjzu0_bV7Y-Oj8JZMjkO1QzRpo",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShzZ5k7MdSYvdH5nYioAWjQ2ylRhosbwruoBcjplmOKMqSMH",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwPUcu6JXykkmq7daNqFv-c6vU7SDX8nfQT3380yNbKHw",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "e1_AfqPShxiE6oGS9X9kglVO9kmuGp3sH2Vh68sjHnGrL5wSDDNQOfCPg",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShySYXsL8ccgafEKO3uARAHQkGsDNU8zUaQ1I_OvTtL4hTv3",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShxz7RYTgDXMfdJ7_Ve3nm0IdYgevrRCmsMNEAibHHKZsD-S",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShzrBnfiWxW3p95DWjXQHWOihTdLBkt3tzBrmVUjI5Zxtfud",
+      "why": "too short 9.67s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwnpds9VsFbYcUFHpYEf_UOC8kPvgNOieRVImy-Akwiyg",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxLJVkMv9hgvoa71EQNXYwquaEQZPh-9aTJZAZFCOr09GbC",
+      "why": "download failed or exceeded the 25 MB cap"
+     }
+    ],
+    "review_status": "needs_human_review",
+    "score": {
+     "blockers": [
+      "grade can only reach luma 73.5 vs target 105.0+-14, sat 4.4 vs 14.2+-5 within the fixed limits"
+     ],
+     "dimensions": {
+      "cleanliness_provenance": {
+       "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+       "points": 5
+      },
+      "emotional_fit": {
+       "evidence": "motion 0.023 vs arousal target 0.056 (arousal 0.20)",
+       "points": 13
+      },
+      "format_profile_fit": {
+       "evidence": "luma 55.7 vs 105.0+-14.0, sat 3.03 vs 14.2+-5.0, natural_fit=False",
+       "points": 0
+      },
+      "motion_compatibility": {
+       "evidence": "0 scene cut(s), max jump 0.036, mean motion 0.023",
+       "points": 10
+      },
+      "semantic_scene_fit": {
+       "evidence": "literal lane, 7/53 scene tokens matched (empty, laptop, meeting, mugs, person, room, table)",
+       "points": 8
+      },
+      "technical_quality": {
+       "evidence": "720x1280, 21.8s (need 12.2s+)",
+       "points": 8
+      },
+      "text_safe_composition": {
+       "evidence": "text-band edge density 0.001 (lower is calmer)",
+       "points": 20
+      }
+     },
+     "minimum": 75,
+     "passes": false,
+     "review_status": "reject",
+     "total": 64,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": true,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.323,
+       "rows": [
+        0,
+        207
+       ]
+      },
+      {
+       "fraction_of_height": 0.319,
+       "rows": [
+        0,
+        204
+       ]
+      },
+      {
+       "fraction_of_height": 0.309,
+       "rows": [
+        0,
+        198
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(0, 207), (0, 204)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       0,
+       207
+      ],
+      [
+       0,
+       204
+      ],
+      [
+       0,
+       198
+      ]
+     ]
+    },
+    "title": "P\u00f3s plant\u00e3o \ud83d\udc69\ud83c\udffb\u200d\u2695\ufe0f"
+   }
+  },
+  "audio": {
+   "bytes": 996173,
+   "creator": null,
+   "path": "/var/tmp/beast-run/final/20261031T172449Z-7055d2/assets/track_6795585271782967298.m4a",
+   "pin_url": null,
+   "sha256": "3d8a27a886208b82fd9eb1ed9bbe2679c410dcc50635343f0f29e4077ea72fbf",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6795585271782967298",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 77.7,
+    "high": 0.0,
+    "mid": 22.2
+   },
+   "duration_s": 60.0,
+   "file": "track_6795585271782967298.m4a",
+   "key_estimate": "G major",
+   "loudness_curve_db": [
+    -22.3,
+    -18.5,
+    -19.1
+   ],
+   "onset_density_per_s": 2.37,
+   "peak_db": -2.6,
+   "rms_db": -19.7,
+   "spectral_centroid_hz": 674.5,
+   "tempo_bpm": 136.0,
+   "zero_crossing_rate": 0.0317
+  },
+  "background": {
+   "bytes": 980636,
+   "creator": "ccarolinaaugusta",
+   "path": "/var/tmp/beast-run/final/20261031T172449Z-7055d2/assets/cand_1_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwnBeNGfcQfUEuB6gaVJazwucHiCEv33A26bkfo6iK6Izop/",
+   "sha256": "34716bc54c32354b3156ff257f7402ef7e81dc5cc172ba87ff6d4f1442af33e7",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShwnBeNGfcQfUEuB6gaVJazwucHiCEv33A26bkfo6iK6Izop",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "asking and needing help",
+    "emotional_tension": "They want a real answer about where they stand but they're waiting for the other person to bring it up so it doesn't look like a request.",
+    "observable_behaviour": "They slow down their own packing, stack their mug, and check their phone with a neutral face, waiting to see if the senior colleague says anything about the project first.",
+    "private_worry": "That asking a question now would look like they need reassurance, and saying nothing makes the silence look like they don't care.",
+    "situation": "Tuesday 3:15pm, a meeting has ended, and they're one of the last people in the room while a senior colleague is slowly packing up their notebook."
+   },
+   "card_compiled_by": "llm:deepseek-bridge",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Zip your bag, then unzip it again\" and \"Stack the mugs that aren't yours\" are exact, unshowy tells. \"Walk out still holding the question\" earns the payoff without diagnosis.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 4,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Item 4 (start a sentence, 'you go') slightly overlaps item 5 (waiting on them); replace 4 with a physical beat like checking the door or standing up too early.",
+    "scene_specificity": 5,
+    "sendability_who": "A 25-year-old sending it to their work friend on the same floor, captioned \"3:15 today, me and [manager] in silence\".",
+    "shareability": 5,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "packing-up-slowly-reel"
+  },
+  "delivery": {
+   "at": "2026-10-31T17:38:20Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -8.38,
+   "yavg_delta": -33.1
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 1.32,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 1.45
+  },
+  "measured": {
+   "sat": 5.82,
+   "yavg": 71.9
+  },
+  "output": {
+   "bytes": 5153870,
+   "duration_s": 12.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261031T172449Z-7055d2.mp4",
+   "sha256": "0810ac3b82672f6eaf58b82aaf41d476a81df176445c5c17a6e000d0161597f1"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6795585271782967298",
+    "title": "Steven Universe"
+   },
+   "background_query": "meeting room table empty chairs laptop bag mug window afternoon light one person packing notebook",
+   "caption": "6 things you do when the meeting ends and you suddenly have nothing to pack:\n1. Zip your bag, then unzip it again\n2. Stack the mugs that aren't yours\n3. Check your phone with nothing on it\n4. Start a sentence, then ask 'sorry, you go'\n5. Wait for them to bring up the project\n6. Walk out still holding the question",
+   "closing": "The room was empty except for the one question you'd both been waiting on.",
+   "headline": "6 things you do when the meeting ends and you suddenly have nothing to pack",
+   "list_items": [
+    "Zip your bag, then unzip it again",
+    "Stack the mugs that aren't yours",
+    "Check your phone with nothing on it",
+    "Start a sentence, then ask 'sorry, you go'",
+    "Wait for them to bring up the project",
+    "Walk out still holding the question"
+   ],
+   "provenance": {
+    "creator": "ccarolinaaugusta",
+    "pin_id": "e1_AfqPShwnBeNGfcQfUEuB6gaVJazwucHiCEv33A26bkfo6iK6Izop",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwnBeNGfcQfUEuB6gaVJazwucHiCEv33A26bkfo6iK6Izop/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "3:15pm, meeting's over,",
+    "you're the last two",
+    "in the room, and",
+    "your bag's already zipped"
+   ],
+   "topic_id": "packing-up-slowly-reel"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -8.38,
+    "yavg_delta": -33.1
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/var/tmp/beast-run/final/20261031T172449Z-7055d2/caption_list_title_v1-live-20261031T172449Z-7055d2.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 5153870,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 5.82,
+    "yavg": 71.9
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0976,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 186.7
+  },
+  "rendered_at": "2026-10-31T17:38:13Z",
+  "run_id": "20261031T172449Z-7055d2",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:deepseek-bridge",
+    "core_human_moment": "The meeting is over but they keep fidgeting with their bag and mugs rather than ask the senior colleague the question they actually came for.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "empty meeting room table mugs afternoon window",
+     "hands zipping tote bag meeting room table",
+     "person packing notebook empty meeting room chairs"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.1591,
+    "keywords": [
+     {
+      "keyword": "quiet jazz loop",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 72,
+    "stable_id": "6795585271782967298",
+    "title": "Steven Universe"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.1591
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:deepseek-bridge",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 4,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "packing-up-slowly-reel"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261031T172449Z-7055d2.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": true,
+    "rationale": "The literal shot 'P\u00f3s plant\u00e3o \ud83d\udc69\ud83c\udffb\\u200d\u2695\ufe0f' makes 'The meeting is over but they keep fidgeting with their bag and mugs ra' tangible; the 'Steven Universe' bed supports 'hesitation' without overpowering ",
+    "score": 70
+   },
+   "pinterest": {
+    "candidates": 6,
+    "hls": false,
+    "lane": "literal",
+    "metrics": {
+     "sat": 3.03,
+     "yavg": 55.7
+    },
+    "ok": true,
+    "passes_minimum": false,
+    "pin_id": "e1_AfqPShwnBeNGfcQfUEuB6gaVJazwucHiCEv33A26bkfo6iK6Izop",
+    "query": "empty meeting room table mugs",
+    "review_status": "needs_human_review",
+    "score": 64,
+    "size": "720x1280",
+    "stretch_pick": true,
+    "text_suspected": false,
+    "title": "P\u00f3s plant\u00e3o \ud83d\udc69\ud83c\udffb\u200d\u2695\ufe0f"
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 186.7
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/var/tmp/beast-run/final/20261031T172449Z-7055d2/caption_list_title_v1-live-20261031T172449Z-7055d2.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 5153870,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": -8.38,
+     "yavg_delta": -33.1
+    },
+    "measured": {
+     "sat": 5.82,
+     "yavg": 71.9
+    },
+    "ok": false,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0976,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "fa13af1aa2efc2538f042bd2c7edae6690b213a3c2719900aa11339df3de50fc"
+  },
+  "topic_id": "packing-up-slowly-reel"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "triumphant anthem",
+     "loud drops",
+     "horror drones"
+    ],
+    "emotional_role": "restrained, reflective bed that leaves room for text",
+    "energy": 0.25,
+    "instrumentation": [
+     "piano",
+     "pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "sparse"
+    ],
+    "trend_hashtags": [
+     "#overthinking"
+    ],
+    "trend_keywords": [
+     "overthinking",
+     "quiet confidence"
+    ],
+    "valence": -0.2,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-10-31T17:43:52Z",
+   "compiled_by": "fallback",
+   "content_id": "weekend-invite-face-down",
+   "core_human_moment": "phone face-down on my knee. mug up. mug down. untouched. i flip it over and read it again. not a no. just not yet a yes.",
+   "degraded": true,
+   "emotional_primary": "quiet self-consciousness",
+   "emotional_secondary": "restrained warmth",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "waits",
+   "humour": 0.1,
+   "intentional_contrast": null,
+   "literal_scene": "sofa armrest, mug balanced on it, phone lying face-down on a knee, hand hovering, Saturday late-morning light through a window, second hand turning the phone over",
+   "literalness": "literal",
+   "motion_intent": "gentle continuous handheld movement",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "on-screen text",
+    "logos"
+   ],
+   "palette_intent": [
+    "natural",
+    "low saturation"
+   ],
+   "rationale": "Degraded brief: derived from the approved copy because the model compile did not validate. (arousal must be a number in [0.0, 1.0]; audio_intent.arousal must be in [0, 1]; audio_intent.energy must be in [0, 1])",
+   "scene_entities": [
+    "sofa",
+    "armrest",
+    "mug"
+   ],
+   "schema_version": "1.0",
+   "setting": "sofa armrest, mug balanced on it, phone lying face-down on a knee, hand hovering, Saturday late-morning light through a window, second hand turning the phone over",
+   "tension": 0.4,
+   "text_safe_zone": "centre 30-61%",
+   "time_of_day": "indeterminate",
+   "valence": -0.2,
+   "video_queries": [
+    "sofa armrest mug balanced on it phone lying face-down",
+    "phone lying face-down"
+   ],
+   "visual_mood": [
+    "quiet",
+    "everyday"
+   ],
+   "visual_profile_target": {
+    "luma": "format profile",
+    "saturation": "format profile"
+   },
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Finn",
+    "candidates": [
+     {
+      "artist": "Owen Packet",
+      "distance": 0.6609,
+      "fresh": true,
+      "id": "7690873511996409896",
+      "score": 51,
+      "title": "Quiet Confidence",
+      "video_count": 45500
+     },
+     {
+      "artist": "J\u00e9r\u00e9my \ud83c\uddeb\ud83c\uddf7\ud83d\udc95 & \u00d8neheart",
+      "distance": 0.5737,
+      "fresh": true,
+      "id": "7043672073613936641",
+      "score": 58,
+      "title": "snowfall",
+      "video_count": 6600000
+     },
+     {
+      "artist": "trillbill",
+      "distance": 0.6068,
+      "fresh": true,
+      "id": "7604896498949883921",
+      "score": 48,
+      "title": "Didn't Cha Know Smooth",
+      "video_count": 111500
+     },
+     {
+      "artist": "Finn",
+      "distance": 0.7097,
+      "fresh": true,
+      "id": "6878909301478393857",
+      "score": 75,
+      "title": "Find Myself",
+      "video_count": 76500
+     }
+    ],
+    "distance": 0.7097,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "quiet confidence",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7365349431086401552",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "duration_loop_edit_fit": {
+       "evidence": "60.0s vs 7.0s needed",
+       "points": 5
+      },
+      "energy_and_tempo_fit": {
+       "evidence": "129.2 BPM vs preference slow (40, 92)",
+       "points": 6
+      },
+      "freshness": {
+       "evidence": "fresh in the no-repeat window",
+       "points": 5
+      },
+      "loudness_dynamic_fit": {
+       "evidence": "RMS -23.1 dBFS (bed target ~-18)",
+       "points": 6
+      },
+      "rhythm_onset_density": {
+       "evidence": "onsets/s 1.23 vs sparse (0.0, 1.5)",
+       "points": 10
+      },
+      "semantic_emotional_intent_fit": {
+       "evidence": "onset 1.23 vs intended energy 0.25",
+       "points": 30
+      },
+      "texture_spectral_similarity": {
+       "evidence": "centroid 504.5 Hz vs reference 1537 Hz",
+       "points": 8
+      },
+      "trend_relevance": {
+       "evidence": "video_count 76500",
+       "points": 5
+      }
+     },
+     "passes": true,
+     "total": 75
+    },
+    "stable_id": "6878909301478393857",
+    "title": "Find Myself"
+   },
+   "pair": {
+    "dimensions": {
+     "combined_emotional_interpretation": {
+      "evidence": "motion 0.0623 vs intended arousal 0.25; onset density None vs intended 0.25 (audio valence -0.20)",
+      "points": 25
+     },
+     "novelty_vs_recent": {
+      "evidence": "fresh assets under the no-repeat window",
+      "points": 5
+     },
+     "pacing_compatibility": {
+      "evidence": "movement vs measured audio rhythm",
+      "points": 10
+     },
+     "text_legibility_over_footage": {
+      "evidence": "text-band edge density 0.0045",
+      "points": 15
+     },
+     "text_to_scene_semantic_fit": {
+      "evidence": "derived from semantic_scene_fit",
+      "points": 12
+     },
+     "tone_coherence_or_contrast": {
+      "evidence": "compatible tones (no contrast declared)",
+      "points": 10
+     }
+    },
+    "passes": true,
+    "rationale": "The adjacent shot 'the chosen clip' makes 'phone face-down on my knee. mug up. mug down. untouched. i flip it ove' tangible; the 'Find Myself' bed supports 'quiet self-consciousness' without overpowering the text on a 7s loop-format static-text reel.",
+    "total": 77
+   },
+   "visual": {
+    "band_busy": 0.0045,
+    "candidates": [
+     {
+      "band_busy": 0.0106,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzANlU2pCVogC2mKKbCTiNxotEXSOw_aR6uWgf3Yr8jlA",
+      "query": "phone lying face-down",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.124 vs arousal target 0.065 (arousal 0.25)",
+         "points": 11
+        },
+        "format_profile_fit": {
+         "evidence": "luma 67.9 vs 78.6+-14.0, sat 9.85 vs 8.34+-5.0, natural_fit=True",
+         "points": 5
+        },
+        "motion_compatibility": {
+         "evidence": "2 scene cut(s), max jump 0.302, mean motion 0.124",
+         "points": 0
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 5/31 scene tokens matched (down, face, lying, phone, window)",
+         "points": 8
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 10.1s (need 7.0s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.011 (lower is calmer)",
+         "points": 19
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.081,
+         "rows": [
+          570,
+          622
+         ]
+        },
+        {
+         "fraction_of_height": 0.13,
+         "rows": [
+          11,
+          94
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(570, 622), (11, 94)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         570,
+         622
+        ],
+        [
+         11,
+         94
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0185,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyhRjEG1MhRaU_DTIN7UdQL_-CSaBIbCYWd3SBuh75lf3R2",
+      "query": "phone lying face-down",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.073 vs arousal target 0.065 (arousal 0.25)",
+         "points": 14
+        },
+        "format_profile_fit": {
+         "evidence": "luma 107.9 vs 78.6+-14.0, sat 10.21 vs 8.34+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.158, mean motion 0.073",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 4/31 scene tokens matched (down, face, lying, phone)",
+         "points": 7
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 14.1s (need 7.0s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.018 (lower is calmer)",
+         "points": 18
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 62,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.186,
+         "rows": [
+          0,
+          119
+         ]
+        },
+        {
+         "fraction_of_height": 0.222,
+         "rows": [
+          0,
+          142
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 119), (0, 142)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         119
+        ],
+        [
+         0,
+         142
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0034,
+      "height": 1280,
+      "pin_id": "e1_AfqPShySx7tZ1KGE2I9dI13BLt5Ff-esskLigyrrf_SVN4Mvpv8",
+      "query": "phone lying face-down",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.078 vs arousal target 0.065 (arousal 0.25)",
+         "points": 14
+        },
+        "format_profile_fit": {
+         "evidence": "luma 67.9 vs 78.6+-14.0, sat 10.97 vs 8.34+-5.0, natural_fit=True",
+         "points": 5
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.092, mean motion 0.078",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 6/31 scene tokens matched (down, face, hand, lying, phone, the)",
+         "points": 10
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 52.0s (need 7.0s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.003 (lower is calmer)",
+         "points": 20
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 72,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.098,
+         "rows": [
+          577,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(577, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         577,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0045,
+      "height": 1280,
+      "pin_id": "e1_AfqPShy_6kjiq6-5Fx9vQ4vmyCTcGJNyqMQ9krUiaRmBzFcHeVCP",
+      "query": "phone lying face-down",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.062 vs arousal target 0.065 (arousal 0.25)",
+         "points": 15
+        },
+        "format_profile_fit": {
+         "evidence": "luma 68.0 vs 78.6+-14.0, sat 12.27 vs 8.34+-5.0, natural_fit=True",
+         "points": 5
+        },
+        "motion_compatibility": {
+         "evidence": "0 scene cut(s), max jump 0.141, mean motion 0.062",
+         "points": 10
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 6/31 scene tokens matched (and, down, face, lying, phone, the)",
+         "points": 10
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 14.9s (need 7.0s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.004 (lower is calmer)",
+         "points": 20
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 73,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.102,
+         "rows": [
+          466,
+          531
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(466, 531)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         466,
+         531
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0291,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyNQyA2FQdjQZSwfGsPuRU1z3DH-Vl6Pp6S-56m8-_djfY",
+      "query": "phone lying face-down",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.166 vs arousal target 0.065 (arousal 0.25)",
+         "points": 8
+        },
+        "format_profile_fit": {
+         "evidence": "luma 94.9 vs 78.6+-14.0, sat 16.77 vs 8.34+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "1 scene cut(s), max jump 0.223, mean motion 0.166",
+         "points": 3
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 6/31 scene tokens matched (and, down, face, hand, lying, phone)",
+         "points": 10
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 20.3s (need 7.0s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.029 (lower is calmer)",
+         "points": 17
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 51,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.087,
+         "rows": [
+          0,
+          56
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 56)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         56
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.012,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzqXCcU9DLaGG3PeZsm8Ogimm-r9VLDzNWSK-RcRrprgG8",
+      "query": "phone lying face-down",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "cleanliness_provenance": {
+         "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+         "points": 5
+        },
+        "emotional_fit": {
+         "evidence": "motion 0.097 vs arousal target 0.065 (arousal 0.25)",
+         "points": 13
+        },
+        "format_profile_fit": {
+         "evidence": "luma 120.7 vs 78.6+-14.0, sat 4.29 vs 8.34+-5.0, natural_fit=False",
+         "points": 0
+        },
+        "motion_compatibility": {
+         "evidence": "2 scene cut(s), max jump 0.232, mean motion 0.097",
+         "points": 0
+        },
+        "semantic_scene_fit": {
+         "evidence": "adjacent lane, 5/31 scene tokens matched (down, face, lying, not, phone)",
+         "points": 8
+        },
+        "technical_quality": {
+         "evidence": "720x1280, 38.6s (need 7.0s+)",
+         "points": 8
+        },
+        "text_safe_composition": {
+         "evidence": "text-band edge density 0.012 (lower is calmer)",
+         "points": 19
+        }
+       },
+       "minimum": 75,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": true,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.167,
+         "rows": [
+          533,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.272,
+         "rows": [
+          5,
+          179
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(533, 640), (5, 179)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         533,
+         640
+        ],
+        [
+         5,
+         179
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "elijahokechukwu60",
+    "flags": [],
+    "lane_expansions": 2,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.1411,
+     "motion": 0.0623,
+     "ok": true,
+     "samples": 8
+    },
+    "passes_minimum": false,
+    "pin_id": "e1_AfqPShy_6kjiq6-5Fx9vQ4vmyCTcGJNyqMQ9krUiaRmBzFcHeVCP",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShy_6kjiq6-5Fx9vQ4vmyCTcGJNyqMQ9krUiaRmBzFcHeVCP/",
+    "query": "phone lying face-down",
+    "query_lane": "adjacent",
+    "query_log": [
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "sofa armrest mug balanced on it phone lying face-down",
+      "returned": 0
+     },
+     {
+      "kept": 25,
+      "lane": "adjacent",
+      "query": "phone lying face-down",
+      "returned": 25
+     },
+     {
+      "kept": 5,
+      "lane": "literal",
+      "query": "sofa armrest mug balanced on",
+      "returned": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShygp7ZQ_7Wc9zxQQ5_ImBGHbI2A56cQwgS1qKcpdc3B5kM",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShwdGIi5BwtCP72E8ksbpn_VFmVlW0ry4Q6-bhAOG7Ded59T",
+      "why": "unusable crop 480x480"
+     },
+     {
+      "id": "e1_AfqPShwnZBhXOHGc6nIwQZmRD6N-94qIVyCXN43w6MBPP54kGPzL",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "e1_AfqPShyOBcAAdGiIXafsOLE9n8qMYIS3rugg-SLnkRRMD6CHAh1b",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShw5GylAqVNCqF2M8vkgug4SBZJ1KDzucdxoLjXMEmQzoKENUQ",
+      "lane": "adjacent",
+      "query": "phone lying face-down",
+      "why": "commerce/affiliate domain: 'amazon.com'"
+     },
+     {
+      "id": "e1_AfqPShw0n18H8UU4Cn_RX_j7ktJRJoD2SAlHe9e08S3oyI53TN7s",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShzbeUjZdzLffEqugM3tY2EZn2YM9_cxl_YlrxqgEFZqow",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShwIyhJph8IvlccvzpmP9Hnb7QNBNB_PJ6LWYYI3XWYXR061",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwcG3AZlCxhg9v4I3srp72KODCb8c2ctUigks8baLAVVyXwEg",
+      "why": "unusable crop 768x576"
+     },
+     {
+      "id": "e1_AfqPShxiAzLSP0L9Tg-Fyes_rj0b7dtW22rzy9D62BubbLIy7aA",
+      "why": "unusable crop 352x640"
+     },
+     {
+      "id": "e1_AfqPShx8lGiupWU5qJS7cybgm2kDIB0g2X_b8LJQrcGPKuVmlQ",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxILnFcuW1H7GiNi9aWkbGmCwuG6gDpiHT29Xz6Rqma_FKw",
+      "why": "unusable crop 368x640"
+     },
+     {
+      "id": "e1_AfqPShwlmaUIbZyUXhYZIvSmaZun2iQUdnILnlPI_vi1ce2iQpXv",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShz5C2OpMOPAq29lHGKabvpf-V3xZp8O8Xw2RtRu9qhfxg6f",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShwa-y-X_Hh4SP9mJFrpYUvrYA-pPQXThGr0n3K0aS0Iyp0",
+      "why": "unusable crop 1280x852"
+     },
+     {
+      "id": "e1_AfqPShwqHuTgahphrYin3gK_Pv0BQbkcHKknmQbsCxb4Do9_5rS-",
+      "why": "unusable crop 540x960"
+     },
+     {
+      "id": "e1_AfqPShzoPNQXmbMM8aHfUur7mpFtGal3PRQ_6T6ySuUQuk7DxDE",
+      "why": "unusable crop 814x706"
+     },
+     {
+      "id": "e1_AfqPShzlrNtMcfhypVxb064P0KGvNMtEob5qvxgtdzcmynIS7Ok",
+      "why": "unusable crop 1280x720"
+     }
+    ],
+    "review_status": "needs_human_review",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "cleanliness_provenance": {
+       "evidence": "text_suspected=False (no persistent glyph-like band; uniform framing ban)",
+       "points": 5
+      },
+      "emotional_fit": {
+       "evidence": "motion 0.062 vs arousal target 0.065 (arousal 0.25)",
+       "points": 15
+      },
+      "format_profile_fit": {
+       "evidence": "luma 68.0 vs 78.6+-14.0, sat 12.27 vs 8.34+-5.0, natural_fit=True",
+       "points": 5
+      },
+      "motion_compatibility": {
+       "evidence": "0 scene cut(s), max jump 0.141, mean motion 0.062",
+       "points": 10
+      },
+      "semantic_scene_fit": {
+       "evidence": "adjacent lane, 6/31 scene tokens matched (and, down, face, lying, phone, the)",
+       "points": 10
+      },
+      "technical_quality": {
+       "evidence": "720x1280, 14.9s (need 7.0s+)",
+       "points": 8
+      },
+      "text_safe_composition": {
+       "evidence": "text-band edge density 0.004 (lower is calmer)",
+       "points": 20
+      }
+     },
+     "minimum": 75,
+     "passes": false,
+     "review_status": "reject",
+     "total": 73,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.102,
+       "rows": [
+        466,
+        531
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(466, 531)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       466,
+       531
+      ]
+     ]
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 974688,
+   "creator": null,
+   "path": "/var/tmp/beast-run/final/20261031T173821Z-910f7d/assets/track_6878909301478393857.m4a",
+   "pin_url": null,
+   "sha256": "554e1745d8bf762a11615d42a0503c184130757003a17a777f38920c06d368b0",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6878909301478393857",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 37.1,
+    "high": 0.0,
+    "mid": 62.9
+   },
+   "duration_s": 60.0,
+   "file": "track_6878909301478393857.m4a",
+   "key_estimate": "A# major",
+   "loudness_curve_db": [
+    -22.7,
+    -22.7,
+    -23.8
+   ],
+   "onset_density_per_s": 1.23,
+   "peak_db": -6.1,
+   "rms_db": -23.1,
+   "spectral_centroid_hz": 504.5,
+   "tempo_bpm": 129.2,
+   "zero_crossing_rate": 0.0362
+  },
+  "background": {
+   "bytes": 2280925,
+   "creator": "elijahokechukwu60",
+   "path": "/var/tmp/beast-run/final/20261031T173821Z-910f7d/assets/cand_0_3.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShy_6kjiq6-5Fx9vQ4vmyCTcGJNyqMQ9krUiaRmBzFcHeVCP/",
+   "sha256": "fa9d390d40627ee1a56aa4ca6c04fb1790662647bd8db2ab3f15103b05ba9822",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShy_6kjiq6-5Fx9vQ4vmyCTcGJNyqMQ9krUiaRmBzFcHeVCP",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "texting and group chats",
+    "emotional_tension": "They want the invitation and they're afraid of the version of themselves that has to show up for it.",
+    "observable_behaviour": "They put the phone face-down on their knee, pick the mug up, put it back down untouched, then turn the phone over and read the message again.",
+    "private_worry": "That saying yes commits them to being a fun, available person on a set date, and if it's flat then, it will have been their fault for agreeing.",
+    "situation": "Saturday 11:20am, a text from someone they've met twice asks 'are you around this weekend? we should do something', and they read it on the sofa with a mug balanced on the armrest."
+   },
+   "card_compiled_by": "llm:deepseek-bridge",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"phone face-down on my knee. mug up. mug down. untouched.\" and \"not a no. just not yet a yes.\"",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 4,
+    "rewrite_notes": "Nearly there. \"not a no\" is slightly more articulate than the sofa moment; keep it but consider a blunter payoff like \"still don't know what i'm doing.\" No structural faults.",
+    "scene_specificity": 5,
+    "sendability_who": "Someone 18-30 sending it to the friend who watched them agonise over a new-friend text, or to the new friend as a soft, funny yes.",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "weekend-invite-face-down"
+  },
+  "delivery": {
+   "at": "2026-10-31T17:50:30Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 2.04,
+   "yavg_delta": -3.1
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 1.156,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 1.156,
+    "saturate": 0.68
+   },
+   "saturate": 0.68
+  },
+  "measured": {
+   "sat": 10.38,
+   "yavg": 75.5
+  },
+  "output": {
+   "bytes": 5939369,
+   "duration_s": 7.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261031T173821Z-910f7d.mp4",
+   "sha256": "5af72e214185b1bf5f905f6e92a18a1333b3c63865d0136debee3a3bfab43ef6"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6878909301478393857",
+    "title": "Find Myself"
+   },
+   "background_query": "sofa armrest, mug balanced on it, phone lying face-down on a knee, hand hovering, Saturday late-morning light through a window, second hand turning the phone over",
+   "caption": "the invitation was never the hard part.",
+   "hookLines": [
+    "phone face-down on my knee.",
+    "mug up. mug down. untouched."
+   ],
+   "loop_hypothesis": "the last line completes the first read: the phone face-down and the reread are the same hesitation, so replay lands as 'i already decided to look again' rather than a new thought.",
+   "payoffLines": [
+    "i flip it over and read it again.",
+    "not a no. just not yet a yes."
+   ],
+   "provenance": {
+    "creator": "elijahokechukwu60",
+    "pin_id": "e1_AfqPShy_6kjiq6-5Fx9vQ4vmyCTcGJNyqMQ9krUiaRmBzFcHeVCP",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShy_6kjiq6-5Fx9vQ4vmyCTcGJNyqMQ9krUiaRmBzFcHeVCP/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "topic_id": "weekend-invite-face-down"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 2.04,
+    "yavg_delta": -3.1
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/var/tmp/beast-run/final/20261031T173821Z-910f7d/social_moment_loop_v1-live-20261031T173821Z-910f7d.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 5939369,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 10.38,
+    "yavg": 75.5
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0254,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 167.3
+  },
+  "rendered_at": "2026-10-31T17:50:23Z",
+  "run_id": "20261031T173821Z-910f7d",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "fallback",
+    "core_human_moment": "phone face-down on my knee. mug up. mug down. untouched. i flip it over and read it again. not a no. just not yet a yes.",
+    "degraded": true,
+    "ok": true,
+    "queries": [
+     "sofa armrest mug balanced on it phone lying face-down",
+     "phone lying face-down"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.7097,
+    "keywords": [
+     {
+      "keyword": "quiet confidence",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 75,
+    "stable_id": "6878909301478393857",
+    "title": "Find Myself"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.7097
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:deepseek-bridge",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 4,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "weekend-invite-face-down"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261031T173821Z-910f7d.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": true,
+    "rationale": "The adjacent shot 'the chosen clip' makes 'phone face-down on my knee. mug up. mug down. untouched. i flip it ove' tangible; the 'Find Myself' bed supports 'quiet self-consciousness' without overpower",
+    "score": 77
+   },
+   "pinterest": {
+    "candidates": 6,
+    "hls": false,
+    "lane": "adjacent",
+    "metrics": {
+     "sat": 12.27,
+     "yavg": 68.0
+    },
+    "ok": true,
+    "passes_minimum": false,
+    "pin_id": "e1_AfqPShy_6kjiq6-5Fx9vQ4vmyCTcGJNyqMQ9krUiaRmBzFcHeVCP",
+    "query": "phone lying face-down",
+    "review_status": "needs_human_review",
+    "score": 73,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 167.3
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/var/tmp/beast-run/final/20261031T173821Z-910f7d/social_moment_loop_v1-live-20261031T173821Z-910f7d.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 5939369,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": 2.04,
+     "yavg_delta": -3.1
+    },
+    "measured": {
+     "sat": 10.38,
+     "yavg": 75.5
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.0254,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21"
+  },
+  "topic_id": "weekend-invite-face-down"
+ },
+ {
+  "asset_intent": {
+   "compiled_by": "test",
+   "degraded": false,
+   "video_queries": [
+    "night bus window"
+   ]
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": null,
+    "candidates": null,
+    "distance": 0.3,
+    "fresh": null,
+    "keywords_tried": null,
+    "rejected": null,
+    "score": {
+     "total": 80
+    },
+    "stable_id": "s",
+    "title": null
+   },
+   "pair": {
+    "dimensions": {
+     "combined_emotional_interpretation": {
+      "evidence": "motion None vs intended arousal 0.30; onset density None vs intended 0.30 (audio valence +0.00)",
+      "points": 11
+     },
+     "novelty_vs_recent": {
+      "evidence": "fresh assets under the no-repeat window",
+      "points": 2
+     },
+     "pacing_compatibility": {
+      "evidence": "movement vs measured audio rhythm",
+      "points": 5
+     },
+     "text_legibility_over_footage": {
+      "evidence": "text-band edge density 0.1",
+      "points": 7
+     },
+     "text_to_scene_semantic_fit": {
+      "evidence": "derived from semantic_scene_fit",
+      "points": 0
+     },
+     "tone_coherence_or_contrast": {
+      "evidence": "compatible tones (no contrast declared)",
+      "points": 6
+     }
+    },
+    "passes": false,
+    "rationale": "The literal shot 'the chosen clip' makes '' tangible; the 'the chosen bed' bed supports 'the intended mood' without overpowering the text on a caption-list-format static-text reel.",
+    "total": 31
+   },
+   "visual": {
+    "band_busy": 0.1,
+    "candidates": [],
+    "creator": null,
+    "flags": null,
+    "lane_expansions": null,
+    "motion": {},
+    "passes_minimum": false,
+    "pin_id": "7",
+    "pin_url": null,
+    "query": null,
+    "query_lane": null,
+    "query_log": null,
+    "rejected": [],
+    "review_status": "needs_human_review",
+    "score": {
+     "total": 61
+    },
+    "stretch_pick": null,
+    "text": null,
+    "title": null
+   }
+  },
+  "audio": {
+   "bytes": null,
+   "creator": null,
+   "path": "a",
+   "pin_url": null,
+   "sha256": null,
+   "source": "test",
+   "stable_id": "s",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {},
+  "background": {
+   "bytes": null,
+   "creator": null,
+   "path": "p",
+   "pin_url": null,
+   "sha256": null,
+   "source": "pinterest",
+   "stable_id": "7",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {},
+   "card_compiled_by": "test",
+   "card_degraded": false,
+   "critic": {},
+   "ladder": [
+    {
+     "level": 3
+    }
+   ],
+   "topic_id": "t"
+  },
+  "delivery": {
+   "at": "2026-10-31T17:50:01Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {},
+  "format_id": "caption_list_title_v1",
+  "grade": null,
+  "measured": {
+   "yavg": 100.0
+  },
+  "output": {
+   "bytes": 2048,
+   "duration_s": null,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261031T175001Z-557635.mp4",
+   "sha256": "1d1801f753ccd9fa57966c46f360585caf83337a394a5f238d4e4e7d6005788d"
+  },
+  "payload": {
+   "audio": {
+    "rights": "preview_only",
+    "source": "test",
+    "stable_id": "s",
+    "title": null
+   },
+   "background_query": "night bus window",
+   "caption": "",
+   "provenance": {
+    "creator": null,
+    "pin_id": "7",
+    "pin_url": null,
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "a"
+   ],
+   "topic_id": "t"
+  },
+  "qa": {
+   "band_ok": true,
+   "ok": false
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 1
+  },
+  "rendered_at": "2026-10-31T17:50:01Z",
+  "run_id": "20261031T175001Z-557635",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "test",
+    "core_human_moment": null,
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "night bus window"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3,
+    "keywords": null,
+    "ok": true,
+    "score": 80,
+    "stable_id": "s",
+    "title": null
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3
+   },
+   "content": {
+    "attempts": 1,
+    "card": "test",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": null,
+     "distinctiveness": null,
+     "emotional_truth_dignity": null,
+     "format_fit": null,
+     "hard_fail": null,
+     "natural_voice": null,
+     "product_trust": null,
+     "recognition_authenticity": null,
+     "scene_specificity": null,
+     "shareability": null
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "t"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261031T175001Z-557635.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": false,
+    "rationale": "The literal shot 'the chosen clip' makes '' tangible; the 'the chosen bed' bed supports 'the intended mood' without overpowering the text on a caption-list-format static-text reel.",
+    "score": 31
+   },
+   "pinterest": {
+    "candidates": 0,
+    "hls": null,
+    "lane": null,
+    "metrics": null,
+    "ok": true,
+    "passes_minimum": false,
+    "pin_id": "7",
+    "query": null,
+    "review_status": "needs_human_review",
+    "score": 61,
+    "size": "720x1280",
+    "stretch_pick": null,
+    "text_suspected": null,
+    "title": null
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 1
+   },
+   "structural_qa": {
+    "gate": {},
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {},
+    "measured": {
+     "yavg": 100.0
+    },
+    "ok": true,
+    "text_frame0": {
+     "ok": true
+    }
+   }
+  },
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "x"
+  },
+  "topic_id": "t"
  }
 ]

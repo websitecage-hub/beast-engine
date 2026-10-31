@@ -76,6 +76,28 @@ def _key(entry: dict) -> str:
     return str(entry.get("id") or entry.get("pin_url") or entry.get("best_video") or "")
 
 
+def _pre_rank(entries: list, intent: dict) -> list:
+    """Order candidates by cheap metadata relevance before downloading any.
+
+    The API returns results in its own order, so taking the first six spent the
+    whole download budget on whatever Pinterest ranked first. This orders by scene
+    token overlap (the only semantic signal available before download), then by
+    direct MP4 over HLS for speed.
+    """
+    want = {w for w in re.findall(r"[a-z]{3,}", " ".join(
+        [str(intent.get("literal_scene") or ""), str(intent.get("setting") or ""),
+         str(intent.get("human_action") or "")] +
+        [str(e) for e in (intent.get("scene_entities") or [])]).lower())}
+    lane_rank = {"literal": 0, "adjacent": 1, "emotional": 2}
+    def key(e):
+        text = " ".join(str(e.get(k) or "") for k in ("title", "description"))
+        toks = {w for w in re.findall(r"[a-z]{3,}", text.lower())}
+        overlap = len(want & toks)
+        direct = 0 if e.get("best_video") else 1
+        return (-overlap, lane_rank.get(str(e.get("_lane") or "literal"), 3), direct)
+    return sorted(entries, key=key)
+
+
 def _search_lanes(plan: list[dict], *, page_size: int = 25) -> tuple[list, list]:
     """Run the lanes, dedupe by pin id and media url, keep the lane that found it."""
     seen, results, log = set(), [], []
@@ -134,7 +156,7 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
         if play:
             found, log = _search_lanes(play)
             query_log += log
-            for e in found:
+            for e in _pre_rank(found, intent):
                 if len(scored) >= max_downloads:
                     break
                 why = asset_scoring.hard_reject(e, needed_s=needed, min_width=min_width)
