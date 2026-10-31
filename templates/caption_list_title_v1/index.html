@@ -109,6 +109,15 @@
         captionTakeaway: "",
       };
       // Render copy from CONTENT so a variant is a pure data swap.
+      // Text colour follows the footage's brightness (chosen by the engine).
+      if (CONTENT.textStyle && CONTENT.textStyle.fill) {
+        const ts = CONTENT.textStyle;
+        document.documentElement.style.setProperty("--ink", ts.fill);
+        const node = document.getElementById("title");
+        if (node && ts.stroke_px != null) {
+          node.style.webkitTextStroke = ts.stroke_px + "px #000000";
+        }
+      }
       document.getElementById("title").innerHTML = CONTENT.titleLines
         .map((line) => `<span class="line">${line}</span>`).join("");
       // Auto-fit: shrink the type until the longest authored line fits, so

@@ -203,12 +203,17 @@ _STOP = set("a an the and or but to of in on at for with you your i me my it is 
 # Specificity ladder (§3). Anchors are things a camera or a phone screen shows;
 # private markers are inner commentary; contradictions are the turn.
 _ANCHORS = re.compile(
-    r"\b(bus|train|tube|subway|car|phone|screen|message|text|reply|chat|group chat|"
-    r"call|voicemail|door|doorway|kitchen|table|party|queue|line|queue|cafe|counter|"
-    r"lift|elevator|corridor|hallway|bathroom|bed|pillow|window|street|walk home|"
-    r"meeting|desk|mirror|coat|shoes|headphones|playlist|invite|plan|birthday|"
+    r"\b(bus|train|tube|subway|car|taxi|phone|screen|message|text|reply|chat|"
+    r"group chat|call|voicemail|door|doorway|handle|kitchen|kettle|mug|cup|glass|"
+    r"bottle|plate|bowl|fork|spoon|sink|tap|fridge|freezer|microwave|toaster|oven|"
+    r"hob|dishwasher|washing machine|bin|table|desk|counter|chair|sofa|couch|"
+    r"cushion|blanket|towel|mirror|lamp|light|curtain|stairs|corridor|hallway|"
+    r"lift|elevator|bed|pillow|window|street|pavement|queue|line|cafe|coffee|"
+    r"shop|supermarket|station|platform|bus stop|park|bench|meeting|office|"
+    r"coat|jacket|bag|keys|shoes|headphones|playlist|invite|plan|birthday|"
     r"apology|apologise|apologize|goodbye|see you|haha|lol|thumbs up|read receipt|"
-    r"notification|draft|paragraph|sentence|voice note|story|post|comment)\b", re.I)
+    r"notification|draft|paragraph|sentence|voice note|story|post|comment|"
+    r"holding|standing|sitting|waiting|walking|hovering|half[- ]turned|shrug)\b", re.I)
 _PRIVATE = re.compile(
     r"\b(wonder|wondering|replay|replaying|re-?read|overthink|overthinking|decid|"
     r"assume|assuming|convinc|judge|second[- ]guess|worry|worried|question whether|"

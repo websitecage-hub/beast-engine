@@ -22,6 +22,8 @@ from __future__ import annotations
 
 import subprocess
 import tempfile
+
+_RAPID: dict = {}
 from pathlib import Path
 
 import numpy as np
@@ -220,69 +222,128 @@ def analyze(path, format_id: str) -> dict:
     }
 
 # ------------------------------------------------------------------ OCR (simple)
-_OCR_PROMPT = """Look at this frame. Return ONLY JSON:
-{"has_text": true/false, "has_logo": true/false, "has_watermark": true/false,
- "text_said": "the on-screen text, or empty", "scene": "one short sentence"}
-Count captions, subtitles, titles, stickers, UI, logos and watermarks as text.
-Do not count natural objects that merely look like letters."""
+_OCR_PROMPT = """Look carefully at this frame from a video. Return ONLY JSON:
+{"has_text": true/false, "has_logo": false, "has_watermark": false,
+ "text_said": "every word of on-screen text, or empty", "scene": "one short sentence"}
+
+Count as text: captions, subtitles, titles, lower-third labels, location tags
+("Antique Shopping in Istanbul"), usernames/@handles, stickers, emoji text,
+timestamps, app UI, logos and watermarks. Text can be small, low-contrast, in a
+corner, or partially covered - look at the whole frame, including the edges.
+Do not count natural objects that merely resemble letters.
+If you can read any word, has_text MUST be true."""
 
 
-def ocr_check(path, *, api_key: str | None = None, samples: int = 2) -> dict:
-    """Does this clip carry burned-in text/logos? Simple yes/no, not a score.
+def ocr_check(path, *, api_key: str | None = None, samples: int = 3) -> dict:
+    """Does this clip carry burned-in text/logos? A gate, not a score.
 
-    Uses Gemini when a key is present (reliable enough to trust on one frame);
-    otherwise falls back to the local band heuristic and reports `unknown` when
-    even that cannot run. `unknown` never silently becomes clean.
+    Local first (RapidOCR, offline, no quota). A caption is: a real word of 5+
+    characters, or a 4+ character string that is physically large in frame, or the
+    same string in two sampled frames. Short numbers are ignored on purpose - price
+    tags and plate markings are environmental, not captions.
+
+    If OCR cannot run, the answer is UNKNOWN. It is never silently "clean".
     """
+    import subprocess
+
+    def _frames() -> list:
+        import tempfile
+        with tempfile.TemporaryDirectory(prefix="beast-ocr-") as td:
+            return _grab(path, max(3, samples), 1080, Path(td))
+
+    frames = _frames()
+    if not frames:
+        return {"has_text": None, "has_logo": None, "by": "ocr",
+                "reason": "frames undecodable"}
+
+    # --- local RapidOCR -----------------------------------------------------
+    try:
+        import sys
+        if "/var/tmp/pylibs" not in sys.path:
+            sys.path.append("/var/tmp/pylibs")
+        from rapidocr_onnxruntime import RapidOCR          # type: ignore
+        engine = _RAPID.get("engine")
+        if engine is None:
+            engine = _RAPID["engine"] = RapidOCR()
+        hits, per_frame = [], []
+        for arr in frames:
+            import tempfile
+            tmp = Path(tempfile.mkstemp(suffix=".jpg")[1])
+            Image.fromarray(arr).save(tmp, quality=90)
+            try:
+                res, _ = engine(str(tmp))
+            finally:
+                tmp.unlink(missing_ok=True)
+            rows = []
+            for box, text, score in (res or []):
+                text = str(text).strip()
+                if float(score) < 0.5 or not text:
+                    continue
+                ys = [pt[1] for pt in box]
+                h = (max(ys) - min(ys)) / max(arr.shape[0], 1)
+                if text.isdigit() and len(text) <= 3:
+                    continue                    # price tag / "12"
+                if h < 0.015 and len(text) < 5:
+                    continue                    # too small to be a caption
+                rows.append({"text": text, "score": round(float(score), 2),
+                             "height_frac": round(h, 3)})
+            per_frame.append(rows)
+            hits += rows
+        strong = [h for h in hits if len(h["text"]) >= 5 or h["height_frac"] >= 0.03]
+        repeated = [t for t in {h["text"] for h in hits}
+                    if sum(1 for fr in per_frame if any(h["text"] == t for h in fr)) >= 2]
+        has = bool(strong or repeated)
+        return {"has_text": has, "has_logo": None, "by": "rapidocr",
+                "text_said": "; ".join(sorted({h["text"] for h in hits})[:5]),
+                "reason": (f"{len(hits)} detections, {len(strong)} strong, "
+                           f"{len(repeated)} repeated across frames")}
+    except Exception as exc:  # noqa: BLE001
+        local_error = str(exc)[:120]
+    else:
+        local_error = ""
+
+    # --- Gemini fallback (only if a key is configured) ----------------------
+    key = (api_key or os.environ.get("GEMINI_API_KEY", "") or "").strip().strip("'\"").strip()
+    if not key:
+        sus = text_suspicion(path)
+        if sus.get("text_suspected") is None:
+            return {"has_text": None, "has_logo": None, "by": "heuristic",
+                    "reason": f"no OCR engine; {local_error}"}
+        return {"has_text": bool(sus.get("text_suspected")), "has_logo": None,
+                "by": "heuristic",
+                "reason": f"local OCR failed: {local_error}; {sus.get('reason', '')}"}
+
     import base64
     import json as _json
-    import os
     import requests
-
-    key = api_key or os.environ.get("GEMINI_API_KEY", "")
-    if key:
-        with tempfile.TemporaryDirectory(prefix="beast-ocr-") as td:
-            frames = _grab(path, samples, 720, Path(td))
-            if not frames:
-                return {"has_text": None, "has_logo": None, "by": "gemini",
-                        "reason": "frames undecodable"}
-            verdicts = []
-            for arr in frames:
-                img = Image.fromarray(arr)
-                buf = tempfile.SpooledTemporaryFile()
-                img.save(buf, format="JPEG", quality=88)
-                buf.seek(0)
-                b64 = base64.b64encode(buf.read()).decode()
-                body = {"contents": [{"parts": [{"text": _OCR_PROMPT},
-                                                {"inline_data": {"mime_type": "image/jpeg",
-                                                                 "data": b64}}]}],
-                        "generationConfig": {"temperature": 0, "maxOutputTokens": 400,
-                                             "responseMimeType": "application/json",
-                                             "thinkingConfig": {"thinkingBudget": 0}}}
-                try:
-                    r = requests.post(
-                        "https://generativelanguage.googleapis.com/v1beta/models/"
-                        "gemini-2.5-flash:generateContent",
-                        params={"key": key}, json=body, timeout=60)
-                    if r.status_code != 200:
-                        continue
-                    txt = r.json()["candidates"][0]["content"]["parts"][0]["text"]
-                    verdicts.append(_json.loads(txt))
-                except Exception:  # noqa: BLE001
-                    continue
-            if verdicts:
-                text = any(bool(v.get("has_text")) for v in verdicts)
-                logo = any(bool(v.get("has_logo")) or bool(v.get("has_watermark"))
-                           for v in verdicts)
-                said = next((v.get("text_said") for v in verdicts if v.get("text_said")), "")
-                scene = next((v.get("scene") for v in verdicts if v.get("scene")), "")
-                return {"has_text": text, "has_logo": logo, "by": "gemini",
-                        "text_said": said, "scene": scene,
-                        "reason": "gemini read %d frame(s)" % len(verdicts)}
-    # Local fallback: the existing band heuristic. It can only say "suspected".
-    sus = text_suspicion(path)
-    if sus.get("text_suspected") is None:
-        return {"has_text": None, "has_logo": None, "by": "heuristic",
-                "reason": sus.get("reason", "unknown")}
-    return {"has_text": bool(sus.get("text_suspected")), "has_logo": None,
-            "by": "heuristic", "reason": sus.get("reason", "")}
+    verdicts = []
+    for arr in frames:
+        import io
+        buf = io.BytesIO()
+        Image.fromarray(arr).save(buf, format="JPEG", quality=88)
+        b64 = base64.b64encode(buf.getvalue()).decode()
+        body = {"contents": [{"parts": [{"text": _OCR_PROMPT},
+                                        {"inline_data": {"mime_type": "image/jpeg",
+                                                         "data": b64}}]}],
+                "generationConfig": {"temperature": 0, "maxOutputTokens": 500,
+                                     "responseMimeType": "application/json",
+                                     "thinkingConfig": {"thinkingBudget": 0}}}
+        try:
+            r = requests.post("https://generativelanguage.googleapis.com/v1beta/models/"
+                              "gemini-2.5-flash:generateContent",
+                              params={"key": key}, json=body, timeout=60)
+            if r.status_code != 200:
+                continue
+            txt = r.json()["candidates"][0]["content"]["parts"][0]["text"]
+            verdicts.append(_json.loads(txt))
+        except Exception:  # noqa: BLE001
+            continue
+    if not verdicts:
+        return {"has_text": None, "has_logo": None, "by": "gemini",
+                "reason": "OCR engines unavailable; refusing to call the clip clean"}
+    return {"has_text": any(bool(v.get("has_text")) for v in verdicts),
+            "has_logo": any(bool(v.get("has_logo")) or bool(v.get("has_watermark"))
+                            for v in verdicts),
+            "by": "gemini",
+            "text_said": next((v.get("text_said") for v in verdicts if v.get("text_said")), ""),
+            "reason": f"gemini read {len(verdicts)} frame(s)"}

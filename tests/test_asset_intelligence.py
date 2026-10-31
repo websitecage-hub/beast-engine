@@ -468,3 +468,22 @@ def test_candidates_are_ranked_by_scene_overlap_before_download():
     ]
     ranked = asset_broker._pre_rank(entries, INTENT)
     assert [e["id"] for e in ranked][0] == "b"
+
+
+def test_text_colour_follows_the_footage_brightness():
+    from src.formats import text_style
+    dark = text_style.choose(55)
+    mid = text_style.choose(105)
+    bright = text_style.choose(160)
+    assert dark["fill"] == "#E0D29B" and dark["stroke_px"] == 2
+    assert bright["fill"] == "#FFFFFF"
+    assert mid["fill"] not in (dark["fill"], bright["fill"])
+    assert text_style.for_background({"yavg": 55.7}, {"brightness": 1.32})["fill"] != "#FFFFFF"
+
+
+def test_ocr_without_any_engine_is_unknown_not_clean(monkeypatch):
+    """No OCR engine and no key must never report a clip as clean."""
+    from src.formats import asset_probe
+    monkeypatch.setattr(asset_probe, "_grab", lambda *a, **k: [])
+    out = asset_probe.ocr_check("x.mp4")
+    assert out["has_text"] is None

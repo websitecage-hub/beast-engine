@@ -33,7 +33,7 @@ from pathlib import Path
 from . import config, render_gate
 from .formats import (asset_broker, asset_intent, asset_ledger, asset_scoring,
                       content_factory, run_manifest, template_renderer,
-                      template_payloads)
+                      template_payloads, text_style)
 
 ALIAS = {"A": "caption_list_title_v1", "B": "social_moment_loop_v1"}
 ROOT = Path(__file__).resolve().parents[1]
@@ -159,6 +159,13 @@ def main(argv=None) -> int:
         format_id=fmt, audit=(bg.get("score") or {}).get("dimensions"))
     _stage(stages, "pair_fit", pair["passes"], score=pair["total"],
            rationale=pair["rationale"][:200])
+
+    # Text colour follows the footage: yellow on dark, white on bright. The grade
+    # is the bounded one the renderer will apply, so this is the luma the viewer
+    # actually sees, not the raw source.
+    _css, _grade = template_renderer.grade_for(fmt, bg.get("metrics") or {})
+    payload["text_style"] = text_style.for_background(bg.get("metrics") or {}, _grade)
+    _stage(stages, "text_style", True, **payload["text_style"])
 
     # 7-10: render + QA (the renderer owns the one correction pass).
     # Render on the roomy scratch mount: HyperFrames refuses to render when the

@@ -283,6 +283,148 @@
  },
  {
   "audio": {
+   "bytes": 206152,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/audio/bgm.m4a",
+   "pin_url": null,
+   "sha256": "ce50e27a5f018edaa1670156ceece72ff8fe935a2e1f77d6becac557652cf275",
+   "source": "template-fixture",
+   "stable_id": "6777323236687349761",
+   "usage_clearance": "unknown"
+  },
+  "background": {
+   "bytes": 4036191,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/media/bg.mp4",
+   "pin_url": null,
+   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
+   "source": "template-fixture",
+   "stable_id": "pinvid_5cced687408a5a9d",
+   "usage_clearance": "unknown"
+  },
+  "delivery": {
+   "at": null,
+   "channel": null,
+   "ok": null
+  },
+  "drift": {
+   "sat_delta": -2.17,
+   "yavg_delta": 4.0
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.85,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.6758686339838171
+  },
+  "measured": {
+   "sat": 12.03,
+   "yavg": 109.0
+  },
+  "output": {
+   "bytes": 22460659,
+   "duration_s": 12.0,
+   "path": "/tmp/beast-run2/out/caption_list_title_v1-preview.mp4",
+   "sha256": "858df98b13c910d3b99745c620ee844076d7b76f0a5b4f81d7408dce071cd9aa"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper",
+    "stable_id": "6777323236687349761",
+    "title": "Simplicity"
+   },
+   "background_query": "person walking forest trail morning light",
+   "caption": "8 things you do after a conversation when you're worried you sounded weird:\n1. replay the exact sentence you said\n2. decide they secretly hate you\n3. rehearse a better version in the shower\n4. check if they posted since\n5. draft an apology you never send\n6. ask a friend if it was weird\n7. promise to be quieter next time\n8. replay it again at 2am",
+   "headline": "8 things you do after a conversation when you're worried you sounded weird",
+   "list_items": [
+    "replay the exact sentence you said",
+    "decide they secretly hate you",
+    "rehearse a better version in the shower",
+    "check if they posted since",
+    "draft an apology you never send",
+    "ask a friend if it was weird",
+    "promise to be quieter next time",
+    "replay it again at 2am"
+   ],
+   "provenance": {
+    "creator": "emmawatsonbarbe",
+    "pin_id": "pinvid_5cced687408a5a9d",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "8 things you do after",
+    "a conversation when",
+    "you're worried you",
+    "sounded weird"
+   ],
+   "topic_id": "post-conversation-replay"
+  },
+  "qa": {
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.17,
+    "yavg_delta": 4.0
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/tmp/beast-run2/out/caption_list_title_v1-preview.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 22460659,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 12.03,
+    "yavg": 109.0
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 247.2
+  },
+  "rendered_at": "2026-10-29T18:31:40Z",
+  "run_id": "20261029T182239Z-a5bd17",
+  "schema_version": "1.0",
+  "status": "rendered",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "4b6ebd9d470e02060612e6c21a7ef02a80ece68f011f6442be04a5fe1b65f487"
+  },
+  "topic_id": "post-conversation-replay"
+ },
+ {
+  "audio": {
    "bytes": 533557,
    "creator": null,
    "path": "/tmp/beast-run2/live/20261029T191600Z-0b3391/assets/track_7115246182422562817.m4a",
@@ -874,6 +1016,305 @@
    "sha256": "9d75c1ad71541a59681b97b1d05e97533299c9c0a4f1f722cfda65ca2a25b673"
   },
   "topic_id": "hovering-near-the-kitchen-at-a-party"
+ },
+ {
+  "audio": {
+   "bytes": 206152,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/audio/bgm.m4a",
+   "pin_url": null,
+   "sha256": "ce50e27a5f018edaa1670156ceece72ff8fe935a2e1f77d6becac557652cf275",
+   "source": "template-fixture",
+   "stable_id": "6777323236687349761",
+   "usage_clearance": "unknown"
+  },
+  "background": {
+   "bytes": 4036191,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/media/bg.mp4",
+   "pin_url": null,
+   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
+   "source": "template-fixture",
+   "stable_id": "pinvid_5cced687408a5a9d",
+   "usage_clearance": "unknown"
+  },
+  "delivery": {
+   "at": null,
+   "channel": null,
+   "ok": null
+  },
+  "drift": {
+   "sat_delta": -2.14,
+   "yavg_delta": 3.1
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.8522727272727273,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.6466302367941712
+  },
+  "measured": {
+   "sat": 12.06,
+   "yavg": 108.1
+  },
+  "output": {
+   "bytes": 22905276,
+   "duration_s": 12.0,
+   "path": "/opt/work/beast-preview/out/caption_list_title_v1-preview.mp4",
+   "sha256": "41d780279c3c5baa105aaad79d4a991e9d6ef6e740dde750e31ea0c2e3db31b7"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper",
+    "stable_id": "6777323236687349761",
+    "title": "Simplicity"
+   },
+   "background_query": "person walking forest trail morning light",
+   "caption": "8 things you do after a conversation when you're worried you sounded weird:\n1. replay the exact sentence you said\n2. decide they secretly hate you\n3. rehearse a better version in the shower\n4. check if they posted since\n5. draft an apology you never send\n6. ask a friend if it was weird\n7. promise to be quieter next time\n8. replay it again at 2am",
+   "headline": "8 things you do after a conversation when you're worried you sounded weird",
+   "list_items": [
+    "replay the exact sentence you said",
+    "decide they secretly hate you",
+    "rehearse a better version in the shower",
+    "check if they posted since",
+    "draft an apology you never send",
+    "ask a friend if it was weird",
+    "promise to be quieter next time",
+    "replay it again at 2am"
+   ],
+   "provenance": {
+    "creator": "emmawatsonbarbe",
+    "pin_id": "pinvid_5cced687408a5a9d",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "8 things you do after",
+    "a conversation when",
+    "you're worried you",
+    "sounded weird"
+   ],
+   "topic_id": "post-conversation-replay"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.14,
+    "yavg_delta": 3.1
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/opt/work/beast-preview/out/caption_list_title_v1-preview.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 22905276,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 12.06,
+    "yavg": 108.1
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0901,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 342.8
+  },
+  "rendered_at": "2026-10-30T16:10:15Z",
+  "run_id": "20261030T155853Z-f0380e",
+  "schema_version": "1.0",
+  "status": "rendered",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "fa13af1aa2efc2538f042bd2c7edae6690b213a3c2719900aa11339df3de50fc"
+  },
+  "topic_id": "post-conversation-replay"
+ },
+ {
+  "audio": {
+   "bytes": 114075,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/audio/bgm.m4a",
+   "pin_url": null,
+   "sha256": "6b8a6a8863ed9dcf77f39b1e5e4ce825520e2343d7eb78b914e643515453e970",
+   "source": "template-fixture",
+   "stable_id": "6696371042123778818",
+   "usage_clearance": "unknown"
+  },
+  "background": {
+   "bytes": 1205165,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/media/bg.mp4",
+   "pin_url": null,
+   "sha256": "9a3e0b5c2aa42c0fbea9efb0085a339846b52ce1eefad5cb5d55609bc4a0883b",
+   "source": "template-fixture",
+   "stable_id": "pinvid_44d38b7087ea5936",
+   "usage_clearance": "unknown"
+  },
+  "delivery": {
+   "at": null,
+   "channel": null,
+   "ok": null
+  },
+  "drift": {
+   "sat_delta": 0.6,
+   "yavg_delta": -15.6
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 1.0,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 1.0,
+    "saturate": 1.0
+   },
+   "saturate": 1.0
+  },
+  "measured": {
+   "sat": 8.94,
+   "yavg": 63.0
+  },
+  "output": {
+   "bytes": 9945789,
+   "duration_s": 7.0,
+   "path": "/opt/work/beast-preview/out/social_moment_loop_v1-preview.mp4",
+   "sha256": "04049094787a47134d6b09287f731c9fac8bbe4bcb82f45c979b89f5072a5eb4"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper",
+    "stable_id": "6696371042123778818",
+    "title": "hate myself"
+   },
+   "background_query": "quiet night window rain bokeh pov",
+   "caption": "the two hours after \u201chey.\u201d",
+   "hook_lines": [
+    "you sent \u201chey.\u201d",
+    "two hours ago."
+   ],
+   "loop_hypothesis": "The last line ('you're not.') re-reads as the first ('you sent hey') on a loop: waiting again.",
+   "payoff_lines": [
+    "they're online.",
+    "you're not."
+   ],
+   "provenance": {
+    "creator": "unknown",
+    "pin_id": "pinvid_44d38b7087ea5936",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "topic_id": "hey-then-silence"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 0.6,
+    "yavg_delta": -15.6
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/opt/work/beast-preview/out/social_moment_loop_v1-preview.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 9945789,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 8.94,
+    "yavg": 63.0
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0256,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 172.1
+  },
+  "rendered_at": "2026-10-30T16:13:15Z",
+  "run_id": "20261030T161015Z-bc7f4a",
+  "schema_version": "1.0",
+  "status": "rendered",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21"
+  },
+  "topic_id": "hey-then-silence"
  },
  {
   "audio": {
@@ -6715,235 +7156,723 @@
   "topic_id": "t"
  },
  {
-  "audio": {
-   "bytes": 206152,
-   "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/audio/bgm.m4a",
-   "pin_url": null,
-   "sha256": "ce50e27a5f018edaa1670156ceece72ff8fe935a2e1f77d6becac557652cf275",
-   "source": "template-fixture",
-   "stable_id": "6777323236687349761",
-   "usage_clearance": "unknown"
-  },
-  "background": {
-   "bytes": 4036191,
-   "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/media/bg.mp4",
-   "pin_url": null,
-   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
-   "source": "template-fixture",
-   "stable_id": "pinvid_5cced687408a5a9d",
-   "usage_clearance": "unknown"
-  },
-  "delivery": {
-   "at": null,
-   "channel": null,
-   "ok": null
-  },
-  "drift": {
-   "sat_delta": -2.17,
-   "yavg_delta": 4.0
-  },
-  "format_id": "caption_list_title_v1",
-  "grade": {
-   "brightness": 0.85,
-   "corrected": true,
-   "natural_fit": false,
-   "saturate": 0.6758686339838171
-  },
-  "measured": {
-   "sat": 12.03,
-   "yavg": 109.0
-  },
-  "output": {
-   "bytes": 22460659,
-   "duration_s": 12.0,
-   "path": "/tmp/beast-run2/out/caption_list_title_v1-preview.mp4",
-   "sha256": "858df98b13c910d3b99745c620ee844076d7b76f0a5b4f81d7408dce071cd9aa"
-  },
-  "payload": {
-   "_schema_version": "1.0",
-   "audio": {
-    "rights": "preview_only",
-    "source": "audi0-scraper",
-    "stable_id": "6777323236687349761",
-    "title": "Simplicity"
-   },
-   "background_query": "person walking forest trail morning light",
-   "caption": "8 things you do after a conversation when you're worried you sounded weird:\n1. replay the exact sentence you said\n2. decide they secretly hate you\n3. rehearse a better version in the shower\n4. check if they posted since\n5. draft an apology you never send\n6. ask a friend if it was weird\n7. promise to be quieter next time\n8. replay it again at 2am",
-   "headline": "8 things you do after a conversation when you're worried you sounded weird",
-   "list_items": [
-    "replay the exact sentence you said",
-    "decide they secretly hate you",
-    "rehearse a better version in the shower",
-    "check if they posted since",
-    "draft an apology you never send",
-    "ask a friend if it was weird",
-    "promise to be quieter next time",
-    "replay it again at 2am"
-   ],
-   "provenance": {
-    "creator": "emmawatsonbarbe",
-    "pin_id": "pinvid_5cced687408a5a9d",
-    "source": "pinterest",
-    "usage_clearance": "unknown"
-   },
-   "titleLines": [
-    "8 things you do after",
-    "a conversation when",
-    "you're worried you",
-    "sounded weird"
-   ],
-   "topic_id": "post-conversation-replay"
-  },
-  "qa": {
-   "band_ok": true,
-   "drift": {
-    "sat_delta": -2.17,
-    "yavg_delta": 4.0
-   },
-   "duration_s": 12.0,
-   "gate": {
-    "audio": true,
-    "audio_channels": 2,
-    "audio_codec": "aac",
-    "codec": "h264",
-    "decode_ok": true,
-    "decode_stderr": "",
-    "duration_bounds": [
-     11.6,
-     12.8
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "triumphant anthem",
+     "loud drops",
+     "horror drones"
     ],
-    "duration_s": 12.0,
-    "failures": [],
-    "file": "/tmp/beast-run2/out/caption_list_title_v1-preview.mp4",
-    "fps": 30.0,
-    "fps_raw": "30/1",
-    "height": 1920,
-    "moov_head": true,
-    "ok": true,
-    "pix_fmt": "yuv420p",
-    "probe_error": null,
-    "sar": "1:1",
-    "size_bytes": 22460659,
-    "width": 1080
+    "emotional_role": "restrained, reflective bed that leaves room for text",
+    "energy": 0.25,
+    "instrumentation": [
+     "piano",
+     "pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "sparse"
+    ],
+    "trend_hashtags": [
+     "#overthinking"
+    ],
+    "trend_keywords": [
+     "overthinking",
+     "quiet confidence"
+    ],
+    "valence": -0.2,
+    "vocal_policy": "instrumental_preferred"
    },
-   "gate_ok": true,
-   "measured": {
-    "sat": 12.03,
-    "yavg": 109.0
+   "camera_perspective": "observer",
+   "compiled_at": "2026-10-31T19:02:20Z",
+   "compiled_by": "fallback",
+   "content_id": "dishwasher-plate-no-gap",
+   "core_human_moment": "you walk in with a plate and wait for a gap that never comes 7 things you do instead 7 things you do when the kitchen conversation has no gap for you",
+   "degraded": true,
+   "emotional_primary": "quiet self-consciousness",
+   "emotional_secondary": "restrained warmth",
+   "format_id": "caption_list_title_v1",
+   "human_action": "waits",
+   "humour": 0.1,
+   "intentional_contrast": null,
+   "literal_scene": "shared kitchen at night, open dishwasher, plate held in one hand, four people talking at a counter, overhead light, doorway in frame",
+   "literalness": "literal",
+   "motion_intent": "still, slow natural movement",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "on-screen text",
+    "logos"
+   ],
+   "palette_intent": [
+    "natural",
+    "low saturation"
+   ],
+   "rationale": "Degraded brief: derived from the approved copy because the model compile did not validate. (arousal must be a number in [0.0, 1.0]; audio_intent.arousal must be in [0, 1]; audio_intent.energy must be in [0, 1])",
+   "scene_entities": [
+    "shared",
+    "kitchen",
+    "at"
+   ],
+   "schema_version": "1.0",
+   "setting": "shared kitchen at night, open dishwasher, plate held in one hand, four people talking at a counter, overhead light, doorway in frame",
+   "tension": 0.4,
+   "text_safe_zone": "centre 30-61%",
+   "time_of_day": "indeterminate",
+   "valence": -0.2,
+   "video_queries": [
+    "shared kitchen at night open dishwasher plate held in",
+    "plate held in"
+   ],
+   "visual_mood": [
+    "quiet",
+    "everyday"
+   ],
+   "visual_profile_target": {
+    "luma": "format profile",
+    "saturation": "format profile"
    },
-   "ok": true,
-   "targets": {
-    "sat": 14.2,
-    "sat_tol": 5.0,
-    "yavg": 105.0,
-    "yavg_tol": 14.0
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "DnB / Moshimo",
+    "candidates": [
+     {
+      "artist": "\u3082\u3064",
+      "distance": 0.5107,
+      "fresh": true,
+      "id": "6817179217642424321",
+      "score": 100,
+      "title": "Nocturne (Chopin) calm piano solo",
+      "video_count": 1500000
+     },
+     {
+      "artist": "Owen Packet",
+      "distance": 0.3539,
+      "fresh": true,
+      "id": "7690873511996409896",
+      "score": 84,
+      "title": "Quiet Confidence",
+      "video_count": 45500
+     },
+     {
+      "artist": "Secession Studios",
+      "distance": 0.5197,
+      "fresh": true,
+      "id": "6778677545794570241",
+      "score": 100,
+      "title": "Lucifer's Waltz",
+      "video_count": 885200
+     },
+     {
+      "artist": "Finn",
+      "distance": 0.3794,
+      "fresh": false,
+      "id": "6878909301478393857",
+      "score": 64,
+      "title": "Find Myself",
+      "video_count": 76500
+     },
+     {
+      "artist": "DnB / Moshimo",
+      "distance": 0.3842,
+      "fresh": true,
+      "id": "6817665487665629186",
+      "score": 100,
+      "title": "Chopin Nocturne No. 2 Piano Mono",
+      "video_count": 7300000
+     }
+    ],
+    "distance": 0.3842,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "quiet confidence",
+      "rows": 5
+     }
+    ],
+    "rejected": [],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "246.6s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 7300000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6817665487665629186",
+    "title": "Chopin Nocturne No. 2 Piano Mono"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 30
+     }
+    },
+    "passes": true,
+    "rationale": "adjacent lane shot '' paired with 'Chopin Nocturne No. 2 Piano Mono' for caption_list_title_v1.",
+    "total": 65
+   },
+   "visual": {
+    "band_busy": 0.128,
+    "candidates": [
+     {
+      "band_busy": 0.0626,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzkaZ81_Y7b6AiTAuGD8AQzs9hqO_GGJ8mbgnZiCfvBCeWVlg",
+      "query": "plate held in",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['hand', 'held', 'one', 'plate'] (+14)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 52.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1599,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxGV5hOQ9qYUeAWfaXLFVHdxG2zEkRG8c8-A6J5yPsj",
+      "query": "plate held in",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['held', 'plate'] (+8)",
+         "points": 8
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 68.6s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 64,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0327,
+      "height": 1278,
+      "pin_id": "e1_AfqPShyzD5GnVbau9Koa9PFWoJYH6D3-zMmMLmnDRXWnQocSbvib",
+      "query": "plate held in",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['frame', 'held', 'plate'] (+12)",
+         "points": 12
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1278, 18.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 68,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.049,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxsv3zTLVH6gVdSWO_LCeBX5Fak_yW8d5RK2HyrckrjINoU",
+      "query": "plate held in",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['coffee'] (+5); scene words ['held'] (+4)",
+         "points": 9
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 20.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 65,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.128,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzX4HKp5T9maYVFctYkrg4dO-x9577OFMZ9OgT_di1Ycgc",
+      "query": "plate held in",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['city', 'home', 'mood', 'vintage'] (+20); scene words ['one'] (+4)",
+         "points": 24
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 33.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 80,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0234,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwgXYqColHyrYqbIF85AN7Ke04jUD49uo5-bcOjxK7aQF79",
+      "query": "plate held in",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['plate'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "gossipstyle",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 8,
+     "max_jump": 0.3368,
+     "motion": 0.2952,
+     "ok": true,
+     "samples": 8
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShzX4HKp5T9maYVFctYkrg4dO-x9577OFMZ9OgT_di1Ycgc",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShzX4HKp5T9maYVFctYkrg4dO-x9577OFMZ9OgT_di1Ycgc/",
+    "query": "plate held in",
+    "query_lane": "adjacent",
+    "query_log": [
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "shared kitchen at night open dishwasher plate held in",
+      "returned": 0
+     },
+     {
+      "kept": 24,
+      "lane": "adjacent",
+      "query": "plate held in",
+      "returned": 24
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShzgzcCGuH4wy7JsAby-VMhBGfiCq7IFLxAqrGdLfZUIspgT",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShxXGHcpbJVPyoQz7sKhYYq7y2K200e9CeAyAiYjWqfIqNrL5g",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShycn8ng-mMxuvF3sjlbwVlRzY7pediv9H3ga7Hv-_HSvK2Z",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShyWx5rbSoB6Vva7mxM3Kd4BWgBdr3ep0sbbVAvf1p9_DIsl",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShxxC8DkPB_l7ksf59IXYCPyaeFFayr7oXz8KBDXassu60zo",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShyJ38MlEjDwb2D1bwGDtSLkv3SS8TkMVw23mbzXwoe5IyGjYQ",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShxE9xdkRyRnaLysZA8jFDcofI2tfvlS7fMsp7VVll6pXmKc",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShz-YOzB8-GHm8BqA_HQ5XCaO0dn2m1bE5TSQ7rugq44_DLh",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShw1ElTyS0x0-442qpqMzlqhkFcfNKj3gc1F1ADFlKpoZ-nB",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShywnhIScQ0VvEixTScznxh-bgW5J5nhC-J-wJq-xJq_D3P9",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShyYI7-Pi3KdLj3HYC1ws7XjPOgglBKKSQQiA5ruL-xxxyFa",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShzc6SQ-ALmVip4cLW26M4XEltLsv1U6Y-XQP25K_C4Q0RM",
+      "why": "download failed or exceeded the 25 MB cap"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['city', 'home', 'mood', 'vintage'] (+20); scene words ['one'] (+4)",
+       "points": 24
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 33.3s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 80,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
    }
   },
-  "qa_ok": true,
-  "render": {
-   "quality": "delivery",
-   "seconds": 247.2
-  },
-  "rendered_at": "2026-10-29T18:31:40Z",
-  "run_id": "20261029T182239Z-a5bd17",
-  "schema_version": "1.0",
-  "status": "rendered",
-  "template": {
-   "dir": "templates/caption_list_title_v1",
-   "sha256": "4b6ebd9d470e02060612e6c21a7ef02a80ece68f011f6442be04a5fe1b65f487"
-  },
-  "topic_id": "post-conversation-replay"
- },
- {
   "audio": {
-   "bytes": 206152,
+   "bytes": 4019600,
    "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/audio/bgm.m4a",
+   "path": "/var/tmp/beast-run/v3/20261031T185810Z-1d9b66/assets/track_6817665487665629186.m4a",
    "pin_url": null,
-   "sha256": "ce50e27a5f018edaa1670156ceece72ff8fe935a2e1f77d6becac557652cf275",
-   "source": "template-fixture",
-   "stable_id": "6777323236687349761",
+   "sha256": "6694ebe721ae1e4f2c20be3bf88156076c757babd5586493d878d7c595f79ace",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6817665487665629186",
    "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 4.6,
+    "high": 0.0,
+    "mid": 95.4
+   },
+   "duration_s": 246.57,
+   "file": "track_6817665487665629186.m4a",
+   "key_estimate": "D# major",
+   "loudness_curve_db": [
+    -21.6,
+    -22.5,
+    -23.3
+   ],
+   "onset_density_per_s": 2.27,
+   "peak_db": -6.0,
+   "rms_db": -22.4,
+   "spectral_centroid_hz": 641.1,
+   "tempo_bpm": 112.3,
+   "zero_crossing_rate": 0.0539
   },
   "background": {
-   "bytes": 4036191,
-   "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/media/bg.mp4",
-   "pin_url": null,
-   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
-   "source": "template-fixture",
-   "stable_id": "pinvid_5cced687408a5a9d",
+   "bytes": 12293164,
+   "creator": "gossipstyle",
+   "path": "/var/tmp/beast-run/v3/20261031T185810Z-1d9b66/assets/cand_0_4.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShzX4HKp5T9maYVFctYkrg4dO-x9577OFMZ9OgT_di1Ycgc/",
+   "sha256": "5c9fe9bbb7f5ab51439685d897f5678e2e86d571a76088b9db3589d9e6c01fb9",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShzX4HKp5T9maYVFctYkrg4dO-x9577OFMZ9OgT_di1Ycgc",
    "usage_clearance": "unknown"
   },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "group conversation entry",
+    "emotional_tension": "They want to be in the room and they're waiting for a permission to enter that nobody knows they need.",
+    "observable_behaviour": "They open the dishwasher, stand holding the plate, wait for a gap in the talk, half-lift a hand, then close the dishwasher and go back to their room without saying anything.",
+    "private_worry": "That walking in and leaving without a word will read as cold or sulky, when really they just couldn't find a door into the conversation.",
+    "situation": "Thursday 8:40pm in a shared kitchen, four people from the flat and two of their friends are talking, and they walk in to put a plate in the dishwasher."
+   },
+   "card_compiled_by": "llm:deepseek-bridge",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"close the dishwasher like you meant to\" and \"laugh a beat late at something you missed\" - exact, unshowy, no diagnosis.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Almost nothing fails. Items 2 and 3 sit closest together; if trimmed, make one of them a later moment (e.g. reheating the plate later) to widen the timeline. Closing line slightly long.",
+    "scene_specificity": 5,
+    "sendability_who": "Someone 18-30 sending it to the flatmate who always seems to vanish after putting a plate away, or to the friend who does it themselves and needs the reframe.",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "dishwasher-plate-no-gap"
+  },
   "delivery": {
-   "at": null,
-   "channel": null,
-   "ok": null
+   "at": "2026-10-31T19:12:41Z",
+   "channel": "telegram",
+   "ok": true
   },
   "drift": {
-   "sat_delta": -2.14,
-   "yavg_delta": 3.1
+   "sat_delta": 1.43,
+   "yavg_delta": 1.0
   },
   "format_id": "caption_list_title_v1",
   "grade": {
-   "brightness": 0.8522727272727273,
-   "corrected": true,
-   "natural_fit": false,
-   "saturate": 0.6466302367941712
+   "brightness": 0.945,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 0.945,
+    "saturate": 0.802
+   },
+   "saturate": 0.802
   },
   "measured": {
-   "sat": 12.06,
-   "yavg": 108.1
+   "sat": 15.63,
+   "yavg": 106.0
   },
   "output": {
-   "bytes": 22905276,
+   "bytes": 26658741,
    "duration_s": 12.0,
-   "path": "/opt/work/beast-preview/out/caption_list_title_v1-preview.mp4",
-   "sha256": "41d780279c3c5baa105aaad79d4a991e9d6ef6e740dde750e31ea0c2e3db31b7"
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261031T185810Z-1d9b66.mp4",
+   "sha256": "b109f4b5356b792606dcb58f196c8abe1857a6a4121bf3a2b56e919eb919bffa"
   },
   "payload": {
    "_schema_version": "1.0",
    "audio": {
     "rights": "preview_only",
-    "source": "audi0-scraper",
-    "stable_id": "6777323236687349761",
-    "title": "Simplicity"
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6817665487665629186",
+    "title": "Chopin Nocturne No. 2 Piano Mono"
    },
-   "background_query": "person walking forest trail morning light",
-   "caption": "8 things you do after a conversation when you're worried you sounded weird:\n1. replay the exact sentence you said\n2. decide they secretly hate you\n3. rehearse a better version in the shower\n4. check if they posted since\n5. draft an apology you never send\n6. ask a friend if it was weird\n7. promise to be quieter next time\n8. replay it again at 2am",
-   "headline": "8 things you do after a conversation when you're worried you sounded weird",
+   "background_query": "shared kitchen at night, open dishwasher, plate held in one hand, four people talking at a counter, overhead light, doorway in frame",
+   "caption": "7 things you do when the kitchen conversation has no gap for you:\n1. stand at the open dishwasher, plate in hand\n2. count to three before trying to speak\n3. half-lift a hand, then put it down\n4. laugh a beat late at something you missed\n5. close the dishwasher like you meant to\n6. say night to no one in particular\n7. replay the exit in your room",
+   "closing": "you were not being cold. you were looking for a door and the room was full of people standing in it.",
+   "headline": "7 things you do when the kitchen conversation has no gap for you",
    "list_items": [
-    "replay the exact sentence you said",
-    "decide they secretly hate you",
-    "rehearse a better version in the shower",
-    "check if they posted since",
-    "draft an apology you never send",
-    "ask a friend if it was weird",
-    "promise to be quieter next time",
-    "replay it again at 2am"
+    "stand at the open dishwasher, plate in hand",
+    "count to three before trying to speak",
+    "half-lift a hand, then put it down",
+    "laugh a beat late at something you missed",
+    "close the dishwasher like you meant to",
+    "say night to no one in particular",
+    "replay the exit in your room"
    ],
    "provenance": {
-    "creator": "emmawatsonbarbe",
-    "pin_id": "pinvid_5cced687408a5a9d",
+    "creator": "gossipstyle",
+    "pin_id": "e1_AfqPShzX4HKp5T9maYVFctYkrg4dO-x9577OFMZ9OgT_di1Ycgc",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShzX4HKp5T9maYVFctYkrg4dO-x9577OFMZ9OgT_di1Ycgc/",
     "source": "pinterest",
     "usage_clearance": "unknown"
    },
    "titleLines": [
-    "8 things you do after",
-    "a conversation when",
-    "you're worried you",
-    "sounded weird"
+    "you walk in with a plate",
+    "and wait for a gap",
+    "that never comes",
+    "7 things you do instead"
    ],
-   "topic_id": "post-conversation-replay"
+   "topic_id": "dishwasher-plate-no-gap"
   },
   "qa": {
-   "attempts": 2,
+   "attempts": 1,
    "band_ok": true,
    "drift": {
-    "sat_delta": -2.14,
-    "yavg_delta": 3.1
+    "sat_delta": 1.43,
+    "yavg_delta": 1.0
    },
    "duration_s": 12.0,
    "gate": {
@@ -6959,7 +7888,7 @@
     ],
     "duration_s": 12.0,
     "failures": [],
-    "file": "/opt/work/beast-preview/out/caption_list_title_v1-preview.mp4",
+    "file": "/var/tmp/beast-run/v3/20261031T185810Z-1d9b66/caption_list_title_v1-live-20261031T185810Z-1d9b66.mp4",
     "fps": 30.0,
     "fps_raw": "30/1",
     "height": 1920,
@@ -6968,13 +7897,13 @@
     "pix_fmt": "yuv420p",
     "probe_error": null,
     "sar": "1:1",
-    "size_bytes": 22905276,
+    "size_bytes": 26658741,
     "width": 1080
    },
    "gate_ok": true,
    "measured": {
-    "sat": 12.06,
-    "yavg": 108.1
+    "sat": 15.63,
+    "yavg": 106.0
    },
    "ok": true,
    "targets": {
@@ -6988,7 +7917,7 @@
      0.22,
      0.58
     ],
-    "bright_fraction": 0.0901,
+    "bright_fraction": 0.2898,
     "ok": true,
     "threshold": 190
    }
@@ -6996,163 +7925,160 @@
   "qa_ok": true,
   "render": {
    "quality": "delivery",
-   "seconds": 342.8
+   "seconds": 343.6
   },
-  "rendered_at": "2026-10-30T16:10:15Z",
-  "run_id": "20261030T155853Z-f0380e",
+  "rendered_at": "2026-10-31T19:12:32Z",
+  "run_id": "20261031T185810Z-1d9b66",
   "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "fallback",
+    "core_human_moment": "you walk in with a plate and wait for a gap that never comes 7 things you do instead 7 things you do when the kitchen conversation has no gap for you",
+    "degraded": true,
+    "ok": true,
+    "queries": [
+     "shared kitchen at night open dishwasher plate held in",
+     "plate held in"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3842,
+    "keywords": [
+     {
+      "keyword": "quiet confidence",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6817665487665629186",
+    "title": "Chopin Nocturne No. 2 Piano Mono"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3842
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:deepseek-bridge",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "dishwasher-plate-no-gap"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261031T185810Z-1d9b66.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": true,
+    "rationale": "adjacent lane shot '' paired with 'Chopin Nocturne No. 2 Piano Mono' for caption_list_title_v1.",
+    "score": 65
+   },
+   "pinterest": {
+    "candidates": 6,
+    "hls": false,
+    "lane": "adjacent",
+    "metrics": {
+     "sat": 17.71,
+     "yavg": 111.1
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShzX4HKp5T9maYVFctYkrg4dO-x9577OFMZ9OgT_di1Ycgc",
+    "query": "plate held in",
+    "review_status": "accept",
+    "score": 80,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 343.6
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/var/tmp/beast-run/v3/20261031T185810Z-1d9b66/caption_list_title_v1-live-20261031T185810Z-1d9b66.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 26658741,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": 1.43,
+     "yavg_delta": 1.0
+    },
+    "measured": {
+     "sat": 15.63,
+     "yavg": 106.0
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.2898,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
   "status": "rendered",
   "template": {
    "dir": "templates/caption_list_title_v1",
    "sha256": "fa13af1aa2efc2538f042bd2c7edae6690b213a3c2719900aa11339df3de50fc"
   },
-  "topic_id": "post-conversation-replay"
- },
- {
-  "audio": {
-   "bytes": 114075,
-   "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/audio/bgm.m4a",
-   "pin_url": null,
-   "sha256": "6b8a6a8863ed9dcf77f39b1e5e4ce825520e2343d7eb78b914e643515453e970",
-   "source": "template-fixture",
-   "stable_id": "6696371042123778818",
-   "usage_clearance": "unknown"
-  },
-  "background": {
-   "bytes": 1205165,
-   "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/media/bg.mp4",
-   "pin_url": null,
-   "sha256": "9a3e0b5c2aa42c0fbea9efb0085a339846b52ce1eefad5cb5d55609bc4a0883b",
-   "source": "template-fixture",
-   "stable_id": "pinvid_44d38b7087ea5936",
-   "usage_clearance": "unknown"
-  },
-  "delivery": {
-   "at": null,
-   "channel": null,
-   "ok": null
-  },
-  "drift": {
-   "sat_delta": 0.6,
-   "yavg_delta": -15.6
-  },
-  "format_id": "social_moment_loop_v1",
-  "grade": {
-   "brightness": 1.0,
-   "natural_fit": true,
-   "raw": {
-    "brightness": 1.0,
-    "saturate": 1.0
-   },
-   "saturate": 1.0
-  },
-  "measured": {
-   "sat": 8.94,
-   "yavg": 63.0
-  },
-  "output": {
-   "bytes": 9945789,
-   "duration_s": 7.0,
-   "path": "/opt/work/beast-preview/out/social_moment_loop_v1-preview.mp4",
-   "sha256": "04049094787a47134d6b09287f731c9fac8bbe4bcb82f45c979b89f5072a5eb4"
-  },
-  "payload": {
-   "_schema_version": "1.0",
-   "audio": {
-    "rights": "preview_only",
-    "source": "audi0-scraper",
-    "stable_id": "6696371042123778818",
-    "title": "hate myself"
-   },
-   "background_query": "quiet night window rain bokeh pov",
-   "caption": "the two hours after \u201chey.\u201d",
-   "hook_lines": [
-    "you sent \u201chey.\u201d",
-    "two hours ago."
-   ],
-   "loop_hypothesis": "The last line ('you're not.') re-reads as the first ('you sent hey') on a loop: waiting again.",
-   "payoff_lines": [
-    "they're online.",
-    "you're not."
-   ],
-   "provenance": {
-    "creator": "unknown",
-    "pin_id": "pinvid_44d38b7087ea5936",
-    "source": "pinterest",
-    "usage_clearance": "unknown"
-   },
-   "topic_id": "hey-then-silence"
-  },
-  "qa": {
-   "attempts": 1,
-   "band_ok": true,
-   "drift": {
-    "sat_delta": 0.6,
-    "yavg_delta": -15.6
-   },
-   "duration_s": 7.0,
-   "gate": {
-    "audio": true,
-    "audio_channels": 2,
-    "audio_codec": "aac",
-    "codec": "h264",
-    "decode_ok": true,
-    "decode_stderr": "",
-    "duration_bounds": [
-     6.4,
-     7.8
-    ],
-    "duration_s": 7.0,
-    "failures": [],
-    "file": "/opt/work/beast-preview/out/social_moment_loop_v1-preview.mp4",
-    "fps": 30.0,
-    "fps_raw": "30/1",
-    "height": 1920,
-    "moov_head": true,
-    "ok": true,
-    "pix_fmt": "yuv420p",
-    "probe_error": null,
-    "sar": "1:1",
-    "size_bytes": 9945789,
-    "width": 1080
-   },
-   "gate_ok": true,
-   "measured": {
-    "sat": 8.94,
-    "yavg": 63.0
-   },
-   "ok": true,
-   "targets": {
-    "sat": 8.34,
-    "sat_tol": 4.0,
-    "yavg": 78.6,
-    "yavg_tol": 20.0
-   },
-   "text_frame0": {
-    "band": [
-     0.3,
-     0.61
-    ],
-    "bright_fraction": 0.0256,
-    "ok": true,
-    "threshold": 165
-   }
-  },
-  "qa_ok": true,
-  "render": {
-   "quality": "delivery",
-   "seconds": 172.1
-  },
-  "rendered_at": "2026-10-30T16:13:15Z",
-  "run_id": "20261030T161015Z-bc7f4a",
-  "schema_version": "1.0",
-  "status": "rendered",
-  "template": {
-   "dir": "templates/social_moment_loop_v1",
-   "sha256": "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21"
-  },
-  "topic_id": "hey-then-silence"
+  "topic_id": "dishwasher-plate-no-gap"
  }
 ]
