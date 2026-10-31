@@ -8080,5 +8080,871 @@
    "sha256": "fa13af1aa2efc2538f042bd2c7edae6690b213a3c2719900aa11339df3de50fc"
   },
   "topic_id": "dishwasher-plate-no-gap"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "triumphant anthem",
+     "loud drops",
+     "horror drones"
+    ],
+    "emotional_role": "restrained, reflective bed that leaves room for text",
+    "energy": 0.25,
+    "instrumentation": [
+     "piano",
+     "pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "sparse"
+    ],
+    "trend_hashtags": [
+     "#overthinking"
+    ],
+    "trend_keywords": [
+     "overthinking",
+     "quiet confidence"
+    ],
+    "valence": -0.2,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-10-31T19:24:26Z",
+   "compiled_by": "fallback",
+   "content_id": "long-way-round-empty-chair",
+   "core_human_moment": "eight heads already at the table. one chair left, right at the end. i take the long way round the room. then someone says oh hi. that's it.",
+   "degraded": true,
+   "emotional_primary": "quiet self-consciousness",
+   "emotional_secondary": "restrained warmth",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "waits",
+   "humour": 0.1,
+   "intentional_contrast": null,
+   "literal_scene": "pub interior, long table of seated friends with drinks, empty chair at the far end, doorway in foreground, warm evening light, wooden floor",
+   "literalness": "literal",
+   "motion_intent": "gentle continuous handheld movement",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "on-screen text",
+    "logos"
+   ],
+   "palette_intent": [
+    "natural",
+    "low saturation"
+   ],
+   "rationale": "Degraded brief: derived from the approved copy because the model compile did not validate. (arousal must be a number in [0.0, 1.0]; audio_intent.arousal must be in [0, 1]; audio_intent.energy must be in [0, 1])",
+   "scene_entities": [
+    "pub",
+    "interior",
+    "long"
+   ],
+   "schema_version": "1.0",
+   "setting": "pub interior, long table of seated friends with drinks, empty chair at the far end, doorway in foreground, warm evening light, wooden floor",
+   "tension": 0.4,
+   "text_safe_zone": "centre 30-61%",
+   "time_of_day": "indeterminate",
+   "valence": -0.2,
+   "video_queries": [
+    "pub interior long table of seated friends with drinks",
+    "friends with drinks"
+   ],
+   "visual_mood": [
+    "quiet",
+    "everyday"
+   ],
+   "visual_profile_target": {
+    "luma": "format profile",
+    "saturation": "format profile"
+   },
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "\u3082\u3064",
+    "candidates": [
+     {
+      "artist": "\u3082\u3064",
+      "distance": 0.4885,
+      "fresh": true,
+      "id": "6817179217642424321",
+      "score": 100,
+      "title": "Nocturne (Chopin) calm piano solo",
+      "video_count": 1500000
+     },
+     {
+      "artist": "Owen Packet",
+      "distance": 0.6609,
+      "fresh": true,
+      "id": "7690873511996409896",
+      "score": 84,
+      "title": "Quiet Confidence",
+      "video_count": 45500
+     },
+     {
+      "artist": "J\u00e9r\u00e9my \ud83c\uddeb\ud83c\uddf7\ud83d\udc95 & \u00d8neheart",
+      "distance": 0.5737,
+      "fresh": true,
+      "id": "7043672073613936641",
+      "score": 100,
+      "title": "snowfall",
+      "video_count": 6600000
+     },
+     {
+      "artist": "Ocean Alley",
+      "distance": 0.4885,
+      "fresh": true,
+      "id": "7244851220488243970",
+      "score": 100,
+      "title": "Confidence (sped up version)",
+      "video_count": 1800000
+     }
+    ],
+    "distance": 0.4885,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "quiet confidence",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7263788553225358126",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "264.9s vs 7.0s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 1500000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6817179217642424321",
+    "title": "Nocturne (Chopin) calm piano solo"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 30
+     }
+    },
+    "passes": true,
+    "rationale": "adjacent lane shot 'Niagara Food and Entertainment' paired with 'Nocturne (Chopin) calm piano solo' for social_moment_loop_v1.",
+    "total": 65
+   },
+   "visual": {
+    "band_busy": 0.0674,
+    "candidates": [
+     {
+      "band_busy": 0.0512,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxo2aLHtUQjypt6tayoBsZbiYGYLp5_ilA_hITadHD4Tgo",
+      "query": "friends with drinks",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['drinks', 'the', 'warm', 'with'] (+14)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.1s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0715,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyu27yNpV0zkGv6zV-6wnbHp5OcT76-fxo-Xv80Ven340o",
+      "query": "friends with drinks",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['city'] (+5); scene words ['friends', 'the'] (+8)",
+         "points": 13
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 8.6s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 69,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0674,
+      "height": 1920,
+      "pin_id": "e1_AfqPShwEKrHO3EXX4TvTJO0Ln_zfJoJQOdsS0VT0UOwiyCzSdMVy",
+      "query": "friends with drinks",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['lights', 'night'] (+10); scene words ['drinks', 'friends', 'table', 'the'] (+14)",
+         "points": 24
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "1080x1920, 15.0s (need 7.0s)",
+         "points": 20
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 84,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 1080
+     },
+     {
+      "band_busy": 0.0876,
+      "height": 1316,
+      "pin_id": "e1_AfqPShyBHoowjUjnTQY_DQFdLxg078A0hiPs4VFgHUBNZ79bfK3g",
+      "query": "friends with drinks",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1316, 8.3s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "cliftonhillfun",
+    "flags": [
+     "source domain: cliftonhill.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 6,
+     "max_jump": 0.3031,
+     "motion": 0.2472,
+     "ok": true,
+     "samples": 8
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShwEKrHO3EXX4TvTJO0Ln_zfJoJQOdsS0VT0UOwiyCzSdMVy",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwEKrHO3EXX4TvTJO0Ln_zfJoJQOdsS0VT0UOwiyCzSdMVy/",
+    "query": "friends with drinks",
+    "query_lane": "adjacent",
+    "query_log": [
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "pub interior long table of seated friends with drinks",
+      "returned": 0
+     },
+     {
+      "kept": 25,
+      "lane": "adjacent",
+      "query": "friends with drinks",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShy05SOIIBHg-gPDTK1nhDJXRf86CPfWmh5SlVBGgUXftxHZ",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShz3kDUROyyj3hjE792AkIWo-Zxt8KH_IVRJNTBOu36cVLaY",
+      "why": "too short 6.0s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShykset-GprbQKr8U8iEUdmY9m99e8vZaYBdZ4v-SNwV7fg",
+      "lane": "adjacent",
+      "query": "friends with drinks",
+      "why": "advertising call-to-action: 'Book Now'"
+     },
+     {
+      "id": "e1_AfqPShxvLSflFp8yXXEZGuQQ88S8zx5AzXQixWzrByrAzK18pKbC",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwrnsYgT4VnuUfIHghyvhCvc8Bb9ymIdJKhdCvPwQHxTZZT",
+      "why": "unusable crop 702x882"
+     },
+     {
+      "id": "e1_AfqPShwPY6etiwA7IL3EmmkbPr47NyP4HnWsuwXnWfQoW3jWzifC",
+      "why": "too short 5.07s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShxCKzlh8727zZlK0dZLGrTz9mdP6QnVA7kaVX_QwTQYXDKD",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwBYSJ5qtvGdZLqQ_Hj-5U2BBwnEDLQ5WS5_nz54U3x9_nsiA",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShxfosQFWVAa5lMGBtU0EWYwNyR58b2tJ2M4SXylReTi84iX",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwcf9hdDfgcTqKS_WkvoLf5rM_kd0CQLMkUYSy2623EY_w",
+      "why": "too short 6.08s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShx7k8AyB_gi0y--JvL6MRVFpqZko78ZlEUf42fb5Fcwze-m",
+      "why": "too short 6.0s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShyO2QOfpcj79Y0xPtZNnEokR2OntyRD7vwRAjq6AGfHFBdp",
+      "why": "unusable crop 480x854"
+     },
+     {
+      "id": "e1_AfqPShzngqBBjfhVG3D7I-mWfoNLixKCwdcGWsf7Z5bYSwOwIgD-",
+      "why": "too short 6.7s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShy1FI_qFySOzfnXLEMKfu77RVuF9dfNbrBXAsNOEVerkak",
+      "why": "too short 4.73s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShzvuDnXjKelGoQRNkJ_KjBhA9gp8yap9Tg_-g3enL8nPdCh",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShzLTk6SC2_9zpxA6TKGw4AKDXa18QWrJhUEx7-CQiHveOPU",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShwNObL8K-cmXSTfHr3G9YaAP-9UvZeNDYQ7vSzg6V-wCKb8",
+      "why": "too short 6.83s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShx25Ili4U2AuvWQ8OWhX-ritki7tERuPeQSUpDJVna3bOHX",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShy21q8b1lL_WVwWIW1eahFv1d-RMqyZBVkz8t3jrXdsl18",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwuoMMOoBoO9LmeA4-Szm1Y84iZ94bcDuKMRF6n54A-ciGQ7Q",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwedhnNzk7n5rx00eSW6Kgk9vhRisr1HCcAcE44QWLkrry-jg",
+      "why": "download failed or exceeded the 25 MB cap"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['lights', 'night'] (+10); scene words ['drinks', 'friends', 'table', 'the'] (+14)",
+       "points": 24
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "1080x1920, 15.0s (need 7.0s)",
+       "points": 20
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 84,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Niagara Food and Entertainment"
+   }
+  },
+  "audio": {
+   "bytes": 4324592,
+   "creator": null,
+   "path": "/var/tmp/beast-run/v3/20261031T192016Z-e94597/assets/track_6817179217642424321.m4a",
+   "pin_url": null,
+   "sha256": "56b05ca4363775e3c200c43a23b13cc9a6b11aa10379970330e2b46a08b9febd",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6817179217642424321",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 26.3,
+    "high": 0.0,
+    "mid": 73.7
+   },
+   "duration_s": 264.94,
+   "file": "track_6817179217642424321.m4a",
+   "key_estimate": "D# major",
+   "loudness_curve_db": [
+    -22.7,
+    -22.9,
+    -23.6
+   ],
+   "onset_density_per_s": 2.14,
+   "peak_db": -4.4,
+   "rms_db": -23.0,
+   "spectral_centroid_hz": 539.8,
+   "tempo_bpm": 99.4,
+   "zero_crossing_rate": 0.0445
+  },
+  "background": {
+   "bytes": 4973902,
+   "creator": "cliftonhillfun",
+   "path": "/var/tmp/beast-run/v3/20261031T192016Z-e94597/assets/cand_0_2.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwEKrHO3EXX4TvTJO0Ln_zfJoJQOdsS0VT0UOwiyCzSdMVy/",
+   "sha256": "753c2222ffde15bfb940db835874b1996c75adfae769f6e0b10abb230cc5f2cd",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShwEKrHO3EXX4TvTJO0Ln_zfJoJQOdsS0VT0UOwiyCzSdMVy",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "parties and social events",
+    "emotional_tension": "They're glad to be there and they'd rather be invisible for the first ninety seconds.",
+    "observable_behaviour": "They stop in the doorway, count the heads, look at the empty chair, then take the long way round and slide in without greeting anyone individually.",
+    "private_worry": "That crossing the room means everyone watches them say hello to eight people one by one, and any flatness in their face gets read.",
+    "situation": "Saturday 7:45pm, a friend's birthday at a pub, and they arrive to find the group already seated at a long table with one gap at the far end."
+   },
+   "card_compiled_by": "llm:deepseek-bridge",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 5.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"eight heads already at the table\" / \"then someone says oh hi. that's it.\" - a specific count, a specific anticlimax, no diagnosis.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Nothing structural fails. The caption slightly restates the payoff's meaning rather than adding a layer; consider naming a small object instead (the empty chair, the long way past the bar).",
+    "scene_specificity": 5,
+    "sendability_who": "Someone 18-30 sending it to the friend who always arrives last to group dinners and circles the room, or the one who's about to walk into a pub birthday.",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "long-way-round-empty-chair"
+  },
+  "delivery": {
+   "at": "2026-10-31T19:32:06Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 1.13,
+   "yavg_delta": 2.6
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 0.81,
+   "natural_fit": false,
+   "raw": {
+    "brightness": 0.81,
+    "saturate": 0.432
+   },
+   "saturate": 0.6
+  },
+  "measured": {
+   "sat": 9.47,
+   "yavg": 81.2
+  },
+  "output": {
+   "bytes": 7532957,
+   "duration_s": 7.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261031T192016Z-e94597.mp4",
+   "sha256": "904ce5c2c2a212bc87f2005e765f974a6282cfe9bfecbd63839158de0257f316"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6817179217642424321",
+    "title": "Nocturne (Chopin) calm piano solo"
+   },
+   "background_query": "pub interior, long table of seated friends with drinks, empty chair at the far end, doorway in foreground, warm evening light, wooden floor",
+   "caption": "ninety seconds of being watched, and nobody was watching.",
+   "hookLines": [
+    "eight heads already at the table.",
+    "one chair left, right at the end."
+   ],
+   "loop_hypothesis": "The last line's greeting answers the doorway pause in line one: the feared eight-person hello turns out to be one 'oh hi', so the replay lands the entrance as finished, not avoided.",
+   "payoffLines": [
+    "i take the long way round the room.",
+    "then someone says oh hi. that's it."
+   ],
+   "provenance": {
+    "creator": "cliftonhillfun",
+    "pin_id": "e1_AfqPShwEKrHO3EXX4TvTJO0Ln_zfJoJQOdsS0VT0UOwiyCzSdMVy",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwEKrHO3EXX4TvTJO0Ln_zfJoJQOdsS0VT0UOwiyCzSdMVy/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "topic_id": "long-way-round-empty-chair"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 1.13,
+    "yavg_delta": 2.6
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/var/tmp/beast-run/v3/20261031T192016Z-e94597/social_moment_loop_v1-live-20261031T192016Z-e94597.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 7532957,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 9.47,
+    "yavg": 81.2
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0062,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 186.1
+  },
+  "rendered_at": "2026-10-31T19:32:01Z",
+  "run_id": "20261031T192016Z-e94597",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "fallback",
+    "core_human_moment": "eight heads already at the table. one chair left, right at the end. i take the long way round the room. then someone says oh hi. that's it.",
+    "degraded": true,
+    "ok": true,
+    "queries": [
+     "pub interior long table of seated friends with drinks",
+     "friends with drinks"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.4885,
+    "keywords": [
+     {
+      "keyword": "quiet confidence",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6817179217642424321",
+    "title": "Nocturne (Chopin) calm piano solo"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.4885
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:deepseek-bridge",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "long-way-round-empty-chair"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261031T192016Z-e94597.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": true,
+    "rationale": "adjacent lane shot 'Niagara Food and Entertainment' paired with 'Nocturne (Chopin) calm piano solo' for social_moment_loop_v1.",
+    "score": 65
+   },
+   "pinterest": {
+    "candidates": 4,
+    "hls": false,
+    "lane": "adjacent",
+    "metrics": {
+     "sat": 19.31,
+     "yavg": 97.0
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShwEKrHO3EXX4TvTJO0Ln_zfJoJQOdsS0VT0UOwiyCzSdMVy",
+    "query": "friends with drinks",
+    "review_status": "accept",
+    "score": 84,
+    "size": "1080x1920",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Niagara Food and Entertainment"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 186.1
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/var/tmp/beast-run/v3/20261031T192016Z-e94597/social_moment_loop_v1-live-20261031T192016Z-e94597.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 7532957,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": 1.13,
+     "yavg_delta": 2.6
+    },
+    "measured": {
+     "sat": 9.47,
+     "yavg": 81.2
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.0062,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "rendered",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
+  },
+  "topic_id": "long-way-round-empty-chair"
  }
 ]
