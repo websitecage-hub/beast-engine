@@ -283,148 +283,6 @@
  },
  {
   "audio": {
-   "bytes": 206152,
-   "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/audio/bgm.m4a",
-   "pin_url": null,
-   "sha256": "ce50e27a5f018edaa1670156ceece72ff8fe935a2e1f77d6becac557652cf275",
-   "source": "template-fixture",
-   "stable_id": "6777323236687349761",
-   "usage_clearance": "unknown"
-  },
-  "background": {
-   "bytes": 4036191,
-   "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/media/bg.mp4",
-   "pin_url": null,
-   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
-   "source": "template-fixture",
-   "stable_id": "pinvid_5cced687408a5a9d",
-   "usage_clearance": "unknown"
-  },
-  "delivery": {
-   "at": null,
-   "channel": null,
-   "ok": null
-  },
-  "drift": {
-   "sat_delta": -2.17,
-   "yavg_delta": 4.0
-  },
-  "format_id": "caption_list_title_v1",
-  "grade": {
-   "brightness": 0.85,
-   "corrected": true,
-   "natural_fit": false,
-   "saturate": 0.6758686339838171
-  },
-  "measured": {
-   "sat": 12.03,
-   "yavg": 109.0
-  },
-  "output": {
-   "bytes": 22460659,
-   "duration_s": 12.0,
-   "path": "/tmp/beast-run2/out/caption_list_title_v1-preview.mp4",
-   "sha256": "858df98b13c910d3b99745c620ee844076d7b76f0a5b4f81d7408dce071cd9aa"
-  },
-  "payload": {
-   "_schema_version": "1.0",
-   "audio": {
-    "rights": "preview_only",
-    "source": "audi0-scraper",
-    "stable_id": "6777323236687349761",
-    "title": "Simplicity"
-   },
-   "background_query": "person walking forest trail morning light",
-   "caption": "8 things you do after a conversation when you're worried you sounded weird:\n1. replay the exact sentence you said\n2. decide they secretly hate you\n3. rehearse a better version in the shower\n4. check if they posted since\n5. draft an apology you never send\n6. ask a friend if it was weird\n7. promise to be quieter next time\n8. replay it again at 2am",
-   "headline": "8 things you do after a conversation when you're worried you sounded weird",
-   "list_items": [
-    "replay the exact sentence you said",
-    "decide they secretly hate you",
-    "rehearse a better version in the shower",
-    "check if they posted since",
-    "draft an apology you never send",
-    "ask a friend if it was weird",
-    "promise to be quieter next time",
-    "replay it again at 2am"
-   ],
-   "provenance": {
-    "creator": "emmawatsonbarbe",
-    "pin_id": "pinvid_5cced687408a5a9d",
-    "source": "pinterest",
-    "usage_clearance": "unknown"
-   },
-   "titleLines": [
-    "8 things you do after",
-    "a conversation when",
-    "you're worried you",
-    "sounded weird"
-   ],
-   "topic_id": "post-conversation-replay"
-  },
-  "qa": {
-   "band_ok": true,
-   "drift": {
-    "sat_delta": -2.17,
-    "yavg_delta": 4.0
-   },
-   "duration_s": 12.0,
-   "gate": {
-    "audio": true,
-    "audio_channels": 2,
-    "audio_codec": "aac",
-    "codec": "h264",
-    "decode_ok": true,
-    "decode_stderr": "",
-    "duration_bounds": [
-     11.6,
-     12.8
-    ],
-    "duration_s": 12.0,
-    "failures": [],
-    "file": "/tmp/beast-run2/out/caption_list_title_v1-preview.mp4",
-    "fps": 30.0,
-    "fps_raw": "30/1",
-    "height": 1920,
-    "moov_head": true,
-    "ok": true,
-    "pix_fmt": "yuv420p",
-    "probe_error": null,
-    "sar": "1:1",
-    "size_bytes": 22460659,
-    "width": 1080
-   },
-   "gate_ok": true,
-   "measured": {
-    "sat": 12.03,
-    "yavg": 109.0
-   },
-   "ok": true,
-   "targets": {
-    "sat": 14.2,
-    "sat_tol": 5.0,
-    "yavg": 105.0,
-    "yavg_tol": 14.0
-   }
-  },
-  "qa_ok": true,
-  "render": {
-   "quality": "delivery",
-   "seconds": 247.2
-  },
-  "rendered_at": "2026-10-29T18:31:40Z",
-  "run_id": "20261029T182239Z-a5bd17",
-  "schema_version": "1.0",
-  "status": "rendered",
-  "template": {
-   "dir": "templates/caption_list_title_v1",
-   "sha256": "4b6ebd9d470e02060612e6c21a7ef02a80ece68f011f6442be04a5fe1b65f487"
-  },
-  "topic_id": "post-conversation-replay"
- },
- {
-  "audio": {
    "bytes": 533557,
    "creator": null,
    "path": "/tmp/beast-run2/live/20261029T191600Z-0b3391/assets/track_7115246182422562817.m4a",
@@ -1016,305 +874,6 @@
    "sha256": "9d75c1ad71541a59681b97b1d05e97533299c9c0a4f1f722cfda65ca2a25b673"
   },
   "topic_id": "hovering-near-the-kitchen-at-a-party"
- },
- {
-  "audio": {
-   "bytes": 206152,
-   "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/audio/bgm.m4a",
-   "pin_url": null,
-   "sha256": "ce50e27a5f018edaa1670156ceece72ff8fe935a2e1f77d6becac557652cf275",
-   "source": "template-fixture",
-   "stable_id": "6777323236687349761",
-   "usage_clearance": "unknown"
-  },
-  "background": {
-   "bytes": 4036191,
-   "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/media/bg.mp4",
-   "pin_url": null,
-   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
-   "source": "template-fixture",
-   "stable_id": "pinvid_5cced687408a5a9d",
-   "usage_clearance": "unknown"
-  },
-  "delivery": {
-   "at": null,
-   "channel": null,
-   "ok": null
-  },
-  "drift": {
-   "sat_delta": -2.14,
-   "yavg_delta": 3.1
-  },
-  "format_id": "caption_list_title_v1",
-  "grade": {
-   "brightness": 0.8522727272727273,
-   "corrected": true,
-   "natural_fit": false,
-   "saturate": 0.6466302367941712
-  },
-  "measured": {
-   "sat": 12.06,
-   "yavg": 108.1
-  },
-  "output": {
-   "bytes": 22905276,
-   "duration_s": 12.0,
-   "path": "/opt/work/beast-preview/out/caption_list_title_v1-preview.mp4",
-   "sha256": "41d780279c3c5baa105aaad79d4a991e9d6ef6e740dde750e31ea0c2e3db31b7"
-  },
-  "payload": {
-   "_schema_version": "1.0",
-   "audio": {
-    "rights": "preview_only",
-    "source": "audi0-scraper",
-    "stable_id": "6777323236687349761",
-    "title": "Simplicity"
-   },
-   "background_query": "person walking forest trail morning light",
-   "caption": "8 things you do after a conversation when you're worried you sounded weird:\n1. replay the exact sentence you said\n2. decide they secretly hate you\n3. rehearse a better version in the shower\n4. check if they posted since\n5. draft an apology you never send\n6. ask a friend if it was weird\n7. promise to be quieter next time\n8. replay it again at 2am",
-   "headline": "8 things you do after a conversation when you're worried you sounded weird",
-   "list_items": [
-    "replay the exact sentence you said",
-    "decide they secretly hate you",
-    "rehearse a better version in the shower",
-    "check if they posted since",
-    "draft an apology you never send",
-    "ask a friend if it was weird",
-    "promise to be quieter next time",
-    "replay it again at 2am"
-   ],
-   "provenance": {
-    "creator": "emmawatsonbarbe",
-    "pin_id": "pinvid_5cced687408a5a9d",
-    "source": "pinterest",
-    "usage_clearance": "unknown"
-   },
-   "titleLines": [
-    "8 things you do after",
-    "a conversation when",
-    "you're worried you",
-    "sounded weird"
-   ],
-   "topic_id": "post-conversation-replay"
-  },
-  "qa": {
-   "attempts": 2,
-   "band_ok": true,
-   "drift": {
-    "sat_delta": -2.14,
-    "yavg_delta": 3.1
-   },
-   "duration_s": 12.0,
-   "gate": {
-    "audio": true,
-    "audio_channels": 2,
-    "audio_codec": "aac",
-    "codec": "h264",
-    "decode_ok": true,
-    "decode_stderr": "",
-    "duration_bounds": [
-     11.6,
-     12.8
-    ],
-    "duration_s": 12.0,
-    "failures": [],
-    "file": "/opt/work/beast-preview/out/caption_list_title_v1-preview.mp4",
-    "fps": 30.0,
-    "fps_raw": "30/1",
-    "height": 1920,
-    "moov_head": true,
-    "ok": true,
-    "pix_fmt": "yuv420p",
-    "probe_error": null,
-    "sar": "1:1",
-    "size_bytes": 22905276,
-    "width": 1080
-   },
-   "gate_ok": true,
-   "measured": {
-    "sat": 12.06,
-    "yavg": 108.1
-   },
-   "ok": true,
-   "targets": {
-    "sat": 14.2,
-    "sat_tol": 5.0,
-    "yavg": 105.0,
-    "yavg_tol": 14.0
-   },
-   "text_frame0": {
-    "band": [
-     0.22,
-     0.58
-    ],
-    "bright_fraction": 0.0901,
-    "ok": true,
-    "threshold": 190
-   }
-  },
-  "qa_ok": true,
-  "render": {
-   "quality": "delivery",
-   "seconds": 342.8
-  },
-  "rendered_at": "2026-10-30T16:10:15Z",
-  "run_id": "20261030T155853Z-f0380e",
-  "schema_version": "1.0",
-  "status": "rendered",
-  "template": {
-   "dir": "templates/caption_list_title_v1",
-   "sha256": "fa13af1aa2efc2538f042bd2c7edae6690b213a3c2719900aa11339df3de50fc"
-  },
-  "topic_id": "post-conversation-replay"
- },
- {
-  "audio": {
-   "bytes": 114075,
-   "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/audio/bgm.m4a",
-   "pin_url": null,
-   "sha256": "6b8a6a8863ed9dcf77f39b1e5e4ce825520e2343d7eb78b914e643515453e970",
-   "source": "template-fixture",
-   "stable_id": "6696371042123778818",
-   "usage_clearance": "unknown"
-  },
-  "background": {
-   "bytes": 1205165,
-   "creator": null,
-   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/media/bg.mp4",
-   "pin_url": null,
-   "sha256": "9a3e0b5c2aa42c0fbea9efb0085a339846b52ce1eefad5cb5d55609bc4a0883b",
-   "source": "template-fixture",
-   "stable_id": "pinvid_44d38b7087ea5936",
-   "usage_clearance": "unknown"
-  },
-  "delivery": {
-   "at": null,
-   "channel": null,
-   "ok": null
-  },
-  "drift": {
-   "sat_delta": 0.6,
-   "yavg_delta": -15.6
-  },
-  "format_id": "social_moment_loop_v1",
-  "grade": {
-   "brightness": 1.0,
-   "natural_fit": true,
-   "raw": {
-    "brightness": 1.0,
-    "saturate": 1.0
-   },
-   "saturate": 1.0
-  },
-  "measured": {
-   "sat": 8.94,
-   "yavg": 63.0
-  },
-  "output": {
-   "bytes": 9945789,
-   "duration_s": 7.0,
-   "path": "/opt/work/beast-preview/out/social_moment_loop_v1-preview.mp4",
-   "sha256": "04049094787a47134d6b09287f731c9fac8bbe4bcb82f45c979b89f5072a5eb4"
-  },
-  "payload": {
-   "_schema_version": "1.0",
-   "audio": {
-    "rights": "preview_only",
-    "source": "audi0-scraper",
-    "stable_id": "6696371042123778818",
-    "title": "hate myself"
-   },
-   "background_query": "quiet night window rain bokeh pov",
-   "caption": "the two hours after \u201chey.\u201d",
-   "hook_lines": [
-    "you sent \u201chey.\u201d",
-    "two hours ago."
-   ],
-   "loop_hypothesis": "The last line ('you're not.') re-reads as the first ('you sent hey') on a loop: waiting again.",
-   "payoff_lines": [
-    "they're online.",
-    "you're not."
-   ],
-   "provenance": {
-    "creator": "unknown",
-    "pin_id": "pinvid_44d38b7087ea5936",
-    "source": "pinterest",
-    "usage_clearance": "unknown"
-   },
-   "topic_id": "hey-then-silence"
-  },
-  "qa": {
-   "attempts": 1,
-   "band_ok": true,
-   "drift": {
-    "sat_delta": 0.6,
-    "yavg_delta": -15.6
-   },
-   "duration_s": 7.0,
-   "gate": {
-    "audio": true,
-    "audio_channels": 2,
-    "audio_codec": "aac",
-    "codec": "h264",
-    "decode_ok": true,
-    "decode_stderr": "",
-    "duration_bounds": [
-     6.4,
-     7.8
-    ],
-    "duration_s": 7.0,
-    "failures": [],
-    "file": "/opt/work/beast-preview/out/social_moment_loop_v1-preview.mp4",
-    "fps": 30.0,
-    "fps_raw": "30/1",
-    "height": 1920,
-    "moov_head": true,
-    "ok": true,
-    "pix_fmt": "yuv420p",
-    "probe_error": null,
-    "sar": "1:1",
-    "size_bytes": 9945789,
-    "width": 1080
-   },
-   "gate_ok": true,
-   "measured": {
-    "sat": 8.94,
-    "yavg": 63.0
-   },
-   "ok": true,
-   "targets": {
-    "sat": 8.34,
-    "sat_tol": 4.0,
-    "yavg": 78.6,
-    "yavg_tol": 20.0
-   },
-   "text_frame0": {
-    "band": [
-     0.3,
-     0.61
-    ],
-    "bright_fraction": 0.0256,
-    "ok": true,
-    "threshold": 165
-   }
-  },
-  "qa_ok": true,
-  "render": {
-   "quality": "delivery",
-   "seconds": 172.1
-  },
-  "rendered_at": "2026-10-30T16:13:15Z",
-  "run_id": "20261030T161015Z-bc7f4a",
-  "schema_version": "1.0",
-  "status": "rendered",
-  "template": {
-   "dir": "templates/social_moment_loop_v1",
-   "sha256": "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21"
-  },
-  "topic_id": "hey-then-silence"
  },
  {
   "audio": {
@@ -7266,7 +6825,7 @@
    "topic_id": "t"
   },
   "delivery": {
-   "at": "2026-10-31T17:50:01Z",
+   "at": "2026-10-31T17:55:56Z",
    "channel": "telegram",
    "ok": true
   },
@@ -7279,7 +6838,7 @@
   "output": {
    "bytes": 2048,
    "duration_s": null,
-   "path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261031T175001Z-557635.mp4",
+   "path": "/tmp/pytest-of-testflowthrowout/pytest-1/test_delivered_but_needs_revie0/outputs/previews/caption_list_title_v1-live-20261031T175556Z-74f401.mp4",
    "sha256": "1d1801f753ccd9fa57966c46f360585caf83337a394a5f238d4e4e7d6005788d"
   },
   "payload": {
@@ -7312,8 +6871,8 @@
    "quality": "delivery",
    "seconds": 1
   },
-  "rendered_at": "2026-10-31T17:50:01Z",
-  "run_id": "20261031T175001Z-557635",
+  "rendered_at": "2026-10-31T17:55:56Z",
+  "run_id": "20261031T175556Z-74f401",
   "schema_version": "1.0",
   "stages": {
    "asset_intent": {
@@ -7369,7 +6928,7 @@
     "requested": "A"
    },
    "manifest": {
-    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/caption_list_title_v1-live-20261031T175001Z-557635.mp4",
+    "final_path": "/tmp/pytest-of-testflowthrowout/pytest-1/test_delivered_but_needs_revie0/outputs/previews/caption_list_title_v1-live-20261031T175556Z-74f401.mp4",
     "ok": true,
     "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
     "persisted": true
@@ -7422,5 +6981,446 @@
    "sha256": "x"
   },
   "topic_id": "t"
+ },
+ {
+  "audio": {
+   "bytes": 206152,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/audio/bgm.m4a",
+   "pin_url": null,
+   "sha256": "ce50e27a5f018edaa1670156ceece72ff8fe935a2e1f77d6becac557652cf275",
+   "source": "template-fixture",
+   "stable_id": "6777323236687349761",
+   "usage_clearance": "unknown"
+  },
+  "background": {
+   "bytes": 4036191,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/media/bg.mp4",
+   "pin_url": null,
+   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
+   "source": "template-fixture",
+   "stable_id": "pinvid_5cced687408a5a9d",
+   "usage_clearance": "unknown"
+  },
+  "delivery": {
+   "at": null,
+   "channel": null,
+   "ok": null
+  },
+  "drift": {
+   "sat_delta": -2.17,
+   "yavg_delta": 4.0
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.85,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.6758686339838171
+  },
+  "measured": {
+   "sat": 12.03,
+   "yavg": 109.0
+  },
+  "output": {
+   "bytes": 22460659,
+   "duration_s": 12.0,
+   "path": "/tmp/beast-run2/out/caption_list_title_v1-preview.mp4",
+   "sha256": "858df98b13c910d3b99745c620ee844076d7b76f0a5b4f81d7408dce071cd9aa"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper",
+    "stable_id": "6777323236687349761",
+    "title": "Simplicity"
+   },
+   "background_query": "person walking forest trail morning light",
+   "caption": "8 things you do after a conversation when you're worried you sounded weird:\n1. replay the exact sentence you said\n2. decide they secretly hate you\n3. rehearse a better version in the shower\n4. check if they posted since\n5. draft an apology you never send\n6. ask a friend if it was weird\n7. promise to be quieter next time\n8. replay it again at 2am",
+   "headline": "8 things you do after a conversation when you're worried you sounded weird",
+   "list_items": [
+    "replay the exact sentence you said",
+    "decide they secretly hate you",
+    "rehearse a better version in the shower",
+    "check if they posted since",
+    "draft an apology you never send",
+    "ask a friend if it was weird",
+    "promise to be quieter next time",
+    "replay it again at 2am"
+   ],
+   "provenance": {
+    "creator": "emmawatsonbarbe",
+    "pin_id": "pinvid_5cced687408a5a9d",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "8 things you do after",
+    "a conversation when",
+    "you're worried you",
+    "sounded weird"
+   ],
+   "topic_id": "post-conversation-replay"
+  },
+  "qa": {
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.17,
+    "yavg_delta": 4.0
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/tmp/beast-run2/out/caption_list_title_v1-preview.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 22460659,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 12.03,
+    "yavg": 109.0
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 247.2
+  },
+  "rendered_at": "2026-10-29T18:31:40Z",
+  "run_id": "20261029T182239Z-a5bd17",
+  "schema_version": "1.0",
+  "status": "rendered",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "4b6ebd9d470e02060612e6c21a7ef02a80ece68f011f6442be04a5fe1b65f487"
+  },
+  "topic_id": "post-conversation-replay"
+ },
+ {
+  "audio": {
+   "bytes": 206152,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/audio/bgm.m4a",
+   "pin_url": null,
+   "sha256": "ce50e27a5f018edaa1670156ceece72ff8fe935a2e1f77d6becac557652cf275",
+   "source": "template-fixture",
+   "stable_id": "6777323236687349761",
+   "usage_clearance": "unknown"
+  },
+  "background": {
+   "bytes": 4036191,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/caption_list_title_v1/assets/media/bg.mp4",
+   "pin_url": null,
+   "sha256": "4e5b9a3132d26b038634602aa79dfba5c523521874ed9c0bed9db06122c3076a",
+   "source": "template-fixture",
+   "stable_id": "pinvid_5cced687408a5a9d",
+   "usage_clearance": "unknown"
+  },
+  "delivery": {
+   "at": null,
+   "channel": null,
+   "ok": null
+  },
+  "drift": {
+   "sat_delta": -2.14,
+   "yavg_delta": 3.1
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.8522727272727273,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.6466302367941712
+  },
+  "measured": {
+   "sat": 12.06,
+   "yavg": 108.1
+  },
+  "output": {
+   "bytes": 22905276,
+   "duration_s": 12.0,
+   "path": "/opt/work/beast-preview/out/caption_list_title_v1-preview.mp4",
+   "sha256": "41d780279c3c5baa105aaad79d4a991e9d6ef6e740dde750e31ea0c2e3db31b7"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper",
+    "stable_id": "6777323236687349761",
+    "title": "Simplicity"
+   },
+   "background_query": "person walking forest trail morning light",
+   "caption": "8 things you do after a conversation when you're worried you sounded weird:\n1. replay the exact sentence you said\n2. decide they secretly hate you\n3. rehearse a better version in the shower\n4. check if they posted since\n5. draft an apology you never send\n6. ask a friend if it was weird\n7. promise to be quieter next time\n8. replay it again at 2am",
+   "headline": "8 things you do after a conversation when you're worried you sounded weird",
+   "list_items": [
+    "replay the exact sentence you said",
+    "decide they secretly hate you",
+    "rehearse a better version in the shower",
+    "check if they posted since",
+    "draft an apology you never send",
+    "ask a friend if it was weird",
+    "promise to be quieter next time",
+    "replay it again at 2am"
+   ],
+   "provenance": {
+    "creator": "emmawatsonbarbe",
+    "pin_id": "pinvid_5cced687408a5a9d",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "titleLines": [
+    "8 things you do after",
+    "a conversation when",
+    "you're worried you",
+    "sounded weird"
+   ],
+   "topic_id": "post-conversation-replay"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.14,
+    "yavg_delta": 3.1
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/opt/work/beast-preview/out/caption_list_title_v1-preview.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 22905276,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 12.06,
+    "yavg": 108.1
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0901,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 342.8
+  },
+  "rendered_at": "2026-10-30T16:10:15Z",
+  "run_id": "20261030T155853Z-f0380e",
+  "schema_version": "1.0",
+  "status": "rendered",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "fa13af1aa2efc2538f042bd2c7edae6690b213a3c2719900aa11339df3de50fc"
+  },
+  "topic_id": "post-conversation-replay"
+ },
+ {
+  "audio": {
+   "bytes": 114075,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/audio/bgm.m4a",
+   "pin_url": null,
+   "sha256": "6b8a6a8863ed9dcf77f39b1e5e4ce825520e2343d7eb78b914e643515453e970",
+   "source": "template-fixture",
+   "stable_id": "6696371042123778818",
+   "usage_clearance": "unknown"
+  },
+  "background": {
+   "bytes": 1205165,
+   "creator": null,
+   "path": "/home/testflowthrowout/beast-engine/templates/social_moment_loop_v1/assets/media/bg.mp4",
+   "pin_url": null,
+   "sha256": "9a3e0b5c2aa42c0fbea9efb0085a339846b52ce1eefad5cb5d55609bc4a0883b",
+   "source": "template-fixture",
+   "stable_id": "pinvid_44d38b7087ea5936",
+   "usage_clearance": "unknown"
+  },
+  "delivery": {
+   "at": null,
+   "channel": null,
+   "ok": null
+  },
+  "drift": {
+   "sat_delta": 0.6,
+   "yavg_delta": -15.6
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 1.0,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 1.0,
+    "saturate": 1.0
+   },
+   "saturate": 1.0
+  },
+  "measured": {
+   "sat": 8.94,
+   "yavg": 63.0
+  },
+  "output": {
+   "bytes": 9945789,
+   "duration_s": 7.0,
+   "path": "/opt/work/beast-preview/out/social_moment_loop_v1-preview.mp4",
+   "sha256": "04049094787a47134d6b09287f731c9fac8bbe4bcb82f45c979b89f5072a5eb4"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper",
+    "stable_id": "6696371042123778818",
+    "title": "hate myself"
+   },
+   "background_query": "quiet night window rain bokeh pov",
+   "caption": "the two hours after \u201chey.\u201d",
+   "hook_lines": [
+    "you sent \u201chey.\u201d",
+    "two hours ago."
+   ],
+   "loop_hypothesis": "The last line ('you're not.') re-reads as the first ('you sent hey') on a loop: waiting again.",
+   "payoff_lines": [
+    "they're online.",
+    "you're not."
+   ],
+   "provenance": {
+    "creator": "unknown",
+    "pin_id": "pinvid_44d38b7087ea5936",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "topic_id": "hey-then-silence"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 0.6,
+    "yavg_delta": -15.6
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/opt/work/beast-preview/out/social_moment_loop_v1-preview.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 9945789,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 8.94,
+    "yavg": 63.0
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0256,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 172.1
+  },
+  "rendered_at": "2026-10-30T16:13:15Z",
+  "run_id": "20261030T161015Z-bc7f4a",
+  "schema_version": "1.0",
+  "status": "rendered",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21"
+  },
+  "topic_id": "hey-then-silence"
  }
 ]

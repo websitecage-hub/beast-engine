@@ -421,6 +421,13 @@ def test_delivered_but_needs_review_run_exits_nonzero(monkeypatch, tmp_path):
     monkeypatch.setattr(run_preview.config, "load_config",
                         lambda: {"short_publish_enabled": False})
     monkeypatch.setattr(run_preview.config, "env", lambda k, d=None: str(tmp_path))
+    # The runner persists into ROOT/outputs and records in the real manifest; both
+    # must point at the test's tmp dir or a test run contaminates production state.
+    monkeypatch.setattr(run_preview, "ROOT", tmp_path)
+    # run_manifest.MANIFEST is a module-level constant; patch it too or the test
+    # still appends a fake entry to the real manifest.
+    monkeypatch.setattr(run_preview.run_manifest, "MANIFEST",
+                        tmp_path / "template_manifest.json")
     monkeypatch.setattr(run_preview.content_factory, "generate", lambda *a, **k: {
         "payload": {"topic_id": "t", "titleLines": ["a"], "caption": "",
                     "background_query": "night bus window"},
