@@ -22,7 +22,7 @@
         font-display: block;
       }
       :root {
-        --ink: #feffac;
+        --ink: #e0d29b;
         --font-display: "Inter", "Helvetica Neue", Arial, sans-serif;
       }
       * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -67,14 +67,14 @@
         text-align: center;
         color: var(--ink);
         font-weight: 700;
-        /* Measured: pitch 107-113px -> 86px at line-height 1.28; 55% of the
-           glyph ring is near-black (median luma 40), so this is a hard 3px
-           outline plus a soft shadow, not a shadow alone. */
+        /* Measured from the top outlier (5.7M views): fill #E0D29B, lowercase,
+           centre, 5 lines, no heavy outline. The stroke is kept at 2px only for
+           legibility over cropped footage, and the shadow does the rest. */
         font-size: 86px;
         line-height: 1.28;
         letter-spacing: 0;
         text-transform: lowercase;
-        -webkit-text-stroke: 3px #000000;
+        -webkit-text-stroke: 2px #000000;
         paint-order: stroke fill;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
       }

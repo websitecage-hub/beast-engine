@@ -165,6 +165,9 @@ def _mock_pinterest(monkeypatch, entries):
                         lambda p: {"yavg": 105.0, "sat": 14.2})
     monkeypatch.setattr(asset_broker.asset_probe, "analyze",
                         lambda p, fmt: dict(GOOD_MEASURED))
+    monkeypatch.setattr(asset_broker.asset_probe, "ocr_check",
+                        lambda p, **k: {"has_text": False, "has_logo": False,
+                                        "by": "test"})
 
 
 def test_broker_selects_a_scored_clip_and_reserves_it(monkeypatch, tmp_path):

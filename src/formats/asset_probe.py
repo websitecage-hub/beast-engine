@@ -218,3 +218,71 @@ def analyze(path, format_id: str) -> dict:
         "framing": (text_suspicion(path).get("framing") or []),
         "band_busy": band_busyness(path, format_id),
     }
+
+# ------------------------------------------------------------------ OCR (simple)
+_OCR_PROMPT = """Look at this frame. Return ONLY JSON:
+{"has_text": true/false, "has_logo": true/false, "has_watermark": true/false,
+ "text_said": "the on-screen text, or empty", "scene": "one short sentence"}
+Count captions, subtitles, titles, stickers, UI, logos and watermarks as text.
+Do not count natural objects that merely look like letters."""
+
+
+def ocr_check(path, *, api_key: str | None = None, samples: int = 2) -> dict:
+    """Does this clip carry burned-in text/logos? Simple yes/no, not a score.
+
+    Uses Gemini when a key is present (reliable enough to trust on one frame);
+    otherwise falls back to the local band heuristic and reports `unknown` when
+    even that cannot run. `unknown` never silently becomes clean.
+    """
+    import base64
+    import json as _json
+    import os
+    import requests
+
+    key = api_key or os.environ.get("GEMINI_API_KEY", "")
+    if key:
+        with tempfile.TemporaryDirectory(prefix="beast-ocr-") as td:
+            frames = _grab(path, samples, 720, Path(td))
+            if not frames:
+                return {"has_text": None, "has_logo": None, "by": "gemini",
+                        "reason": "frames undecodable"}
+            verdicts = []
+            for arr in frames:
+                img = Image.fromarray(arr)
+                buf = tempfile.SpooledTemporaryFile()
+                img.save(buf, format="JPEG", quality=88)
+                buf.seek(0)
+                b64 = base64.b64encode(buf.read()).decode()
+                body = {"contents": [{"parts": [{"text": _OCR_PROMPT},
+                                                {"inline_data": {"mime_type": "image/jpeg",
+                                                                 "data": b64}}]}],
+                        "generationConfig": {"temperature": 0, "maxOutputTokens": 400,
+                                             "responseMimeType": "application/json",
+                                             "thinkingConfig": {"thinkingBudget": 0}}}
+                try:
+                    r = requests.post(
+                        "https://generativelanguage.googleapis.com/v1beta/models/"
+                        "gemini-2.5-flash:generateContent",
+                        params={"key": key}, json=body, timeout=60)
+                    if r.status_code != 200:
+                        continue
+                    txt = r.json()["candidates"][0]["content"]["parts"][0]["text"]
+                    verdicts.append(_json.loads(txt))
+                except Exception:  # noqa: BLE001
+                    continue
+            if verdicts:
+                text = any(bool(v.get("has_text")) for v in verdicts)
+                logo = any(bool(v.get("has_logo")) or bool(v.get("has_watermark"))
+                           for v in verdicts)
+                said = next((v.get("text_said") for v in verdicts if v.get("text_said")), "")
+                scene = next((v.get("scene") for v in verdicts if v.get("scene")), "")
+                return {"has_text": text, "has_logo": logo, "by": "gemini",
+                        "text_said": said, "scene": scene,
+                        "reason": "gemini read %d frame(s)" % len(verdicts)}
+    # Local fallback: the existing band heuristic. It can only say "suspected".
+    sus = text_suspicion(path)
+    if sus.get("text_suspected") is None:
+        return {"has_text": None, "has_logo": None, "by": "heuristic",
+                "reason": sus.get("reason", "unknown")}
+    return {"has_text": bool(sus.get("text_suspected")), "has_logo": None,
+            "by": "heuristic", "reason": sus.get("reason", "")}

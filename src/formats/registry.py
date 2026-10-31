@@ -90,7 +90,7 @@ FORMATS = {
                         "requires_assets": True,
                         "notes": "preview_only: new media stays usage_clearance=unknown"},
         "template": {"dir": "templates/social_moment_loop_v1", "version": "2.0",
-                     "index_sha256": "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21"},
+                     "index_sha256": "42c63aa0781a3221bf254091fc3872139d0335f72ff9307b61e58f0e1a32ae1b"},
         "publishing": "disabled",
         "contract_version": CONTRACT_VERSION,
     },

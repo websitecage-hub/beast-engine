@@ -146,83 +146,59 @@ def test_non_video_and_wrong_shape_are_rejected_by_the_broker(monkeypatch, tmp_p
 
 
 # ------------------------------------------------------------------ scoring
-def test_score_candidate_passes_an_ideal_clip():
-    grade = {"natural_fit": True, "brightness": 1.0, "saturate": 1.0}
-    score = asset_scoring.score_candidate(_entry(), intent=INTENT, lane="literal",
-                                          measured=_measured(), prof=PROF, grade=grade)
-    assert score["total"] >= 75 and score["passes"] and score["review_status"] == "accept"
-    assert score["dimensions"]["semantic_scene_fit"]["points"] > 0
+def test_taste_score_passes_a_clean_tagged_clip():
+    score = asset_scoring.taste_score(
+        _entry(title="quiet night window aesthetic lifestyle"),
+        intent=INTENT, lane="literal", measured=_measured(),
+        ocr={"has_text": False, "has_logo": False, "by": "gemini"})
+    assert score["total"] >= 60 and score["passes"]
+    assert score["dimensions"]["no_on_screen_text"]["points"] == 30
 
 
-def test_score_candidate_forces_review_when_something_is_unmeasured():
-    measured = _measured(motion={"ok": False, "motion": None, "cuts": None},
-                         text={"text_suspected": None, "reason": "frames undecodable"})
-    score = asset_scoring.score_candidate(_entry(), intent=INTENT, lane="literal",
-                                          measured=measured, prof=PROF,
-                                          grade={"natural_fit": True})
+def test_taste_score_forces_review_when_ocr_is_unknown():
+    score = asset_scoring.taste_score(_entry(), intent=INTENT, lane="literal",
+                                      measured=_measured(),
+                                      ocr={"has_text": None, "by": "heuristic"})
     assert score["review_status"] == "needs_human_review"
     assert score["passes"] is False
-    assert "motion_compatibility" in score["unknown_dimensions"]
 
 
-def test_score_candidate_refuses_a_clip_the_grade_cannot_fix():
-    """A bright daytime clip cannot be darkened into a night-loop band."""
-    bright = _measured(metrics={"yavg": 210.0, "sat": 30.0})
-    score = asset_scoring.score_candidate(_entry(), intent=INTENT, lane="literal",
-                                          measured=bright, prof=PROF,
-                                          grade={"natural_fit": False, "brightness": 0.85})
+def test_brightness_is_not_a_gate_any_more():
+    """The owner's rule: pick by look and tags, not by a luminance target."""
+    dark = _measured(metrics={"yavg": 12.0, "sat": 2.0})
+    score = asset_scoring.taste_score(
+        _entry(title="alone night window aesthetic quiet"),
+        intent=INTENT, lane="literal", measured=dark,
+        ocr={"has_text": False, "has_logo": False, "by": "gemini"})
+    assert score["passes"] is True
+    assert "luma" not in json.dumps(score).lower()
+
+
+def test_taste_score_zeroes_a_clip_with_on_screen_text():
+    score = asset_scoring.taste_score(
+        _entry(), intent=INTENT, lane="literal", measured=_measured(),
+        ocr={"has_text": True, "text_said": "subscribe", "by": "gemini"})
+    assert score["dimensions"]["no_on_screen_text"]["points"] == 0
     assert score["passes"] is False
-    assert any("grade can only reach" in b for b in score["blockers"])
 
 
-def test_gradeable_accepts_a_clip_the_bounded_grade_can_land():
-    """99 luma graded at the 0.85 limit reaches ~84, inside 105+-14? No - so it must fail,
-    but a 105-luma clip with a non-ideal saturate must still pass."""
-    at_target = _measured(metrics={"yavg": 105.0, "sat": 22.0})
-    ok, why = asset_scoring.gradeable(PROF, at_target,
-                                      {"natural_fit": False, "saturate": 0.65})
-    assert ok is True and "reaches luma" in why
-
-
-def test_uniform_dark_areas_are_framing_not_text():
-    """A dark interior was mis-flagged as a caption; uniform bars are framing."""
-    frame = np.full((360, 360), 70, dtype=np.uint8)
-    frame[:60, :] = 25                      # dark uniform top bar
-    assert asset_probe._uniform_bands(frame)
-    assert asset_probe._text_bands(frame) == []
-
-
-def test_score_candidate_rejects_burned_in_text():
-    measured = _measured(text={"text_suspected": True, "reason": "persistent band"})
-    score = asset_scoring.score_candidate(_entry(), intent=INTENT, lane="literal",
-                                          measured=measured, prof=PROF,
-                                          grade={"natural_fit": True})
-    assert score["dimensions"]["cleanliness_provenance"]["points"] == 0
-
-
-def test_pair_score_reads_the_measured_audio_and_video():
-    video = {"measured": {"motion": 0.03, "band_busy": 0.04}, "title": "bus window",
-             "query_lane": "literal", "fresh": True}
-    audio = {"features": {"onset_density_per_s": 0.8, "tempo_bpm": 80.0}, "fresh": True,
-             "title": "quiet piano"}
-    audit = {"semantic_scene_fit": {"points": 30}}
+def test_pair_score_is_light_and_never_blocks_on_luma():
+    video = {"measured": {"band_busy": 0.04}, "title": "night bus", "query_lane": "literal"}
+    audio = {"score": {"total": 70}, "title": "trending bed"}
     pair = asset_scoring.score_pair(INTENT, video=video, audio=audio,
-                                    format_id="caption_list_title_v1", audit=audit)
-    assert pair["total"] >= 70 and pair["passes"]
-    assert "makes" in pair["rationale"]
+                                    format_id="social_moment_loop_v1",
+                                    audit={"look_fit": {"points": 34}})
+    assert pair["total"] > 50 and "rationale" in pair
 
 
-def test_audio_score_prefers_the_intent_matching_track():
-    row = {"video_count": 50000}
-    close = asset_scoring.score_audio(INTENT, row,
-                                      {"tempo_bpm": 80.0, "onset_density_per_s": 0.9,
-                                       "spectral_centroid_hz": 900.0, "rms_db": -18.0,
-                                       "duration_s": 30.0}, PROF)
-    loud_fast = asset_scoring.score_audio(INTENT, row,
-                                          {"tempo_bpm": 170.0, "onset_density_per_s": 5.0,
-                                           "spectral_centroid_hz": 4200.0, "rms_db": -8.0,
-                                           "duration_s": 30.0}, PROF)
-    assert close["total"] > loud_fast["total"]
+def test_audio_score_prefers_the_more_used_track():
+    prof = {"duration_s": 7.0}
+    hot = asset_scoring.score_audio(INTENT, {"video_count": 900000},
+                                    {"duration_s": 30.0}, prof)
+    cold = asset_scoring.score_audio(INTENT, {"video_count": 1200},
+                                     {"duration_s": 30.0}, prof)
+    assert hot["total"] > cold["total"]
+    assert hot["dimensions"]["trend"]["points"] > cold["dimensions"]["trend"]["points"]
 
 
 # ------------------------------------------------------------------ burned-in text
@@ -301,22 +277,22 @@ def test_ledger_syncs_from_the_delivered_manifest(tmp_path, monkeypatch):
 
 
 # ------------------------------------------------------------------ broker behaviour
-def test_broker_never_lowers_the_minimum_to_finish(monkeypatch, tmp_path):
+def test_broker_rejects_a_clip_that_carries_its_own_text(monkeypatch, tmp_path):
     monkeypatch.setenv("BEAST_LEDGER", str(tmp_path / "l.json"))
     monkeypatch.setattr(asset_broker.pinterest, "search_videos",
-                        lambda q, page_size=25: [_entry()])
+                        lambda q, page_size=25: [_entry(id="captioned")])
     monkeypatch.setattr(asset_broker.pinterest, "media_url", lambda e: "https://x/v.mp4")
     monkeypatch.setattr(asset_broker.pinterest, "download",
                         lambda url, dest, **k: (Path(dest).write_bytes(b"x" * 4096), True)[1])
-    # A dark, busy, clipped, cut-heavy candidate cannot reach 75.
-    poor = _measured(metrics={"yavg": 30.0, "sat": 40.0}, band_busy=0.4,
-                     motion={"ok": True, "motion": 0.5, "max_jump": 0.4, "cuts": 3})
-    monkeypatch.setattr(asset_broker.asset_probe, "analyze", lambda p, fmt: dict(poor))
-    rec = asset_broker.acquire(INTENT, "caption_list_title_v1", tmp_path, run_id="low",
-                               max_downloads=1, verbose=False)
-    assert rec["passes_minimum"] is False
-    assert rec["review_status"] == "needs_human_review"
-    assert rec["score"]["total"] < 75
+    monkeypatch.setattr(asset_broker.asset_probe, "analyze",
+                        lambda p, fmt: _measured())
+    monkeypatch.setattr(asset_broker.asset_probe, "ocr_check",
+                        lambda p, **k: {"has_text": True, "has_logo": False,
+                                        "text_said": "follow for more", "by": "test"})
+    with pytest.raises(asset_broker.AssetError) as exc:
+        asset_broker.acquire(INTENT, "caption_list_title_v1", tmp_path,
+                             run_id="ocr", verbose=False)
+    assert "on-screen text" in str(exc.value)
 
 
 def test_broker_skips_a_pin_used_inside_the_no_repeat_window(monkeypatch, tmp_path):

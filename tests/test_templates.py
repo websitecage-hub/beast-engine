@@ -93,7 +93,7 @@ EXPECTED_INDEX = {
     "caption_list_title_v1":
         "fa13af1aa2efc2538f042bd2c7edae6690b213a3c2719900aa11339df3de50fc",
     "social_moment_loop_v1":
-        "dc72a089a65749d6db9a8cb0a4c8ee59730f164be58279b72c38068cfd7a8c21",
+        "42c63aa0781a3221bf254091fc3872139d0335f72ff9307b61e58f0e1a32ae1b",
 }
 
 

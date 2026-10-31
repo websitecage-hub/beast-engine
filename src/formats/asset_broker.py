@@ -204,12 +204,19 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
                                             f"for {needed:.1f}s"})
                     dest.unlink(missing_ok=True)
                     continue
-                _nat, grade = template_renderer.grade_for(
-                    format_id, measured.get("metrics") or {})
+                # The simple layer: reject anything carrying its own text/logo,
+                # then judge it on look + tags, not on a luminance target.
+                ocr = asset_probe.ocr_check(dest)
+                if ocr.get("has_text") or ocr.get("has_logo"):
+                    rejected.append({"id": pid, "why": f"on-screen text/logo: "
+                                                       f"{str(ocr.get('text_said'))[:40]!r}"})
+                    dest.unlink(missing_ok=True)
+                    continue
+                measured["needed_s"] = needed
                 flags = asset_scoring.soft_flags(e)
-                score = asset_scoring.score_candidate(
+                score = asset_scoring.taste_score(
                     e, intent=intent, lane=str(e.get("_lane") or "literal"),
-                    measured=measured, prof=prof, grade=grade, flags=flags)
+                    measured=measured, ocr=ocr)
                 scored.append({
                     "path": str(dest), "sha256": sha, "pin_id": pid,
                     "pin_url": e.get("pin_url"), "creator": e.get("creator"),
@@ -219,8 +226,8 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
                     "duration_s": measured.get("duration_s"),
                     "hls": ".m3u8" in url, "metrics": measured.get("metrics"),
                     "motion": measured.get("motion"), "text": measured.get("text"),
-                    "band_busy": measured.get("band_busy"), "grade": grade,
-                    "stretch_pick": not grade.get("natural_fit"),
+                    "band_busy": measured.get("band_busy"), "ocr": ocr,
+                    "stretch_pick": False,
                     "flags": flags, "score": score,
                     "review_status": score["review_status"],
                     "fresh": True, "usage_clearance": "unknown",
