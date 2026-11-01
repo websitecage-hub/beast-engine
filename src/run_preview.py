@@ -242,15 +242,21 @@ def main(argv=None) -> int:
     if not args.no_deliver:
         try:
             from . import alerts
+            # Precomputed: nesting the same quote type inside an f-string is a
+            # SyntaxError on the CI runner's Python 3.11 (PEP 701 is 3.12+).
+            lines = (payload.get("titleLines") or
+                     (payload.get("hookLines") or []) +
+                     (payload.get("payoffLines") or []))[:2]
+            first_two = " · ".join(str(x) for x in lines)
             caption = (f"{fmt} · {payload.get('topic_id')}\n"
-                       f"{' · '.join((payload.get('titleLines') or
-                                      (payload.get('hookLines') or []) + (payload.get('payoffLines') or []))[:2])}\n"
+                       f"{first_two}\n"
                        f"preview only · rights unknown · clip {bg.get('query_lane')} lane "
-                       f"{bg['score']['total']}/100 · audio {(au.get('score') or {}).get('total')}/100 "
-                       f"· pair {pair['total']}/100"
-                       + ("" if entry["status"] == "rendered" else
-                          f"\nNEEDS REVIEW · {entry['status']} · "
-                          f"measured luma {entry['measured'].get('yavg')}"))
+                       f"{bg['score']['total']}/100 · "
+                       f"audio {(au.get('score') or {}).get('total')}/100 · "
+                       f"pair {pair['total']}/100")
+            if entry["status"] != "rendered":
+                caption += (f"\nNEEDS REVIEW · {entry['status']} · "
+                            f"measured luma {entry['measured'].get('yavg')}")
             delivered = bool(alerts.telegram_video(final_path, caption))
         except Exception:  # noqa: BLE001
             delivered = False

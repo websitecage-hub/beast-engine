@@ -40,10 +40,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
           cache: pip
       - name: Install deps
         run: pip install -r requirements.txt
+      - name: Compile check (fail fast on syntax errors)
+        run: python -m compileall -q src research
       - name: Verify ffmpeg is available
         run: |
           python -c "from src import config; p=config.resolve_ffmpeg(); print('ffmpeg:', p)"
