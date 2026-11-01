@@ -42,6 +42,12 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+      - name: Install ffmpeg (HyperFrames shells out to `ffmpeg` on PATH)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1
+          ffprobe -version | head -1
       - name: Install deps
         run: pip install -r requirements.txt
       - name: Compile check (fail fast on syntax errors)
