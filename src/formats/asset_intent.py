@@ -25,6 +25,41 @@ import re
 import time
 
 LANES = ("literal", "adjacent", "emotional")
+
+# A searchable query names something a camera can see AND somewhere/ something
+# happening. Measured failure: the model emitted "plate held in" and "panel two
+# people" - noun fragments with no place or action - and those were the queries
+# that actually ran, returning plates on a market table for a kitchen scene.
+_PLACE = re.compile(
+    r"\b(room|bedroom|kitchen|bathroom|hallway|corridor|lift|elevator|office|"
+    r"bus|train|tube|subway|car|taxi|street|road|pavement|sidewalk|window|balcony|"
+    r"cafe|coffee shop|bar|restaurant|shop|store|station|platform|park|bench|"
+    r"garden|forest|beach|roof|rooftop|city|town|home|flat|apartment|house|"
+    r"desk|table|counter|doorway|door|queue|line|classroom|library|gym)\b", re.I)
+_ACTION = re.compile(
+    r"\b(walk|walking|sit|sitting|stand|standing|wait|waiting|hold|holding|"
+    r"look|looking|stare|staring|read|reading|type|typing|check|checking|"
+    r"stir|stirring|open|opening|close|closing|lean|leaning|turn|turning|"
+    r"ride|riding|hover|hovering|drink|drinking|eat|eating|talk|talking|"
+    r"laugh|laughing|smile|smiling|cook|cooking|wash|washing|clean|cleaning|"
+    r"scroll|scrolling|text|texting|call|calling|leave|leaving|arrive|arriving)\b",
+    re.I)
+
+
+def viable_query(query: str) -> tuple[bool, str]:
+    """A query must name a place or an action, not just objects."""
+    q = str(query or "").strip()
+    if len(q.split()) < 3:
+        return False, "fewer than three words"
+    if _GENERIC.search(q):
+        return False, "mood slogan"
+    if _PLACE.search(q):
+        return True, "ok"
+    # An action alone is only a scene if there is enough of it to be one; a bare
+    # participle ("plate held in") is still a fragment.
+    if _ACTION.search(q) and len(q.split()) >= 4:
+        return True, "ok"
+    return False, "no place and no action (object fragment)"
 QUERY_MAX = 55          # the deployed /search/videos 422s above ~60 chars
 SCHEMA_VERSION = "1.0"
 
@@ -115,6 +150,14 @@ def lanes(intent: dict) -> list[dict]:
     displaced by a prettier metaphor.
     """
     queries = [clip(str(q)) for q in (intent.get("video_queries") or []) if clip(str(q))]
+    queries = [q for q in queries if viable_query(q)[0]]
+    if not queries:
+        # Nothing usable from the model: build ONE query from the setting + action
+        # rather than searching an object fragment.
+        fallback = clip(" ".join(str(x) for x in
+                                (intent.get("setting"), intent.get("human_action")) if x))
+        if fallback and viable_query(fallback)[0]:
+            queries = [fallback]
     seen, plan = set(), []
     for q in queries:
         key = q.lower()

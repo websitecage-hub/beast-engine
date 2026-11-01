@@ -249,6 +249,14 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
                          f"first={json.dumps(rejected[:3])[:220]}")
     passing = [c for c in scored if c["score"]["passes"]]
     pool = passing or scored
+    # Format B's look is a dark loop (its references sit near 78 luma). This is a
+    # PREFERENCE, not a gate: if any candidate is dark, pick among those; if none
+    # is, take the best bright one and the text goes white (text_style handles it).
+    if format_id == "social_moment_loop_v1":
+        dark = [c for c in pool
+                if float((c.get("metrics") or {}).get("yavg") or 999) < 100]
+        if dark:
+            pool = dark
     best = max(pool, key=lambda c: (c["score"]["total"],
                                     0 if not c["stretch_pick"] else -1))
     for c in scored:

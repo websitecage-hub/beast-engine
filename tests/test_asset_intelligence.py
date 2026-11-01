@@ -89,8 +89,10 @@ def test_validate_bounds_numeric_scales():
 
 
 def test_lanes_are_bounded_and_deduplicated():
-    intent = dict(INTENT, video_queries=["a night bus window", "A NIGHT BUS WINDOW",
-                                         "bus window night", "fourth query", "fifth"])
+    intent = dict(INTENT, video_queries=["night bus window city lights",
+                                         "NIGHT BUS WINDOW CITY LIGHTS",
+                                         "bus window at night", "quiet bus ride home",
+                                         "city lights through glass at night"])
     plan = asset_intent.lanes(intent)
     assert [p["lane"] for p in plan] == ["literal", "adjacent", "emotional"]
     assert len(plan) == 3
@@ -500,3 +502,19 @@ def test_percent_strings_in_an_intent_are_rescaled():
     assert out["degraded"] is False
     assert abs(float(out["arousal"]) - 0.4) < 1e-6
     assert abs(float(out["audio_intent"]["energy"]) - 0.7) < 1e-6
+
+
+def test_object_fragments_are_not_searchable():
+    for bad in ("plate held in", "panel two people"):
+        ok, why = asset_intent.viable_query(bad)
+        assert ok is False and "fragment" in why
+    for good in ("night bus window city lights", "someone waiting in line",
+                 "hands typing at desk indoors"):
+        assert asset_intent.viable_query(good)[0] is True
+
+
+def test_lanes_drop_fragments_and_keep_only_viable_queries():
+    intent = dict(INTENT, video_queries=["plate held in", "panel two people",
+                                         "night bus window city lights"])
+    plan = asset_intent.lanes(intent)
+    assert [p["query"] for p in plan] == ["night bus window city lights"]
