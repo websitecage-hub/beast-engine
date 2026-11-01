@@ -38,6 +38,13 @@ _STOCK = re.compile(
     r"footage for|b[- ]roll)\b", re.I)
 # Weak signals: real creators use these too, so they are recorded, not rejected.
 _STOCK_SOFT = re.compile(r"\b(cinematic|wallpaper|film still|mood board)\b", re.I)
+# Same wrong-but-tidy class as stock: a home tour is clean, bright and completely
+# unrelated to the moment. Measured failure: "Open Concept Living Room | Home Tour"
+# was chosen for a doorway scene.
+_REAL_ESTATE = re.compile(
+    r"\b(home tour|house tour|apartment tour|flat tour|property tour|room tour|"
+    r"walkthrough|walk through|open concept|real estate|realtor|listing|"
+    r"interior design|home staging|before and after renovation|renovation)\b", re.I)
 
 # The look the format is going for. These are selection words, not a query ban:
 # a clip titled "quiet night window aesthetic" is exactly what we want.
@@ -74,6 +81,9 @@ def hard_reject(entry: dict, *, needed_s: float, min_width: int = 720) -> str | 
     stock = _STOCK.search(text)
     if stock:
         return f"stock/repost source: {stock.group(0)!r}"
+    estate = _REAL_ESTATE.search(text)
+    if estate:
+        return f"real-estate/tour content: {estate.group(0)!r}"
     return None
 
 

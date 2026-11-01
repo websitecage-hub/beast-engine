@@ -76,6 +76,14 @@ def _key(entry: dict) -> str:
     return str(entry.get("id") or entry.get("pin_url") or entry.get("best_video") or "")
 
 
+def _place_token(intent: dict) -> str:
+    """The scene's place, e.g. 'doorway' - used to prefer on-topic candidates."""
+    from .asset_intent import _PLACE
+    text = " ".join(str(intent.get(k) or "") for k in ("literal_scene", "setting"))
+    m = _PLACE.search(text)
+    return m.group(0).lower() if m else ""
+
+
 def _pre_rank(entries: list, intent: dict) -> list:
     """Order candidates by cheap metadata relevance before downloading any.
 
@@ -257,6 +265,15 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
                 if float((c.get("metrics") or {}).get("yavg") or 999) < 100]
         if dark:
             pool = dark
+    # Prefer a clip whose own title/description names the scene's place. A soft
+    # preference: when metadata is empty (common) nothing is excluded.
+    place = _place_token(intent)
+    if place:
+        on_topic = [c for c in pool
+                    if place in " ".join(str(c.get(k) or "") for k in
+                                        ("title", "query")).lower()]
+        if on_topic:
+            pool = on_topic
     best = max(pool, key=lambda c: (c["score"]["total"],
                                     0 if not c["stretch_pick"] else -1))
     for c in scored:

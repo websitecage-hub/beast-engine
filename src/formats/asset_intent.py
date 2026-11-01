@@ -82,6 +82,9 @@ _REQUIRED = ("content_id", "format_id", "core_human_moment", "literal_scene",
 _PERSPECTIVES = ("pov", "observer", "wide environmental shot", "other")
 
 
+MAX_QUERY_WORDS = 6      # measured: 3-6 words return 13-25 results, longer returns 0-1
+
+
 def clip(text: str, n: int = QUERY_MAX) -> str:
     """Clip on a word boundary: the API 422s on long queries (§4)."""
     out: list[str] = []
@@ -150,6 +153,9 @@ def lanes(intent: dict) -> list[dict]:
     displaced by a prettier metaphor.
     """
     queries = [clip(str(q)) for q in (intent.get("video_queries") or []) if clip(str(q))]
+    # Long, prop-heavy phrases are what returned zero results in production
+    # ("person standing in apartment doorway holding mug" -> 1 candidate).
+    queries = [" ".join(q.split()[:MAX_QUERY_WORDS]) for q in queries]
     queries = [q for q in queries if viable_query(q)[0]]
     if not queries:
         # Nothing usable from the model: build ONE query from the setting + action
