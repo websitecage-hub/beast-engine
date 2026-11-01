@@ -41,9 +41,9 @@ from . import (asset_intent, asset_ledger, asset_probe, asset_scoring,
 
 UA = {"User-Agent": "Mozilla/5.0 (beast-engine asset broker)"}
 
-MAX_DOWNLOADS = 6           # bounded: a search page is not a shopping list
-MAX_BYTES = 60 * 1024 * 1024   # bounded per clip; 25 MB rejected most 1080p reels
-LANE_EXPANSION = 1          # one extra search per lane before we give up
+MAX_DOWNLOADS = 10           # bounded: a search page is not a shopping list
+MAX_BYTES = 100 * 1024 * 1024   # bounded per clip; 25 MB rejected most 1080p reels
+LANE_EXPANSION = 2          # one extra search per lane before we give up
 
 
 class AssetError(RuntimeError):

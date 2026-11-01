@@ -28,6 +28,16 @@ _COMMERCE_DOMAIN = re.compile(
     r"linktr\.ee|bit\.ly|rebrand\.ly|beacons\.|stan\.store|"
     r"\b(shop|store|buy|deals?|coupon|offer)\b)", re.I)
 _URL = re.compile(r"https?://|www\.", re.I)
+# Measured: a clip that looked like a teal-and-orange film still scored 78 because
+# its tags said "aesthetic". Real phone footage is what we want, so stock/repost
+# sources are rejected outright rather than rewarded.
+_STOCK = re.compile(
+    r"\b(stock footage|stock video|royalty[- ]free|free download|4k footage|"
+    r"background video|motion graphics|after effects|template|"
+    r"shutterstock|getty|pexels|pixabay|envato|videvo|"
+    r"footage for|b[- ]roll)\b", re.I)
+# Weak signals: real creators use these too, so they are recorded, not rejected.
+_STOCK_SOFT = re.compile(r"\b(cinematic|wallpaper|film still|mood board)\b", re.I)
 
 # The look the format is going for. These are selection words, not a query ban:
 # a clip titled "quiet night window aesthetic" is exactly what we want.
@@ -61,6 +71,9 @@ def hard_reject(entry: dict, *, needed_s: float, min_width: int = 720) -> str | 
     dom = str(entry.get("domain") or "")
     if dom and dom.lower() != "uploaded by user" and _COMMERCE_DOMAIN.search(dom):
         return f"commerce/affiliate domain: {dom!r}"
+    stock = _STOCK.search(text)
+    if stock:
+        return f"stock/repost source: {stock.group(0)!r}"
     return None
 
 
@@ -74,6 +87,9 @@ def soft_flags(entry: dict) -> list[str]:
     dom = str(entry.get("domain") or "")
     if dom and dom.lower() != "uploaded by user":
         flags.append(f"source domain: {dom}")
+    soft = _STOCK_SOFT.search(text)
+    if soft:
+        flags.append(f"curated-looking tag: {soft.group(0)!r}")
     return flags
 
 
