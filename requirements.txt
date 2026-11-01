@@ -18,3 +18,10 @@ PyYAML>=6.0
 # the runner's luck decide. imageio-ffmpeg ships a static ffmpeg build, so this
 # works identically on CI and locally, no apt/sudo required.
 imageio-ffmpeg>=0.4.9
+
+# The test suites run under pytest (tests/test_templates.py imports it directly).
+# Undeclared test deps break a clean runner the same way the missing yaml did.
+pytest>=8.0
+
+# Offline OCR for background vetting (no API quota, runs in CI)
+rapidocr-onnxruntime>=1.4,<2

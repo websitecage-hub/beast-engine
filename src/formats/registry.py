@@ -44,6 +44,56 @@ FORMATS = {
         "publishing": "disabled",
         "contract_version": CONTRACT_VERSION,
     },
+    # --- The two cloned formats (HyperFrames templates) ---------------------
+    # Registered but not ELIGIBLE: preview-only until the owner opts in, so the
+    # experiment engine cannot schedule them and publishing stays untouched.
+    # The renderer copies the engine-owned template into a run-scoped scratch
+    # dir; `index_sha256` is the immutability check every render verifies.
+    "caption_list_title_v1": {
+        "id": "caption_list_title_v1",
+        "name": "Caption list / title on background (cloned format A)",
+        "status": "not_eligible",
+        "preview_only": True,
+        "purpose": "A four-line white outlined title held on one calm continuous "
+                   "shot; the promised list is delivered in the caption.",
+        "renderer": "caption_list_title_v1",
+        "duration_bounds": [11.6, 12.8],
+        "pacing": {"static_title_frame0": True, "scrim": False,
+                   "entrance": "none", "cuts": 0, "list_on_screen": False},
+        "text_constraints": {"title_lines_max": 4, "line_chars_max": 24,
+                             "list_in_caption": True},
+        "arms": ["A"],
+        "gates": ["render_gate", "template_qa"],
+        "eligibility": {"requires_rights": ["background", "audio"],
+                        "requires_assets": True,
+                        "notes": "preview_only: new media stays usage_clearance=unknown"},
+        "template": {"dir": "templates/caption_list_title_v1", "version": "2.0",
+                     "index_sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"},
+        "publishing": "disabled",
+        "contract_version": CONTRACT_VERSION,
+    },
+    "social_moment_loop_v1": {
+        "id": "social_moment_loop_v1",
+        "name": "Social moment loop (cloned format B)",
+        "status": "not_eligible",
+        "preview_only": True,
+        "purpose": "One static lowercase pale-yellow thought on one continuous POV "
+                   "shot, cut so the last line re-reads as the first.",
+        "renderer": "social_moment_loop_v1",
+        "duration_bounds": [6.4, 7.8],
+        "pacing": {"static_block_frame0": True, "scrim": False,
+                   "entrance": "none", "loop_seamless": True},
+        "text_constraints": {"lines_max": 8, "line_chars_max": 24, "lowercase": True},
+        "arms": ["B"],
+        "gates": ["render_gate", "template_qa"],
+        "eligibility": {"requires_rights": ["background", "audio"],
+                        "requires_assets": True,
+                        "notes": "preview_only: new media stays usage_clearance=unknown"},
+        "template": {"dir": "templates/social_moment_loop_v1", "version": "2.0",
+                     "index_sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"},
+        "publishing": "disabled",
+        "contract_version": CONTRACT_VERSION,
+    },
     "paced_v2": {
         "id": "paced_v2",
         "name": "Paced-reveal confession (v2)",

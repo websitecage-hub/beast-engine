@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      /* BEAST ENGINE — Format B: short social-moment text loop.
+         Clone of @rock.s.w rel/Ddwm1XUx5Nw mechanics, measured from the
+         reference at native resolution:
+           - ONE continuous lo-fi POV shot, locked camera, no cuts
+           - ONE static caption block, pale-yellow lowercase, present from the
+             very first frame (no hook/payoff swap, no entrance animation)
+           - centred, block occupies 50.8-84.2% of height (centre 67.5%)
+           - no scrim: the background keeps natural brightness
+           - runtime ≈7s (loop-friendly) */
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/inter.woff2") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: block;
+      }
+      :root {
+        --ink: #e0d29b;
+        --font-display: "Inter", "Helvetica Neue", Arial, sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        font-family: var(--font-display);
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Per-variant grade injected by the engine: keeps every background in
+           the reference's measured luma/saturation band (no scrim, no
+           per-clip brightness fluctuation). */
+        filter: var(--bg-filter, none);
+      }
+      #caption {
+        /* The reference block sits low: measured 50.8-84.2% of height, centre
+           67.5%. Anchoring the flex box from 35% puts its centre there, and
+           auto-fit shrinking cannot move it. */
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 35%;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 72px;
+        text-align: center;
+        color: var(--ink);
+        font-weight: 700;
+        /* Measured from the top outlier (5.7M views): fill #E0D29B, lowercase,
+           centre, 5 lines, no heavy outline. The stroke is kept at 2px only for
+           legibility over cropped footage, and the shadow does the rest. */
+        font-size: 86px;
+        line-height: 1.28;
+        letter-spacing: 0;
+        text-transform: lowercase;
+        -webkit-text-stroke: 2px #000000;
+        paint-order: stroke fill;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      }
+      .line { display: block; white-space: nowrap; }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="7"
+      data-width="1080"
+      data-height="1920"
+    >
+      <video id="bg" class="clip" src="assets/media/bg.mp4" muted playsinline
+             data-start="0" data-duration="7" data-media-start="0"></video>
+
+      <!-- One static block, fully readable from frame zero (reference
+           mechanics): hook lines then payoff lines, never swapped. -->
+      <div id="caption" class="clip" data-start="0" data-duration="7" data-track-index="1"></div>
+
+      <audio id="bgm" src="assets/audio/bgm.m4a" class="clip" data-start="0" data-duration="7"
+             data-volume="0.30" data-fade-in="0.5" data-fade-out="0.9"></audio>
+    </div>
+    <script>
+      /* CONTENT is replaced per variant by the factory pipeline (see content.json).
+         hookLines + payoffLines render as a single static block, exactly like the
+         reference reel (7 lines on screen from t=0). */
+      const CONTENT = {
+        hookLines: ["you answered the message", "in your head."],
+        payoffLines: ["they're still waiting", "for the text."],
+        payoffStartFraction: 0.6,
+      };
+      // Text colour follows the footage's brightness (chosen by the engine).
+      if (CONTENT.textStyle && CONTENT.textStyle.fill) {
+        const ts = CONTENT.textStyle;
+        document.documentElement.style.setProperty("--ink", ts.fill);
+        const node = document.getElementById("caption");
+        if (node && ts.stroke_px != null) {
+          node.style.webkitTextStroke = ts.stroke_px + "px #000000";
+        }
+      }
+      document.getElementById("caption").innerHTML = CONTENT.hookLines
+        .concat(CONTENT.payoffLines)
+        .map((line) => `<span class="line">${line}</span>`)
+        .join("");
+      // Auto-fit: shrink type until the longest authored line fits the padded
+      // width, so variant copy never re-wraps (reference is a fixed 7-line block).
+      {
+        const el = document.getElementById("caption");
+        let fs = 86;
+        el.style.fontSize = fs + "px";
+        while (el.scrollWidth > el.clientWidth && fs > 44) {
+          fs -= 2;
+          el.style.fontSize = fs + "px";
+        }
+      }
+      window.__timelines = window.__timelines || {};
+      // Reference mechanics: static text, locked camera — no animation at all.
+      const tl = gsap.timeline({ paused: true });
+      tl.set("#caption", { opacity: 1 }, 0);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

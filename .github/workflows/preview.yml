@@ -1,0 +1,97 @@
+name: preview
+
+# Preview-only run of the two pilot formats (A: caption_list_title_v1,
+# B: social_moment_loop_v1). It renders, scores and delivers to the Telegram
+# REVIEW channel. It never publishes: src/run_preview.py cannot import `publish`
+# and refuses to start while short_publish_enabled is true.
+#
+# There is no schedule. A preview is a deliberate act, so it is dispatched by
+# hand and it is the only way this workflow can start.
+
+on:
+  workflow_dispatch:
+    inputs:
+      format:
+        description: "A, B or auto (auto = the format with fewer previews)"
+        required: false
+        default: "auto"
+      topic:
+        description: "optional territory / moment to write about"
+        required: false
+        default: ""
+      quality:
+        description: "render quality"
+        required: false
+        default: "delivery"
+      deliver:
+        description: "send the preview to the Telegram review channel"
+        type: boolean
+        required: false
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Verify ffmpeg is available
+        run: |
+          python -c "from src import config; p=config.resolve_ffmpeg(); print('ffmpeg:', p)"
+          python -c "from src import config; import subprocess; p=config.resolve_ffmpeg(); subprocess.run([p,'-version'],check=True,stdout=subprocess.DEVNULL)"
+      - name: Refuse to run with publishing enabled
+        run: |
+          python - <<'PY'
+          import sys
+          from src import config
+          if config.load_config().get("short_publish_enabled"):
+              sys.exit("short_publish_enabled is true: refusing to run the preview job")
+          print("publishing stays off")
+          PY
+      - name: Preview
+        env:
+          # A GitHub runner has no /opt/work and a small workspace: every cache
+          # lives in the runner temp dir, so nothing lands in the repo checkout.
+          BEAST_SCRATCH: ${{ runner.temp }}/beast-scratch
+          BEAST_ASSET_CACHE: ${{ runner.temp }}/beast-assets
+          TMPDIR: ${{ runner.temp }}
+          # The ledger is durable state and must survive the runner, so it lives
+          # in the repo and is committed back below (like the other workflows).
+          BEAST_LEDGER: ${{ github.workspace }}/data/asset_ledger.json
+          BEAST_WRITER_TIMEOUT: "120"
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          ARGS="--format ${{ inputs.format }} --quality ${{ inputs.quality }}"
+          if [ -n "${{ inputs.topic }}" ]; then ARGS="$ARGS --topic \"${{ inputs.topic }}\""; fi
+          if [ "${{ inputs.deliver }}" != "true" ]; then ARGS="$ARGS --no-deliver"; fi
+          mkdir -p "$BEAST_SCRATCH" "$BEAST_ASSET_CACHE"
+          eval python -m src.run_preview $ARGS
+      - name: Upload the render
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-${{ github.run_id }}
+          path: |
+            data/template_manifest.json
+            outputs/previews/*.mp4
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Commit preview state
+        if: always()
+        run: |
+          git config user.name "beast-engine[bot]"
+          git config user.email "beast-engine[bot]@users.noreply.github.com"
+          git pull --rebase --autostash || true
+          git add data/ || true
+          git commit -m "preview: manifest + asset ledger" || echo "nothing to commit"
+          git push || (git pull --rebase --autostash && git push) || echo "push failed, next run recovers"

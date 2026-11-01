@@ -1,0 +1,22 @@
+{
+  "format_id": "B-social-moment-loop",
+  "duration_s": 7,
+  "hook_text": "You answered the message in your head.",
+  "hook_lines": ["you answered the message", "in your head."],
+  "payoff_text": "They're still waiting for the text.",
+  "payoff_lines": ["they're still waiting", "for the text."],
+  "payoff_start_fraction": 0.6,
+  "caption": "",
+  "text_style": "pale-yellow lowercase bold; center band; static hook, payoff at 60%",
+  "background_asset_id": "pinvid_913b7c22a157c314",
+  "background_local_path": "formats/B-social-moment-loop/template/assets/media/bg.mp4",
+  "background_pin_url": "https://www.pinterest.com/pin/e1_AfqPShxnyOM_t6McJp0wTyeNMOCLuurNqW-XajJ4WTTmmfgwxtqY5w/",
+  "background_creator": "TravelTripExplore1",
+  "background_usage_clearance": "unknown",
+  "audio_sound_id": "7451501551254177809",
+  "audio_title": "hate myself",
+  "audio_tiktok_url": "https://www.tiktok.com/music/hate-myself-7451501551254177809",
+  "audio_local_path": "formats/B-social-moment-loop/template/assets/audio/bgm.m4a",
+  "audio_state": "downloaded_validated_rights_unverified",
+  "publish_enabled": false
+}
