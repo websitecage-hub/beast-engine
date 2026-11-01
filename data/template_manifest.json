@@ -8946,5 +8946,1617 @@
    "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
   },
   "topic_id": "long-way-round-empty-chair"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "triumphant anthem",
+     "loud drops",
+     "horror drones"
+    ],
+    "emotional_role": "restrained, reflective bed that leaves room for text",
+    "energy": 0.25,
+    "instrumentation": [
+     "piano",
+     "pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "sparse"
+    ],
+    "trend_hashtags": [
+     "#overthinking"
+    ],
+    "trend_keywords": [
+     "overthinking",
+     "quiet confidence"
+    ],
+    "valence": -0.2,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-10-31T19:40:19Z",
+   "compiled_by": "fallback",
+   "content_id": "lift-floor-number-repress",
+   "core_human_moment": "lift doors shut. morning, i say. i press the button that's already lit. two floors left. i press it again. doors open. see you later. nothing broke.",
+   "degraded": true,
+   "emotional_primary": "quiet self-consciousness",
+   "emotional_secondary": "restrained warmth",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "waits",
+   "humour": 0.1,
+   "intentional_contrast": null,
+   "literal_scene": "office lift interior, lit floor buttons panel, two people standing facing the doors, floor indicator above, morning light through opening doors",
+   "literalness": "literal",
+   "motion_intent": "gentle continuous handheld movement",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "on-screen text",
+    "logos"
+   ],
+   "palette_intent": [
+    "natural",
+    "low saturation"
+   ],
+   "rationale": "Degraded brief: derived from the approved copy because the model compile did not validate. (arousal must be a number in [0.0, 1.0]; audio_intent.arousal must be in [0, 1]; audio_intent.energy must be in [0, 1])",
+   "scene_entities": [
+    "office",
+    "lift",
+    "interior"
+   ],
+   "schema_version": "1.0",
+   "setting": "office lift interior, lit floor buttons panel, two people standing facing the doors, floor indicator above, morning light through opening doors",
+   "tension": 0.4,
+   "text_safe_zone": "centre 30-61%",
+   "time_of_day": "indeterminate",
+   "valence": -0.2,
+   "video_queries": [
+    "office lift interior lit floor buttons panel two people",
+    "panel two people"
+   ],
+   "visual_mood": [
+    "quiet",
+    "everyday"
+   ],
+   "visual_profile_target": {
+    "luma": "format profile",
+    "saturation": "format profile"
+   },
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Saucy Santana",
+    "candidates": [
+     {
+      "artist": "Owen Packet",
+      "distance": 0.6609,
+      "fresh": true,
+      "id": "7690873511996409896",
+      "score": 84,
+      "title": "Quiet Confidence",
+      "video_count": 45500
+     },
+     {
+      "artist": "Secession Studios",
+      "distance": 0.5762,
+      "fresh": true,
+      "id": "6778677545794570241",
+      "score": 100,
+      "title": "Lucifer's Waltz",
+      "video_count": 885200
+     },
+     {
+      "artist": "Saucy Santana",
+      "distance": 0.5445,
+      "fresh": true,
+      "id": "7662457740929157137",
+      "score": 100,
+      "title": "Quiet on the Creek",
+      "video_count": 697700
+     },
+     {
+      "artist": "Ah2",
+      "distance": 0.6648,
+      "fresh": true,
+      "id": "7398571412350748689",
+      "score": 100,
+      "title": "Bright Open Sky (Vox)",
+      "video_count": 723600
+     },
+     {
+      "artist": "glwzbll",
+      "distance": 0.4172,
+      "fresh": true,
+      "id": "7264962080846743553",
+      "score": 92,
+      "title": "Untitled #13 (Super Slowed)",
+      "video_count": 392800
+     }
+    ],
+    "distance": 0.5445,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "quiet confidence",
+      "rows": 5
+     }
+    ],
+    "rejected": [],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 7.0s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 697700",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7662457740929157137",
+    "title": "Quiet on the Creek"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 5
+     }
+    },
+    "passes": false,
+    "rationale": "adjacent lane shot '' paired with 'Quiet on the Creek' for social_moment_loop_v1.",
+    "total": 40
+   },
+   "visual": {
+    "band_busy": 0.0279,
+    "candidates": [
+     {
+      "band_busy": 0.0279,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwRoMM_iFl-BVj5aWUTHDkvDPvjaursKainnQ_48x6U7XjV",
+      "query": "panel two people",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['the'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 28.1s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "tabinda_thisside",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.1781,
+     "motion": 0.1561,
+     "ok": true,
+     "samples": 8
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShwRoMM_iFl-BVj5aWUTHDkvDPvjaursKainnQ_48x6U7XjV",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwRoMM_iFl-BVj5aWUTHDkvDPvjaursKainnQ_48x6U7XjV/",
+    "query": "panel two people",
+    "query_lane": "adjacent",
+    "query_log": [
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "office lift interior lit floor buttons panel two people",
+      "returned": 0
+     },
+     {
+      "kept": 23,
+      "lane": "adjacent",
+      "query": "panel two people",
+      "returned": 23
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShwR9ewZRcwJjYnklAW3lSzEi22INYfbq-6pVYbIIiB15xHF",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "e1_AfqPShyo9JbgpArpD6SvBkA4nXxU83bcvUbR_IW64N4BWeJ-zRvP",
+      "why": "on-screen text/logo: '+; 0.0000; Alt; Auto-Select; Curves1'"
+     },
+     {
+      "id": "e1_AfqPShxcN2RHWOwzDpzxD9NyMn71xGV3V7KaKD70-o8ZKqdayEMc",
+      "why": "too short 4.62s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShzR5MV3NnebB2Mvd3tLomW6NHxa00D1eOlYpb6t2tMjFHco",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShxgg8-3TqZZFCg9rJF-2OPYQym4jA8eBYmM-SDODRLquwbeOg",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwMRSUGoFi9wsqX689n6mFquVtZm29jPnB2VqHDHK8oV_x92Q",
+      "why": "on-screen text/logo: 'C; NYCNOUU; YENOUU'"
+     },
+     {
+      "id": "e1_AfqPShxuug4eGkS8iiErZyGD-scq5p2A9nKELsnSxR01w1tdznRK",
+      "why": "on-screen text/logo: \"I'll be waiting for you!; Relax!\""
+     },
+     {
+      "id": "e1_AfqPShzllFL5SS1CmvDt2lOBbpW-04J_zVCi8CPOQ_2fkPGSt6k7",
+      "why": "on-screen text/logo: 'FLOVR; \u519b'"
+     },
+     {
+      "id": "e1_AfqPShwaCj145wniH32Pwx3dguhsk2URZx2jWzHYoc8sfvKeRdlo",
+      "why": "unusable crop 702x828"
+     },
+     {
+      "id": "e1_AfqPShxC1YIOE8cxndg2XibxFPRDQ2D-orlSJpLWurY5uB3PEw",
+      "lane": "adjacent",
+      "query": "panel two people",
+      "why": "advertising call-to-action: 'advertisement'"
+     },
+     {
+      "id": "e1_AfqPShxEDtquAxoa-yU4PI-PdonTv2Yfvy3QygIVJ8Xmaw3XbS7u",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "e1_AfqPShyjZtxOW6CBC03jCAmmtLksire1UHWLNoxB9_Lon0rWVebz",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShx4Hy_Id7Jp5NhrOlOXeTJ5uP3G7WC_2-OhS4mkr7tH2kKV",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "e1_AfqPShzFKUNaOn9F2vuH8QCTQb1Ex9kRSx9S8veDtqCfsgHYDQ",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShwnuQ7P4kkw2eFcaSZP-kFDu4-I-vaHFugTCRlZy-6jAA",
+      "why": "unusable crop 632x1066"
+     },
+     {
+      "id": "e1_AfqPShyuIz2ZJ4eA_i7aR9NNnmfxvAcro1QMktjPkhZboekZJJMH",
+      "why": "unusable crop 576x874"
+     },
+     {
+      "id": "e1_AfqPShwC6GGPp0pGqDu6xNhDy301SwfAqWhn2NHWRaVMD0nOrQ",
+      "why": "unusable crop 480x360"
+     },
+     {
+      "id": "e1_AfqPShwbtfSzzShD1O39sOGC1kT3FS5YFE8vkKgxbMZ-xg38IPiQ",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxCRMvjqg8GweNUSeRVnxXSwfJd13oSQw0R9LGYklQp-1Vp",
+      "lane": "adjacent",
+      "query": "panel two people",
+      "why": "commerce/affiliate domain: 'linktr.ee'"
+     },
+     {
+      "id": "e1_AfqPShzGArC-MvLI6sy8p8DbbrWEV5I1h-M_a7CWjkPFwjUrY49t",
+      "lane": "adjacent",
+      "query": "panel two people",
+      "why": "advertising call-to-action: 'Subscribe'"
+     },
+     {
+      "id": "e1_AfqPShw1I-FtQjCCrfr0oOuyhy3ywK7jXlUvJgxNy-lGN7mAkt1h",
+      "why": "download failed or exceeded the 25 MB cap"
+     },
+     {
+      "id": "e1_AfqPShwoTzSWp4a6Eu4eNx23rPGbmBgyyC-AL5RWAOQ4mcbicQ2d",
+      "why": "download failed or exceeded the 25 MB cap"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words ['the'] (+4)",
+       "points": 4
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 28.1s (need 7.0s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 60,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 1004730,
+   "creator": null,
+   "path": "/var/tmp/beast-run/v4/20261031T193610Z-efbb44/assets/track_7662457740929157137.m4a",
+   "pin_url": null,
+   "sha256": "8181add101138ad324e3174ca0b3c305c671bfc5811db898b85de7ecd73373f6",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7662457740929157137",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 85.6,
+    "high": 1.2,
+    "mid": 13.2
+   },
+   "duration_s": 60.0,
+   "file": "track_7662457740929157137.m4a",
+   "key_estimate": "A minor",
+   "loudness_curve_db": [
+    -19.6,
+    -19.7,
+    -19.8
+   ],
+   "onset_density_per_s": 5.02,
+   "peak_db": -9.7,
+   "rms_db": -19.7,
+   "spectral_centroid_hz": 2456.2,
+   "tempo_bpm": 99.4,
+   "zero_crossing_rate": 0.0668
+  },
+  "background": {
+   "bytes": 3593873,
+   "creator": "tabinda_thisside",
+   "path": "/var/tmp/beast-run/v4/20261031T193610Z-efbb44/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwRoMM_iFl-BVj5aWUTHDkvDPvjaursKainnQ_48x6U7XjV/",
+   "sha256": "d90d92a04f9ef6662fb01e12e1a3b555d64c5efe2b187dabd97c6b4356de7964",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShwRoMM_iFl-BVj5aWUTHDkvDPvjaursKainnQ_48x6U7XjV",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "They'd like to say something real and four floors isn't long enough to risk it.",
+    "observable_behaviour": "They say morning, then watch the floor numbers tick, press the button for their floor again even though it's lit, and step out sideways before the doors are fully open.",
+    "private_worry": "That four floors of silence makes them the one who made it weird, and the other person will remember it.",
+    "situation": "Monday 9:12am, a lift in an office or halls, and someone they recognise from the same floor gets in on the way up to the fourth."
+   },
+   "card_compiled_by": "llm:deepseek-bridge",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"i press the button that's already lit\" / \"see you later. nothing broke.\" - exact lift object, dignified anticlimax, no label.",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Payoff packs two beats into one line (press again, then exit and speak), slightly crowding the 7-second read. Consider trimming 'two floors left' so the final turn lands cleaner.",
+    "scene_specificity": 5,
+    "sendability_who": "Someone 18-30 sending it to the flatmate or colleague they share a silent lift with every morning, or to whoever they've done the re-press in front of.",
+    "shareability": 5,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "lift-floor-number-repress"
+  },
+  "delivery": {
+   "at": "2026-10-31T19:50:02Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -0.1,
+   "yavg_delta": 35.8
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 0.8,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 1.0511209800918835
+  },
+  "measured": {
+   "sat": 8.24,
+   "yavg": 114.4
+  },
+  "output": {
+   "bytes": 4956707,
+   "duration_s": 7.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261031T193610Z-efbb44.mp4",
+   "sha256": "4db02b3d7016117f7f5e2a34aa9d8319fe4a8f46a9dc8f05c5b36545ee83c3c0"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7662457740929157137",
+    "title": "Quiet on the Creek"
+   },
+   "background_query": "office lift interior, lit floor buttons panel, two people standing facing the doors, floor indicator above, morning light through opening doors",
+   "caption": "the button was already lit. i checked twice.",
+   "hookLines": [
+    "lift doors shut. morning, i say.",
+    "i press the button that's already lit."
+   ],
+   "loop_hypothesis": "The last line's doors opening answers the first line's doors shutting, so a replay reads as the same four floors happening again rather than a new scene.",
+   "payoffLines": [
+    "two floors left. i press it again.",
+    "doors open. see you later. nothing broke."
+   ],
+   "provenance": {
+    "creator": "tabinda_thisside",
+    "pin_id": "e1_AfqPShwRoMM_iFl-BVj5aWUTHDkvDPvjaursKainnQ_48x6U7XjV",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwRoMM_iFl-BVj5aWUTHDkvDPvjaursKainnQ_48x6U7XjV/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 113): warm off-white"
+   },
+   "topic_id": "lift-floor-number-repress"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -0.1,
+    "yavg_delta": 35.8
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/var/tmp/beast-run/v4/20261031T193610Z-efbb44/social_moment_loop_v1-live-20261031T193610Z-efbb44.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 4956707,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 8.24,
+    "yavg": 114.4
+   },
+   "ok": false,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0,
+    "ok": false,
+    "threshold": 165
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 157.1
+  },
+  "rendered_at": "2026-10-31T19:49:58Z",
+  "run_id": "20261031T193610Z-efbb44",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "fallback",
+    "core_human_moment": "lift doors shut. morning, i say. i press the button that's already lit. two floors left. i press it again. doors open. see you later. nothing broke.",
+    "degraded": true,
+    "ok": true,
+    "queries": [
+     "office lift interior lit floor buttons panel two people",
+     "panel two people"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.5445,
+    "keywords": [
+     {
+      "keyword": "quiet confidence",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7662457740929157137",
+    "title": "Quiet on the Creek"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.5445
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:deepseek-bridge",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "lift-floor-number-repress"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261031T193610Z-efbb44.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": false,
+    "rationale": "adjacent lane shot '' paired with 'Quiet on the Creek' for social_moment_loop_v1.",
+    "score": 40
+   },
+   "pinterest": {
+    "candidates": 1,
+    "hls": false,
+    "lane": "adjacent",
+    "metrics": {
+     "sat": 10.13,
+     "yavg": 141.8
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShwRoMM_iFl-BVj5aWUTHDkvDPvjaursKainnQ_48x6U7XjV",
+    "query": "panel two people",
+    "review_status": "accept",
+    "score": 60,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 157.1
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/var/tmp/beast-run/v4/20261031T193610Z-efbb44/social_moment_loop_v1-live-20261031T193610Z-efbb44.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 4956707,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 113): warm off-white"
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": -0.1,
+     "yavg_delta": 35.8
+    },
+    "measured": {
+     "sat": 8.24,
+     "yavg": 114.4
+    },
+    "ok": false,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.0,
+     "ok": false,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
+  },
+  "topic_id": "lift-floor-number-repress"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "upbeat drums",
+     "bright pop vocals",
+     "dramatic orchestral swell",
+     "comedy sound effects",
+     "triumphant brass"
+    ],
+    "emotional_role": "hold the hesitation of an unsent apology without dramatizing it",
+    "energy": 0.2,
+    "instrumentation": [
+     "warm pad",
+     "felt piano",
+     "subtle vinyl crackle"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "hazy",
+     "lofi bedroom"
+    ],
+    "trend_hashtags": [
+     "#latenightthoughts",
+     "#softvibes",
+     "#quietmoments"
+    ],
+    "trend_keywords": [
+     "late night thoughts",
+     "quiet room",
+     "soft piano loop"
+    ],
+    "valence": -0.4,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-11-01T17:02:50Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "four-hour-late-reply-sofa",
+   "core_human_moment": "someone staring at a four-hour-old text still open on their sofa, wanting to apologize but freezing and making it bigger by not replying",
+   "degraded": false,
+   "emotional_primary": "guilty",
+   "emotional_secondary": "anxious",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "phone lying open on sofa, thumb hovers over keyboard then locks screen instead of replying",
+   "humour": 0.0,
+   "intentional_contrast": null,
+   "literal_scene": "a phone lying face-up on a lived-in sofa cushion at night, chat screen glowing with the 4pm message still open under a warm lamp",
+   "literalness": "literal",
+   "motion_intent": "almost static with gentle handheld drift, soft breathing on fabric",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos",
+    "product shots",
+    "influencer performing"
+   ],
+   "palette_intent": [
+    "warm amber lamp glow",
+    "desaturated navy shadows"
+   ],
+   "rationale": "Visual stays on the exact POV sofa-phone moment the copy describes, giving the pale centre text a legible, lived-in world; audio stays low, warm and hesitant so the typed-then-deleted apology feels small and human, not cinematic.",
+   "scene_entities": [
+    "phone",
+    "sofa cushion",
+    "living room"
+   ],
+   "schema_version": "1.0",
+   "setting": "small night living room on a sofa",
+   "tension": 0.6,
+   "text_safe_zone": "centre 30-61% vertical, keep clear of phone glare and lamp hotspot",
+   "time_of_day": "late evening",
+   "valence": -0.45,
+   "video_queries": [
+    "POV phone on sofa cushion chat screen glowing night",
+    "observer sofa view phone lit lamp glow in corner",
+    "close up hand locking phone screen in dark room"
+   ],
+   "visual_mood": [
+    "quiet",
+    "intimate"
+   ],
+   "visual_profile_target": {
+    "luma": "78.6+-20",
+    "saturation": "8.34+-4"
+   },
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "NOVA",
+    "candidates": [
+     {
+      "artist": "NOVA",
+      "distance": 0.3868,
+      "fresh": true,
+      "id": "6886913227024762881",
+      "score": 100,
+      "title": "Sad song by piano and violin(886018)",
+      "video_count": 1400000
+     },
+     {
+      "artist": "Yogi",
+      "distance": 0.8712,
+      "fresh": true,
+      "id": "7122099164615280642",
+      "score": 84,
+      "title": "loser monologue",
+      "video_count": 90600
+     },
+     {
+      "artist": "Paper Kite Motel",
+      "distance": 0.5293,
+      "fresh": true,
+      "id": "7687109249100580879",
+      "score": 74,
+      "title": "Amber Dust",
+      "video_count": 12200
+     },
+     {
+      "artist": "user32458812185",
+      "distance": 0.6119,
+      "fresh": true,
+      "id": "6927016038370428930",
+      "score": 100,
+      "title": "Funny",
+      "video_count": 15900000
+     }
+    ],
+    "distance": 0.3868,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "late night thoughts",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7421743121904650241",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "142.5s vs 7.0s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 1400000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6886913227024762881",
+    "title": "Sad song by piano and violin(886018)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 27
+     }
+    },
+    "passes": true,
+    "rationale": "literal lane shot 'Lonely man' paired with 'Sad song by piano and violin(886018)' for social_moment_loop_v1.",
+    "total": 62
+   },
+   "visual": {
+    "band_busy": 0.0172,
+    "candidates": [
+     {
+      "band_busy": 0.0488,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzWXxQ_jAx1RHcJo0moCJlNGH2RnUuJrf6XTrrlmPmZHXqKYQ",
+      "query": "close up hand locking phone screen in dark room",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['the'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 30.1s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0093,
+      "height": 900,
+      "pin_id": "e1_AfqPShy_CBqYHEn34tzmz83aLsxXFsZ-lXKvns_ShT3G9OmLMeU",
+      "query": "close up hand locking phone screen in dark room",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['the', 'with'] (+8)",
+         "points": 8
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x900, 11.9s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 64,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.1,
+         "rows": [
+          388,
+          433
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(388, 433)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         388,
+         433
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0172,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyEGNLJB4dEdVoV9AfMucTmDOtHrVoUOME5tPNQTDcXNC8",
+      "query": "close up hand locking phone screen in dark room",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['night', 'window'] (+10); scene words ['lamp', 'night', 'with'] (+12)",
+         "points": 22
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.0s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 78,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "brucassioli",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0817,
+     "motion": 0.0337,
+     "ok": true,
+     "samples": 8
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShyEGNLJB4dEdVoV9AfMucTmDOtHrVoUOME5tPNQTDcXNC8",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShyEGNLJB4dEdVoV9AfMucTmDOtHrVoUOME5tPNQTDcXNC8/",
+    "query": "close up hand locking phone screen in dark room",
+    "query_lane": "literal",
+    "query_log": [
+     {
+      "kept": 21,
+      "lane": "literal",
+      "query": "close up hand locking phone screen in dark room",
+      "returned": 21
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShxuz1ukcnxh8a0tAscsuCHQqaJD0YYm4y7ei0S8-CNODHT0",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "e1_AfqPShyNh2o6B1Wq-89bfJM3hhY71K20qMsWyJ7bcBKRrMspIZBT",
+      "why": "on-screen text/logo: '>SA; ESOPHAGUS; FOOD; GILAN; GILANDS'"
+     },
+     {
+      "id": "e1_AfqPShy2lo2P-p2KijriH-SDJ-ZjwlLiLjhJIAfNJlWLXXnbfnUV",
+      "lane": "literal",
+      "query": "close up hand locking phone screen in dark room",
+      "why": "commerce/affiliate domain: 'amazon.com'"
+     },
+     {
+      "id": "e1_AfqPShzR5MV3NnebB2Mvd3tLomW6NHxa00D1eOlYpb6t2tMjFHco",
+      "why": "download failed or exceeded the 60 MB cap"
+     },
+     {
+      "id": "e1_AfqPShzVcIer5D2aehoyuyM5ZUQ7l5lKeTf5ZcMJAy3-Obt3UF4",
+      "why": "on-screen text/logo: '64%; ASSESSMENTFAILED; FAILED; Points:18'"
+     },
+     {
+      "id": "e1_AfqPShxnput5kK7Vt0lmLK1WnGPmwHxF9p8SSBCshtKosxncHmKK",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShwLOwnioa3GVHQJheVhO4nJ8xEOlSJxmFa7V3ZQgXUM",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShwCnF1xCv3-HujRLvXNJ7-3eogqSj9wVQAcsfVJTJDoEVi9oQ",
+      "why": "unusable crop 576x576"
+     },
+     {
+      "id": "e1_AfqPShyVjSNnu_kqZMK-zcEL1YhgbaQO4gkAkwtKoeZjYGjScQ",
+      "why": "unusable crop 684x1170"
+     },
+     {
+      "id": "e1_AfqPShwf36JUNKHBSqWbYjMPkrxo1B4zZXlBI0CmmOSndKK0pE4w",
+      "why": "unusable crop 576x768"
+     },
+     {
+      "id": "e1_AfqPShz2Xej7oidtv4-UrNfEM_9XyjUKZiHRhTHiCtc8EiUatw",
+      "why": "unusable crop 576x1140"
+     },
+     {
+      "id": "e1_AfqPShyS9Yhz404rU2pTQ0jKDYBnWRkRjJd1mkuWNgD4_tsro5NR",
+      "why": "unusable crop 480x480"
+     },
+     {
+      "id": "e1_AfqPShygPYOoNhjRWZxAEtAUL-UDMxhb0Ez3m1v1gYVFR-Z-nPUHlw",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShwoG4F39_swkxWgocCFeJOqXTv5tGPVz_gm_J4YsTL4kpjC",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShy59slLQm8I5SnVDRkx_3mOJb-wFRRQ6ubZ6qtxaeO8_LQ",
+      "why": "download failed or exceeded the 60 MB cap"
+     },
+     {
+      "id": "e1_AfqPShzvQOwUwptxRGsQyvoOJttZq015gIA7d_OdXcXR87c6xcw",
+      "why": "download failed or exceeded the 60 MB cap"
+     },
+     {
+      "id": "e1_AfqPShx_rZaZw9t2Oqs4XJG1MaiPdftDYZCOSyqBne3e5ngG0OV_",
+      "why": "download failed or exceeded the 60 MB cap"
+     },
+     {
+      "id": "e1_AfqPShw-SdhcXOjlMr2oloXpjhAe-v9gQ8W7CuaF2AqBSIXzH-va",
+      "why": "download failed or exceeded the 60 MB cap"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['night', 'window'] (+10); scene words ['lamp', 'night', 'with'] (+12)",
+       "points": 22
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 16.0s (need 7.0s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 78,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Lonely man"
+   }
+  },
+  "audio": {
+   "bytes": 2325806,
+   "creator": null,
+   "path": "/var/tmp/beast-run/v5/20261101T165713Z-0d1d73/assets/track_6886913227024762881.m4a",
+   "pin_url": null,
+   "sha256": "b36a1da93f790aba91e86980bf86514209073c094824f33085b8f10eb8a5a937",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6886913227024762881",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 15.3,
+    "high": 0.1,
+    "mid": 84.6
+   },
+   "duration_s": 142.52,
+   "file": "track_6886913227024762881.m4a",
+   "key_estimate": "D# major",
+   "loudness_curve_db": [
+    -22.7,
+    -22.1,
+    -23.9
+   ],
+   "onset_density_per_s": 1.1,
+   "peak_db": -3.2,
+   "rms_db": -22.8,
+   "spectral_centroid_hz": 1120.6,
+   "tempo_bpm": 60.1,
+   "zero_crossing_rate": 0.0689
+  },
+  "background": {
+   "bytes": 1524108,
+   "creator": "brucassioli",
+   "path": "/var/tmp/beast-run/v5/20261101T165713Z-0d1d73/assets/cand_0_2.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShyEGNLJB4dEdVoV9AfMucTmDOtHrVoUOME5tPNQTDcXNC8/",
+   "sha256": "040b01115913ce9822203a25c5d68d8f5767c5d55800c9e6eaf4f888152c25ed",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShyEGNLJB4dEdVoV9AfMucTmDOtHrVoUOME5tPNQTDcXNC8",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 3,
+   "audience_moment": {
+    "audience_cluster": "texting and group chats",
+    "emotional_tension": "They want to answer warmly and they're stuck on how to explain the gap without making it weird.",
+    "observable_behaviour": "They open the chat, type a reply, watch the typing dots, delete it, scroll up to re-read the original message, then lock the phone and put it on the cushion beside them.",
+    "private_worry": "That replying four hours late needs an apology, and the apology makes it a bigger thing than the message ever was.",
+    "situation": "Sunday 8:50pm, on the sofa, and a friend's message from earlier that afternoon is still unanswered in the chat, sitting above the photos they sent back and forth."
+   },
+   "card_compiled_by": "llm:deepseek-bridge",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 4,
+    "evidence": "\"your text from 4pm still open on my sofa\" / \"typed sorry, deleted it locked my phone instead\" / caption \"sending this instead of the apology paragraph i kept rewriting\"",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 4,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 4,
+    "rewrite_notes": "Payoff clause is cramped and the 'bigger than your text' logic reads slightly muddled; tighten so the delete-then-lock turn lands as one clear reason. Caption is strong already.",
+    "scene_specificity": 5,
+    "sendability_who": "A friend who leaves messages unanswered sends this to the friend waiting on their reply as a light, honest 'this is why I go quiet.'",
+    "shareability": 4,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 3,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "four-hour-late-reply-sofa"
+  },
+  "delivery": {
+   "at": "2026-11-01T17:09:55Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 2.57,
+   "yavg_delta": 2.0
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 1.26,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 1.26,
+    "saturate": 1.093
+   },
+   "saturate": 1.093
+  },
+  "measured": {
+   "sat": 10.91,
+   "yavg": 80.6
+  },
+  "output": {
+   "bytes": 3012894,
+   "duration_s": 7.0,
+   "path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261101T165713Z-0d1d73.mp4",
+   "sha256": "41c6547b5932bef6cfdc371de5b12410e6d742e51b1fac6a3014ec989d545472"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6886913227024762881",
+    "title": "Sad song by piano and violin(886018)"
+   },
+   "background_query": "POV phone on sofa cushion, chat screen glowing, night living room lamp, photos above message",
+   "caption": "sending this instead of the apology paragraph i kept rewriting",
+   "hookLines": [
+    "your text from 4pm",
+    "still open on my sofa"
+   ],
+   "loop_hypothesis": "last line ends on 'your text' which is how the first line starts, so on replay it loops as one sentence: bigger than your text, your text from 4pm still open...",
+   "payoffLines": [
+    "typed sorry, deleted it",
+    "locked my phone instead",
+    "didn't want to make it",
+    "bigger than your text"
+   ],
+   "provenance": {
+    "creator": "brucassioli",
+    "pin_id": "e1_AfqPShyEGNLJB4dEdVoV9AfMucTmDOtHrVoUOME5tPNQTDcXNC8",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShyEGNLJB4dEdVoV9AfMucTmDOtHrVoUOME5tPNQTDcXNC8/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 79 < 92): warm yellow"
+   },
+   "topic_id": "four-hour-late-reply-sofa"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 2.57,
+    "yavg_delta": 2.0
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/var/tmp/beast-run/v5/20261101T165713Z-0d1d73/social_moment_loop_v1-live-20261101T165713Z-0d1d73.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 3012894,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 10.91,
+    "yavg": 80.6
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.2451,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 147.2
+  },
+  "rendered_at": "2026-11-01T17:09:49Z",
+  "run_id": "20261101T165713Z-0d1d73",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "someone staring at a four-hour-old text still open on their sofa, wanting to apologize but freezing and making it bigger by not replying",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "close up hand locking phone screen in dark room"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3868,
+    "keywords": [
+     {
+      "keyword": "late night thoughts",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6886913227024762881",
+    "title": "Sad song by piano and violin(886018)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3868
+   },
+   "content": {
+    "attempts": 3,
+    "card": "llm:deepseek-bridge",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 4,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 4,
+     "product_trust": 3,
+     "recognition_authenticity": 4,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "four-hour-late-reply-sofa"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/testflowthrowout/beast-engine/outputs/previews/social_moment_loop_v1-live-20261101T165713Z-0d1d73.mp4",
+    "ok": true,
+    "path": "/home/testflowthrowout/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": true,
+    "rationale": "literal lane shot 'Lonely man' paired with 'Sad song by piano and violin(886018)' for social_moment_loop_v1.",
+    "score": 62
+   },
+   "pinterest": {
+    "candidates": 3,
+    "hls": false,
+    "lane": "literal",
+    "metrics": {
+     "sat": 7.63,
+     "yavg": 62.4
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShyEGNLJB4dEdVoV9AfMucTmDOtHrVoUOME5tPNQTDcXNC8",
+    "query": "close up hand locking phone screen in dark room",
+    "review_status": "accept",
+    "score": 78,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Lonely man"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 147.2
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/var/tmp/beast-run/v5/20261101T165713Z-0d1d73/social_moment_loop_v1-live-20261101T165713Z-0d1d73.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 3012894,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 79 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": 2.57,
+     "yavg_delta": 2.0
+    },
+    "measured": {
+     "sat": 10.91,
+     "yavg": 80.6
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.2451,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "rendered",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
+  },
+  "topic_id": "four-hour-late-reply-sofa"
  }
 ]
