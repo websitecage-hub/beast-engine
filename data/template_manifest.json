@@ -10561,6 +10561,7 @@
  },
  {
   "asset_intent": {
+<<<<<<< Updated upstream
    "arousal": 0.2,
    "audio_intent": {
     "arousal": 0.2,
@@ -10576,11 +10577,29 @@
     "instrumentation": [
      "muted keys",
      "light percussion"
+=======
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "comedic sound effects",
+     "triumphant drums",
+     "sad cinematic swell",
+     "loud microwave beeps",
+     "upbeat pop vocals"
+    ],
+    "emotional_role": "hold quiet cringe and self-awareness without making it sad or funny",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft piano",
+     "warm pad"
+>>>>>>> Stashed changes
     ],
     "rhythmic_density": "sparse",
     "tempo_preference": "slow",
     "texture": [
      "soft",
+<<<<<<< Updated upstream
      "lo-fi",
      "room tone"
     ],
@@ -10612,11 +10631,43 @@
    "literal_scene": "POV static shot of a flat party kitchen counter with a water bottle visible behind two people mid-conversation, empty cup held low by leg",
    "literalness": "literal",
    "motion_intent": "near-static continuous shot with gentle handheld micro-sway, no cuts",
+=======
+     "hazy",
+     "room tone"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#workhumor"
+    ],
+    "trend_keywords": [
+     "quiet office ambience",
+     "soft awkward tension"
+    ],
+    "valence": -0.2,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-01T18:06:41Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "microwave-soup-apology-tour",
+   "core_human_moment": "You are microwaving soup at work and performing an over-apologetic dance because someone else needs the kitchen during your 22 seconds.",
+   "degraded": false,
+   "emotional_primary": "self-conscious",
+   "emotional_secondary": "awkward",
+   "format_id": "caption_list_title_v1",
+   "human_action": "half-stepping back from microwave while checking timer and glancing toward doorway",
+   "humour": 0.35,
+   "intentional_contrast": null,
+   "literal_scene": "Office kitchen with a microwave counting down with a soup mug inside, afternoon light through window, person hovering nearby",
+   "literalness": "literal",
+   "motion_intent": "one continuous calm locked shot, almost still with only timer ticking and subtle weight shift",
+>>>>>>> Stashed changes
    "negative_visuals": [
     "embedded captions",
     "watermarks",
     "split-screen",
     "logos",
+<<<<<<< Updated upstream
     "product close-up",
     "influencer performing"
    ],
@@ -10706,6 +10757,101 @@
       "why": "copyrighted, not commercial"
      }
     ],
+=======
+    "person talking to camera",
+    "heavy camera shake"
+   ],
+   "palette_intent": [
+    "soft daylight white",
+    "muted office beige"
+   ],
+   "rationale": "The copy is literally about hovering in an office kitchen while soup microwaves, so footage must stay in that real world. Calm locked visuals and low sparse music keep the 22-second apology feeling believable and cringe-funny instead of dramatic.",
+   "scene_entities": [
+    "microwave",
+    "soup mug",
+    "office kitchen"
+   ],
+   "schema_version": "1.0",
+   "setting": "office kitchen",
+   "tension": 0.6,
+   "text_safe_zone": "centre 41-59% vertical, keep background low-detail behind white 4-line title",
+   "time_of_day": "afternoon",
+   "valence": -0.3,
+   "video_queries": [
+    "office kitchen microwave counting down soup mug",
+    "person standing back from office microwave waiting",
+    "empty office kitchen afternoon window light"
+   ],
+   "visual_mood": [
+    "quiet",
+    "awkward"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.2
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "SoLaTiDo",
+    "candidates": [
+     {
+      "artist": "Funny Song Studio & Sounds Reel",
+      "distance": 0.4425,
+      "fresh": true,
+      "id": "6732536571318257666",
+      "score": 100,
+      "title": "Funny Song",
+      "video_count": 15300000
+     },
+     {
+      "artist": "TikTok",
+      "distance": 0.6249,
+      "fresh": true,
+      "id": "6692683186809359108",
+      "score": 100,
+      "title": "Countless",
+      "video_count": 11000000
+     },
+     {
+      "artist": "BryGuyFerreira",
+      "distance": 0.5812,
+      "fresh": true,
+      "id": "7394421426062723882",
+      "score": 64,
+      "title": "original sound - BryGuyFerreira",
+      "video_count": 1910
+     },
+     {
+      "artist": "SoulChef",
+      "distance": 0.6778,
+      "fresh": true,
+      "id": "6988190007181887489",
+      "score": 100,
+      "title": "Write This Down (Instrumental)",
+      "video_count": 2700000
+     },
+     {
+      "artist": "SoLaTiDo",
+      "distance": 0.3564,
+      "fresh": true,
+      "id": "7146319288964483074",
+      "score": 100,
+      "title": "Suspenseful and tense orchestra(1318015)",
+      "video_count": 1100000
+     }
+    ],
+    "distance": 0.3564,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "quiet office ambience",
+      "rows": 5
+     }
+    ],
+    "rejected": [],
+>>>>>>> Stashed changes
     "score": {
      "dimensions": {
       "freshness": {
@@ -10713,19 +10859,32 @@
        "points": 20
       },
       "loopable": {
+<<<<<<< Updated upstream
        "evidence": "215.7s vs 7.0s",
        "points": 20
       },
       "trend": {
        "evidence": "video_count 1600000",
+=======
+       "evidence": "144.2s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 1100000",
+>>>>>>> Stashed changes
        "points": 60
       }
      },
      "passes": true,
      "total": 100
     },
+<<<<<<< Updated upstream
     "stable_id": "6974451099088455681",
     "title": "Classic classical gymnopedie solo piano(1034554)"
+=======
+    "stable_id": "7146319288964483074",
+    "title": "Suspenseful and tense orchestra(1318015)"
+>>>>>>> Stashed changes
    },
    "pair": {
     "dimensions": {
@@ -10739,6 +10898,7 @@
      },
      "text_to_scene": {
       "evidence": "look_fit from metadata",
+<<<<<<< Updated upstream
       "points": 22
      }
     },
@@ -10797,6 +10957,23 @@
       "height": 1280,
       "pin_id": "e1_AfqPShzWePBvKKr2LafrqdP-52OD44k_fwKqDYZ-m2tFaFr5gCm0",
       "query": "two people talking in kitchen",
+=======
+      "points": 30
+     }
+    },
+    "passes": true,
+    "rationale": "literal lane shot 'Healthy Banana Oatmeal Cookies' paired with 'Suspenseful and tense orchestra(1318015)' for caption_list_title_v1.",
+    "total": 65
+   },
+   "visual": {
+    "band_busy": 0.0923,
+    "candidates": [
+     {
+      "band_busy": 0.0979,
+      "height": 1280,
+      "pin_id": "e1_AfqPShybQ4s37d9z_IzDAU9a8yYg5sJjzgKBXmP9VYApbPPGA-fV",
+      "query": "person standing back from office",
+>>>>>>> Stashed changes
       "query_lane": "adjacent",
       "review_status": "accept",
       "score": {
@@ -10807,6 +10984,7 @@
          "points": 10
         },
         "look_fit": {
+<<<<<<< Updated upstream
          "evidence": "look words ['kitchen'] (+5); scene words ['kitchen', 'people', 'with'] (+12)",
          "points": 17
         },
@@ -10894,6 +11072,9 @@
         },
         "look_fit": {
          "evidence": "look words [] (+0); scene words ['people', 'shot', 'two', 'with'] (+14)",
+=======
+         "evidence": "look words [] (+0); scene words ['and', 'office', 'through', 'with'] (+14)",
+>>>>>>> Stashed changes
          "points": 14
         },
         "no_on_screen_text": {
@@ -10901,7 +11082,11 @@
          "points": 30
         },
         "technical": {
+<<<<<<< Updated upstream
          "evidence": "720x1280, 9.9s (need 7.0s)",
+=======
+         "evidence": "720x1280, 27.0s (need 12.2s)",
+>>>>>>> Stashed changes
          "points": 16
         }
        },
@@ -10913,6 +11098,7 @@
       },
       "stretch_pick": false,
       "text": {
+<<<<<<< Updated upstream
        "bands": [
         [
          272,
@@ -10938,15 +11124,71 @@
        "framing": [],
        "reason": "persistent glyph-like band (272, 280)",
        "text_suspected": true,
+=======
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+>>>>>>> Stashed changes
        "uniform": []
       },
       "width": 720
      },
      {
+<<<<<<< Updated upstream
       "band_busy": 0.0396,
       "height": 1280,
       "pin_id": "e1_AfqPShx_SqKyZE2x-SStAYT6lCqkA99Rekplw7zdERbhqTddeN4z",
       "query": "two people talking in kitchen",
+=======
+      "band_busy": 0.0923,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5",
+      "query": "office kitchen microwave counting",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['evening', 'simple'] (+10); scene words ['afternoon', 'and', 'person', 'with'] (+14)",
+         "points": 24
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 80,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0086,
+      "height": 1080,
+      "pin_id": "e1_AfqPShyzxrlbKXQH3NxVn4ggNFi9gkC-fyNCSanpFdnGWrhBkF1R",
+      "query": "person standing back from office",
+>>>>>>> Stashed changes
       "query_lane": "adjacent",
       "review_status": "accept",
       "score": {
@@ -10957,22 +11199,78 @@
          "points": 10
         },
         "look_fit": {
+<<<<<<< Updated upstream
          "evidence": "look words ['home', 'night'] (+10); scene words ['two', 'with'] (+8)",
          "points": 18
+=======
+         "evidence": "look words ['aesthetic'] (+5); scene words ['and', 'office'] (+8)",
+         "points": 13
+>>>>>>> Stashed changes
         },
         "no_on_screen_text": {
          "evidence": "OCR: no on-screen text or logo",
          "points": 30
         },
         "technical": {
+<<<<<<< Updated upstream
          "evidence": "720x1280, 50.0s (need 7.0s)",
+=======
+         "evidence": "720x1080, 18.5s (need 12.2s)",
+>>>>>>> Stashed changes
          "points": 16
         }
        },
        "minimum": 60,
        "passes": true,
        "review_status": "accept",
+<<<<<<< Updated upstream
        "total": 74,
+=======
+       "total": 69,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0336,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxUsIja2kTnQwvP7keD6jjYuJzQsX05gTwVGLbujBgRg_rd",
+      "query": "person standing back from office",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['street', 'walking'] (+10); scene words ['office'] (+4)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 28.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+>>>>>>> Stashed changes
        "unknown_dimensions": []
       },
       "stretch_pick": false,
@@ -10980,6 +11278,7 @@
        "bands": [],
        "framing": [
         {
+<<<<<<< Updated upstream
          "fraction_of_height": 0.141,
          "rows": [
           550,
@@ -10993,16 +11292,38 @@
         [
          550,
          640
+=======
+         "fraction_of_height": 0.1,
+         "rows": [
+          540,
+          604
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(540, 604)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         540,
+         604
+>>>>>>> Stashed changes
         ]
        ]
       },
       "width": 720
      },
      {
+<<<<<<< Updated upstream
       "band_busy": 0.0528,
       "height": 1280,
       "pin_id": "e1_AfqPShzpkwKXzWisr44DacG_f5JOUkMJWLlR3Mmy_GvzUylLu98O",
       "query": "two people talking in kitchen",
+=======
+      "band_busy": 0.06,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwGzU2YQskilCrK3o8tjEFTnAsfcsJN2gKeZjkfqLaYdtBW",
+      "query": "person standing back from office",
+>>>>>>> Stashed changes
       "query_lane": "adjacent",
       "review_status": "accept",
       "score": {
@@ -11013,22 +11334,35 @@
          "points": 10
         },
         "look_fit": {
+<<<<<<< Updated upstream
          "evidence": "look words ['home', 'kitchen'] (+10); scene words ['kitchen', 'people'] (+8)",
          "points": 18
+=======
+         "evidence": "look words ['sunset'] (+5); scene words [] (+0)",
+         "points": 5
+>>>>>>> Stashed changes
         },
         "no_on_screen_text": {
          "evidence": "OCR: no on-screen text or logo",
          "points": 30
         },
         "technical": {
+<<<<<<< Updated upstream
          "evidence": "720x1280, 18.8s (need 7.0s)",
+=======
+         "evidence": "720x1280, 18.6s (need 12.2s)",
+>>>>>>> Stashed changes
          "points": 16
         }
        },
        "minimum": 60,
        "passes": true,
        "review_status": "accept",
+<<<<<<< Updated upstream
        "total": 74,
+=======
+       "total": 61,
+>>>>>>> Stashed changes
        "unknown_dimensions": []
       },
       "stretch_pick": false,
@@ -11036,6 +11370,7 @@
        "bands": [],
        "framing": [
         {
+<<<<<<< Updated upstream
          "fraction_of_height": 0.103,
          "rows": [
           90,
@@ -11049,17 +11384,107 @@
         [
          90,
          156
+=======
+         "fraction_of_height": 0.164,
+         "rows": [
+          535,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.103,
+         "rows": [
+          0,
+          66
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(535, 640), (0, 66)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         535,
+         640
+        ],
+        [
+         0,
+         66
+>>>>>>> Stashed changes
         ]
        ]
       },
       "width": 720
      },
      {
+<<<<<<< Updated upstream
       "band_busy": 0.0555,
       "height": 1280,
       "pin_id": "e1_AfqPShyFPO31YZzLHH7aRvgIxcxso42gjbn5uZTUXTBkW5i0RDcXlw",
       "query": "flat party kitchen counter water",
       "query_lane": "literal",
+=======
+      "band_busy": 0.0775,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxmO1QWSH2OdJyhLafXuLbNc-BYY4wHJx0_pMy01WhtsbUu",
+      "query": "person standing back from office",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['office'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 21.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.148,
+         "rows": [
+          417,
+          512
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(417, 512)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         417,
+         512
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0868,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxkBlxolxe6ec3s1a1KC2emGMrcWcFR36_6QOdJd1JAiVf0GQ",
+      "query": "person standing back from office",
+      "query_lane": "adjacent",
+>>>>>>> Stashed changes
       "review_status": "reject",
       "score": {
        "blockers": [],
@@ -11077,7 +11502,11 @@
          "points": 30
         },
         "technical": {
+<<<<<<< Updated upstream
          "evidence": "720x1280, 14.3s (need 7.0s)",
+=======
+         "evidence": "720x1280, 14.7s (need 12.2s)",
+>>>>>>> Stashed changes
          "points": 16
         }
        },
@@ -11098,6 +11527,7 @@
       "width": 720
      },
      {
+<<<<<<< Updated upstream
       "band_busy": 0.0899,
       "height": 1280,
       "pin_id": "e1_AfqPShxxM_QDIeXOsb-qWnTQucGyALSABg1gWDSeDzU5MPHZZlZV",
@@ -11145,6 +11575,12 @@
       "height": 1280,
       "pin_id": "e1_AfqPShzZMk_cG-pQFfEjxz8wmeVs1oQev47p2CrgNmMchq8NJls",
       "query": "two people talking in kitchen",
+=======
+      "band_busy": 0.0202,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwTuD245dzd5OwYqzdmImmtEEOGlB25XZWpxcNexzbqMUlFfg",
+      "query": "person standing back from office",
+>>>>>>> Stashed changes
       "query_lane": "adjacent",
       "review_status": "accept",
       "score": {
@@ -11155,21 +11591,31 @@
          "points": 10
         },
         "look_fit": {
+<<<<<<< Updated upstream
          "evidence": "look words [] (+0); scene words ['while', 'with'] (+8)",
          "points": 8
+=======
+         "evidence": "look words ['street', 'sunset', 'walking'] (+15); scene words ['down'] (+4)",
+         "points": 19
+>>>>>>> Stashed changes
         },
         "no_on_screen_text": {
          "evidence": "OCR: no on-screen text or logo",
          "points": 30
         },
         "technical": {
+<<<<<<< Updated upstream
          "evidence": "720x1280, 33.9s (need 7.0s)",
+=======
+         "evidence": "720x1280, 59.2s (need 12.2s)",
+>>>>>>> Stashed changes
          "points": 16
         }
        },
        "minimum": 60,
        "passes": true,
        "review_status": "accept",
+<<<<<<< Updated upstream
        "total": 64,
        "unknown_dimensions": []
       },
@@ -11214,6 +11660,9 @@
        "passes": true,
        "review_status": "accept",
        "total": 68,
+=======
+       "total": 75,
+>>>>>>> Stashed changes
        "unknown_dimensions": []
       },
       "stretch_pick": false,
@@ -11227,6 +11676,7 @@
       "width": 720
      }
     ],
+<<<<<<< Updated upstream
     "creator": "juliacxxl",
     "flags": [
      "source domain: raffles.com"
@@ -11236,10 +11686,22 @@
      "cuts": 2,
      "max_jump": 0.287,
      "motion": 0.1998,
+=======
+    "creator": "choosingchia",
+    "flags": [
+     "source domain: choosingchia.com"
+    ],
+    "lane_expansions": 1,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.2154,
+     "motion": 0.1879,
+>>>>>>> Stashed changes
      "ok": true,
      "samples": 8
     },
     "passes_minimum": true,
+<<<<<<< Updated upstream
     "pin_id": "e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q",
     "pin_url": "https://www.pinterest.com/pin/e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q/",
     "query": "two people talking in kitchen",
@@ -11262,28 +11724,81 @@
       "lane": "literal",
       "query": "flat party kitchen counter water",
       "returned": 9
+=======
+    "pin_id": "e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5/",
+    "query": "office kitchen microwave counting",
+    "query_lane": "literal",
+    "query_log": [
+     {
+      "kept": 6,
+      "lane": "literal",
+      "query": "office kitchen microwave counting down soup",
+      "returned": 6
+     },
+     {
+      "kept": 6,
+      "lane": "adjacent",
+      "query": "person standing back from office microwave",
+      "returned": 7
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "empty office kitchen afternoon window light",
+      "returned": 0
+     },
+     {
+      "kept": 13,
+      "lane": "literal",
+      "query": "office kitchen microwave counting",
+      "returned": 13
+>>>>>>> Stashed changes
      },
      {
       "kept": 25,
       "lane": "adjacent",
+<<<<<<< Updated upstream
       "query": "two people talking in kitchen",
       "returned": 25
+=======
+      "query": "person standing back from office",
+      "returned": 25
+     },
+     {
+      "kept": 5,
+      "lane": "emotional",
+      "query": "empty office kitchen afternoon",
+      "returned": 5
+>>>>>>> Stashed changes
      }
     ],
     "rejected": [
      {
+<<<<<<< Updated upstream
       "id": "e1_AfqPShyJfdMmrAWWg52e7Ox47xG_ALwXxrGurZT7Jeu8M2_AFjHL",
       "why": "on-screen text/logo: 'Egg; FUN; Green Onions; \u98ef'"
      },
      {
       "id": "e1_AfqPShzn-ETRr5FjETJUM5suLHUutV_VwVfrifSqMbJN8Df0",
       "why": "on-screen text/logo: \"Don't forget to label the; Mregano; Rose\""
+=======
+      "id": "e1_AfqPShw_KoolBqdMbL566TR9rpuN3nVMgDofW-igmbuIKP26niE",
+      "lane": "adjacent",
+      "query": "person standing back from office microwave",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "e1_AfqPShyyJ87K3EIQ9HMuZcey-wvU55yzWG9ONjZTUmrwxMKldd13",
+      "why": "unusable crop 574x1022"
+>>>>>>> Stashed changes
      },
      {
       "id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
       "why": "used inside the no-repeat window"
      },
      {
+<<<<<<< Updated upstream
       "id": "e1_AfqPShwI_6J-_c-G73SdVvuAlw_nXUKMeL_zyAzawRS3NW-wyDf9qQ",
       "why": "unusable crop 234x416"
      },
@@ -11306,12 +11821,17 @@
       "lane": "literal",
       "query": "flat party kitchen counter water",
       "why": "real-estate/tour content: 'Open Concept'"
+=======
+      "id": "e1_AfqPShzE8LKZsKkXafDliF597RX5kZKBPV8s8ffiFPOGDdJm6qZM",
+      "why": "on-screen text/logo: '1&; 100mlHotSauce; Delicious Meal Prep!;'"
+>>>>>>> Stashed changes
      },
      {
       "id": "e1_AfqPShzvMIlUekBFGI4iri80V5TbS-afwn-ai8it_NOweoLj-l1q",
       "why": "unusable crop 560x1000"
      },
      {
+<<<<<<< Updated upstream
       "id": "e1_AfqPShy00E2j7uB990XFKx_FW71Bfy9bgUsLdvK4rBBjrBbTH83v",
       "why": "on-screen text/logo: 'Being good at cooking was like; We want '"
      },
@@ -11324,12 +11844,91 @@
      {
       "id": "e1_AfqPShzn-ETRr5FjETJUM5suLHUutV_VwVfrifSqMbJN8Df0",
       "why": "on-screen text/logo: \"Don't forget to label the; Mregano; Rose\""
+=======
+      "id": "e1_AfqPShwqaWsakhDJtZKqA5TUglFsm69OdWXwCpTMBTKihyOsHRPg",
+      "why": "too short 8.17s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzA2GcvARnZhiSjT1wx08C5uNLabYrCAaHmclbnLOcC",
+      "lane": "adjacent",
+      "query": "person standing back from office microwave",
+      "why": "commerce/affiliate domain: 'etsy.com'"
+     },
+     {
+      "id": "e1_AfqPShzDfwsAnyLBjCDMh4xCMvsqtLi59_rNapWoRa5zrzWrEJ64",
+      "why": "on-screen text/logo: 'and egg wraps; but when you order; rehea'"
+     },
+     {
+      "id": "e1_AfqPShwpWbXjy_DivdvEMEC-wJIRCDEPFQy1sn_lcWgxrw_9n2Jm",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxt6ZcDPcdEXAo2BAQ9bJSAvXX3aChuTPY2ow1xwUGqDT6c",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShwhddLjGOQOiYHfSSy4kw_XjEXev-_WC06PrrLFkdbX",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShy9oyZ6b7Zw1Sj-PrDLXOFyqbB_Uh8GL5coSSqLRAPfO_gn",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShzl-UhDTLq6tm0K34b-myrvWWbJOU7ldgbZ49GnAKlTvWYssA",
+      "why": "too short 9.22s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwfiarVf8J6kmVT4C35gXG0-xO-o64GrSHGHyGLwzinrlKQ",
+      "lane": "literal",
+      "query": "office kitchen microwave counting",
+      "why": "real-estate/tour content: 'real estate'"
+     },
+     {
+      "id": "e1_AfqPShxFXq-SVntieyN8aOe3WmlJo3Lqyw8052oY00yekbK58o8N",
+      "why": "on-screen text/logo: 'COXT; D; HOW TO DECORATE; HOW TODECORATE'"
+     },
+     {
+      "id": "e1_AfqPShyFiVyk4S0k3jkgbsrGMg4A-qsyCw0bw-Qx9bB01llRaF7l",
+      "lane": "adjacent",
+      "query": "person standing back from office",
+      "why": "commerce/affiliate domain: 'amazon.com'"
+     },
+     {
+      "id": "e1_AfqPShy3xBApIVZSM9TD_f9Su0kmdATQ1Shs5DM9ZXz2hVKysg",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "e1_AfqPShwLVi4UQc5Z1LcILu9v7U1lcHMTwP4WoVdIaBLWphLc5vxD",
+      "why": "unusable crop 598x1066"
+     },
+     {
+      "id": "e1_AfqPShyJfdMmrAWWg52e7Ox47xG_ALwXxrGurZT7Jeu8M2_AFjHL",
+      "why": "on-screen text/logo: 'Egg; FUN; Green Onions; \u98ef'"
+     },
+     {
+      "id": "e1_AfqPShz4uagQp9njyl8RRHoNr-IwdHrS-6HWyziZolXjVV8hxWZH",
+      "why": "on-screen text/logo: '(2 spoons); Chia Seeds; SHI'"
+     },
+     {
+      "id": "e1_AfqPShzE8LKZsKkXafDliF597RX5kZKBPV8s8ffiFPOGDdJm6qZM",
+      "why": "on-screen text/logo: '1&; 100mlHotSauce; Delicious Meal Prep!;'"
+     },
+     {
+      "id": "e1_AfqPShyyJ87K3EIQ9HMuZcey-wvU55yzWG9ONjZTUmrwxMKldd13",
+      "why": "unusable crop 574x1022"
+     },
+     {
+      "id": "e1_AfqPShzvMIlUekBFGI4iri80V5TbS-afwn-ai8it_NOweoLj-l1q",
+      "why": "unusable crop 560x1000"
+>>>>>>> Stashed changes
      },
      {
       "id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
       "why": "used inside the no-repeat window"
      },
      {
+<<<<<<< Updated upstream
       "id": "e1_AfqPShxz7BjsZx2gjkUY7e3KSY0-M9Qpk16nhtfb1dJODEVZ60PZ",
       "why": "on-screen text/logo: '+healthy chickpeassalad; blackpepper; ch'"
      },
@@ -11381,6 +11980,71 @@
      },
      {
       "id": "e1_AfqPShxscDrQ30p3-N3Ki8UWY1g8xCsi2j_uXScQy9AoRLAxuQ",
+=======
+      "id": "e1_AfqPShzkXohKoz89CZUfSHsqWzmbhM7nmBvDz59aqI6Q-Jaz2hB3",
+      "why": "too short 5.0s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShyqjzxugl-nfoAygzahqtdLMEDSyKg8AGcVk3_m4WLMNe5yZQ",
+      "why": "on-screen text/logo: '(makes is minis); 1/4 cup peanut butter;'"
+     },
+     {
+      "id": "e1_AfqPShziQN5mZKR_VrGM0IuZXwSccQ5ofd4ygDt2pT3R2LOm3ExS",
+      "why": "on-screen text/logo: '360\u00b0rotating desk; Lots of drawers and; '"
+     },
+     {
+      "id": "e1_AfqPShwUVSiJ5KMZR7Xy5P34cJnltUtSHb2UBlxHdTbmsDvbrVXn-g",
+      "why": "on-screen text/logo: 'Subscribeand; followformore; information'"
+     },
+     {
+      "id": "e1_AfqPShyVs9uDZTE_ivDUOumnsoxzemmGaHXMCoroDmTsQYVQB6DA",
+      "why": "on-screen text/logo: 'awkward corner in your; living room; liv'"
+     },
+     {
+      "id": "e1_AfqPShww1zKWUsobJ74tBNWSOJMhKQNrsZg1mOU2oLS9zhhu",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxpA5BWXeNbSbM3Vx1d6YolX3dvi_phjPvIgbywWnV4bfI",
+      "why": "on-screen text/logo: 'D; \u00ae'"
+     },
+     {
+      "id": "e1_AfqPShyGWoUjM5QaK1CPmwuQZopkSo0K5RdU9jT9KvjWG6PAkV30",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "e1_AfqPShxczZHn2NhFVMn1CVeImCzPPZNzHYyOpckEYgZsCqLXNZ_K",
+      "why": "on-screen text/logo: '\"Learn how to set standards that feel; \"'"
+     },
+     {
+      "id": "e1_AfqPShzSdAfUma3li-weNSty_tH_zucd4g8osDIjMGhWkBeTryx6",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "e1_AfqPShw5LpNPdUAYb2TysX_mVepppyqCe5GEP1eRsH8VMmLMFTlw",
+      "why": "unusable crop 592x1056"
+     },
+     {
+      "id": "e1_AfqPShy3m1TxZe9KxHmwMtkJ1uwDAHs3d44qXb87bj-t4oUjjfLR",
+      "lane": "adjacent",
+      "query": "person standing back from office",
+      "why": "advertising call-to-action: 'link in bio'"
+     },
+     {
+      "id": "e1_AfqPShxSsQKVe4Z737M2HheiXirwZSZdForYV74O3v111gUB3Sen",
+      "why": "on-screen text/logo: \"betweeen a regular or; en you can't deci\""
+     },
+     {
+      "id": "e1_AfqPShzkgCtiknaFG0xTdumznhmJGcwGnut6qLFMVQPWYl7O_GfV",
+      "why": "on-screen text/logo: '2 per bowl; 300 cal + 30 protein; cowboy'"
+     },
+     {
+      "id": "e1_AfqPShwpWbXjy_DivdvEMEC-wJIRCDEPFQy1sn_lcWgxrw_9n2Jm",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxt6ZcDPcdEXAo2BAQ9bJSAvXX3aChuTPY2ow1xwUGqDT6c",
+>>>>>>> Stashed changes
       "why": "unusable crop 576x1024"
      }
     ],
@@ -11393,22 +12057,35 @@
        "points": 10
       },
       "look_fit": {
+<<<<<<< Updated upstream
        "evidence": "look words ['kitchen', 'walking'] (+10); scene words ['kitchen', 'with'] (+8)",
        "points": 18
+=======
+       "evidence": "look words ['evening', 'simple'] (+10); scene words ['afternoon', 'and', 'person', 'with'] (+14)",
+       "points": 24
+>>>>>>> Stashed changes
       },
       "no_on_screen_text": {
        "evidence": "OCR: no on-screen text or logo",
        "points": 30
       },
       "technical": {
+<<<<<<< Updated upstream
        "evidence": "720x1280, 19.7s (need 7.0s)",
+=======
+       "evidence": "720x1280, 13.3s (need 12.2s)",
+>>>>>>> Stashed changes
        "points": 16
       }
      },
      "minimum": 60,
      "passes": true,
      "review_status": "accept",
+<<<<<<< Updated upstream
      "total": 74,
+=======
+     "total": 80,
+>>>>>>> Stashed changes
      "unknown_dimensions": []
     },
     "stretch_pick": false,
@@ -11419,6 +12096,7 @@
      "text_suspected": false,
      "uniform": []
     },
+<<<<<<< Updated upstream
     "title": "Biesuz\u2019s Bali"
    }
   },
@@ -11430,10 +12108,24 @@
    "sha256": "00c22a83470239aa6f22d2ad19204bcea90497290b9108212367b70b2492b4ec",
    "source": "audi0-scraper:/v1/trending",
    "stable_id": "6974451099088455681",
+=======
+    "title": "Healthy Banana Oatmeal Cookies"
+   }
+  },
+  "audio": {
+   "bytes": 2352212,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261101T180449Z-8455c5/assets/track_7146319288964483074.m4a",
+   "pin_url": null,
+   "sha256": "d65752bbd9533cddd5d09e3f37acaba7ac43fecacdf86dd82f23a5d81fe5d5a6",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7146319288964483074",
+>>>>>>> Stashed changes
    "usage_clearance": "unknown"
   },
   "audio_features": {
    "band_energy_pct": {
+<<<<<<< Updated upstream
     "bass": 14.8,
     "high": 0.0,
     "mid": 85.2
@@ -11461,16 +12153,53 @@
    "sha256": "922260b42bd8c19c3e47342dbe4d768f3136729aa32daf95b810a1a2221313f5",
    "source": "pinterest",
    "stable_id": "e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q",
+=======
+    "bass": 45.4,
+    "high": 0.1,
+    "mid": 54.5
+   },
+   "duration_s": 144.15,
+   "file": "track_7146319288964483074.m4a",
+   "key_estimate": "C minor",
+   "loudness_curve_db": [
+    -23.1,
+    -21.1,
+    -22.2
+   ],
+   "onset_density_per_s": 3.75,
+   "peak_db": -3.2,
+   "rms_db": -22.0,
+   "spectral_centroid_hz": 983.7,
+   "tempo_bpm": 112.3,
+   "zero_crossing_rate": 0.0443
+  },
+  "background": {
+   "bytes": 3181065,
+   "creator": "choosingchia",
+   "path": "/home/runner/work/_temp/beast-scratch/20261101T180449Z-8455c5/assets/cand_1_1.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5/",
+   "sha256": "6d06d7c8154638e5c4afe2c3937138b93436634836bad8f69d391e0e1b2ed448",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5",
+>>>>>>> Stashed changes
    "usage_clearance": "unknown"
   },
   "content": {
    "attempts": 1,
    "audience_moment": {
+<<<<<<< Updated upstream
     "audience_cluster": "parties and social events",
     "emotional_tension": "you want to just grab some water and belong in the room while your brain is directing a full live edit of how you look doing it",
     "observable_behaviour": "holding your empty cup down by your leg, half-step back, nodding along to their conversation, checking your phone then putting it straight back in your pocket",
     "private_worry": "that reaching through will make you look rude and oblivious, but standing there will make you look like you're eavesdropping",
     "situation": "Saturday 8:14pm, flat party kitchen, you want to refill your drink but the bottle is on the counter behind two people mid-conversation"
+=======
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "you want to just heat your lunch, but you're performing an apology for existing in a shared space",
+    "observable_behaviour": "you glance at the timer, step half a step back, unlock your phone, then say 'sorry, nearly done' while it still has 15 seconds",
+    "private_worry": "that you're blocking the kitchen and making them wait for something you shouldn't be taking up space with",
+    "situation": "Tuesday 1:13pm, office kitchen, your soup is in the microwave with 22 seconds left when someone comes in to make tea"
+>>>>>>> Stashed changes
    },
    "card_compiled_by": "llm:meta-api",
    "card_degraded": false,
@@ -11478,6 +12207,7 @@
     "caption_value": 4,
     "critical_min": 4.0,
     "distinctiveness": 4,
+<<<<<<< Updated upstream
     "emotional_truth_dignity": 5,
     "evidence": "\"i'm holding my cup by my leg, nodding along still just wanting water\" / caption \"the bottle is right there and i'm doing full choreography around it\"",
     "format_fit": 4,
@@ -11489,6 +12219,19 @@
     "rewrite_notes": "Voice and scene are strong; payoff slightly restates the hook ('just wanting water') rather than turning. Give it one crisp final beat. Caption's 'choreography' is the freshest line already.",
     "scene_specificity": 5,
     "sendability_who": "A friend who avoids reaching past people at parties sends this to another socially cautious friend with 'this is us at every party.'",
+=======
+    "emotional_truth_dignity": 4,
+    "evidence": "\"apologize with 15 seconds left\" / \"replay your sorry at desk\" / payoff \"you weren't in the way, you were just heating lunch\" / \"22 seconds of soup becomes an apology performance\"",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 4,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "'Apology performance' and payoff's 'just heating lunch' are close to the earlier microwave drafts; item 5 'replay your sorry' is fine but the title needs a fresher phrase than 'apology performance.'",
+    "scene_specificity": 5,
+    "sendability_who": "An office friend sends this to the colleague who apologises to the microwave, saying 'you, every lunchtime.'",
+>>>>>>> Stashed changes
     "shareability": 4,
     "supporting_min": 3.0
    },
@@ -11498,19 +12241,31 @@
      "level": 3,
      "why": [
       "anchor=True",
+<<<<<<< Updated upstream
       "private=False",
+=======
+      "private=True",
+>>>>>>> Stashed changes
       "turn=True"
      ]
     }
    ],
+<<<<<<< Updated upstream
    "topic_id": "kitchen-water-behind-conversation"
   },
   "delivery": {
    "at": "2026-11-01T18:13:09Z",
+=======
+   "topic_id": "microwave-soup-apology-tour"
+  },
+  "delivery": {
+   "at": "2026-11-01T18:15:08Z",
+>>>>>>> Stashed changes
    "channel": "telegram",
    "ok": true
   },
   "drift": {
+<<<<<<< Updated upstream
    "sat_delta": -0.59,
    "yavg_delta": 2.5
   },
@@ -11533,12 +12288,37 @@
    "duration_s": 7.0,
    "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261101T180449Z-32499f.mp4",
    "sha256": "acacb7a9edccfafe765b0b18d2d990edfe7e2fdd5fab751b9a37ad442ad7bf80"
+=======
+   "sat_delta": -2.93,
+   "yavg_delta": 11.9
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.85,
+   "natural_fit": false,
+   "raw": {
+    "brightness": 0.808,
+    "saturate": 1.162
+   },
+   "saturate": 1.162
+  },
+  "measured": {
+   "sat": 11.27,
+   "yavg": 116.9
+  },
+  "output": {
+   "bytes": 13884085,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261101T180449Z-8455c5.mp4",
+   "sha256": "27ae9af8c777135210b00569efb9ef39add08a4e4fb830bf0083a3edb5a98525"
+>>>>>>> Stashed changes
   },
   "payload": {
    "_schema_version": "1.0",
    "audio": {
     "rights": "preview_only",
     "source": "audi0-scraper:/v1/trending",
+<<<<<<< Updated upstream
     "stable_id": "6974451099088455681",
     "title": "Classic classical gymnopedie solo piano(1034554)"
    },
@@ -11559,24 +12339,65 @@
     "creator": "juliacxxl",
     "pin_id": "e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q",
     "pin_url": "https://www.pinterest.com/pin/e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q/",
+=======
+    "stable_id": "7146319288964483074",
+    "title": "Suspenseful and tense orchestra(1318015)"
+   },
+   "background_query": "office kitchen microwave counting down, soup mug steaming, afternoon window light",
+   "caption": "5 things you do when 22 seconds of soup becomes an apology performance:\n1. hear footsteps, check timer twice\n2. half-step back from microwave\n3. unlock phone to look occupied\n4. apologize with 15 seconds left\n5. replay your sorry at desk",
+   "closing": "you weren't in the way, you were just heating lunch.",
+   "headline": "5 things you do when 22 seconds of soup becomes an apology performance",
+   "list_items": [
+    "hear footsteps, check timer twice",
+    "half-step back from microwave",
+    "unlock phone to look occupied",
+    "apologize with 15 seconds left",
+    "replay your sorry at desk"
+   ],
+   "provenance": {
+    "creator": "choosingchia",
+    "pin_id": "e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5/",
+>>>>>>> Stashed changes
     "source": "pinterest",
     "usage_clearance": "unknown"
    },
    "text_style": {
+<<<<<<< Updated upstream
     "fill": "#E0D29B",
     "stroke_px": 2,
     "why": "dark footage (luma 79 < 92): warm yellow"
    },
    "topic_id": "kitchen-water-behind-conversation"
+=======
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 110): warm off-white"
+   },
+   "titleLines": [
+    "5 things you do when",
+    "22 seconds of soup",
+    "becomes an apology",
+    "performance"
+   ],
+   "topic_id": "microwave-soup-apology-tour"
+>>>>>>> Stashed changes
   },
   "qa": {
    "attempts": 1,
    "band_ok": true,
    "drift": {
+<<<<<<< Updated upstream
     "sat_delta": -0.59,
     "yavg_delta": 2.5
    },
    "duration_s": 7.0,
+=======
+    "sat_delta": -2.93,
+    "yavg_delta": 11.9
+   },
+   "duration_s": 12.0,
+>>>>>>> Stashed changes
    "gate": {
     "audio": true,
     "audio_channels": 2,
@@ -11585,12 +12406,21 @@
     "decode_ok": true,
     "decode_stderr": "",
     "duration_bounds": [
+<<<<<<< Updated upstream
      6.4,
      7.8
     ],
     "duration_s": 7.0,
     "failures": [],
     "file": "/home/runner/work/_temp/beast-scratch/20261101T180449Z-32499f/social_moment_loop_v1-live-20261101T180449Z-32499f.mp4",
+=======
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261101T180449Z-8455c5/caption_list_title_v1-live-20261101T180449Z-8455c5.mp4",
+>>>>>>> Stashed changes
     "fps": 30.0,
     "fps_raw": "30/1",
     "height": 1920,
@@ -11599,11 +12429,16 @@
     "pix_fmt": "yuv420p",
     "probe_error": null,
     "sar": "1:1",
+<<<<<<< Updated upstream
     "size_bytes": 5613913,
+=======
+    "size_bytes": 13884085,
+>>>>>>> Stashed changes
     "width": 1080
    },
    "gate_ok": true,
    "measured": {
+<<<<<<< Updated upstream
     "sat": 7.75,
     "yavg": 81.1
    },
@@ -11622,45 +12457,98 @@
     "bright_fraction": 0.1567,
     "ok": true,
     "threshold": 165
+=======
+    "sat": 11.27,
+    "yavg": 116.9
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0987,
+    "ok": true,
+    "threshold": 190
+>>>>>>> Stashed changes
    }
   },
   "qa_ok": true,
   "render": {
    "quality": "delivery",
+<<<<<<< Updated upstream
    "seconds": 44.1
   },
   "rendered_at": "2026-11-01T18:12:56Z",
   "run_id": "20261101T180449Z-32499f",
+=======
+   "seconds": 72.1
+  },
+  "rendered_at": "2026-11-01T18:15:05Z",
+  "run_id": "20261101T180449Z-8455c5",
+>>>>>>> Stashed changes
   "schema_version": "1.0",
   "stages": {
    "asset_intent": {
     "compiled_by": "llm:meta-api",
+<<<<<<< Updated upstream
     "core_human_moment": "person is stuck politely hovering with an empty cup because the water they want is blocked by two people talking",
     "degraded": false,
     "ok": true,
     "queries": [
      "flat party kitchen counter water bottle",
      "two people talking in kitchen doorway"
+=======
+    "core_human_moment": "You are microwaving soup at work and performing an over-apologetic dance because someone else needs the kitchen during your 22 seconds.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "office kitchen microwave counting down soup",
+     "person standing back from office microwave",
+     "empty office kitchen afternoon window light"
+>>>>>>> Stashed changes
     ]
    },
    "audio": {
     "clearance": "unknown",
+<<<<<<< Updated upstream
     "distance": 0.5274,
     "keywords": [
      {
       "keyword": "soft lo-fi wait",
+=======
+    "distance": 0.3564,
+    "keywords": [
+     {
+      "keyword": "quiet office ambience",
+>>>>>>> Stashed changes
       "rows": 5
      }
     ],
     "ok": true,
     "score": 100,
+<<<<<<< Updated upstream
     "stable_id": "6974451099088455681",
     "title": "Classic classical gymnopedie solo piano(1034554)"
+=======
+    "stable_id": "7146319288964483074",
+    "title": "Suspenseful and tense orchestra(1318015)"
+>>>>>>> Stashed changes
    },
    "audio_validation": {
     "has_audio": true,
     "ok": true,
+<<<<<<< Updated upstream
     "track_distance": 0.5274
+=======
+    "track_distance": 0.3564
+>>>>>>> Stashed changes
    },
    "content": {
     "attempts": 1,
@@ -11669,10 +12557,17 @@
     "critic": {
      "caption_value": 4,
      "distinctiveness": 4,
+<<<<<<< Updated upstream
      "emotional_truth_dignity": 5,
      "format_fit": 4,
      "hard_fail": null,
      "natural_voice": 5,
+=======
+     "emotional_truth_dignity": 4,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 4,
+>>>>>>> Stashed changes
      "product_trust": 3,
      "recognition_authenticity": 5,
      "scene_specificity": 5,
@@ -11680,25 +12575,39 @@
     },
     "ladder": 3,
     "ok": true,
+<<<<<<< Updated upstream
     "topic_id": "kitchen-water-behind-conversation"
+=======
+    "topic_id": "microwave-soup-apology-tour"
+>>>>>>> Stashed changes
    },
    "delivery": {
     "delivered": true,
     "ok": true
    },
    "format_selection": {
+<<<<<<< Updated upstream
     "format_id": "social_moment_loop_v1",
     "ok": true,
     "requested": "B"
    },
    "manifest": {
     "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261101T180449Z-32499f.mp4",
+=======
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261101T180449Z-8455c5.mp4",
+>>>>>>> Stashed changes
     "ok": true,
     "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
     "persisted": true
    },
    "pair_fit": {
     "ok": true,
+<<<<<<< Updated upstream
     "rationale": "adjacent lane shot 'Biesuz\u2019s Bali' paired with 'Classic classical gymnopedie solo piano(' for social_moment_loop_v1.",
     "score": 57
    },
@@ -11720,12 +12629,39 @@
     "stretch_pick": false,
     "text_suspected": false,
     "title": "Biesuz\u2019s Bali"
+=======
+    "rationale": "literal lane shot 'Healthy Banana Oatmeal Cookies' paired with 'Suspenseful and tense orchestra(1318015)' for caption_list_title_v1.",
+    "score": 65
+   },
+   "pinterest": {
+    "candidates": 8,
+    "hls": false,
+    "lane": "literal",
+    "metrics": {
+     "sat": 12.22,
+     "yavg": 129.9
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5",
+    "query": "office kitchen microwave counting",
+    "review_status": "accept",
+    "score": 80,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Healthy Banana Oatmeal Cookies"
+>>>>>>> Stashed changes
    },
    "render": {
     "attempts": 1,
     "corrections": false,
     "ok": true,
+<<<<<<< Updated upstream
     "seconds": 44.1
+=======
+    "seconds": 72.1
+>>>>>>> Stashed changes
    },
    "structural_qa": {
     "gate": {
@@ -11736,12 +12672,21 @@
      "decode_ok": true,
      "decode_stderr": "",
      "duration_bounds": [
+<<<<<<< Updated upstream
       6.4,
       7.8
      ],
      "duration_s": 7.0,
      "failures": [],
      "file": "/home/runner/work/_temp/beast-scratch/20261101T180449Z-32499f/social_moment_loop_v1-live-20261101T180449Z-32499f.mp4",
+=======
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261101T180449Z-8455c5/caption_list_title_v1-live-20261101T180449Z-8455c5.mp4",
+>>>>>>> Stashed changes
      "fps": 30.0,
      "fps_raw": "30/1",
      "height": 1920,
@@ -11750,12 +12695,17 @@
      "pix_fmt": "yuv420p",
      "probe_error": null,
      "sar": "1:1",
+<<<<<<< Updated upstream
      "size_bytes": 5613913,
+=======
+     "size_bytes": 13884085,
+>>>>>>> Stashed changes
      "width": 1080
     },
     "ok": true
    },
    "text_style": {
+<<<<<<< Updated upstream
     "fill": "#E0D29B",
     "ok": true,
     "stroke_px": 2,
@@ -11769,24 +12719,55 @@
     "measured": {
      "sat": 7.75,
      "yavg": 81.1
+=======
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 110): warm off-white"
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": -2.93,
+     "yavg_delta": 11.9
+    },
+    "measured": {
+     "sat": 11.27,
+     "yavg": 116.9
+>>>>>>> Stashed changes
     },
     "ok": true,
     "text_frame0": {
      "band": [
+<<<<<<< Updated upstream
       0.3,
       0.61
      ],
      "bright_fraction": 0.1567,
      "ok": true,
      "threshold": 165
+=======
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0987,
+     "ok": true,
+     "threshold": 190
+>>>>>>> Stashed changes
     }
    }
   },
   "status": "rendered",
   "template": {
+<<<<<<< Updated upstream
    "dir": "templates/social_moment_loop_v1",
    "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
   },
   "topic_id": "kitchen-water-behind-conversation"
+=======
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
+  },
+  "topic_id": "microwave-soup-apology-tour"
+>>>>>>> Stashed changes
  }
 ]
