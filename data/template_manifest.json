@@ -10558,5 +10558,1235 @@
    "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
   },
   "topic_id": "four-hour-late-reply-sofa"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "loud party music",
+     "dramatic cinematic swell",
+     "comedy boing or laugh track",
+     "heavy bass drop",
+     "sad piano"
+    ],
+    "emotional_role": "hold the awkward polite wait with light self-aware humor, not dramatize it",
+    "energy": 0.25,
+    "instrumentation": [
+     "muted keys",
+     "light percussion"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "lo-fi",
+     "room tone"
+    ],
+    "trend_hashtags": [
+     "#relatable",
+     "#awkwardmoment",
+     "#pov"
+    ],
+    "trend_keywords": [
+     "soft lo-fi wait",
+     "awkward party moment",
+     "kitchen ambient"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-11-01T18:06:15Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "kitchen-water-behind-conversation",
+   "core_human_moment": "person is stuck politely hovering with an empty cup because the water they want is blocked by two people talking",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "amused",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "holding empty cup low by leg, nodding along while waiting to reach water",
+   "humour": 0.6,
+   "intentional_contrast": null,
+   "literal_scene": "POV static shot of a flat party kitchen counter with a water bottle visible behind two people mid-conversation, empty cup held low by leg",
+   "literalness": "literal",
+   "motion_intent": "near-static continuous shot with gentle handheld micro-sway, no cuts",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos",
+    "product close-up",
+    "influencer performing"
+   ],
+   "palette_intent": [
+    "warm kitchen tungsten",
+    "muted low-saturation pale"
+   ],
+   "rationale": "Visual stays literal to the copy's blocked-water moment with POV phone-realism so text reads as lived experience, audio stays low-energy and lightly amused to keep the choreography funny without turning it into anxiety or big party energy.",
+   "scene_entities": [
+    "water bottle",
+    "plastic cup",
+    "party kitchen"
+   ],
+   "schema_version": "1.0",
+   "setting": "flat party kitchen",
+   "tension": 0.4,
+   "text_safe_zone": "centre 30-61% vertical, lowercase pale text block",
+   "time_of_day": "late evening",
+   "valence": -0.1,
+   "video_queries": [
+    "flat party kitchen counter water bottle behind people",
+    "POV empty cup held low by leg near kitchen counter",
+    "two people talking in kitchen doorway evening light"
+   ],
+   "visual_mood": [
+    "awkward",
+    "lived-in"
+   ],
+   "visual_profile_target": {
+    "luma": "78.6+-20",
+    "saturation": "8.34+-4"
+   },
+   "warmth": 0.3
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Lyrebirds music",
+    "candidates": [
+     {
+      "artist": "Tollan Kim\ud83c\udf38",
+      "distance": 0.2934,
+      "fresh": false,
+      "id": "7072513628145977346",
+      "score": 80,
+      "title": "Aesthetic",
+      "video_count": 23300000
+     },
+     {
+      "artist": "Lyrebirds music",
+      "distance": 0.5274,
+      "fresh": true,
+      "id": "6974451099088455681",
+      "score": 100,
+      "title": "Classic classical gymnopedie solo piano(1034554)",
+      "video_count": 1600000
+     },
+     {
+      "artist": "leverfall",
+      "distance": 0.5716,
+      "fresh": true,
+      "id": "7459419315856541697",
+      "score": 100,
+      "title": "Waiting",
+      "video_count": 649200
+     },
+     {
+      "artist": "WILLIS",
+      "distance": 0.5274,
+      "fresh": true,
+      "id": "6895811481653266433",
+      "score": 100,
+      "title": "I Think I Like When It Rains",
+      "video_count": 5500000
+     }
+    ],
+    "distance": 0.5274,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "soft lo-fi wait",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7258302399172904962",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "215.7s vs 7.0s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 1600000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6974451099088455681",
+    "title": "Classic classical gymnopedie solo piano(1034554)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 22
+     }
+    },
+    "passes": true,
+    "rationale": "adjacent lane shot 'Biesuz\u2019s Bali' paired with 'Classic classical gymnopedie solo piano(' for social_moment_loop_v1.",
+    "total": 57
+   },
+   "visual": {
+    "band_busy": 0.0382,
+    "candidates": [
+     {
+      "band_busy": 0.0522,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwyvEOM_gDOEYuiDu8JBAjeola-kCjIwujiGJSIplCpDO3L",
+      "query": "flat party kitchen counter water bottle",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 29.9s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0088,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzWePBvKKr2LafrqdP-52OD44k_fwKqDYZ-m2tFaFr5gCm0",
+      "query": "two people talking in kitchen",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['kitchen'] (+5); scene words ['kitchen', 'people', 'with'] (+12)",
+         "points": 17
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 115.5s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 73,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0382,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q",
+      "query": "two people talking in kitchen",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['kitchen', 'walking'] (+10); scene words ['kitchen', 'with'] (+8)",
+         "points": 18
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 19.7s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 74,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1783,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyK7ML1K3OTImgxgjPgKyghy8QtZERsC4vyp6EVbXhpyzvf",
+      "query": "two people talking in kitchen",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['people', 'shot', 'two', 'with'] (+14)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 9.9s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         272,
+         280
+        ],
+        [
+         288,
+         296
+        ],
+        [
+         304,
+         320
+        ],
+        [
+         320,
+         328
+        ],
+        [
+         376,
+         392
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (272, 280)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0396,
+      "height": 1280,
+      "pin_id": "e1_AfqPShx_SqKyZE2x-SStAYT6lCqkA99Rekplw7zdERbhqTddeN4z",
+      "query": "two people talking in kitchen",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['home', 'night'] (+10); scene words ['two', 'with'] (+8)",
+         "points": 18
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 50.0s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 74,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.141,
+         "rows": [
+          550,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(550, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         550,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0528,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzpkwKXzWisr44DacG_f5JOUkMJWLlR3Mmy_GvzUylLu98O",
+      "query": "two people talking in kitchen",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['home', 'kitchen'] (+10); scene words ['kitchen', 'people'] (+8)",
+         "points": 18
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 18.8s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 74,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.103,
+         "rows": [
+          90,
+          156
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(90, 156)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         90,
+         156
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0555,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyFPO31YZzLHH7aRvgIxcxso42gjbn5uZTUXTBkW5i0RDcXlw",
+      "query": "flat party kitchen counter water",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.3s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0899,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxxM_QDIeXOsb-qWnTQucGyALSABg1gWDSeDzU5MPHZZlZV",
+      "query": "flat party kitchen counter water",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 9.0s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.026,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzZMk_cG-pQFfEjxz8wmeVs1oQev47p2CrgNmMchq8NJls",
+      "query": "two people talking in kitchen",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['while', 'with'] (+8)",
+         "points": 8
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 33.9s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 64,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0882,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyOf3FNWHaH5Ec8EnmnoKlwag5QfUZmmFzqHf199WnLetKS",
+      "query": "two people talking in kitchen",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['people', 'two', 'with'] (+12)",
+         "points": 12
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 149.3s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 68,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "juliacxxl",
+    "flags": [
+     "source domain: raffles.com"
+    ],
+    "lane_expansions": 1,
+    "motion": {
+     "cuts": 2,
+     "max_jump": 0.287,
+     "motion": 0.1998,
+     "ok": true,
+     "samples": 8
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q/",
+    "query": "two people talking in kitchen",
+    "query_lane": "adjacent",
+    "query_log": [
+     {
+      "kept": 4,
+      "lane": "literal",
+      "query": "flat party kitchen counter water bottle",
+      "returned": 4
+     },
+     {
+      "kept": 1,
+      "lane": "adjacent",
+      "query": "two people talking in kitchen doorway",
+      "returned": 1
+     },
+     {
+      "kept": 9,
+      "lane": "literal",
+      "query": "flat party kitchen counter water",
+      "returned": 9
+     },
+     {
+      "kept": 25,
+      "lane": "adjacent",
+      "query": "two people talking in kitchen",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShyJfdMmrAWWg52e7Ox47xG_ALwXxrGurZT7Jeu8M2_AFjHL",
+      "why": "on-screen text/logo: 'Egg; FUN; Green Onions; \u98ef'"
+     },
+     {
+      "id": "e1_AfqPShzn-ETRr5FjETJUM5suLHUutV_VwVfrifSqMbJN8Df0",
+      "why": "on-screen text/logo: \"Don't forget to label the; Mregano; Rose\""
+     },
+     {
+      "id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "e1_AfqPShwI_6J-_c-G73SdVvuAlw_nXUKMeL_zyAzawRS3NW-wyDf9qQ",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShxGYGnMoZQ--_Oef74z3EQ9LeI2AI1qHYyhKMd0y_63S5U",
+      "why": "on-screen text/logo: 'ALWAYS; ANDWHIENISAYSALTIMAYTHINKOFIT; I'"
+     },
+     {
+      "id": "e1_AfqPShzS8b3x_1DT2s8-qvbcgBxyhFbG-RLw_ezII8cpz_wJRJyg",
+      "why": "on-screen text/logo: 'anchovies; brown; butter; chardonay; coo'"
+     },
+     {
+      "id": "e1_AfqPShximLQ_D4SZg0RmAMYCLC2rQHuYC721yUe0_JXh307sgg",
+      "lane": "adjacent",
+      "query": "two people talking in kitchen",
+      "why": "real-estate/tour content: 'renovation'"
+     },
+     {
+      "id": "e1_AfqPShw_KoolBqdMbL566TR9rpuN3nVMgDofW-igmbuIKP26niE",
+      "lane": "literal",
+      "query": "flat party kitchen counter water",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "e1_AfqPShzvMIlUekBFGI4iri80V5TbS-afwn-ai8it_NOweoLj-l1q",
+      "why": "unusable crop 560x1000"
+     },
+     {
+      "id": "e1_AfqPShy00E2j7uB990XFKx_FW71Bfy9bgUsLdvK4rBBjrBbTH83v",
+      "why": "on-screen text/logo: 'Being good at cooking was like; We want '"
+     },
+     {
+      "id": "e1_AfqPShzk18KbeUmSFUU-pT87B0XLN7FZrkl5Lwuj-rl3TEXZpQWOlw",
+      "lane": "adjacent",
+      "query": "two people talking in kitchen",
+      "why": "advertising call-to-action: 'link in bio'"
+     },
+     {
+      "id": "e1_AfqPShzn-ETRr5FjETJUM5suLHUutV_VwVfrifSqMbJN8Df0",
+      "why": "on-screen text/logo: \"Don't forget to label the; Mregano; Rose\""
+     },
+     {
+      "id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "e1_AfqPShxz7BjsZx2gjkUY7e3KSY0-M9Qpk16nhtfb1dJODEVZ60PZ",
+      "why": "on-screen text/logo: '+healthy chickpeassalad; blackpepper; ch'"
+     },
+     {
+      "id": "e1_AfqPShzM_jE0gAPuOfU0IrcYua6bRLhZcbGb66M3MG2JK5XgdIVkVw",
+      "why": "on-screen text/logo: 'BOUCHER; Bana; My dad taught us Michael '"
+     },
+     {
+      "id": "e1_AfqPShzTcUgfkLLVgbRuFrFxdb8m22Xxq-C4PN919wUe9A9AccnH",
+      "why": "unusable crop 480x854"
+     },
+     {
+      "id": "e1_AfqPShziDxtK8kLJu95PSYs8kwY4J4MWbGnGsL5Kwx1Fmjli_Q",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShx4tfE_v9dnFa7fbeVhLJcaW1KSTy8fepJSChlwzv4rnI36Ig",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShwP-z5YBlEstXvWEUTNspbBK47BWyqHW64OO83jkfA64iyd",
+      "why": "unusable crop 540x568"
+     },
+     {
+      "id": "e1_AfqPShwGOWA55ahe2lhkCP35jXequQa2cZ986rjgDvgyRTjTr6Q",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "e1_AfqPShzBAKlidWOBOObt18eaziDc6jFrc7ZQXjNCHLNGmB3ZU-12",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShzHrW-_gcRwQZAwQFOiU_-cMH1e1FYtFOY1uHSB-AXzixU9",
+      "lane": "adjacent",
+      "query": "two people talking in kitchen",
+      "why": "commerce/affiliate domain: 'walmart.com'"
+     },
+     {
+      "id": "e1_AfqPShwSUnbbb2bpZgmszs00zmfnw31CdzSLarYiAeq0Aq4QGg",
+      "why": "unusable crop 540x960"
+     },
+     {
+      "id": "e1_AfqPShxAMRydw5mkw1crz65JPRnhciyBbo0tAuS_4v8bYDcZeg",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShzxcd5qqbUlOvZ4VSNdnMRe06RvWOGZHl23ZdhFWlCaBDc",
+      "why": "too short 6.3s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShxscDrQ30p3-N3Ki8UWY1g8xCsi2j_uXScQy9AoRLAxuQ",
+      "why": "unusable crop 576x1024"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['kitchen', 'walking'] (+10); scene words ['kitchen', 'with'] (+8)",
+       "points": 18
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 19.7s (need 7.0s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 74,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Biesuz\u2019s Bali"
+   }
+  },
+  "audio": {
+   "bytes": 3528265,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261101T180449Z-32499f/assets/track_6974451099088455681.m4a",
+   "pin_url": null,
+   "sha256": "00c22a83470239aa6f22d2ad19204bcea90497290b9108212367b70b2492b4ec",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6974451099088455681",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 14.8,
+    "high": 0.0,
+    "mid": 85.2
+   },
+   "duration_s": 215.71,
+   "file": "track_6974451099088455681.m4a",
+   "key_estimate": "E minor",
+   "loudness_curve_db": [
+    -24.8,
+    -26.5,
+    -25.6
+   ],
+   "onset_density_per_s": 0.87,
+   "peak_db": -4.3,
+   "rms_db": -25.6,
+   "spectral_centroid_hz": 507.7,
+   "tempo_bpm": 68.0,
+   "zero_crossing_rate": 0.0391
+  },
+  "background": {
+   "bytes": 3290961,
+   "creator": "juliacxxl",
+   "path": "/home/runner/work/_temp/beast-scratch/20261101T180449Z-32499f/assets/cand_1_2.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q/",
+   "sha256": "922260b42bd8c19c3e47342dbe4d768f3136729aa32daf95b810a1a2221313f5",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "parties and social events",
+    "emotional_tension": "you want to just grab some water and belong in the room while your brain is directing a full live edit of how you look doing it",
+    "observable_behaviour": "holding your empty cup down by your leg, half-step back, nodding along to their conversation, checking your phone then putting it straight back in your pocket",
+    "private_worry": "that reaching through will make you look rude and oblivious, but standing there will make you look like you're eavesdropping",
+    "situation": "Saturday 8:14pm, flat party kitchen, you want to refill your drink but the bottle is on the counter behind two people mid-conversation"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"i'm holding my cup by my leg, nodding along still just wanting water\" / caption \"the bottle is right there and i'm doing full choreography around it\"",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Voice and scene are strong; payoff slightly restates the hook ('just wanting water') rather than turning. Give it one crisp final beat. Caption's 'choreography' is the freshest line already.",
+    "scene_specificity": 5,
+    "sendability_who": "A friend who avoids reaching past people at parties sends this to another socially cautious friend with 'this is us at every party.'",
+    "shareability": 4,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "kitchen-water-behind-conversation"
+  },
+  "delivery": {
+   "at": "2026-11-01T18:13:09Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -0.59,
+   "yavg_delta": 2.5
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 0.969,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 0.969,
+    "saturate": 0.724
+   },
+   "saturate": 0.724
+  },
+  "measured": {
+   "sat": 7.75,
+   "yavg": 81.1
+  },
+  "output": {
+   "bytes": 5613913,
+   "duration_s": 7.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261101T180449Z-32499f.mp4",
+   "sha256": "acacb7a9edccfafe765b0b18d2d990edfe7e2fdd5fab751b9a37ad442ad7bf80"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6974451099088455681",
+    "title": "Classic classical gymnopedie solo piano(1034554)"
+   },
+   "background_query": "flat party kitchen counter, water bottle behind two people mid-conversation, empty cup held low by leg, POV static",
+   "caption": "the bottle is right there and i'm doing full choreography around it",
+   "hookLines": [
+    "i just want water",
+    "it's behind two people",
+    "talking"
+   ],
+   "loop_hypothesis": "last line leaves you exactly where first line started, so replay is the loop of standing there holding the cup",
+   "payoffLines": [
+    "so i'm holding my cup",
+    "by my leg, nodding along",
+    "still just wanting water"
+   ],
+   "provenance": {
+    "creator": "juliacxxl",
+    "pin_id": "e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 79 < 92): warm yellow"
+   },
+   "topic_id": "kitchen-water-behind-conversation"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -0.59,
+    "yavg_delta": 2.5
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261101T180449Z-32499f/social_moment_loop_v1-live-20261101T180449Z-32499f.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 5613913,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 7.75,
+    "yavg": 81.1
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.1567,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 44.1
+  },
+  "rendered_at": "2026-11-01T18:12:56Z",
+  "run_id": "20261101T180449Z-32499f",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "person is stuck politely hovering with an empty cup because the water they want is blocked by two people talking",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "flat party kitchen counter water bottle",
+     "two people talking in kitchen doorway"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.5274,
+    "keywords": [
+     {
+      "keyword": "soft lo-fi wait",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6974451099088455681",
+    "title": "Classic classical gymnopedie solo piano(1034554)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.5274
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 3,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "kitchen-water-behind-conversation"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261101T180449Z-32499f.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": true,
+    "rationale": "adjacent lane shot 'Biesuz\u2019s Bali' paired with 'Classic classical gymnopedie solo piano(' for social_moment_loop_v1.",
+    "score": 57
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": false,
+    "lane": "adjacent",
+    "metrics": {
+     "sat": 11.52,
+     "yavg": 81.1
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShxHkYgmH0iNLC37r5vhtvsJeMoF42U8ru2f9K4EPVOd9Q",
+    "query": "two people talking in kitchen",
+    "review_status": "accept",
+    "score": 74,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Biesuz\u2019s Bali"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 44.1
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261101T180449Z-32499f/social_moment_loop_v1-live-20261101T180449Z-32499f.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 5613913,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 79 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": -0.59,
+     "yavg_delta": 2.5
+    },
+    "measured": {
+     "sat": 7.75,
+     "yavg": 81.1
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.1567,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "rendered",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
+  },
+  "topic_id": "kitchen-water-behind-conversation"
  }
 ]
