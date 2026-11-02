@@ -1,5 +1,13 @@
 {
  "audio": {
+  "7338248034884618241": {
+   "first_seen_at": "2026-11-02T16:03:32Z",
+   "last_used_at": "2026-11-02T16:05:33Z",
+   "review_status": "pending",
+   "sha256": "8a228e3bacc702109a1548c9ab0a100b0033cffe15d5fb0d351258b197c2cc93",
+   "status": "delivered",
+   "used_by": "20261102T155441Z-945572"
+  },
   "7638038467818342417": {
    "first_seen_at": "2026-11-02T15:03:40Z",
    "last_used_at": "2026-11-02T15:04:37Z",
@@ -11,9 +19,20 @@
  },
  "recovered_from_corrupt": true,
  "reservations": {},
- "updated_at": "2026-11-02T15:04:37Z",
+ "updated_at": "2026-11-02T16:05:33Z",
  "version": 1,
  "visual": {
+  "pin:e1_AfqPShwdQOAn_wD7E_EYAg_OVnf_Q53itMFDilOThqzzhzB3h-7C": {
+   "first_seen_at": "2026-11-02T16:03:03Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-02T16:05:33Z",
+   "pin_id": "e1_AfqPShwdQOAn_wD7E_EYAg_OVnf_Q53itMFDilOThqzzhzB3h-7C",
+   "query": "foggy window light",
+   "review_status": "accept",
+   "sha256": "4e2d3cd1d3c0ba9d9ac8f02e911a4192193a5cafa4c0076c21bbf46920aa9311",
+   "status": "delivered",
+   "used_by": "20261102T155441Z-945572"
+  },
   "pin:e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5": {
    "first_seen_at": "2026-11-02T15:03:17Z",
    "lane": "literal",

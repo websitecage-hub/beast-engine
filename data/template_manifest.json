@@ -761,5 +761,1252 @@
    "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
   },
   "topic_id": "microwave-performance-review"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.15,
+   "audio_intent": {
+    "arousal": 0.15,
+    "avoid": [
+     "upbeat claps",
+     "comedy boing effects",
+     "high-energy EDM",
+     "dramatic cinematic strings",
+     "loud laugh track"
+    ],
+    "emotional_role": "hold the quiet awkward hover with soft self-aware warmth, not joke or drama",
+    "energy": 0.2,
+    "instrumentation": [
+     "mellow keys",
+     "subtle bass",
+     "light brushed pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "roomy",
+     "lo-fi"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#morninglight"
+    ],
+    "trend_keywords": [
+     "soft morning office",
+     "quiet cozy ambience"
+    ],
+    "valence": -0.15,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-02T15:56:42Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "kitchen-toaster-hover-7",
+   "core_human_moment": "You want to join the kitchen chat but stay hovering by the toaster performing busy so no one sees how much you want in.",
+   "degraded": false,
+   "emotional_primary": "self-conscious",
+   "emotional_secondary": "longing",
+   "format_id": "caption_list_title_v1",
+   "human_action": "hovering by toaster, stirring empty mug, half-smiling toward off-camera chat",
+   "humour": 0.3,
+   "intentional_contrast": null,
+   "literal_scene": "one person alone at a shared office kitchen counter staring at a toaster with an empty mug and toast in hand in morning light",
+   "literalness": "literal",
+   "motion_intent": "one continuous calm hold, almost still with tiny idle hand movements",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos",
+    "person talking to camera",
+    "crowd laughing"
+   ],
+   "palette_intent": [
+    "soft warm neutrals",
+    "faded morning daylight"
+   ],
+   "rationale": "The copy is about performing busy by the toaster to mask wanting in, so the visual must be literally that lived-in kitchen hover in morning light, and audio must stay low, warm and slightly self-conscious, not funny or epic, to keep the title list legible and relatable.",
+   "scene_entities": [
+    "toaster",
+    "empty mug",
+    "shared office kitchen"
+   ],
+   "schema_version": "1.0",
+   "setting": "shared office kitchen",
+   "tension": 0.55,
+   "text_safe_zone": "centre vertical band 41-59%, keep toaster and counter edge below text for legibility",
+   "time_of_day": "morning",
+   "valence": -0.25,
+   "video_queries": [
+    "office kitchen toaster popping toast morning light",
+    "side view person stirring empty mug at counter",
+    "empty hallway after kitchen, hand holding toast"
+   ],
+   "visual_mood": [
+    "quiet",
+    "awkward"
+   ],
+   "visual_profile_target": {
+    "luma": "luma 105+-14",
+    "saturation": "sat 14.2+-5"
+   },
+   "warmth": 0.35
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "medasin",
+    "candidates": [
+     {
+      "artist": "Judah Earl",
+      "distance": 0.384,
+      "fresh": true,
+      "id": "7410721101360449537",
+      "score": 92,
+      "title": "Sand Drawing",
+      "video_count": 420200
+     },
+     {
+      "artist": "TimTaj",
+      "distance": 0.5879,
+      "fresh": true,
+      "id": "7310071445119780866",
+      "score": 64,
+      "title": "Conquering the Peaks",
+      "video_count": 155
+     },
+     {
+      "artist": "medasin",
+      "distance": 0.3593,
+      "fresh": true,
+      "id": "7338248034884618241",
+      "score": 100,
+      "title": "magic",
+      "video_count": 725300
+     }
+    ],
+    "distance": 0.3593,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7116550626791655426",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7381297275933427728",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 725300",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7338248034884618241",
+    "title": "magic"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 28
+     }
+    },
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'magic' for caption_list_title_v1.",
+    "total": 63
+   },
+   "visual": {
+    "band_busy": 0.027,
+    "candidates": [
+     {
+      "band_busy": 0.0443,
+      "height": 1920,
+      "pin_id": "e1_AfqPShx3m76y-D9T2NeQuss5fStmMrhbL0vxmmrRCKgoSEMlKXHt",
+      "query": "foggy window light",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['aesthetic', 'soft'] (+10); scene words ['and', 'morning'] (+8)",
+         "points": 18
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "1080x1920, 15.1s (need 12.2s)",
+         "points": 20
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 78,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 1080
+     },
+     {
+      "band_busy": 0.0089,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzROKIDUXQJ0Bhrrxq7Shg_xes4DITmCprccxdC443-_N_x",
+      "query": "foggy window light",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['night', 'solitude'] (+10); scene words ['and', 'light', 'with'] (+12)",
+         "points": 22
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 78,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.094,
+         "rows": [
+          580,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(580, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         580,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.027,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwdQOAn_wD7E_EYAg_OVnf_Q53itMFDilOThqzzhzB3h-7C",
+      "query": "foggy window light",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['rain', 'solitude', 'window'] (+15); scene words ['person', 'with'] (+8)",
+         "points": 23
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 79,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.038,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyT6yhlpJwgIeGJKnq_6yYkCNoOEhX50hedry-Ea9m4PDLC",
+      "query": "foggy window light",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['rain', 'window'] (+10); scene words [] (+0)",
+         "points": 10
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 66,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0286,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxULqtGToAVw37Mg2byq7EUT0_FODH2C6fT__aoccXxhP6U",
+      "query": "foggy window light",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['rain', 'window'] (+10); scene words ['with'] (+4)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.127,
+         "rows": [
+          0,
+          81
+         ]
+        },
+        {
+         "fraction_of_height": 0.203,
+         "rows": [
+          510,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.127,
+         "rows": [
+          0,
+          81
+         ]
+        },
+        {
+         "fraction_of_height": 0.203,
+         "rows": [
+          510,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.127,
+         "rows": [
+          0,
+          81
+         ]
+        },
+        {
+         "fraction_of_height": 0.203,
+         "rows": [
+          510,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 81), (510, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         81
+        ],
+        [
+         510,
+         640
+        ],
+        [
+         0,
+         81
+        ],
+        [
+         510,
+         640
+        ],
+        [
+         0,
+         81
+        ],
+        [
+         510,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0071,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwI1g2esJeN2osxcS_BzYPkeR7uSS_s7ShsMJansWrQVTY",
+      "query": "foggy window light",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['rain', 'window'] (+10); scene words ['with'] (+4)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.181,
+         "rows": [
+          0,
+          116
+         ]
+        },
+        {
+         "fraction_of_height": 0.181,
+         "rows": [
+          0,
+          116
+         ]
+        },
+        {
+         "fraction_of_height": 0.18,
+         "rows": [
+          0,
+          115
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 116), (0, 116)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         116
+        ],
+        [
+         0,
+         116
+        ],
+        [
+         0,
+         115
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0143,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyEGNLJB4dEdVoV9AfMucTmDOtHrVoUOME5tPNQTDcXNC8",
+      "query": "empty hallway after kitchen hand holding",
+      "query_lane": "emotional",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['night', 'window'] (+10); scene words ['with'] (+4)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0148,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwtHGr4hLwPc0mH6q35CJB_Up4bja-cY1cF3GAjxKzM3xFp",
+      "query": "empty hallway after kitchen hand holding",
+      "query_lane": "emotional",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['with'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 30.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "macellaruanitta",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0164,
+     "motion": 0.014,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShwdQOAn_wD7E_EYAg_OVnf_Q53itMFDilOThqzzhzB3h-7C",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwdQOAn_wD7E_EYAg_OVnf_Q53itMFDilOThqzzhzB3h-7C/",
+    "query": "foggy window light",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "foggy window light",
+      "returned": 25
+     },
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "office kitchen toaster popping toast morning",
+      "returned": 0
+     },
+     {
+      "kept": 1,
+      "lane": "adjacent",
+      "query": "side view person stirring empty mug",
+      "returned": 1
+     },
+     {
+      "kept": 9,
+      "lane": "emotional",
+      "query": "empty hallway after kitchen hand holding",
+      "returned": 9
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShyj36Fub8lgKN7_Ag2cm_DyCFd-CXwACcECtURJ5TGSHNY",
+      "why": "on-screen text: '#Ad; ABINET &PRODUCTDETAILSIN; CABINET; CAPTION; S'"
+     },
+     {
+      "id": "e1_AfqPShw_KoolBqdMbL566TR9rpuN3nVMgDofW-igmbuIKP26niE",
+      "lane": "emotional",
+      "query": "empty hallway after kitchen hand holding",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "e1_AfqPShwqyDOYmu4WxekvprbQyMQVlfpPBF-3aLiSgVJcNmDH2Ghk",
+      "why": "too short 6.02s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzjlHjlfztb4mIMaQjnu8AJXQ9vFQtoouItdWXVeAQw0-XzAg",
+      "why": "too short 8.16s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
+      "why": "on-screen text: 'PR; TO; WELCOME'"
+     },
+     {
+      "id": "e1_AfqPShzcsPQicTV0zq82EP-WHbE9_EhmI2Xk7_Ez4k3SP-6WtUUr",
+      "why": "on-screen text: '\u53e3'"
+     },
+     {
+      "id": "e1_AfqPShzFB94gBy_CaKdH5D5i9GiC6xcut_t-Ltq3LFdaIdk2aC0j",
+      "why": "on-screen text: '$125; (26.6ml); CRYSTAL CLEAR-MUY CLARO; E600; Han'"
+     },
+     {
+      "id": "e1_AfqPShwN17mFXh13bv89pdwqI14xyt2gV6ICFytFJIg1kuEvzT0I",
+      "why": "on-screen text: '(and how to do it!); ++ how it turned out; M; Pain'"
+     },
+     {
+      "id": "e1_AfqPShx4KxabJaIr71_OIOsR15FOT1hiK1C79FckrLGtrtvqMTCanQ",
+      "why": "unusable crop 750x482"
+     },
+     {
+      "id": "e1_AfqPShx2tir-sUTbMh-rurDHeIHfZRjGWxTjrF82CrEQH7YZdg",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShzfY2G9hFy4OzFKYXfKXkmyGfP-Q4u2ejT_UZAhRrr_vQ",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxLIz6gCY7VHfGYa_gqU2jMZN4ZPpS-ZPDQH8ucE5conP8",
+      "why": "unusable crop 464x848"
+     },
+     {
+      "id": "e1_AfqPShxLn3QMn7itNJA343N2FXjdtGb-kGNh3AU4zZTHvyhLYQ",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShwSLkv1YMCc-a2iztYYcO8gUoHzgL_JcgoelP6Qx7BvbfrT",
+      "why": "unusable crop 576x1102"
+     },
+     {
+      "id": "e1_AfqPShzNv3ZsZG2c002Y59rN_klayABKdoCy9NViub0BnkL0nAA",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShyx1x_CHazODUtvJ6n8SLqiGIPxiOoblMn_1ZzjGZScZdCm",
+      "why": "too short 10.7s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShykmoAImuDTyNC3o4W1mu7Zeb6OMvcMjcPDVmrirVQ3MGY",
+      "why": "unusable crop 540x960"
+     },
+     {
+      "id": "e1_AfqPShwnymyn8WZYLTaUBadM8q32fbW8vokxT596myNtVBbLrA",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShyzeo6MuOnuoprqrGha7PZg8a5ZZ9n9DbuU6bCmLuZFtmzp",
+      "why": "on-screen text: '(D; .; .0; 000; 0:'"
+     },
+     {
+      "id": "e1_AfqPShz7tdPowIdYTWNfmTcyAOkeHE_eDMju-u2qW2R3NExf1bg",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxou3SWWv_bfM-IIpSCPSySznt9fVTQocEid2Em4LRuut1A",
+      "why": "too short 6.83s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzA-UF-3npyVcngbBYNlXi0T77ywvifszerXq9571Y-1xK6",
+      "why": "too short 6.23s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShyY9An9K0l8BPC5TfNKOyzgWLLaq83_X_Qi5SyE807fUw",
+      "why": "too short 7.33s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzoXHjXfy45-0QjSwOk7tY9ADldLp3IyxBiO1-YLCDd5nSH",
+      "why": "unusable crop 720x540"
+     },
+     {
+      "id": "e1_AfqPShyUFKoCFCgT0V8SNZssknuPu4VEu0E13o1xiRVzCMIpIQf1",
+      "why": "on-screen text: 'INN; nif; \u4e8b'"
+     },
+     {
+      "id": "e1_AfqPShxp4MTphfs_Bt1lMPrfBBdRCV2VPWBBTFeXmK_NANzE",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxSFXZ3_2aqEyCMdK13xnGItGG3ZZ1OHNI9uk6Zzdo9C_YD4Q",
+      "why": "on-screen text: 'Folding a note middle; ONLY!; PRINO; TR7NO; eyes'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['rain', 'solitude', 'window'] (+15); scene words ['person', 'with'] (+8)",
+       "points": 23
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 13.9s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 79,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 980889,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261102T155441Z-945572/assets/track_7338248034884618241.m4a",
+   "pin_url": null,
+   "sha256": "8a228e3bacc702109a1548c9ab0a100b0033cffe15d5fb0d351258b197c2cc93",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7338248034884618241",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 73.6,
+    "high": 0.0,
+    "mid": 26.4
+   },
+   "duration_s": 60.0,
+   "file": "track_7338248034884618241.m4a",
+   "key_estimate": "F major",
+   "loudness_curve_db": [
+    -21.6,
+    -22.0,
+    -25.3
+   ],
+   "onset_density_per_s": 0.87,
+   "peak_db": -9.8,
+   "rms_db": -22.7,
+   "spectral_centroid_hz": 680.2,
+   "tempo_bpm": 129.2,
+   "zero_crossing_rate": 0.0331
+  },
+  "background": {
+   "bytes": 4250116,
+   "creator": "macellaruanitta",
+   "path": "/home/runner/work/_temp/beast-scratch/20261102T155441Z-945572/assets/cand_0_2.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwdQOAn_wD7E_EYAg_OVnf_Q53itMFDilOThqzzhzB3h-7C/",
+   "sha256": "4e2d3cd1d3c0ba9d9ac8f02e911a4192193a5cafa4c0076c21bbf46920aa9311",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShwdQOAn_wD7E_EYAg_OVnf_Q53itMFDilOThqzzhzB3h-7C",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "group conversation entry",
+    "emotional_tension": "you want the easy two-second join, but you're busy directing how your joining would look to them",
+    "observable_behaviour": "you watch the toaster like it's urgent, half-smile at their chat, shuffle your mug and stir it even though there's nothing in it",
+    "private_worry": "that jumping in will sound like you're forcing your way in, and not jumping in makes you look cold for just standing there",
+    "situation": "9:12am in the shared kitchen, toast in the toaster, two coworkers chatting by the fridge"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "'stare at toaster like deadline' / 'stir empty mug for cover' / 'time your laugh half-second late' / 'you wanted a two-second hello, not a review of how you did it.'",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Hook is grammatically tangled ('directing how it looks 7 things you do'); smooth to one clean sentence. Item 7 'replay your exit' slips to a second scene (hallway); keep it in-kitchen.",
+    "scene_specificity": 5,
+    "sendability_who": "A quietly socially-anxious office worker sending it to a close friend or work bestie with '9:12am every single day.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=False"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "kitchen-toaster-hover-7"
+  },
+  "delivery": {
+   "at": "2026-11-02T16:05:33Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -11.48,
+   "yavg_delta": -42.4
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 1.32,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 1.45
+  },
+  "measured": {
+   "sat": 2.72,
+   "yavg": 62.6
+  },
+  "output": {
+   "bytes": 12177306,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261102T155441Z-945572.mp4",
+   "sha256": "8699d73fcbcade20918b985d76d05f309da8552e408548f00e5ac8b6b02431e0"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7338248034884618241",
+    "title": "magic"
+   },
+   "background_query": "shared office kitchen toaster popping toast empty mug morning light",
+   "caption": "7 things you do when you want to join the kitchen chat but you're busy directing how it looks:\n1. stare at toaster like deadline\n2. half-smile at their fridge chat\n3. stir empty mug for cover\n4. rehearse one casual line silently\n5. time your laugh half-second late\n6. grab toast, hover, not leaving\n7. replay your exit in hallway later",
+   "closing": "you wanted a two-second hello, not a review of how you did it.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "The text is a slow, hyper-aware performance of casualness where tiny kitchen gestures are directed like film scenes, so a hushed cinematic track turns the awkward hover into intimate, high-fidelity indie-film tension.",
+     "tiktok_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "emotional_analysis": "It's anxious liminal hovering, wanting to belong while over-directing every micro-move from the edge, so I chose a voyeuristic, separated-by-glass texture that feels intimate yet distant.",
+     "pinterest_query": "foggy window light"
+    }
+   },
+   "headline": "7 things you do when you want to join the kitchen chat but you're busy directing how it looks",
+   "list_items": [
+    "stare at toaster like deadline",
+    "half-smile at their fridge chat",
+    "stir empty mug for cover",
+    "rehearse one casual line silently",
+    "time your laugh half-second late",
+    "grab toast, hover, not leaving",
+    "replay your exit in hallway later"
+   ],
+   "provenance": {
+    "creator": "macellaruanitta",
+    "pin_id": "e1_AfqPShwdQOAn_wD7E_EYAg_OVnf_Q53itMFDilOThqzzhzB3h-7C",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwdQOAn_wD7E_EYAg_OVnf_Q53itMFDilOThqzzhzB3h-7C/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 65 < 92): warm yellow"
+   },
+   "titleLines": [
+    "Wanting to join the",
+    "kitchen chat but you're",
+    "directing how it looks",
+    "7 things you do"
+   ],
+   "topic_id": "kitchen-toaster-hover-7"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -11.48,
+    "yavg_delta": -42.4
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261102T155441Z-945572/caption_list_title_v1-live-20261102T155441Z-945572.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 12177306,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 2.72,
+    "yavg": 62.6
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1906,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 60.1
+  },
+  "rendered_at": "2026-11-02T16:05:28Z",
+  "run_id": "20261102T155441Z-945572",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "You want to join the kitchen chat but stay hovering by the toaster performing busy so no one sees how much you want in.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "office kitchen toaster popping toast morning",
+     "side view person stirring empty mug",
+     "empty hallway after kitchen hand holding"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3593,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7338248034884618241",
+    "title": "magic"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3593
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "kitchen-toaster-hover-7"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "The text is a slow, hyper-aware performance of casualness where tiny kitchen gestures are directed like film scenes, so a hushed cinematic track turns the awkward hover into intimate, high-fidelity indie-film tension."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "foggy window light",
+    "vendor": "meta-api",
+    "why": "It's anxious liminal hovering, wanting to belong while over-directing every micro-move from the edge, so I chose a voyeuristic, separated-by-glass texture that feels intimate yet distant."
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261102T155441Z-945572.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": true,
+    "rationale": "metaphor lane shot '' paired with 'magic' for caption_list_title_v1.",
+    "score": 63
+   },
+   "pinterest": {
+    "candidates": 8,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 1.79,
+     "yavg": 49.4
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShwdQOAn_wD7E_EYAg_OVnf_Q53itMFDilOThqzzhzB3h-7C",
+    "query": "foggy window light",
+    "review_status": "accept",
+    "score": 79,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 60.1
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261102T155441Z-945572/caption_list_title_v1-live-20261102T155441Z-945572.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 12177306,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 65 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": -11.48,
+     "yavg_delta": -42.4
+    },
+    "measured": {
+     "sat": 2.72,
+     "yavg": 62.6
+    },
+    "ok": false,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1906,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
+  },
+  "topic_id": "kitchen-toaster-hover-7"
  }
 ]
