@@ -2008,5 +2008,924 @@
    "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
   },
   "topic_id": "kitchen-toaster-hover-7"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "upbeat corporate music",
+     "loud drums",
+     "cheerful vocals",
+     "dramatic cinematic swell"
+    ],
+    "emotional_role": "hold quiet awkward tension without fixing it, soft and close",
+    "energy": 0.2,
+    "instrumentation": [
+     "warm piano",
+     "soft synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "lo-fi",
+     "intimate"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#relatable",
+     "#morning"
+    ],
+    "trend_keywords": [
+     "office life",
+     "morning routine",
+     "awkward moment"
+    ],
+    "valence": -0.15,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-11-02T17:21:02Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "lift-3-floors-to-say-hi",
+   "core_human_moment": "standing in an office lift for three floors with a senior colleague at 8:47am wanting to say good morning but freezing and watching the numbers instead",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "shy",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "clutching locked phone with both hands and staring at floor numbers",
+   "humour": 0.25,
+   "intentional_contrast": null,
+   "literal_scene": "POV inside a small office elevator, floor indicator ticking from 1 to 4, two people standing apart, hands clutching a locked phone with both hands",
+   "literalness": "literal",
+   "motion_intent": "gentle subtle elevator vibration with slight handheld breathing drift",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "pale fluorescent white",
+    "muted steel grey"
+   ],
+   "rationale": "The POV lift with ticking floor numbers and locked phone in both hands makes the 3-floor hesitation literally visible, while quiet lo-fi piano holds the shy early-morning tension without turning it into comedy or drama.",
+   "scene_entities": [
+    "locked phone",
+    "floor indicator",
+    "office elevator"
+   ],
+   "schema_version": "1.0",
+   "setting": "office elevator interior, morning",
+   "tension": 0.65,
+   "text_safe_zone": "centre 30-61% vertical, keep floor display and hands clear",
+   "time_of_day": "early morning",
+   "valence": -0.2,
+   "video_queries": [
+    "office elevator interior POV floor display 1 to 4",
+    "hands clutching locked phone inside elevator morning",
+    "elevator doors closed reflection two people apart"
+   ],
+   "visual_mood": [
+    "quiet",
+    "awkward"
+   ],
+   "visual_profile_target": {
+    "luma": "78.6+-20",
+    "saturation": "8.34+-4"
+   },
+   "warmth": 0.2
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "lonnexmusic",
+    "candidates": [
+     {
+      "artist": "Still Haven",
+      "distance": 0.855,
+      "fresh": true,
+      "id": "7579661510428428289",
+      "score": 100,
+      "title": "Cycle Syncing Frequency",
+      "video_count": 2100000
+     },
+     {
+      "artist": "lonnexmusic",
+      "distance": 0.6074,
+      "fresh": true,
+      "id": "7226881151338792962",
+      "score": 100,
+      "title": "losing",
+      "video_count": 516500
+     },
+     {
+      "artist": "user",
+      "distance": 0.7805,
+      "fresh": true,
+      "id": "6841568473596823553",
+      "score": 92,
+      "title": "Long Whale Song",
+      "video_count": 133100
+     },
+     {
+      "artist": "Jason LaRay Keener",
+      "distance": 0.7722,
+      "fresh": true,
+      "id": "7522396874822715408",
+      "score": 64,
+      "title": "Decaying in a Day Spa",
+      "video_count": 1019
+     }
+    ],
+    "distance": 0.6074,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "ambient",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7324011622136122145",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 7.0s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 516500",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7226881151338792962",
+    "title": "losing"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 21
+     }
+    },
+    "passes": true,
+    "rationale": "metaphor lane shot 'The Backrooms are real. And you might already be i' paired with 'losing' for social_moment_loop_v1.",
+    "total": 56
+   },
+   "visual": {
+    "band_busy": 0.0383,
+    "candidates": [
+     {
+      "band_busy": 0.0383,
+      "height": 1280,
+      "pin_id": "e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ",
+      "query": "liminal hallway lights",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['lights'] (+5); scene words ['and', 'inside', 'with'] (+12)",
+         "points": 17
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 74.2s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 73,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1043,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzT_-ukOdLFwNQu6HyIdX8_t0R6exrtrmzmxV6EUH4XUCx0xw",
+      "query": "liminal hallway lights",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['lights'] (+5); scene words ['and', 'with'] (+8)",
+         "points": 13
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.9s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 69,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0889,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzLPm4fGojkUmwI7Yp1R4XUX6jUmY4wtHtalxanUMmFv_C_",
+      "query": "liminal hallway lights",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['and', 'with'] (+8)",
+         "points": 8
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 20.4s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 64,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "quietcipher1",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0017,
+     "motion": 0.0003,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ/",
+    "query": "liminal hallway lights",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "liminal hallway lights",
+      "returned": 25
+     },
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "office elevator interior POV floor display",
+      "returned": 0
+     },
+     {
+      "kept": 0,
+      "lane": "adjacent",
+      "query": "hands clutching locked phone inside elevator",
+      "returned": 0
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "elevator doors closed reflection two people",
+      "returned": 0
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShxLsM4XLk3jGUZH3F52iJt34R-cNdSoxwA5j4O78mAC",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "e1_AfqPShz6KViwQ8K1phKIiLGS0cdpwnJOgGrXt7icXVtfOD4PYdOyXA",
+      "why": "on-screen text: '1-11; 111; 1111; L; \u4e00\u4e09'"
+     },
+     {
+      "id": "e1_AfqPShzzxtNysaTIexgckcvRbxMXX7LMjsWFUWv7hDe226B44LA",
+      "why": "unusable crop 596x336"
+     },
+     {
+      "id": "e1_AfqPShzR18wsIIlFGMMAL_cAnL3SZX18gnyd4K_QtA62DMn5YDoazg",
+      "why": "on-screen text: 'These; U; backrooms; corner; to relive'"
+     },
+     {
+      "id": "e1_AfqPShyiMDpQZ-YYOXaG3mi4S-tXz600QBvPNuWhPhY",
+      "why": "unusable crop 640x800"
+     },
+     {
+      "id": "e1_AfqPShwnMeBVrmas6muOzwTIwc39u7RHvbv1awAezKSmyf5bP0OA",
+      "why": "on-screen text: 'P; \u997c'"
+     },
+     {
+      "id": "e1_AfqPShyk13hbKwS-7D4uLQfMDrmJpP1II5Cqs2VZnHMeyzcNSZi7aQ",
+      "why": "on-screen text: '\u4e09'"
+     },
+     {
+      "id": "e1_AfqPShzTUT-8yYbBLdl_5Vta7blfp0w5qgq6RO_1WKpW718H6gcz",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "e1_AfqPShwDaV0kxp5WVtuo6t2BZMHUsdLPycrRJ9etTowBClv-cQJj",
+      "lane": "metaphor",
+      "query": "liminal hallway lights",
+      "why": "commerce/affiliate domain: 'linktr.ee'"
+     },
+     {
+      "id": "e1_AfqPShwB6-fqfIFxThoBQcKa7A6y2VAbT8J66SvS00ldEt8m6x0",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShwGrBcVkstCfbcViD_Uj-7VERh9ZXEipWUm8GI95H7KCwjq",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShzzoV3KNnt_18sD0s6QJ-SCW9ffftlmTeS7iFojz-ny-hs",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShzdlWXrqeKTlfNtR06dFevXWFu49iXqWlrQSyHA5LGYuqh-",
+      "why": "unusable crop 404x720"
+     },
+     {
+      "id": "e1_AfqPShwzkrkvxL0RUFseKLkXslF6z-9K6-Vwy8PhWnE7-sbCR_gH",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "e1_AfqPShyb_WhPVMGcs_weH7dWBlOhcWXhIqdJfo_vg_CmZVaUMZfD",
+      "why": "unusable crop 640x480"
+     },
+     {
+      "id": "e1_AfqPShwIrub-niANK4NA-jHVqYVbTYd6eqIv_QO6_1YnfKrqQMbB",
+      "why": "unusable crop 576x576"
+     },
+     {
+      "id": "e1_AfqPShxTChj4m6ZPaNif_pCrUyes84jMtwsBi31bu-v9OAU3xm4s",
+      "why": "on-screen text: 'Fghontryorbnre; Fpronbryjurtbme; O; hlen; hlesgne'"
+     },
+     {
+      "id": "e1_AfqPShyx_KV5OgkWU1iGsDdaXPLU4klbbrQFcL-YcJ5swd7_yTs",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShwdl2fnNgBW88ozOllfnZLIqeAt4d7bt3Uh-sz5XtjwegBQJA",
+      "why": "too short 6.18s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShx7OnANUTnWQrtmS9GoTyYbabAWEwLK67wGafFHmAcGgLrj5g",
+      "why": "unusable crop 576x576"
+     },
+     {
+      "id": "e1_AfqPShzKKnd8lZB1eT0yosFl1KuMCEL8K6h-Yd89rKjwGOpse5C2",
+      "why": "on-screen text: '(In 15 seconds); Liminal Hallway; Speed-modeling a'"
+     },
+     {
+      "id": "e1_AfqPShxK-H28Ltp3FQfFxqgXg5zpzw15z5cJZKPjL-cgb0__BQWM",
+      "why": "too short 6.18s for 7.0s"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['lights'] (+5); scene words ['and', 'inside', 'with'] (+12)",
+       "points": 17
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 74.2s (need 7.0s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 73,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "The Backrooms are real. And you might already be inside them"
+   }
+  },
+  "audio": {
+   "bytes": 982649,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261102T171652Z-2ee229/assets/track_7226881151338792962.m4a",
+   "pin_url": null,
+   "sha256": "d7beba5d7f60a79f9d741dd606b528a621a31fd6b1f467c49512ebd16b1b9b9b",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7226881151338792962",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 77.1,
+    "high": 0.0,
+    "mid": 22.9
+   },
+   "duration_s": 60.0,
+   "file": "track_7226881151338792962.m4a",
+   "key_estimate": "C minor",
+   "loudness_curve_db": [
+    -21.2,
+    -22.1,
+    -22.9
+   ],
+   "onset_density_per_s": 1.42,
+   "peak_db": -9.2,
+   "rms_db": -22.0,
+   "spectral_centroid_hz": 455.0,
+   "tempo_bpm": 117.5,
+   "zero_crossing_rate": 0.0239
+  },
+  "background": {
+   "bytes": 8414563,
+   "creator": "quietcipher1",
+   "path": "/home/runner/work/_temp/beast-scratch/20261102T171652Z-2ee229/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ/",
+   "sha256": "41d5a2f290e8d5f56bbfd6b48631d1eaf8c2499aed99267b2f2f97f5f48e0a17",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 3,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "You want a tiny moment of connection but you're also trying to be invisible enough to not get it wrong.",
+    "observable_behaviour": "staring fixed at the floor numbers ticking up, phone clutched in both hands but not unlocked, shoulders tucked in to take up less space",
+    "private_worry": "that if you say good morning in the wrong tone you'll seem awkward and they'll remember you as the weird quiet one",
+    "situation": "in the office lift at 8:47am, just you and one senior colleague you sort-of know between floor 1 and 4"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "'3 floors to say hi, just us at 8:47' / 'phone locked, both hands' / 'scared it sounds weird so i count numbers' / 'rehearse good morning\u2026 decide it'll sound weird\u2026 stare at floor numbers till 4.'",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Payoff sentence runs on without punctuation ('both hands want to say good morning scared\u2026'), making the turn hard to read instantly; break it. Hook and caption count both say 3 \u2014 fine, but caption opens with an unrelated mood line before the list.",
+    "scene_specificity": 5,
+    "sendability_who": "A junior office worker sending it to a fellow junior or close friend with 'the 8:47 lift, just us, three floors.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 3,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=False"
+     ]
+    }
+   ],
+   "topic_id": "lift-3-floors-to-say-hi"
+  },
+  "delivery": {
+   "at": "2026-11-02T17:25:46Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 3.77,
+   "yavg_delta": 1.7
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 0.8784156769596198,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.6
+  },
+  "measured": {
+   "sat": 12.11,
+   "yavg": 80.3
+  },
+  "output": {
+   "bytes": 3011853,
+   "duration_s": 7.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261102T171652Z-2ee229.mp4",
+   "sha256": "41f4cacd1429975b78aad356c176c3798180b95e3a4f44b6043598d8ec031193"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7226881151338792962",
+    "title": "losing"
+   },
+   "background_query": "office lift interior POV, floor display ticking 1 to 4, hands clutching locked phone, senior colleague standing nearby",
+   "caption": "the lift is my enemy. 1. rehearse good morning 2. decide it'll sound weird 3. stare at floor numbers till 4",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "The scene is held-breath, slow-tick micro-tension in a silent lift where 3 floors stretch forever, so a spacious ambient pad turns awkward silence into high-fidelity cinematic weight.",
+     "tiktok_query": "ambient"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "emotional_analysis": "The text is about claustrophobic, fluttery suspense and shy paralysis where a 30-second elevator ride feels like an eternity to say hi.",
+     "pinterest_query": "liminal hallway lights"
+    }
+   },
+   "hookLines": [
+    "3 floors to say hi,",
+    "just us at 8:47"
+   ],
+   "loop_hypothesis": "last line explains how you spent the 3 floors from the first line, so on loop the countdown restarts and you count again",
+   "payoffLines": [
+    "phone locked, both hands",
+    "want to say good morning",
+    "scared it sounds weird",
+    "so i count numbers"
+   ],
+   "provenance": {
+    "creator": "quietcipher1",
+    "pin_id": "e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 79 < 92): warm yellow"
+   },
+   "topic_id": "lift-3-floors-to-say-hi"
+  },
+  "publish": {
+   "alt_text": "Office lift interior POV, floor display ticking 1 to 4, hands clutching locked phone, senior colleague standing nearby. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-02T17:27:03Z",
+   "caption": "the lift is my enemy. 1. rehearse good morning 2. decide it'll sound weird 3. stare at floor numbers till 4",
+   "channel": "instagram",
+   "container_id": "17917487952538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18080929127747051",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/qmrpluey.mp4"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 3.77,
+    "yavg_delta": 1.7
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261102T171652Z-2ee229/social_moment_loop_v1-live-20261102T171652Z-2ee229.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 3011853,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 12.11,
+    "yavg": 80.3
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0581,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 26.8
+  },
+  "rendered_at": "2026-11-02T17:25:42Z",
+  "run_id": "20261102T171652Z-2ee229",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "standing in an office lift for three floors with a senior colleague at 8:47am wanting to say good morning but freezing and watching the numbers instead",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "office elevator interior POV floor display",
+     "hands clutching locked phone inside elevator",
+     "elevator doors closed reflection two people"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.6074,
+    "keywords": [
+     {
+      "keyword": "ambient",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7226881151338792962",
+    "title": "losing"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.6074
+   },
+   "content": {
+    "attempts": 3,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 2,
+    "ok": true,
+    "topic_id": "lift-3-floors-to-say-hi"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "ambient",
+    "vendor": "meta-api",
+    "why": "The scene is held-breath, slow-tick micro-tension in a silent lift where 3 floors stretch forever, so a spacious ambient pad turns awkward silence into high-fidelity cinematic weight."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "liminal hallway lights",
+    "vendor": "meta-api",
+    "why": "The text is about claustrophobic, fluttery suspense and shy paralysis where a 30-second elevator ride feels like an eternity to say hi."
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261102T171652Z-2ee229.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": true,
+    "rationale": "metaphor lane shot 'The Backrooms are real. And you might already be i' paired with 'losing' for social_moment_loop_v1.",
+    "score": 56
+   },
+   "pinterest": {
+    "candidates": 3,
+    "hls": true,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 22.05,
+     "yavg": 83.5
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ",
+    "query": "liminal hallway lights",
+    "review_status": "accept",
+    "score": 73,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "The Backrooms are real. And you might already be inside them"
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 26.8
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261102T171652Z-2ee229/social_moment_loop_v1-live-20261102T171652Z-2ee229.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 3011853,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 79 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": 3.77,
+     "yavg_delta": 1.7
+    },
+    "measured": {
+     "sat": 12.11,
+     "yavg": 80.3
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.0581,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
+  },
+  "topic_id": "lift-3-floors-to-say-hi"
  }
 ]
