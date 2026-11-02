@@ -67,9 +67,11 @@ def main(argv=None) -> int:
 
     cfg = config.load_config()
     if cfg.get("short_publish_enabled"):
-        print("refusing to run: short_publish_enabled is true; the preview runner "
-              "must not be able to publish", file=sys.stderr)
-        return 2
+        # This runner never publishes (see src/run_publish.py). The old refusal made
+        # the two-format pipeline unusable whenever publishing was on, which is how
+        # the old v3 renderer ended up being the only thing that could post.
+        print("[preview] note: publishing is enabled; this module still only renders "
+              "and delivers. Publication is src/run_publish.py.", flush=True)
 
     run_id = f"{time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())}-{uuid.uuid4().hex[:6]}"
     fmt = _pick_format(args.format)

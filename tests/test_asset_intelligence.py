@@ -518,3 +518,16 @@ def test_lanes_drop_fragments_and_keep_only_viable_queries():
                                          "night bus window city lights"])
     plan = asset_intent.lanes(intent)
     assert [p["query"] for p in plan] == ["night bus window city lights"]
+
+
+def test_publish_content_uses_the_approved_caption_verbatim():
+    from src import run_publish
+    payload = {"caption": "8 things you do after leaving early",
+               "closing": "the replay is the real event.",
+               "titleLines": ["you leave at nine"], "topic_id": "t",
+               "background_query": "night bus"}
+    c = run_publish.content_for(payload)
+    assert c["caption"].startswith("8 things you do after leaving early")
+    assert "the replay is the real event." in c["caption"]
+    assert c["hook"] == "you leave at nine"
+    assert c["topic"] == "t"

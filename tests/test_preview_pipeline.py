@@ -133,11 +133,16 @@ def test_run_preview_cannot_import_publish():
     assert "media_publish" not in src
 
 
-def test_run_preview_refuses_when_publishing_is_on(monkeypatch):
+def test_run_preview_never_publishes_even_when_publishing_is_on(monkeypatch):
+    """The renderer must stay non-publishing; publication is run_publish.py.
+
+    The old guard refused to run at all, which is why the v3 renderer became the
+    only thing that could post. The separation is now by module, not by a flag.
+    """
     from src import run_preview
-    monkeypatch.setattr(run_preview.config, "load_config",
-                        lambda: {"short_publish_enabled": True})
-    assert run_preview.main(["--format", "A", "--no-deliver"]) == 2
+    src = Path("src/run_preview.py").read_text()
+    assert "import publish" not in src and "from .publish" not in src
+    assert Path("src/run_publish.py").exists()
 
 
 # ------------------------------------------------------------------ asset broker
