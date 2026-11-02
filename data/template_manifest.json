@@ -1,0 +1,765 @@
+[
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.15,
+    "avoid": [
+     "upbeat corporate music",
+     "heavy bass drops",
+     "dramatic strings",
+     "laugh track",
+     "loud percussion"
+    ],
+    "emotional_role": "hold the cringe with soft humour and make 4 seconds feel stretched",
+    "energy": 0.25,
+    "instrumentation": [
+     "muted piano",
+     "light synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "lo-fi room tone",
+     "barely-there"
+    ],
+    "trend_hashtags": [
+     "#relatable",
+     "#officelife"
+    ],
+    "trend_keywords": [
+     "soft awkward hum",
+     "quiet office lofi",
+     "gentle cringe"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-02T15:01:27Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "microwave-performance-review",
+   "core_human_moment": "You are trapped by the last 4 seconds on the microwave, turning a simple shared kitchen moment into an over-rehearsed social performance.",
+   "degraded": false,
+   "emotional_primary": "self-conscious",
+   "emotional_secondary": "awkward",
+   "format_id": "caption_list_title_v1",
+   "human_action": "staring at microwave, stirring already-smooth yoghurt, thumb hovering over phone",
+   "humour": 0.6,
+   "intentional_contrast": null,
+   "literal_scene": "A person standing alone in a small office kitchen watching a microwave count down to 00:04 with a yoghurt cup and tea mug on the counter in soft daylight.",
+   "literalness": "literal",
+   "motion_intent": "one continuous calm static shot with only tiny ambient drift and microwave digits ticking",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos",
+    "person smiling at camera",
+    "dramatic zooms"
+   ],
+   "palette_intent": [
+    "warm off-white and beige",
+    "muted grey neutrals"
+   ],
+   "rationale": "The copy lives in the literal office kitchen with the microwave at 00:04 and yoghurt on the counter; a calm, lived-in observer shot keeps text legible and lets the awkward pause breathe, while soft sparse piano holds the self-conscious tension with light humour instead of drama.",
+   "scene_entities": [
+    "microwave",
+    "yoghurt cup",
+    "office kitchen"
+   ],
+   "schema_version": "1.0",
+   "setting": "office kitchen / break room",
+   "tension": 0.6,
+   "text_safe_zone": "keep center vertical band 41-59% low-contrast and uncluttered for white 4-line title from frame 0",
+   "time_of_day": "midday",
+   "valence": -0.2,
+   "video_queries": [
+    "office kitchen microwave counting down 00:04",
+    "yoghurt cup and spoon on counter next to mug",
+    "hand hovering over microwave not pressing button"
+   ],
+   "visual_mood": [
+    "soft",
+    "awkward"
+   ],
+   "visual_profile_target": {
+    "luma": "luma 105+-14",
+    "saturation": "saturation 14.2+-5"
+   },
+   "warmth": 0.35
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "BlueWhaleMusic",
+    "candidates": [
+     {
+      "artist": "Sydmattersofficial",
+      "distance": 0.7277,
+      "fresh": true,
+      "id": "6956827864519936002",
+      "score": 84,
+      "title": "To All of You - Remastered 2021",
+      "video_count": 52900
+     },
+     {
+      "artist": "Tollan Kim\ud83c\udf38",
+      "distance": 0.4772,
+      "fresh": true,
+      "id": "7072513628145977346",
+      "score": 100,
+      "title": "Aesthetic",
+      "video_count": 23300000
+     },
+     {
+      "artist": "BlueWhaleMusic",
+      "distance": 0.3531,
+      "fresh": true,
+      "id": "7638038467818342417",
+      "score": 100,
+      "title": "Curious Little Creatures",
+      "video_count": 2000000
+     }
+    ],
+    "distance": 0.3531,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "soft awkward hum",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6701927646810343425",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "6701927653860968450",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "59.9s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 2000000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7638038467818342417",
+    "title": "Curious Little Creatures"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 30
+     }
+    },
+    "passes": true,
+    "rationale": "literal lane shot 'Healthy Banana Oatmeal Cookies' paired with 'Curious Little Creatures' for caption_list_title_v1.",
+    "total": 65
+   },
+   "visual": {
+    "band_busy": 0.0923,
+    "candidates": [
+     {
+      "band_busy": 0.0923,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5",
+      "query": "office kitchen microwave counting",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['evening', 'simple'] (+10); scene words ['and', 'person', 'the', 'with'] (+14)",
+         "points": 24
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 80,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "choosingchia",
+    "flags": [
+     "source domain: choosingchia.com"
+    ],
+    "lane_expansions": 1,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.2154,
+     "motion": 0.1879,
+     "ok": true,
+     "samples": 8
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5/",
+    "query": "office kitchen microwave counting",
+    "query_lane": "literal",
+    "query_log": [
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "office kitchen microwave counting down 00:04",
+      "returned": 0
+     },
+     {
+      "kept": 0,
+      "lane": "adjacent",
+      "query": "yoghurt cup and spoon on counter",
+      "returned": 0
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "hand hovering over microwave not pressing",
+      "returned": 0
+     },
+     {
+      "kept": 13,
+      "lane": "literal",
+      "query": "office kitchen microwave counting",
+      "returned": 13
+     },
+     {
+      "kept": 0,
+      "lane": "adjacent",
+      "query": "yoghurt cup spoon on counter",
+      "returned": 0
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "hand hovering over microwave not",
+      "returned": 0
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShzl-UhDTLq6tm0K34b-myrvWWbJOU7ldgbZ49GnAKlTvWYssA",
+      "why": "too short 9.22s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzkXohKoz89CZUfSHsqWzmbhM7nmBvDz59aqI6Q-Jaz2hB3",
+      "why": "too short 5.0s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwfiarVf8J6kmVT4C35gXG0-xO-o64GrSHGHyGLwzinrlKQ",
+      "lane": "literal",
+      "query": "office kitchen microwave counting",
+      "why": "real-estate/tour content: 'real estate'"
+     },
+     {
+      "id": "e1_AfqPShzE8LKZsKkXafDliF597RX5kZKBPV8s8ffiFPOGDdJm6qZM",
+      "why": "on-screen text/logo: '1&; 100mlHotSauce; Delicious Meal Prep!;'"
+     },
+     {
+      "id": "e1_AfqPShyyJ87K3EIQ9HMuZcey-wvU55yzWG9ONjZTUmrwxMKldd13",
+      "why": "unusable crop 574x1022"
+     },
+     {
+      "id": "e1_AfqPShzvMIlUekBFGI4iri80V5TbS-afwn-ai8it_NOweoLj-l1q",
+      "why": "unusable crop 560x1000"
+     },
+     {
+      "id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
+      "why": "on-screen text/logo: '#TOMAID; PR; TO; WELCOME'"
+     },
+     {
+      "id": "e1_AfqPShyqjzxugl-nfoAygzahqtdLMEDSyKg8AGcVk3_m4WLMNe5yZQ",
+      "why": "on-screen text/logo: '(makes is minis); 1/4 cup peanut butter;'"
+     },
+     {
+      "id": "e1_AfqPShww1zKWUsobJ74tBNWSOJMhKQNrsZg1mOU2oLS9zhhu",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShzkgCtiknaFG0xTdumznhmJGcwGnut6qLFMVQPWYl7O_GfV",
+      "why": "on-screen text/logo: '2 per bowl; 300 cal + 30 protein; cowboy'"
+     },
+     {
+      "id": "e1_AfqPShwpWbXjy_DivdvEMEC-wJIRCDEPFQy1sn_lcWgxrw_9n2Jm",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxt6ZcDPcdEXAo2BAQ9bJSAvXX3aChuTPY2ow1xwUGqDT6c",
+      "why": "unusable crop 576x1024"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['evening', 'simple'] (+10); scene words ['and', 'person', 'the', 'with'] (+14)",
+       "points": 24
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 13.3s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 80,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Healthy Banana Oatmeal Cookies"
+   }
+  },
+  "audio": {
+   "bytes": 997593,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261102T145908Z-4428ec/assets/track_7638038467818342417.m4a",
+   "pin_url": null,
+   "sha256": "d357bf6a922e8b2977514f69891be9cd65f6d998c82668e7de0a6400f3b80f80",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7638038467818342417",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 42.9,
+    "high": 0.2,
+    "mid": 56.8
+   },
+   "duration_s": 59.88,
+   "file": "track_7638038467818342417.m4a",
+   "key_estimate": "G major",
+   "loudness_curve_db": [
+    -22.1,
+    -21.9,
+    -22.2
+   ],
+   "onset_density_per_s": 4.17,
+   "peak_db": -7.9,
+   "rms_db": -22.1,
+   "spectral_centroid_hz": 1386.0,
+   "tempo_bpm": 129.2,
+   "zero_crossing_rate": 0.0534
+  },
+  "background": {
+   "bytes": 3181065,
+   "creator": "choosingchia",
+   "path": "/home/runner/work/_temp/beast-scratch/20261102T145908Z-4428ec/assets/cand_1_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5/",
+   "sha256": "6d06d7c8154638e5c4afe2c3937138b93436634836bad8f69d391e0e1b2ed448",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "wants to come across as warm and normal but feels like every micro-move is being scored",
+    "observable_behaviour": "staring very intently at the timer, stirring yoghurt that doesn't need stirring, scrolling phone with thumb not moving",
+    "private_worry": "if I say hi it'll sound forced and weird, if I don't say hi they'll think I'm rude or cold",
+    "situation": "office kitchen at 12:47pm, your lunch is in the microwave at 00:04, colleague you like but don't know well walks in to make tea"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 5.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "'00:04 on the microwave feels like a performance review' / 'rehearse hi in head three different tones' / 'say hi too late and too bright' / 'you weren't being rude, you were trying to be warm.'",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Nothing failed; if forced, item 3 ('thumb not actually moving') is the softest image but still concrete. Consider sharpening shareability hook slightly.",
+    "scene_specificity": 5,
+    "sendability_who": "Someone in their 20s-30s with mild social awkwardness sending it to a close friend or work bestie who gets the office-kitchen micro-panic, with 'this is literally me at 12:47.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "microwave-performance-review"
+  },
+  "delivery": {
+   "at": "2026-11-02T15:04:37Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -2.93,
+   "yavg_delta": 11.9
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.85,
+   "natural_fit": false,
+   "raw": {
+    "brightness": 0.808,
+    "saturate": 1.162
+   },
+   "saturate": 1.162
+  },
+  "measured": {
+   "sat": 11.27,
+   "yavg": 116.9
+  },
+  "output": {
+   "bytes": 13859317,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261102T145908Z-4428ec.mp4",
+   "sha256": "755081a9c9bbeb507bd4e220fada87b7094ac0980cd4c7b97211c7a79694c11c"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7638038467818342417",
+    "title": "Curious Little Creatures"
+   },
+   "background_query": "office kitchen microwave counting down, yoghurt cup on counter, tea mug, soft daylight",
+   "caption": "6 things you do when 00:04 on the microwave feels like a performance review:\n1. stare at microwave like it needs supervision\n2. stir yoghurt that is already smooth\n3. scroll phone, thumb not actually moving\n4. rehearse hi in head three different tones\n5. say hi too late and too bright\n6. replay the whole 12 seconds on loop later",
+   "closing": "you weren't being rude, you were trying to be warm.",
+   "headline": "6 things you do when 00:04 on the microwave feels like a performance review",
+   "list_items": [
+    "stare at microwave like it needs supervision",
+    "stir yoghurt that is already smooth",
+    "scroll phone, thumb not actually moving",
+    "rehearse hi in head three different tones",
+    "say hi too late and too bright",
+    "replay the whole 12 seconds on loop later"
+   ],
+   "provenance": {
+    "creator": "choosingchia",
+    "pin_id": "e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 110): warm off-white"
+   },
+   "titleLines": [
+    "6 things you do when",
+    "00:04 on the microwave",
+    "feels like a",
+    "performance review"
+   ],
+   "topic_id": "microwave-performance-review"
+  },
+  "publish": {
+   "alt_text": "Office kitchen microwave counting down, yoghurt cup on counter, tea mug, soft daylight. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-02T15:05:19Z",
+   "caption": "6 things you do when 00:04 on the microwave feels like a performance review:\n1. stare at microwave like it needs supervision\n2. stir yoghurt that is already smooth\n3. scroll phone, thumb not actually moving\n4. rehearse hi in head three different tones\n5. say hi too late and too bright\n6. replay the whole 12 seconds on loop later\n\nyou weren't being rude, you were trying to be warm.",
+   "channel": "instagram",
+   "container_id": "17917466511538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18039326093891255",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://d.uguu.se/VoUfhVFx.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.93,
+    "yavg_delta": 11.9
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261102T145908Z-4428ec/caption_list_title_v1-live-20261102T145908Z-4428ec.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 13859317,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 11.27,
+    "yavg": 116.9
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0997,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 48.5
+  },
+  "rendered_at": "2026-11-02T15:04:31Z",
+  "run_id": "20261102T145908Z-4428ec",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "You are trapped by the last 4 seconds on the microwave, turning a simple shared kitchen moment into an over-rehearsed social performance.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "office kitchen microwave counting down 00:04",
+     "yoghurt cup and spoon on counter",
+     "hand hovering over microwave not pressing"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3531,
+    "keywords": [
+     {
+      "keyword": "soft awkward hum",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7638038467818342417",
+    "title": "Curious Little Creatures"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3531
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "microwave-performance-review"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261102T145908Z-4428ec.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": true,
+    "rationale": "literal lane shot 'Healthy Banana Oatmeal Cookies' paired with 'Curious Little Creatures' for caption_list_title_v1.",
+    "score": 65
+   },
+   "pinterest": {
+    "candidates": 1,
+    "hls": false,
+    "lane": "literal",
+    "metrics": {
+     "sat": 12.22,
+     "yavg": 129.9
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShyhYygKhcOOLrLqeICHBRd-YLejDZeoBM58DOtan0_Fj7W5",
+    "query": "office kitchen microwave counting",
+    "review_status": "accept",
+    "score": 80,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Healthy Banana Oatmeal Cookies"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 48.5
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261102T145908Z-4428ec/caption_list_title_v1-live-20261102T145908Z-4428ec.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 13859317,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 110): warm off-white"
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": -2.93,
+     "yavg_delta": 11.9
+    },
+    "measured": {
+     "sat": 11.27,
+     "yavg": 116.9
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0997,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
+  },
+  "topic_id": "microwave-performance-review"
+ }
+]
