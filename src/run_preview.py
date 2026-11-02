@@ -32,8 +32,9 @@ from pathlib import Path
 
 from . import config, render_gate
 from .formats import (asset_broker, asset_intent, asset_ledger, asset_scoring,
-                      content_factory, run_manifest, template_renderer,
-                      template_payloads, text_style)
+                      audio_director, content_factory, run_manifest,
+                      template_renderer, template_payloads, text_style,
+                      visual_director)
 
 ALIAS = {"A": "caption_list_title_v1", "B": "social_moment_loop_v1"}
 ROOT = Path(__file__).resolve().parents[1]
@@ -112,9 +113,34 @@ def main(argv=None) -> int:
            queries=[q["query"] for q in asset_intent.lanes(intent)],
            core_human_moment=intent.get("core_human_moment"))
 
-    # 5: Pinterest acquisition (lanes -> prefilters -> score -> reserve)
+    # 4b: the two directors. They read the finished copy and answer with ONE
+    # metaphor each - the background and the sound are chosen for the feeling, not
+    # for the literal meaning. Failures are recorded, never silently skipped.
+    copy_text = "\n".join(str(x) for x in
+                          [payload.get("caption") or "",
+                           *[str(l) for l in (payload.get("titleLines") or [])],
+                           *[str(l) for l in (payload.get("hookLines") or [])],
+                           *[str(l) for l in (payload.get("payoffLines") or [])]])
+    directors = {}
+    for name, mod in (("visual", visual_director), ("audio", audio_director)):
+        try:
+            verdict = mod.direct(copy_text)
+            directors[name] = verdict
+            key = "pinterest_query" if name == "visual" else "tiktok_query"
+            _stage(stages, f"director_{name}", True, query=verdict.get(key),
+                   why=verdict.get("emotional_analysis") or verdict.get("sonic_analysis"),
+                   vendor=verdict.get("director_vendor"))
+        except Exception as exc:  # noqa: BLE001
+            directors[name] = {}
+            _stage(stages, f"director_{name}", True, degraded=True,
+                   error=str(exc)[:160])
+    payload["director"] = directors
+
+    # 5: Pinterest acquisition (metaphor -> lanes -> prefilters -> score -> reserve)
     try:
-        bg = asset_broker.acquire(intent, fmt, scratch / "assets", run_id=run_id)
+        bg = asset_broker.acquire(intent, fmt, scratch / "assets", run_id=run_id,
+                                  metaphor_query=(directors.get("visual") or {}).get(
+                                      "pinterest_query"))
         reserved.append(("visual", bg["reserve_key"]))
         _stage(stages, "pinterest", True, pin_id=bg.get("pin_id"),
                title=bg.get("title"), size=f"{bg['width']}x{bg['height']}",
@@ -129,8 +155,10 @@ def main(argv=None) -> int:
 
     # 6: audio (intent keywords -> measured score -> reserve)
     try:
-        au = asset_broker.trending_audio(fmt, scratch / "assets", keyword=args.keyword,
-                                         intent=intent, run_id=run_id)
+        au = asset_broker.trending_audio(
+            fmt, scratch / "assets",
+            keyword=args.keyword or (directors.get("audio") or {}).get("tiktok_query"),
+            intent=intent, run_id=run_id)
         if au.get("stable_id"):
             akey = str(au["stable_id"])
             asset_ledger.reserve(run_id, key=akey, kind="audio",

@@ -96,7 +96,7 @@ def _pre_rank(entries: list, intent: dict) -> list:
         [str(intent.get("literal_scene") or ""), str(intent.get("setting") or ""),
          str(intent.get("human_action") or "")] +
         [str(e) for e in (intent.get("scene_entities") or [])]).lower())}
-    lane_rank = {"literal": 0, "adjacent": 1, "emotional": 2}
+    lane_rank = {"metaphor": -1, "literal": 0, "adjacent": 1, "emotional": 2}
     def key(e):
         text = " ".join(str(e.get(k) or "") for k in ("title", "description"))
         toks = {w for w in re.findall(r"[a-z]{3,}", text.lower())}
@@ -135,7 +135,8 @@ def _search_lanes(plan: list[dict], *, page_size: int = 25) -> tuple[list, list]
 
 def acquire(intent: dict, format_id: str, scratch: Path, *,
             run_id: str = "adhoc", min_width: int = 720,
-            max_downloads: int = MAX_DOWNLOADS, verbose: bool = True) -> dict:
+            max_downloads: int = MAX_DOWNLOADS, verbose: bool = True,
+            metaphor_query: str | None = None) -> dict:
     """Full staged acquisition. Returns the chosen clip plus every scored candidate."""
     scratch.mkdir(parents=True, exist_ok=True)
     prof = template_renderer.PROFILES[format_id]
@@ -149,6 +150,12 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
     used_shas = {r.get("sha256") for r in cooled.values() if r.get("sha256")}
 
     plan = asset_intent.lanes(intent)
+    # The visual director's metaphor leads. It is deliberately NOT a description of
+    # the moment - the contrast between copy and background is the effect - and the
+    # scene lanes stay behind it as a fallback when the metaphor finds nothing.
+    if metaphor_query and metaphor_query.strip():
+        mq = _clip(metaphor_query.strip().lower(), 40)
+        plan = [{"lane": "metaphor", "query": mq}] + [p for p in plan if p["query"] != mq]
     if not plan:
         raise AssetError("asset intent produced no usable scene query")
 

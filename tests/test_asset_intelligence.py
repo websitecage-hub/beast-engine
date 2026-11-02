@@ -535,3 +535,31 @@ def test_publish_content_uses_the_approved_caption_verbatim():
     assert "the replay is the real event." in c["caption"]
     assert c["hook"] == "you leave at nine"
     assert c["topic"] == "t"
+
+
+def test_metaphor_query_leads_the_search(monkeypatch, tmp_path):
+    """The director's metaphor is searched first; scene lanes stay as fallback."""
+    monkeypatch.setenv("BEAST_LEDGER", str(tmp_path / "l.json"))
+    seen = []
+
+    def search(q, page_size=25):
+        seen.append(q)
+        return [_entry(id="m1", title="fluorescent light flicker")] if "fluorescent" in q else []
+
+    monkeypatch.setattr(asset_broker.pinterest, "search_videos", search)
+    monkeypatch.setattr(asset_broker.pinterest, "media_url", lambda e: "https://x/v.mp4")
+    monkeypatch.setattr(asset_broker.pinterest, "download",
+                        lambda url, dest, **k: (Path(dest).write_bytes(b"x" * 4096), True)[1])
+    monkeypatch.setattr(asset_broker.asset_probe, "analyze", lambda p, fmt: _measured())
+    monkeypatch.setattr(asset_broker.asset_probe, "ocr_check",
+                        lambda p, **k: {"has_text": False, "has_logo": False, "by": "test"})
+    monkeypatch.setattr(asset_broker.render_gate, "probe",
+                        lambda p: {"streams": [{"codec_type": "video", "width": 1080,
+                                                "height": 1920}],
+                                   "format": {"duration": "20.0"}})
+    monkeypatch.setattr(asset_broker.template_renderer, "measure_luma_sat",
+                        lambda p: {"yavg": 105.0, "sat": 14.2})
+    rec = asset_broker.acquire(INTENT, "caption_list_title_v1", tmp_path, run_id="mq",
+                               metaphor_query="fluorescent light flicker", verbose=False)
+    assert seen[0] == "fluorescent light flicker"
+    assert rec["query_lane"] == "metaphor"
