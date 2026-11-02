@@ -28,8 +28,10 @@ def stage1() -> int:
     cfg = config.load_config()
     memory = config.load_memory()
     res = run_v2.select_arms(cfg, memory, {})
-    print(f"[stage1] selected: {json.dumps({k: v for k, v in res.items()
-                                           if k != 'source_situation'})}", flush=True)
+    # Precompute: a {...} expression inside an f-string cannot span lines on
+    # Python 3.11 (the CI runner), only on 3.12 (PEP 701).
+    selected = {k: v for k, v in res.items() if k != "source_situation"}
+    print(f"[stage1] selected: {json.dumps(selected)}", flush=True)
 
     w = writer.write(res["series"], res["hook_type"], res["source_situation"],
                      res["length_bucket"], res["layout"], res["cta_type"],
