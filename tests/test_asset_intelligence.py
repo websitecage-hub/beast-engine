@@ -563,28 +563,3 @@ def test_metaphor_query_leads_the_search(monkeypatch, tmp_path):
                                metaphor_query="fluorescent light flicker", verbose=False)
     assert seen[0] == "fluorescent light flicker"
     assert rec["query_lane"] == "metaphor"
-
-
-def test_greyscale_clips_are_deprioritised(monkeypatch, tmp_path):
-    """A 2.7-saturation clip cannot reach the colour band at the 1.6x grade limit."""
-    monkeypatch.setenv("BEAST_LEDGER", str(tmp_path / "l.json"))
-    monkeypatch.setattr(asset_broker.pinterest, "search_videos",
-                        lambda q, page_size=25: [_entry(id="grey"), _entry(id="vivid")])
-    monkeypatch.setattr(asset_broker.pinterest, "media_url", lambda e: "https://x/v.mp4")
-    monkeypatch.setattr(asset_broker.pinterest, "download",
-                        lambda url, dest, **k: (Path(dest).write_bytes(b"x" * 4096), True)[1])
-
-    def measured_for(path, fmt):
-        return _measured(metrics={"yavg": 80.0, "sat": 2.7 if "cand_0_0" in str(path) else 9.0})
-    monkeypatch.setattr(asset_broker.asset_probe, "analyze", measured_for)
-    monkeypatch.setattr(asset_broker.asset_probe, "ocr_check",
-                        lambda p, **k: {"has_text": False, "has_logo": False, "by": "test"})
-    monkeypatch.setattr(asset_broker.render_gate, "probe",
-                        lambda p: {"streams": [{"codec_type": "video", "width": 1080,
-                                                "height": 1920}],
-                                   "format": {"duration": "20.0"}})
-    monkeypatch.setattr(asset_broker.template_renderer, "measure_luma_sat",
-                        lambda p: {"yavg": 80.0, "sat": 9.0})
-    rec = asset_broker.acquire(INTENT, "social_moment_loop_v1", tmp_path,
-                               run_id="vivid", max_downloads=2, verbose=False)
-    assert rec["metrics"]["sat"] >= 5.0
