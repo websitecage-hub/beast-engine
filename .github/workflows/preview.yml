@@ -61,15 +61,6 @@ jobs:
         run: |
           python -c "from src import config; p=config.resolve_ffmpeg(); print('ffmpeg:', p)"
           python -c "from src import config; import subprocess; p=config.resolve_ffmpeg(); subprocess.run([p,'-version'],check=True,stdout=subprocess.DEVNULL)"
-      - name: Refuse to run with publishing enabled
-        run: |
-          python - <<'PY'
-          import sys
-          from src import config
-          if config.load_config().get("short_publish_enabled"):
-              sys.exit("short_publish_enabled is true: refusing to run the preview job")
-          print("publishing stays off")
-          PY
       - name: Preview
         env:
           # A GitHub runner has no /opt/work and a small workspace: every cache

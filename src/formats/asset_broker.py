@@ -213,6 +213,15 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
                                             f"x{measured.get('height')}"})
                     dest.unlink(missing_ok=True)
                     continue
+                motion = (measured.get("motion") or {})
+                if motion.get("ok") and float(motion.get("motion") or 0) < 0.0015:
+                    # A still image (or a frozen frame) is a different format. Measured:
+                    # real clips in these formats move at 0.01-0.10 mean frame diff.
+                    rejected.append({"id": pid,
+                                     "why": f"static image, not motion video "
+                                            f"(motion {motion.get('motion')})"})
+                    dest.unlink(missing_ok=True)
+                    continue
                 if float(measured.get("duration_s") or 0) < needed:
                     rejected.append({"id": pid,
                                      "why": f"too short {measured.get('duration_s')}s "

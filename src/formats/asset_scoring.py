@@ -67,7 +67,7 @@ def hard_reject(entry: dict, *, needed_s: float, min_width: int = 720) -> str | 
     """Only the things that are definitely not footage: ads, shops, wrong shape."""
     if not entry:
         return "empty entry"
-    if str(entry.get("type") or "").lower() not in ("video", "gif", ""):
+    if str(entry.get("type") or "").lower() not in ("video", "gif"):
         return f"not video ({entry.get('type')})"
     if entry.get("is_promoted"):
         return "promoted pin (advertising)"

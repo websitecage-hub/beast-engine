@@ -563,3 +563,27 @@ def test_metaphor_query_leads_the_search(monkeypatch, tmp_path):
                                metaphor_query="fluorescent light flicker", verbose=False)
     assert seen[0] == "fluorescent light flicker"
     assert rec["query_lane"] == "metaphor"
+
+
+def test_static_images_are_not_accepted_as_backgrounds(monkeypatch, tmp_path):
+    """A frozen frame is a different format; Format B needs motion."""
+    monkeypatch.setenv("BEAST_LEDGER", str(tmp_path / "l.json"))
+    monkeypatch.setattr(asset_broker.pinterest, "search_videos",
+                        lambda q, page_size=25: [_entry(id="still")])
+    monkeypatch.setattr(asset_broker.pinterest, "media_url", lambda e: "https://x/v.mp4")
+    monkeypatch.setattr(asset_broker.pinterest, "download",
+                        lambda url, dest, **k: (Path(dest).write_bytes(b"x" * 4096), True)[1])
+    still = _measured(motion={"ok": True, "motion": 0.0002, "max_jump": 0.0, "cuts": 0})
+    monkeypatch.setattr(asset_broker.asset_probe, "analyze", lambda p, fmt: dict(still))
+    monkeypatch.setattr(asset_broker.asset_probe, "ocr_check",
+                        lambda p, **k: {"has_text": False, "has_logo": False, "by": "test"})
+    monkeypatch.setattr(asset_broker.render_gate, "probe",
+                        lambda p: {"streams": [{"codec_type": "video", "width": 1080,
+                                                "height": 1920}],
+                                   "format": {"duration": "20.0"}})
+    monkeypatch.setattr(asset_broker.template_renderer, "measure_luma_sat",
+                        lambda p: {"yavg": 80.0, "sat": 9.0})
+    with pytest.raises(asset_broker.AssetError) as exc:
+        asset_broker.acquire(INTENT, "social_moment_loop_v1", tmp_path,
+                             run_id="still", verbose=False)
+    assert "static image" in str(exc.value)

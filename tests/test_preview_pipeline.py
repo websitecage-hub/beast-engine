@@ -157,6 +157,7 @@ GOOD_MEASURED = {
 
 
 def _mock_pinterest(monkeypatch, entries):
+    entries = [{"type": "video", **e} for e in entries]   # non-video is now rejected
     monkeypatch.setattr(asset_broker.pinterest, "search_videos",
                         lambda q, page_size=25: entries)
     monkeypatch.setattr(asset_broker.pinterest, "media_url", lambda e: "https://x/v.mp4")
