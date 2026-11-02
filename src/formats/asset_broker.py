@@ -215,9 +215,14 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
                 # The simple layer: reject anything carrying its own text/logo,
                 # then judge it on look + tags, not on a luminance target.
                 ocr = asset_probe.ocr_check(dest)
-                if ocr.get("has_text") or ocr.get("has_logo"):
-                    rejected.append({"id": pid, "why": f"on-screen text/logo: "
-                                                       f"{str(ocr.get('text_said'))[:40]!r}"})
+                if ocr.get("has_text") is not False:
+                    # True = it carries text. None = OCR could not run, so "no text"
+                    # is unproven - and an unproven clean background is not clean.
+                    why = (f"on-screen text: {str(ocr.get('text_said'))[:50]!r}"
+                           if ocr.get("has_text") else
+                           f"OCR unavailable, cannot prove it is text-free: "
+                           f"{str(ocr.get('reason'))[:60]}")
+                    rejected.append({"id": pid, "why": why})
                     dest.unlink(missing_ok=True)
                     continue
                 measured["needed_s"] = needed

@@ -315,6 +315,8 @@ def test_broker_skips_a_pin_used_inside_the_no_repeat_window(monkeypatch, tmp_pa
                                    "format": {"duration": "20.0"}})
     monkeypatch.setattr(asset_broker.template_renderer, "measure_luma_sat",
                         lambda p: {"yavg": 105.0, "sat": 14.2})
+    monkeypatch.setattr(asset_broker.asset_probe, "ocr_check",
+                        lambda p, **k: {"has_text": False, "has_logo": False, "by": "test"})
     rec = asset_broker.acquire(INTENT, "caption_list_title_v1", tmp_path, run_id="fresh",
                                verbose=False)
     assert rec["pin_id"] == "2"
@@ -339,6 +341,8 @@ def test_broker_reports_the_lane_that_found_the_clip(monkeypatch, tmp_path):
                                    "format": {"duration": "20.0"}})
     monkeypatch.setattr(asset_broker.template_renderer, "measure_luma_sat",
                         lambda p: {"yavg": 105.0, "sat": 14.2})
+    monkeypatch.setattr(asset_broker.asset_probe, "ocr_check",
+                        lambda p, **k: {"has_text": False, "has_logo": False, "by": "test"})
     rec = asset_broker.acquire(INTENT, "caption_list_title_v1", tmp_path, run_id="lanes",
                                verbose=False)
     assert rec["query_lane"] == "literal"

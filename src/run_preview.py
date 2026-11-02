@@ -226,8 +226,8 @@ def main(argv=None) -> int:
         "visual": {k: bg.get(k) for k in
                    ("pin_id", "pin_url", "creator", "title", "query", "query_lane",
                     "score", "review_status", "passes_minimum", "stretch_pick",
-                    "flags", "band_busy", "text", "motion", "candidates", "rejected",
-                    "query_log", "lane_expansions")},
+                    "flags", "band_busy", "text", "ocr", "motion", "candidates",
+                    "rejected", "query_log", "lane_expansions")},
         "audio": {k: au.get(k) for k in
                   ("stable_id", "title", "artist", "score", "distance",
                    "keywords_tried", "candidates", "rejected", "fresh")},

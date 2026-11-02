@@ -20,6 +20,7 @@ What is measured
 """
 from __future__ import annotations
 
+import os
 import subprocess
 import tempfile
 
@@ -58,6 +59,26 @@ def _grab(path, n: int, width: int, out_dir: Path) -> list[np.ndarray]:
             [_ffmpeg(), "-y", "-v", "error", "-ss", f"{t:.3f}", "-i", str(path),
              "-frames:v", "1", "-vf", f"scale={width}:-2", str(dest)],
             capture_output=True, timeout=120)
+        if r.returncode != 0 or not dest.exists():
+            continue
+        try:
+            frames.append(np.asarray(Image.open(dest).convert("RGB"), dtype=np.uint8))
+        except Exception:  # noqa: BLE001
+            continue
+    return frames
+
+
+def _grab_at(path, times: list, width: int, out_dir: Path) -> list:
+    """Decode specific timestamps. Used by OCR: burned-in captions are usually in
+    the opening seconds, and evenly spaced sampling was missing them entirely
+    (measured: a clip whose text is visible at 1.0s reported 0 detections)."""
+    frames = []
+    for i, t in enumerate(times):
+        dest = out_dir / f"t{i:02d}.png"
+        r = subprocess.run(
+            [_ffmpeg(), "-y", "-v", "error", "-ss", f"{max(0.05, t):.3f}", "-i", str(path),
+             "-frames:v", "1", "-vf", f"scale={width}:-2", str(dest)],
+            capture_output=True, timeout=60)
         if r.returncode != 0 or not dest.exists():
             continue
         try:
@@ -248,8 +269,18 @@ def ocr_check(path, *, api_key: str | None = None, samples: int = 3) -> dict:
 
     def _frames() -> list:
         import tempfile
+        info = probe(path)
+        dur = float(info.get("format", {}).get("duration") or 0) or 6.0
+        # Head-weighted: captions and titles live in the first seconds.
+        times = [0.2, 0.8, 1.5, 2.5, dur * 0.5, dur * 0.85]
+        seen, uniq = set(), []
+        for t in times:
+            k = round(min(t, dur - 0.05), 1)
+            if k > 0 and k not in seen:
+                seen.add(k)
+                uniq.append(k)
         with tempfile.TemporaryDirectory(prefix="beast-ocr-") as td:
-            return _grab(path, max(3, samples), 1080, Path(td))
+            return _grab_at(path, uniq, 1080, Path(td))
 
     frames = _frames()
     if not frames:
@@ -281,15 +312,16 @@ def ocr_check(path, *, api_key: str | None = None, samples: int = 3) -> dict:
                     continue
                 ys = [pt[1] for pt in box]
                 h = (max(ys) - min(ys)) / max(arr.shape[0], 1)
-                if text.isdigit() and len(text) <= 3:
-                    continue                    # price tag / "12"
-                if h < 0.015 and len(text) < 5:
-                    continue                    # too small to be a caption
+                if text.isdigit() and len(text) <= 2:
+                    continue                    # lone "12" price tag
+                if h < 0.008 and len(text) < 3:
+                    continue                    # too small to read as a caption
                 rows.append({"text": text, "score": round(float(score), 2),
                              "height_frac": round(h, 3)})
             per_frame.append(rows)
             hits += rows
-        strong = [h for h in hits if len(h["text"]) >= 5 or h["height_frac"] >= 0.03]
+        strong = [h for h in hits
+                  if len(h["text"]) >= 3 or h["height_frac"] >= 0.008]
         repeated = [t for t in {h["text"] for h in hits}
                     if sum(1 for fr in per_frame if any(h["text"] == t for h in fr)) >= 2]
         has = bool(strong or repeated)
