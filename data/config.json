@@ -1,477 +1,477 @@
 {
-  "brand": {
-    "name": "Unleash The Beast",
-    "handle": "unleashthe.b",
-    "meaning": "The real person under the mask. Not aggression, not grind. The self buried under years of small retreats who still wants to be known.",
-    "voice": "Describe, never advise. Present tense, second person, his language — never a psychologist's. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
-    "hook_examples": [
-      "You know exactly what to say. You say nothing. Again.",
-      "The conversation ends. The trial begins.",
-      "You want to talk. Your mouth disagrees.",
-      "She matched with you. And you're suspicious.",
-      "Your manager thinks you're less competent than you are.",
-      "You pull out your phone when someone walks by. Nothing's on it."
-    ],
-    "bio_required": "For the person who says I'm fine.\nThe private version is in the book. ."
-  },
-  "archetypes": [
-    "the_mask",
-    "the_rehearsal",
-    "the_freeze",
-    "the_detour",
-    "the_aftermath",
-    "the_bodys_betrayal",
-    "the_sealed_mouth",
-    "the_craving",
-    "the_losses",
-    "the_buried_anger",
-    "quiet_hope"
+ "brand": {
+  "name": "Unleash The Beast",
+  "handle": "unleashthe.b",
+  "meaning": "The real person under the mask. Not aggression, not grind. The self buried under years of small retreats who still wants to be known.",
+  "voice": "Describe, never advise. Present tense, second person, his language \u2014 never a psychologist's. Never sell, never confirm the flaw, never say 'just'. Tragic, never pathetic.",
+  "hook_examples": [
+   "You know exactly what to say. You say nothing. Again.",
+   "The conversation ends. The trial begins.",
+   "You want to talk. Your mouth disagrees.",
+   "She matched with you. And you're suspicious.",
+   "Your manager thinks you're less competent than you are.",
+   "You pull out your phone when someone walks by. Nothing's on it."
   ],
-  "topics": [
-    "exposure_fear",
-    "fake_phone",
-    "ordering_food",
-    "phone_calls",
-    "freeze_at_work",
-    "asking_coworker",
-    "party_bathroom",
-    "mind_blank",
-    "post_interaction_hate",
-    "replay_2am",
-    "read_receipts",
-    "neutral_as_negative",
-    "meetings_voice",
-    "dating_app_freeze",
-    "dying_alone_thought",
-    "lost_friendships",
-    "behind_at_25",
-    "buried_anger",
-    "therapy_irony",
-    "the_grandma_win"
+  "bio_required": "For the person who says I'm fine.\nThe private version is in the book. ."
+ },
+ "archetypes": [
+  "the_mask",
+  "the_rehearsal",
+  "the_freeze",
+  "the_detour",
+  "the_aftermath",
+  "the_bodys_betrayal",
+  "the_sealed_mouth",
+  "the_craving",
+  "the_losses",
+  "the_buried_anger",
+  "quiet_hope"
+ ],
+ "topics": [
+  "exposure_fear",
+  "fake_phone",
+  "ordering_food",
+  "phone_calls",
+  "freeze_at_work",
+  "asking_coworker",
+  "party_bathroom",
+  "mind_blank",
+  "post_interaction_hate",
+  "replay_2am",
+  "read_receipts",
+  "neutral_as_negative",
+  "meetings_voice",
+  "dating_app_freeze",
+  "dying_alone_thought",
+  "lost_friendships",
+  "behind_at_25",
+  "buried_anger",
+  "therapy_irony",
+  "the_grandma_win"
+ ],
+ "moods": [
+  "quiet_devastating",
+  "heavy_shadow",
+  "muffled_world",
+  "restrained_anger",
+  "gentle_hope"
+ ],
+ "bg_types": {
+  "mask": [
+   "man standing crowd night video aesthetic",
+   "person walking city crowd night video"
   ],
-  "moods": [
-    "quiet_devastating",
-    "heavy_shadow",
-    "muffled_world",
-    "restrained_anger",
-    "gentle_hope"
+  "rehearsal": [
+   "man looking out window rain video",
+   "person sitting alone cafe window video aesthetic"
   ],
-  "bg_types": {
-    "mask": [
-      "man standing crowd night video aesthetic",
-      "person walking city crowd night video"
-    ],
-    "rehearsal": [
-      "man looking out window rain video",
-      "person sitting alone cafe window video aesthetic"
-    ],
-    "freeze": [
-      "man walking alone night video aesthetic",
-      "lone figure walking city night video"
-    ],
-    "detour": [
-      "back of person walking night video",
-      "person walking away night video aesthetic"
-    ],
-    "aftermath": [
-      "person sitting alone dark aesthetic video",
-      "man sitting bed night video aesthetic"
-    ],
-    "bodys_betrayal": [
-      "man face shadow dark video aesthetic",
-      "person shadow dark aesthetic video"
-    ],
-    "sealed_mouth": [
-      "silhouette man dark video aesthetic",
-      "silhouette person street light night video"
-    ],
-    "craving": [
-      "man looking at phone dark room video",
-      "person phone glow night video aesthetic"
-    ],
-    "losses": [
-      "person alone train night video aesthetic",
-      "man standing empty station night video"
-    ],
-    "buried_anger": [
-      "man standing cliff dark video aesthetic",
-      "silhouette man storm video aesthetic"
-    ],
-    "quiet_hope": [
-      "person standing sunrise silhouette video",
-      "man walking dawn light video aesthetic"
-    ]
-  },
-  "archetype_bg_map": {
-    "the_mask": "mask",
-    "the_rehearsal": "rehearsal",
-    "the_freeze": "freeze",
-    "the_detour": "detour",
-    "the_aftermath": "aftermath",
-    "the_bodys_betrayal": "bodys_betrayal",
-    "the_sealed_mouth": "sealed_mouth",
-    "the_craving": "craving",
-    "the_losses": "losses",
-    "the_buried_anger": "buried_anger",
-    "quiet_hope": "quiet_hope"
-  },
-  "cluster_mood_map": {
-    "the_mask": "muffled_world",
-    "the_rehearsal": "quiet_devastating",
-    "the_freeze": "quiet_devastating",
-    "the_detour": "heavy_shadow",
-    "the_aftermath": "heavy_shadow",
-    "the_bodys_betrayal": "heavy_shadow",
-    "the_sealed_mouth": "heavy_shadow",
-    "the_craving": "quiet_devastating",
-    "the_losses": "quiet_devastating",
-    "the_buried_anger": "restrained_anger",
-    "quiet_hope": "gentle_hope"
-  },
-  "mood_fallback_bpm": {
-    "quiet_devastating": 65,
-    "heavy_shadow": 55,
-    "muffled_world": 70,
-    "restrained_anger": 85,
-    "gentle_hope": 60
-  },
-  "music": {
-    "trending_api": "https://audi0-scraper.onrender.com",
-    "trending_niche": "self-improvement",
-    "trending_fallback_niche": "motivation",
-    "min_confidence": 0.5,
-    "phase2_score_band": [
-      0.35,
-      0.85
-    ],
-    "mood_search": {
-      "quiet_devastating": "slow dark ambient reverb deep sub bass",
-      "heavy_shadow": "dark ambient drone sub bass",
-      "muffled_world": "slowed reverb dark ambient muffled",
-      "restrained_anger": "slow dark phonk soft",
-      "gentle_hope": "slow dark ambient build cinematic"
-    },
-    "banned_music_terms": [
-      "piano",
-      "lofi",
-      "lo-fi",
-      "lo fi",
-      "cheerful",
-      "upbeat",
-      "acoustic guitar"
-    ],
-    "genre_hint": {
-      "rap": " dark phonk",
-      "hip-hop": " dark phonk",
-      "trap": " dark phonk",
-      "edm": " dark trap",
-      "pop": " emotional",
-      "rock": " cinematic",
-      "rnb": " moody",
-      "lofi": " slowed reverb dark"
-    },
-    "query_hints": {
-      "quiet_devastating": [
-        "dark ambient reverb drone instrumental",
-        "slow cinematic sub bass no drums",
-        "night reverb ambient texture",
-        "deep atmospheric drone loop"
-      ],
-      "heavy_shadow": [
-        "dark drone ambient instrumental",
-        "slow sub bass cinematic no drums",
-        "brooding ambient texture loop",
-        "deep dark pad drone"
-      ],
-      "muffled_world": [
-        "muffled reverb ambient instrumental",
-        "distant slowed ambient drone",
-        "underwater reverb texture",
-        "soft muted dark ambient loop"
-      ],
-      "restrained_anger": [
-        "slow dark instrumental tension",
-        "low phonk instrumental no vocals",
-        "tense cinematic drone",
-        "dark restrained ambient loop"
-      ],
-      "gentle_hope": [
-        "slow ambient build instrumental",
-        "cinematic hope drone soft",
-        "gentle dark ambient swell",
-        "warm reverb pad cinematic"
-      ]
-    }
-  },
-  "posting_slots_utc": [
-    "01:30",
-    "05:30",
-    "09:30",
-    "13:30",
-    "17:30",
-    "21:30"
+  "freeze": [
+   "man walking alone night video aesthetic",
+   "lone figure walking city night video"
   ],
-  "reel": {
-    "min_s": 9.0,
-    "max_s": 10.0,
-    "fps": 30,
-    "w": 1080,
-    "h": 1920
+  "detour": [
+   "back of person walking night video",
+   "person walking away night video aesthetic"
+  ],
+  "aftermath": [
+   "person sitting alone dark aesthetic video",
+   "man sitting bed night video aesthetic"
+  ],
+  "bodys_betrayal": [
+   "man face shadow dark video aesthetic",
+   "person shadow dark aesthetic video"
+  ],
+  "sealed_mouth": [
+   "silhouette man dark video aesthetic",
+   "silhouette person street light night video"
+  ],
+  "craving": [
+   "man looking at phone dark room video",
+   "person phone glow night video aesthetic"
+  ],
+  "losses": [
+   "person alone train night video aesthetic",
+   "man standing empty station night video"
+  ],
+  "buried_anger": [
+   "man standing cliff dark video aesthetic",
+   "silhouette man storm video aesthetic"
+  ],
+  "quiet_hope": [
+   "person standing sunrise silhouette video",
+   "man walking dawn light video aesthetic"
+  ]
+ },
+ "archetype_bg_map": {
+  "the_mask": "mask",
+  "the_rehearsal": "rehearsal",
+  "the_freeze": "freeze",
+  "the_detour": "detour",
+  "the_aftermath": "aftermath",
+  "the_bodys_betrayal": "bodys_betrayal",
+  "the_sealed_mouth": "sealed_mouth",
+  "the_craving": "craving",
+  "the_losses": "losses",
+  "the_buried_anger": "buried_anger",
+  "quiet_hope": "quiet_hope"
+ },
+ "cluster_mood_map": {
+  "the_mask": "muffled_world",
+  "the_rehearsal": "quiet_devastating",
+  "the_freeze": "quiet_devastating",
+  "the_detour": "heavy_shadow",
+  "the_aftermath": "heavy_shadow",
+  "the_bodys_betrayal": "heavy_shadow",
+  "the_sealed_mouth": "heavy_shadow",
+  "the_craving": "quiet_devastating",
+  "the_losses": "quiet_devastating",
+  "the_buried_anger": "restrained_anger",
+  "quiet_hope": "gentle_hope"
+ },
+ "mood_fallback_bpm": {
+  "quiet_devastating": 65,
+  "heavy_shadow": 55,
+  "muffled_world": 70,
+  "restrained_anger": 85,
+  "gentle_hope": 60
+ },
+ "music": {
+  "trending_api": "https://audi0-scraper.onrender.com",
+  "trending_niche": "self-improvement",
+  "trending_fallback_niche": "motivation",
+  "min_confidence": 0.5,
+  "phase2_score_band": [
+   0.35,
+   0.85
+  ],
+  "mood_search": {
+   "quiet_devastating": "slow dark ambient reverb deep sub bass",
+   "heavy_shadow": "dark ambient drone sub bass",
+   "muffled_world": "slowed reverb dark ambient muffled",
+   "restrained_anger": "slow dark phonk soft",
+   "gentle_hope": "slow dark ambient build cinematic"
   },
-  "timing": {
-    "hook_end_frac": 0.45,
-    "deepen_end_frac": 0.88
+  "banned_music_terms": [
+   "piano",
+   "lofi",
+   "lo-fi",
+   "lo fi",
+   "cheerful",
+   "upbeat",
+   "acoustic guitar"
+  ],
+  "genre_hint": {
+   "rap": " dark phonk",
+   "hip-hop": " dark phonk",
+   "trap": " dark phonk",
+   "edm": " dark trap",
+   "pop": " emotional",
+   "rock": " cinematic",
+   "rnb": " moody",
+   "lofi": " slowed reverb dark"
   },
-  "text_limits": {
-    "hook": 60,
-    "deepening": 90,
-    "landing": 70,
-    "line": 68,
-    "lines_max": 10,
-    "lines_min": 5,
-    "lines_target_min": 6,
-    "lines_target_max": 9
-  },
-  "bg_darken": 0.0,
-  "explore_rate": 0.3,
-  "whisper_every_n_posts": 7,
-  "hope_every_n_posts": 10,
-  "whisper_line": "the ebook in my bio was written for the person who felt this.",
+  "query_hints": {
+   "quiet_devastating": [
+    "dark ambient reverb drone instrumental",
+    "slow cinematic sub bass no drums",
+    "night reverb ambient texture",
+    "deep atmospheric drone loop"
+   ],
+   "heavy_shadow": [
+    "dark drone ambient instrumental",
+    "slow sub bass cinematic no drums",
+    "brooding ambient texture loop",
+    "deep dark pad drone"
+   ],
+   "muffled_world": [
+    "muffled reverb ambient instrumental",
+    "distant slowed ambient drone",
+    "underwater reverb texture",
+    "soft muted dark ambient loop"
+   ],
+   "restrained_anger": [
+    "slow dark instrumental tension",
+    "low phonk instrumental no vocals",
+    "tense cinematic drone",
+    "dark restrained ambient loop"
+   ],
+   "gentle_hope": [
+    "slow ambient build instrumental",
+    "cinematic hope drone soft",
+    "gentle dark ambient swell",
+    "warm reverb pad cinematic"
+   ]
+  }
+ },
+ "posting_slots_utc": [
+  "01:30",
+  "05:30",
+  "09:30",
+  "13:30",
+  "17:30",
+  "21:30"
+ ],
+ "reel": {
+  "min_s": 9.0,
+  "max_s": 10.0,
+  "fps": 30,
+  "w": 1080,
+  "h": 1920
+ },
+ "timing": {
+  "hook_end_frac": 0.45,
+  "deepen_end_frac": 0.88
+ },
+ "text_limits": {
+  "hook": 60,
+  "deepening": 90,
+  "landing": 70,
+  "line": 68,
+  "lines_max": 10,
+  "lines_min": 5,
+  "lines_target_min": 6,
+  "lines_target_max": 9
+ },
+ "bg_darken": 0.0,
+ "explore_rate": 0.3,
+ "whisper_every_n_posts": 7,
+ "hope_every_n_posts": 10,
+ "whisper_line": "the ebook in my bio was written for the person who felt this.",
+ "hashtag_pools": {
+  "broad": [
+   "#socialanxiety",
+   "#mentalhealth",
+   "#anxiety",
+   "#introvert",
+   "#overthinking"
+  ],
+  "medium": [
+   "#socialanxietysupport",
+   "#quietpeople",
+   "#sociallyawkward",
+   "#introvertlife",
+   "#mentalhealthawareness",
+   "#shy"
+  ],
+  "niche": [
+   "#unleashthebeast",
+   "#thequietones",
+   "#2amthoughts",
+   "#innerwork",
+   "#understoods",
+   "#nightscroll"
+  ]
+ },
+ "font_path": "assets/fonts/Coolvetica-Regular.otf",
+ "seo": {
+  "primary_keywords": [
+   "social anxiety",
+   "overthinking conversations",
+   "socially anxious",
+   "quiet people",
+   "introvert struggles"
+  ],
+  "secondary_keywords": [
+   "fear of being judged",
+   "canceling plans relief",
+   "hating phone calls",
+   "replaying conversations",
+   "feeling behind everyone",
+   "wanting to be alone but lonely",
+   "performing \"fine\"",
+   "exhausted from socializing"
+  ],
+  "long_tail_keywords": [
+   "why do i overthink every conversation",
+   "relief when plans get cancelled",
+   "social anxiety at work meetings",
+   "how to stop replaying conversations",
+   "introvert vs social anxiety"
+  ],
   "hashtag_pools": {
-    "broad": [
-      "#socialanxiety",
-      "#mentalhealth",
-      "#anxiety",
-      "#introvert",
-      "#overthinking"
-    ],
-    "medium": [
-      "#socialanxietysupport",
-      "#quietpeople",
-      "#sociallyawkward",
-      "#introvertlife",
-      "#mentalhealthawareness",
-      "#shy"
-    ],
-    "niche": [
-      "#unleashthebeast",
-      "#thequietones",
-      "#2amthoughts",
-      "#innerwork",
-      "#understoods",
-      "#nightscroll"
-    ]
-  },
-  "font_path": "assets/fonts/Coolvetica-Regular.otf",
-  "seo": {
-    "primary_keywords": [
-      "social anxiety",
-      "overthinking conversations",
-      "socially anxious",
-      "quiet people",
-      "introvert struggles"
-    ],
-    "secondary_keywords": [
-      "fear of being judged",
-      "canceling plans relief",
-      "hating phone calls",
-      "replaying conversations",
-      "feeling behind everyone",
-      "wanting to be alone but lonely",
-      "performing \"fine\"",
-      "exhausted from socializing"
-    ],
-    "long_tail_keywords": [
-      "why do i overthink every conversation",
-      "relief when plans get cancelled",
-      "social anxiety at work meetings",
-      "how to stop replaying conversations",
-      "introvert vs social anxiety"
-    ],
-    "hashtag_pools": {
-      "branded": [
-        "#unleashthebeast",
-        "#socialanxietyhelp"
-      ],
-      "primary": [
-        "#socialanxiety",
-        "#introvert",
-        "#overthinking",
-        "#quietpeople",
-        "#mentalhealth",
-        "#anxietyrelief",
-        "#selfimprovement",
-        "#introvertlife",
-        "#sociallyanxious",
-        "#overthinker",
-        "#quietmind",
-        "#innerwork"
-      ],
-      "long_tail": [
-        "#cancelingplans",
-        "#replayingconversations",
-        "#phonecallanxiety",
-        "#meetinganxiety",
-        "#eatingalone",
-        "#2amthoughts",
-        "#beingthequietone",
-        "#performingfine",
-        "#socialanxietyatwork",
-        "#introvertproblems",
-        "#behindeveryone",
-        "#wantingtobealone"
-      ]
-    },
-    "name_field": "Unleash The Beast | Social Anxiety Help",
-    "bio_template": "Overcoming social anxiety. Real posts for the ones who overthink every conversation. The book that gets it → link below.",
-    "hashtags_min": 6,
-    "hashtags_max": 9,
-    "hashtags": false,
-    "note": "The strategy bans the hashtag block entirely. Kept as a flag rather than deleted so the old layer is auditable."
-  },
-  "bg_grade": false,
-  "hide_like_count": true,
-  "confession": {
-    "publish_at_utc": "23:30",
-    "posts_per_day": 1,
-    "min_s": 16.0,
-    "max_s": 20.0,
-    "line_one_by_s": 1.2,
-    "last_line_hold_s": 2.5,
-    "first_line_at_s": 0.35,
-    "push_in": 1.06,
-    "still_min_px": 900,
-    "max_face_fraction": 0.34,
-    "banned_query_words": [
-      "aesthetic",
-      "moody",
-      "cinematic",
-      "vibe"
-    ]
-  },
-  "bed": {
-    "mode": "silence",
-    "kinds": [
-      "room_tone",
-      "rain",
-      "vibration",
-      "turn_signal"
-    ]
-  },
-  "consideration": {
-    "win_sends_per_1k": 15.0,
-    "win_reach_mult": 3.0,
-    "win_min_sends": 3,
-    "flop_reach_under": 200,
-    "flop_reach_over": 500,
-    "score_after_h": 72,
-    "mutate_every": 6,
-    "win_mult": 1.2,
-    "flop_mult": 0.7,
-    "min_samples": 8
-  },
-  "mix": {
-    "confession": 0.7,
-    "argument": 0.2,
-    "door": 0.1,
-    "enabled": false
-  },
-  "door_gate": {
-    "min_wins_14d": 3,
-    "min_followers": 500,
-    "every_n": 10,
-    "off_days_after_2_flops": 21
-  },
-  "trial_reels": {
-    "enabled": false,
-    "min_followers": 200
-  },
-  "dm": {
-    "enabled": false,
-    "first_reply_within_h": 1,
-    "link_after_h": 18,
-    "link_within_h": 24,
-    "first_reply_is_link": false,
-    "third_message": false
-  },
-  "image_source": "pinterest",
-  "_image_source_options": {
-    "pinterest": "CURRENT. Search Pinterest via the operator's API. No licence is granted for a pin; recorded as unknown-pinterest-pin.",
-    "pexels": "License-free. Needs PEXELS_API_KEY.",
-    "unsplash": "License-free. Needs UNSPLASH_API_KEY.",
-    "generated": "This stack's own image endpoint. No third-party rights."
-  },
-  "hashtag_pool": [
-    "#socialanxiety",
-    "#socialanxietyawareness",
-    "#overthinking",
-    "#introvertstruggles",
-    "#introvertproblems",
-    "#quietpeople",
-    "#anxietyawareness",
-    "#mentalhealthawareness",
-    "#relatable",
-    "#groupchat",
-    "#smalltalk",
-    "#shyness",
-    "#peoplepleasing",
-    "#selfawareness",
-    "#mentalhealth",
-    "#anxiety",
-    "#introvert",
-    "#socialanxietysupport",
-    "#sociallyawkward",
-    "#introvertlife",
-    "#shy",
+   "branded": [
     "#unleashthebeast",
-    "#thequietones",
+    "#socialanxietyhelp"
+   ],
+   "primary": [
+    "#socialanxiety",
+    "#introvert",
+    "#overthinking",
+    "#quietpeople",
+    "#mentalhealth",
+    "#anxietyrelief",
+    "#selfimprovement",
+    "#introvertlife",
+    "#sociallyanxious",
+    "#overthinker",
+    "#quietmind",
+    "#innerwork"
+   ],
+   "long_tail": [
+    "#cancelingplans",
+    "#replayingconversations",
+    "#phonecallanxiety",
+    "#meetinganxiety",
+    "#eatingalone",
     "#2amthoughts",
-    "#innerwork",
-    "#understoods",
-    "#nightscroll"
-  ],
-  "hashtag_min": 3,
-  "hashtag_max": 5,
-  "slots_utc": [
-    "00:30",
-    "12:30",
-    "17:30"
-  ],
-  "cta_shares": {
-    "none": 0.5,
-    "send": 0.25,
-    "guide": 0.2,
-    "book": 0.05
+    "#beingthequietone",
+    "#performingfine",
+    "#socialanxietyatwork",
+    "#introvertproblems",
+    "#behindeveryone",
+    "#wantingtobealone"
+   ]
   },
-  "cta_texts": {
-    "none": "",
-    "send": "Send this to someone who'd get it.",
-    "guide": "Free one-page guide for this. Comment GUIDE.",
-    "book": "The full book is $4. Comment BOOK."
-  },
-  "hook_pov_cap": 0.2,
-  "pin_cooldown": 60,
-  "bg_source_share": {
-    "pinterest": 0.85,
-    "pexels": 0.15
-  },
-  "bg_share": {
-    "video": 0.6,
-    "still": 0.4
-  },
-  "trial_enabled": false,
-  "trial_follower_min": 200,
-  "daily_cap": 2,
-  "reward_weights": {
-    "watch": 1.0,
-    "shares_over_reach": 20.0,
-    "saves_over_reach": 8.0,
-    "comments_over_reach": 3.0,
-    "likes_over_reach": 1.0,
-    "skip_penalty": 0.5,
-    "skip_threshold": 0.5,
-    "reach_floor": 25,
-    "watch_cap": 2.0
-  },
-  "short_publish_enabled": false
+  "name_field": "Unleash The Beast | Social Anxiety Help",
+  "bio_template": "Overcoming social anxiety. Real posts for the ones who overthink every conversation. The book that gets it \u2192 link below.",
+  "hashtags_min": 6,
+  "hashtags_max": 9,
+  "hashtags": false,
+  "note": "The strategy bans the hashtag block entirely. Kept as a flag rather than deleted so the old layer is auditable."
+ },
+ "bg_grade": false,
+ "hide_like_count": true,
+ "confession": {
+  "publish_at_utc": "23:30",
+  "posts_per_day": 1,
+  "min_s": 16.0,
+  "max_s": 20.0,
+  "line_one_by_s": 1.2,
+  "last_line_hold_s": 2.5,
+  "first_line_at_s": 0.35,
+  "push_in": 1.06,
+  "still_min_px": 900,
+  "max_face_fraction": 0.34,
+  "banned_query_words": [
+   "aesthetic",
+   "moody",
+   "cinematic",
+   "vibe"
+  ]
+ },
+ "bed": {
+  "mode": "silence",
+  "kinds": [
+   "room_tone",
+   "rain",
+   "vibration",
+   "turn_signal"
+  ]
+ },
+ "consideration": {
+  "win_sends_per_1k": 15.0,
+  "win_reach_mult": 3.0,
+  "win_min_sends": 3,
+  "flop_reach_under": 200,
+  "flop_reach_over": 500,
+  "score_after_h": 72,
+  "mutate_every": 6,
+  "win_mult": 1.2,
+  "flop_mult": 0.7,
+  "min_samples": 8
+ },
+ "mix": {
+  "confession": 0.7,
+  "argument": 0.2,
+  "door": 0.1,
+  "enabled": false
+ },
+ "door_gate": {
+  "min_wins_14d": 3,
+  "min_followers": 500,
+  "every_n": 10,
+  "off_days_after_2_flops": 21
+ },
+ "trial_reels": {
+  "enabled": false,
+  "min_followers": 200
+ },
+ "dm": {
+  "enabled": false,
+  "first_reply_within_h": 1,
+  "link_after_h": 18,
+  "link_within_h": 24,
+  "first_reply_is_link": false,
+  "third_message": false
+ },
+ "image_source": "pinterest",
+ "_image_source_options": {
+  "pinterest": "CURRENT. Search Pinterest via the operator's API. No licence is granted for a pin; recorded as unknown-pinterest-pin.",
+  "pexels": "License-free. Needs PEXELS_API_KEY.",
+  "unsplash": "License-free. Needs UNSPLASH_API_KEY.",
+  "generated": "This stack's own image endpoint. No third-party rights."
+ },
+ "hashtag_pool": [
+  "#socialanxiety",
+  "#socialanxietyawareness",
+  "#overthinking",
+  "#introvertstruggles",
+  "#introvertproblems",
+  "#quietpeople",
+  "#anxietyawareness",
+  "#mentalhealthawareness",
+  "#relatable",
+  "#groupchat",
+  "#smalltalk",
+  "#shyness",
+  "#peoplepleasing",
+  "#selfawareness",
+  "#mentalhealth",
+  "#anxiety",
+  "#introvert",
+  "#socialanxietysupport",
+  "#sociallyawkward",
+  "#introvertlife",
+  "#shy",
+  "#unleashthebeast",
+  "#thequietones",
+  "#2amthoughts",
+  "#innerwork",
+  "#understoods",
+  "#nightscroll"
+ ],
+ "hashtag_min": 3,
+ "hashtag_max": 5,
+ "slots_utc": [
+  "00:30",
+  "12:30",
+  "17:30"
+ ],
+ "cta_shares": {
+  "none": 0.5,
+  "send": 0.25,
+  "guide": 0.2,
+  "book": 0.05
+ },
+ "cta_texts": {
+  "none": "",
+  "send": "Send this to someone who'd get it.",
+  "guide": "Free one-page guide for this. Comment GUIDE.",
+  "book": "The full book is $4. Comment BOOK."
+ },
+ "hook_pov_cap": 0.2,
+ "pin_cooldown": 60,
+ "bg_source_share": {
+  "pinterest": 0.85,
+  "pexels": 0.15
+ },
+ "bg_share": {
+  "video": 0.6,
+  "still": 0.4
+ },
+ "trial_enabled": false,
+ "trial_follower_min": 200,
+ "daily_cap": 2,
+ "reward_weights": {
+  "watch": 1.0,
+  "shares_over_reach": 20.0,
+  "saves_over_reach": 8.0,
+  "comments_over_reach": 3.0,
+  "likes_over_reach": 1.0,
+  "skip_penalty": 0.5,
+  "skip_threshold": 0.5,
+  "reach_floor": 25,
+  "watch_cap": 2.0
+ },
+ "short_publish_enabled": true
 }
