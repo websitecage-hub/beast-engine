@@ -277,6 +277,13 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
                 if float((c.get("metrics") or {}).get("yavg") or 999) < 100]
         if dark:
             pool = dark
+    # Prefer a clip the bounded grade can actually bring into the colour band: at the
+    # 1.6x saturate limit a clip needs ~5 to reach the formats' 8.3+-4. Measured: a
+    # 2.7-sat clip rendered at 2.7 and QA refused to publish it.
+    vivid = [c for c in pool
+             if float((c.get("metrics") or {}).get("sat") or 0) >= 5.0]
+    if vivid:
+        pool = vivid
     # Prefer a clip whose own title/description names the scene's place. A soft
     # preference: when metadata is empty (common) nothing is excluded.
     place = _place_token(intent)
