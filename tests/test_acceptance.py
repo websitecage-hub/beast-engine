@@ -1807,3 +1807,11 @@ if __name__ == "__main__":
             print(f"FAIL  {fn.__name__}: {exc}")
     print(f"\n{len(fns) - failed}/{len(fns)} passed")
     raise SystemExit(1 if failed else 0)
+
+
+def test_template_manifest_is_valid_json():
+    """A rebase once committed conflict markers into this file and broke every run."""
+    import json
+    from pathlib import Path
+    data = json.loads(Path("data/template_manifest.json").read_text())
+    assert isinstance(data, list) and all("run_id" in e for e in data)

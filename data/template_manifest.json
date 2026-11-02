@@ -2011,7 +2011,6 @@
  },
  {
   "asset_intent": {
-<<<<<<< Updated upstream
    "arousal": 0.3,
    "audio_intent": {
     "arousal": 0.25,
@@ -2026,29 +2025,10 @@
     "instrumentation": [
      "warm piano",
      "soft synth pad"
-=======
-   "arousal": 0.2,
-   "audio_intent": {
-    "arousal": 0.15,
-    "avoid": [
-     "upbeat drums",
-     "motivational swell",
-     "comedic boing or laugh track",
-     "loud bass drop",
-     "bright ukulele"
-    ],
-    "emotional_role": "hold quiet self-conscious tension and make small rituals feel normal and safe",
-    "energy": 0.2,
-    "instrumentation": [
-     "low felt piano",
-     "warm subtle pad",
-     "quiet elevator hum"
->>>>>>> Stashed changes
     ],
     "rhythmic_density": "sparse",
     "tempo_preference": "slow",
     "texture": [
-<<<<<<< Updated upstream
      "soft",
      "lo-fi",
      "intimate"
@@ -2081,44 +2061,10 @@
    "literal_scene": "POV inside a small office elevator, floor indicator ticking from 1 to 4, two people standing apart, hands clutching a locked phone with both hands",
    "literalness": "literal",
    "motion_intent": "gentle subtle elevator vibration with slight handheld breathing drift",
-=======
-     "soft room tone",
-     "hushed",
-     "minimal"
-    ],
-    "trend_hashtags": [
-     "officelife",
-     "relatable"
-    ],
-    "trend_keywords": [
-     "quiet office moment",
-     "elevator hum",
-     "late work relatability"
-    ],
-    "valence": -0.2,
-    "vocal_policy": "instrumental_preferred"
-   },
-   "camera_perspective": "observer",
-   "compiled_at": "2026-11-02T17:19:25Z",
-   "compiled_by": "llm:meta-api",
-   "content_id": "lift-at-532-last-one-in",
-   "core_human_moment": "alone as the last person in the lift, you perform tiny self-managing rituals to appear normal while feeling awkwardly observed",
-   "degraded": false,
-   "emotional_primary": "self-conscious",
-   "emotional_secondary": "awkward",
-   "format_id": "caption_list_title_v1",
-   "human_action": "standing extra still by the door gap, watching numbers, tightening strap, lighting phone then locking it",
-   "humour": 0.0,
-   "intentional_contrast": null,
-   "literal_scene": "inside a small office elevator at evening, glowing floor numbers ticking down, one person by the doors holding a bag strap and phone",
-   "literalness": "literal",
-   "motion_intent": "almost still single take, subtle elevator descent and small hand and breath movements only",
->>>>>>> Stashed changes
    "negative_visuals": [
     "embedded captions",
     "watermarks",
     "split-screen",
-<<<<<<< Updated upstream
     "logos"
    ],
    "palette_intent": [
@@ -2149,46 +2095,11 @@
    "visual_profile_target": {
     "luma": "78.6+-20",
     "saturation": "8.34+-4"
-=======
-    "logos",
-    "crowded lift",
-    "talking people"
-   ],
-   "palette_intent": [
-    "warm steel grey",
-    "soft amber indicator glow"
-   ],
-   "rationale": "The copy is about micro-behaviours to appear normal in a small, observed space, so footage must stay literally inside the lift with real details like glowing numbers and strap hands, and music must stay low and still to keep the tension intimate not dramatic.",
-   "scene_entities": [
-    "elevator floor indicator",
-    "shoulder bag strap",
-    "office lift interior"
-   ],
-   "schema_version": "1.0",
-   "setting": "office elevator interior",
-   "tension": 0.6,
-   "text_safe_zone": "centre vertical band 41-59%, keep top floor indicator and door gap clear for legibility",
-   "time_of_day": "late evening",
-   "valence": -0.3,
-   "video_queries": [
-    "office elevator interior floor numbers glowing evening",
-    "close up hand tightening bag strap in elevator",
-    "person standing still staring at elevator door gap"
-   ],
-   "visual_mood": [
-    "quiet",
-    "contained"
-   ],
-   "visual_profile_target": {
-    "luma": "105+-14",
-    "saturation": "14.2+-5"
->>>>>>> Stashed changes
    },
    "warmth": 0.2
   },
   "asset_selection": {
    "audio": {
-<<<<<<< Updated upstream
     "artist": "lonnexmusic",
     "candidates": [
      {
@@ -2233,62 +2144,12 @@
     "keywords_tried": [
      {
       "keyword": "ambient",
-=======
-    "artist": "velvet",
-    "candidates": [
-     {
-      "artist": "Bon Iver",
-      "distance": 0.4521,
-      "fresh": true,
-      "id": "6779458266968623105",
-      "score": 64,
-      "title": "The Wolves (Act I and II)",
-      "video_count": 942
-     },
-     {
-      "artist": "MADE BY AMBNT",
-      "distance": 0.5997,
-      "fresh": true,
-      "id": "7694741361490348038",
-      "score": 64,
-      "title": "Aria Math (Cinematic Orchestra)",
-      "video_count": 233
-     },
-     {
-      "artist": "Dam Dominici",
-      "distance": 0.6734,
-      "fresh": true,
-      "id": "7701441367663314950",
-      "score": 64,
-      "title": "Timelines",
-      "video_count": 8
-     },
-     {
-      "artist": "velvet",
-      "distance": 0.7776,
-      "fresh": true,
-      "id": "7550549435600669495",
-      "score": 84,
-      "title": "sutphin boulevard pt2",
-      "video_count": 27500
-     }
-    ],
-    "distance": 0.7776,
-    "fresh": true,
-    "keywords_tried": [
-     {
-      "keyword": "cinematic",
->>>>>>> Stashed changes
       "rows": 5
      }
     ],
     "rejected": [
      {
-<<<<<<< Updated upstream
       "id": "7324011622136122145",
-=======
-      "id": "7381297275933427728",
->>>>>>> Stashed changes
       "why": "copyrighted, not commercial"
      }
     ],
@@ -2299,7 +2160,6 @@
        "points": 20
       },
       "loopable": {
-<<<<<<< Updated upstream
        "evidence": "60.0s vs 7.0s",
        "points": 20
       },
@@ -2313,21 +2173,6 @@
     },
     "stable_id": "7226881151338792962",
     "title": "losing"
-=======
-       "evidence": "21.6s vs 12.2s",
-       "points": 20
-      },
-      "trend": {
-       "evidence": "video_count 27500",
-       "points": 44
-      }
-     },
-     "passes": true,
-     "total": 84
-    },
-    "stable_id": "7550549435600669495",
-    "title": "sutphin boulevard pt2"
->>>>>>> Stashed changes
    },
    "pair": {
     "dimensions": {
@@ -2345,7 +2190,6 @@
      }
     },
     "passes": true,
-<<<<<<< Updated upstream
     "rationale": "metaphor lane shot 'The Backrooms are real. And you might already be i' paired with 'losing' for social_moment_loop_v1.",
     "total": 56
    },
@@ -2358,20 +2202,6 @@
       "pin_id": "e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ",
       "query": "liminal hallway lights",
       "query_lane": "metaphor",
-=======
-    "rationale": "emotional lane shot '' paired with 'sutphin boulevard pt2' for caption_list_title_v1.",
-    "total": 56
-   },
-   "visual": {
-    "band_busy": 0.0089,
-    "candidates": [
-     {
-      "band_busy": 0.0089,
-      "height": 1280,
-      "pin_id": "e1_AfqPShx25o1LD_cmoTPGir2b10sLMbkY0kaGKHRYGiX612K0JCI",
-      "query": "person standing still staring at elevator",
-      "query_lane": "emotional",
->>>>>>> Stashed changes
       "review_status": "accept",
       "score": {
        "blockers": [],
@@ -2381,11 +2211,7 @@
          "points": 10
         },
         "look_fit": {
-<<<<<<< Updated upstream
          "evidence": "look words ['lights'] (+5); scene words ['and', 'inside', 'with'] (+12)",
-=======
-         "evidence": "look words ['night'] (+5); scene words ['person', 'standing', 'the'] (+12)",
->>>>>>> Stashed changes
          "points": 17
         },
         "no_on_screen_text": {
@@ -2393,11 +2219,7 @@
          "points": 30
         },
         "technical": {
-<<<<<<< Updated upstream
          "evidence": "720x1280, 74.2s (need 7.0s)",
-=======
-         "evidence": "720x1280, 21.4s (need 12.2s)",
->>>>>>> Stashed changes
          "points": 16
         }
        },
@@ -2410,7 +2232,6 @@
       "stretch_pick": false,
       "text": {
        "bands": [],
-<<<<<<< Updated upstream
        "framing": [],
        "reason": "no persistent glyph-like band",
        "text_suspected": false,
@@ -2501,45 +2322,17 @@
        "reason": "no persistent glyph-like band",
        "text_suspected": false,
        "uniform": []
-=======
-       "framing": [
-        {
-         "fraction_of_height": 0.102,
-         "rows": [
-          0,
-          65
-         ]
-        }
-       ],
-       "reason": "no persistent glyph-like band; uniform framing bands [(0, 65)]",
-       "text_suspected": false,
-       "uniform": [
-        [
-         0,
-         65
-        ]
-       ]
->>>>>>> Stashed changes
       },
       "width": 720
      }
     ],
-<<<<<<< Updated upstream
     "creator": "quietcipher1",
-=======
-    "creator": "ajstyle2109",
->>>>>>> Stashed changes
     "flags": [],
     "lane_expansions": 0,
     "motion": {
      "cuts": 0,
-<<<<<<< Updated upstream
      "max_jump": 0.0017,
      "motion": 0.0003,
-=======
-     "max_jump": 0.0804,
-     "motion": 0.0544,
->>>>>>> Stashed changes
      "ok": true,
      "samples": 8
     },
@@ -2551,7 +2344,6 @@
      "text_said": ""
     },
     "passes_minimum": true,
-<<<<<<< Updated upstream
     "pin_id": "e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ",
     "pin_url": "https://www.pinterest.com/pin/e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ/",
     "query": "liminal hallway lights",
@@ -2562,23 +2354,10 @@
       "lane": "metaphor",
       "query": "liminal hallway lights",
       "returned": 25
-=======
-    "pin_id": "e1_AfqPShx25o1LD_cmoTPGir2b10sLMbkY0kaGKHRYGiX612K0JCI",
-    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShx25o1LD_cmoTPGir2b10sLMbkY0kaGKHRYGiX612K0JCI/",
-    "query": "person standing still staring at elevator",
-    "query_lane": "emotional",
-    "query_log": [
-     {
-      "kept": 6,
-      "lane": "metaphor",
-      "query": "liminal fluorescent hallway",
-      "returned": 6
->>>>>>> Stashed changes
      },
      {
       "kept": 0,
       "lane": "literal",
-<<<<<<< Updated upstream
       "query": "office elevator interior POV floor display",
       "returned": 0
      },
@@ -2593,27 +2372,10 @@
       "lane": "emotional",
       "query": "elevator doors closed reflection two people",
       "returned": 0
-=======
-      "query": "office elevator interior floor numbers glowing",
-      "returned": 0
-     },
-     {
-      "kept": 17,
-      "lane": "adjacent",
-      "query": "close up hand tightening bag strap",
-      "returned": 17
-     },
-     {
-      "kept": 3,
-      "lane": "emotional",
-      "query": "person standing still staring at elevator",
-      "returned": 3
->>>>>>> Stashed changes
      }
     ],
     "rejected": [
      {
-<<<<<<< Updated upstream
       "id": "e1_AfqPShxLsM4XLk3jGUZH3F52iJt34R-cNdSoxwA5j4O78mAC",
       "why": "unusable crop 720x720"
      },
@@ -2636,10 +2398,6 @@
      {
       "id": "e1_AfqPShwnMeBVrmas6muOzwTIwc39u7RHvbv1awAezKSmyf5bP0OA",
       "why": "on-screen text: 'P; \u997c'"
-=======
-      "id": "e1_AfqPShxwCwrYFbeJaJg3N1NvyMuiJDsBB-oQJg6SJdffy3ZH_nn6",
-      "why": "on-screen text: 'Grochet otitch; Kni; Knit-[ook; Knit-look; butI ha'"
->>>>>>> Stashed changes
      },
      {
       "id": "e1_AfqPShyk13hbKwS-7D4uLQfMDrmJpP1II5Cqs2VZnHMeyzcNSZi7aQ",
@@ -2650,7 +2408,6 @@
       "why": "unusable crop 720x720"
      },
      {
-<<<<<<< Updated upstream
       "id": "e1_AfqPShwDaV0kxp5WVtuo6t2BZMHUsdLPycrRJ9etTowBClv-cQJj",
       "lane": "metaphor",
       "query": "liminal hallway lights",
@@ -2707,94 +2464,6 @@
      {
       "id": "e1_AfqPShxK-H28Ltp3FQfFxqgXg5zpzw15z5cJZKPjL-cgb0__BQWM",
       "why": "too short 6.18s for 7.0s"
-=======
-      "id": "e1_AfqPShx57BX7mOByYhivMWj-FIFjxEmtyOjbqdqb-u63AsVqWM_7",
-      "why": "on-screen text: 'ALERT; BACKROOMS; NEW; THE; TRAILER'"
-     },
-     {
-      "id": "e1_AfqPShxG79kXT-ksYKh7DkcFlQqUYIWEdHvN7l-79sv33Dy1W-PTNQ",
-      "why": "on-screen text: 'When the thread is pu lled; When the thread is pul'"
-     },
-     {
-      "id": "e1_AfqPShxY4MmGZTBKJCe3PLJCr5A8xNj7RAs2B_WW7a3bsLC_wA",
-      "why": "unusable crop 612x1088"
-     },
-     {
-      "id": "e1_AfqPShxqbg-4B7Ggv8AmomYKK3hjBkEQEYI9n8Zxhns9vZYmoabd_g",
-      "why": "on-screen text: 'no-sew version; styling shirts'"
-     },
-     {
-      "id": "e1_AfqPShxLsM4XLk3jGUZH3F52iJt34R-cNdSoxwA5j4O78mAC",
-      "why": "unusable crop 720x720"
-     },
-     {
-      "id": "e1_AfqPShz6KViwQ8K1phKIiLGS0cdpwnJOgGrXt7icXVtfOD4PYdOyXA",
-      "why": "on-screen text: '1-11; 111; 1111; L; \u4e00\u4e09'"
-     },
-     {
-      "id": "e1_AfqPShy1yExdyoy0COVvFvo3AbPAZP7ltA9PSYKhp6YkFOiVd5lx",
-      "why": "on-screen text: 'A; D; \u53e3; \u798f; \u81ea'"
-     },
-     {
-      "id": "e1_AfqPShzxyQajgBOPWwXSqwYoL0iqliWDyUewAuCkVwxIkNIu",
-      "why": "on-screen text: \"ANCHORYOURSTITCH; ANDTHAT'SHOWYOU; ANDTHREAD YOUR;\""
-     },
-     {
-      "id": "e1_AfqPShwCv9sgxE0Azr2-dmrMPnm4CU-61nhKyiv618fLFSqRvKMx8w",
-      "why": "on-screen text: '3 SETS * 15 REPS; ANDBEAUTY!; CHARMING SHOULDER AN'"
-     },
-     {
-      "id": "e1_AfqPShxNqdLxnIJe1UBwaeasMWpo0v3m8AWB0pM7NoeILRuISRZI",
-      "why": "unusable crop 576x1024"
-     },
-     {
-      "id": "e1_AfqPShwPUcu6JXykkmq7daNqFv-c6vU7SDX8nfQT3380yNbKHw",
-      "why": "on-screen text: 'Atomi; Atomic; Atomic Habits; KOR; MURALAM'"
-     },
-     {
-      "id": "e1_AfqPShyhqqKjdnvIeFS4BzP5PCBrXRdlrYHvLCotBqxh0ueyYV1u",
-      "why": "unusable crop 576x1024"
-     },
-     {
-      "id": "e1_AfqPShwP5VL72FS4vmFoCAjUFPeIc3hgkmVomkwaglPwBgzQVQ",
-      "why": "unusable crop 576x1024"
-     },
-     {
-      "id": "e1_AfqPShwvHiVFyj8B6TaoSp2eAi08WxARYFYoFmlRcJX8Xj9hJKWC",
-      "why": "unusable crop 576x1024"
-     },
-     {
-      "id": "e1_AfqPShzXnurh3yHMM8EBIO8CB6xEGXxM2cNPbk-jXvbor2H1xC3P",
-      "why": "too short 9.61s for 12.2s"
-     },
-     {
-      "id": "e1_AfqPShzZ3gSsXhPznaNXDEihjEudO-OCG1_B888q_tOo3yzOvQ",
-      "why": "unusable crop 576x1024"
-     },
-     {
-      "id": "e1_AfqPShxxqeWLtyiw2vSiERqAwu5Yh7HN13mfzNxCI0SOeD1JX0cm",
-      "why": "unusable crop 576x1024"
-     },
-     {
-      "id": "e1_AfqPShyLgNI3c2YHuPB61hSTlUJVPXPL_ibB5Ea4jRDeQxWqet5F",
-      "why": "unusable crop 576x1024"
-     },
-     {
-      "id": "e1_AfqPShy9kHWZ9UwGbjnac845N80oTWp9ueyeXDfPyU2_osAtLQRKyQ",
-      "why": "on-screen text: '(Without sewing!!); *Aftep*; *Before*; +How to sna'"
-     },
-     {
-      "id": "e1_AfqPShyb8E7-Yye7j5Bw3bhA58Fg_xVEK3nEsvp0nJ1QtUvGslTv",
-      "why": "on-screen text: '4ways; showing you how to tie; this top 4 ways'"
-     },
-     {
-      "id": "e1_AfqPShyXINF7brId9iz42noktmjpz7sGqZde0KF9TwGs9TaNLYNz",
-      "why": "unusable crop 576x1024"
-     },
-     {
-      "id": "e1_AfqPShyLDqdfpAw5zXzOcCzvfRkzke3llqzs6A8p1z7NpjHC-g",
-      "why": "on-screen text: 'Automatic Stairs'"
->>>>>>> Stashed changes
      }
     ],
     "review_status": "accept",
@@ -2806,11 +2475,7 @@
        "points": 10
       },
       "look_fit": {
-<<<<<<< Updated upstream
        "evidence": "look words ['lights'] (+5); scene words ['and', 'inside', 'with'] (+12)",
-=======
-       "evidence": "look words ['night'] (+5); scene words ['person', 'standing', 'the'] (+12)",
->>>>>>> Stashed changes
        "points": 17
       },
       "no_on_screen_text": {
@@ -2818,11 +2483,7 @@
        "points": 30
       },
       "technical": {
-<<<<<<< Updated upstream
        "evidence": "720x1280, 74.2s (need 7.0s)",
-=======
-       "evidence": "720x1280, 21.4s (need 12.2s)",
->>>>>>> Stashed changes
        "points": 16
       }
      },
@@ -2835,7 +2496,6 @@
     "stretch_pick": false,
     "text": {
      "bands": [],
-<<<<<<< Updated upstream
      "framing": [],
      "reason": "no persistent glyph-like band",
      "text_suspected": false,
@@ -2852,42 +2512,10 @@
    "sha256": "d7beba5d7f60a79f9d741dd606b528a621a31fd6b1f467c49512ebd16b1b9b9b",
    "source": "audi0-scraper:/v1/trending",
    "stable_id": "7226881151338792962",
-=======
-     "framing": [
-      {
-       "fraction_of_height": 0.102,
-       "rows": [
-        0,
-        65
-       ]
-      }
-     ],
-     "reason": "no persistent glyph-like band; uniform framing bands [(0, 65)]",
-     "text_suspected": false,
-     "uniform": [
-      [
-       0,
-       65
-      ]
-     ]
-    },
-    "title": ""
-   }
-  },
-  "audio": {
-   "bytes": 351644,
-   "creator": null,
-   "path": "/home/runner/work/_temp/beast-scratch/20261102T171656Z-d6c862/assets/track_7550549435600669495.m4a",
-   "pin_url": null,
-   "sha256": "402b3ec0104a17792abeb31a604defdf8156e385a08cec63cdaebf684244586a",
-   "source": "audi0-scraper:/v1/trending",
-   "stable_id": "7550549435600669495",
->>>>>>> Stashed changes
    "usage_clearance": "unknown"
   },
   "audio_features": {
    "band_energy_pct": {
-<<<<<<< Updated upstream
     "bass": 77.1,
     "high": 0.0,
     "mid": 22.9
@@ -2925,45 +2553,6 @@
     "observable_behaviour": "staring fixed at the floor numbers ticking up, phone clutched in both hands but not unlocked, shoulders tucked in to take up less space",
     "private_worry": "that if you say good morning in the wrong tone you'll seem awkward and they'll remember you as the weird quiet one",
     "situation": "in the office lift at 8:47am, just you and one senior colleague you sort-of know between floor 1 and 4"
-=======
-    "bass": 37.0,
-    "high": 1.7,
-    "mid": 61.3
-   },
-   "duration_s": 21.64,
-   "file": "track_7550549435600669495.m4a",
-   "key_estimate": "D major",
-   "loudness_curve_db": [
-    -23.2,
-    -23.0,
-    -24.1
-   ],
-   "onset_density_per_s": 1.8,
-   "peak_db": -8.0,
-   "rms_db": -23.4,
-   "spectral_centroid_hz": 1922.0,
-   "tempo_bpm": 198.8,
-   "zero_crossing_rate": 0.0715
-  },
-  "background": {
-   "bytes": 1839339,
-   "creator": "ajstyle2109",
-   "path": "/home/runner/work/_temp/beast-scratch/20261102T171656Z-d6c862/assets/cand_0_0.mp4",
-   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShx25o1LD_cmoTPGir2b10sLMbkY0kaGKHRYGiX612K0JCI/",
-   "sha256": "26cc16d9099db0f1a7a853b550491045ca740a57ae587152fa8de86eadc61560",
-   "source": "pinterest",
-   "stable_id": "e1_AfqPShx25o1LD_cmoTPGir2b10sLMbkY0kaGKHRYGiX612K0JCI",
-   "usage_clearance": "unknown"
-  },
-  "content": {
-   "attempts": 2,
-   "audience_moment": {
-    "audience_cluster": "everyday performance moments",
-    "emotional_tension": "you want to just be part of the normal end-of-day crowd but you're busy directing how you look from the outside",
-    "observable_behaviour": "you watch the floor numbers tick, tighten your bag strap, light up your phone and lock it again without reading anything, exhale quietly",
-    "private_worry": "that standing too still or breathing too loud will read as awkward and everyone will notice you're monitoring yourself",
-    "situation": "in the office lift at 5:32pm, doors closing, you're the last one in and everyone faces forward"
->>>>>>> Stashed changes
    },
    "card_compiled_by": "llm:meta-api",
    "card_degraded": false,
@@ -2972,26 +2561,16 @@
     "critical_min": 4.0,
     "distinctiveness": 4,
     "emotional_truth_dignity": 5,
-<<<<<<< Updated upstream
     "evidence": "'3 floors to say hi, just us at 8:47' / 'phone locked, both hands' / 'scared it sounds weird so i count numbers' / 'rehearse good morning\u2026 decide it'll sound weird\u2026 stare at floor numbers till 4.'",
-=======
-    "evidence": "'light phone and lock unread' / 'exhale quieter than usual' / 'stand extra still to seem normal' / 'you wanted to be in the crowd, not watching yourself be in it.'",
->>>>>>> Stashed changes
     "format_fit": 4,
     "hard_fail": null,
     "natural_voice": 5,
     "passed": true,
     "product_trust": 5,
     "recognition_authenticity": 5,
-<<<<<<< Updated upstream
     "rewrite_notes": "Payoff sentence runs on without punctuation ('both hands want to say good morning scared\u2026'), making the turn hard to read instantly; break it. Hook and caption count both say 3 \u2014 fine, but caption opens with an unrelated mood line before the list.",
     "scene_specificity": 5,
     "sendability_who": "A junior office worker sending it to a fellow junior or close friend with 'the 8:47 lift, just us, three floors.'",
-=======
-    "rewrite_notes": "Item 7 'replay the 20 second ride outside' slips to a second scene (outside the lift); keep it inside the doors. Hook reads slightly tangled with 'directing how you stand.'",
-    "scene_specificity": 5,
-    "sendability_who": "A socially self-monitoring office worker sending it to a close friend or work bestie with '5:32pm, every day, the last one in.'",
->>>>>>> Stashed changes
     "shareability": 4,
     "supporting_min": 4.0
    },
@@ -3001,18 +2580,12 @@
      "level": 3,
      "why": [
       "anchor=True",
-<<<<<<< Updated upstream
       "private=False",
       "turn=True"
-=======
-      "private=True",
-      "turn=False"
->>>>>>> Stashed changes
      ]
     },
     {
      "attempt": 2,
-<<<<<<< Updated upstream
      "level": 3,
      "why": [
       "anchor=True",
@@ -3034,25 +2607,10 @@
   },
   "delivery": {
    "at": "2026-11-02T17:25:46Z",
-=======
-     "level": 4,
-     "why": [
-      "anchor=True",
-      "private=True",
-      "turn=True"
-     ]
-    }
-   ],
-   "topic_id": "lift-at-532-last-one-in"
-  },
-  "delivery": {
-   "at": "2026-11-02T17:27:26Z",
->>>>>>> Stashed changes
    "channel": "telegram",
    "ok": true
   },
   "drift": {
-<<<<<<< Updated upstream
    "sat_delta": 3.77,
    "yavg_delta": 1.7
   },
@@ -3072,34 +2630,12 @@
    "duration_s": 7.0,
    "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261102T171652Z-2ee229.mp4",
    "sha256": "41f4cacd1429975b78aad356c176c3798180b95e3a4f44b6043598d8ec031193"
-=======
-   "sat_delta": -4.31,
-   "yavg_delta": -63.2
-  },
-  "format_id": "caption_list_title_v1",
-  "grade": {
-   "brightness": 1.32,
-   "corrected": true,
-   "natural_fit": false,
-   "saturate": 1.45
-  },
-  "measured": {
-   "sat": 9.89,
-   "yavg": 41.8
-  },
-  "output": {
-   "bytes": 6546808,
-   "duration_s": 11.977,
-   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261102T171656Z-d6c862.mp4",
-   "sha256": "3605ca7aa05be426f4cad1ff42d2daf9609e387c9d56a820445286b024d043a6"
->>>>>>> Stashed changes
   },
   "payload": {
    "_schema_version": "1.0",
    "audio": {
     "rights": "preview_only",
     "source": "audi0-scraper:/v1/trending",
-<<<<<<< Updated upstream
     "stable_id": "7226881151338792962",
     "title": "losing"
    },
@@ -3132,47 +2668,12 @@
     "creator": "quietcipher1",
     "pin_id": "e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ",
     "pin_url": "https://www.pinterest.com/pin/e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ/",
-=======
-    "stable_id": "7550549435600669495",
-    "title": "sutphin boulevard pt2"
-   },
-   "background_query": "office elevator interior floor indicator glowing bag strap hand evening",
-   "caption": "7 things you do as the last one in the lift directing how you stand:\n1. watch floor numbers tick down\n2. tighten bag strap twice\n3. light phone and lock unread\n4. exhale quieter than usual\n5. stare at door gap, not reflection\n6. stand extra still to seem normal\n7. replay the 20 second ride outside",
-   "closing": "you wanted to be in the crowd, not watching yourself be in it.",
-   "director": {
-    "audio": {
-     "director_vendor": "meta-api",
-     "sonic_analysis": "The text is a slow, hyper-aware, held-breath loop of micro-movements that needs a spacious, high-fidelity tension bed to turn awkward stillness into a cinematic film scene.",
-     "tiktok_query": "cinematic"
-    },
-    "visual": {
-     "director_vendor": "meta-api",
-     "emotional_analysis": "The text is pure claustrophobic hyper-self-awareness, holding your breath and performing stillness to seem invisible in sterile, suspended time.",
-     "pinterest_query": "liminal fluorescent hallway"
-    }
-   },
-   "headline": "7 things you do as the last one in the lift directing how you stand",
-   "list_items": [
-    "watch floor numbers tick down",
-    "tighten bag strap twice",
-    "light phone and lock unread",
-    "exhale quieter than usual",
-    "stare at door gap, not reflection",
-    "stand extra still to seem normal",
-    "replay the 20 second ride outside"
-   ],
-   "provenance": {
-    "creator": "ajstyle2109",
-    "pin_id": "e1_AfqPShx25o1LD_cmoTPGir2b10sLMbkY0kaGKHRYGiX612K0JCI",
-    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShx25o1LD_cmoTPGir2b10sLMbkY0kaGKHRYGiX612K0JCI/",
->>>>>>> Stashed changes
     "source": "pinterest",
     "usage_clearance": "unknown"
    },
    "text_style": {
     "fill": "#E0D29B",
     "stroke_px": 2,
-<<<<<<< Updated upstream
     "why": "dark footage (luma 79 < 92): warm yellow"
    },
    "topic_id": "lift-3-floors-to-say-hi"
@@ -3202,26 +2703,6 @@
     "yavg_delta": 1.7
    },
    "duration_s": 7.0,
-=======
-    "why": "dark footage (luma 44 < 92): warm yellow"
-   },
-   "titleLines": [
-    "7 things you do",
-    "as the last one in",
-    "the lift directing how",
-    "you stand"
-   ],
-   "topic_id": "lift-at-532-last-one-in"
-  },
-  "qa": {
-   "attempts": 2,
-   "band_ok": false,
-   "drift": {
-    "sat_delta": -4.31,
-    "yavg_delta": -63.2
-   },
-   "duration_s": 11.977,
->>>>>>> Stashed changes
    "gate": {
     "audio": true,
     "audio_channels": 2,
@@ -3230,7 +2711,6 @@
     "decode_ok": true,
     "decode_stderr": "",
     "duration_bounds": [
-<<<<<<< Updated upstream
      6.4,
      7.8
     ],
@@ -3241,33 +2721,15 @@
     "fps_raw": "30/1",
     "height": 1920,
     "moov_head": true,
-=======
-     11.6,
-     12.8
-    ],
-    "duration_s": 11.977,
-    "failures": [],
-    "file": "/home/runner/work/_temp/beast-scratch/20261102T171656Z-d6c862/caption_list_title_v1-live-20261102T171656Z-d6c862.mp4",
-    "fps": 30.0,
-    "fps_raw": "30/1",
-    "height": 1920,
-    "moov_head": false,
-    "moov_tail": true,
->>>>>>> Stashed changes
     "ok": true,
     "pix_fmt": "yuv420p",
     "probe_error": null,
     "sar": "1:1",
-<<<<<<< Updated upstream
     "size_bytes": 3011853,
-=======
-    "size_bytes": 6546808,
->>>>>>> Stashed changes
     "width": 1080
    },
    "gate_ok": true,
    "measured": {
-<<<<<<< Updated upstream
     "sat": 12.11,
     "yavg": 80.3
    },
@@ -3295,40 +2757,10 @@
   },
   "rendered_at": "2026-11-02T17:25:42Z",
   "run_id": "20261102T171652Z-2ee229",
-=======
-    "sat": 9.89,
-    "yavg": 41.8
-   },
-   "ok": false,
-   "targets": {
-    "sat": 14.2,
-    "sat_tol": 5.0,
-    "yavg": 105.0,
-    "yavg_tol": 14.0
-   },
-   "text_frame0": {
-    "band": [
-     0.22,
-     0.58
-    ],
-    "bright_fraction": 0.075,
-    "ok": true,
-    "threshold": 190
-   }
-  },
-  "qa_ok": false,
-  "render": {
-   "quality": "delivery",
-   "seconds": 60.4
-  },
-  "rendered_at": "2026-11-02T17:27:23Z",
-  "run_id": "20261102T171656Z-d6c862",
->>>>>>> Stashed changes
   "schema_version": "1.0",
   "stages": {
    "asset_intent": {
     "compiled_by": "llm:meta-api",
-<<<<<<< Updated upstream
     "core_human_moment": "standing in an office lift for three floors with a senior colleague at 8:47am wanting to say good morning but freezing and watching the numbers instead",
     "degraded": false,
     "ok": true,
@@ -3336,58 +2768,29 @@
      "office elevator interior POV floor display",
      "hands clutching locked phone inside elevator",
      "elevator doors closed reflection two people"
-=======
-    "core_human_moment": "alone as the last person in the lift, you perform tiny self-managing rituals to appear normal while feeling awkwardly observed",
-    "degraded": false,
-    "ok": true,
-    "queries": [
-     "office elevator interior floor numbers glowing",
-     "close up hand tightening bag strap",
-     "person standing still staring at elevator"
->>>>>>> Stashed changes
     ]
    },
    "audio": {
     "clearance": "unknown",
-<<<<<<< Updated upstream
     "distance": 0.6074,
     "keywords": [
      {
       "keyword": "ambient",
-=======
-    "distance": 0.7776,
-    "keywords": [
-     {
-      "keyword": "cinematic",
->>>>>>> Stashed changes
       "rows": 5
      }
     ],
     "ok": true,
-<<<<<<< Updated upstream
     "score": 100,
     "stable_id": "7226881151338792962",
     "title": "losing"
-=======
-    "score": 84,
-    "stable_id": "7550549435600669495",
-    "title": "sutphin boulevard pt2"
->>>>>>> Stashed changes
    },
    "audio_validation": {
     "has_audio": true,
     "ok": true,
-<<<<<<< Updated upstream
     "track_distance": 0.6074
    },
    "content": {
     "attempts": 3,
-=======
-    "track_distance": 0.7776
-   },
-   "content": {
-    "attempts": 2,
->>>>>>> Stashed changes
     "card": "llm:meta-api",
     "card_degraded": false,
     "critic": {
@@ -3402,15 +2805,9 @@
      "scene_specificity": 5,
      "shareability": 4
     },
-<<<<<<< Updated upstream
     "ladder": 2,
     "ok": true,
     "topic_id": "lift-3-floors-to-say-hi"
-=======
-    "ladder": 4,
-    "ok": true,
-    "topic_id": "lift-at-532-last-one-in"
->>>>>>> Stashed changes
    },
    "delivery": {
     "delivered": true,
@@ -3418,7 +2815,6 @@
    },
    "director_audio": {
     "ok": true,
-<<<<<<< Updated upstream
     "query": "ambient",
     "vendor": "meta-api",
     "why": "The scene is held-breath, slow-tick micro-tension in a silent lift where 3 floors stretch forever, so a spacious ambient pad turns awkward silence into high-fidelity cinematic weight."
@@ -3436,32 +2832,12 @@
    },
    "manifest": {
     "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261102T171652Z-2ee229.mp4",
-=======
-    "query": "cinematic",
-    "vendor": "meta-api",
-    "why": "The text is a slow, hyper-aware, held-breath loop of micro-movements that needs a spacious, high-fidelity tension bed to turn awkward stillness into a cinematic film scene."
-   },
-   "director_visual": {
-    "ok": true,
-    "query": "liminal fluorescent hallway",
-    "vendor": "meta-api",
-    "why": "The text is pure claustrophobic hyper-self-awareness, holding your breath and performing stillness to seem invisible in sterile, suspended time."
-   },
-   "format_selection": {
-    "format_id": "caption_list_title_v1",
-    "ok": true,
-    "requested": "A"
-   },
-   "manifest": {
-    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261102T171656Z-d6c862.mp4",
->>>>>>> Stashed changes
     "ok": true,
     "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
     "persisted": true
    },
    "pair_fit": {
     "ok": true,
-<<<<<<< Updated upstream
     "rationale": "metaphor lane shot 'The Backrooms are real. And you might already be i' paired with 'losing' for social_moment_loop_v1.",
     "score": 56
    },
@@ -3477,43 +2853,18 @@
     "passes_minimum": true,
     "pin_id": "e1_AfqPShz_9l4D6OFXwmzdfnLL3iH1y4AVFCxQc12krEcgxxIotEG-FQ",
     "query": "liminal hallway lights",
-=======
-    "rationale": "emotional lane shot '' paired with 'sutphin boulevard pt2' for caption_list_title_v1.",
-    "score": 56
-   },
-   "pinterest": {
-    "candidates": 1,
-    "hls": false,
-    "lane": "emotional",
-    "metrics": {
-     "sat": 6.84,
-     "yavg": 33.3
-    },
-    "ok": true,
-    "passes_minimum": true,
-    "pin_id": "e1_AfqPShx25o1LD_cmoTPGir2b10sLMbkY0kaGKHRYGiX612K0JCI",
-    "query": "person standing still staring at elevator",
->>>>>>> Stashed changes
     "review_status": "accept",
     "score": 73,
     "size": "720x1280",
     "stretch_pick": false,
     "text_suspected": false,
-<<<<<<< Updated upstream
     "title": "The Backrooms are real. And you might already be inside them"
-=======
-    "title": ""
->>>>>>> Stashed changes
    },
    "render": {
     "attempts": 2,
     "corrections": true,
     "ok": true,
-<<<<<<< Updated upstream
     "seconds": 26.8
-=======
-    "seconds": 60.4
->>>>>>> Stashed changes
    },
    "structural_qa": {
     "gate": {
@@ -3524,7 +2875,6 @@
      "decode_ok": true,
      "decode_stderr": "",
      "duration_bounds": [
-<<<<<<< Updated upstream
       6.4,
       7.8
      ],
@@ -3535,28 +2885,11 @@
      "fps_raw": "30/1",
      "height": 1920,
      "moov_head": true,
-=======
-      11.6,
-      12.8
-     ],
-     "duration_s": 11.977,
-     "failures": [],
-     "file": "/home/runner/work/_temp/beast-scratch/20261102T171656Z-d6c862/caption_list_title_v1-live-20261102T171656Z-d6c862.mp4",
-     "fps": 30.0,
-     "fps_raw": "30/1",
-     "height": 1920,
-     "moov_head": false,
-     "moov_tail": true,
->>>>>>> Stashed changes
      "ok": true,
      "pix_fmt": "yuv420p",
      "probe_error": null,
      "sar": "1:1",
-<<<<<<< Updated upstream
      "size_bytes": 3011853,
-=======
-     "size_bytes": 6546808,
->>>>>>> Stashed changes
      "width": 1080
     },
     "ok": true
@@ -3565,7 +2898,6 @@
     "fill": "#E0D29B",
     "ok": true,
     "stroke_px": 2,
-<<<<<<< Updated upstream
     "why": "dark footage (luma 79 < 92): warm yellow"
    },
    "visual_qa": {
@@ -3595,36 +2927,5 @@
    "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
   },
   "topic_id": "lift-3-floors-to-say-hi"
-=======
-    "why": "dark footage (luma 44 < 92): warm yellow"
-   },
-   "visual_qa": {
-    "drift": {
-     "sat_delta": -4.31,
-     "yavg_delta": -63.2
-    },
-    "measured": {
-     "sat": 9.89,
-     "yavg": 41.8
-    },
-    "ok": false,
-    "text_frame0": {
-     "band": [
-      0.22,
-      0.58
-     ],
-     "bright_fraction": 0.075,
-     "ok": true,
-     "threshold": 190
-    }
-   }
-  },
-  "status": "needs_review",
-  "template": {
-   "dir": "templates/caption_list_title_v1",
-   "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
-  },
-  "topic_id": "lift-at-532-last-one-in"
->>>>>>> Stashed changes
  }
 ]
