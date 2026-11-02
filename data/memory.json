@@ -3362,6 +3362,71 @@
       },
       "dry_run": true,
       "score": null
+    },
+    {
+      "media_id": "18111323861459912",
+      "container_id": "17917464699538210",
+      "created_at": "2026-11-02T14:54:12.511087+00:00",
+      "hour_slot": "13:30",
+      "hook_text": "You didn't have a good day. You performed one in the break room.",
+      "hook": "You didn't have a good day. You performed one in the break room.",
+      "keyword": "MASK",
+      "topic": "performing fine while falling apart",
+      "caption": "That \"I'm fine\" wasn't a lie. It was armor.\nWhen social anxiety turns every room into a test, looking fine feels safer than explaining the tight chest and the blank mind. You time the laugh, you hold the eye contact, you say the line so no one asks twice.\nIf you perform fine at work while falling apart inside, you're not alone. You're not distant. You're just tired of being misread. Comment MASK and I'll send you the full breakdown.\n#socialanxiety #overthinking #socialanxietystruggles #anxietyproblems #introvertstruggles #latenightthoughts",
+      "hashtags": [
+        "#socialanxiety",
+        "#overthinking",
+        "#socialanxietystruggles",
+        "#anxietyproblems",
+        "#introvertstruggles",
+        "#latenightthoughts"
+      ],
+      "dna": {
+        "hook_text": "You didn't have a good day. You performed one in the break room.",
+        "cluster": "the_mask",
+        "topic": "exposure_fear",
+        "hook_length_chars": 64,
+        "num_text_blocks": 6,
+        "landing_text": "Comment MASK and I'll send you the full breakdown on the good day you performed.",
+        "bg_type": "mask",
+        "bg_is_video": true,
+        "audio_mood": "heavy_shadow",
+        "audio_from_trending": false,
+        "trending_ref": {
+          "title": "Beethoven Moonlight Sonata-High Sound Quality",
+          "artist": "Amemiya",
+          "genre": "",
+          "trend_score": 642000,
+          "phase": "phase2",
+          "is_niche": true,
+          "commercial_ok": true,
+          "duration_seconds": 343,
+          "play_link": "https://sf16.tiktokcdn-us.com/obj/tos-alisg-ve-2774/130fa1ca5657438c89076c08dfc3b964",
+          "id": "6817179937766639617"
+        },
+        "loop_technique": "visual_echo",
+        "alt_text": "Man in a crowd looking down alone dark cinematic. Overlay text reads: You didn't have a good day. You performed one in the break room. You said \"I'm fine\" with your jaw clenched and your phone face-down. You timed your laugh, held eye contact until it burned, nodded on cue. You got home, shoes still on,... Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+        "onscreen_text": "You didn't have a good day. You performed one in the break room.\nYou said \"I'm fine\" with your jaw clenched and your phone face-down.\nYou timed your laugh, held eye contact until it burned, nodded on cue.\nYou got home, shoes still on, staring at the ceiling fan.\nYou're not distant. You're just acting fine so no one asks twice.\nComment MASK and I'll send you the full breakdown on the good day you performed.",
+        "keyword": "MASK",
+        "hashtags": [
+          "#socialanxiety",
+          "#overthinking",
+          "#socialanxietystruggles",
+          "#anxietyproblems",
+          "#introvertstruggles",
+          "#latenightthoughts"
+        ],
+        "posted_hour": "13:30",
+        "include_cta": false,
+        "exploit": true,
+        "archetype": "the_mask",
+        "mood": "heavy_shadow",
+        "bg_source": "pinterest_video",
+        "music_source": "drone"
+      },
+      "metrics": {},
+      "score": null,
+      "harvested": false
     }
   ],
   "used_pins": [
@@ -3429,6 +3494,11 @@
       "id": "e1_AfqPShw6Z53iiHo-wQBNDMntAQUjtMRSAcESZ-zMr3zVbOzYMQU",
       "date": "2026-10-25",
       "pin_url": "https://www.pinterest.com/pin/e1_AfqPShw6Z53iiHo-wQBNDMntAQUjtMRSAcESZ-zMr3zVbOzYMQU/"
+    },
+    {
+      "id": "e1_AfqPShw3FW6Hu-mka4ZuTSM6cHmBNg9CgM4Fj9uuUnp3OFmOpGU5",
+      "date": "2026-11-02",
+      "pin_url": "https://www.pinterest.com/pin/e1_AfqPShw3FW6Hu-mka4ZuTSM6cHmBNg9CgM4Fj9uuUnp3OFmOpGU5/"
     }
   ],
   "used_tracks": [],
@@ -3584,8 +3654,8 @@
       "hook": "POV: you just canceled plans you actually wanted to go to"
     }
   ],
-  "last_post_date": "2026-10-06",
-  "post_counter": 24,
+  "last_post_date": "2026-11-02",
+  "post_counter": 25,
   "last_keyword": "FREE",
   "keyword_counts": {
     "HEARD": 1,
@@ -4021,8 +4091,8 @@
     "shadow drone sparse",
     "shadow drone minimal"
   ],
-  "posts_today_date": "2026-10-06",
-  "posts_today_count": 2,
+  "posts_today_date": "2026-11-02",
+  "posts_today_count": 1,
   "account_profile_views": {
     "reach": [
       {
