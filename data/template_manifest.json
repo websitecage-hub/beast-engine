@@ -2927,5 +2927,1322 @@
    "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
   },
   "topic_id": "lift-3-floors-to-say-hi"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "upbeat dance pop",
+     "dramatic cinematic swell",
+     "heavy bass drops",
+     "comedic boing sfx",
+     "hype motivational drums"
+    ],
+    "emotional_role": "hold the awkward waiting with tender, lightly funny warmth without dramatizing it",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "muted electric guitar",
+     "warm pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "lo-fi"
+    ],
+    "trend_hashtags": [
+     "#relatable",
+     "#lofi"
+    ],
+    "trend_keywords": [
+     "bedroom lofi",
+     "soft waiting room",
+     "quiet night in"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-02T17:45:17Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "anyone-free-thurs-managing-eagerness",
+   "core_human_moment": "A person tries to act casual and hide how much they care after sending a vulnerable 'anyone free Thurs?' message and waiting for a reply.",
+   "degraded": false,
+   "emotional_primary": "self-conscious",
+   "emotional_secondary": "hopeful",
+   "format_id": "caption_list_title_v1",
+   "human_action": "sitting on bed holding phone, putting it face-down on duvet then checking it again",
+   "humour": 0.35,
+   "intentional_contrast": null,
+   "literal_scene": "Person sitting alone on bed at night holding phone under warm bedside lamp, duvet and curtains in frame",
+   "literalness": "literal",
+   "motion_intent": "one continuous calm static shot with minimal natural movement, just breathing and small hand shifts",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos",
+    "group of friends laughing",
+    "product shots"
+   ],
+   "palette_intent": [
+    "warm lamp amber",
+    "muted duvet blues"
+   ],
+   "rationale": "Visual stays literally inside the list's world - bed, lamp, phone face-down on duvet - so each micro-action feels phone-camera real; soft lo-fi piano holds the self-conscious hopeful tension lightly without mocking or turning eager waiting into drama.",
+   "scene_entities": [
+    "phone",
+    "duvet",
+    "bedside lamp",
+    "bedroom"
+   ],
+   "schema_version": "1.0",
+   "setting": "bedroom",
+   "tension": 0.55,
+   "text_safe_zone": "centre 41-59% vertical band must stay clear and low-contrast for 4-line white title from frame 0",
+   "time_of_day": "late evening",
+   "valence": -0.2,
+   "video_queries": [
+    "person on bed at night holding phone, bedside lamp",
+    "close up phone face down on duvet, bedroom at night",
+    "bedside lamp glow on curtains, quiet bedroom night"
+   ],
+   "visual_mood": [
+    "quiet",
+    "intimate"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.5
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Eldar Kedem",
+    "candidates": [
+     {
+      "artist": "The Beatles Revival Band",
+      "distance": 0.3654,
+      "fresh": true,
+      "id": "7127247846985713666",
+      "score": 92,
+      "title": "And I Love Her (live)",
+      "video_count": 324000
+     },
+     {
+      "artist": "Flawed Mangoes",
+      "distance": 0.5247,
+      "fresh": true,
+      "id": "7306198274627635201",
+      "score": 92,
+      "title": "The Beginning",
+      "video_count": 219200
+     },
+     {
+      "artist": "Eldar Kedem",
+      "distance": 0.7529,
+      "fresh": true,
+      "id": "6982541212746008578",
+      "score": 100,
+      "title": "Walking Around - Instrumental Version",
+      "video_count": 4800000
+     },
+     {
+      "artist": "Lowtone Music",
+      "distance": 0.6197,
+      "fresh": true,
+      "id": "7005529764250028034",
+      "score": 74,
+      "title": "Dramatic Soundtrack",
+      "video_count": 5157
+     },
+     {
+      "artist": "John Murphy",
+      "distance": 0.3745,
+      "fresh": true,
+      "id": "6756695879526123522",
+      "score": 64,
+      "title": "Sunshine (Adagio in D Minor)",
+      "video_count": 3843
+     }
+    ],
+    "distance": 0.7529,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "177.9s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 4800000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6982541212746008578",
+    "title": "Walking Around - Instrumental Version"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 42
+     }
+    },
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'Walking Around - Instrumental Version' for caption_list_title_v1.",
+    "total": 77
+   },
+   "visual": {
+    "band_busy": 0.1126,
+    "candidates": [
+     {
+      "band_busy": 0.1019,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwKcy8VY5VM5R1nNaNsIx7QH9Vnvpl8IJIw4ysI0gRiNcjNNQ",
+      "query": "rainy window glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['cozy', 'lights', 'night', 'rain', 'window'] (+25); scene words ['and', 'night'] (+8)",
+         "points": 33
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 89,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         504,
+         544
+        ],
+        [
+         472,
+         496
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (504, 544)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1126,
+      "height": 1280,
+      "pin_id": "e1_AfqPShz9xNuc2MCRF5rUx6Xbh7rOsQueO15YOWmzYDVGlkYr2_DD_g",
+      "query": "rainy window glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['calm', 'cozy', 'lights', 'night', 'rain'] (+26); scene words ['and', 'night'] (+8)",
+         "points": 34
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 90,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         304,
+         312
+        ],
+        [
+         552,
+         560
+        ],
+        [
+         448,
+         448
+        ],
+        [
+         488,
+         536
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (304, 312)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1062,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyISwlsscOqURRYUUJMlciasYERAi-Ht_aoTOkwogsGNUyoeg",
+      "query": "rainy window glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['cozy', 'lights', 'night', 'rain', 'window'] (+25); scene words ['and', 'night'] (+8)",
+         "points": 33
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 89,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         304,
+         320
+        ],
+        [
+         320,
+         336
+        ],
+        [
+         392,
+         488
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (304, 320)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0236,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxTJy3vyKGfHqSVuyoInTm7DwAdeyILaQFPYN3bz6f9yQ",
+      "query": "rainy window glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['window'] (+5); scene words ['sitting'] (+4)",
+         "points": 9
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 65,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.141,
+         "rows": [
+          550,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.084,
+         "rows": [
+          586,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(550, 640), (586, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         550,
+         640
+        ],
+        [
+         586,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1923,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxzXZkeebvjqzamps9WDJeTXmMH-tyhSkeJd589iPNuJlAzxg",
+      "query": "rainy window glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['cozy', 'home', 'rain'] (+15); scene words [] (+0)",
+         "points": 15
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 71,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         0,
+         16
+        ],
+        [
+         16,
+         32
+        ],
+        [
+         96,
+         112
+        ],
+        [
+         120,
+         128
+        ],
+        [
+         256,
+         264
+        ],
+        [
+         272,
+         296
+        ],
+        [
+         320,
+         328
+        ],
+        [
+         376,
+         392
+        ],
+        [
+         464,
+         488
+        ],
+        [
+         504,
+         520
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (0, 16)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0343,
+      "height": 1300,
+      "pin_id": "e1_AfqPShxoLSkIEnZ0IR5Pw_l1BZzKEOfyFZonDDAk9eOMDCE4qPA8",
+      "query": "person on bed at night holding",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['sitting'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "828x1300, 55.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 828
+     },
+     {
+      "band_busy": 0.0143,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyEGNLJB4dEdVoV9AfMucTmDOtHrVoUOME5tPNQTDcXNC8",
+      "query": "person on bed at night holding",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['night', 'window'] (+10); scene words ['lamp', 'night', 'sitting'] (+12)",
+         "points": 22
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 78,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0172,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyOBcAAdGiIXafsOLE9n8qMYIS3rugg-SLnkRRMD6CHAh1b",
+      "query": "close up phone face down on",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['city', 'lights'] (+10); scene words ['bed', 'phone'] (+8)",
+         "points": 18
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 74,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.233,
+         "rows": [
+          491,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(491, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         491,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "uscalm",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0466,
+     "motion": 0.0262,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShz9xNuc2MCRF5rUx6Xbh7rOsQueO15YOWmzYDVGlkYr2_DD_g",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShz9xNuc2MCRF5rUx6Xbh7rOsQueO15YOWmzYDVGlkYr2_DD_g/",
+    "query": "rainy window glow",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "rainy window glow",
+      "returned": 25
+     },
+     {
+      "kept": 25,
+      "lane": "literal",
+      "query": "person on bed at night holding",
+      "returned": 25
+     },
+     {
+      "kept": 21,
+      "lane": "adjacent",
+      "query": "close up phone face down on",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShwBz4ZSJrlXN5Fv-zMMslnK8PwAc6XCf6ulY57TEQCghjU",
+      "why": "too short 4.75s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxdYfsdq1-70YIPVcF3TdXzhGvQ_0ohcC9Sj0mnHnIPL543rQ",
+      "why": "too short 5.39s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzhMQY8mJRbAaZn7fS_fAAoO2_SI7rcYUvdZOQpfEsrz6Cq",
+      "why": "too short 6.92s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShx8zMSgQKMMdYnP_cf0Yl34ys9iQ8xinSR6ym0KHdpui2DJ1Q",
+      "why": "too short 8.16s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzjlHjlfztb4mIMaQjnu8AJXQ9vFQtoouItdWXVeAQw0-XzAg",
+      "why": "too short 8.16s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwk33zMCAWMMCWj6ZpN3mh_UBtG-sd7i1S0z2ZO3iLpulhegQ",
+      "why": "too short 8.01s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwcSQqS6ma8j268RuhlQdaDdKipHZaalxawEOup4oNkeOKj8w",
+      "why": "too short 8.01s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzN2p6Xt98lBosTh7NSpK9eJxLgibscmXWNwmfBSdQBjA",
+      "why": "on-screen text: '012; 116; @aizelilhstrates; @nizelilhstrates'"
+     },
+     {
+      "id": "e1_AfqPShz4yEkxqpCJq3eUjzicdg-Xt5kIBjub7yFEZLtv0-Z-Dnk9",
+      "why": "on-screen text: '@aizel.illustrates'"
+     },
+     {
+      "id": "e1_AfqPShzkRJp8laBvb0_gslMGtE6XMtcevHManSMRWzJ0wgI6gwhQyA",
+      "why": "too short 7.08s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShytnlVC9S5MTZeO_ROB88D1KMl-4-0JvMzYSemzVFTKtq0n_g",
+      "why": "too short 7.09s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShy6gu4OxnclohNTPw_E8BayYinzND6f9GZEUBom4pLotqdM",
+      "why": "on-screen text: '!; C; \uff01'"
+     },
+     {
+      "id": "e1_AfqPShxkTD6XiZu7pP-OTOvih1_Fvc9_IwmOt92kCT4asz0GpYHZiw",
+      "why": "on-screen text: '\u798f'"
+     },
+     {
+      "id": "e1_AfqPShyzOsD8YwogsBSNCzsfhP4LlluBT0bz23pCt2NRrFt0Tmo",
+      "lane": "literal",
+      "query": "person on bed at night holding",
+      "why": "advertising call-to-action: 'promo'"
+     },
+     {
+      "id": "e1_AfqPShySIVEpD5iAmcmr6eozFMgMTC0niWZ0_MJT_rUNq_OZTvVu1g",
+      "why": "on-screen text: '\u798f'"
+     },
+     {
+      "id": "e1_AfqPShz4qR7guxI54vTAEuY2mwRgjW4RGNyLOoGFe31t7GFvqANEew",
+      "why": "too short 7.69s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxMG_r-PxLuDIVGaTdq86aLOOCOGoX9a9zWLR_W2FQqEXQ5Bw",
+      "why": "too short 10.22s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxQWgVKdu3iVsFJpjiioaELcrJ1voWOV5hcFDD7fcnGNxD_",
+      "why": "on-screen text: 'Remember to marry a man who wants to be; Remember '"
+     },
+     {
+      "id": "e1_AfqPShw0n18H8UU4Cn_RX_j7ktJRJoD2SAlHe9e08S3oyI53TN7s",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "e1_AfqPShyZXVHjGafbK8ydIZXQRWva1M0HQ3lpgSca48iewj2M-KUp",
+      "lane": "adjacent",
+      "query": "close up phone face down on",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "e1_AfqPShzYBw9xlS31Hn_L_FrkIPs4dM_AuWuPpOZPhSnnOWpZIc_F",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "e1_AfqPShwS7OzXN1Sw9HoRMzUTQdWccpNXHZ0Nd9ea5aMt78RY6iSs",
+      "why": "too short 7.37s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShy1NgvLuSYEtJyF4e_QExlZF1Uv4eweAgy9-tV3TOtL",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShx40Xf9VkpjXqKosX1M-eYOalhY86ctzzJ9e-Fp4CFf_yA6",
+      "why": "unusable crop 576x768"
+     },
+     {
+      "id": "e1_AfqPShwCsEUQ85cAKYzG6OpFr5U9DUnQitBsWVDJC9wXGv1eYw",
+      "why": "too short 6.73s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShy-IrqQ1tT8JbdgQnYM45n7oYbZxGI8dpGrjxeuY76fpY8",
+      "why": "too short 5.04s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShyiv7vifazvaHlOkpbPyt5unW1rwuoKo-_y_OjmbLdBSiwp",
+      "why": "too short 8.17s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShygp7ZQ_7Wc9zxQQ5_ImBGHbI2A56cQwgS1qKcpdc3B5kM",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShx90jngNVZXutIOig0jsLNbtnxDZbMeVn-ED4xkP4rCwSewjw",
+      "why": "too short 8.4s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzNBK7XEq-wT0nogstYjSg9VbhG2S_vMR1Gkisjd7yWQJDRxA",
+      "why": "too short 11.61s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzANlU2pCVogC2mKKbCTiNxotEXSOw_aR6uWgf3Yr8jlA",
+      "why": "too short 10.13s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzHK3pWJe-uYRJsJuWuQS_wuRuu7KOFu3olCfs_m1LFMe8",
+      "why": "unusable crop 480x852"
+     },
+     {
+      "id": "e1_AfqPShzgtb57OW4A9GveBh95wyxIfIjDNcd3-Svr78nurM5juOFV",
+      "why": "too short 10.47s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzQxYXndiAYKMbOnlXKKmjrwcNKrLATrrtb1-Yxf3DCflM",
+      "why": "on-screen text: '\u5bb6'"
+     },
+     {
+      "id": "e1_AfqPShzG6SxkXHWeSOhgdezWpwvmx72IdsTuZiiKeesssKe3YQxk",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxAbL49LlBbYJA0eJB7kQSS9ez2H3fgz4q7xC81CrB8uA",
+      "why": "unusable crop 576x1080"
+     },
+     {
+      "id": "e1_AfqPShyFSZHzXMp0VezLN56PAr9pvj_5aL36-Y3JCAmrGioLuV9T4w",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShyvT74NxDi8ovcLCtqxvEdilP3Z-5E4Xr0zA3QDDMgWtTZnSQ",
+      "why": "unusable crop 240x180"
+     },
+     {
+      "id": "e1_AfqPShz1NfEwQoZUNk7RdiLHKPt6Hifu4xwTTIjzKULz9iEwTO1E",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShw48hFSfVU8aLo1bgn-2KtQqFWMSET-4C4ym4QxBmbLJPc",
+      "why": "unusable crop 704x1376"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['calm', 'cozy', 'lights', 'night', 'rain'] (+26); scene words ['and', 'night'] (+8)",
+       "points": 34
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 15.4s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 90,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [
+      [
+       304,
+       312
+      ],
+      [
+       552,
+       560
+      ],
+      [
+       448,
+       448
+      ],
+      [
+       488,
+       536
+      ]
+     ],
+     "framing": [],
+     "reason": "persistent glyph-like band (304, 312)",
+     "text_suspected": true,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 2978224,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261102T174240Z-0a60d4/assets/track_6982541212746008578.m4a",
+   "pin_url": null,
+   "sha256": "16a669e463a10c0c72b525adc51c27ab786b876a2fddfedd6d86ee86d7bb3fa5",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6982541212746008578",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 80.9,
+    "high": 1.6,
+    "mid": 17.5
+   },
+   "duration_s": 177.91,
+   "file": "track_6982541212746008578.m4a",
+   "key_estimate": "D# major",
+   "loudness_curve_db": [
+    -22.0,
+    -21.4,
+    -22.6
+   ],
+   "onset_density_per_s": 3.81,
+   "peak_db": -7.5,
+   "rms_db": -22.0,
+   "spectral_centroid_hz": 1983.4,
+   "tempo_bpm": 83.4,
+   "zero_crossing_rate": 0.0787
+  },
+  "background": {
+   "bytes": 5765756,
+   "creator": "uscalm",
+   "path": "/home/runner/work/_temp/beast-scratch/20261102T174240Z-0a60d4/assets/cand_0_1.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShz9xNuc2MCRF5rUx6Xbh7rOsQueO15YOWmzYDVGlkYr2_DD_g/",
+   "sha256": "6bbde28adb3af3f7ef4efe82e3978de3fb789f781343b6f8e89dc8e865961002",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShz9xNuc2MCRF5rUx6Xbh7rOsQueO15YOWmzYDVGlkYr2_DD_g",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "texting and group chats",
+    "emotional_tension": "you want to make plans so badly that you're now busy managing how the wanting looks.",
+    "observable_behaviour": "flipping your phone face-down, picking it up again, switching to Instagram, checking the ticks, locking it, unlocking it 6 seconds later",
+    "private_worry": "that you sounded too eager and put everyone on the spot",
+    "situation": "Tuesday 8:22pm, on your bed, you just asked 'anyone free Thurs?' in the group chat and see two people start typing"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "'flip phone face-down on duvet' / 'open Instagram to look busy' / 'check grey ticks you already saw' / 'unlock after six silent seconds' / 'wanting to see people doesn't make you needy.'",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Nothing meaningful failed. Item 1 'type it, delete it, soften it' slightly overlaps the 'breezy no worries' backup in item 7; distinct enough. Hook's capitalisation ('After asking if anyone Is free') is janky.",
+    "scene_specificity": 5,
+    "sendability_who": "A group-chat organiser in their 20s-30s sending it to their closest friend or group-chat bestie with 'this is me every Tuesday.'",
+    "shareability": 5,
+    "supporting_min": 5.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    }
+   ],
+   "topic_id": "anyone-free-thurs-managing-eagerness"
+  },
+  "delivery": {
+   "at": "2026-11-02T17:58:09Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -0.01,
+   "yavg_delta": -33.0
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 1.32,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.6272290568248389
+  },
+  "measured": {
+   "sat": 14.19,
+   "yavg": 72.0
+  },
+  "output": {
+   "bytes": 21032974,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261102T174240Z-0a60d4.mp4",
+   "sha256": "35c13fc2d4687786fb0040f2d3bf924ce1e005838d0d7d078be55ef3316d3ce3"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6982541212746008578",
+    "title": "Walking Around - Instrumental Version"
+   },
+   "background_query": "person sitting on bed at night holding phone, bedside lamp, duvet, curtains",
+   "caption": "7 things you do after asking 'anyone free Thurs?' and then managing how eager you sound:\n1. type it, delete it, soften it\n2. hit send, then hold breath\n3. flip phone face-down on duvet\n4. open Instagram to look busy\n5. check grey ticks you already saw\n6. unlock after six silent seconds\n7. draft breezy 'no worries!!' backup",
+   "closing": "wanting to see people doesn't make you needy, it means you actually like your people.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "The text is a quiet, intimate loop of held breath and tiny phone checks that needs a spacious, high-fidelity cinematic bed to turn awkward waiting into a movie moment.",
+     "tiktok_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "emotional_analysis": "The vibe is anxious, intimate limbo - holding your breath and performing nonchalance while waiting in a dim quiet room, so I chose a soft suspended nighttime texture that feels like waiting.",
+     "pinterest_query": "rainy window glow"
+    }
+   },
+   "headline": "7 things you do after asking 'anyone free Thurs?' and then managing how eager you sound",
+   "list_items": [
+    "type it, delete it, soften it",
+    "hit send, then hold breath",
+    "flip phone face-down on duvet",
+    "open Instagram to look busy",
+    "check grey ticks you already saw",
+    "unlock after six silent seconds",
+    "draft breezy 'no worries!!' backup"
+   ],
+   "provenance": {
+    "creator": "uscalm",
+    "pin_id": "e1_AfqPShz9xNuc2MCRF5rUx6Xbh7rOsQueO15YOWmzYDVGlkYr2_DD_g",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShz9xNuc2MCRF5rUx6Xbh7rOsQueO15YOWmzYDVGlkYr2_DD_g/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 73 < 92): warm yellow"
+   },
+   "titleLines": [
+    "7 things you do",
+    "After asking if anyone",
+    "Is free and then",
+    "Managing the eagerness"
+   ],
+   "topic_id": "anyone-free-thurs-managing-eagerness"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -0.01,
+    "yavg_delta": -33.0
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261102T174240Z-0a60d4/caption_list_title_v1-live-20261102T174240Z-0a60d4.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 21032974,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 14.19,
+    "yavg": 72.0
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1181,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 80.7
+  },
+  "rendered_at": "2026-11-02T17:58:05Z",
+  "run_id": "20261102T174240Z-0a60d4",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person tries to act casual and hide how much they care after sending a vulnerable 'anyone free Thurs?' message and waiting for a reply.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person on bed at night holding",
+     "close up phone face down on"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.7529,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6982541212746008578",
+    "title": "Walking Around - Instrumental Version"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.7529
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 2,
+    "ok": true,
+    "topic_id": "anyone-free-thurs-managing-eagerness"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "The text is a quiet, intimate loop of held breath and tiny phone checks that needs a spacious, high-fidelity cinematic bed to turn awkward waiting into a movie moment."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "rainy window glow",
+    "vendor": "meta-api",
+    "why": "The vibe is anxious, intimate limbo - holding your breath and performing nonchalance while waiting in a dim quiet room, so I chose a soft suspended nighttime texture that feels like waiting."
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261102T174240Z-0a60d4.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": true,
+    "rationale": "metaphor lane shot '' paired with 'Walking Around - Instrumental Version' for caption_list_title_v1.",
+    "score": 77
+   },
+   "pinterest": {
+    "candidates": 8,
+    "hls": true,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 18.84,
+     "yavg": 55.5
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShz9xNuc2MCRF5rUx6Xbh7rOsQueO15YOWmzYDVGlkYr2_DD_g",
+    "query": "rainy window glow",
+    "review_status": "accept",
+    "score": 90,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": true,
+    "title": ""
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 80.7
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261102T174240Z-0a60d4/caption_list_title_v1-live-20261102T174240Z-0a60d4.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 21032974,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 73 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": -0.01,
+     "yavg_delta": -33.0
+    },
+    "measured": {
+     "sat": 14.19,
+     "yavg": 72.0
+    },
+    "ok": false,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1181,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
+  },
+  "topic_id": "anyone-free-thurs-managing-eagerness"
  }
 ]
