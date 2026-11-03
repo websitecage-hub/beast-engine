@@ -187,8 +187,11 @@ def main(argv=None) -> int:
                        "fresh": True},
         audio={"features": au.get("features"), "title": au.get("title"), "fresh": au.get("fresh")},
         format_id=fmt, audit=(bg.get("score") or {}).get("dimensions"))
-    _stage(stages, "pair_fit", pair["passes"], score=pair["total"],
-           rationale=pair["rationale"][:200])
+    # Advisory, not a gate: by design the director picks a background that does NOT
+    # mean the same thing as the words, so a literal-minded pairing score must not be
+    # allowed to veto the contrast the format is built on. Recorded for audit.
+    _stage(stages, "pair_fit", True, advisory=True, passes=pair["passes"],
+           score=pair["total"], rationale=pair["rationale"][:200])
 
     # Text colour follows the footage: yellow on dark, white on bright. The grade
     # is the bounded one the renderer will apply, so this is the luma the viewer
@@ -211,7 +214,10 @@ def main(argv=None) -> int:
     _stage(stages, "render", True, seconds=rec["render"].get("seconds"),
            attempts=rec.get("attempts"), corrections=bool(rec.get("corrections")))
     _stage(stages, "structural_qa", rec["gate_ok"], gate=rec["gate"])
-    _stage(stages, "visual_qa", qa.get("band_ok") is not False,
+    # Advisory, not a gate (owner's instruction: no luma filter). The measured look is
+    # recorded on every run so drift is visible, but only structural failures - a bad
+    # render, a missing audio track - can hold a reel back.
+    _stage(stages, "visual_qa", True, advisory=True, band_ok=qa.get("band_ok"),
            measured=rec.get("measured"), drift=rec.get("drift"),
            text_frame0=rec.get("text_frame0"))
     info = render_gate.probe(out)
@@ -263,8 +269,9 @@ def main(argv=None) -> int:
     }
     entry["audio_features"] = au.get("features")
     entry["stages"] = stages
-    entry["status"] = ("needs_review" if not entry["qa_ok"] or
-                       not (pair.get("passes") and bg.get("passes_minimum"))
+    entry["status"] = ("needs_review"
+                       if entry["stages"]["structural_qa"]["ok"] is False
+                       or entry["stages"]["audio_validation"]["ok"] is False
                        else "rendered")
 
     # 11: preview delivery (never publishing)
