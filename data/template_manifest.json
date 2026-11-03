@@ -4244,5 +4244,974 @@
    "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
   },
   "topic_id": "anyone-free-thurs-managing-eagerness"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "upbeat ukulele",
+     "loud trap drums",
+     "cheerful whistling",
+     "dramatic cinematic swell",
+     "comedy slapstick sfx"
+    ],
+    "emotional_role": "hold the cringe tenderly and keep it warm, not mocking",
+    "energy": 0.3,
+    "instrumentation": [
+     "warm piano chords",
+     "soft electric guitar",
+     "light airy pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "intimate",
+     "slightly lo-fi"
+    ],
+    "trend_hashtags": [
+     "#relatable",
+     "#unilife",
+     "#tescorun"
+    ],
+    "trend_keywords": [
+     "soft British indie",
+     "bedroom pop",
+     "relatable awkward"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-03T16:09:49Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": " tesco-6-42-uni-mate-casual-caring",
+   "core_human_moment": "You bump into an old uni mate at Tesco and pretend to be chill while feeling awkward, exposed, and secretly caring a lot.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "wistful",
+   "format_id": "caption_list_title_v1",
+   "human_action": "gripping basket handle and glancing at phone while lingering outside",
+   "humour": 0.4,
+   "intentional_contrast": null,
+   "literal_scene": "a person standing just outside a supermarket entrance at dusk holding a shopping basket, fluorescent lights glowing inside behind them",
+   "literalness": "literal",
+   "motion_intent": "one continuous calm shot, almost still with slight handheld sway",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "cool fluorescent white",
+    "dusky blue-grey"
+   ],
+   "rationale": "The footage stays literally in the moment the copy describes - basket in hand outside Tesco at dusk - so the list feels lived-in and true. Audio stays soft and slow with warm piano/guitar to keep awkwardness affectionate rather than anxious or jokey.",
+   "scene_entities": [
+    "shopping basket",
+    "supermarket entrance",
+    "phone"
+   ],
+   "schema_version": "1.0",
+   "setting": "outside Tesco supermarket entrance",
+   "tension": 0.6,
+   "text_safe_zone": "centre band 41-59% vertical, keep basket and faces clear for 4-line white title legibility",
+   "time_of_day": "dusk",
+   "valence": -0.2,
+   "video_queries": [
+    "person holding basket outside supermarket entrance dusk",
+    "wide shot person standing outside supermarket at dusk",
+    "close up hands gripping shopping basket handle tight"
+   ],
+   "visual_mood": [
+    "quiet",
+    "ordinary"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.5
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "lonnexmusic",
+    "candidates": [
+     {
+      "artist": "Eldar Kedem",
+      "distance": 0.7529,
+      "fresh": false,
+      "id": "6982541212746008578",
+      "score": 80,
+      "title": "Walking Around - Instrumental Version",
+      "video_count": 4800000
+     },
+     {
+      "artist": "antentmusic",
+      "distance": 0.5194,
+      "fresh": true,
+      "id": "7236064330508371970",
+      "score": 84,
+      "title": "hope to see you again (Sped Up)",
+      "video_count": 23700
+     },
+     {
+      "artist": "Audiostock",
+      "distance": 0.5776,
+      "fresh": true,
+      "id": "6817193198436255745",
+      "score": 100,
+      "title": "Suspense, horror, piano and music box",
+      "video_count": 5300000
+     },
+     {
+      "artist": "lonnexmusic",
+      "distance": 0.4331,
+      "fresh": true,
+      "id": "7226881151338792962",
+      "score": 100,
+      "title": "losing",
+      "video_count": 516300
+     }
+    ],
+    "distance": 0.4331,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7205297463144499202",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 516300",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7226881151338792962",
+    "title": "losing"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 17
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot 'rain' paired with 'losing' for caption_list_title_v1.",
+    "total": 52
+   },
+   "visual": {
+    "band_busy": 0.0272,
+    "candidates": [
+     {
+      "band_busy": 0.0272,
+      "height": 1280,
+      "pin_id": "e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU",
+      "query": "rainy car park",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['rain', 'street'] (+10); scene words ['them'] (+4)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 34.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0298,
+      "height": 1280,
+      "pin_id": "e1_AfqPShymPoNAuRczhK18g5hmIQE0Znmng5EGLTDhSfK59T1g8t8",
+      "query": "rainy car park",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['rain', 'street'] (+10); scene words ['and'] (+4)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 18.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0228,
+      "height": 1920,
+      "pin_id": "e1_AfqPShzj2PZ_VZfoCd4rX3UK6CmA5Unt4p1gX_rrLKSIDCBDrnQ",
+      "query": "rainy car park",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['night'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "1080x1920, 38.8s (need 12.2s)",
+         "points": 20
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 65,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.086,
+         "rows": [
+          132,
+          187
+         ]
+        },
+        {
+         "fraction_of_height": 0.128,
+         "rows": [
+          558,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.328,
+         "rows": [
+          0,
+          210
+         ]
+        },
+        {
+         "fraction_of_height": 0.197,
+         "rows": [
+          514,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.087,
+         "rows": [
+          112,
+          168
+         ]
+        },
+        {
+         "fraction_of_height": 0.217,
+         "rows": [
+          501,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(132, 187), (558, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         132,
+         187
+        ],
+        [
+         558,
+         640
+        ],
+        [
+         0,
+         210
+        ],
+        [
+         514,
+         640
+        ],
+        [
+         112,
+         168
+        ],
+        [
+         501,
+         640
+        ]
+       ]
+      },
+      "width": 1080
+     }
+    ],
+    "creator": "nolagene",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 1,
+     "max_jump": 0.2322,
+     "motion": 0.1665,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU/",
+    "query": "rainy car park",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "rainy car park",
+      "returned": 25
+     },
+     {
+      "kept": 1,
+      "lane": "literal",
+      "query": "person holding basket outside supermarket entrance",
+      "returned": 1
+     },
+     {
+      "kept": 1,
+      "lane": "adjacent",
+      "query": "wide shot person standing outside supermarket",
+      "returned": 2
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "close up hands gripping shopping basket",
+      "returned": 0
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShwESiXnVEa0477GRrI-LK4tJOTbhwFe9AkwM-0jEeXxVJm2",
+      "why": "unusable crop 240x424"
+     },
+     {
+      "id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
+      "why": "on-screen text: 'PR; TO; WELCOME'"
+     },
+     {
+      "id": "e1_AfqPShyrRBBkSokYJSzdrcPglhkGd7il96QnlPR-tmJC35gMs0cFHQ",
+      "why": "too short 10.03s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwqyvYCvNUOmxP36XvpOEyBYsOixiZYl-XMX8Th-Ybu-nbXCQ",
+      "why": "too short 8.8s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShx5oVXOTKxKXSoXDRkhsNKQiJogvpM0hgpFKKJKZ_F93xex",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxxDFuDrLOSG80VzR0yk_-4HVGePVUSX4iEW1O3lWKY7JMHpw",
+      "why": "too short 9.2s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxI_auU7_RNwm8lPsK51uHPb6fBm8xyJ6_cJJL-T476ofT3",
+      "why": "on-screen text: '\u536b\u5de5; \u53e3; \u95e8T'"
+     },
+     {
+      "id": "e1_AfqPShxynWVieSQ5YRWdMOvg_BzMZ7HYEoQU3IdrTFVvB0kDYPn3",
+      "why": "on-screen text: 'C'"
+     },
+     {
+      "id": "e1_AfqPShxMZOW5Dd0u6a-RYNlYWMKW4on1yHPQ2dLuE3bsXVahkYrh",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShy7s4KRtjdwbDMna7Lv9gMliLJ2sz54oa4O2pQ9gfY",
+      "why": "too short 8.54s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwGknBDL6FsUMzLzVNJOa_s0TRN4Ol7O2p4ed4-ltRb11jp",
+      "why": "too short 9.4s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzHId8A-bA9o__QbeEpyrTftGJ7zhzON2mccscdzb9Gr1rC",
+      "why": "on-screen text: 'UIAAPI; \u4e00'"
+     },
+     {
+      "id": "e1_AfqPShxSXafrmlqRpm_fGAQZEIXKTta1_i7h--RFyQtJ0X5e_-Y",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShy2hJikHUQuHSAIDQ6jwxvMX93Vl95wO22bEYPkOsQF_dl-",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShyG5Gsf64dbs6kFFSz1JXNuAU7Esl865qilJKysfERjN-pZ",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShz4Y1JhQWFJd7sJWXPOPDE7abcpaoVIB5V5JZSYS-c8CWfa",
+      "why": "unusable crop 480x480"
+     },
+     {
+      "id": "e1_AfqPShyF4Vvqldy-TLxa_7bJU6QeudxKZun2YW1wRDd7FFbCGjK2DA",
+      "why": "on-screen text: 'M'"
+     },
+     {
+      "id": "e1_AfqPShz2Nr7YJQ8GMXgMjGPk4F6PVdIQ_BSVU2OTMIuYbf_Yk2Es",
+      "why": "unusable crop 608x1080"
+     },
+     {
+      "id": "e1_AfqPShx4FUNEgWnJibmu__Cx7C6-qaqmzip1U4tQpD0UVtWgYpWv",
+      "why": "too short 7.24s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwir0SRER0LpLBK5Yj02Ee_THWeh7k3yY9lCB-9RvppuoSg",
+      "why": "on-screen text: 'ARRIS; F; LABRINTH; Mini vlog l; Moon Beams'"
+     },
+     {
+      "id": "e1_AfqPShzbXRZrs8wepqeBCBjM_UHtoOVtlXoSKmP2HS9t9Q-SYKiA",
+      "why": "too short 10.26s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShz2cRO7nsqWmAz59ilpnHXjauR3VfdkgRmezrx0AUt-wUU",
+      "why": "too short 10.17s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwx61bvffyAxgu1CKDCmPL-ZZ7qYSu5BR9JqszLQdPdp7Kx",
+      "why": "unusable crop 608x1080"
+     },
+     {
+      "id": "e1_AfqPShxa9eiO6MePiiTtNk4rmc_1xLhHStzSbSe7J5LMCftSpKs0",
+      "why": "too short 10.82s for 12.2s"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['rain', 'street'] (+10); scene words ['them'] (+4)",
+       "points": 14
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 34.1s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 70,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "rain"
+   }
+  },
+  "audio": {
+   "bytes": 982649,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261103T160744Z-7a5e63/assets/track_7226881151338792962.m4a",
+   "pin_url": null,
+   "sha256": "d7beba5d7f60a79f9d741dd606b528a621a31fd6b1f467c49512ebd16b1b9b9b",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7226881151338792962",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 77.1,
+    "high": 0.0,
+    "mid": 22.9
+   },
+   "duration_s": 60.0,
+   "file": "track_7226881151338792962.m4a",
+   "key_estimate": "C minor",
+   "loudness_curve_db": [
+    -21.2,
+    -22.1,
+    -22.9
+   ],
+   "onset_density_per_s": 1.42,
+   "peak_db": -9.2,
+   "rms_db": -22.0,
+   "spectral_centroid_hz": 455.0,
+   "tempo_bpm": 117.5,
+   "zero_crossing_rate": 0.0239
+  },
+  "background": {
+   "bytes": 18203929,
+   "creator": "nolagene",
+   "path": "/home/runner/work/_temp/beast-scratch/20261103T160744Z-7a5e63/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU/",
+   "sha256": "a74252614effc650bff4a5233274cca7a1afc79097e136878fa388b008e011e4",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "making and maintaining friends",
+    "emotional_tension": "wants to show the friendship still counts without making it weird by showing it counts",
+    "observable_behaviour": "does the quick oh-hey smile, tightens grip on basket, looks at their basket then down at phone screen that didn't buzz",
+    "private_worry": "if I stop to chat I'll seem like I'm holding them hostage, if I keep walking I'll seem like I never cared",
+    "situation": "outside Tesco self-checkouts at 6:42pm, bumping into someone you were close with at uni but haven't messaged in months"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "'tighten grip on shopping basket' / 'check phone that never buzzed' / 'scan their basket for conversation' / 'leave holding your breath outside' / 'you wanted them to know it still mattered without making it weird.'",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Item 6 'leave holding your breath outside' and item 7 'retype sorry-text you never send' both step outside the 6:42pm self-checkout moment into after-the-fact scenes; pull them back inside Tesco to keep one moment.",
+    "scene_specificity": 5,
+    "sendability_who": "Someone in their 20s-30s who's drifted from uni friends sending it to a close friend or old housemate with 'this is me at Tesco every time.'",
+    "shareability": 5,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=False"
+     ]
+    }
+   ],
+   "topic_id": "tesco-6-42-uni-mate-casual-caring"
+  },
+  "delivery": {
+   "at": "2026-11-03T16:17:53Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -3.32,
+   "yavg_delta": 4.0
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 1.06,
+   "natural_fit": false,
+   "raw": {
+    "brightness": 1.06,
+    "saturate": 1.886
+   },
+   "saturate": 1.45
+  },
+  "measured": {
+   "sat": 10.88,
+   "yavg": 109.0
+  },
+  "output": {
+   "bytes": 38994008,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261103T160744Z-7a5e63.mp4",
+   "sha256": "1061ac9c69cc81a02b6eaf3a60111ecc0a5165140a3434acb77911ba6eba0975"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7226881151338792962",
+    "title": "losing"
+   },
+   "background_query": "person holding shopping basket outside supermarket entrance at dusk, fluorescent lights inside",
+   "caption": "7 things you do when you bump into your uni mate at Tesco and try to look casual about caring:\n1. tighten grip on shopping basket\n2. check phone that never buzzed\n3. do the quick oh-hey smile\n4. scan their basket for conversation\n5. say we should catch up soon\n6. leave holding your breath outside\n7. retype sorry-text you never send",
+   "closing": "you wanted them to know it still mattered without making it weird that it did.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "This is low-stakes social suspense disguised as casual, so a cinematic track elevates the Tesco aisle into a slow-motion prestige drama where the basket-grip tension becomes the score.",
+     "tiktok_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "emotional_analysis": "The text is awkward nostalgia and performative casualness masking held-breath guilt, so I chose a cold, empty, cinematic night environment to make the small cringe feel vast and aesthetic.",
+     "pinterest_query": "rainy car park"
+    }
+   },
+   "headline": "7 things you do when you bump into your uni mate at Tesco and try to look casual about caring",
+   "list_items": [
+    "tighten grip on shopping basket",
+    "check phone that never buzzed",
+    "do the quick oh-hey smile",
+    "scan their basket for conversation",
+    "say we should catch up soon",
+    "leave holding your breath outside",
+    "retype sorry-text you never send"
+   ],
+   "provenance": {
+    "creator": "nolagene",
+    "pin_id": "e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 105): warm off-white"
+   },
+   "titleLines": [
+    "You bumped into your",
+    "Uni mate at Tesco",
+    "And tried to play it",
+    "Cool: 7 things you do"
+   ],
+   "topic_id": "tesco-6-42-uni-mate-casual-caring"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -3.32,
+    "yavg_delta": 4.0
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261103T160744Z-7a5e63/caption_list_title_v1-live-20261103T160744Z-7a5e63.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 38994008,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 10.88,
+    "yavg": 109.0
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1699,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 93.0
+  },
+  "rendered_at": "2026-11-03T16:17:39Z",
+  "run_id": "20261103T160744Z-7a5e63",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "You bump into an old uni mate at Tesco and pretend to be chill while feeling awkward, exposed, and secretly caring a lot.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person holding basket outside supermarket entrance",
+     "wide shot person standing outside supermarket",
+     "close up hands gripping shopping basket"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.4331,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7226881151338792962",
+    "title": "losing"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.4331
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 2,
+    "ok": true,
+    "topic_id": "tesco-6-42-uni-mate-casual-caring"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "This is low-stakes social suspense disguised as casual, so a cinematic track elevates the Tesco aisle into a slow-motion prestige drama where the basket-grip tension becomes the score."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "rainy car park",
+    "vendor": "meta-api",
+    "why": "The text is awkward nostalgia and performative casualness masking held-breath guilt, so I chose a cold, empty, cinematic night environment to make the small cringe feel vast and aesthetic."
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261103T160744Z-7a5e63.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "ok": false,
+    "rationale": "metaphor lane shot 'rain' paired with 'losing' for caption_list_title_v1.",
+    "score": 52
+   },
+   "pinterest": {
+    "candidates": 3,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 7.53,
+     "yavg": 99.1
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU",
+    "query": "rainy car park",
+    "review_status": "accept",
+    "score": 70,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "rain"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 93.0
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261103T160744Z-7a5e63/caption_list_title_v1-live-20261103T160744Z-7a5e63.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 38994008,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 105): warm off-white"
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": -3.32,
+     "yavg_delta": 4.0
+    },
+    "measured": {
+     "sat": 10.88,
+     "yavg": 109.0
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1699,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "needs_review",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
+  },
+  "topic_id": "tesco-6-42-uni-mate-casual-caring"
  }
 ]
