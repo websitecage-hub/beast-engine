@@ -483,8 +483,8 @@ complete; product_trust any book bridge is relevant, truthful and secondary.
 hard_fail must be one short phrase (or null) if ANY of these is true:
 diagnostic claim from a casual checklist; fake or unsupported clinical claim;
 fabricated book content; copied distinctive wording; humiliating or stigmatising
-portrayal; title/list count mismatch; repeated filler items; more than one
-unrelated scene; manipulative sales pressure.
+portrayal; more than one unrelated scene; manipulative sales pressure.
+{format_hard_fails}
 
 Judge the WORDING. The format and template are fixed and are never a penalty.
 Generic abstraction ("social anxiety is hard", "healing takes time") is a 3 at
@@ -504,8 +504,22 @@ def critic_verdict(payload: dict, format_id: str, *, card: dict | None = None,
     else:
         hook = " ".join(payload.get("hookLines") or [])
         payoff = " ".join(payload.get("payoffLines") or [])
+    if format_id == "social_moment_loop_v1":
+        # Measured: the shared rubric made the critic hard-fail a valid 7s loop with
+        # "title/list count mismatch" - a rule that only exists for Format A.
+        format_hard_fails = (
+            "This is the 7-second LOOP format: there is no numbered list and no title, "
+            "so a count mismatch is impossible - never report one. Hard fails for this "
+            "format are: more than one unrelated moment, a sentence that does not read "
+            "instantly, or a block that does not close back on its first line.")
+    else:
+        format_hard_fails = (
+            "This is the NUMBERED LIST format: hard fails are a title/number that does "
+            "not match the delivered item count, repeated filler items, or items that "
+            "restate each other.")
     rubric = _RUBRIC.format(hook=hook, payoff=payoff,
-                            caption=str(payload.get('caption', ''))[:600])
+                            caption=str(payload.get('caption', ''))[:600],
+                            format_hard_fails=format_hard_fails)
     if card:
         rubric += ("\nThe assigned audience moment (the draft must serve this, not a "
                    "different one):\n" + json.dumps(card.get("audience_moment") or {},

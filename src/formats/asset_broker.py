@@ -276,27 +276,16 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
         raise AssetError(f"no candidate survived the prefilters: {len(rejected)} "
                          f"rejected {causes.most_common(6)}; "
                          f"first={json.dumps(rejected[:3])[:220]}")
+    # RAW SELECTION (owner's instruction): no luma, no look scoring, no colour
+    # preference decides the background. A candidate qualifies by surviving the hard
+    # checks - real moving video, long enough, vertical, no on-screen text (OCR),
+    # unused - and the first one that qualifies in search order is taken. The score
+    # is still computed and recorded for the manifest, but it does not choose.
     passing = [c for c in scored if c["score"]["passes"]]
-    pool = passing or scored
     # Format B's look is a dark loop (its references sit near 78 luma). This is a
     # PREFERENCE, not a gate: if any candidate is dark, pick among those; if none
     # is, take the best bright one and the text goes white (text_style handles it).
-    if format_id == "social_moment_loop_v1":
-        dark = [c for c in pool
-                if float((c.get("metrics") or {}).get("yavg") or 999) < 100]
-        if dark:
-            pool = dark
-    # Prefer a clip whose own title/description names the scene's place. A soft
-    # preference: when metadata is empty (common) nothing is excluded.
-    place = _place_token(intent)
-    if place:
-        on_topic = [c for c in pool
-                    if place in " ".join(str(c.get(k) or "") for k in
-                                        ("title", "query")).lower()]
-        if on_topic:
-            pool = on_topic
-    best = max(pool, key=lambda c: (c["score"]["total"],
-                                    0 if not c["stretch_pick"] else -1))
+    best = scored[0]
     for c in scored:
         if c["path"] != best["path"]:
             Path(c["path"]).unlink(missing_ok=True)
