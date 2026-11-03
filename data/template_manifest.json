@@ -5213,5 +5213,1060 @@
    "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
   },
   "topic_id": "tesco-6-42-uni-mate-casual-caring"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.15,
+   "audio_intent": {
+    "arousal": 0.15,
+    "avoid": [
+     "upbeat corporate claps",
+     "loud comedy laugh track",
+     "high-tension thriller drone",
+     "quirky boing sound effects"
+    ],
+    "emotional_role": "hold quiet self-conscious tension without dramatizing the hover, let awkwardness breathe",
+    "energy": 0.2,
+    "instrumentation": [
+     "warm felt piano",
+     "subtle airy pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "roomy",
+     "minimal"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#workthoughts",
+     "#softmornings"
+    ],
+    "trend_keywords": [
+     "quiet morning",
+     "office life",
+     "soft calm"
+    ],
+    "valence": -0.2,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-03T17:14:59Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "kitchen-doorway-hover-6-habits",
+   "core_human_moment": "You want to join the office kitchen chat but hover in the doorway doing tiny stalling moves to control how you appear.",
+   "degraded": false,
+   "emotional_primary": "self-conscious",
+   "emotional_secondary": "awkward",
+   "format_id": "caption_list_title_v1",
+   "human_action": "clutching a filled mug while half-stepping in and out of doorway, glancing at phone",
+   "humour": 0.15,
+   "intentional_contrast": null,
+   "literal_scene": "A person in office clothes holding a filled ceramic mug lingers just outside the office kitchen doorway in morning light, kettle and counter visible inside",
+   "literalness": "literal",
+   "motion_intent": "almost still, one continuous calm take with tiny weight shifts and micro-movements only",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos",
+    "product close-up",
+    "influencer performing to camera"
+   ],
+   "palette_intent": [
+    "soft daylight white",
+    "muted office beige"
+   ],
+   "rationale": "Footage stays literally in the doorway with mug and kettle visible so the list maps 1:1 to what we see, and sparse soft piano holds the self-conscious hover without turning it into comedy or drama.",
+   "scene_entities": [
+    "ceramic mug",
+    "kettle",
+    "office kitchen doorway"
+   ],
+   "schema_version": "1.0",
+   "setting": "office kitchen doorway",
+   "tension": 0.6,
+   "text_safe_zone": "centre band 41-59% vertical, keep mug and doorway clear behind white title",
+   "time_of_day": "late morning",
+   "valence": -0.3,
+   "video_queries": [
+    "person holding mug standing in office kitchen doorway",
+    "over shoulder view from hallway into office kitchen",
+    "ceramic mug on counter near doorway morning light"
+   ],
+   "visual_mood": [
+    "quiet",
+    "awkward"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.3
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "DJtianyu",
+    "candidates": [
+     {
+      "artist": "DJtianyu",
+      "distance": 0.3139,
+      "fresh": true,
+      "id": "7504860701932914698",
+      "score": 92,
+      "title": "i walk this earth all by myself",
+      "video_count": 136800
+     }
+    ],
+    "distance": 0.3139,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7545945306422626321",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7097039090628970497",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7200846574183221250",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "6705064530143086593",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "160.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 136800",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "7504860701932914698",
+    "title": "i walk this earth all by myself"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 17
+     }
+    },
+    "passes": false,
+    "rationale": "literal lane shot 'Turn Opportunities into Reality: Crafting Your Per' paired with 'i walk this earth all by myself' for caption_list_title_v1.",
+    "total": 52
+   },
+   "visual": {
+    "band_busy": 0.0617,
+    "candidates": [
+     {
+      "band_busy": 0.0617,
+      "height": 1080,
+      "pin_id": "e1_AfqPShzI6ZXITsW0O6xJDfbJqz2s4PyokvErkgPoQ1Sv4exEtQ",
+      "query": "person holding mug standing in office",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['and', 'just', 'out', 'the'] (+14)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1080, 23.7s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0235,
+      "height": 1280,
+      "pin_id": "e1_AfqPShw5RnxJkmKdxEy5HnbnoGsnZ1h83hoNvjdVyq2lJernGG1b",
+      "query": "person holding mug standing in office",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.473,
+         "rows": [
+          0,
+          303
+         ]
+        },
+        {
+         "fraction_of_height": 0.239,
+         "rows": [
+          487,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.469,
+         "rows": [
+          0,
+          300
+         ]
+        },
+        {
+         "fraction_of_height": 0.223,
+         "rows": [
+          497,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.455,
+         "rows": [
+          0,
+          291
+         ]
+        },
+        {
+         "fraction_of_height": 0.247,
+         "rows": [
+          482,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 303), (487, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         303
+        ],
+        [
+         487,
+         640
+        ],
+        [
+         0,
+         300
+        ],
+        [
+         497,
+         640
+        ],
+        [
+         0,
+         291
+        ],
+        [
+         482,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0143,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyEGNLJB4dEdVoV9AfMucTmDOtHrVoUOME5tPNQTDcXNC8",
+      "query": "person holding mug standing in office",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['night', 'window'] (+10); scene words [] (+0)",
+         "points": 10
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 66,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0202,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwTuD245dzd5OwYqzdmImmtEEOGlB25XZWpxcNexzbqMUlFfg",
+      "query": "person holding mug standing in office",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['street', 'sunset', 'walking'] (+15); scene words ['the'] (+4)",
+         "points": 19
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 59.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 75,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "lubripuntoca",
+    "flags": [
+     "source domain: bizcreditdevyn.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 1,
+     "max_jump": 0.2641,
+     "motion": 0.1461,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShzI6ZXITsW0O6xJDfbJqz2s4PyokvErkgPoQ1Sv4exEtQ",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShzI6ZXITsW0O6xJDfbJqz2s4PyokvErkgPoQ1Sv4exEtQ/",
+    "query": "person holding mug standing in office",
+    "query_lane": "literal",
+    "query_log": [
+     {
+      "kept": 1,
+      "lane": "metaphor",
+      "query": "liminal hallway haze",
+      "returned": 1
+     },
+     {
+      "kept": 25,
+      "lane": "literal",
+      "query": "person holding mug standing in office",
+      "returned": 25
+     },
+     {
+      "kept": 6,
+      "lane": "adjacent",
+      "query": "over shoulder view from hallway into",
+      "returned": 6
+     },
+     {
+      "kept": 3,
+      "lane": "emotional",
+      "query": "ceramic mug on counter near doorway",
+      "returned": 3
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShwbOw_R12AQOMOCzMXu59LOOJUtzw8Ij78UpA5A_lN2uCzN",
+      "why": "too short 12.17s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwI3Qb4ad0hQir8GsxCMSx-YdrbFU60c9knb06Op5z0",
+      "why": "on-screen text: 'Daoud; MaVRK?; Meet; What; a'"
+     },
+     {
+      "id": "e1_AfqPShwmR_NNb_UXy4aYGXHy0w1grbveCtlkGRj26o7TAXXPQLodwA",
+      "why": "on-screen text: '2EDk; BLEIOESX; Floe; Flove; Foloe'"
+     },
+     {
+      "id": "e1_AfqPShwUVSiJ5KMZR7Xy5P34cJnltUtSHb2UBlxHdTbmsDvbrVXn-g",
+      "why": "on-screen text: 'Subscribeand; followformore; information; www.opti'"
+     },
+     {
+      "id": "e1_AfqPShzVRON6czoYQybqxpbBpfEakzWuAEXOzCc8Tu_spbksXN5P",
+      "lane": "literal",
+      "query": "person holding mug standing in office",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "e1_AfqPShyiMDpQZ-YYOXaG3mi4S-tXz600QBvPNuWhPhY",
+      "why": "unusable crop 640x800"
+     },
+     {
+      "id": "e1_AfqPShz0wGyPQD559e83ooijQ0wxEtYozt_ZHWd8awG-wxof",
+      "why": "on-screen text: 'B; Boji; Group; O; WELdWORK.COm'"
+     },
+     {
+      "id": "e1_AfqPShw5LpNPdUAYb2TysX_mVepppyqCe5GEP1eRsH8VMmLMFTlw",
+      "why": "unusable crop 592x1056"
+     },
+     {
+      "id": "e1_AfqPShySYXsL8ccgafEKO3uARAHQkGsDNU8zUaQ1I_OvTtL4hTv3",
+      "why": "on-screen text: 'C; MONDE SINGULIER'"
+     },
+     {
+      "id": "e1_AfqPShxWKYxPeuaYx-2HJx1i3kDeKSov0gaFtkZbCWMhKva9Lq_s",
+      "lane": "adjacent",
+      "query": "over shoulder view from hallway into",
+      "why": "real-estate/tour content: 'interior design'"
+     },
+     {
+      "id": "e1_AfqPShyYrCRaKIk989tfMusw51SgaUsG_r3e4edtqwCFHq26rapZjg",
+      "why": "on-screen text: '(Maintain Shoulder Plane); (MaintainShoulderPlane)'"
+     },
+     {
+      "id": "e1_AfqPShw_KoolBqdMbL566TR9rpuN3nVMgDofW-igmbuIKP26niE",
+      "lane": "emotional",
+      "query": "ceramic mug on counter near doorway",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "e1_AfqPShz4FA89Bs-Ae4F2QaEY260TSCApIrsgnZcVKJLlofA",
+      "why": "too short 10.33s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShyIPKM_ZzVamrT_aUyVl6zaPLAaNuLC0P_lBd5DTlIe",
+      "lane": "literal",
+      "query": "person holding mug standing in office",
+      "why": "advertising call-to-action: 'Follow us'"
+     },
+     {
+      "id": "e1_AfqPShwzPKtrvPIiVRnLxSRxKY11KOkMLNbispSvKb6PVyKT9hbeMA",
+      "why": "on-screen text: '00:0; 00:00; 00:00/00:09; 00:01/00:09; 00:02'"
+     },
+     {
+      "id": "e1_AfqPShwPUcu6JXykkmq7daNqFv-c6vU7SDX8nfQT3380yNbKHw",
+      "why": "on-screen text: 'Atomi; Atomic; Atomic Habits; KOR; MURALAM'"
+     },
+     {
+      "id": "e1_AfqPShy3i7RJe0kiTwYdAmaKlKKXsnCbpITpLjY444yHFEjrHcjO",
+      "why": "on-screen text: 'onelittleproject.com'"
+     },
+     {
+      "id": "e1_AfqPShwRn6EjZ5m1clY1l_5v0MOly3rRNR054o1Jb4gqsGeO",
+      "why": "on-screen text: '488418007; Pinterest; Recreating; our; photos'"
+     },
+     {
+      "id": "e1_AfqPShyGWoUjM5QaK1CPmwuQZopkSo0K5RdU9jT9KvjWG6PAkV30",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "e1_AfqPShwAfz1cTc_JHDUhBuDpaKHMQnSU9kqfhKgPu-u29roZFEGS",
+      "why": "on-screen text: '(Expense-30Lakhs); (lstApril); ->EDUCATIONLOANEMI;'"
+     },
+     {
+      "id": "e1_AfqPShwGzU2YQskilCrK3o8tjEFTnAsfcsJN2gKeZjkfqLaYdtBW",
+      "why": "on-screen text: '13321; 134; 17:'"
+     },
+     {
+      "id": "e1_AfqPShwnMRU4Jq_9QrylSEc_X4YIRfGu7kwnC6o8i18W2bVEWuAn",
+      "why": "on-screen text: 'X'"
+     },
+     {
+      "id": "e1_AfqPShxWn-pCveEKp3FNSUqunptMgau-mLnIK5LiUHy8m1-t",
+      "why": "too short 8.43s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShx-Ya7zScnLrPBjqie2yfa_fAZOhfUKklSrCjqN8_tfyJlcTg",
+      "why": "too short 9.53s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzzZeeSrjuydMJZmSpMA-zoHsb95_bQD-gWabBxzCVRfHWW",
+      "why": "unusable crop 852x480"
+     },
+     {
+      "id": "e1_AfqPShzvX-iRXlyZWv_qwtwzN0R_CmzNFmpO6C5pO_8p309mREDj",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "e1_AfqPShxANnmSHP_vJY8HSffjk1ptgJA50hZ31awqpzcNghTT9Yc0",
+      "why": "too short 5.27s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzAQMxba2JUDycM_A4S7hZ9MstGCHzvdRu6TlwXyBE9vO1h",
+      "why": "too short 6.73s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwT1mpFlq7cjfAtMfGz4ncG2JSjU5Sw4dp4o2QRFYLKWI5v",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShwq7Gp7YvRn7n7BtRuJITF_EdKVYlW4zLOA-ZQkwN_KjA",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "e1_AfqPShzuCxEOqGIZr77-RYSdZoMs1t1eENN85L007jlRMUurOeM",
+      "why": "unusable crop 576x1024"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words ['and', 'just', 'out', 'the'] (+14)",
+       "points": 14
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1080, 23.7s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 70,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Turn Opportunities into Reality: Crafting Your Perfect Business Plan"
+   }
+  },
+  "audio": {
+   "bytes": 2669314,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261103T171257Z-ced374/assets/track_7504860701932914698.m4a",
+   "pin_url": null,
+   "sha256": "b32b7b58b841539da9d2c70f911a8b2c7c9ba2234488b720a1da2bdc1982caf1",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7504860701932914698",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 43.1,
+    "high": 0.8,
+    "mid": 56.1
+   },
+   "duration_s": 160.01,
+   "file": "track_7504860701932914698.m4a",
+   "key_estimate": "A# major",
+   "loudness_curve_db": [
+    -23.3,
+    -23.6,
+    -24.7
+   ],
+   "onset_density_per_s": 2.51,
+   "peak_db": -7.6,
+   "rms_db": -23.8,
+   "spectral_centroid_hz": 1350.5,
+   "tempo_bpm": 152.0,
+   "zero_crossing_rate": 0.0679
+  },
+  "background": {
+   "bytes": 2134759,
+   "creator": "lubripuntoca",
+   "path": "/home/runner/work/_temp/beast-scratch/20261103T171257Z-ced374/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShzI6ZXITsW0O6xJDfbJqz2s4PyokvErkgPoQ1Sv4exEtQ/",
+   "sha256": "b01d66df7cbd5d0c70e02fbaecfc2efc45889ed9490ab80f4c99dcf8259ab6e9",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShzI6ZXITsW0O6xJDfbJqz2s4PyokvErkgPoQ1Sv4exEtQ",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "group conversation entry",
+    "emotional_tension": "you want to join the chat but you're busy directing how it looks from the outside",
+    "observable_behaviour": "you hover just outside holding your mug, half-step in then check your phone like you got a ping, waiting for a gap that never quite opens",
+    "private_worry": "that stepping in looks like you're desperate to be included, but hovering outside makes you look aloof and rude",
+    "situation": "in the doorway of the office kitchen at 11:03am when two colleagues are already chatting by the kettle"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "'clutch mug you already filled' / 'half-step in, then back out' / 'check phone like ping came' / 'wait for gap that never opens' / 'you just didn't want to be seen wanting to.'",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Item 5 'laugh a beat too loud once inside' and item 6 'replay if you seemed aloof tonight' step past the doorway hover into a second scene; keep both in the hovering moment. Hook capitalisation inconsistent.",
+    "scene_specificity": 4,
+    "sendability_who": "An office worker with doorway hesitations sending it to a work bestie or close friend with '11:03am, the kitchen doorway, every day.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "kitchen-doorway-hover-6-habits"
+  },
+  "delivery": {
+   "at": "2026-11-03T17:22:14Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -2.71,
+   "yavg_delta": 12.8
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.851,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 0.851,
+    "saturate": 0.634
+   },
+   "saturate": 0.634
+  },
+  "measured": {
+   "sat": 11.49,
+   "yavg": 117.8
+  },
+  "output": {
+   "bytes": 7067611,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261103T171257Z-ced374.mp4",
+   "sha256": "df84f6e13bc501d9192d2ca600527e351801ba9c2bde214d40ef0be75ee5c667"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7504860701932914698",
+    "title": "i walk this earth all by myself"
+   },
+   "background_query": "person holding ceramic mug standing near office kitchen doorway morning light kettle counter",
+   "caption": "6 things you do when you hover in the office kitchen doorway at 11:03am:\n1. clutch mug you already filled\n2. half-step in, then back out\n3. check phone like ping came\n4. wait for gap that never opens\n5. laugh a beat too loud once inside\n6. replay if you seemed aloof tonight",
+   "closing": "you wanted to join, you just didn't want to be seen wanting to.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "The text is a quiet, liminal loop of hyper self-aware micro-hesitations in a doorway that needs elevated, high-fidelity filmic tension to turn awkward hovering into a deliberately directed scene.",
+     "tiktok_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "emotional_analysis": "It's anxious liminal hovering, self-conscious and stuck on the threshold of belonging, so I chose a hazy, in-between glow that feels observed and not-quite-inside.",
+     "pinterest_query": "liminal hallway haze"
+    }
+   },
+   "headline": "6 things you do when you hover in the office kitchen doorway at 11:03am",
+   "list_items": [
+    "clutch mug you already filled",
+    "half-step in, then back out",
+    "check phone like ping came",
+    "wait for gap that never opens",
+    "laugh a beat too loud once inside",
+    "replay if you seemed aloof tonight"
+   ],
+   "provenance": {
+    "creator": "lubripuntoca",
+    "pin_id": "e1_AfqPShzI6ZXITsW0O6xJDfbJqz2s4PyokvErkgPoQ1Sv4exEtQ",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShzI6ZXITsW0O6xJDfbJqz2s4PyokvErkgPoQ1Sv4exEtQ/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 105): warm off-white"
+   },
+   "titleLines": [
+    "6 habits when you hover",
+    "in the kitchen doorway",
+    "not joining, just",
+    "directing how it looks"
+   ],
+   "topic_id": "kitchen-doorway-hover-6-habits"
+  },
+  "publish": {
+   "alt_text": "Person holding ceramic mug standing near office kitchen doorway morning light kettle counter. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-03T17:22:52Z",
+   "caption": "6 things you do when you hover in the office kitchen doorway at 11:03am:\n1. clutch mug you already filled\n2. half-step in, then back out\n3. check phone like ping came\n4. wait for gap that never opens\n5. laugh a beat too loud once inside\n6. replay if you seemed aloof tonight\n\nyou wanted to join, you just didn't want to be seen wanting to.",
+   "channel": "instagram",
+   "container_id": "17917680372538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18099171437418565",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://d.uguu.se/TDbzLCqq.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.71,
+    "yavg_delta": 12.8
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261103T171257Z-ced374/caption_list_title_v1-live-20261103T171257Z-ced374.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 7067611,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 11.49,
+    "yavg": 117.8
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1011,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 63.2
+  },
+  "rendered_at": "2026-11-03T17:22:11Z",
+  "run_id": "20261103T171257Z-ced374",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "You want to join the office kitchen chat but hover in the doorway doing tiny stalling moves to control how you appear.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person holding mug standing in office",
+     "over shoulder view from hallway into",
+     "ceramic mug on counter near doorway"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3139,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "7504860701932914698",
+    "title": "i walk this earth all by myself"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3139
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 4,
+     "shareability": 4
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "kitchen-doorway-hover-6-habits"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "The text is a quiet, liminal loop of hyper self-aware micro-hesitations in a doorway that needs elevated, high-fidelity filmic tension to turn awkward hovering into a deliberately directed scene."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "liminal hallway haze",
+    "vendor": "meta-api",
+    "why": "It's anxious liminal hovering, self-conscious and stuck on the threshold of belonging, so I chose a hazy, in-between glow that feels observed and not-quite-inside."
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261103T171257Z-ced374.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "literal lane shot 'Turn Opportunities into Reality: Crafting Your Per' paired with 'i walk this earth all by myself' for caption_list_title_v1.",
+    "score": 52
+   },
+   "pinterest": {
+    "candidates": 4,
+    "hls": false,
+    "lane": "literal",
+    "metrics": {
+     "sat": 22.39,
+     "yavg": 123.4
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShzI6ZXITsW0O6xJDfbJqz2s4PyokvErkgPoQ1Sv4exEtQ",
+    "query": "person holding mug standing in office",
+    "review_status": "accept",
+    "score": 70,
+    "size": "720x1080",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Turn Opportunities into Reality: Crafting Your Perfect Business Plan"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 63.2
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261103T171257Z-ced374/caption_list_title_v1-live-20261103T171257Z-ced374.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 7067611,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 105): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": true,
+    "drift": {
+     "sat_delta": -2.71,
+     "yavg_delta": 12.8
+    },
+    "measured": {
+     "sat": 11.49,
+     "yavg": 117.8
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1011,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
+  },
+  "topic_id": "kitchen-doorway-hover-6-habits"
  }
 ]
