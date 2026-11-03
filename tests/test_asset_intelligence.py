@@ -589,3 +589,21 @@ def test_static_images_are_not_accepted_as_backgrounds(monkeypatch, tmp_path):
         asset_broker.acquire(INTENT, "social_moment_loop_v1", tmp_path,
                              run_id="still", verbose=False)
     assert "static image" in str(exc.value)
+
+
+def test_a_thin_metaphor_stays_metaphorical_instead_of_falling_to_literal():
+    """Search order matters more than any score here.
+
+    Measured: the director's "liminal hallway haze" returned one clip, that clip
+    failed a hard check, and the run fell straight to the literal scene lane - the
+    exact behaviour the director's briefing forbids. The metaphor must be broadened
+    into its own word-pairs, and a literal image of the words must come LAST.
+    """
+    plan = asset_broker._plan(INTENT, "liminal hallway haze")
+    lanes = [p["lane"] for p in plan]
+    queries = [p["query"] for p in plan]
+    assert queries[0] == "liminal hallway haze"
+    assert lanes[0] == "metaphor"
+    assert "liminal haze" in queries[:4], queries
+    assert lanes[-1] == "literal", lanes          # literal is the last resort
+    assert lanes.count("metaphor") >= 2           # the metaphor was broadened

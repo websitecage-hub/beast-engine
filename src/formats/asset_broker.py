@@ -106,6 +106,48 @@ def _pre_rank(entries: list, intent: dict) -> list:
     return sorted(entries, key=key)
 
 
+def _metaphor_variants(query: str) -> list[str]:
+    """Narrow a metaphor into 2-word pairs that still carry the mood.
+
+    A 3-word metaphor can be too specific for the index (measured: one result, which
+    then failed a hard check and pushed the run onto the literal lane). The pairs keep
+    the adjective+noun feeling - "liminal haze", "hallway haze" - and never reintroduce
+    the literal scene, which is what the director's briefing forbids.
+    """
+    words = [w for w in re.findall(r"[a-z]{3,}", query.lower())]
+    if len(words) < 3:
+        return []
+    pairs = [f"{words[0]} {w}" for w in words[1:]] + [f"{a} {b}" for a, b in
+                                                     zip(words[1:], words[2:])]
+    seen, out = set(), []
+    for pair in pairs:
+        if pair not in seen and pair != query.lower():
+            seen.add(pair)
+            out.append(pair)
+    return out[:3]
+
+
+def _plan(intent: dict, metaphor_query: str | None) -> list[dict]:
+    """Search order. The director's metaphor leads and the literal lane goes LAST.
+
+    Measured: "liminal hallway haze" returned ONE clip, that clip failed a hard check,
+    and the run fell straight to the literal scene lane - which is exactly what the
+    director's briefing forbids ("do not search the literal meaning of the text"). So
+    a metaphor is broadened into its own word-pairs first, and a like-for-like image
+    of the words is the least desirable background, not the first fallback.
+    """
+    plan = asset_intent.lanes(intent)
+    if metaphor_query and metaphor_query.strip():
+        mq = _clip(metaphor_query.strip().lower(), 40)
+        variants = _metaphor_variants(mq)
+        plan = ([{"lane": "metaphor", "query": mq}] +
+                [{"lane": "metaphor", "query": v} for v in variants] +
+                [p for p in plan
+                 if p["lane"] not in ("literal",) and p["query"] not in (mq, *variants)] +
+                [p for p in plan if p["lane"] == "literal" and p["query"] != mq])
+    return plan
+
+
 def _search_lanes(plan: list[dict], *, page_size: int = 25) -> tuple[list, list]:
     """Run the lanes, dedupe by pin id and media url, keep the lane that found it."""
     seen, results, log = set(), [], []
@@ -149,13 +191,7 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
     used_pins = {r.get("pin_id") for r in cooled.values() if r.get("pin_id")}
     used_shas = {r.get("sha256") for r in cooled.values() if r.get("sha256")}
 
-    plan = asset_intent.lanes(intent)
-    # The visual director's metaphor leads. It is deliberately NOT a description of
-    # the moment - the contrast between copy and background is the effect - and the
-    # scene lanes stay behind it as a fallback when the metaphor finds nothing.
-    if metaphor_query and metaphor_query.strip():
-        mq = _clip(metaphor_query.strip().lower(), 40)
-        plan = [{"lane": "metaphor", "query": mq}] + [p for p in plan if p["query"] != mq]
+    plan = _plan(intent, metaphor_query)
     if not plan:
         raise AssetError("asset intent produced no usable scene query")
 
