@@ -8,6 +8,7 @@
    "status": "delivered",
    "used_by": "20261102T174240Z-0a60d4"
   },
+<<<<<<< Updated upstream
   "7226881151338792962": {
    "first_seen_at": "2026-11-03T16:15:58Z",
    "last_used_at": "2026-11-03T16:17:53Z",
@@ -15,10 +16,20 @@
    "sha256": "d7beba5d7f60a79f9d741dd606b528a621a31fd6b1f467c49512ebd16b1b9b9b",
    "status": "delivered",
    "used_by": "20261103T160744Z-7a5e63"
+=======
+  "7288041310028302338": {
+   "first_seen_at": "2026-11-03T16:19:02Z",
+   "last_used_at": "2026-11-03T16:19:58Z",
+   "review_status": "pending",
+   "sha256": "4384b172328a77f5c716cf51c1416b5840ae5912e9d8f1ea17527569fb56ea08",
+   "status": "delivered",
+   "used_by": "20261103T160747Z-d0e4d5"
+>>>>>>> Stashed changes
   }
  },
  "recovered_from_corrupt": true,
  "reservations": {},
+<<<<<<< Updated upstream
  "updated_at": "2026-11-03T16:17:53Z",
  "version": 1,
  "visual": {
@@ -32,6 +43,21 @@
    "sha256": "a74252614effc650bff4a5233274cca7a1afc79097e136878fa388b008e011e4",
    "status": "delivered",
    "used_by": "20261103T160744Z-7a5e63"
+=======
+ "updated_at": "2026-11-03T16:19:58Z",
+ "version": 1,
+ "visual": {
+  "pin:e1_AfqPShwKcy8VY5VM5R1nNaNsIx7QH9Vnvpl8IJIw4ysI0gRiNcjNNQ": {
+   "first_seen_at": "2026-11-03T16:18:20Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-03T16:19:58Z",
+   "pin_id": "e1_AfqPShwKcy8VY5VM5R1nNaNsIx7QH9Vnvpl8IJIw4ysI0gRiNcjNNQ",
+   "query": "rainy window glow",
+   "review_status": "accept",
+   "sha256": "0b503cfff4c4ae67ee3b7d8ea17e00a1481a9f886f4d9c4315cd4f0c097106f7",
+   "status": "delivered",
+   "used_by": "20261103T160747Z-d0e4d5"
+>>>>>>> Stashed changes
   },
   "pin:e1_AfqPShz9xNuc2MCRF5rUx6Xbh7rOsQueO15YOWmzYDVGlkYr2_DD_g": {
    "first_seen_at": "2026-11-02T17:54:47Z",

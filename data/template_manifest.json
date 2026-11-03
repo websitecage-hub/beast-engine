@@ -4247,6 +4247,7 @@
  },
  {
   "asset_intent": {
+<<<<<<< Updated upstream
    "arousal": 0.3,
    "audio_intent": {
     "arousal": 0.25,
@@ -4263,11 +4264,29 @@
      "warm piano chords",
      "soft electric guitar",
      "light airy pad"
+=======
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.15,
+    "avoid": [
+     "upbeat drums",
+     "cheerful pop vocals",
+     "triumphant swell",
+     "comedy boing sfx",
+     "intense cinematic tension"
+    ],
+    "emotional_role": "hold the awkward silence and make the overthinking feel small and relatable, not dramatic",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft synth pad",
+     "quiet electric piano"
+>>>>>>> Stashed changes
     ],
     "rhythmic_density": "sparse",
     "tempo_preference": "slow",
     "texture": [
      "soft",
+<<<<<<< Updated upstream
      "intimate",
      "slightly lo-fi"
     ],
@@ -4299,6 +4318,39 @@
    "literal_scene": "a person standing just outside a supermarket entrance at dusk holding a shopping basket, fluorescent lights glowing inside behind them",
    "literalness": "literal",
    "motion_intent": "one continuous calm shot, almost still with slight handheld sway",
+=======
+     "lo-fi",
+     "muted"
+    ],
+    "trend_hashtags": [
+     "#relatable",
+     "#groupchat",
+     "#overthinking"
+    ],
+    "trend_keywords": [
+     "lofi bedroom chill",
+     "awkward silence loop",
+     "late night overthink"
+    ],
+    "valence": -0.3,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-11-03T16:09:35Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "group-chat-meme-silence-7",
+   "core_human_moment": "sent a meme to a group chat, got left on read, and spiraled into typing and deleting to pretend it didn't matter",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "self-conscious",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "hovering thumb over keyboard, typing haha ignore that then deleting and turning phone face down",
+   "humour": 0.5,
+   "intentional_contrast": null,
+   "literal_scene": "phone lying on unmade bed in dark bedroom with group chat screen glowing and thumb hovering over text field",
+   "literalness": "literal",
+   "motion_intent": "gentle almost-still handheld drift with subtle breathing motion",
+>>>>>>> Stashed changes
    "negative_visuals": [
     "embedded captions",
     "watermarks",
@@ -4306,6 +4358,7 @@
     "logos"
    ],
    "palette_intent": [
+<<<<<<< Updated upstream
     "cool fluorescent white",
     "dusky blue-grey"
    ],
@@ -4378,6 +4431,80 @@
      }
     ],
     "distance": 0.4331,
+=======
+    "desaturated cool grey",
+    "pale blue screen glow"
+   ],
+   "rationale": "Visual stays literally in the lived moment the copy describes \u2014 phone glowing on bed, thumb hovering \u2014 so the anxiety reads as real, not staged. Audio stays low-energy and sparse to let the silence do the cringing, matching the caption's fake-chill energy.",
+   "scene_entities": [
+    "phone",
+    "bed",
+    "bedroom"
+   ],
+   "schema_version": "1.0",
+   "setting": "dark bedroom, bed with rumpled sheets",
+   "tension": 0.6,
+   "text_safe_zone": "centre 30-61% vertical, keep background muted and uncluttered",
+   "time_of_day": "late evening",
+   "valence": -0.4,
+   "video_queries": [
+    "phone on bed in dark bedroom glowing screen",
+    "overhead pov thumb hovering over text field",
+    "phone face down on bed in dim room at night"
+   ],
+   "visual_mood": [
+    "dim",
+    "awkward"
+   ],
+   "visual_profile_target": {
+    "luma": "luma 78.6+-20",
+    "saturation": "sat 8.34+-4"
+   },
+   "warmth": 0.2
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Cleo Sol",
+    "candidates": [
+     {
+      "artist": "MADE BY AMBNT",
+      "distance": 0.7646,
+      "fresh": true,
+      "id": "7694741361490348038",
+      "score": 64,
+      "title": "Aria Math (Cinematic Orchestra)",
+      "video_count": 225
+     },
+     {
+      "artist": "Cleo Sol",
+      "distance": 0.7146,
+      "fresh": true,
+      "id": "7288041310028302338",
+      "score": 100,
+      "title": "Life Will Be",
+      "video_count": 973700
+     },
+     {
+      "artist": "\u96be\u89e3",
+      "distance": 0.3699,
+      "fresh": true,
+      "id": "7538259735640934436",
+      "score": 92,
+      "title": "aura",
+      "video_count": 271200
+     },
+     {
+      "artist": "fadinglight",
+      "distance": 0.4475,
+      "fresh": true,
+      "id": "7439542776280451089",
+      "score": 92,
+      "title": "angels",
+      "video_count": 193000
+     }
+    ],
+    "distance": 0.7146,
+>>>>>>> Stashed changes
     "fresh": true,
     "keywords_tried": [
      {
@@ -4387,7 +4514,11 @@
     ],
     "rejected": [
      {
+<<<<<<< Updated upstream
       "id": "7205297463144499202",
+=======
+      "id": "7024561315188312066",
+>>>>>>> Stashed changes
       "why": "copyrighted, not commercial"
      }
     ],
@@ -4398,19 +4529,32 @@
        "points": 20
       },
       "loopable": {
+<<<<<<< Updated upstream
        "evidence": "60.0s vs 12.2s",
        "points": 20
       },
       "trend": {
        "evidence": "video_count 516300",
+=======
+       "evidence": "60.0s vs 7.0s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 973700",
+>>>>>>> Stashed changes
        "points": 60
       }
      },
      "passes": true,
      "total": 100
     },
+<<<<<<< Updated upstream
     "stable_id": "7226881151338792962",
     "title": "losing"
+=======
+    "stable_id": "7288041310028302338",
+    "title": "Life Will Be"
+>>>>>>> Stashed changes
    },
    "pair": {
     "dimensions": {
@@ -4424,6 +4568,7 @@
      },
      "text_to_scene": {
       "evidence": "look_fit from metadata",
+<<<<<<< Updated upstream
       "points": 17
      }
     },
@@ -4439,6 +4584,23 @@
       "height": 1280,
       "pin_id": "e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU",
       "query": "rainy car park",
+=======
+      "points": 46
+     }
+    },
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'Life Will Be' for social_moment_loop_v1.",
+    "total": 81
+   },
+   "visual": {
+    "band_busy": 0.0876,
+    "candidates": [
+     {
+      "band_busy": 0.0876,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwKcy8VY5VM5R1nNaNsIx7QH9Vnvpl8IJIw4ysI0gRiNcjNNQ",
+      "query": "rainy window glow",
+>>>>>>> Stashed changes
       "query_lane": "metaphor",
       "review_status": "accept",
       "score": {
@@ -4449,22 +4611,87 @@
          "points": 10
         },
         "look_fit": {
+<<<<<<< Updated upstream
          "evidence": "look words ['rain', 'street'] (+10); scene words ['them'] (+4)",
          "points": 14
+=======
+         "evidence": "look words ['cozy', 'lights', 'night', 'rain', 'window'] (+25); scene words ['and', 'glowing', 'with'] (+12)",
+         "points": 37
+>>>>>>> Stashed changes
         },
         "no_on_screen_text": {
          "evidence": "OCR: no on-screen text or logo",
          "points": 30
         },
         "technical": {
+<<<<<<< Updated upstream
          "evidence": "720x1280, 34.1s (need 12.2s)",
+=======
+         "evidence": "720x1280, 15.4s (need 7.0s)",
+>>>>>>> Stashed changes
          "points": 16
         }
        },
        "minimum": 60,
        "passes": true,
        "review_status": "accept",
+<<<<<<< Updated upstream
        "total": 70,
+=======
+       "total": 93,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         504,
+         544
+        ],
+        [
+         472,
+         496
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (504, 544)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0347,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwk33zMCAWMMCWj6ZpN3mh_UBtG-sd7i1S0z2ZO3iLpulhegQ",
+      "query": "rainy window glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['cozy', 'home', 'night', 'quiet', 'rain'] (+26); scene words ['and', 'dark', 'with'] (+12)",
+         "points": 38
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 8.0s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 94,
+>>>>>>> Stashed changes
        "unknown_dimensions": []
       },
       "stretch_pick": false,
@@ -4478,10 +4705,17 @@
       "width": 720
      },
      {
+<<<<<<< Updated upstream
       "band_busy": 0.0298,
       "height": 1280,
       "pin_id": "e1_AfqPShymPoNAuRczhK18g5hmIQE0Znmng5EGLTDhSfK59T1g8t8",
       "query": "rainy car park",
+=======
+      "band_busy": 0.0822,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyISwlsscOqURRYUUJMlciasYERAi-Ht_aoTOkwogsGNUyoeg",
+      "query": "rainy window glow",
+>>>>>>> Stashed changes
       "query_lane": "metaphor",
       "review_status": "accept",
       "score": {
@@ -4492,39 +4726,79 @@
          "points": 10
         },
         "look_fit": {
+<<<<<<< Updated upstream
          "evidence": "look words ['rain', 'street'] (+10); scene words ['and'] (+4)",
          "points": 14
+=======
+         "evidence": "look words ['cozy', 'lights', 'night', 'rain', 'window'] (+25); scene words ['and', 'glowing', 'with'] (+12)",
+         "points": 37
+>>>>>>> Stashed changes
         },
         "no_on_screen_text": {
          "evidence": "OCR: no on-screen text or logo",
          "points": 30
         },
         "technical": {
+<<<<<<< Updated upstream
          "evidence": "720x1280, 18.0s (need 12.2s)",
+=======
+         "evidence": "720x1280, 15.4s (need 7.0s)",
+>>>>>>> Stashed changes
          "points": 16
         }
        },
        "minimum": 60,
        "passes": true,
        "review_status": "accept",
+<<<<<<< Updated upstream
        "total": 70,
+=======
+       "total": 93,
+>>>>>>> Stashed changes
        "unknown_dimensions": []
       },
       "stretch_pick": false,
       "text": {
+<<<<<<< Updated upstream
        "bands": [],
        "framing": [],
        "reason": "no persistent glyph-like band",
        "text_suspected": false,
+=======
+       "bands": [
+        [
+         304,
+         320
+        ],
+        [
+         320,
+         336
+        ],
+        [
+         392,
+         488
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (304, 320)",
+       "text_suspected": true,
+>>>>>>> Stashed changes
        "uniform": []
       },
       "width": 720
      },
      {
+<<<<<<< Updated upstream
       "band_busy": 0.0228,
       "height": 1920,
       "pin_id": "e1_AfqPShzj2PZ_VZfoCd4rX3UK6CmA5Unt4p1gX_rrLKSIDCBDrnQ",
       "query": "rainy car park",
+=======
+      "band_busy": 0.0617,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwS7OzXN1Sw9HoRMzUTQdWccpNXHZ0Nd9ea5aMt78RY6iSs",
+      "query": "rainy window glow",
+>>>>>>> Stashed changes
       "query_lane": "metaphor",
       "review_status": "accept",
       "score": {
@@ -4535,16 +4809,78 @@
          "points": 10
         },
         "look_fit": {
+<<<<<<< Updated upstream
          "evidence": "look words ['night'] (+5); scene words [] (+0)",
          "points": 5
+=======
+         "evidence": "look words ['home', 'rain'] (+10); scene words ['and', 'bed', 'down', 'with'] (+14)",
+         "points": 24
+>>>>>>> Stashed changes
         },
         "no_on_screen_text": {
          "evidence": "OCR: no on-screen text or logo",
          "points": 30
         },
         "technical": {
+<<<<<<< Updated upstream
          "evidence": "1080x1920, 38.8s (need 12.2s)",
          "points": 20
+=======
+         "evidence": "720x1280, 7.4s (need 7.0s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 77,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         400,
+         416
+        ],
+        [
+         432,
+         440
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (400, 416)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0182,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxTJy3vyKGfHqSVuyoInTm7DwAdeyILaQFPYN3bz6f9yQ",
+      "query": "rainy window glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['window'] (+5); scene words ['dark'] (+4)",
+         "points": 9
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.0s (need 7.0s)",
+         "points": 16
+>>>>>>> Stashed changes
         }
        },
        "minimum": 60,
@@ -4558,6 +4894,7 @@
        "bands": [],
        "framing": [
         {
+<<<<<<< Updated upstream
          "fraction_of_height": 0.086,
          "rows": [
           132,
@@ -4568,10 +4905,16 @@
          "fraction_of_height": 0.128,
          "rows": [
           558,
+=======
+         "fraction_of_height": 0.141,
+         "rows": [
+          550,
+>>>>>>> Stashed changes
           640
          ]
         },
         {
+<<<<<<< Updated upstream
          "fraction_of_height": 0.328,
          "rows": [
           0,
@@ -4596,10 +4939,16 @@
          "fraction_of_height": 0.217,
          "rows": [
           501,
+=======
+         "fraction_of_height": 0.084,
+         "rows": [
+          586,
+>>>>>>> Stashed changes
           640
          ]
         }
        ],
+<<<<<<< Updated upstream
        "reason": "no persistent glyph-like band; uniform framing bands [(132, 187), (558, 640)]",
        "text_suspected": false,
        "uniform": [
@@ -4625,10 +4974,22 @@
         ],
         [
          501,
+=======
+       "reason": "no persistent glyph-like band; uniform framing bands [(550, 640), (586, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         550,
+         640
+        ],
+        [
+         586,
+>>>>>>> Stashed changes
          640
         ]
        ]
       },
+<<<<<<< Updated upstream
       "width": 1080
      }
     ],
@@ -4639,6 +5000,160 @@
      "cuts": 1,
      "max_jump": 0.2322,
      "motion": 0.1665,
+=======
+      "width": 720
+     },
+     {
+      "band_busy": 0.1561,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxzXZkeebvjqzamps9WDJeTXmMH-tyhSkeJd589iPNuJlAzxg",
+      "query": "rainy window glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['cozy', 'home', 'rain'] (+15); scene words [] (+0)",
+         "points": 15
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.4s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 71,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         0,
+         16
+        ],
+        [
+         16,
+         32
+        ],
+        [
+         96,
+         112
+        ],
+        [
+         120,
+         128
+        ],
+        [
+         256,
+         264
+        ],
+        [
+         272,
+         296
+        ],
+        [
+         320,
+         328
+        ],
+        [
+         376,
+         392
+        ],
+        [
+         464,
+         488
+        ],
+        [
+         504,
+         520
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (0, 16)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0268,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyOBcAAdGiIXafsOLE9n8qMYIS3rugg-SLnkRRMD6CHAh1b",
+      "query": "phone on bed in dark bedroom",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['city', 'lights'] (+10); scene words ['bed', 'dark', 'phone', 'with'] (+14)",
+         "points": 24
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.4s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 80,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.233,
+         "rows": [
+          491,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(491, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         491,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "uscalm",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0136,
+     "motion": 0.0119,
+>>>>>>> Stashed changes
      "ok": true,
      "samples": 8
     },
@@ -4650,14 +5165,21 @@
      "text_said": ""
     },
     "passes_minimum": true,
+<<<<<<< Updated upstream
     "pin_id": "e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU",
     "pin_url": "https://www.pinterest.com/pin/e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU/",
     "query": "rainy car park",
+=======
+    "pin_id": "e1_AfqPShwKcy8VY5VM5R1nNaNsIx7QH9Vnvpl8IJIw4ysI0gRiNcjNNQ",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwKcy8VY5VM5R1nNaNsIx7QH9Vnvpl8IJIw4ysI0gRiNcjNNQ/",
+    "query": "rainy window glow",
+>>>>>>> Stashed changes
     "query_lane": "metaphor",
     "query_log": [
      {
       "kept": 25,
       "lane": "metaphor",
+<<<<<<< Updated upstream
       "query": "rainy car park",
       "returned": 25
      },
@@ -4677,11 +5199,27 @@
       "kept": 0,
       "lane": "emotional",
       "query": "close up hands gripping shopping basket",
+=======
+      "query": "rainy window glow",
+      "returned": 25
+     },
+     {
+      "kept": 24,
+      "lane": "literal",
+      "query": "phone on bed in dark bedroom",
+      "returned": 24
+     },
+     {
+      "kept": 0,
+      "lane": "adjacent",
+      "query": "overhead pov thumb hovering over text",
+>>>>>>> Stashed changes
       "returned": 0
      }
     ],
     "rejected": [
      {
+<<<<<<< Updated upstream
       "id": "e1_AfqPShwESiXnVEa0477GRrI-LK4tJOTbhwFe9AkwM-0jEeXxVJm2",
       "why": "unusable crop 240x424"
      },
@@ -4776,6 +5314,166 @@
      {
       "id": "e1_AfqPShxa9eiO6MePiiTtNk4rmc_1xLhHStzSbSe7J5LMCftSpKs0",
       "why": "too short 10.82s for 12.2s"
+=======
+      "id": "e1_AfqPShyqmxpfZMP2Kid3VIwEAVL87A6RJEi425FVf0-TJm1tfroy",
+      "why": "on-screen text: \"It's sending; NATURASZEST; NATURESZEST; Start toni\""
+     },
+     {
+      "id": "e1_AfqPShwcSQqS6ma8j268RuhlQdaDdKipHZaalxawEOup4oNkeOKj8w",
+      "why": "on-screen text: 'M'"
+     },
+     {
+      "id": "e1_AfqPShxOMFCrggYRYL1cXpH3cVwBQYwnGHVKaNdAQNZxOJ_x8Pfb",
+      "why": "unusable crop 1280x960"
+     },
+     {
+      "id": "e1_AfqPShz9xNuc2MCRF5rUx6Xbh7rOsQueO15YOWmzYDVGlkYr2_DD_g",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "e1_AfqPShzhMQY8mJRbAaZn7fS_fAAoO2_SI7rcYUvdZOQpfEsrz6Cq",
+      "why": "too short 6.92s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShxn6Piz5xAI7jeqh5X64uP-8QXpNI6jA8CNcH5aWR2sHu-s",
+      "why": "on-screen text: '\u5e94'"
+     },
+     {
+      "id": "e1_AfqPShz4yEkxqpCJq3eUjzicdg-Xt5kIBjub7yFEZLtv0-Z-Dnk9",
+      "why": "on-screen text: '@aizel.illustrates'"
+     },
+     {
+      "id": "e1_AfqPShx8zMSgQKMMdYnP_cf0Yl34ys9iQ8xinSR6ym0KHdpui2DJ1Q",
+      "why": "on-screen text: 'D; Jightfall; Memoirs; Nightfall; Vighrfall'"
+     },
+     {
+      "id": "e1_AfqPShzkRJp8laBvb0_gslMGtE6XMtcevHManSMRWzJ0wgI6gwhQyA",
+      "why": "on-screen text: 'U'"
+     },
+     {
+      "id": "e1_AfqPShytnlVC9S5MTZeO_ROB88D1KMl-4-0JvMzYSemzVFTKtq0n_g",
+      "why": "on-screen text: 'D'"
+     },
+     {
+      "id": "e1_AfqPShySIVEpD5iAmcmr6eozFMgMTC0niWZ0_MJT_rUNq_OZTvVu1g",
+      "why": "on-screen text: '\u798f'"
+     },
+     {
+      "id": "e1_AfqPShy6gu4OxnclohNTPw_E8BayYinzND6f9GZEUBom4pLotqdM",
+      "why": "on-screen text: '!; C; \uff01'"
+     },
+     {
+      "id": "e1_AfqPShz4qR7guxI54vTAEuY2mwRgjW4RGNyLOoGFe31t7GFvqANEew",
+      "why": "on-screen text: '@fd@; A; AMBIANCE; M2; \u56defd'"
+     },
+     {
+      "id": "e1_AfqPShxkTD6XiZu7pP-OTOvih1_Fvc9_IwmOt92kCT4asz0GpYHZiw",
+      "why": "on-screen text: '\u798f'"
+     },
+     {
+      "id": "e1_AfqPShzN2p6Xt98lBosTh7NSpK9eJxLgibscmXWNwmfBSdQBjA",
+      "why": "on-screen text: '012; 116; @aizelilhstrates; @nizelilhstrates'"
+     },
+     {
+      "id": "e1_AfqPShzjlHjlfztb4mIMaQjnu8AJXQ9vFQtoouItdWXVeAQw0-XzAg",
+      "why": "on-screen text: 'OPE; OPEI'"
+     },
+     {
+      "id": "e1_AfqPShzzix_YqJPyF1YZUEE2uWSyQKtBJRyfjFx-vtRL4ABgPtN6NQ",
+      "why": "too short 6.24s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShw9B2JEez3F_Ec7jc_bg4MwbN1Lr_19bSOFbb8BBP3e3JsTEQ",
+      "why": "on-screen text: '17:11; CONTINUES...; L:U; SIGNAL 06; TRANSMISSION'"
+     },
+     {
+      "id": "e1_AfqPShzYBw9xlS31Hn_L_FrkIPs4dM_AuWuPpOZPhSnnOWpZIc_F",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "e1_AfqPShy1NgvLuSYEtJyF4e_QExlZF1Uv4eweAgy9-tV3TOtL",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShx40Xf9VkpjXqKosX1M-eYOalhY86ctzzJ9e-Fp4CFf_yA6",
+      "why": "unusable crop 576x768"
+     },
+     {
+      "id": "e1_AfqPShwCsEUQ85cAKYzG6OpFr5U9DUnQitBsWVDJC9wXGv1eYw",
+      "why": "too short 6.73s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShy-IrqQ1tT8JbdgQnYM45n7oYbZxGI8dpGrjxeuY76fpY8",
+      "why": "too short 5.04s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShygp7ZQ_7Wc9zxQQ5_ImBGHbI2A56cQwgS1qKcpdc3B5kM",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShz5C2OpMOPAq29lHGKabvpf-V3xZp8O8Xw2RtRu9qhfxg6f",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShwvEfsK8Cqil62lPwPClV8F6ks0AUFyRNowZcGonRgLZuI",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShzU2SI0JiWsnSBGjm2JFg3GBgRM8Lb4i11o0mWrrQsBkwBEjQ",
+      "why": "on-screen text: 'Feel The Music Lovers; Jaana Teri Yaadein; Sone Hi'"
+     },
+     {
+      "id": "e1_AfqPShxPkpc5GRcDzjJ9bAlYQHKnGG78afSl8Y4c11alC-xJuY0",
+      "why": "on-screen text: 'D'"
+     },
+     {
+      "id": "e1_AfqPShydEF7zv4F05fWoQVCyjDamFGLprSd9DhDhJte5jQMZ9IuF",
+      "why": "too short 4.83s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShxCfGVTDW56_As7V9ckipZxVJIVHf4kjValuiA9wQ52wPkp",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "e1_AfqPShwihq-4AYVdL9UdkVXY7JlvX9-ZbFAg2UySJwCbY3wKTwnQ",
+      "why": "unusable crop 270x480"
+     },
+     {
+      "id": "e1_AfqPShw1L7r_GOHixZ4Ij8pSFe9ni8hYnak0sKm0QQx8cfUghGo",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxivsqrfC_Enhgz8xMJ165tx5t9U3mcivGDmb5XjmTsy-A",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShzDHye5e9T-n2vyK6jYQaAoqWxryxD-V014ZIfO7CjnCa14",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "e1_AfqPShy5j5UM3BGG7eV7U2BFvTB6JSEff6V4OuOkHAKWqamDLKI",
+      "why": "on-screen text: '\u65e5'"
+     },
+     {
+      "id": "e1_AfqPShw4no7iiY0PveEKuqUF6wVHWmc-buVUUutc3-RP10bQMVk",
+      "why": "unusable crop 576x576"
+     },
+     {
+      "id": "e1_AfqPShypVVVa4uJ3-ulnWHZubUYlrIDUQ0wTS4PH7NbcoC7y2OOa",
+      "why": "too short 6.9s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShzFjfbrg0RpNlkCcXIw3yvDgnxQXLgSxoMkYBjaKDSb",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShzE5ffNJO4oTKAermuOzrSl-WM5qTADmLvlxFH4ACcUVGy5",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShwBE30pKVMd7BdqLdt-4pJNPTjvz_5MhQaFh4uEg41UVmNO",
+      "why": "unusable crop 640x360"
+>>>>>>> Stashed changes
      }
     ],
     "review_status": "accept",
@@ -4787,26 +5485,40 @@
        "points": 10
       },
       "look_fit": {
+<<<<<<< Updated upstream
        "evidence": "look words ['rain', 'street'] (+10); scene words ['them'] (+4)",
        "points": 14
+=======
+       "evidence": "look words ['cozy', 'lights', 'night', 'rain', 'window'] (+25); scene words ['and', 'glowing', 'with'] (+12)",
+       "points": 37
+>>>>>>> Stashed changes
       },
       "no_on_screen_text": {
        "evidence": "OCR: no on-screen text or logo",
        "points": 30
       },
       "technical": {
+<<<<<<< Updated upstream
        "evidence": "720x1280, 34.1s (need 12.2s)",
+=======
+       "evidence": "720x1280, 15.4s (need 7.0s)",
+>>>>>>> Stashed changes
        "points": 16
       }
      },
      "minimum": 60,
      "passes": true,
      "review_status": "accept",
+<<<<<<< Updated upstream
      "total": 70,
+=======
+     "total": 93,
+>>>>>>> Stashed changes
      "unknown_dimensions": []
     },
     "stretch_pick": false,
     "text": {
+<<<<<<< Updated upstream
      "bands": [],
      "framing": [],
      "reason": "no persistent glyph-like band",
@@ -4824,10 +5536,39 @@
    "sha256": "d7beba5d7f60a79f9d741dd606b528a621a31fd6b1f467c49512ebd16b1b9b9b",
    "source": "audi0-scraper:/v1/trending",
    "stable_id": "7226881151338792962",
+=======
+     "bands": [
+      [
+       504,
+       544
+      ],
+      [
+       472,
+       496
+      ]
+     ],
+     "framing": [],
+     "reason": "persistent glyph-like band (504, 544)",
+     "text_suspected": true,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 984346,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261103T160747Z-d0e4d5/assets/track_7288041310028302338.m4a",
+   "pin_url": null,
+   "sha256": "4384b172328a77f5c716cf51c1416b5840ae5912e9d8f1ea17527569fb56ea08",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7288041310028302338",
+>>>>>>> Stashed changes
    "usage_clearance": "unknown"
   },
   "audio_features": {
    "band_energy_pct": {
+<<<<<<< Updated upstream
     "bass": 77.1,
     "high": 0.0,
     "mid": 22.9
@@ -4855,36 +5596,90 @@
    "sha256": "a74252614effc650bff4a5233274cca7a1afc79097e136878fa388b008e011e4",
    "source": "pinterest",
    "stable_id": "e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU",
+=======
+    "bass": 85.2,
+    "high": 0.5,
+    "mid": 14.4
+   },
+   "duration_s": 60.0,
+   "file": "track_7288041310028302338.m4a",
+   "key_estimate": "A minor",
+   "loudness_curve_db": [
+    -20.9,
+    -20.8,
+    -20.6
+   ],
+   "onset_density_per_s": 4.23,
+   "peak_db": -9.5,
+   "rms_db": -20.8,
+   "spectral_centroid_hz": 1194.6,
+   "tempo_bpm": 198.8,
+   "zero_crossing_rate": 0.0362
+  },
+  "background": {
+   "bytes": 4900866,
+   "creator": "uscalm",
+   "path": "/home/runner/work/_temp/beast-scratch/20261103T160747Z-d0e4d5/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwKcy8VY5VM5R1nNaNsIx7QH9Vnvpl8IJIw4ysI0gRiNcjNNQ/",
+   "sha256": "0b503cfff4c4ae67ee3b7d8ea17e00a1481a9f886f4d9c4315cd4f0c097106f7",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShwKcy8VY5VM5R1nNaNsIx7QH9Vnvpl8IJIw4ysI0gRiNcjNNQ",
+>>>>>>> Stashed changes
    "usage_clearance": "unknown"
   },
   "content": {
    "attempts": 1,
    "audience_moment": {
+<<<<<<< Updated upstream
     "audience_cluster": "making and maintaining friends",
     "emotional_tension": "wants to show the friendship still counts without making it weird by showing it counts",
     "observable_behaviour": "does the quick oh-hey smile, tightens grip on basket, looks at their basket then down at phone screen that didn't buzz",
     "private_worry": "if I stop to chat I'll seem like I'm holding them hostage, if I keep walking I'll seem like I never cared",
     "situation": "outside Tesco self-checkouts at 6:42pm, bumping into someone you were close with at uni but haven't messaged in months"
+=======
+    "audience_cluster": "texting and group chats",
+    "emotional_tension": "you want to feel included in the chat, but now you're directing how your eagerness looks",
+    "observable_behaviour": "you scroll up to reread your own message, lock your phone, unlock it 20 seconds later, check who saw it, start typing 'haha ignore that' then delete it",
+    "private_worry": "that you look desperate to be liked and can't read when to stay quiet",
+    "situation": "Tuesday 8:14pm, on your bed, your meme in the group chat has sat with no reply for 18 minutes"
+>>>>>>> Stashed changes
    },
    "card_compiled_by": "llm:meta-api",
    "card_degraded": false,
    "critic": {
+<<<<<<< Updated upstream
     "caption_value": 4,
     "critical_min": 4.0,
     "distinctiveness": 5,
     "emotional_truth_dignity": 5,
     "evidence": "'tighten grip on shopping basket' / 'check phone that never buzzed' / 'scan their basket for conversation' / 'leave holding your breath outside' / 'you wanted them to know it still mattered without making it weird.'",
     "format_fit": 4,
+=======
+    "caption_value": 5,
+    "critical_min": 5.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "'sent a meme at 8:14 18 mins no reply' / 'checked who saw it typed haha ignore that then deleted it' / 'my phone is face down now like that makes me look chill.'",
+    "format_fit": 5,
+>>>>>>> Stashed changes
     "hard_fail": null,
     "natural_voice": 5,
     "passed": true,
     "product_trust": 5,
     "recognition_authenticity": 5,
+<<<<<<< Updated upstream
     "rewrite_notes": "Item 6 'leave holding your breath outside' and item 7 'retype sorry-text you never send' both step outside the 6:42pm self-checkout moment into after-the-fact scenes; pull them back inside Tesco to keep one moment.",
     "scene_specificity": 5,
     "sendability_who": "Someone in their 20s-30s who's drifted from uni friends sending it to a close friend or old housemate with 'this is me at Tesco every time.'",
     "shareability": 5,
     "supporting_min": 4.0
+=======
+    "rewrite_notes": "Nothing failed for the loop format. Minor: payoff 'checked who saw it typed haha ignore that' needs a comma or line break to read instantly; otherwise the turn and face-down close land well.",
+    "scene_specificity": 5,
+    "sendability_who": "A group-chat over-thinker in their 20s-30s sending it to their closest friend with 'me at 8:14 every night.'",
+    "shareability": 5,
+    "supporting_min": 5.0
+>>>>>>> Stashed changes
    },
    "ladder": [
     {
@@ -4897,14 +5692,22 @@
      ]
     }
    ],
+<<<<<<< Updated upstream
    "topic_id": "tesco-6-42-uni-mate-casual-caring"
   },
   "delivery": {
    "at": "2026-11-03T16:17:53Z",
+=======
+   "topic_id": "group-chat-meme-silence-7"
+  },
+  "delivery": {
+   "at": "2026-11-03T16:19:58Z",
+>>>>>>> Stashed changes
    "channel": "telegram",
    "ok": true
   },
   "drift": {
+<<<<<<< Updated upstream
    "sat_delta": -3.32,
    "yavg_delta": 4.0
   },
@@ -4927,12 +5730,37 @@
    "duration_s": 12.0,
    "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261103T160744Z-7a5e63.mp4",
    "sha256": "1061ac9c69cc81a02b6eaf3a60111ecc0a5165140a3434acb77911ba6eba0975"
+=======
+   "sat_delta": 3.22,
+   "yavg_delta": -2.5
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 1.379,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 1.379,
+    "saturate": 0.653
+   },
+   "saturate": 0.653
+  },
+  "measured": {
+   "sat": 11.56,
+   "yavg": 76.1
+  },
+  "output": {
+   "bytes": 11648356,
+   "duration_s": 7.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261103T160747Z-d0e4d5.mp4",
+   "sha256": "023e88730445a874f3653f9f525c018f4e9d5f40ab0f58bd4a75ed14e902c83a"
+>>>>>>> Stashed changes
   },
   "payload": {
    "_schema_version": "1.0",
    "audio": {
     "rights": "preview_only",
     "source": "audi0-scraper:/v1/trending",
+<<<<<<< Updated upstream
     "stable_id": "7226881151338792962",
     "title": "losing"
    },
@@ -4943,10 +5771,22 @@
     "audio": {
      "director_vendor": "meta-api",
      "sonic_analysis": "This is low-stakes social suspense disguised as casual, so a cinematic track elevates the Tesco aisle into a slow-motion prestige drama where the basket-grip tension becomes the score.",
+=======
+    "stable_id": "7288041310028302338",
+    "title": "Life Will Be"
+   },
+   "background_query": "phone on bed in dark bedroom, group chat screen glowing, thumb hovering over text field",
+   "caption": "my phone is face down now like that makes me look chill",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "It's a quiet ticking-clock spiral of fake-chill masking obsessive checking, so a spacious cinematic bed turns the 18-minute wait into high-stakes, intimate tension.",
+>>>>>>> Stashed changes
      "tiktok_query": "cinematic"
     },
     "visual": {
      "director_vendor": "meta-api",
+<<<<<<< Updated upstream
      "emotional_analysis": "The text is awkward nostalgia and performative casualness masking held-breath guilt, so I chose a cold, empty, cinematic night environment to make the small cringe feel vast and aesthetic.",
      "pinterest_query": "rainy car park"
     }
@@ -4965,10 +5805,31 @@
     "creator": "nolagene",
     "pin_id": "e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU",
     "pin_url": "https://www.pinterest.com/pin/e1_AfqPShy7nwLS-PB4a2syQyZORnN6ljCYB5_oPggmJ2qWRXNrvjU/",
+=======
+     "emotional_analysis": "It's performative nonchalance masking obsessive checking and anxious waiting, so it needs a tense, quiet, late-night liminal aesthetic of staring at nothing while waiting for a reply.",
+     "pinterest_query": "rainy window glow"
+    }
+   },
+   "hookLines": [
+    "sent a meme at 8:14",
+    "18 mins no reply"
+   ],
+   "loop_hypothesis": "deleting the cover text drops you back to the original unread meme, so the last line flows straight into the first as one endless checking cycle",
+   "payoffLines": [
+    "checked who saw it",
+    "typed haha ignore that",
+    "then deleted it"
+   ],
+   "provenance": {
+    "creator": "uscalm",
+    "pin_id": "e1_AfqPShwKcy8VY5VM5R1nNaNsIx7QH9Vnvpl8IJIw4ysI0gRiNcjNNQ",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwKcy8VY5VM5R1nNaNsIx7QH9Vnvpl8IJIw4ysI0gRiNcjNNQ/",
+>>>>>>> Stashed changes
     "source": "pinterest",
     "usage_clearance": "unknown"
    },
    "text_style": {
+<<<<<<< Updated upstream
     "fill": "#F7F0D2",
     "stroke_px": 2,
     "why": "mid footage (luma 105): warm off-white"
@@ -4980,15 +5841,46 @@
     "Cool: 7 things you do"
    ],
    "topic_id": "tesco-6-42-uni-mate-casual-caring"
+=======
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 79 < 92): warm yellow"
+   },
+   "topic_id": "group-chat-meme-silence-7"
+  },
+  "publish": {
+   "alt_text": "Phone on bed in dark bedroom, group chat screen glowing, thumb hovering over text field. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-03T16:20:38Z",
+   "caption": "my phone is face down now like that makes me look chill",
+   "channel": "instagram",
+   "container_id": "17917671876538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18147551227584814",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://n.uguu.se/LoYlfXtt.mp4"
+>>>>>>> Stashed changes
   },
   "qa": {
    "attempts": 1,
    "band_ok": true,
    "drift": {
+<<<<<<< Updated upstream
     "sat_delta": -3.32,
     "yavg_delta": 4.0
    },
    "duration_s": 12.0,
+=======
+    "sat_delta": 3.22,
+    "yavg_delta": -2.5
+   },
+   "duration_s": 7.0,
+>>>>>>> Stashed changes
    "gate": {
     "audio": true,
     "audio_channels": 2,
@@ -4997,12 +5889,21 @@
     "decode_ok": true,
     "decode_stderr": "",
     "duration_bounds": [
+<<<<<<< Updated upstream
      11.6,
      12.8
     ],
     "duration_s": 12.0,
     "failures": [],
     "file": "/home/runner/work/_temp/beast-scratch/20261103T160744Z-7a5e63/caption_list_title_v1-live-20261103T160744Z-7a5e63.mp4",
+=======
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261103T160747Z-d0e4d5/social_moment_loop_v1-live-20261103T160747Z-d0e4d5.mp4",
+>>>>>>> Stashed changes
     "fps": 30.0,
     "fps_raw": "30/1",
     "height": 1920,
@@ -5011,11 +5912,16 @@
     "pix_fmt": "yuv420p",
     "probe_error": null,
     "sar": "1:1",
+<<<<<<< Updated upstream
     "size_bytes": 38994008,
+=======
+    "size_bytes": 11648356,
+>>>>>>> Stashed changes
     "width": 1080
    },
    "gate_ok": true,
    "measured": {
+<<<<<<< Updated upstream
     "sat": 10.88,
     "yavg": 109.0
    },
@@ -5034,19 +5940,47 @@
     "bright_fraction": 0.1699,
     "ok": true,
     "threshold": 190
+=======
+    "sat": 11.56,
+    "yavg": 76.1
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0653,
+    "ok": true,
+    "threshold": 165
+>>>>>>> Stashed changes
    }
   },
   "qa_ok": true,
   "render": {
    "quality": "delivery",
+<<<<<<< Updated upstream
    "seconds": 93.0
   },
   "rendered_at": "2026-11-03T16:17:39Z",
   "run_id": "20261103T160744Z-7a5e63",
+=======
+   "seconds": 46.3
+  },
+  "rendered_at": "2026-11-03T16:19:53Z",
+  "run_id": "20261103T160747Z-d0e4d5",
+>>>>>>> Stashed changes
   "schema_version": "1.0",
   "stages": {
    "asset_intent": {
     "compiled_by": "llm:meta-api",
+<<<<<<< Updated upstream
     "core_human_moment": "You bump into an old uni mate at Tesco and pretend to be chill while feeling awkward, exposed, and secretly caring a lot.",
     "degraded": false,
     "ok": true,
@@ -5054,11 +5988,23 @@
      "person holding basket outside supermarket entrance",
      "wide shot person standing outside supermarket",
      "close up hands gripping shopping basket"
+=======
+    "core_human_moment": "sent a meme to a group chat, got left on read, and spiraled into typing and deleting to pretend it didn't matter",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "phone on bed in dark bedroom",
+     "overhead pov thumb hovering over text"
+>>>>>>> Stashed changes
     ]
    },
    "audio": {
     "clearance": "unknown",
+<<<<<<< Updated upstream
     "distance": 0.4331,
+=======
+    "distance": 0.7146,
+>>>>>>> Stashed changes
     "keywords": [
      {
       "keyword": "cinematic",
@@ -5067,23 +6013,39 @@
     ],
     "ok": true,
     "score": 100,
+<<<<<<< Updated upstream
     "stable_id": "7226881151338792962",
     "title": "losing"
+=======
+    "stable_id": "7288041310028302338",
+    "title": "Life Will Be"
+>>>>>>> Stashed changes
    },
    "audio_validation": {
     "has_audio": true,
     "ok": true,
+<<<<<<< Updated upstream
     "track_distance": 0.4331
+=======
+    "track_distance": 0.7146
+>>>>>>> Stashed changes
    },
    "content": {
     "attempts": 1,
     "card": "llm:meta-api",
     "card_degraded": false,
     "critic": {
+<<<<<<< Updated upstream
      "caption_value": 4,
      "distinctiveness": 5,
      "emotional_truth_dignity": 5,
      "format_fit": 4,
+=======
+     "caption_value": 5,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+>>>>>>> Stashed changes
      "hard_fail": null,
      "natural_voice": 5,
      "product_trust": 5,
@@ -5093,7 +6055,11 @@
     },
     "ladder": 2,
     "ok": true,
+<<<<<<< Updated upstream
     "topic_id": "tesco-6-42-uni-mate-casual-caring"
+=======
+    "topic_id": "group-chat-meme-silence-7"
+>>>>>>> Stashed changes
    },
    "delivery": {
     "delivered": true,
@@ -5103,6 +6069,7 @@
     "ok": true,
     "query": "cinematic",
     "vendor": "meta-api",
+<<<<<<< Updated upstream
     "why": "This is low-stakes social suspense disguised as casual, so a cinematic track elevates the Tesco aisle into a slow-motion prestige drama where the basket-grip tension becomes the score."
    },
    "director_visual": {
@@ -5118,11 +6085,29 @@
    },
    "manifest": {
     "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261103T160744Z-7a5e63.mp4",
+=======
+    "why": "It's a quiet ticking-clock spiral of fake-chill masking obsessive checking, so a spacious cinematic bed turns the 18-minute wait into high-stakes, intimate tension."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "rainy window glow",
+    "vendor": "meta-api",
+    "why": "It's performative nonchalance masking obsessive checking and anxious waiting, so it needs a tense, quiet, late-night liminal aesthetic of staring at nothing while waiting for a reply."
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261103T160747Z-d0e4d5.mp4",
+>>>>>>> Stashed changes
     "ok": true,
     "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
     "persisted": true
    },
    "pair_fit": {
+<<<<<<< Updated upstream
     "ok": false,
     "rationale": "metaphor lane shot 'rain' paired with 'losing' for caption_list_title_v1.",
     "score": 52
@@ -5145,12 +6130,40 @@
     "stretch_pick": false,
     "text_suspected": false,
     "title": "rain"
+=======
+    "ok": true,
+    "rationale": "metaphor lane shot '' paired with 'Life Will Be' for social_moment_loop_v1.",
+    "score": 81
+   },
+   "pinterest": {
+    "candidates": 7,
+    "hls": true,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 12.78,
+     "yavg": 57.0
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShwKcy8VY5VM5R1nNaNsIx7QH9Vnvpl8IJIw4ysI0gRiNcjNNQ",
+    "query": "rainy window glow",
+    "review_status": "accept",
+    "score": 93,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": true,
+    "title": ""
+>>>>>>> Stashed changes
    },
    "render": {
     "attempts": 1,
     "corrections": false,
     "ok": true,
+<<<<<<< Updated upstream
     "seconds": 93.0
+=======
+    "seconds": 46.3
+>>>>>>> Stashed changes
    },
    "structural_qa": {
     "gate": {
@@ -5161,12 +6174,21 @@
      "decode_ok": true,
      "decode_stderr": "",
      "duration_bounds": [
+<<<<<<< Updated upstream
       11.6,
       12.8
      ],
      "duration_s": 12.0,
      "failures": [],
      "file": "/home/runner/work/_temp/beast-scratch/20261103T160744Z-7a5e63/caption_list_title_v1-live-20261103T160744Z-7a5e63.mp4",
+=======
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261103T160747Z-d0e4d5/social_moment_loop_v1-live-20261103T160747Z-d0e4d5.mp4",
+>>>>>>> Stashed changes
      "fps": 30.0,
      "fps_raw": "30/1",
      "height": 1920,
@@ -5175,12 +6197,17 @@
      "pix_fmt": "yuv420p",
      "probe_error": null,
      "sar": "1:1",
+<<<<<<< Updated upstream
      "size_bytes": 38994008,
+=======
+     "size_bytes": 11648356,
+>>>>>>> Stashed changes
      "width": 1080
     },
     "ok": true
    },
    "text_style": {
+<<<<<<< Updated upstream
     "fill": "#F7F0D2",
     "ok": true,
     "stroke_px": 2,
@@ -5194,10 +6221,26 @@
     "measured": {
      "sat": 10.88,
      "yavg": 109.0
+=======
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 79 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "drift": {
+     "sat_delta": 3.22,
+     "yavg_delta": -2.5
+    },
+    "measured": {
+     "sat": 11.56,
+     "yavg": 76.1
+>>>>>>> Stashed changes
     },
     "ok": true,
     "text_frame0": {
      "band": [
+<<<<<<< Updated upstream
       0.22,
       0.58
      ],
@@ -5213,5 +6256,22 @@
    "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
   },
   "topic_id": "tesco-6-42-uni-mate-casual-caring"
+=======
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.0653,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
+  },
+  "topic_id": "group-chat-meme-silence-7"
+>>>>>>> Stashed changes
  }
 ]
