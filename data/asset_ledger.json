@@ -1,5 +1,13 @@
 {
  "audio": {
+  "7127247846985713666": {
+   "first_seen_at": "2026-11-03T18:00:07Z",
+   "last_used_at": "2026-11-03T18:01:56Z",
+   "review_status": "pending",
+   "sha256": "9e7b416734cb16fb4da2d05fec5fae240ba916cd19d0d9d75f17a231969e61a8",
+   "status": "delivered",
+   "used_by": "20261103T173904Z-4dcb3e"
+  },
   "7504860701932914698": {
    "first_seen_at": "2026-11-03T17:21:04Z",
    "last_used_at": "2026-11-03T17:22:14Z",
@@ -11,9 +19,20 @@
  },
  "recovered_from_corrupt": true,
  "reservations": {},
- "updated_at": "2026-11-03T17:22:14Z",
+ "updated_at": "2026-11-03T18:01:56Z",
  "version": 1,
  "visual": {
+  "pin:e1_AfqPShybjOirGY3I0U7ES7LHYYkCfMsCYV6TNARakjRNTXL9K0DY": {
+   "first_seen_at": "2026-11-03T17:59:40Z",
+   "lane": "adjacent",
+   "last_used_at": "2026-11-03T18:01:56Z",
+   "pin_id": "e1_AfqPShybjOirGY3I0U7ES7LHYYkCfMsCYV6TNARakjRNTXL9K0DY",
+   "query": "bedside lamp glow in dark bedroom",
+   "review_status": "accept",
+   "sha256": "62c09fbc9ccd6745c03b3da5d94204b986fac9393a2f5440e1604e988dba824a",
+   "status": "delivered",
+   "used_by": "20261103T173904Z-4dcb3e"
+  },
   "pin:e1_AfqPShzI6ZXITsW0O6xJDfbJqz2s4PyokvErkgPoQ1Sv4exEtQ": {
    "first_seen_at": "2026-11-03T17:20:30Z",
    "lane": "literal",

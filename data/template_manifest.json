@@ -6268,5 +6268,1498 @@
    "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
   },
   "topic_id": "kitchen-doorway-hover-6-habits"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "loud drums",
+     "hype trap beat",
+     "sad cinematic piano",
+     "comedy boing effects",
+     "high-energy dance drop"
+    ],
+    "emotional_role": "hold the awkward pause after self-censoring while keeping it warm and gently funny",
+    "energy": 0.3,
+    "instrumentation": [
+     "warm keys",
+     "soft guitar plucks",
+     "subtle pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "intimate",
+     "lo-fi"
+    ],
+    "trend_hashtags": [
+     "#nightthoughts",
+     "#relatable",
+     "#flatlife"
+    ],
+    "trend_keywords": [
+     "soft night thoughts",
+     "bedroom lo-fi",
+     "quiet overthinking"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-03T17:40:21Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "flat-chat-perfect-reply-haha",
+   "core_human_moment": "You have a funnier, more you reply ready for the flat group chat but shrink it down to a safe haha to avoid being too much.",
+   "degraded": false,
+   "emotional_primary": "hesitant",
+   "emotional_secondary": "self-conscious",
+   "format_id": "caption_list_title_v1",
+   "human_action": "sitting on bed holding phone, typing then deleting, putting phone face-down",
+   "humour": 0.4,
+   "intentional_contrast": null,
+   "literal_scene": "person sitting on the edge of their bed at night holding a glowing phone, duvet around them, soft light from a bedside lamp",
+   "literalness": "literal",
+   "motion_intent": "nearly still calm shot, only small thumb movements and soft breathing, phone glow pulsing",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm amber lamp glow",
+    "soft blue phone screen tint"
+   ],
+   "rationale": "The bed-at-night phone glow is literally where this flat-chat hesitation happens, and the still observer framing matches the type-delete-haha loop. Soft warm lo-fi keeps the awkwardness tender and quietly funny instead of anxious or dramatic.",
+   "scene_entities": [
+    "phone",
+    "duvet",
+    "bedroom"
+   ],
+   "schema_version": "1.0",
+   "setting": "small bedroom at night",
+   "tension": 0.55,
+   "text_safe_zone": "keep centre 41-59% vertical clear for 4-line white title, avoid bottom caption area",
+   "time_of_day": "late evening",
+   "valence": -0.2,
+   "video_queries": [
+    "person sitting on bed at night holding phone",
+    "overhead view of bed with phone face down",
+    "bedside lamp glow in dark bedroom at night"
+   ],
+   "visual_mood": [
+    "quiet",
+    "intimate"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.6
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "The Beatles Revival Band",
+    "candidates": [
+     {
+      "artist": "The Beatles Revival Band",
+      "distance": 0.3654,
+      "fresh": true,
+      "id": "7127247846985713666",
+      "score": 92,
+      "title": "And I Love Her (live)",
+      "video_count": 324100
+     },
+     {
+      "artist": "TimTaj",
+      "distance": 0.5879,
+      "fresh": true,
+      "id": "7310071445119780866",
+      "score": 64,
+      "title": "Conquering the Peaks",
+      "video_count": 159
+     }
+    ],
+    "distance": 0.3654,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6928397539357575169",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "6696412857984092161",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7024561315188312066",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 324100",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "7127247846985713666",
+    "title": "And I Love Her (live)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 23
+     }
+    },
+    "passes": true,
+    "rationale": "adjacent lane shot 'Chiarore Alabaster Wall Sconce' paired with 'And I Love Her (live)' for caption_list_title_v1.",
+    "total": 58
+   },
+   "visual": {
+    "band_busy": 0.0133,
+    "candidates": [
+     {
+      "band_busy": 0.0133,
+      "height": 1280,
+      "pin_id": "e1_AfqPShybjOirGY3I0U7ES7LHYYkCfMsCYV6TNARakjRNTXL9K0DY",
+      "query": "bedside lamp glow in dark bedroom",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['quiet'] (+5); scene words ['around', 'bedside', 'from', 'light'] (+14)",
+         "points": 19
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 26.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 75,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.161,
+         "rows": [
+          537,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.133,
+         "rows": [
+          0,
+          85
+         ]
+        },
+        {
+         "fraction_of_height": 0.161,
+         "rows": [
+          0,
+          103
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(537, 640), (0, 85)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         537,
+         640
+        ],
+        [
+         0,
+         85
+        ],
+        [
+         0,
+         103
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0059,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyqmm_w1Rl1kHRWI3tWjMmJVhyJh9pMeKAzx7m182cBI8ClCA",
+      "query": "blue hour glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['aesthetic', 'street', 'sunset'] (+15); scene words ['glowing', 'the', 'them'] (+12)",
+         "points": 27
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 83,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1275,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxn1AJuztA3weDPr6z4jK9w27F19A0hx1Y3V-aZozU",
+      "query": "blue glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['light', 'phone', 'the'] (+12)",
+         "points": 12
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 59.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 68,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0286,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzFT8zqIR8rXr8YQ5fj67a4dQdeOyAAgRMd_h_tBgxqctuN",
+      "query": "blue hour glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['blue hour', 'night', 'street'] (+15); scene words ['light', 'night', 'sitting', 'the'] (+14)",
+         "points": 29
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 85,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.423,
+         "rows": [
+          369,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(369, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         369,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0071,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwI1g2esJeN2osxcS_BzYPkeR7uSS_s7ShsMJansWrQVTY",
+      "query": "blue hour",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['rain', 'window'] (+10); scene words ['bed', 'down'] (+8)",
+         "points": 18
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 74,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.181,
+         "rows": [
+          0,
+          116
+         ]
+        },
+        {
+         "fraction_of_height": 0.181,
+         "rows": [
+          0,
+          116
+         ]
+        },
+        {
+         "fraction_of_height": 0.18,
+         "rows": [
+          0,
+          115
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 116), (0, 116)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         116
+        ],
+        [
+         0,
+         116
+        ],
+        [
+         0,
+         115
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0559,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxCixTS7gxoHrxYjfKd8RElCLs5dxdWvVEWHBcWOwiKHobA",
+      "query": "hour glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['the'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 39.7s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0382,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxg4vqkJuDMYYpF9PKY3P46nufOGV1eWKO8-amARuDMYcHO",
+      "query": "blue glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['face', 'glowing', 'the'] (+12)",
+         "points": 12
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 19.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 68,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.128,
+         "rows": [
+          0,
+          82
+         ]
+        },
+        {
+         "fraction_of_height": 0.114,
+         "rows": [
+          0,
+          73
+         ]
+        },
+        {
+         "fraction_of_height": 0.128,
+         "rows": [
+          0,
+          82
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 82), (0, 73)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         82
+        ],
+        [
+         0,
+         73
+        ],
+        [
+         0,
+         82
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0244,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyIrwKBZ-63OG6nNfOp0IXPQ7jaWB90_OHTMOCXgYw6hezI",
+      "query": "hour glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['the'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0278,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyYHziKF4iv-BhWwbtl2SuEbHl0yu5SHSi7Xz9QR3Crbo5s",
+      "query": "hour glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['sunset'] (+5); scene words ['the'] (+4)",
+         "points": 9
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 65,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.166,
+         "rows": [
+          0,
+          106
+         ]
+        },
+        {
+         "fraction_of_height": 0.122,
+         "rows": [
+          328,
+          406
+         ]
+        },
+        {
+         "fraction_of_height": 0.148,
+         "rows": [
+          417,
+          512
+         ]
+        },
+        {
+         "fraction_of_height": 1.0,
+         "rows": [
+          0,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 106), (328, 406)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         106
+        ],
+        [
+         328,
+         406
+        ],
+        [
+         417,
+         512
+        ],
+        [
+         0,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.027,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwdQOAn_wD7E_EYAg_OVnf_Q53itMFDilOThqzzhzB3h-7C",
+      "query": "person sitting on bed at night",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['rain', 'solitude', 'window'] (+15); scene words ['bed', 'person', 'sitting'] (+12)",
+         "points": 27
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 83,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Vakkerlight",
+    "flags": [
+     "verified creator (possible commercial account)",
+     "source domain: vakkerlight.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 5,
+     "max_jump": 0.5106,
+     "motion": 0.3359,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShybjOirGY3I0U7ES7LHYYkCfMsCYV6TNARakjRNTXL9K0DY",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShybjOirGY3I0U7ES7LHYYkCfMsCYV6TNARakjRNTXL9K0DY/",
+    "query": "bedside lamp glow in dark bedroom",
+    "query_lane": "adjacent",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "blue hour glow",
+      "returned": 25
+     },
+     {
+      "kept": 24,
+      "lane": "metaphor",
+      "query": "blue hour",
+      "returned": 25
+     },
+     {
+      "kept": 23,
+      "lane": "metaphor",
+      "query": "blue glow",
+      "returned": 25
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "hour glow",
+      "returned": 25
+     },
+     {
+      "kept": 25,
+      "lane": "adjacent",
+      "query": "bedside lamp glow in dark bedroom",
+      "returned": 25
+     },
+     {
+      "kept": 25,
+      "lane": "literal",
+      "query": "person sitting on bed at night",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShx_Fcw9snfEjm7n82btCgB6pd10gqAXW4xG8oHwVzttWd8Tew",
+      "why": "on-screen text: '\u53e3'"
+     },
+     {
+      "id": "e1_AfqPShyYQLalYrenbH40MuLowwh9zTTtnIIz7Y77wR-FhmKWQSIV",
+      "why": "on-screen text: '\"Don\\'t go to Lapland..; 6 PM; CHRIST; HOUS; it\\'s j'"
+     },
+     {
+      "id": "e1_AfqPShygoACCT_DI3u-AWaCXxhMvPrbBNSnwdyJ4rPN9M04t4bgz",
+      "why": "on-screen text: 'I; \u798f'"
+     },
+     {
+      "id": "e1_AfqPShxEDeFI7-Dv7_J3R1krAlr5jYbH164KdbUCud2vlzmyKm7-Xg",
+      "why": "too short 7.56s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShw3NfAkSx7mo2rnKQBOaawzQyjjFJDG1fRN38h91bMbWqBI",
+      "why": "on-screen text: 'set the mood; th lighting; with lighting'"
+     },
+     {
+      "id": "e1_AfqPShziuPaZDEBHjmja1kvQkdFnsOf6hmrAeVbyD73zekBC6YnOTQ",
+      "why": "too short 10.63s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShyyK-_7WNi9glAABLnylqIF21_fN6LPNc7jXhx7z9g3I4E5fQ",
+      "why": "too short 10.42s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShz-z-9Qvg_HS2BWPcwzTk62RM8_vLzL9UWWLRhHpcf-5zAd",
+      "why": "too short 5.6s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxo_03hqGtbBrM25NaAmcJcXyHAYvQdlc8RqzI78iiuLUN1AA",
+      "why": "on-screen text: 'TL'"
+     },
+     {
+      "id": "e1_AfqPShyXn-9uEFZHpU2VInLvaySlcWK8iRP0NOCxJMNebL_UbZ68",
+      "why": "on-screen text: ':503; All-in-oneforsimplersmartergreenerhealthierl'"
+     },
+     {
+      "id": "e1_AfqPShyip1_jlmsMUSQeznfkzgp2VPRYujvhIK8LsM3ZXl0zDXxYMg",
+      "why": "too short 6.83s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxnNRkXLcUc0EYWWN5NsoT8rlPtVjcaIHeasTklV6Sgidz9WQ",
+      "why": "on-screen text: 'BEDSIDE READING; LUMEPORCH.COM; Light for a book, '"
+     },
+     {
+      "id": "e1_AfqPShywQCVFuIeHMjej7g0dH75vkC2QD6LLTQgW8ew7h3iJmNu5",
+      "why": "on-screen text: '212-791-2819; K0-5148; \u53a6\u560e\u53eb; \u798f\u5dde\u5c0f\u5403\u5e97'"
+     },
+     {
+      "id": "e1_AfqPShy-8TNMJuy06sArc7nLARoKGgbhV_Ws2H1LZXgrk8LBiJ8f",
+      "why": "on-screen text: 'pov: its blue hour'"
+     },
+     {
+      "id": "e1_AfqPShwIdET_nEi3LzxmEjWo6lgzCIe6iMJ3OWkra4T21f87WuSV",
+      "why": "on-screen text: '(Selectall that apply); 0100; 10:00 PM(in 2h); 10:'"
+     },
+     {
+      "id": "e1_AfqPShxEbjzWw8ClHKPD5yliS4c3UoueNbxcVf1xUUTAUm9DsSj3tQ",
+      "why": "on-screen text: '0:05; Control it from; DIY; I was getting bored of'"
+     },
+     {
+      "id": "e1_AfqPShwEoC-Uu21sfy7cfg24EYYlcACQyv0V5yPHFCzpugHDhZS6",
+      "why": "too short 10.38s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxMA4SHJw0d4mysX0ekB6N9wB1ykMMyocXDwshl2EtBByzi",
+      "lane": "adjacent",
+      "query": "bedside lamp glow in dark bedroom",
+      "why": "commerce/affiliate domain: 'etsy.com'"
+     },
+     {
+      "id": "e1_AfqPShzSRx3YOjjw57piAFxVkxeTDKLPf43WZVkIV3yhUixOhDdz",
+      "why": "on-screen text: 'AO; Justworks Fovo; New York; OTks; PRIN'"
+     },
+     {
+      "id": "e1_AfqPShz7Id1bpomI9gg9EJcuw9eWqz7Pc71C6tdbV86M0_iNAA2t",
+      "lane": "metaphor",
+      "query": "blue hour glow",
+      "why": "commerce/affiliate domain: 'etsy.com'"
+     },
+     {
+      "id": "e1_AfqPShwsotXS8iTnlV0FTwf6adU-ynsX76mgyR9XPFLF9mav-qz1Lw",
+      "why": "too short 6.24s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxG5PJcM0I8wShNfSMXvQUTfkA703D83uwkNlKqD1ApxtI5",
+      "why": "on-screen text: 'T8'"
+     },
+     {
+      "id": "e1_AfqPShwPSeWevOtJVGWxbYRfMA2kkYyH4EwQkw4nSGJDT5z0YVAp",
+      "why": "too short 11.69s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShy5NEZLLwnXg3H3k3kGl_mkH12APR9rxV9KeqEZLFd9Uyzx",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "e1_AfqPShyIcmyHWMNwoVIq5xX1Zsc6Qh-JZ1CnftM8ZwTrtm_-So41",
+      "why": "unusable crop 720x480"
+     },
+     {
+      "id": "e1_AfqPShwJCvGIdBIGRrRLKcQ38iRcjsQSuVVAnTN7UlBJFGLg58G0",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "e1_AfqPShwm2-UzYwLgLOjZnoW1szULakva0F4Nlc6JXctNARkcpJ0u",
+      "why": "too short 11.87s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShza28HtgxEBul_lRy-R2vzdXYtWvaWrJ8xsFI6n-vicYR-h",
+      "why": "on-screen text: '@WARMPLACEE; Cloud Lamp; DECHIRER ET; DURACELL; UR'"
+     },
+     {
+      "id": "e1_AfqPShzDAwXig9ujgDkLLkXh2IF5F8T2BFPGl3WuzrDCifVB72Z84w",
+      "lane": "adjacent",
+      "query": "bedside lamp glow in dark bedroom",
+      "why": "real-estate/tour content: 'Room Tour'"
+     },
+     {
+      "id": "e1_AfqPShzAGrVE9osBZ4v5w2fhTs5oEBofRRP1I5XLPPFeWUDSBwzK",
+      "why": "unusable crop 720x406"
+     },
+     {
+      "id": "e1_AfqPShxw3arGFVs-a6ypnLTL0gCjW1VLPoE_KM-9Wedohcu4fHhj",
+      "why": "too short 8.57s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzMzHi-2sZ0Q-V12awMHgi1haS-qtAuViGfpWWQwoEklQ",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShxAm9f5y-Jy8AsZRdzA63p597zw1OWhGB4NwuV66eXHmC1e5g",
+      "why": "unusable crop 240x424"
+     },
+     {
+      "id": "e1_AfqPShxV-ziMcDw_rSRuCHs5T7S52jK1feQPQ1a8mIJoCq-87DB4",
+      "why": "unusable crop 240x240"
+     },
+     {
+      "id": "e1_AfqPShzhBnqkE0T8WQcCyMQ6zJoIRZFkcD-WaBH31C5lQwUwKQXxLA",
+      "why": "too short 10.0s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxrrFNvBA5LtXzch-SM-Mtgk27cOcjMvHoiKKtue0aEDFjk",
+      "why": "unusable crop 240x300"
+     },
+     {
+      "id": "e1_AfqPShxDdz1P9_CugqG2mg_aKdkViaDhYdNLi-eHoAZl_3mhDw",
+      "why": "unusable crop 684x1280"
+     },
+     {
+      "id": "e1_AfqPShwRzgc2rJnn1czXH8sSE11AR5dOj7-h4F6sFYwiwdPMeVuihg",
+      "why": "too short 10.63s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzfYbTQULsImUOxArAJTSFkbolRxIpa79utK6BMJq7O72Oi",
+      "why": "on-screen text: 'H; \u54c1'"
+     },
+     {
+      "id": "e1_AfqPShykQBIeTJITTnbT7BJEVw3rBh43rpa6zbuaVJTdYsSPClp8",
+      "why": "unusable crop 702x396"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['quiet'] (+5); scene words ['around', 'bedside', 'from', 'light'] (+14)",
+       "points": 19
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 26.0s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 75,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.161,
+       "rows": [
+        537,
+        640
+       ]
+      },
+      {
+       "fraction_of_height": 0.133,
+       "rows": [
+        0,
+        85
+       ]
+      },
+      {
+       "fraction_of_height": 0.161,
+       "rows": [
+        0,
+        103
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(537, 640), (0, 85)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       537,
+       640
+      ],
+      [
+       0,
+       85
+      ],
+      [
+       0,
+       103
+      ]
+     ]
+    },
+    "title": "Chiarore Alabaster Wall Sconce"
+   }
+  },
+  "audio": {
+   "bytes": 1000994,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261103T173904Z-4dcb3e/assets/track_7127247846985713666.m4a",
+   "pin_url": null,
+   "sha256": "9e7b416734cb16fb4da2d05fec5fae240ba916cd19d0d9d75f17a231969e61a8",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7127247846985713666",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 62.8,
+    "high": 0.8,
+    "mid": 36.4
+   },
+   "duration_s": 60.0,
+   "file": "track_7127247846985713666.m4a",
+   "key_estimate": "C minor",
+   "loudness_curve_db": [
+    -22.6,
+    -22.3,
+    -21.9
+   ],
+   "onset_density_per_s": 3.43,
+   "peak_db": -8.2,
+   "rms_db": -22.3,
+   "spectral_centroid_hz": 1457.8,
+   "tempo_bpm": 123.0,
+   "zero_crossing_rate": 0.0513
+  },
+  "background": {
+   "bytes": 1069221,
+   "creator": "Vakkerlight",
+   "path": "/home/runner/work/_temp/beast-scratch/20261103T173904Z-4dcb3e/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShybjOirGY3I0U7ES7LHYYkCfMsCYV6TNARakjRNTXL9K0DY/",
+   "sha256": "62c09fbc9ccd6745c03b3da5d94204b986fac9393a2f5440e1604e988dba824a",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShybjOirGY3I0U7ES7LHYYkCfMsCYV6TNARakjRNTXL9K0DY",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "texting and group chats",
+    "emotional_tension": "you want to be in on the banter, so you edit yourself until you're barely in it",
+    "observable_behaviour": "types two words, deletes them, retypes, watches the double ticks go blue, locks phone face-down, unlocks again",
+    "private_worry": "that if it's not funny enough it will look like you're forcing it",
+    "situation": "9:17pm on your bed, flat group chat is popping off with 4 people mid-roast and you just typed a reply"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "'add lol to soften the joke' / 'delete everything and watch cursor blink' / 'lock phone face-down on your bed' / 'unlock again to check blue ticks' / 'you're editing yourself down to fit.'",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Item 2 'type two words then delete' and item 4 'delete everything' restate each other; swap one for a distinct flat-chat beat. Hook/caption promise 7 but list drifts from 'perfect reply' into deleting.",
+    "scene_specificity": 5,
+    "sendability_who": "A flat-group-chat lurker in their 20s-30s sending it to a flatmate or close friend with 'me in the flat chat every night.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "flat-chat-perfect-reply-haha"
+  },
+  "delivery": {
+   "at": "2026-11-03T18:01:56Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -6.94,
+   "yavg_delta": 8.5
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.85,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 1.45
+  },
+  "measured": {
+   "sat": 7.26,
+   "yavg": 113.5
+  },
+  "output": {
+   "bytes": 3964155,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261103T173904Z-4dcb3e.mp4",
+   "sha256": "735052de8ecc719eeed3ba1d8e91ba0b2a9c2894cfaad051dab875abd83b9853"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7127247846985713666",
+    "title": "And I Love Her (live)"
+   },
+   "background_query": "person sitting on bed at night holding phone, duvet, bedside lamp glow",
+   "caption": "7 things you do when you have the perfect reply in the flat chat but send 'haha' instead:\n1. read the last three messages again\n2. type two words then delete them\n3. add 'lol' to soften the joke\n4. delete everything and watch cursor blink\n5. send 'haha' instead of your line\n6. lock phone face-down on your bed\n7. unlock again to check blue ticks",
+   "closing": "you're not quiet, you're editing yourself down to fit.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "The text is a hushed, stuttering bedroom loop of typing, deleting and watching the cursor blink that needs a soft high-fidelity cinematic bed to make tiny self-censorship feel huge and intimate.",
+     "tiktok_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "deepseek-bridge",
+     "emotional_analysis": "The quiet self-editing and phone-face-down hesitation call for a moody, intimate texture that makes the small social moment feel cinematic rather than literal, so a dim ambient visual metaphor carries the contrast.",
+     "pinterest_query": "blue hour glow"
+    }
+   },
+   "headline": "7 things you do when you have the perfect reply in the flat chat but send 'haha' instead",
+   "list_items": [
+    "read the last three messages again",
+    "type two words then delete them",
+    "add 'lol' to soften the joke",
+    "delete everything and watch cursor blink",
+    "send 'haha' instead of your line",
+    "lock phone face-down on your bed",
+    "unlock again to check blue ticks"
+   ],
+   "provenance": {
+    "creator": "Vakkerlight",
+    "pin_id": "e1_AfqPShybjOirGY3I0U7ES7LHYYkCfMsCYV6TNARakjRNTXL9K0DY",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShybjOirGY3I0U7ES7LHYYkCfMsCYV6TNARakjRNTXL9K0DY/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 105): warm off-white"
+   },
+   "titleLines": [
+    "7 things you do when",
+    "you have the perfect",
+    "reply in the flat chat",
+    "but send 'haha' instead"
+   ],
+   "topic_id": "flat-chat-perfect-reply-haha"
+  },
+  "publish": {
+   "alt_text": "Person sitting on bed at night holding phone, duvet, bedside lamp glow. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-03T18:03:19Z",
+   "caption": "7 things you do when you have the perfect reply in the flat chat but send 'haha' instead:\n1. read the last three messages again\n2. type two words then delete them\n3. add 'lol' to soften the joke\n4. delete everything and watch cursor blink\n5. send 'haha' instead of your line\n6. lock phone face-down on your bed\n7. unlock again to check blue ticks\n\nyou're not quiet, you're editing yourself down to fit.",
+   "channel": "instagram",
+   "container_id": "17917685088538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18141397870628306",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/mVSGCjwn.mp4"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -6.94,
+    "yavg_delta": 8.5
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261103T173904Z-4dcb3e/caption_list_title_v1-live-20261103T173904Z-4dcb3e.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 3964155,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 7.26,
+    "yavg": 113.5
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1268,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 57.5
+  },
+  "rendered_at": "2026-11-03T18:01:52Z",
+  "run_id": "20261103T173904Z-4dcb3e",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "You have a funnier, more you reply ready for the flat group chat but shrink it down to a safe haha to avoid being too much.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person sitting on bed at night",
+     "bedside lamp glow in dark bedroom"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3654,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "7127247846985713666",
+    "title": "And I Love Her (live)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3654
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "flat-chat-perfect-reply-haha"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "The text is a hushed, stuttering bedroom loop of typing, deleting and watching the cursor blink that needs a soft high-fidelity cinematic bed to make tiny self-censorship feel huge and intimate."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "blue hour glow",
+    "vendor": "deepseek-bridge",
+    "why": "The quiet self-editing and phone-face-down hesitation call for a moody, intimate texture that makes the small social moment feel cinematic rather than literal, so a dim ambient visual metaphor carries the contrast."
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261103T173904Z-4dcb3e.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "adjacent lane shot 'Chiarore Alabaster Wall Sconce' paired with 'And I Love Her (live)' for caption_list_title_v1.",
+    "score": 58
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": true,
+    "lane": "adjacent",
+    "metrics": {
+     "sat": 7.99,
+     "yavg": 114.4
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShybjOirGY3I0U7ES7LHYYkCfMsCYV6TNARakjRNTXL9K0DY",
+    "query": "bedside lamp glow in dark bedroom",
+    "review_status": "accept",
+    "score": 75,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Chiarore Alabaster Wall Sconce"
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 57.5
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261103T173904Z-4dcb3e/caption_list_title_v1-live-20261103T173904Z-4dcb3e.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 3964155,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 105): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -6.94,
+     "yavg_delta": 8.5
+    },
+    "measured": {
+     "sat": 7.26,
+     "yavg": 113.5
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1268,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
+  },
+  "topic_id": "flat-chat-perfect-reply-haha"
  }
 ]
