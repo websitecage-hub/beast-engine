@@ -157,3 +157,51 @@ Tests: `python3 -m pytest tests/test_asset_intelligence.py tests/test_preview_pi
 B darkness preference (B then passed clean, `20261101T165713Z-0d1d73`) → `a9772a9` stock/repost
 rejection + wider pool. A's next run was aborted manually mid-render (operator kill, not a code
 fault); no A artifact from that run exists.
+## 2026-11-03 — raw background selection, two director layers, manifest hardening
+
+**Owner's contract for this build.** The background is chosen raw: a real moving
+video, long enough, vertical, not already used, and **no on-screen text per OCR**.
+No luma rule, no darkness preference, no colour preference, no look score decides it
+(`e60cae8`, reverted the colour rule in `d6ba12a`). Copy and sound layers sit on top.
+
+**Two director layers, both wired in (`fd4b911`).**
+- `src/formats/visual_director.py` — reads the finished copy and returns ONE 2-3 word
+  visual metaphor (`emotional_analysis`, `pinterest_query`), e.g. `fluorescent light
+  flicker`, `rainy window glow`. That query is searched first; scene lanes follow.
+- `src/formats/audio_director.py` — returns ONE sonic word (`sonic_analysis`,
+  `tiktok_query`), e.g. `cinematic`, and leads the trending-audio search.
+- Both are demo-able without a render:
+  `python3 -m src.formats.visual_director --run-id <id> --download 2`
+  `python3 -m src.formats.audio_director --run-id <id> --download 2`
+
+**Selection rules that remain (hard).** Non-video pin type rejected; a static clip is
+rejected as `static image, not motion video` (mean frame diff < 0.0015 — the B reel
+that published on 2026-11-02 measured 0.0003); ads/commerce/stock rejected; OCR must
+return "no text" — an unprovable verdict is a reject, and frames are sampled
+head-weighted (0.2 / 0.8 / 1.5 / 2.5 s, mid, late) because overlay text often exists
+only in the opening second.
+
+**What no longer gates a run.** `pair_fit` and the visual band are recorded notes, not
+gates: the format is built on the background *not* meaning the same thing as the words,
+so a literal-minded pairing score must not veto it. Only structural failures (render
+gate, missing audio track) mark `needs_review`.
+
+**Content resilience.** A card refused by the critic takes a *different* card instead
+of killing the job; when distinctiveness is the failing dimension the writer is told
+the exact openings it may not reuse. The critic rubric is format-aware — it had been
+hard-failing valid 7s loops with Format A's `title/list count mismatch` rule.
+
+**State-file corruption (root cause of repeated failures).**
+`data/template_manifest.json` had 56 conflict markers committed by the CI state
+snapshot; every later run either died on load or quarantined its history.
+- `src/formats/manifest_merge.py` — union by `run_id`, salvage of entries that parse
+  inside a damaged document; registered as a git merge driver (`.gitattributes`).
+- `run_manifest.save()` — unique temp name per writer, parse-before-promote.
+- `run_manifest.load()` — repairs a marker-carrying manifest in place.
+- Workflow repairs or drops conflicted `data/*.json` before `git add`.
+- `tests/conftest.py` — autouse isolation; a test had been writing the real manifest.
+- Recovered 5 entries (last valid revision); older audit rows are lost.
+
+**Verified.** 256 passed, 2 skipped; merge driver unions both branches in a scratch
+repo; A and B both reach render on the raw pipeline (B published 2026-11-03,
+media_id 18147551227584814).
