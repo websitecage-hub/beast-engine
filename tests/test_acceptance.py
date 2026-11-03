@@ -1813,5 +1813,6 @@ def test_template_manifest_is_valid_json():
     """A rebase once committed conflict markers into this file and broke every run."""
     import json
     from pathlib import Path
-    data = json.loads(Path("data/template_manifest.json").read_text())
+    root = Path(__file__).resolve().parents[1]          # cwd-independent
+    data = json.loads((root / "data/template_manifest.json").read_text())
     assert isinstance(data, list) and all("run_id" in e for e in data)

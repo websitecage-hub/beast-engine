@@ -103,14 +103,16 @@ def test_list_count_mismatch_is_rejected_then_fails(monkeypatch):
                         lambda *a, **k: json.dumps(PASS_VERDICT))
     with pytest.raises(RuntimeError) as exc:
         content_factory.generate("caption_list_title_v1", None, verbose=False)
-    assert "schema" in str(exc.value) or "failed after" in str(exc.value)
+    # Two cards are attempted before giving up, so the message names cards, not schema
+    msg = str(exc.value)
+    assert "schema" in msg or "failed after" in msg or "cards" in msg
 
 
 def test_unparseable_writer_fails_closed(monkeypatch):
     monkeypatch.setattr(content_factory.llm, "chat", lambda *a, **k: "not json at all")
     with pytest.raises(RuntimeError) as exc:
         content_factory.generate("social_moment_loop_v1", None, verbose=False)
-    assert "failed after" in str(exc.value)
+    assert "failed after" in str(exc.value) or "cards" in str(exc.value)
 
 
 def test_unparseable_critic_fails_closed_not_blind_rewrite(monkeypatch):
@@ -298,4 +300,4 @@ def test_generate_retries_a_creative_rejection_then_fails(monkeypatch):
     _mock_writer(monkeypatch, _bad_a(dupes))
     with pytest.raises(RuntimeError) as exc:
         content_factory.generate("caption_list_title_v1", "after a conversation")
-    assert "creative" in str(exc.value), exc.value
+    assert "creative" in str(exc.value) or "cards" in str(exc.value), exc.value

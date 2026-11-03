@@ -561,21 +561,19 @@ def _verdict_failures(verdict: dict) -> list[str]:
 
 
 # ------------------------------------------------------------------- Pass 3-6
-def generate(format_id: str, topic: str | None = None, *, verbose: bool = True,
-             card: dict | None = None, recent: dict | None = None) -> dict:
-    """Card -> write -> validate -> critic -> targeted rewrite. Raises on failure."""
-    if format_id not in template_payloads.FORMATS:
-        raise ValueError(f"the pilot router only knows {sorted(template_payloads.FORMATS)}")
-    recent = recent if recent is not None else recent_context()
-    if card is None:
-        card = audience_moment(format_id, topic, recent=recent, verbose=verbose)
-        if verbose:
-            am = card["audience_moment"]
-            print(f"[content] card ({card['compiled_by']}): {am['situation'][:70]!r}",
-                  flush=True)
-    notes = ""
-    history = []
-    ladder = []
+# ------------------------------------------------------------------- Pass 3-6
+# One topic gets MAX_ATTEMPTS writer passes. If the critic still refuses, the next
+# round takes a DIFFERENT card and forbids the openings already used. Measured: a
+# microwave-timing card was refused three times on distinctiveness alone and the run
+# died with a usable topic pool sitting unused.
+TOPIC_ROUNDS = 2
+CONTENT_BUDGET_S = 420.0
+
+
+def _round(format_id, topic, card, recent, verbose, notes="", deadline=None):
+    """Writer -> schema -> creative ladder -> critic, for one card. None if refused."""
+    history, ladder = [], []
+    used_openings = []
     for attempt in range(1, MAX_ATTEMPTS + 1):
         print(f"[content] writer attempt {attempt} ...", flush=True)
         raw, vendor = _writer_chat(_prompt(format_id, topic, notes, card=card))
@@ -616,6 +614,8 @@ def generate(format_id: str, topic: str | None = None, *, verbose: bool = True,
             history.append({"attempt": attempt, "stage": "critic_unparseable"})
             raise RuntimeError("critic_unparseable: no parseable verdict after one "
                                "protocol retry; failing closed")
+        first = str((payload.get("titleLines") or payload.get("hookLines") or [""])[0])[:80]
+        used_openings.append(first)
         if verdict["passed"]:
             if verbose:
                 print(f"[content] attempt {attempt} passed the critic "
@@ -634,14 +634,54 @@ def generate(format_id: str, topic: str | None = None, *, verbose: bool = True,
                  str(verdict.get("rewrite_notes") or ""))[:400]
         if verdict.get("sendability_who"):
             notes += f" (needed to reach: {verdict['sendability_who']})"
+        if any(f.startswith("distinctiveness") for f in failures):
+            # The one dimension a retry keeps failing on: keep the moment, change the
+            # writing. Naming the exact openings prevents a fourth near-identical draft.
+            notes += (" Distinctiveness is the only problem: keep the same human moment "
+                      "but rewrite it from a different angle, add one concrete detail "
+                      "specific to this moment (an object, a number, a time), and do NOT "
+                      "open like any of these: " + " | ".join(used_openings[-3:]))
         history.append({"attempt": attempt, "stage": "critic", "verdict": verdict,
                         "ladder": lvl})
         if verbose:
-            first = (payload.get("titleLines") or payload.get("hookLines") or [""])[0]
             print(f"[content] attempt {attempt} rejected: {', '.join(failures[:3])}"
-                  f" | copy={first[:80]!r}", flush=True)
-    raise RuntimeError(f"content generation failed after {MAX_ATTEMPTS} attempts: "
-                       f"{json.dumps(history[-2:])[:300]}")
+                  f" | copy={first!r}", flush=True)
+        if deadline and time.monotonic() > deadline:
+            print("[content] content budget exhausted; not starting another attempt",
+                  flush=True)
+            break
+    return None
+
+
+def generate(format_id: str, topic: str | None = None, *, verbose: bool = True,
+             card: dict | None = None, recent: dict | None = None) -> dict:
+    """Card -> write -> validate -> critic -> targeted rewrite. Raises on failure."""
+    if format_id not in template_payloads.FORMATS:
+        raise ValueError(f"the pilot router only knows {sorted(template_payloads.FORMATS)}")
+    recent = recent if recent is not None else recent_context()
+    deadline = time.monotonic() + CONTENT_BUDGET_S
+    history = []
+    for rnd in range(1, TOPIC_ROUNDS + 1):
+        if rnd > 1 or card is None:
+            # Round 2 takes a different card and treats the refused openings as
+            # "recent" so the router cannot hand back the same moment.
+            card = audience_moment(format_id, topic if rnd == 1 else None,
+                                   recent=recent, verbose=verbose)
+            if verbose:
+                am = card["audience_moment"]
+                print(f"[content] card r{rnd} ({card['compiled_by']}): "
+                      f"{am['situation'][:70]!r}", flush=True)
+        got = _round(format_id, topic, card, recent, verbose, deadline=deadline)
+        if got is not None:
+            return got
+        history.append({"round": rnd, "refused": True})
+        if rnd < TOPIC_ROUNDS:
+            print("[content] card refused 3x; taking a different card", flush=True)
+            # Push the refused openings into the avoid-list so round 2 differs.
+            lines = list((card.get("audience_moment") or {}).values())
+            recent.setdefault("lines", []).extend(l for l in lines if isinstance(l, str))
+    raise RuntimeError(f"content generation failed on {TOPIC_ROUNDS} cards: "
+                       f"{json.dumps(history)[:300]}")
 
 
 def pick_format(memory: dict | None = None) -> str:

@@ -396,8 +396,10 @@ def test_run_preview_releases_reservations_on_a_failed_run(monkeypatch, tmp_path
     assert data["visual"]["pin:5"]["status"] == "released"
     assert data["visual"]["pin:5"].get("last_used_at") is None
 
-def test_delivered_but_needs_review_run_exits_nonzero(monkeypatch, tmp_path):
-    """A run whose footage missed the minimum must not report ok:true."""
+def test_a_weak_clip_score_no_longer_holds_a_reel_back(monkeypatch, tmp_path):
+    """Owner's contract: OCR decides the background, not a score. A clip that scores
+    below the old minimum is still rendered and delivered; only structural failures
+    (render gate, audio track) can mark a run needs_review."""
     from src import run_preview, alerts
     monkeypatch.setenv("BEAST_LEDGER", str(tmp_path / "ledger.json"))
     monkeypatch.setattr(run_preview.config, "load_config",
@@ -445,7 +447,7 @@ def test_delivered_but_needs_review_run_exits_nonzero(monkeypatch, tmp_path):
     from src import alerts as _alerts
     monkeypatch.setattr(_alerts, "telegram_video", lambda *a, **k: True)
     rc = run_preview.main(["--format", "A"])
-    assert rc == 1, "needs_review must not exit 0"
+    assert rc == 0, "a low-scoring clip must not block the reel any more"
 
 
 def test_zero_to_one_hundred_scales_are_coerced_not_discarded():
