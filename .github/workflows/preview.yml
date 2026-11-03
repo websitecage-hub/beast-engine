@@ -101,7 +101,18 @@ jobs:
         run: |
           git config user.name "beast-engine[bot]"
           git config user.email "beast-engine[bot]@users.noreply.github.com"
-          git pull --rebase --autostash || true
+          # The manifest is an append-only list keyed by run_id, written by every run
+          # (CI and local), so a textual rebase conflicts constantly. The semantic
+          # driver unions the two sides by run_id instead.
+          git config merge.manifest.name "manifest union-merge (by run_id)"
+          git config merge.manifest.driver "python3 -m scripts.merge_manifest %O %A %B"
+          git pull --rebase --autostash -X manifest || true
+          # A conflicted file must never be committed: committed conflict markers are
+          # what turned the manifest unreadable and silently broke every later run.
+          if grep -rlE '^(<{7}|={7}|>{7})( |$)' data/ 2>/dev/null; then
+            echo "conflict markers found in data/ - repairing before commit"
+            python3 -m scripts.repair_data_json data
+          fi
           git add data/ || true
           git commit -m "preview: manifest + asset ledger" || echo "nothing to commit"
-          git push || (git pull --rebase --autostash && git push) || echo "push failed, next run recovers"
+          git push || (git pull --rebase --autostash -X manifest && git push) || echo "push failed, next run recovers"

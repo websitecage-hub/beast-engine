@@ -16,6 +16,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import sys
 import time
 import uuid
 from pathlib import Path
@@ -38,18 +39,64 @@ def load() -> list:
     except FileNotFoundError:
         return []
     except json.JSONDecodeError:
+        # Self-heal the one failure we have actually seen: a rebase committed conflict
+        # markers into this file, which stops every later run from reading history.
+        # The markers are recoverable (each side is the same list of runs), so repair
+        # and continue instead of failing the run; anything else is quarantined.
+        repaired = _repair_conflicted()
+        if repaired is not None:
+            print(f"[manifest] repaired {repaired} entries from a conflicted manifest",
+                  flush=True)
+            save(json.loads(MANIFEST.read_text(encoding="utf-8")))
+            return json.loads(MANIFEST.read_text(encoding="utf-8"))
         # A corrupt manifest must not be silently treated as empty: that would
         # reset the ledger and re-use assets. Move it aside and report loudly.
-        broke = MANIFEST.with_suffix(f".corrupt.{int(time.time())}.json")
+        broke = MANIFEST.with_name(f"{MANIFEST.stem}.corrupt.{int(time.time())}.json")
         MANIFEST.replace(broke)
         raise RuntimeError(f"manifest was corrupt; moved to {broke.name} for inspection")
 
 
+def _repair_conflicted() -> int | None:
+    """Rewrite a marker-carrying manifest from the entries that survive. None if not
+    a marker problem, or if nothing could be recovered."""
+    try:
+        text = MANIFEST.read_text(encoding="utf-8")
+    except OSError:
+        return None
+    if "<<<<<<<" not in text and ">>>>>>>" not in text:
+        return None
+    try:
+        from .manifest_merge import strip_markers          # noqa: PLC0415
+    except ImportError:
+        return None
+    try:
+        clean = strip_markers(text)
+        entries = json.loads(clean)
+    except Exception:                                     # noqa: BLE001
+        return None
+    if not isinstance(entries, list):
+        return None
+    MANIFEST.write_text(clean, encoding="utf-8")
+    return len(entries)
+
+
 def save(entries: list) -> None:
+    """Write atomically, with a per-writer temp name.
+
+    Measured: a FIXED ".tmp" name let two concurrent writers interleave into one file
+    and os.replace promoted a torn document, which the next reader quarantined as
+    corrupt - and a quarantined manifest stops every run from reading its history.
+    The payload is parsed before it is promoted, and the temp name is unique.
+    """
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
-    tmp = MANIFEST.with_suffix(".tmp")
-    tmp.write_text(json.dumps(entries, indent=1, sort_keys=True), encoding="utf-8")
-    os.replace(tmp, MANIFEST)
+    text = json.dumps(entries, indent=1, sort_keys=True)
+    json.loads(text)                       # never promote something unreadable
+    tmp = MANIFEST.with_name(f".{MANIFEST.name}.{os.getpid()}.{time.time_ns()}.tmp")
+    try:
+        tmp.write_text(text, encoding="utf-8")
+        os.replace(tmp, MANIFEST)
+    finally:
+        tmp.unlink(missing_ok=True)
 
 
 def sha256_file(path) -> str:

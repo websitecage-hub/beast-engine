@@ -1816,3 +1816,31 @@ def test_template_manifest_is_valid_json():
     root = Path(__file__).resolve().parents[1]          # cwd-independent
     data = json.loads((root / "data/template_manifest.json").read_text())
     assert isinstance(data, list) and all("run_id" in e for e in data)
+
+
+def test_a_conflicted_manifest_self_heals_instead_of_killing_the_run(tmp_path):
+    """Measured: committed conflict markers made the manifest unreadable and every
+    later run died on load. The two sides are the same list of runs, so they union."""
+    import json
+    import sys
+    from pathlib import Path
+    from src.formats import run_manifest
+    from src.formats.manifest_merge import strip_markers
+
+    a = {"run_id": "20260101T000000Z-a", "format_id": "caption_list_title_v1"}
+    b = {"run_id": "20260102T000000Z-b", "format_id": "social_moment_loop_v1"}
+    text = ("[\n" + json.dumps(a, indent=1) + ",\n<<<<<<< Updated upstream\n"
+            + json.dumps(b, indent=1) + "\n=======\n" + json.dumps(a, indent=1)
+            + "\n>>>>>>> Stashed changes\n]\n")
+    m = tmp_path / "m.json"
+    m.write_text(text)
+    monkey = run_manifest.MANIFEST
+    try:
+        run_manifest.MANIFEST = m
+        entries = run_manifest.load()
+    finally:
+        run_manifest.MANIFEST = monkey
+    ids = {e["run_id"] for e in entries}
+    assert {"20260101T000000Z-a", "20260102T000000Z-b"} <= ids
+    assert "<<<<<<<" not in m.read_text()
+    assert json.loads(strip_markers(text))
