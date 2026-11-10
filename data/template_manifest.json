@@ -9136,5 +9136,1309 @@
    "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
   },
   "topic_id": "bus-two-rows-ahead-go-quiet"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.35,
+   "audio_intent": {
+    "arousal": 0.3,
+    "avoid": [
+     "loud bass drops",
+     "dramatic orchestral swells",
+     "comedy doorbell sound effects",
+     "sad piano ballad",
+     "hype rap beats"
+    ],
+    "emotional_role": "hold the awkward pause lightly so the second ring lands as funny, not tense",
+    "energy": 0.25,
+    "instrumentation": [
+     "gentle piano",
+     "muted guitar"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "slightly lo-fi"
+    ],
+    "trend_hashtags": [
+     "#fridayevening",
+     "#doorstep",
+     "#awkwardmoment"
+    ],
+    "trend_keywords": [
+     "friday evening",
+     "doorstep waiting",
+     "early arrival"
+    ],
+    "valence": 0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-11-10T12:11:12Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "friday-752-doorstep-double-ring",
+   "core_human_moment": "A guest arrives two minutes early with drinks, rings the bell, then pretends they did not while waiting to ring again.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "sheepish",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "holding a four-pack, pressing a doorbell, stepping back, smoothing a jacket and glancing at a phone",
+   "humour": 0.65,
+   "intentional_contrast": null,
+   "literal_scene": "POV from a doorstep looking down at a hand holding a four-pack, then up at a front door and doorbell as the person steps back.",
+   "literalness": "literal",
+   "motion_intent": "gentle handheld motion, small step back, slight sway and glance down at phone",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm porch light",
+    "dusky blue evening"
+   ],
+   "rationale": "A POV doorstep shot keeps the joke in the body, early, holding drinks, caught ringing twice, while quiet warm music lets the pause feel relatable instead of staged.",
+   "scene_entities": [
+    "four-pack",
+    "doorbell",
+    "residential doorstep"
+   ],
+   "schema_version": "1.0",
+   "setting": "residential front doorstep",
+   "tension": 0.55,
+   "text_safe_zone": "centre 30-61% vertical band over muted door surface, clear of bright fixtures",
+   "time_of_day": "early evening",
+   "valence": 0.1,
+   "video_queries": [
+    "pov doorstep holding four-pack pressing doorbell",
+    "person stepping back from front door porch",
+    "evening porch light glowing at front door"
+   ],
+   "visual_mood": [
+    "awkward",
+    "warm"
+   ],
+   "visual_profile_target": {
+    "luma": "78.6+-20",
+    "saturation": "8.34+-4"
+   },
+   "warmth": 0.45
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Audiostock",
+    "candidates": [
+     {
+      "artist": "Audiostock",
+      "distance": 0.257,
+      "fresh": true,
+      "id": "6817193198436255745",
+      "score": 100,
+      "title": "Suspense, horror, piano and music box",
+      "video_count": 5300000
+     },
+     {
+      "artist": "Mint",
+      "distance": 0.5648,
+      "fresh": true,
+      "id": "7200474975428577281",
+      "score": 100,
+      "title": "Mozart/Requiem \"Lacrimosa\"(1394506)",
+      "video_count": 711700
+     },
+     {
+      "artist": "Intensescore",
+      "distance": 0.5792,
+      "fresh": true,
+      "id": "7637131802905724929",
+      "score": 64,
+      "title": "What They Hid",
+      "video_count": 172
+     },
+     {
+      "artist": "Gabriel Andrade Produ\u00e7\u00f5es",
+      "distance": 0.488,
+      "fresh": true,
+      "id": "7121836029820012546",
+      "score": 92,
+      "title": "Suspense Music",
+      "video_count": 123200
+     }
+    ],
+    "distance": 0.257,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "suspense",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7480633354289039361",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "189.4s vs 7.0s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 5300000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6817193198436255745",
+    "title": "Suspense, horror, piano and music box"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 22
+     }
+    },
+    "passes": true,
+    "rationale": "metaphor lane shot '\"Dreamy Beach Sunset Over Sea \ud83c\udf05' paired with 'Suspense, horror, piano and music box' for social_moment_loop_v1.",
+    "total": 57
+   },
+   "visual": {
+    "band_busy": 0.0162,
+    "candidates": [
+     {
+      "band_busy": 0.0162,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxkNPZ3TeeV_Ae0SIIIBqHHWAELHLKg98BkpVguUjKuzjPz8A",
+      "query": "evening waiting",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['calm', 'sunset'] (+10); scene words ['and', 'the'] (+8)",
+         "points": 18
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 10.1s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 74,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.117,
+         "rows": [
+          44,
+          119
+         ]
+        },
+        {
+         "fraction_of_height": 0.147,
+         "rows": [
+          0,
+          94
+         ]
+        },
+        {
+         "fraction_of_height": 0.102,
+         "rows": [
+          0,
+          65
+         ]
+        },
+        {
+         "fraction_of_height": 0.116,
+         "rows": [
+          68,
+          142
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(44, 119), (0, 94)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         44,
+         119
+        ],
+        [
+         0,
+         94
+        ],
+        [
+         0,
+         65
+        ],
+        [
+         68,
+         142
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0922,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzFcX7w6kYqV05BqxWqePGHyjAvYVI7jezZJHx-HoW06nYn",
+      "query": "evening waiting",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['evening', 'quiet'] (+10); scene words ['and', 'front', 'the'] (+12)",
+         "points": 22
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 291.6s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 78,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1611,
+      "height": 810,
+      "pin_id": "e1_AfqPShxP0gV8TIpCLhJquP0fc6--ePWTj5mTrxDrz_PcfXUrXZ0yBA",
+      "query": "person stepping back from front door",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['shadow'] (+5); scene words ['and', 'person', 'the'] (+12)",
+         "points": 17
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x810, 99.6s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 73,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         224,
+         232
+        ],
+        [
+         376,
+         384
+        ],
+        [
+         88,
+         96
+        ],
+        [
+         120,
+         128
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (224, 232)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1303,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyvUaxPavHpaC1WJ_BJba7IRkBlQSedo1-o_rY1LisxOZar",
+      "query": "person stepping back from front door",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['night', 'soft'] (+10); scene words ['and', 'the'] (+8)",
+         "points": 18
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 48.5s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 74,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         8,
+         16
+        ],
+        [
+         48,
+         56
+        ],
+        [
+         56,
+         64
+        ],
+        [
+         72,
+         88
+        ],
+        [
+         88,
+         104
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (8, 16)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0115,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzoegDow0Af091e1Bz-LZ8BPrBAprfv6YBr_7ZCqj0Y3U9X",
+      "query": "evening waiting",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['sunset'] (+5); scene words ['person', 'the'] (+8)",
+         "points": 13
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.7s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 69,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.412,
+         "rows": [
+          0,
+          264
+         ]
+        },
+        {
+         "fraction_of_height": 0.439,
+         "rows": [
+          0,
+          281
+         ]
+        },
+        {
+         "fraction_of_height": 0.438,
+         "rows": [
+          0,
+          280
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 264), (0, 281)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         264
+        ],
+        [
+         0,
+         281
+        ],
+        [
+         0,
+         280
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0159,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwTuD245dzd5OwYqzdmImmtEEOGlB25XZWpxcNexzbqMUlFfg",
+      "query": "evening waiting",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['street', 'sunset', 'walking'] (+15); scene words ['down', 'the'] (+8)",
+         "points": 23
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 59.2s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 79,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "OceanViewBeachPark",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0613,
+     "motion": 0.0439,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShxkNPZ3TeeV_Ae0SIIIBqHHWAELHLKg98BkpVguUjKuzjPz8A",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShxkNPZ3TeeV_Ae0SIIIBqHHWAELHLKg98BkpVguUjKuzjPz8A/",
+    "query": "evening waiting",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 3,
+      "lane": "metaphor",
+      "query": "evening doorstep waiting",
+      "returned": 3
+     },
+     {
+      "kept": 24,
+      "lane": "metaphor",
+      "query": "evening doorstep",
+      "returned": 24
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "evening waiting",
+      "returned": 25
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "doorstep waiting",
+      "returned": 25
+     },
+     {
+      "kept": 25,
+      "lane": "adjacent",
+      "query": "person stepping back from front door",
+      "returned": 25
+     },
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "pov doorstep holding four-pack pressing doorbell",
+      "returned": 0
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShy7dIOYoDgylvnL03tuOxceEn1aWG1HVGcijXXeWKI5N6EU",
+      "why": "on-screen text: 'No more standing on the; No more standir; Nomorest'"
+     },
+     {
+      "id": "e1_AfqPShxXfX8dvzkFO4YL2gUPHG1KxNNYYVicYAV2mUxz51vJTLA8",
+      "why": "too short 6.43s for 7.0s"
+     },
+     {
+      "id": "e1_AfqPShymmDNTjy6CZKBuwqUPeK8KR23qKMWzo5E91tA52gGsvh0j",
+      "why": "on-screen text: 'BRIDGE; HE; this is the spot for your next night o'"
+     },
+     {
+      "id": "e1_AfqPShzqOQWSu_zaBffYkn1ECzT5N0M5eOTuIHqhprca8EG_pUv1KA",
+      "why": "on-screen text: 'AUTO; AUTO OIL CHA; AUTO OIL CHANGE; BRIDGES TH; C'"
+     },
+     {
+      "id": "e1_AfqPShxO6PDLKVuf-OcUJPzcnGnlCSWaBzA8nXDW5bifM4D166gc",
+      "why": "on-screen text: 'ADAMS; Is your door ready for an upgrade?; Try a L'"
+     },
+     {
+      "id": "e1_AfqPShz07KvYUInsp7zF1zM4K5Yh3MpMaZOtgd1QP3ud4SJcrks",
+      "why": "on-screen text: 'FRONT PORCH; FRONT.PORCH; FRONTPORCH; MEOFTHEYEAR;'"
+     },
+     {
+      "id": "e1_AfqPShwh4yTt-T87SzFE7PEfLr7oo-7qZNLCrzNgGtAxuKAAz4Jy",
+      "why": "on-screen text: \"Ever wondered whatit's like; Ever wondered whatit'\""
+     },
+     {
+      "id": "e1_AfqPShyanmUKOXDbwMajQW-eaHvGNGwxqVvnECHDQNjAlLOhAvRP",
+      "why": "on-screen text: '?; CANCEL; LIM; RESUME; a perfectly English summer'"
+     },
+     {
+      "id": "e1_AfqPShyAC-IiFAhi-wMSpODplt0E1aebvhsVLFHfyutP8HPnpAEu",
+      "why": "on-screen text: '\u725b'"
+     },
+     {
+      "id": "e1_AfqPShzAeOoYfBkGLIbX3hnwIicNmSn5xxAsHLsnhPOGbgacU-Pl",
+      "why": "static image, not motion video (motion 0.0)"
+     },
+     {
+      "id": "e1_AfqPShxZ8OF2D_F6BOYBiJC9cozcn6yuQwYm6_kOMC_DI3Jm7rdu",
+      "why": "on-screen text: 'more of this with me?'"
+     },
+     {
+      "id": "e1_AfqPShxuQcRHBoF_VyDRlW1oX2_Zkq5_xXx-SVrTkkKPYMG22g_0",
+      "why": "on-screen text: 'But; CapCut; D; KCapCut; \u533a'"
+     },
+     {
+      "id": "e1_AfqPShyf90iJoeFM88LW1Hm62HIn_oozWoQSQRw_zAtsU8DuLYOIIA",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "e1_AfqPShyRoV2mgskYbDv67vEj8Rnp3Nh_sjriG66dhvluNASTbLw",
+      "why": "on-screen text: 'CCTITAN; CTITAN; DEXT; LUX; Pay'"
+     },
+     {
+      "id": "e1_AfqPShxzPO1rHXsEOP-OsoVNjml2ilR2130uYVxELzrmhKHwcjs",
+      "why": "on-screen text: 'FRONT PORCH; FRONT.PORCH; MOS; TIME; TIMEOFTHE YEA'"
+     },
+     {
+      "id": "e1_AfqPShzr3fnJyLDo9Z2NeLDw8ekUnZsCc-EFuIzeGk_fKBer0uWh",
+      "why": "on-screen text: '#HOW TO MAKE; A POV DRAWING; HOW TO MAKE; and I tr'"
+     },
+     {
+      "id": "e1_AfqPShwwrrVg8CT_NT06hvocDgQcmy1lfWLayssP8-1DNV4YI-og",
+      "why": "on-screen text: 'C; CZ; \u5c71'"
+     },
+     {
+      "id": "e1_AfqPShyfAuJOK20zITNIOT9m05LqqzN1fd4zivc0B1sVr1At_9B_Kw",
+      "why": "on-screen text: 'dreaming; golden,; goldent; hour; thour'"
+     },
+     {
+      "id": "e1_AfqPShwVv9CiWV9bBnIhpSeayTnNyXWlvjfWGYHXG4dAo5HMNXdH7Q",
+      "lane": "metaphor",
+      "query": "evening doorstep",
+      "why": "real-estate/tour content: 'Real Estate'"
+     },
+     {
+      "id": "e1_AfqPShwdmeymJrVIn9g70hjqZY4nZhPpfJmLDKWWxf39CFE-aPI",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxIhrgUPjsczG1dg4vC9ohX4qiFtuI5YYdKfpuoVbvjS5Zh",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "e1_AfqPShz1zPUPQ8FodZX47aBIdgQtkpSiavcqHU4PkpyeaBLxXzyu",
+      "why": "on-screen text: '+919790933606; ...; 0:0:; :0:0:0:; AMLALADDU'"
+     },
+     {
+      "id": "e1_AfqPShxiE22jrvOvVyhpGgk1joBComfifDPMcdn4FRWABZNO2DfYFA",
+      "why": "on-screen text: 'Nageen; SALE ALERT:; SALEALERT:; Saleprice280.00GB'"
+     },
+     {
+      "id": "e1_AfqPShxWVgYBPX3iA691GuNhh_uOz78wn_FY8wYd6k6VT_kZAujG",
+      "why": "on-screen text: '201; 2014; SEEKbi230MAORr'"
+     },
+     {
+      "id": "e1_AfqPShx7z_m4OobcyLVOeSwt-13mNOywTpRBRyO8E5Ik9AM-aHzI",
+      "why": "on-screen text: 'Mhe; YOUNGMAN'"
+     },
+     {
+      "id": "e1_AfqPShwoECzRShOA5YN_QPNMi1rX_JK_hLctFcsyjC_3lFlUvJZ6",
+      "why": "on-screen text: 'living in the countryside; living in the countrysi'"
+     },
+     {
+      "id": "e1_AfqPShwgTezI8FusV7PYHoe-DzHYVCww2ZKcf51-a90HcD0i_4rM",
+      "why": "on-screen text: '+9715560'"
+     },
+     {
+      "id": "e1_AfqPShz8elR10i0fQR2asYTjCL9GNDGFiSoyRNhcxUsqoXgevb43Fw",
+      "lane": "metaphor",
+      "query": "evening waiting",
+      "why": "advertising call-to-action: 'Subscribe'"
+     },
+     {
+      "id": "e1_AfqPShwe54zOgTyir6yRX7WsqlHTJ16UHxPoTz0xES-KP2d5_p7D",
+      "why": "on-screen text: 'B\u5b50; N; \u9f0e'"
+     },
+     {
+      "id": "e1_AfqPShwsphQallWCYldamhxVzlDGDkzJr_lG7tO_7SGw4_IStTI0",
+      "why": "on-screen text: \"Agatha's Post; Agatha'sPost; Amomentof reflection \""
+     },
+     {
+      "id": "e1_AfqPShxFvNoXviHmlGV_HU4e3H6wm64-zGjZrYAdHtghQoF8ZRW6",
+      "why": "on-screen text: '07.09.26; 0709.26; 0OfF; AIROTC; AIROTCI'"
+     },
+     {
+      "id": "e1_AfqPShzLsMHrQi3iqN40eXFUxGHxEvdEdripGKFgTQxM8GJXDkw",
+      "why": "on-screen text: \"CHER; HOM; I'll tell you a secret, when the; Petwo\""
+     },
+     {
+      "id": "e1_AfqPShy2KfO6o5nBkOBwVKQ9gj7j_xvP4f4r8yHMuwDH1IBaHzWYKQ",
+      "why": "static image, not motion video (motion 0.0)"
+     },
+     {
+      "id": "e1_AfqPShw_M6UxroX1R1dudTR8Sjl7KPfDSGCaKxC97vZ1gVHM3Ff1",
+      "why": "on-screen text: 'Feature a comfortable Queen bed,SmartTv,; Relax in'"
+     },
+     {
+      "id": "e1_AfqPShxOQoBKeE5msa3L0LX9iqltn9B0dd3Pq9o10Q9HMSDdy6pF",
+      "lane": "metaphor",
+      "query": "doorstep waiting",
+      "why": "advertising call-to-action: '% OFF'"
+     },
+     {
+      "id": "e1_AfqPShwzPKtrvPIiVRnLxSRxKY11KOkMLNbispSvKb6PVyKT9hbeMA",
+      "why": "on-screen text: '00:0; 00:00; 00:00/00:09; 00:01/00:09; 00:02'"
+     },
+     {
+      "id": "e1_AfqPShyxEXdO-EoNdig9oHF-AycwkzXS76hY7NAjIvN7yn5sAC_y",
+      "lane": "metaphor",
+      "query": "evening doorstep",
+      "why": "advertising call-to-action: 'advertisement'"
+     },
+     {
+      "id": "e1_AfqPShzcv766vz4wOCPKOXiLf0BFTHo1wtz_qoxfba00DNLKGTM",
+      "lane": "metaphor",
+      "query": "evening doorstep",
+      "why": "advertising call-to-action: 'our website'"
+     },
+     {
+      "id": "e1_AfqPShyXTp1jzSl-g-Jpxk4PRFSVDueT4KLJDgsQSDcSVu6KAA",
+      "why": "unusable crop 576x1032"
+     },
+     {
+      "id": "e1_AfqPShzWaQLhKcvHQCESiYAhxLi5nAsd03v49Rpnj1yjzK2W7ya3",
+      "why": "on-screen text: '1.9mmThickness; Brightly Colored; ExquisiteBoxPack'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['calm', 'sunset'] (+10); scene words ['and', 'the'] (+8)",
+       "points": 18
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 10.1s (need 7.0s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 74,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.117,
+       "rows": [
+        44,
+        119
+       ]
+      },
+      {
+       "fraction_of_height": 0.147,
+       "rows": [
+        0,
+        94
+       ]
+      },
+      {
+       "fraction_of_height": 0.102,
+       "rows": [
+        0,
+        65
+       ]
+      },
+      {
+       "fraction_of_height": 0.116,
+       "rows": [
+        68,
+        142
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(44, 119), (0, 94)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       44,
+       119
+      ],
+      [
+       0,
+       94
+      ],
+      [
+       0,
+       65
+      ],
+      [
+       68,
+       142
+      ]
+     ]
+    },
+    "title": "\"Dreamy Beach Sunset Over Sea \ud83c\udf05"
+   }
+  },
+  "audio": {
+   "bytes": 3094011,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261110T120404Z-6330ce/assets/track_6817193198436255745.m4a",
+   "pin_url": null,
+   "sha256": "b547bd08ef930c0e8c83e1d8637cef428623a7f0f0c303b3c5dbd61d808fef42",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6817193198436255745",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 0.0,
+    "high": 0.1,
+    "mid": 99.9
+   },
+   "duration_s": 189.41,
+   "file": "track_6817193198436255745.m4a",
+   "key_estimate": "D minor",
+   "loudness_curve_db": [
+    -22.6,
+    -23.3,
+    -23.2
+   ],
+   "onset_density_per_s": 2.22,
+   "peak_db": -7.4,
+   "rms_db": -23.0,
+   "spectral_centroid_hz": 1279.4,
+   "tempo_bpm": 86.1,
+   "zero_crossing_rate": 0.0633
+  },
+  "background": {
+   "bytes": 3117432,
+   "creator": "OceanViewBeachPark",
+   "path": "/home/runner/work/_temp/beast-scratch/20261110T120404Z-6330ce/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShxkNPZ3TeeV_Ae0SIIIBqHHWAELHLKg98BkpVguUjKuzjPz8A/",
+   "sha256": "d3853b3791d4460f2bb1e2218b0c6d9c58b51e4d1d1f3430a19a8f79d6bdab9c",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShxkNPZ3TeeV_Ae0SIIIBqHHWAELHLKg98BkpVguUjKuzjPz8A",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "parties and social events",
+    "emotional_tension": "They want to look totally relaxed about arriving and their hand is already sweating around the bottle.",
+    "observable_behaviour": "Rings the bell, steps back two steps, pretends to read a text that isn't there, smooths jacket, rings again because they're convinced the first one didn't work",
+    "private_worry": "That arriving early makes them look too keen and everyone inside will hear the bell and know they were waiting outside",
+    "situation": "Friday 7:52pm, on the doorstep of a mate's flat for a house party, holding a four-pack, two minutes early"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 5.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "Hook \"two minutes early holding a four-pack i rang the bell\" and payoff \"stepped back two steps smoothed my jacket read a text not there i'm ringing again\" hit every assigned behaviour. Caption \"everyone inside definitely heard the first one too\" nails the private worry without shaming.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Wording is solid; both lines are comma-less run-ons that could read faster with light punctuation around \"i rang the bell\" and \"i'm ringing again\". Nothing else failed.",
+    "scene_specificity": 5,
+    "sendability_who": "A close mate sends this to a friend who always turns up early and rings twice, convinced the first bell didn't work.",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "friday-752-doorstep-double-ring"
+  },
+  "delivery": {
+   "at": "2026-11-10T12:35:30Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 7.65,
+   "yavg_delta": 22.8
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 0.8,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.6
+  },
+  "measured": {
+   "sat": 15.99,
+   "yavg": 101.4
+  },
+  "output": {
+   "bytes": 9331298,
+   "duration_s": 7.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261110T120404Z-6330ce.mp4",
+   "sha256": "23cd4678bd2eebe7f7515ea6da5878b2b1bb0b78967f4bc8244f88521c22f850"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6817193198436255745",
+    "title": "Suspense, horror, piano and music box"
+   },
+   "background_query": "pov doorstep holding four-pack pressing doorbell smoothing jacket glancing at phone",
+   "caption": "everyone inside definitely heard the first one too.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Tense, staccato, held-breath anticipation building to an awkward second ring that needs a slow-burn swell to keep the cringe tight.",
+     "tiktok_query": "suspense",
+     "tiktok_search_query": "suspense"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "evening doorstep waiting",
+     "pinterest_search_query": "evening doorstep waiting",
+     "semantic_analysis": "A quiet, cinematic moment of nervous anticipation on a doorstep at dusk, poised between arriving and retreating."
+    }
+   },
+   "hookLines": [
+    "friday 7:52pm",
+    "two minutes early",
+    "holding a four-pack",
+    "i rang the bell"
+   ],
+   "loop_hypothesis": "i'm ringing again loops straight back to friday 7:52pm, so the second ring becomes the first ring all over again",
+   "payoffLines": [
+    "stepped back two steps",
+    "smoothed my jacket",
+    "read a text not there",
+    "i'm ringing again"
+   ],
+   "provenance": {
+    "creator": "OceanViewBeachPark",
+    "pin_id": "e1_AfqPShxkNPZ3TeeV_Ae0SIIIBqHHWAELHLKg98BkpVguUjKuzjPz8A",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShxkNPZ3TeeV_Ae0SIIIBqHHWAELHLKg98BkpVguUjKuzjPz8A/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 91 < 92): warm yellow"
+   },
+   "topic_id": "friday-752-doorstep-double-ring"
+  },
+  "publish": {
+   "alt_text": "Pov doorstep holding four-pack pressing doorbell smoothing jacket glancing at phone. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-10T12:36:10Z",
+   "caption": "everyone inside definitely heard the first one too.",
+   "channel": "instagram",
+   "container_id": "17918696346538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "17912043579592424",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/lFDGKpPx.mp4"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": 7.65,
+    "yavg_delta": 22.8
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261110T120404Z-6330ce/social_moment_loop_v1-live-20261110T120404Z-6330ce.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 9331298,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 15.99,
+    "yavg": 101.4
+   },
+   "ok": false,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0808,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 44.1
+  },
+  "rendered_at": "2026-11-10T12:35:26Z",
+  "run_id": "20261110T120404Z-6330ce",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A guest arrives two minutes early with drinks, rings the bell, then pretends they did not while waiting to ring again.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "pov doorstep holding four-pack pressing doorbell",
+     "person stepping back from front door"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.257,
+    "keywords": [
+     {
+      "keyword": "suspense",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6817193198436255745",
+    "title": "Suspense, horror, piano and music box"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.257
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "friday-752-doorstep-double-ring"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "suspense",
+    "vendor": "meta-api",
+    "why": "Tense, staccato, held-breath anticipation building to an awkward second ring that needs a slow-burn swell to keep the cringe tight."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "evening doorstep waiting",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "B"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261110T120404Z-6330ce.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "metaphor lane shot '\"Dreamy Beach Sunset Over Sea \ud83c\udf05' paired with 'Suspense, horror, piano and music box' for social_moment_loop_v1.",
+    "score": 57
+   },
+   "pinterest": {
+    "candidates": 6,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 31.21,
+     "yavg": 113.5
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShxkNPZ3TeeV_Ae0SIIIBqHHWAELHLKg98BkpVguUjKuzjPz8A",
+    "query": "evening waiting",
+    "review_status": "accept",
+    "score": 74,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "\"Dreamy Beach Sunset Over Sea \ud83c\udf05"
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 44.1
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261110T120404Z-6330ce/social_moment_loop_v1-live-20261110T120404Z-6330ce.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 9331298,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 91 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": 7.65,
+     "yavg_delta": 22.8
+    },
+    "measured": {
+     "sat": 15.99,
+     "yavg": 101.4
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.0808,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
+  },
+  "topic_id": "friday-752-doorstep-double-ring"
  }
 ]
