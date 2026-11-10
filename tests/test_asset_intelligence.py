@@ -607,3 +607,16 @@ def test_a_thin_metaphor_stays_metaphorical_instead_of_falling_to_literal():
     assert "liminal haze" in queries[:4], queries
     assert lanes[-1] == "literal", lanes          # literal is the last resort
     assert lanes.count("metaphor") >= 2           # the metaphor was broadened
+
+
+def test_a_list_shaped_ledger_is_treated_as_corrupt_not_crashing(monkeypatch, tmp_path):
+    """Measured: a repair step rewrote the ledger as [] and every run died with
+    "'list' object has no attribute 'setdefault'". Wrong shape is corruption."""
+    from src.formats import asset_ledger
+    p = tmp_path / "ledger.json"
+    p.write_text("[]")
+    monkeypatch.setenv("BEAST_LEDGER", str(p))
+    data = asset_ledger.load()
+    assert isinstance(data, dict)
+    assert data.get("recovered_from_corrupt") is True
+    assert data["visual"] == {}

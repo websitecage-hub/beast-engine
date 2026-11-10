@@ -47,6 +47,10 @@ def load() -> dict:
     except (OSError, json.JSONDecodeError):
         # A corrupt ledger must not licence reuse: start empty but say so.
         return {**_empty(), "recovered_from_corrupt": True}
+    if not isinstance(data, dict):
+        # Measured: a state-repair step rewrote this file as `[]` and every run died
+        # with "'list' object has no attribute 'setdefault'". Wrong shape is corruption.
+        return {**_empty(), "recovered_from_corrupt": True}
     for key, default in (("visual", {}), ("audio", {}), ("reservations", {})):
         data.setdefault(key, default)
     return data
