@@ -1,14 +1,21 @@
 name: preview
 
-# Preview-only run of the two pilot formats (A: caption_list_title_v1,
-# B: social_moment_loop_v1). It renders, scores and delivers to the Telegram
-# REVIEW channel. It never publishes: src/run_preview.py cannot import `publish`
-# and refuses to start while short_publish_enabled is true.
+# The production run: renders one of the two pilot formats (A: caption_list_title_v1,
+# B: social_moment_loop_v1), delivers it to the Telegram review channel and, when
+# publishing is on, posts it to Instagram. src/run_preview.py still never publishes
+# by itself: publication is a separate step (src/run_publish.py) that only touches a
+# reel whose status is "rendered", so the same reel cannot post twice.
 #
-# There is no schedule. A preview is a deliberate act, so it is dispatched by
-# hand and it is the only way this workflow can start.
+# It runs TWICE A DAY on schedule. The auto router picks the format with fewer
+# previews, so the two runs alternate A and B. A manual dispatch keeps its own
+# inputs; a scheduled run has none, so it publishes and delivers by default.
 
 on:
+  schedule:
+    # 09:00 and 17:00 UTC. GitHub's scheduler can fire late; each wake renders one
+    # reel and the format is chosen by the router, not by the clock.
+    - cron: "0 9 * * *"
+    - cron: "0 17 * * *"
   workflow_dispatch:
     inputs:
       format:
@@ -41,6 +48,14 @@ jobs:
   preview:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      # A scheduled run carries no inputs, and an automatic twice-a-day pipeline has
+      # to publish and deliver without a human filling in a form. A manual dispatch
+      # keeps whatever it was given.
+      RUN_FORMAT: ${{ inputs.format || 'auto' }}
+      RUN_QUALITY: ${{ inputs.quality || 'delivery' }}
+      RUN_DELIVER: ${{ github.event_name == 'schedule' || inputs.deliver }}
+      RUN_PUBLISH: ${{ github.event_name == 'schedule' || inputs.publish }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -75,17 +90,19 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          ARGS="--format ${{ inputs.format }} --quality ${{ inputs.quality }}"
+          ARGS="--format $RUN_FORMAT --quality $RUN_QUALITY"
           if [ -n "${{ inputs.topic }}" ]; then ARGS="$ARGS --topic \"${{ inputs.topic }}\""; fi
-          if [ "${{ inputs.deliver }}" != "true" ]; then ARGS="$ARGS --no-deliver"; fi
+          if [ "$RUN_DELIVER" != "true" ]; then ARGS="$ARGS --no-deliver"; fi
           mkdir -p "$BEAST_SCRATCH" "$BEAST_ASSET_CACHE"
           eval python -m src.run_preview $ARGS
       - name: Publish the rendered two-format reel to Instagram
-        if: ${{ inputs.publish == true }}
+        # Never publish on a failed run: a scheduled wake that could not render would
+        # otherwise fall through to whatever reel is still sitting at status rendered.
+        if: ${{ env.RUN_PUBLISH == 'true' && success() }}
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
-        run: python -m src.run_publish --format ${{ inputs.format }}
+        run: python -m src.run_publish --format $RUN_FORMAT
       - name: Upload the render
         if: always()
         uses: actions/upload-artifact@v4
