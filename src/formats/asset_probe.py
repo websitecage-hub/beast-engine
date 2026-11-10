@@ -337,13 +337,13 @@ def ocr_check(path, *, api_key: str | None = None, samples: int = 3) -> dict:
     # --- Gemini fallback (only if a key is configured) ----------------------
     key = (api_key or os.environ.get("GEMINI_API_KEY", "") or "").strip().strip("'\"").strip()
     if not key:
+        # Fail CLOSED. The heuristic used to answer "clean" here when no OCR engine
+        # was installed, so a machine missing rapidocr silently accepted clips that
+        # carry text. "No text" is a requirement, and an unproven clip is not clean.
         sus = text_suspicion(path)
-        if sus.get("text_suspected") is None:
-            return {"has_text": None, "has_logo": None, "by": "heuristic",
-                    "reason": f"no OCR engine; {local_error}"}
-        return {"has_text": bool(sus.get("text_suspected")), "has_logo": None,
-                "by": "heuristic",
-                "reason": f"local OCR failed: {local_error}; {sus.get('reason', '')}"}
+        return {"has_text": None, "has_logo": None, "by": "heuristic",
+                "reason": (f"no OCR engine, cannot prove the clip is text-free: "
+                           f"{local_error}; heuristic={sus.get('reason', 'n/a')}")}
 
     import base64
     import json as _json

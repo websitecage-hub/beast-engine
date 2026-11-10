@@ -25,36 +25,43 @@ from . import content_factory, run_manifest
 OUT = Path("/var/tmp/audio-director")
 PUBLIC = Path("/home/testflowthrowout/beast-engine/outputs/audio-director")
 
-PROMPT = """You are an elite Audio Director and Music Supervisor for viral short-form content (TikTok Reels/IG).
-Your goal is to select a trending sound that generates a "cinematic, high-fidelity" sonic vibe.
+PROMPT = """You are an elite Sound Designer for viral short-form content. You understand that literal music ruins the edit, but random sounds destroy the pacing.
 
-CRITICAL RULE: Do not search for the literal meaning of the text. Human editors never use
-literal music. If the text says "I am panicking," do NOT search for "panic" or "sad." Search
-for a sonic metaphor that fits the tension of the scene (e.g., "phonk", "dark", "cinematic",
-"ambient"). The contrast between the spoken text and the audio track creates the viral "soul".
+Here is the generated script content:
+"{text}"
 
-TIKTOK TRENDING AUDIO API (the only endpoint you are writing a keyword for):
-  GET /v1/trending?keyword=<keyword>&limit=5
-  - it is niche-priority: broad sonic tags return far better rows than descriptions
-  - a fresh request may answer 202 and be polled until status=ready; rows carry
-    video_count (how used the sound is), title, artist and a signed play_link
-  - rows may be instrumental or vocal; the on-screen text is the primary message
+Here is the exact API documentation for the TikTok Audio search tool you are using:
+{docs}
 
-GENERATED TEXT CONTENT:
-{text}
+YOUR TASK:
+Suppose you need a trending audio track from TikTok based on this script.
+1. Analyze the sonic pacing, tension, and underlying emotional vibe of the text.
+2. Generate the exact search term to find this on the TikTok API.
+3. CRITICAL RULE: Make sure the search term is SEMANTICALLY RELATED and BROAD enough to get highly creative, high-energy, or highly emotional trending sounds. It MUST be exactly ONE WORD. Do NOT use literal emotions like "sad" or "anxiety". Use broad sonic genres or moods.
 
-Your task:
-Analyse the emotional pacing and sonic aesthetic of the text. Generate exactly ONE broad,
-highly effective search keyword for the TikTok API.
-- It MUST be exactly ONE WORD.
-- It MUST be a sonic genre, a vibe, or a musical mood (e.g., "phonk", "cinematic", "dark",
-  "ambient", "glitch", "aggressive").
-- It MUST NOT be a literal emotion like "sad", "depressed", or "anxiety".
-- Keep in mind the TikTok API uses "niche priority", so broad sonic tags work best.
+Output ONLY valid JSON:
+{{"sonic_analysis": "1 sentence on the audio vibe.",
+  "tiktok_search_query": "1 broad word only"}}"""
 
-Output ONLY raw JSON in this exact format, no markdown, no extra text:
-{{"sonic_analysis": "1 sentence explaining why you chose this sound vibe.",
-  "tiktok_query": "1 word max"}}"""
+# The real API surface, used when the docs file is not on this machine.
+FALLBACK_API_DOCS = """Trending Audio Scraper API (no auth)
+Base URL: https://audi0-scraper.onrender.com
+
+GET /v1/trending?keyword=<keyword>&limit=<n>
+  - returns ranked, real trending audio for that keyword
+  - NICHE PRIORITY: broad sonic tags (a genre or mood) return far better rows
+  - a fresh keyword may answer 202 and must be polled until the job is ready
+  - each row carries: title, artist, video_count (how widely the sound is used),
+    duration, and a signed play_link you can download
+GET /v1/trending/<niche>          same, niche addressed in the path
+POST /v1/download                  save one track's audio by play_link
+GET /health                        liveness
+
+trend_score is 0-100 (cross-source corroboration 40, niche relevance 25, momentum 20,
+rank quality 15); confidence (0-1) says how much evidence backed the row."""
+
+DOCS_PATH = Path.home() / "trending-audio-scraper" / "USAGE.md"
+DOCS_MAX = 2200
 
 BANNED = re.compile(r"\b(sad|depress\w*|anxiet\w*|anxious|lonely|cry\w*)\b", re.I)
 
@@ -68,18 +75,40 @@ def _parse(raw) -> dict:
     return json.loads(m.group(0))
 
 
+def api_docs() -> str:
+    """The real trending-audio API guide, trimmed to the search surface it targets."""
+    if DOCS_PATH.exists():
+        try:
+            text = DOCS_PATH.read_text(encoding="utf-8", errors="ignore")
+            keep, out = False, []
+            for line in text.splitlines():
+                if line.startswith("## "):
+                    keep = any(k in line.lower() for k in
+                               ("trending", "http api", "endpoint", "quick"))
+                if keep or line.startswith("# Trending Audio"):
+                    out.append(line)
+            trimmed = "\n".join(out).strip()
+            if len(trimmed) > 400:
+                return trimmed[:DOCS_MAX]
+        except OSError:
+            pass
+    return FALLBACK_API_DOCS
+
+
 def direct(text_content: str, *, chat=None) -> dict:
-    """Return {sonic_analysis, tiktok_query}. Raises on an invalid answer."""
+    """Return {sonic_analysis, tiktok_search_query}. Raises on an invalid answer."""
     chat = chat or content_factory._writer_chat
-    raw, vendor = chat(PROMPT.format(text=text_content[:1500]))
+    raw, vendor = chat(PROMPT.format(text=text_content[:1500], docs=api_docs()))
     out = _parse(raw)
-    q = str(out.get("tiktok_query") or "").strip().strip('"').lower()
+    q = str(out.get("tiktok_search_query") or out.get("tiktok_query") or "")
+    q = q.strip().strip('"').lower()
     words = q.split()
     if len(words) != 1:
         raise ValueError(f"keyword must be exactly one word, got {q!r}")
     if BANNED.search(q):
         raise ValueError(f"keyword is a literal emotion: {q!r}")
-    out["tiktok_query"] = q
+    out["tiktok_search_query"] = q
+    out["tiktok_query"] = q             # both names stay valid for callers
     out["director_vendor"] = vendor
     return out
 

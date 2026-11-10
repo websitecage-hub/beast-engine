@@ -21,35 +21,39 @@ from . import content_factory, run_manifest
 
 OUT = Path("/var/tmp/visual-director")
 
-PROMPT = """You are an elite Visual Director for viral short-form content (TikTok Reels/IG).
-Your goal is to select a background video that generates a "high-fidelity, aesthetic" vibe.
+PROMPT = """You are an elite Visual Director for viral short-form content. You understand that literal stock footage looks cheap, but overly poetic descriptions break search APIs.
 
-CRITICAL RULE: Do not search for the literal meaning of the text. Human editors never do
-that. If the text says "I am lonely in a crowded room," do NOT search for "crowded room."
-Search for a visual metaphor that feels lonely, vast, and cinematic (e.g., "empty deep
-ocean", "foggy dark forest", "lone astronaut"). The contrast between the text and the
-background is what makes it viral.
+Here is the generated script content:
+"{text}"
 
-PINTEREST API (the only endpoint you are writing a query for):
-  GET /search/videos?q=<query>&page_size=25
-  - the query is clipped to 55 characters; short queries return far more results
-  - it searches video pins, so the query must describe something filmable
+Here is the exact API documentation for the Pinterest search tool you are using:
+{docs}
 
-GENERATED TEXT CONTENT:
-{text}
+YOUR TASK:
+Suppose you need a background video from Pinterest based on this script.
+1. Analyze the underlying emotional vibe and semantic meaning (what the visual should FEEL like).
+2. Generate the exact search terms to find this on Pinterest.
+3. CRITICAL RULE: Make sure the search terms are SEMANTICALLY RELATED and BROAD enough to get highly creative, high-quality, aesthetic results. Do NOT use long sentences. Do NOT use literal emotions like "sad" or "anxiety". Use 2-3 word cinematic aesthetic terms.
 
-Your task:
-Analyse the emotional undercurrent of the text. Generate exactly ONE broad, highly
-cinematic search query for the Pinterest API.
-- It MUST be a maximum of 2 to 3 words.
-- It MUST be a visual metaphor, an aesthetic environment, or a moody texture.
-- It MUST NOT contain words like "sad", "anxiety", or "person".
-- Prioritise aesthetics like: "dark academia", "space nebula", "vintage film grain",
-  "cyberpunk rain", "melancholy ocean".
+Output ONLY valid JSON:
+{{"semantic_analysis": "1 sentence on the visual vibe.",
+  "pinterest_search_query": "2-3 broad, aesthetic words"}}"""
 
-Output ONLY raw JSON in this exact format, no markdown, no extra text:
-{{"emotional_analysis": "1 sentence explaining the vibe you chose.",
-  "pinterest_query": "2-3 word max query"}}"""
+# The real API surface, used when the docs file is not on this machine.
+FALLBACK_API_DOCS = """Pinterest Media API v2.5 (no key, no auth)
+Base URL: https://pinterest-api-inyg.onrender.com   (local: http://127.0.0.1:8000)
+
+GET /search/videos?q=<query>&page_size=<1-50>
+  - the video-pin search endpoint: this is the one your query goes to
+  - q is a plain search string; short, broad queries return far more results
+  - each result carries: id, title, description, creator, pin_url, best_video
+  - anonymous results are byte-identical to a private-window pinterest.com search
+GET /search?q=<query>            images + videos + gifs (mixed)
+GET /autocomplete?q=<prefix>     spelling/query suggestions
+GET /health                      liveness"""
+
+DOCS_PATH = Path.home() / "pinterest-api" / "USAGE.md"
+DOCS_MAX = 2600
 
 BANNED = re.compile(r"\b(sad|anxiety|anxious|person|people|depressed|depression)\b", re.I)
 
@@ -63,18 +67,41 @@ def _parse(raw) -> dict:
     return json.loads(m.group(0))
 
 
+def api_docs() -> str:
+    """The real Pinterest API guide, trimmed to the search surface it must target."""
+    if DOCS_PATH.exists():
+        try:
+            text = DOCS_PATH.read_text(encoding="utf-8", errors="ignore")
+            keep, out = False, []
+            for line in text.splitlines():
+                if line.startswith("## "):
+                    keep = any(k in line.lower() for k in
+                               ("quickstart", "search", "params", "concept", "endpoint"))
+                if keep or line.startswith("# Pinterest Media API"):
+                    out.append(line)
+            trimmed = "\n".join(out).strip()
+            if len(trimmed) > 400:
+                return trimmed[:DOCS_MAX]
+        except OSError:
+            pass
+    return FALLBACK_API_DOCS
+
+
 def direct(text_content: str, *, chat=None) -> dict:
-    """Return {emotional_analysis, pinterest_query}. Raises on an invalid answer."""
+    """Return {semantic_analysis, pinterest_search_query}. Raises on an invalid answer."""
     chat = chat or content_factory._writer_chat
-    raw, vendor = chat(PROMPT.format(text=text_content[:1500]))
+    prompt = PROMPT.format(text=text_content[:1500], docs=api_docs())
+    raw, vendor = chat(prompt)
     out = _parse(raw)
-    q = str(out.get("pinterest_query") or "").strip().strip('"').lower()
+    q = str(out.get("pinterest_search_query") or out.get("pinterest_query") or "")
+    q = q.strip().strip('"').lower()
     words = q.split()
     if not 1 <= len(words) <= 3:
         raise ValueError(f"query must be 2-3 words, got {q!r}")
     if BANNED.search(q):
         raise ValueError(f"query uses a literal/clinical word: {q!r}")
-    out["pinterest_query"] = q
+    out["pinterest_search_query"] = q
+    out["pinterest_query"] = q          # both names stay valid for callers
     out["director_vendor"] = vendor
     return out
 
