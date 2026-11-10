@@ -1,5 +1,13 @@
 {
  "audio": {
+  "6997838557607888898": {
+   "first_seen_at": "2026-11-10T12:09:55Z",
+   "last_used_at": "2026-11-10T12:11:09Z",
+   "review_status": "pending",
+   "sha256": "9014a9d23b967b2a11c45196cdb1f981aeefcf7c1793a21b5d87786b1963e2ee",
+   "status": "delivered",
+   "used_by": "20261110T115818Z-ce9ad6"
+  },
   "7127247846985713666": {
    "first_seen_at": "2026-11-03T18:00:07Z",
    "last_used_at": "2026-11-03T18:01:56Z",
@@ -19,9 +27,20 @@
  },
  "recovered_from_corrupt": true,
  "reservations": {},
- "updated_at": "2026-11-03T18:01:56Z",
+ "updated_at": "2026-11-10T12:11:09Z",
  "version": 1,
  "visual": {
+  "pin:e1_AfqPShwqAp8zMH9VNSrUP-_F39-n0XEeJ9x3dzPqjlP-Xhw7YzDA": {
+   "first_seen_at": "2026-11-10T12:09:16Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-10T12:11:09Z",
+   "pin_id": "e1_AfqPShwqAp8zMH9VNSrUP-_F39-n0XEeJ9x3dzPqjlP-Xhw7YzDA",
+   "query": "morning window",
+   "review_status": "accept",
+   "sha256": "9289b9b210b66e308b2b83821f85ab976a8c56e2c36e3c6a7b14c8a71309dfa3",
+   "status": "delivered",
+   "used_by": "20261110T115818Z-ce9ad6"
+  },
   "pin:e1_AfqPShybjOirGY3I0U7ES7LHYYkCfMsCYV6TNARakjRNTXL9K0DY": {
    "first_seen_at": "2026-11-03T17:59:40Z",
    "lane": "adjacent",

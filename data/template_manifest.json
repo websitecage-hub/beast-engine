@@ -7761,5 +7761,1380 @@
    "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
   },
   "topic_id": "flat-chat-perfect-reply-haha"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "fast dance beat",
+     "loud hype rap",
+     "comedy sound effects",
+     "heavy dramatic strings",
+     "cheerful ukulele"
+    ],
+    "emotional_role": "hold the quiet ache of wanting to speak without pushing it into sadness",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft piano",
+     "gentle synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "airy"
+    ],
+    "trend_hashtags": [
+     "#morningcommute",
+     "#quietcrush",
+     "#busride"
+    ],
+    "trend_keywords": [
+     "morning commute",
+     "quiet crush",
+     "bus crush"
+    ],
+    "valence": 0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-10T12:00:45Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "bus-two-rows-ahead-go-quiet",
+   "core_human_moment": "A commuter likes someone two rows ahead on the morning bus and stays quiet, overthinking a simple hi instead of saying it.",
+   "degraded": false,
+   "emotional_primary": "longing",
+   "emotional_secondary": "nervous",
+   "format_id": "caption_list_title_v1",
+   "human_action": "sitting on bus scrolling phone and glancing up then away",
+   "humour": 0.1,
+   "intentional_contrast": null,
+   "literal_scene": "A person sits alone on a morning bus holding a phone with one earbud in, glancing up toward someone two rows ahead then looking back down.",
+   "literalness": "literal",
+   "motion_intent": "calm and minimal, gentle bus motion with small head turns and no cuts",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "soft morning light",
+    "muted blue-grey"
+   ],
+   "rationale": "A calm observer shot on a real morning bus keeps the crush believable and ordinary, while soft slow instrumental music holds the tender hesitation without turning it dramatic.",
+   "scene_entities": [
+    "phone",
+    "earbud",
+    "bus"
+   ],
+   "schema_version": "1.0",
+   "setting": "on a morning commuter bus",
+   "tension": 0.5,
+   "text_safe_zone": "centre band 41-59%, keep face and window light out of centre",
+   "time_of_day": "morning",
+   "valence": 0.1,
+   "video_queries": [
+    "person sitting on bus holding phone earbud morning",
+    "passenger looking out bus window morning light",
+    "empty bus seat morning light through window"
+   ],
+   "visual_mood": [
+    "quiet",
+    "tender"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.5
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "sd_alfredo_2002",
+    "candidates": [
+     {
+      "artist": "Current Joys",
+      "distance": 0.878,
+      "fresh": true,
+      "id": "7028967835820886017",
+      "score": 84,
+      "title": "Televisions",
+      "video_count": 36600
+     },
+     {
+      "artist": "Fontaines D.C.",
+      "distance": 0.618,
+      "fresh": true,
+      "id": "7696829732491511860",
+      "score": 64,
+      "title": "Demolition",
+      "video_count": 2914
+     },
+     {
+      "artist": "sd_alfredo_2002",
+      "distance": 0.6833,
+      "fresh": true,
+      "id": "6997838557607888898",
+      "score": 100,
+      "title": "Creepy and simple horror background music(1070744)",
+      "video_count": 2900000
+     },
+     {
+      "artist": "Mac DeMarco",
+      "distance": 0.6528,
+      "fresh": true,
+      "id": "6786704897518602242",
+      "score": 92,
+      "title": "My Kind of Woman",
+      "video_count": 247600
+     }
+    ],
+    "distance": 0.6833,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6920125567752734722",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "106.2s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 2900000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6997838557607888898",
+    "title": "Creepy and simple horror background music(1070744)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 15
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'Creepy and simple horror background musi' for caption_list_title_v1.",
+    "total": 50
+   },
+   "visual": {
+    "band_busy": 0.0234,
+    "candidates": [
+     {
+      "band_busy": 0.0234,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwqAp8zMH9VNSrUP-_F39-n0XEeJ9x3dzPqjlP-Xhw7YzDA",
+      "query": "morning window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['and', 'morning', 'with'] (+12)",
+         "points": 12
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 74.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 68,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0242,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwd9akvYV-5p0LyvdTB3FQQI8iRC5kCb-NVYG92paUmxtun",
+      "query": "morning window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['kitchen', 'window'] (+10); scene words ['and', 'morning'] (+8)",
+         "points": 18
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 76.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 74,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0334,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyyy5yabvjBemMiw3Nrm9WT9IsNVACl1_9Ni6_wp8Rt5ibp",
+      "query": "bus window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['bus'] (+5); scene words ['and', 'bus', 'looking'] (+12)",
+         "points": 17
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 64.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 73,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0386,
+      "height": 1280,
+      "pin_id": "e1_AfqPShy9EbdO6vm5mfjTbxFn6Pl7Ypo7yua4p_zqZQrtcNk89DaaMg",
+      "query": "bus window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['alone', 'bus', 'moody', 'sunset', 'window'] (+25); scene words ['alone', 'bus', 'looking', 'sitting'] (+14)",
+         "points": 39
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 71.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 95,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.212,
+         "rows": [
+          0,
+          136
+         ]
+        },
+        {
+         "fraction_of_height": 0.253,
+         "rows": [
+          478,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.236,
+         "rows": [
+          15,
+          166
+         ]
+        },
+        {
+         "fraction_of_height": 0.181,
+         "rows": [
+          524,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.322,
+         "rows": [
+          0,
+          206
+         ]
+        },
+        {
+         "fraction_of_height": 0.127,
+         "rows": [
+          559,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 136), (478, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         136
+        ],
+        [
+         478,
+         640
+        ],
+        [
+         15,
+         166
+        ],
+        [
+         524,
+         640
+        ],
+        [
+         0,
+         206
+        ],
+        [
+         559,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0212,
+      "height": 1280,
+      "pin_id": "e1_AfqPShyZUAuu9dwF6BNBusjdtK4k_-gjBHD9MeEqyQLyxv35PGV8",
+      "query": "morning bus",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['bus'] (+5); scene words ['bus', 'down'] (+8)",
+         "points": 13
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 36.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 69,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.214,
+         "rows": [
+          0,
+          137
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 137)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         137
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1051,
+      "height": 1280,
+      "pin_id": "e1_AfqPShzqjhLDc3rHo2G5Le_bxas6TabLHRlHRfNphkg15vxdvi3JuA",
+      "query": "morning bus window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['bus', 'simple', 'window'] (+15); scene words ['and', 'bus', 'looking', 'with'] (+14)",
+         "points": 29
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 34.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 85,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.2457,
+      "height": 1280,
+      "pin_id": "e1_AfqPShw2QPdGkQlSFZliSW93OqpxO50viWzoW1wZJkUscZzSZc3gJg",
+      "query": "morning window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['simple', 'window'] (+10); scene words ['and', 'morning', 'with'] (+12)",
+         "points": 22
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 40.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 78,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0137,
+      "height": 1236,
+      "pin_id": "e1_AfqPShz_DlfuyVBY_rp2Yl-K40HvhrKYZz9SjLkzeYRQ7jaR8hwu",
+      "query": "morning bus window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['bus', 'window'] (+10); scene words ['and', 'bus', 'looking'] (+12)",
+         "points": 22
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1236, 13.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 78,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.18,
+         "rows": [
+          0,
+          111
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 111)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         111
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0395,
+      "height": 1280,
+      "pin_id": "e1_AfqPShwqhlrFxziYihDUD2p12ZSq2fLW5aafd5Kkojx0tiTR-rtg",
+      "query": "morning bus window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['pov', 'train', 'window'] (+15); scene words ['and'] (+4)",
+         "points": 19
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 18.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 75,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0809,
+      "height": 1280,
+      "pin_id": "e1_AfqPShxr4sGyLBexukY7CcX4pvTYGWxeGHayoKvjKsnwGYj-T2mL",
+      "query": "morning bus window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['aesthetic'] (+5); scene words ['sitting'] (+4)",
+         "points": 9
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 65,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.131,
+         "rows": [
+          556,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(556, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         556,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "RomanovaBA",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0524,
+     "motion": 0.0413,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShwqAp8zMH9VNSrUP-_F39-n0XEeJ9x3dzPqjlP-Xhw7YzDA",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwqAp8zMH9VNSrUP-_F39-n0XEeJ9x3dzPqjlP-Xhw7YzDA/",
+    "query": "morning window",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "morning bus window",
+      "returned": 25
+     },
+     {
+      "kept": 14,
+      "lane": "metaphor",
+      "query": "morning bus",
+      "returned": 25
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "morning window",
+      "returned": 25
+     },
+     {
+      "kept": 17,
+      "lane": "metaphor",
+      "query": "bus window",
+      "returned": 25
+     },
+     {
+      "kept": 11,
+      "lane": "adjacent",
+      "query": "passenger looking out bus window morning",
+      "returned": 14
+     },
+     {
+      "kept": 1,
+      "lane": "emotional",
+      "query": "empty bus seat morning light through",
+      "returned": 1
+     },
+     {
+      "kept": 11,
+      "lane": "literal",
+      "query": "person sitting on bus holding phone",
+      "returned": 12
+     }
+    ],
+    "rejected": [
+     {
+      "id": "e1_AfqPShyXrEC1jKpyPoZSxA061DUPVozJhAJuFRxhYOQJ7vQht2Im",
+      "why": "static image, not motion video (motion 0.0)"
+     },
+     {
+      "id": "e1_AfqPShwAfJ9GRKjUoiGK9VXrBIV931z0h9J40g2OSYgksO2YF6w",
+      "why": "too short 9.85s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxNySToZnw65eQxqIoMRs9PQg7AZ-r5jhFTukLC0mPd9956ow",
+      "why": "on-screen text: 'HAIT BEHIND LINE; IMET; MET; O\u54c1; RIMET'"
+     },
+     {
+      "id": "e1_AfqPShy1V7bFuqMkqWwq1MvgefMrF6IStNIzM9KKyfJMSGAEWGol",
+      "why": "on-screen text: 'The real miracle; hardened you.; have permanently;'"
+     },
+     {
+      "id": "e1_AfqPShy5zAK-jMDcWXW0kBvqkaQ7OCyQTewdCKoEJWzmCH_PK3cH",
+      "why": "too short 9.92s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwZp2FjBOZ-WfWDZ3eQ78tz4jGukW9agiGjTrHY2Vu4vTdYgg",
+      "why": "on-screen text: 'STOP; Vamos hacia la parada; Vamos_; ybn'"
+     },
+     {
+      "id": "e1_AfqPShzNuMIbDSvXXvVdGMBSSO56BKQctLxr2yIeq_mxYadR0rQx",
+      "why": "unusable crop 486x864"
+     },
+     {
+      "id": "e1_AfqPShysB0JDGHGMm8BJM1rAkbi41hyclLiRIfnJ0tz1IvHXIZXY",
+      "why": "on-screen text: 'PR; TO; WELCOME'"
+     },
+     {
+      "id": "e1_AfqPShwbOw_R12AQOMOCzMXu59LOOJUtzw8Ij78UpA5A_lN2uCzN",
+      "why": "on-screen text: '-200; -2:00; 0:01; 0:03; 0:11'"
+     },
+     {
+      "id": "e1_AfqPShzmrmWC4egvS7dZkKrSaYevI6DGu33iaHv94mx0IXXdJxtt",
+      "why": "too short 10.98s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwBCrZIAjfVbcZ1ws_Uc-cogn2UZyXiuJWeXBo3q3_-JfCn",
+      "why": "unusable crop 220x390"
+     },
+     {
+      "id": "e1_AfqPShy90jwihY3-0nfTQ8WSFoNtwuQiACXUZKAyEsRvhyZoM2si",
+      "why": "on-screen text: '\u5927'"
+     },
+     {
+      "id": "e1_AfqPShxiACHM6pLkJt9i0GAArcFDaLN8zyxfnOuJIfHx9mIYkE1W",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "e1_AfqPShxXK99vEaUhZrPyFeRX4zAkNeOXAWoxvsvF5A40jWJaG4Y",
+      "why": "too short 8.67s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxAA3CNLImE3ZoaskPuQYjWBbyafVLfndhhsWWLmrhI6ob4",
+      "why": "on-screen text: 'EY300; P; PeortedOre; PrdOhe; PuriedOreao'"
+     },
+     {
+      "id": "e1_AfqPShxlLOS2dkIo1u5r9ZR68YZOrD5ECHXzDjobE7Ew3N7FeROovA",
+      "why": "on-screen text: 'ALLAMERICAN SCHOOL BUS CORP; EME; Goodymorning; OA'"
+     },
+     {
+      "id": "e1_AfqPShwZu5iRur42eldkv8npr1DD_qsUbOBohSmGpP_o67wN0MQG",
+      "why": "static image, not motion video (motion 0.0)"
+     },
+     {
+      "id": "e1_AfqPShyhF-MWKhUmTwrkGwDzrau2Mh54LNWIb9e0ksx2GUD5gfB7",
+      "why": "on-screen text: 'TA; \u53e3'"
+     },
+     {
+      "id": "e1_AfqPShzptQBdnFixiULXNvNenlhleeXXiHF7oK68kAHwuF_ru_Vy",
+      "why": "on-screen text: '\u5c0f; \u9645'"
+     },
+     {
+      "id": "e1_AfqPShzthmCNfAdqLApJ2evNO4jkj8Bvr4e5lxUb_ih8H0j8d0JG",
+      "why": "too short 9.93s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShyGmp69o7VdsrOjZo-rt6s5NMlV_51_2t5DWXuLyiZA96ry",
+      "why": "unusable crop 1280x864"
+     },
+     {
+      "id": "e1_AfqPShxTfjzbQwZ0ZS_YuSOWzTVC8ARJnLVVdz0Yrp9vLyE4Nu7x",
+      "why": "too short 7.27s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzWK4Qf1eRBNWYTbPiJJwuaZskm_aK9DeqgXDyOjxb4c6vg",
+      "why": "unusable crop 656x1232"
+     },
+     {
+      "id": "e1_AfqPShxPSGgNMxgZfimKlDcbq31WnSeVbVJeh5rruSiucg_uBY8",
+      "why": "unusable crop 464x848"
+     },
+     {
+      "id": "e1_AfqPShxURbwrLGERBNbQD0UvurjYbfyCndnpPZppAmoODmeG2no",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "e1_AfqPShyNmQqr-2svH8MTORPVCehsUZB2OF0Cz-oFg2lY2hCFsulX",
+      "why": "too short 10.54s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShzFMNan1pQyM0j41mR2HmV9P7Qd7CpKE4ih0sjowLcOwpB7",
+      "why": "too short 11.2s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShwdLSER9A16M079Wj_wb1-muEEm2AWanX4ddc6d8fkRg-o6",
+      "why": "on-screen text: '\u4e00'"
+     },
+     {
+      "id": "e1_AfqPShxl1FYSSKYQlRC1ee1PlPvB67uLKL4l8xS6ij7CN_cA8kN9",
+      "why": "too short 8.73s for 12.2s"
+     },
+     {
+      "id": "e1_AfqPShxdpwntw5GGDYsu_W_AgFLOWc9JnIy1zGU5tszLtpSTNt4",
+      "why": "unusable crop 234x416"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words ['and', 'morning', 'with'] (+12)",
+       "points": 12
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 74.0s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 68,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 1718905,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261110T115818Z-ce9ad6/assets/track_6997838557607888898.m4a",
+   "pin_url": null,
+   "sha256": "9014a9d23b967b2a11c45196cdb1f981aeefcf7c1793a21b5d87786b1963e2ee",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6997838557607888898",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 4.4,
+    "high": 0.0,
+    "mid": 95.6
+   },
+   "duration_s": 106.25,
+   "file": "track_6997838557607888898.m4a",
+   "key_estimate": "E minor",
+   "loudness_curve_db": [
+    -24.9,
+    -24.1,
+    -25.6
+   ],
+   "onset_density_per_s": 5.41,
+   "peak_db": -9.9,
+   "rms_db": -24.8,
+   "spectral_centroid_hz": 591.7,
+   "tempo_bpm": 95.7,
+   "zero_crossing_rate": 0.0468
+  },
+  "background": {
+   "bytes": 7535789,
+   "creator": "RomanovaBA",
+   "path": "/home/runner/work/_temp/beast-scratch/20261110T115818Z-ce9ad6/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwqAp8zMH9VNSrUP-_F39-n0XEeJ9x3dzPqjlP-Xhw7YzDA/",
+   "sha256": "9289b9b210b66e308b2b83821f85ab976a8c56e2c36e3c6a7b14c8a71309dfa3",
+   "source": "pinterest",
+   "stable_id": "e1_AfqPShwqAp8zMH9VNSrUP-_F39-n0XEeJ9x3dzPqjlP-Xhw7YzDA",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "making and maintaining friends",
+    "emotional_tension": "You actually like them, but trying to calculate the exact right amount of friendly makes you act distant.",
+    "observable_behaviour": "You look down at your phone, put one earbud in, glance up, look away, check if they saw you",
+    "private_worry": "That saying hi now will look like you were waiting for them, and not saying hi will look like you ignored them",
+    "situation": "On the 8:12 bus, two stops from work, when someone you know gets on and sits two rows ahead"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Scroll your phone too fast\", \"Put one earbud in only\", \"Glance up, then look away\", \"Rehearse hi three different ways\" \u2014 distinct beats matching the assigned bus scene. Hook's stray capitals (\"You like someone And go quiet on The 8:12\") slow the read. Eight items delivered.",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 4,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Hook has random mid-line capitals (You/And/The) that slow the instant read; lowercase them. Item 5-6 both rehearse/worry the hi greeting, near-duplicative; vary one to a different beat.",
+    "scene_specificity": 5,
+    "sendability_who": "A friend or colleague sends this to someone who goes quiet around a bus crush they see on the 8:12 commute.",
+    "shareability": 5,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=False"
+     ]
+    }
+   ],
+   "topic_id": "bus-two-rows-ahead-go-quiet"
+  },
+  "delivery": {
+   "at": "2026-11-10T12:11:09Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -2.43,
+   "yavg_delta": 2.9
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 0.874,
+   "natural_fit": true,
+   "raw": {
+    "brightness": 0.874,
+    "saturate": 1.06
+   },
+   "saturate": 1.06
+  },
+  "measured": {
+   "sat": 11.77,
+   "yavg": 107.9
+  },
+  "output": {
+   "bytes": 7362235,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261110T115818Z-ce9ad6.mp4",
+   "sha256": "cb9500dae1e13a5235d0e7e31b4b88fe696795cbce47d49d4af76ebce1e992e9"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6997838557607888898",
+    "title": "Creepy and simple horror background music(1070744)"
+   },
+   "background_query": "person sitting on bus holding phone earbud morning",
+   "caption": "8 things you do when you like someone and go quiet on the 8:12 bus:\n1. Scroll your phone too fast\n2. Put one earbud in only\n3. Glance up, then look away\n4. Check if they saw you\n5. Rehearse hi three different ways\n6. Worry hi now looks too keen\n7. Watch them get off without speaking\n8. Replay the two stops at work",
+   "closing": "The distance was not disinterest, just you trying to get it right.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Intimate, slow-burn tension with a soft, cinematic pulse and held-breath pauses that mirror nervous glances and unspoken replay.",
+     "tiktok_query": "indie",
+     "tiktok_search_query": "indie"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "morning bus window",
+     "pinterest_search_query": "morning bus window",
+     "semantic_analysis": "Soft morning light through a bus window, quiet glances and unspoken tension in a crowded commute that feels intimate and cinematic."
+    }
+   },
+   "headline": "8 things you do when you like someone and go quiet on the 8:12 bus",
+   "list_items": [
+    "Scroll your phone too fast",
+    "Put one earbud in only",
+    "Glance up, then look away",
+    "Check if they saw you",
+    "Rehearse hi three different ways",
+    "Worry hi now looks too keen",
+    "Watch them get off without speaking",
+    "Replay the two stops at work"
+   ],
+   "provenance": {
+    "creator": "RomanovaBA",
+    "pin_id": "e1_AfqPShwqAp8zMH9VNSrUP-_F39-n0XEeJ9x3dzPqjlP-Xhw7YzDA",
+    "pin_url": "https://www.pinterest.com/pin/e1_AfqPShwqAp8zMH9VNSrUP-_F39-n0XEeJ9x3dzPqjlP-Xhw7YzDA/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 105): warm off-white"
+   },
+   "titleLines": [
+    "8 things you do when",
+    "You like someone",
+    "And go quiet on",
+    "The 8:12 bus"
+   ],
+   "topic_id": "bus-two-rows-ahead-go-quiet"
+  },
+  "publish": {
+   "alt_text": "Person sitting on bus holding phone earbud morning. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-10T12:11:44Z",
+   "caption": "8 things you do when you like someone and go quiet on the 8:12 bus:\n1. Scroll your phone too fast\n2. Put one earbud in only\n3. Glance up, then look away\n4. Check if they saw you\n5. Rehearse hi three different ways\n6. Worry hi now looks too keen\n7. Watch them get off without speaking\n8. Replay the two stops at work\n\nThe distance was not disinterest, just you trying to get it right.",
+   "channel": "instagram",
+   "container_id": "17918693115538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18117361844327931",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://d.uguu.se/ZXdChuKN.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.43,
+    "yavg_delta": 2.9
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261110T115818Z-ce9ad6/caption_list_title_v1-live-20261110T115818Z-ce9ad6.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 7362235,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 11.77,
+    "yavg": 107.9
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0995,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 65.0
+  },
+  "rendered_at": "2026-11-10T12:11:05Z",
+  "run_id": "20261110T115818Z-ce9ad6",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A commuter likes someone two rows ahead on the morning bus and stays quiet, overthinking a simple hi instead of saying it.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person sitting on bus holding phone",
+     "passenger looking out bus window morning",
+     "empty bus seat morning light through"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.6833,
+    "keywords": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6997838557607888898",
+    "title": "Creepy and simple horror background music(1070744)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.6833
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 4,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "bus-two-rows-ahead-go-quiet"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "indie",
+    "vendor": "meta-api",
+    "why": "Intimate, slow-burn tension with a soft, cinematic pulse and held-breath pauses that mirror nervous glances and unspoken replay."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "morning bus window",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "A"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261110T115818Z-ce9ad6.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'Creepy and simple horror background musi' for caption_list_title_v1.",
+    "score": 50
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": true,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 13.39,
+     "yavg": 120.1
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "e1_AfqPShwqAp8zMH9VNSrUP-_F39-n0XEeJ9x3dzPqjlP-Xhw7YzDA",
+    "query": "morning window",
+    "review_status": "accept",
+    "score": 68,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 65.0
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261110T115818Z-ce9ad6/caption_list_title_v1-live-20261110T115818Z-ce9ad6.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 7362235,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 105): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": true,
+    "drift": {
+     "sat_delta": -2.43,
+     "yavg_delta": 2.9
+    },
+    "measured": {
+     "sat": 11.77,
+     "yavg": 107.9
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0995,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
+  },
+  "topic_id": "bus-two-rows-ahead-go-quiet"
  }
 ]
