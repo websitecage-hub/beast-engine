@@ -301,3 +301,17 @@ def test_generate_retries_a_creative_rejection_then_fails(monkeypatch):
     with pytest.raises(RuntimeError) as exc:
         content_factory.generate("caption_list_title_v1", "after a conversation")
     assert "creative" in str(exc.value) or "cards" in str(exc.value), exc.value
+
+
+def test_a_null_supporting_score_does_not_fail_a_draft():
+    """Measured: critic returned product_trust null and the draft was refused for it.
+
+    A supporting dimension the critic did not judge is not a zero. A critical
+    dimension that is missing still fails closed.
+    """
+    base = dict(scene_specificity=5, recognition_authenticity=5, natural_voice=4,
+                emotional_truth_dignity=5, format_fit=4, distinctiveness=4,
+                shareability=4, caption_value=4, product_trust=None, hard_fail=None)
+    assert content_factory._verdict_failures(base) == []
+    missing_critical = {**base, "distinctiveness": None}
+    assert "distinctiveness not scored" in content_factory._verdict_failures(missing_critical)

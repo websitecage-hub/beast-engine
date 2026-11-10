@@ -536,10 +536,16 @@ def critic_verdict(payload: dict, format_id: str, *, card: dict | None = None,
             return None
         verdict = _extract_json(raw)
         if verdict and verdict.get("scene_specificity") is not None:
-            verdict["critical_min"] = min(
-                [float(verdict.get(k) or 0) for k in CRITICAL] or [0])
-            verdict["supporting_min"] = min(
-                [float(verdict.get(k) or 0) for k in _SUPPORTING] or [0])
+            crit = [_score(verdict.get(k)) for k in CRITICAL]
+            sup = [_score(verdict.get(k)) for k in _SUPPORTING]
+            crit_known = [c for c in crit if c is not None]
+            sup_known = [s for s in sup if s is not None]
+            # Critical must ALL be scored (fail closed). A supporting dimension the
+            # critic left null is "not judged", not a zero - measured: product_trust
+            # null refused a draft the critic had otherwise passed.
+            verdict["critical_min"] = (min(crit_known)
+                                       if len(crit_known) == len(CRITICAL) else 0.0)
+            verdict["supporting_min"] = min(sup_known) if sup_known else 5.0
             verdict["passed"] = bool(
                 not verdict.get("hard_fail") and verdict["critical_min"] >= 4
                 and verdict["supporting_min"] >= 3)
@@ -547,15 +553,43 @@ def critic_verdict(payload: dict, format_id: str, *, card: dict | None = None,
     return None
 
 
+def _score(value):
+    """A 0-5 dimension score, or None when the critic did not supply one.
+
+    A missing score must never be read as zero: the critic omits supporting
+    dimensions on posts where they do not apply.
+    """
+    if value is None or value == "":
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
 def _verdict_failures(verdict: dict) -> list[str]:
+    """Name the dimensions the critic actually marked down.
+
+    Measured: the critic returned `product_trust: null` on an otherwise passing draft
+    and the old `float(x or 0) < 3` turned that missing score into a zero, so a
+    well-formed answer was refused for a dimension the critic never judged. A missing
+    supporting score is "not judged", not "bad". Critical dimensions still fail
+    closed: an unscored critical dimension is reported as such rather than assumed
+    acceptable.
+    """
     out = []
     if verdict.get("hard_fail"):
         out.append(f"hard fail: {verdict['hard_fail']}")
+
     for key in CRITICAL:
-        if float(verdict.get(key) or 0) < 4:
+        score = _score(verdict.get(key))
+        if score is None:
+            out.append(f"{key} not scored")
+        elif score < 4:
             out.append(f"{key} {verdict.get(key)}/5")
     for key in _SUPPORTING:
-        if float(verdict.get(key) or 0) < 3:
+        score = _score(verdict.get(key))
+        if score is not None and score < 3:
             out.append(f"{key} {verdict.get(key)}/5")
     return out
 
