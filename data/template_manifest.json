@@ -11643,5 +11643,1702 @@
    "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
   },
   "topic_id": "tuesday-847am-lift-trying-to-look-easy"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "upbeat pop drop",
+     "dramatic strings",
+     "comedy boing effects",
+     "tense thriller pulse",
+     "loud vocals"
+    ],
+    "emotional_role": "hold the quiet cringe without turning it sad, soft looping warmth under the replay",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft piano",
+     "warm synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "hazy",
+     "looping"
+    ],
+    "trend_hashtags": [
+     "#sundaynight",
+     "#overthinking",
+     "#relatable"
+    ],
+    "trend_keywords": [
+     "sunday night replay",
+     "bedtime overthinking"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-11-11T17:42:25Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "sunday-936pm-directions-replay",
+   "core_human_moment": "Lying in bed on Sunday night, she is replaying a 20-second exchange asking a stranger for the station and cringing at how she said thank you.",
+   "degraded": false,
+   "emotional_primary": "embarrassed",
+   "emotional_secondary": "rueful",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "lying in bed staring at the ceiling, checking phone",
+   "humour": 0.4,
+   "intentional_contrast": null,
+   "literal_scene": "POV from a pillow looking up at a dim ceiling, a glowing phone in one hand beside a warm bedside lamp.",
+   "literalness": "literal",
+   "motion_intent": "almost still, gentle breathing and slight phone movement",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm lamp amber",
+    "cool phone glow"
+   ],
+   "rationale": "The POV bed shot keeps the replay where it actually happens, small and ordinary, while soft slow music holds the cringe as warm and funny rather than heavy.",
+   "scene_entities": [
+    "phone",
+    "bedside lamp",
+    "bedroom"
+   ],
+   "schema_version": "1.0",
+   "setting": "in bed in a dim bedroom",
+   "tension": 0.45,
+   "text_safe_zone": "centre 30-61% over darker ceiling, clear of lamp glare",
+   "time_of_day": "late evening",
+   "valence": -0.2,
+   "video_queries": [
+    "POV lying in bed staring at ceiling phone in hand",
+    "bedside view person in bed holding glowing phone",
+    "dim bedroom ceiling lamp glow at night"
+   ],
+   "visual_mood": [
+    "quiet",
+    "dim"
+   ],
+   "visual_profile_target": {
+    "luma": "78.6+-20",
+    "saturation": "8.34+-4"
+   },
+   "warmth": 0.55
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Audiostock",
+    "candidates": [
+     {
+      "artist": "antentmusic",
+      "distance": 0.7366,
+      "fresh": true,
+      "id": "7192031803832551425",
+      "score": 84,
+      "title": "hope to see you again",
+      "video_count": 80900
+     },
+     {
+      "artist": "Audiostock",
+      "distance": 0.257,
+      "fresh": true,
+      "id": "6817193198436255745",
+      "score": 100,
+      "title": "Suspense, horror, piano and music box",
+      "video_count": 5300000
+     },
+     {
+      "artist": "Eldar Kedem",
+      "distance": 0.3586,
+      "fresh": true,
+      "id": "6982541212746008578",
+      "score": 100,
+      "title": "Walking Around - Instrumental Version",
+      "video_count": 4800000
+     }
+    ],
+    "distance": 0.257,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7211414788142794754",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7200846574183221250",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "189.4s vs 7.0s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 5300000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6817193198436255745",
+    "title": "Suspense, horror, piano and music box"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 42
+     }
+    },
+    "passes": true,
+    "rationale": "emotional lane shot '' paired with 'Suspense, horror, piano and music box' for social_moment_loop_v1.",
+    "total": 77
+   },
+   "visual": {
+    "band_busy": 0.029,
+    "candidates": [
+     {
+      "band_busy": 0.029,
+      "height": 1280,
+      "pin_id": "1135118281104627627",
+      "query": "dim bedroom ceiling lamp glow at",
+      "query_lane": "emotional",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['bedroom', 'lights', 'night', 'soft'] (+20); scene words ['bed', 'bedroom', 'the', 'warm'] (+14)",
+         "points": 34
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 24.3s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 90,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0268,
+      "height": 1280,
+      "pin_id": "970525788430211654",
+      "query": "night bedroom",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['bedroom'] (+5); scene words ['bedroom', 'warm'] (+8)",
+         "points": 13
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 10.1s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 69,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.547,
+         "rows": [
+          0,
+          350
+         ]
+        },
+        {
+         "fraction_of_height": 0.309,
+         "rows": [
+          442,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.237,
+         "rows": [
+          0,
+          152
+         ]
+        },
+        {
+         "fraction_of_height": 0.128,
+         "rows": [
+          227,
+          309
+         ]
+        },
+        {
+         "fraction_of_height": 0.309,
+         "rows": [
+          442,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 350), (442, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         350
+        ],
+        [
+         442,
+         640
+        ],
+        [
+         0,
+         152
+        ],
+        [
+         227,
+         309
+        ],
+        [
+         442,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0231,
+      "height": 1280,
+      "pin_id": "815151601324898600",
+      "query": "night bedroom",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['cozy', 'night', 'rain'] (+15); scene words ['the'] (+4)",
+         "points": 19
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.8s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 75,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0081,
+      "height": 1280,
+      "pin_id": "20055160837584416",
+      "query": "night bedroom",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.8s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.181,
+         "rows": [
+          0,
+          116
+         ]
+        },
+        {
+         "fraction_of_height": 0.181,
+         "rows": [
+          0,
+          116
+         ]
+        },
+        {
+         "fraction_of_height": 0.18,
+         "rows": [
+          0,
+          115
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 116), (0, 116)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         116
+        ],
+        [
+         0,
+         116
+        ],
+        [
+         0,
+         115
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0,
+      "height": 1280,
+      "pin_id": "1064397693190475642",
+      "query": "night bedroom",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 8.7s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.472,
+         "rows": [
+          0,
+          302
+         ]
+        },
+        {
+         "fraction_of_height": 0.17,
+         "rows": [
+          531,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.13,
+         "rows": [
+          0,
+          83
+         ]
+        },
+        {
+         "fraction_of_height": 0.342,
+         "rows": [
+          85,
+          304
+         ]
+        },
+        {
+         "fraction_of_height": 0.169,
+         "rows": [
+          532,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.133,
+         "rows": [
+          0,
+          85
+         ]
+        },
+        {
+         "fraction_of_height": 0.342,
+         "rows": [
+          87,
+          306
+         ]
+        },
+        {
+         "fraction_of_height": 0.164,
+         "rows": [
+          535,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 302), (531, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         302
+        ],
+        [
+         531,
+         640
+        ],
+        [
+         0,
+         83
+        ],
+        [
+         85,
+         304
+        ],
+        [
+         532,
+         640
+        ],
+        [
+         0,
+         85
+        ],
+        [
+         87,
+         306
+        ],
+        [
+         535,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0929,
+      "height": 1312,
+      "pin_id": "633811347596518541",
+      "query": "night bedroom",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "736x1312, 20.7s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         320,
+         320
+        ],
+        [
+         328,
+         344
+        ],
+        [
+         344,
+         352
+        ]
+       ],
+       "framing": [
+        {
+         "fraction_of_height": 0.204,
+         "rows": [
+          511,
+          642
+         ]
+        },
+        {
+         "fraction_of_height": 0.204,
+         "rows": [
+          511,
+          642
+         ]
+        },
+        {
+         "fraction_of_height": 0.204,
+         "rows": [
+          511,
+          642
+         ]
+        }
+       ],
+       "reason": "persistent glyph-like band (320, 320)",
+       "text_suspected": true,
+       "uniform": [
+        [
+         511,
+         642
+        ],
+        [
+         511,
+         642
+        ],
+        [
+         511,
+         642
+        ]
+       ]
+      },
+      "width": 736
+     },
+     {
+      "band_busy": 0.0296,
+      "height": 1280,
+      "pin_id": "951315121280127309",
+      "query": "night bedroom",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['rain'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 7.0s (need 7.0s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 58,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.163,
+         "rows": [
+          0,
+          104
+         ]
+        },
+        {
+         "fraction_of_height": 0.117,
+         "rows": [
+          565,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.163,
+         "rows": [
+          0,
+          104
+         ]
+        },
+        {
+         "fraction_of_height": 0.117,
+         "rows": [
+          565,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.163,
+         "rows": [
+          0,
+          104
+         ]
+        },
+        {
+         "fraction_of_height": 0.117,
+         "rows": [
+          565,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 104), (565, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         104
+        ],
+        [
+         565,
+         640
+        ],
+        [
+         0,
+         104
+        ],
+        [
+         565,
+         640
+        ],
+        [
+         0,
+         104
+        ],
+        [
+         565,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0101,
+      "height": 1280,
+      "pin_id": "815151601324898396",
+      "query": "night bedroom",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['home'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.8s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.139,
+         "rows": [
+          551,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.139,
+         "rows": [
+          551,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.139,
+         "rows": [
+          551,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(551, 640), (551, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         551,
+         640
+        ],
+        [
+         551,
+         640
+        ],
+        [
+         551,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0136,
+      "height": 1280,
+      "pin_id": "1020909809251467929",
+      "query": "night bedroom",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 10.2s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.122,
+         "rows": [
+          0,
+          78
+         ]
+        },
+        {
+         "fraction_of_height": 0.386,
+         "rows": [
+          393,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.181,
+         "rows": [
+          0,
+          116
+         ]
+        },
+        {
+         "fraction_of_height": 0.417,
+         "rows": [
+          373,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.164,
+         "rows": [
+          0,
+          105
+         ]
+        },
+        {
+         "fraction_of_height": 0.42,
+         "rows": [
+          371,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 78), (393, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         78
+        ],
+        [
+         393,
+         640
+        ],
+        [
+         0,
+         116
+        ],
+        [
+         373,
+         640
+        ],
+        [
+         0,
+         105
+        ],
+        [
+         371,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.003,
+      "height": 1280,
+      "pin_id": "889672101403768644",
+      "query": "night bedroom",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['alone'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 34.2s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.181,
+         "rows": [
+          478,
+          594
+         ]
+        },
+        {
+         "fraction_of_height": 0.12,
+         "rows": [
+          42,
+          119
+         ]
+        },
+        {
+         "fraction_of_height": 0.222,
+         "rows": [
+          425,
+          567
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(478, 594), (42, 119)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         478,
+         594
+        ],
+        [
+         42,
+         119
+        ],
+        [
+         425,
+         567
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Social",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.1505,
+     "motion": 0.1232,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "1135118281104627627",
+    "pin_url": "https://www.pinterest.com/pin/1135118281104627627/",
+    "query": "dim bedroom ceiling lamp glow at",
+    "query_lane": "emotional",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "night bedroom aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 24,
+      "lane": "metaphor",
+      "query": "night bedroom",
+      "returned": 24
+     },
+     {
+      "lane": "metaphor",
+      "query": "night aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "bedroom aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 3,
+      "lane": "adjacent",
+      "query": "bedside view person in bed holding",
+      "returned": 3
+     },
+     {
+      "kept": 23,
+      "lane": "emotional",
+      "query": "dim bedroom ceiling lamp glow at",
+      "returned": 25
+     },
+     {
+      "kept": 21,
+      "lane": "literal",
+      "query": "POV lying in bed staring at",
+      "returned": 23
+     }
+    ],
+    "rejected": [
+     {
+      "id": "467600373831184238",
+      "why": "on-screen text: '\u54c1; \u5e94'"
+     },
+     {
+      "id": "954763189746158292",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "778278379395469264",
+      "why": "on-screen text: 'T; set the mood; with lighting; \u798f'"
+     },
+     {
+      "id": "44121271344678207",
+      "why": "on-screen text: 'ELEVATEABEDROOM; TM; easy way to'"
+     },
+     {
+      "id": "965318501370997437",
+      "why": "on-screen text: '\"what? it\\'s true\"; \"what? it\\'s true\u201d; Love; MANIPU'"
+     },
+     {
+      "id": "966022188841316452",
+      "why": "on-screen text: '@WARMPLACEE; Cloud Lamp; DECHIRER ETT; DURACELL; U'"
+     },
+     {
+      "id": "1128714725337416951",
+      "lane": "emotional",
+      "query": "dim bedroom ceiling lamp glow at",
+      "why": "advertising call-to-action: 'Free Shipping'"
+     },
+     {
+      "id": "4785143349963783",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "12455336470747067",
+      "why": "on-screen text: 'O; This turns your room into; the ocean; theocean'"
+     },
+     {
+      "id": "23714335536397841",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1066227280508831694",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "796996465349722182",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "1062145893338115246",
+      "why": "on-screen text: '\u56fd'"
+     },
+     {
+      "id": "13370130138015401",
+      "why": "too short 4.41s for 7.0s"
+     },
+     {
+      "id": "299630181465375076",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "887842514056135816",
+      "lane": "emotional",
+      "query": "dim bedroom ceiling lamp glow at",
+      "why": "real-estate/tour content: 'interior design'"
+     },
+     {
+      "id": "31736372370381928",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1142858842947066024",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "224405993925566202",
+      "why": "on-screen text: '.....; .......\u00b7.; \u3002'"
+     },
+     {
+      "id": "555279829063097796",
+      "why": "unusable crop 540x770"
+     },
+     {
+      "id": "582160689335891784",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1136384918459358745",
+      "why": "on-screen text: 'IM; M; \u4e09; \u5c0f\u8d2d; \u95e8'"
+     },
+     {
+      "id": "1149543873640011087",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1142366261770070525",
+      "why": "on-screen text: '\u5e02'"
+     },
+     {
+      "id": "1149543873619654063",
+      "lane": "metaphor",
+      "query": "night bedroom",
+      "why": "commerce/affiliate domain: 'beacons.ai'"
+     },
+     {
+      "id": "929852654310685965",
+      "why": "too short 6.96s for 7.0s"
+     },
+     {
+      "id": "152418768631755878",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "3096293489671598",
+      "lane": "metaphor",
+      "query": "night bedroom",
+      "why": "advertising call-to-action: 'Follow us'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['bedroom', 'lights', 'night', 'soft'] (+20); scene words ['bed', 'bedroom', 'the', 'warm'] (+14)",
+       "points": 34
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 24.3s (need 7.0s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 90,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 3094011,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261111T173926Z-15f97f/assets/track_6817193198436255745.m4a",
+   "pin_url": null,
+   "sha256": "b547bd08ef930c0e8c83e1d8637cef428623a7f0f0c303b3c5dbd61d808fef42",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6817193198436255745",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 0.0,
+    "high": 0.1,
+    "mid": 99.9
+   },
+   "duration_s": 189.41,
+   "file": "track_6817193198436255745.m4a",
+   "key_estimate": "D minor",
+   "loudness_curve_db": [
+    -22.6,
+    -23.3,
+    -23.2
+   ],
+   "onset_density_per_s": 2.22,
+   "peak_db": -7.4,
+   "rms_db": -23.0,
+   "spectral_centroid_hz": 1279.4,
+   "tempo_bpm": 86.1,
+   "zero_crossing_rate": 0.0633
+  },
+  "background": {
+   "bytes": 3342096,
+   "creator": "Social",
+   "path": "/home/runner/work/_temp/beast-scratch/20261111T173926Z-15f97f/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/1135118281104627627/",
+   "sha256": "b8b65642ba03dca6ec31b4adcb1d7a934553400360a556c923f2fcf37bf5121b",
+   "source": "pinterest",
+   "stable_id": "1135118281104627627",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "after-conversation replay",
+    "emotional_tension": "You wanted a tiny interaction to feel easy, but thinking about it afterwards made it feel bigger than it was.",
+    "observable_behaviour": "You stare at the ceiling, rewind the line in your head, change one word, wince, then check your phone like the answer is in there",
+    "private_worry": "That you sounded rude for walking away mid-answer, or weird for saying thank you three times",
+    "situation": "Sunday 9:36pm, in bed, replaying the 20 seconds you asked a stranger for directions to the station"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 5.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"sunday 9:36pm, in bed replaying 20 seconds asking a stranger for the station\"; \"i change one word wince. check my phone. thank you three times still in bed. 9:36pm\"; caption \"he's forgotten by now. i'm still on the director's cut.\"",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Nothing failed. Optional tightening only: 'thank you three times still in bed' is slightly compressed and could read 'said thank you three times, still in bed' for instant clarity.",
+    "scene_specificity": 5,
+    "sendability_who": "A close friend or sibling who over-replays awkward micro-interactions, sent late Sunday night with 'this is literally you' or 'me at 9:36pm'.",
+    "shareability": 5,
+    "supporting_min": 5.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "sunday-936pm-directions-replay"
+  },
+  "delivery": {
+   "at": "2026-11-11T17:48:35Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 6.4,
+   "yavg_delta": 17.7
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 0.8,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.6
+  },
+  "measured": {
+   "sat": 14.74,
+   "yavg": 96.3
+  },
+  "output": {
+   "bytes": 7717570,
+   "duration_s": 7.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261111T173926Z-15f97f.mp4",
+   "sha256": "256f51cd6442795784c574491db922b3f58be043792cd94733efb8a24769047a"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6817193198436255745",
+    "title": "Suspense, horror, piano and music box"
+   },
+   "background_query": "POV lying in bed staring at ceiling, phone in hand, bedside lamp on",
+   "caption": "he's forgotten by now. i'm still on the director's cut.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A hushed, looping late-night tension that needs a slow cinematic swell that stays stuck on one moment instead of resolving.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "night bedroom aesthetic",
+     "pinterest_search_query": "night bedroom aesthetic",
+     "semantic_analysis": "A hushed, looping late-night stillness in bed, bathed in phone glow, where one small moment keeps replaying like an unfinished film."
+    }
+   },
+   "hookLines": [
+    "sunday 9:36pm, in bed",
+    "replaying 20 seconds",
+    "asking a stranger",
+    "for the station"
+   ],
+   "loop_hypothesis": "last line lands back at the same time and bed as the first, so looping restarts the same replay instead of moving forward",
+   "payoffLines": [
+    "i change one word",
+    "wince. check my phone.",
+    "thank you three times",
+    "still in bed. 9:36pm"
+   ],
+   "provenance": {
+    "creator": "Social",
+    "pin_id": "1135118281104627627",
+    "pin_url": "https://www.pinterest.com/pin/1135118281104627627/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 88 < 92): warm yellow"
+   },
+   "topic_id": "sunday-936pm-directions-replay"
+  },
+  "publish": {
+   "alt_text": "POV lying in bed staring at ceiling, phone in hand, bedside lamp on. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-11T17:49:13Z",
+   "caption": "he's forgotten by now. i'm still on the director's cut.",
+   "channel": "instagram",
+   "container_id": "17918988738538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18219613495350343",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/UgRwJpql.mp4"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": 6.4,
+    "yavg_delta": 17.7
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261111T173926Z-15f97f/social_moment_loop_v1-live-20261111T173926Z-15f97f.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 7717570,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 14.74,
+    "yavg": 96.3
+   },
+   "ok": false,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0987,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 40.8
+  },
+  "rendered_at": "2026-11-11T17:48:31Z",
+  "run_id": "20261111T173926Z-15f97f",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "Lying in bed on Sunday night, she is replaying a 20-second exchange asking a stranger for the station and cringing at how she said thank you.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "POV lying in bed staring at",
+     "bedside view person in bed holding",
+     "dim bedroom ceiling lamp glow at"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.257,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6817193198436255745",
+    "title": "Suspense, horror, piano and music box"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.257
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "sunday-936pm-directions-replay"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "A hushed, looping late-night tension that needs a slow cinematic swell that stays stuck on one moment instead of resolving."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "night bedroom aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261111T173926Z-15f97f.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "emotional lane shot '' paired with 'Suspense, horror, piano and music box' for social_moment_loop_v1.",
+    "score": 77
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": false,
+    "lane": "emotional",
+    "metrics": {
+     "sat": 30.03,
+     "yavg": 110.5
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "1135118281104627627",
+    "query": "dim bedroom ceiling lamp glow at",
+    "review_status": "accept",
+    "score": 90,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 40.8
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261111T173926Z-15f97f/social_moment_loop_v1-live-20261111T173926Z-15f97f.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 7717570,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 88 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": 6.4,
+     "yavg_delta": 17.7
+    },
+    "measured": {
+     "sat": 14.74,
+     "yavg": 96.3
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.0987,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
+  },
+  "topic_id": "sunday-936pm-directions-replay"
  }
 ]
