@@ -1,5 +1,13 @@
 {
  "audio": {
+  "6886912570821707777": {
+   "first_seen_at": "2026-11-11T17:31:34Z",
+   "last_used_at": "2026-11-11T17:33:34Z",
+   "review_status": "pending",
+   "sha256": "fd4a12e89b10c744b7dd12eebcee25e24d8775bae1f907620184638cb6a1bfce",
+   "status": "delivered",
+   "used_by": "20261111T172212Z-97f8f4"
+  },
   "6997838557607888898": {
    "first_seen_at": "2026-11-10T12:09:55Z",
    "last_used_at": "2026-11-10T12:11:09Z",
@@ -26,9 +34,20 @@
   }
  },
  "reservations": {},
- "updated_at": "2026-11-10T12:11:09Z",
+ "updated_at": "2026-11-11T17:33:34Z",
  "version": 1,
  "visual": {
+  "pin:1089448966121181963": {
+   "first_seen_at": "2026-11-11T17:30:55Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-11T17:33:34Z",
+   "pin_id": "1089448966121181963",
+   "query": "morning elevator",
+   "review_status": "accept",
+   "sha256": "3882a13cf1f85df5af4f5db5ecc0dba6460133408b54c375b6487cb912abe22d",
+   "status": "delivered",
+   "used_by": "20261111T172212Z-97f8f4"
+  },
   "pin:e1_AfqPShwqAp8zMH9VNSrUP-_F39-n0XEeJ9x3dzPqjlP-Xhw7YzDA": {
    "first_seen_at": "2026-11-10T12:09:16Z",
    "lane": "metaphor",

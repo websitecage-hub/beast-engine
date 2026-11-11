@@ -10440,5 +10440,1208 @@
    "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
   },
   "topic_id": "friday-752-doorstep-double-ring"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "loud beat drops",
+     "comedy sound effects",
+     "dramatic tense strings",
+     "upbeat pop vocals",
+     "fast hype drums"
+    ],
+    "emotional_role": "hold the quiet awkwardness gently without making it sad or comic, letting the small relief land",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft piano",
+     "light synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "airy",
+     "unhurried"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#morningcommute",
+     "#relatable"
+    ],
+    "trend_keywords": [
+     "soft morning piano",
+     "quiet morning vlog music",
+     "gentle office ambience"
+    ],
+    "valence": 0.15,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-11T17:24:09Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "tuesday-847am-lift-trying-to-look-easy",
+   "core_human_moment": "A person tries to look relaxed and easy in a crowded morning lift while quietly rehearsing how to act normal.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "tender",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing still holding phone with both hands, glancing up at floor numbers",
+   "humour": 0.25,
+   "intentional_contrast": null,
+   "literal_scene": "A person stands in an office lift holding a phone with both hands, eyes on the floor numbers above the doors, while other riders stand with space between them.",
+   "literalness": "literal",
+   "motion_intent": "almost still, gentle lift sway with floor numbers ticking up",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "cool steel grey",
+    "soft muted neutrals"
+   ],
+   "rationale": "A still lift shot keeps focus on the small ordinary effort of trying to look easy, while soft slow piano holds that awkwardness with warmth instead of turning it into a joke or a drama.",
+   "scene_entities": [
+    "phone",
+    "elevator floor indicator",
+    "office lift"
+   ],
+   "schema_version": "1.0",
+   "setting": "inside an office lift on a Tuesday morning",
+   "tension": 0.45,
+   "text_safe_zone": "centre band 41-59% over plain lift wall, clear of floor indicator",
+   "time_of_day": "early morning",
+   "valence": 0.1,
+   "video_queries": [
+    "person in lift holding phone looking at floor numbers",
+    "view of lift doors and floor numbers from inside lift",
+    "person stepping out of lift into quiet office corridor"
+   ],
+   "visual_mood": [
+    "quiet",
+    "ordinary"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.55
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Audiostock",
+    "candidates": [
+     {
+      "artist": "zay\u2020",
+      "distance": 0.6715,
+      "fresh": true,
+      "id": "7226365708959123458",
+      "score": 92,
+      "title": "die4you (melody only)",
+      "video_count": 109700
+     },
+     {
+      "artist": "Audiostock",
+      "distance": 0.2332,
+      "fresh": true,
+      "id": "6886912570821707777",
+      "score": 100,
+      "title": "Calm LoFi song(882353)",
+      "video_count": 1200000
+     },
+     {
+      "artist": "J.Folk",
+      "distance": 0.4267,
+      "fresh": true,
+      "id": "7229802620331083777",
+      "score": 64,
+      "title": "Longest Wait",
+      "video_count": 71
+     },
+     {
+      "artist": "\ud83c\udfa7LOFI DEWAN\ud83c\udfa7",
+      "distance": 0.5341,
+      "fresh": true,
+      "id": "7676538538167077648",
+      "score": 74,
+      "title": "original sound - \ud83c\udfa7LOFI DEWAN\ud83c\udfa7",
+      "video_count": 7258
+     },
+     {
+      "artist": "knuni",
+      "distance": 0.2529,
+      "fresh": true,
+      "id": "7693292452098623489",
+      "score": 64,
+      "title": "dedicating life to love",
+      "video_count": 7
+     }
+    ],
+    "distance": 0.2332,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "lofi",
+      "rows": 5
+     }
+    ],
+    "rejected": [],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "130.1s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 1200000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6886912570821707777",
+    "title": "Calm LoFi song(882353)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 17
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'Calm LoFi song(882353)' for caption_list_title_v1.",
+    "total": 52
+   },
+   "visual": {
+    "band_busy": 0.0282,
+    "candidates": [
+     {
+      "band_busy": 0.0282,
+      "height": 1280,
+      "pin_id": "1089448966121181963",
+      "query": "morning elevator",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['elevator', 'lift', 'morning', 'the'] (+14)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 50.7s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1079,
+      "height": 1280,
+      "pin_id": "1098878377848424250",
+      "query": "person stepping out of lift into",
+      "query_lane": "emotional",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['home', 'simple'] (+10); scene words ['lift', 'the', 'with'] (+12)",
+         "points": 22
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 78,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.052,
+      "height": 1280,
+      "pin_id": "977492294105681436",
+      "query": "morning elevator",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 12.6s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0142,
+      "height": 1280,
+      "pin_id": "25262447902582183",
+      "query": "person in lift holding phone looking",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0771,
+      "height": 1280,
+      "pin_id": "914862420335373",
+      "query": "view of lift doors and floor",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 32.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0283,
+      "height": 1280,
+      "pin_id": "944770828097672765",
+      "query": "person stepping out of lift into",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 30.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.089,
+         "rows": [
+          583,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.108,
+         "rows": [
+          571,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.133,
+         "rows": [
+          555,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(583, 640), (571, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         583,
+         640
+        ],
+        [
+         571,
+         640
+        ],
+        [
+         555,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0202,
+      "height": 1280,
+      "pin_id": "1044835182313798666",
+      "query": "person stepping out of lift into",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 59.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Quick Saves",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 1,
+     "max_jump": 0.2852,
+     "motion": 0.176,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "1089448966121181963",
+    "pin_url": "https://www.pinterest.com/pin/1089448966121181963/",
+    "query": "morning elevator",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "morning elevator aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "morning elevator",
+      "returned": 25
+     },
+     {
+      "lane": "metaphor",
+      "query": "morning aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "elevator aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 23,
+      "lane": "adjacent",
+      "query": "view of lift doors and floor",
+      "returned": 24
+     },
+     {
+      "kept": 22,
+      "lane": "emotional",
+      "query": "person stepping out of lift into",
+      "returned": 22
+     },
+     {
+      "kept": 25,
+      "lane": "literal",
+      "query": "person in lift holding phone looking",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "295267319346671606",
+      "why": "on-screen text: 'OF THIS IMMERSIVE NYC OBSERVATORY; OFTHIS IMMERSIV'"
+     },
+     {
+      "id": "1068549449110851639",
+      "lane": "adjacent",
+      "query": "view of lift doors and floor",
+      "why": "real-estate/tour content: 'renovation'"
+     },
+     {
+      "id": "424042121188007905",
+      "why": "on-screen text: '(941) 218-9961; 1423 Mediterranean Drive Unit B; 1'"
+     },
+     {
+      "id": "1122170432169442288",
+      "why": "on-screen text: 'CHILJIEDAY; DA; ELEVATOR; GOTS; HILL THI'"
+     },
+     {
+      "id": "1122803750887519715",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "1089448966135033294",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "892486851176901321",
+      "why": "on-screen text: '00:00:00; 12:4132; 2026-02-16; 792; ARDORENIRANCE'"
+     },
+     {
+      "id": "AcceF3itj4m8FqzszO9oammTA2N7i0MIayw6r960Aj05MgHrCpjhabfuhpWbHhfVe5Ems3vBsFQLeh_AEEiNwlQ",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "920001030146780286",
+      "why": "on-screen text: '\",The elevator to success is out oforder, but; ,Th'"
+     },
+     {
+      "id": "642044490658241958",
+      "lane": "literal",
+      "query": "person in lift holding phone looking",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "930485973042587027",
+      "why": "on-screen text: '+; DTPALUMN; HIC; VERTICALWINDOW; \u51fa'"
+     },
+     {
+      "id": "1089448966121100103",
+      "why": "on-screen text: 'o; \u5370; \u5382; \u56cd'"
+     },
+     {
+      "id": "449374869091089570",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "1112178070513793681",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "1117455726291806758",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "1137510818412974572",
+      "why": "unusable crop 684x1206"
+     },
+     {
+      "id": "433330795413956846",
+      "why": "unusable crop 480x848"
+     },
+     {
+      "id": "632192866482356706",
+      "why": "too short 6.39s for 12.2s"
+     },
+     {
+      "id": "222998619045432605",
+      "why": "on-screen text: 'Panoramic sliding door testing; Panoramic sliding '"
+     },
+     {
+      "id": "635077985002638056",
+      "why": "on-screen text: '\u5e26; \u72ec\u6709\u7684\u81ea\u5e73\u8861\u6280\u672f'"
+     },
+     {
+      "id": "66005950784619386",
+      "why": "on-screen text: '.....; 8RS8S; MORJAS'"
+     },
+     {
+      "id": "1089448966135232337",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "707698529006028143",
+      "why": "on-screen text: '668; AND BREAKFASTIN BED; CALGARY; CHARCUT; CHECKI'"
+     },
+     {
+      "id": "890446157595490010",
+      "why": "on-screen text: '000; CUERRICIA'"
+     },
+     {
+      "id": "1089448966134492297",
+      "why": "too short 12.15s for 12.2s"
+     },
+     {
+      "id": "960744533022098905",
+      "lane": "metaphor",
+      "query": "morning elevator",
+      "why": "advertising call-to-action: 'Visit our'"
+     },
+     {
+      "id": "460774605646227444",
+      "why": "on-screen text: 'ANOS DE omelete; ANOS DEomelete; ANOSDEomelete; Th'"
+     },
+     {
+      "id": "2392606047211573",
+      "why": "too short 10.85s for 12.2s"
+     },
+     {
+      "id": "790381803347607626",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "1072912311280611955",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "926263848356137654",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "373728469091082397",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "1021472759227996270",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "995365955160403317",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1029635533569459218",
+      "why": "on-screen text: '102; 105; 107; 108; 124'"
+     },
+     {
+      "id": "995365955160404717",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "890868370048294543",
+      "why": "too short 8.5s for 12.2s"
+     },
+     {
+      "id": "1135892337283495176",
+      "why": "too short 7.41s for 12.2s"
+     },
+     {
+      "id": "7670261860915185",
+      "why": "too short 4.87s for 12.2s"
+     },
+     {
+      "id": "328481366597235819",
+      "why": "on-screen text: 'girlies for this one; thanking the Pinterest; \u5ddd'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words ['elevator', 'lift', 'morning', 'the'] (+14)",
+       "points": 14
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 50.7s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 70,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 2116653,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261111T172212Z-97f8f4/assets/track_6886912570821707777.m4a",
+   "pin_url": null,
+   "sha256": "fd4a12e89b10c744b7dd12eebcee25e24d8775bae1f907620184638cb6a1bfce",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6886912570821707777",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 84.0,
+    "high": 0.1,
+    "mid": 16.0
+   },
+   "duration_s": 130.08,
+   "file": "track_6886912570821707777.m4a",
+   "key_estimate": "C minor",
+   "loudness_curve_db": [
+    -20.0,
+    -21.2,
+    -22.5
+   ],
+   "onset_density_per_s": 3.15,
+   "peak_db": -1.3,
+   "rms_db": -21.1,
+   "spectral_centroid_hz": 1153.0,
+   "tempo_bpm": 152.0,
+   "zero_crossing_rate": 0.0508
+  },
+  "background": {
+   "bytes": 6858797,
+   "creator": "Quick Saves",
+   "path": "/home/runner/work/_temp/beast-scratch/20261111T172212Z-97f8f4/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/1089448966121181963/",
+   "sha256": "3882a13cf1f85df5af4f5db5ecc0dba6460133408b54c375b6487cb912abe22d",
+   "source": "pinterest",
+   "stable_id": "1089448966121181963",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "You want to seem easy to be around, so you try so hard to seem easy that you go completely still.",
+    "observable_behaviour": "Staring at the floor numbers, phone held in both hands, stepping back to make room even though there is space",
+    "private_worry": "That staying quiet makes you look cold, but speaking up will sound forced and weird",
+    "situation": "Tuesday 8:47am, in the office lift going up to the 4th floor with two colleagues you sort of know"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 5.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "Seven items delivered, all lift-specific: \"Hold phone with both hands like a shield\", \"Stare at floor numbers counting up\", \"Step back though there is still space\", \"Smile at the doors instead of them\". Payoff \"trying not to get it wrong\" is dignified, no diagnosis.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Item 1 (rehearse a hello while waiting) is preparation rather than in-lift behaviour; swap for an in-lift beat. Caption repeats the payoff verbatim, so it adds no new value.",
+    "scene_specificity": 5,
+    "sendability_who": "An office colleague sends this to a workmate who also goes quiet and phone-shields in the 8:47 lift with half-known colleagues.",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "tuesday-847am-lift-trying-to-look-easy"
+  },
+  "delivery": {
+   "at": "2026-11-11T17:33:34Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -9.19,
+   "yavg_delta": -22.4
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "brightness": 1.32,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 1.45
+  },
+  "measured": {
+   "sat": 5.01,
+   "yavg": 82.6
+  },
+  "output": {
+   "bytes": 11892339,
+   "duration_s": 11.977,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261111T172212Z-97f8f4.mp4",
+   "sha256": "2acc499db4ded548d39852bed8def148782fb0ed1b3c99a8eec9b91e8d0b2241"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6886912570821707777",
+    "title": "Calm LoFi song(882353)"
+   },
+   "background_query": "person standing in office lift holding phone watching floor numbers",
+   "caption": "7 things you do in the Tuesday 8:47am lift when trying to look easy:\n1. Rehearse a hello while waiting for doors\n2. Hold phone with both hands like a shield\n3. Stare at floor numbers counting up\n4. Step back though there is still space\n5. Smile at the doors instead of them\n6. Say sorry for stepping out first\n7. Replay the quiet ride at your desk\n\nYou weren't cold, you were just trying not to get it wrong.",
+   "closing": "You weren't cold, you were just trying not to get it wrong.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A quiet, ticking lo-fi groove with soft intimate tension that builds through the list and lands warm on the final reassurance.",
+     "tiktok_query": "lofi",
+     "tiktok_search_query": "lofi"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "morning elevator aesthetic",
+     "pinterest_search_query": "morning elevator aesthetic",
+     "semantic_analysis": "Soft, muted morning light in a quiet, enclosed city space where someone tries to look effortlessly at ease."
+    }
+   },
+   "headline": "7 things you do in the Tuesday 8:47am lift when trying to look easy",
+   "list_items": [
+    "Rehearse a hello while waiting for doors",
+    "Hold phone with both hands like a shield",
+    "Stare at floor numbers counting up",
+    "Step back though there is still space",
+    "Smile at the doors instead of them",
+    "Say sorry for stepping out first",
+    "Replay the quiet ride at your desk"
+   ],
+   "provenance": {
+    "creator": "Quick Saves",
+    "pin_id": "1089448966121181963",
+    "pin_url": "https://www.pinterest.com/pin/1089448966121181963/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 94): warm off-white"
+   },
+   "titleLines": [
+    "7 things you do",
+    "In the Tuesday",
+    "8:47am lift when",
+    "Trying to look easy"
+   ],
+   "topic_id": "tuesday-847am-lift-trying-to-look-easy"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -9.19,
+    "yavg_delta": -22.4
+   },
+   "duration_s": 11.977,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 11.977,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261111T172212Z-97f8f4/caption_list_title_v1-live-20261111T172212Z-97f8f4.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": false,
+    "moov_tail": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 11892339,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 5.01,
+    "yavg": 82.6
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0777,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 58.8
+  },
+  "rendered_at": "2026-11-11T17:33:30Z",
+  "run_id": "20261111T172212Z-97f8f4",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person tries to look relaxed and easy in a crowded morning lift while quietly rehearsing how to act normal.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person in lift holding phone looking",
+     "view of lift doors and floor",
+     "person stepping out of lift into"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.2332,
+    "keywords": [
+     {
+      "keyword": "lofi",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6886912570821707777",
+    "title": "Calm LoFi song(882353)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.2332
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "tuesday-847am-lift-trying-to-look-easy"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "lofi",
+    "vendor": "meta-api",
+    "why": "A quiet, ticking lo-fi groove with soft intimate tension that builds through the list and lands warm on the final reassurance."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "morning elevator aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261111T172212Z-97f8f4.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'Calm LoFi song(882353)' for caption_list_title_v1.",
+    "score": 52
+   },
+   "pinterest": {
+    "candidates": 7,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 3.73,
+     "yavg": 70.9
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "1089448966121181963",
+    "query": "morning elevator",
+    "review_status": "accept",
+    "score": 70,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 58.8
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 11.977,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261111T172212Z-97f8f4/caption_list_title_v1-live-20261111T172212Z-97f8f4.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": false,
+     "moov_tail": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 11892339,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 94): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -9.19,
+     "yavg_delta": -22.4
+    },
+    "measured": {
+     "sat": 5.01,
+     "yavg": 82.6
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0777,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "rendered",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "b724d2f3bdfe70fb4418d3582f312b2db087ba6febf942b90da1d15b5a8188af"
+  },
+  "topic_id": "tuesday-847am-lift-trying-to-look-easy"
  }
 ]
