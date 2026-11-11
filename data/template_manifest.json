@@ -13340,5 +13340,1457 @@
    "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
   },
   "topic_id": "sunday-936pm-directions-replay"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "dramatic swelling strings",
+     "punchy viral beats",
+     "sad lonely piano ballad",
+     "anxious thriller pulse",
+     "loud laugh track"
+    ],
+    "emotional_role": "hold a light, slightly awkward pause that feels warm and unforced, letting the lingering feel funny not sad",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "light acoustic guitar"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "airy",
+     "unobtrusive"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#quietmoments",
+     "#workbreak"
+    ],
+    "trend_keywords": [
+     "office life",
+     "quiet moment",
+     "work break"
+    ],
+    "valence": 0.2,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-11-11T23:25:14Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "full-bottle-still-filling",
+   "core_human_moment": "She is lingering at the office sink pretending to top up an already-full bottle so she can stay near her coworkers' chat without having to join it",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "wistful",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "slowly topping up an already-full water bottle at the sink while lingering",
+   "humour": 0.4,
+   "intentional_contrast": null,
+   "literal_scene": "Hands holding a full water bottle under a thin stream at an office kitchen sink, electric kettle nearby, two coworkers chatting softly out of focus in the background",
+   "literalness": "literal",
+   "motion_intent": "gentle and minimal, steady handheld POV with slow water flow and small hand adjustments",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "pale daylight",
+    "muted neutrals"
+   ],
+   "rationale": "The POV sink shot makes the excuse to linger believable and keeps the coworkers close but out of reach, while soft sparse music keeps the awkwardness light and fond rather than lonely.",
+   "scene_entities": [
+    "water bottle",
+    "electric kettle",
+    "office kitchen"
+   ],
+   "schema_version": "1.0",
+   "setting": "office kitchen sink area",
+   "tension": 0.5,
+   "text_safe_zone": "centre 30-61% vertical band over softly blurred sink background",
+   "time_of_day": "mid-morning work break",
+   "valence": 0.1,
+   "video_queries": [
+    "filling water bottle at office kitchen sink",
+    "over shoulder view of kettle at office sink",
+    "two coworkers chatting softly near kitchen counter"
+   ],
+   "visual_mood": [
+    "quiet",
+    "lived-in"
+   ],
+   "visual_profile_target": {
+    "luma": "78.6 +-20",
+    "saturation": "8.34 +-4"
+   },
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "nightbird_bgm",
+    "candidates": [
+     {
+      "artist": "Narvent",
+      "distance": 0.4709,
+      "fresh": true,
+      "id": "7693919040771065862",
+      "score": 64,
+      "title": "Recall",
+      "video_count": 330
+     },
+     {
+      "artist": "Audiostock",
+      "distance": 0.6598,
+      "fresh": false,
+      "id": "6886912570821707777",
+      "score": 80,
+      "title": "Calm LoFi song(882353)",
+      "video_count": 1200000
+     },
+     {
+      "artist": "Chill Vibes Lofi Hip Hop Music",
+      "distance": 0.3799,
+      "fresh": true,
+      "id": "7387333396258506753",
+      "score": 92,
+      "title": "Cafe Serenity (116025)",
+      "video_count": 141300
+     },
+     {
+      "artist": "wiv",
+      "distance": 0.5952,
+      "fresh": true,
+      "id": "7487011275034675201",
+      "score": 84,
+      "title": "i love u.",
+      "video_count": 41600
+     },
+     {
+      "artist": "nightbird_bgm",
+      "distance": 0.4885,
+      "fresh": true,
+      "id": "7247207913034614785",
+      "score": 100,
+      "title": "Chill and gentle lo-fi/10 minutes(1455687)",
+      "video_count": 603200
+     }
+    ],
+    "distance": 0.4885,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "lofi",
+      "rows": 5
+     }
+    ],
+    "rejected": [],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "621.2s vs 7.0s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 603200",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7247207913034614785",
+    "title": "Chill and gentle lo-fi/10 minutes(1455687)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 35
+     }
+    },
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'Chill and gentle lo-fi/10 minutes(145568' for social_moment_loop_v1.",
+    "total": 70
+   },
+   "visual": {
+    "band_busy": 0.0883,
+    "candidates": [
+     {
+      "band_busy": 0.0883,
+      "height": 1280,
+      "pin_id": "961096376746383572",
+      "query": "quiet kitchen moment",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['cozy', 'kitchen', 'quiet', 'simple'] (+20); scene words ['kitchen', 'the'] (+8)",
+         "points": 28
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.0s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 84,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1019,
+      "height": 1280,
+      "pin_id": "662662532707253813",
+      "query": "quiet kitchen moment",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['home', 'kitchen', 'quiet', 'walking'] (+20); scene words ['kitchen', 'the'] (+8)",
+         "points": 28
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 12.0s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 84,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0357,
+      "height": 1080,
+      "pin_id": "810859107952855840",
+      "query": "quiet kitchen",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['calm', 'kitchen', 'quiet'] (+15); scene words ['kitchen', 'the'] (+8)",
+         "points": 23
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1080, 10.4s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 79,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0271,
+      "height": 1280,
+      "pin_id": "911908624579845059",
+      "query": "kitchen moment",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['kitchen'] (+5); scene words ['kitchen', 'the'] (+8)",
+         "points": 13
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.3s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 69,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0549,
+      "height": 1280,
+      "pin_id": "1266706140968551",
+      "query": "quiet kitchen",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 31.1s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0734,
+      "height": 1280,
+      "pin_id": "605593481166620002",
+      "query": "quiet moment",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 57.3s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.23,
+         "rows": [
+          493,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.236,
+         "rows": [
+          489,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.222,
+         "rows": [
+          498,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(493, 640), (489, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         493,
+         640
+        ],
+        [
+         489,
+         640
+        ],
+        [
+         498,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0251,
+      "height": 1280,
+      "pin_id": "19140367160867452",
+      "query": "quiet moment",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 11.5s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.197,
+         "rows": [
+          0,
+          126
+         ]
+        },
+        {
+         "fraction_of_height": 0.191,
+         "rows": [
+          128,
+          250
+         ]
+        },
+        {
+         "fraction_of_height": 0.169,
+         "rows": [
+          532,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.086,
+         "rows": [
+          0,
+          55
+         ]
+        },
+        {
+         "fraction_of_height": 0.109,
+         "rows": [
+          57,
+          127
+         ]
+        },
+        {
+         "fraction_of_height": 0.188,
+         "rows": [
+          129,
+          249
+         ]
+        },
+        {
+         "fraction_of_height": 0.209,
+         "rows": [
+          506,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.2,
+         "rows": [
+          0,
+          128
+         ]
+        },
+        {
+         "fraction_of_height": 0.186,
+         "rows": [
+          130,
+          249
+         ]
+        },
+        {
+         "fraction_of_height": 0.234,
+         "rows": [
+          490,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 126), (128, 250)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         126
+        ],
+        [
+         128,
+         250
+        ],
+        [
+         532,
+         640
+        ],
+        [
+         0,
+         55
+        ],
+        [
+         57,
+         127
+        ],
+        [
+         129,
+         249
+        ],
+        [
+         506,
+         640
+        ],
+        [
+         0,
+         128
+        ],
+        [
+         130,
+         249
+        ],
+        [
+         490,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0421,
+      "height": 1280,
+      "pin_id": "891994269928916437",
+      "query": "quiet moment",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.9s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.03,
+      "height": 1280,
+      "pin_id": "1039979738954738254",
+      "query": "quiet moment",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['aesthetic'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.0s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0825,
+      "height": 1280,
+      "pin_id": "844493676669064",
+      "query": "quiet moment",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 7.0s (need 7.0s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         256,
+         264
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (256, 264)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Quick Saves",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 4,
+     "max_jump": 0.325,
+     "motion": 0.1922,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "961096376746383572",
+    "pin_url": "https://www.pinterest.com/pin/961096376746383572/",
+    "query": "quiet kitchen moment",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 23,
+      "lane": "metaphor",
+      "query": "quiet kitchen moment",
+      "returned": 23
+     },
+     {
+      "kept": 20,
+      "lane": "metaphor",
+      "query": "quiet kitchen",
+      "returned": 25
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "quiet moment",
+      "returned": 25
+     },
+     {
+      "kept": 24,
+      "lane": "metaphor",
+      "query": "kitchen moment",
+      "returned": 24
+     },
+     {
+      "kept": 2,
+      "lane": "adjacent",
+      "query": "two coworkers chatting softly near kitchen",
+      "returned": 2
+     },
+     {
+      "kept": 25,
+      "lane": "literal",
+      "query": "filling water bottle at office kitchen",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "1146799492651816480",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "1129981362777029721",
+      "why": "on-screen text: 'Natural Log Cabin; Natural Log Cabir; \u798f'"
+     },
+     {
+      "id": "1134625699893288861",
+      "why": "on-screen text: 'UUW; UUy; Uuy'"
+     },
+     {
+      "id": "1100496858967212953",
+      "why": "on-screen text: '@SevenShadesOfNothing; Until The End Of Me; call l'"
+     },
+     {
+      "id": "709035535136348253",
+      "why": "on-screen text: 'DESIGN; OS ANGELES; Q!pm'"
+     },
+     {
+      "id": "1131036893930198214",
+      "why": "on-screen text: '500\u00e9i; FETTUCCINE; POV:PASTA OVER PARTIES; POV:PAS'"
+     },
+     {
+      "id": "488077678388858409",
+      "why": "on-screen text: 'HAPPENS; IN THE; KITCHEN; LIFE; WHERE'"
+     },
+     {
+      "id": "827958712793752744",
+      "why": "on-screen text: 'Find Cozy Leather; Items; Link inbio?; O; \u00ae'"
+     },
+     {
+      "id": "1114289132850910455",
+      "lane": "metaphor",
+      "query": "quiet kitchen",
+      "why": "real-estate/tour content: 'interior design'"
+     },
+     {
+      "id": "948078159080138580",
+      "why": "on-screen text: 'CKB; COMPLEEL; COMPLEFED PROJECT; INTERIORS; PROJE'"
+     },
+     {
+      "id": "652740539799399371",
+      "why": "on-screen text: '7K; K; V; \u4e0d'"
+     },
+     {
+      "id": "601371356537181778",
+      "why": "on-screen text: 'D'"
+     },
+     {
+      "id": "9922061674577028",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "3307399721746501",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "297448750413606787",
+      "why": "on-screen text: '13325685887; 288328888'"
+     },
+     {
+      "id": "1066790230706177676",
+      "why": "too short 4.04s for 7.0s"
+     },
+     {
+      "id": "211880357467439082",
+      "why": "on-screen text: '$16.95; 01/03; 02/03; ?; A'"
+     },
+     {
+      "id": "1147855023811874743",
+      "why": "on-screen text: 'Dc; EN; N; \u4e1a'"
+     },
+     {
+      "id": "1039979738970235123",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "1125266656933200200",
+      "why": "on-screen text: 'A place; ARCHITECTS; Alittleless; Everything; a'"
+     },
+     {
+      "id": "839499186831105048",
+      "why": "on-screen text: 'B.OMDS; BEYOND TIME.; BEYOND TRENDS.; BONDS; BUILT'"
+     },
+     {
+      "id": "1090715603525995567",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "675399275412095369",
+      "why": "on-screen text: 'SENIORXI; STRATUS SENOR XI; USSENIORXI; asmr; cinn'"
+     },
+     {
+      "id": "655766395790244992",
+      "why": "too short 5.18s for 7.0s"
+     },
+     {
+      "id": "39125090510385876",
+      "why": "too short 4.67s for 7.0s"
+     },
+     {
+      "id": "1029142952364202700",
+      "why": "on-screen text: '\u5c0f'"
+     },
+     {
+      "id": "1147855023811874430",
+      "why": "on-screen text: '331O; 8585; BREAD; OL; SUGAR'"
+     },
+     {
+      "id": "907616131197874067",
+      "why": "on-screen text: 'T; V; \u25a0'"
+     },
+     {
+      "id": "1123437069571107993",
+      "why": "on-screen text: '\"68'"
+     },
+     {
+      "id": "839499186830963090",
+      "why": "on-screen text: 'HERE, DESIGN BREATHES; INAWORLDCHASING; MEETS STIL'"
+     },
+     {
+      "id": "1074882636083792473",
+      "why": "on-screen text: \"...until it wasn't; 112; This was; going; wel...\""
+     },
+     {
+      "id": "303570831156048521",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "882424120728646709",
+      "why": "on-screen text: '\u6b62'"
+     },
+     {
+      "id": "949555902697493936",
+      "why": "on-screen text: '300719; 300Z188; 30oZ108; Ai Doy Hydrar; All Doy H'"
+     },
+     {
+      "id": "1065523593092959992",
+      "why": "on-screen text: '572; AEL; ALE; AMAI; DLY'"
+     },
+     {
+      "id": "453315518763657590",
+      "why": "on-screen text: '#HeftyPartner; Bags; Fabuloso; Flower Pot; Hefty'"
+     },
+     {
+      "id": "1100919071902308337",
+      "why": "on-screen text: 'Egg'"
+     },
+     {
+      "id": "884112970627220189",
+      "why": "on-screen text: 'Comment recipe for the full; With almost one and a'"
+     },
+     {
+      "id": "945052303060788690",
+      "lane": "adjacent",
+      "query": "two coworkers chatting softly near kitchen",
+      "why": "advertising call-to-action: 'Subscribe'"
+     },
+     {
+      "id": "1055812706375379389",
+      "why": "unusable crop 576x1024"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['cozy', 'kitchen', 'quiet', 'simple'] (+20); scene words ['kitchen', 'the'] (+8)",
+       "points": 28
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 15.0s (need 7.0s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 84,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 10413969,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261111T232332Z-2745c9/assets/track_7247207913034614785.m4a",
+   "pin_url": null,
+   "sha256": "0f7b5e1375d68a8bd73085fdd4e8145fe690009facc70eb71ec8038f5f6b78a4",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7247207913034614785",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 64.9,
+    "high": 0.0,
+    "mid": 35.1
+   },
+   "duration_s": 621.18,
+   "file": "track_7247207913034614785.m4a",
+   "key_estimate": "B minor",
+   "loudness_curve_db": [
+    -21.8,
+    -21.8,
+    -22.0
+   ],
+   "onset_density_per_s": 3.99,
+   "peak_db": -5.0,
+   "rms_db": -21.9,
+   "spectral_centroid_hz": 578.7,
+   "tempo_bpm": 86.1,
+   "zero_crossing_rate": 0.0322
+  },
+  "background": {
+   "bytes": 2462394,
+   "creator": "Quick Saves",
+   "path": "/home/runner/work/_temp/beast-scratch/20261111T232332Z-2745c9/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/961096376746383572/",
+   "sha256": "1d1a644881a1af5c6dea94e8d791d44bf0630261f121929d4e475c1c6c460b99",
+   "source": "pinterest",
+   "stable_id": "961096376746383572",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "group conversation entry",
+    "emotional_tension": "They want to be part of the chat and also want to leave before anyone notices they wanted to be part of it.",
+    "observable_behaviour": "Tops up a water bottle that is already full, scrolls the same screen twice, looks up and smiles at no one in particular",
+    "private_worry": "That hovering looks lonely, and that jumping in will sound like interrupting",
+    "situation": "Tuesday 1:12pm, office kitchen, kettle boiling while two coworkers chat by the sink"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 4,
+    "evidence": "\"my bottle is full i'm still filling it\"; \"so i can stay near their chat without joining it\"; caption \"the kettle boiled three minutes ago and i'm still perfecting my water levels\"",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 4,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 4,
+    "rewrite_notes": "Payoff reads a touch explanatory ('without joining it'); could trust the image more. Caption's 'perfecting my water levels' drifts slightly wry versus the quieter hook tone.",
+    "scene_specificity": 4,
+    "sendability_who": "A close friend or coworker who hovers awkwardly near office kitchen chats, sent with 'this is us at the sink' or 'literally me at 1:12pm'.",
+    "shareability": 4,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "full-bottle-still-filling"
+  },
+  "delivery": {
+   "at": "2026-11-11T23:35:31Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 2.06,
+   "yavg_delta": 14.6
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 0.8,
+   "natural_fit": false,
+   "raw": {
+    "brightness": 0.661,
+    "saturate": 0.259
+   },
+   "saturate": 0.6
+  },
+  "measured": {
+   "sat": 10.4,
+   "yavg": 93.2
+  },
+  "output": {
+   "bytes": 6311623,
+   "duration_s": 7.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261111T232332Z-2745c9.mp4",
+   "sha256": "8d430cb455cd7f6c62c9039684adde67927e56a237bc040f6dda94ceafbf2824"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7247207913034614785",
+    "title": "Chill and gentle lo-fi/10 minutes(1455687)"
+   },
+   "background_query": "office kitchen kettle boiling filling water bottle at sink two coworkers chatting",
+   "caption": "the kettle boiled three minutes ago and i'm still perfecting my water levels",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Quiet, looping, low-key tension that hovers in awkward pauses without ever fully joining the moment.",
+     "tiktok_query": "lofi",
+     "tiktok_search_query": "lofi"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "quiet kitchen moment",
+     "pinterest_search_query": "quiet kitchen moment",
+     "semantic_analysis": "Warm, hushed kitchen stillness of lingering by the kettle, close enough to hear everyone but safely apart."
+    }
+   },
+   "hookLines": [
+    "my bottle is full",
+    "i'm still filling it"
+   ],
+   "loop_hypothesis": "the last line explains the first: filling a full bottle is the excuse to stay near the chat without joining it, so on replay the first line sounds like the cover story again",
+   "payoffLines": [
+    "so i can stay",
+    "near their chat",
+    "without joining it"
+   ],
+   "provenance": {
+    "creator": "Quick Saves",
+    "pin_id": "961096376746383572",
+    "pin_url": "https://www.pinterest.com/pin/961096376746383572/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 95): warm off-white"
+   },
+   "topic_id": "full-bottle-still-filling"
+  },
+  "publish": {
+   "alt_text": "Office kitchen kettle boiling filling water bottle at sink two coworkers chatting. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-11T23:36:09Z",
+   "caption": "the kettle boiled three minutes ago and i'm still perfecting my water levels",
+   "channel": "instagram",
+   "container_id": "17919023826538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18014502116989820",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/eEFgojZn.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 2.06,
+    "yavg_delta": 14.6
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261111T232332Z-2745c9/social_moment_loop_v1-live-20261111T232332Z-2745c9.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 6311623,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 10.4,
+    "yavg": 93.2
+   },
+   "ok": true,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.0896,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 36.8
+  },
+  "rendered_at": "2026-11-11T23:35:27Z",
+  "run_id": "20261111T232332Z-2745c9",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "She is lingering at the office sink pretending to top up an already-full bottle so she can stay near her coworkers' chat without having to join it",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "filling water bottle at office kitchen",
+     "two coworkers chatting softly near kitchen"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.4885,
+    "keywords": [
+     {
+      "keyword": "lofi",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7247207913034614785",
+    "title": "Chill and gentle lo-fi/10 minutes(1455687)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.4885
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 4,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 4,
+     "product_trust": 3,
+     "recognition_authenticity": 4,
+     "scene_specificity": 4,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "full-bottle-still-filling"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "lofi",
+    "vendor": "meta-api",
+    "why": "Quiet, looping, low-key tension that hovers in awkward pauses without ever fully joining the moment."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "quiet kitchen moment",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261111T232332Z-2745c9.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'Chill and gentle lo-fi/10 minutes(145568' for social_moment_loop_v1.",
+    "score": 70
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 32.16,
+     "yavg": 119.0
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "961096376746383572",
+    "query": "quiet kitchen moment",
+    "review_status": "accept",
+    "score": 84,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 36.8
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261111T232332Z-2745c9/social_moment_loop_v1-live-20261111T232332Z-2745c9.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 6311623,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 95): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": true,
+    "drift": {
+     "sat_delta": 2.06,
+     "yavg_delta": 14.6
+    },
+    "measured": {
+     "sat": 10.4,
+     "yavg": 93.2
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.0896,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
+  },
+  "topic_id": "full-bottle-still-filling"
  }
 ]
