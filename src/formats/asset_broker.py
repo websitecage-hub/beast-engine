@@ -180,6 +180,9 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
             max_downloads: int = MAX_DOWNLOADS, verbose: bool = True,
             metaphor_query: str | None = None) -> dict:
     """Full staged acquisition. Returns the chosen clip plus every scored candidate."""
+    # A free-tier service sleeps between runs; without this the first searches of a
+    # wake-up return nothing and the stage fails with "0 rejected". Idempotent.
+    pinterest.wake()
     scratch.mkdir(parents=True, exist_ok=True)
     prof = template_renderer.PROFILES[format_id]
     needed = float(prof["duration_s"])
@@ -307,6 +310,14 @@ def acquire(intent: dict, format_id: str, scratch: Path, *,
 
     if not scored:
         from collections import Counter
+        if not rejected and not query_log:
+            # Nothing was even downloaded: the service answered nothing at all. Say so,
+            # because "0 rejected" reads like a filtering problem when it is not, and
+            # a cold or redeploying Pinterest service is the usual cause.
+            raise AssetError(
+                "the Pinterest search returned no results for any lane "
+                f"({len(plan)} queries tried; health={pinterest.health()!r}). "
+                "The service is probably cold or redeploying - rerun shortly.")
         causes = Counter(re.sub(r"[\d.,]+", "N", r["why"]).split(":")[0]
                          for r in rejected)
         raise AssetError(f"no candidate survived the prefilters: {len(rejected)} "
