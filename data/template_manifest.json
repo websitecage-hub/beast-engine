@@ -18804,5 +18804,978 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "wednesday-947pm-group-chat-retype"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.3,
+    "avoid": [
+     "dramatic orchestral swells",
+     "tense thriller pulse",
+     "loud EDM drop",
+     "melancholic piano ballad",
+     "aggressive rap vocals"
+    ],
+    "emotional_role": "keep the awkward moment light and warm, like a small shared joke, not tense",
+    "energy": 0.3,
+    "instrumentation": [
+     "gentle piano",
+     "soft brushed drums",
+     "light bass"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "moderate",
+    "texture": [
+     "soft",
+     "warm",
+     "unhurried"
+    ],
+    "trend_hashtags": [
+     "#morningcoffee",
+     "#coffeequeue",
+     "#relatable"
+    ],
+    "trend_keywords": [
+     "morning coffee routine",
+     "coffee shop queue",
+     "relatable morning moment"
+    ],
+    "valence": 0.3,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-12T14:47:51Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "tuesday-819am-coffee-queue-performance",
+   "core_human_moment": "A person waiting to order a flat white overthinks every small move in the queue and performs politeness for the people around them.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "amused",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing in queue, looking at menu board, stepping forward then back",
+   "humour": 0.7,
+   "intentional_contrast": null,
+   "literal_scene": "A person stands second in line in a small coffee shop, looking up at the menu board while the queue inches toward the counter.",
+   "literalness": "literal",
+   "motion_intent": "almost still, with small shuffling steps and head turns as the queue moves",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm wood tones",
+    "soft morning light"
+   ],
+   "rationale": "The footage stays in the real queue so the list reads as lived experience, not a sketch, while the light, unhurried music keeps the self-conscious beats funny and warm instead of tense.",
+   "scene_entities": [
+    "menu board",
+    "espresso machine",
+    "coffee shop"
+   ],
+   "schema_version": "1.0",
+   "setting": "small neighbourhood coffee shop",
+   "tension": 0.4,
+   "text_safe_zone": "centre 41-59% vertical band, keep menu board text and faces out of title area",
+   "time_of_day": "early morning",
+   "valence": 0.2,
+   "video_queries": [
+    "person in coffee shop queue looking at menu board",
+    "over shoulder view of coffee queue at counter",
+    "person smiling and looking down in coffee queue"
+   ],
+   "visual_mood": [
+    "warm",
+    "awkward"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.5
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "DnB / Moshimo",
+    "candidates": [
+     {
+      "artist": "Audiostock",
+      "distance": 0.5776,
+      "fresh": false,
+      "id": "6817193198436255745",
+      "score": 80,
+      "title": "Suspense, horror, piano and music box",
+      "video_count": 5300000
+     },
+     {
+      "artist": "Lyrebirds music",
+      "distance": 0.7818,
+      "fresh": true,
+      "id": "6974451099088455681",
+      "score": 100,
+      "title": "Classic classical gymnopedie solo piano(1034554)",
+      "video_count": 1600000
+     },
+     {
+      "artist": "Lyriq Luchiano \ud83d\udca0",
+      "distance": 0.77,
+      "fresh": true,
+      "id": "7544927018418030593",
+      "score": 100,
+      "title": "Take A Look",
+      "video_count": 1000000
+     },
+     {
+      "artist": "DnB / Moshimo",
+      "distance": 0.4829,
+      "fresh": true,
+      "id": "6817665484234688514",
+      "score": 100,
+      "title": "Chopin Nocturne No. 2 Piano Playing",
+      "video_count": 605700
+     }
+    ],
+    "distance": 0.4829,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "quirky",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7507230950846957569",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "246.6s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 605700",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6817665484234688514",
+    "title": "Chopin Nocturne No. 2 Piano Playing"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 17
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot 'Morning coffee at home' paired with 'Chopin Nocturne No. 2 Piano Playing' for caption_list_title_v1.",
+    "total": 52
+   },
+   "visual": {
+    "band_busy": 0.0225,
+    "candidates": [
+     {
+      "band_busy": 0.0225,
+      "height": 1280,
+      "pin_id": "772930354793043032",
+      "query": "morning coffee",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['coffee', 'home'] (+10); scene words ['coffee'] (+4)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.011,
+      "height": 1920,
+      "pin_id": "966655507489279565",
+      "query": "morning coffee",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['cafe', 'coffee'] (+10); scene words ['coffee'] (+4)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "1080x1920, 12.3s (need 12.2s)",
+         "points": 17
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 71,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 1080
+     }
+    ],
+    "creator": "Meus Pins salvos",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0813,
+     "motion": 0.0592,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "772930354793043032",
+    "pin_url": "https://www.pinterest.com/pin/772930354793043032/",
+    "query": "morning coffee",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "morning coffee aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "morning coffee",
+      "returned": 25
+     },
+     {
+      "lane": "metaphor",
+      "query": "morning aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "coffee aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 0,
+      "lane": "adjacent",
+      "query": "over shoulder view of coffee queue",
+      "returned": 0
+     },
+     {
+      "kept": 23,
+      "lane": "emotional",
+      "query": "person smiling and looking down in",
+      "returned": 23
+     },
+     {
+      "kept": 4,
+      "lane": "literal",
+      "query": "person in coffee shop queue looking",
+      "returned": 4
+     }
+    ],
+    "rejected": [
+     {
+      "id": "1111544751767369520",
+      "why": "too short 5.83s for 12.2s"
+     },
+     {
+      "id": "998391811154171020",
+      "why": "unusable crop 486x864"
+     },
+     {
+      "id": "1112529914196213797",
+      "why": "on-screen text: '@coffeebroo'"
+     },
+     {
+      "id": "15762667442437297",
+      "why": "on-screen text: 'Q'"
+     },
+     {
+      "id": "11681280280242385",
+      "why": "on-screen text: '50,000 saves on; Pinterest and for good; a little '"
+     },
+     {
+      "id": "10203536650665687",
+      "why": "unusable crop 700x1204"
+     },
+     {
+      "id": "731483164523597931",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "891783163689528541",
+      "lane": "emotional",
+      "query": "person smiling and looking down in",
+      "why": "stock/repost source: 'Background Video'"
+     },
+     {
+      "id": "694328467555010306",
+      "why": "too short 10.14s for 12.2s"
+     },
+     {
+      "id": "8725793021695176",
+      "why": "on-screen text: '\u82b1'"
+     },
+     {
+      "id": "278026976985587557",
+      "why": "too short 8.77s for 12.2s"
+     },
+     {
+      "id": "919930661382557248",
+      "why": "on-screen text: '@ clairehodginss; ESSO; HealtRiawealtk; Health io '"
+     },
+     {
+      "id": "123004633569049728",
+      "why": "too short 4.17s for 12.2s"
+     },
+     {
+      "id": "5207355814725368",
+      "why": "on-screen text: '\"\"\"; +; -1.7; .5; 16:9'"
+     },
+     {
+      "id": "138485757351930088",
+      "why": "too short 8.58s for 12.2s"
+     },
+     {
+      "id": "698269117218292533",
+      "why": "too short 8.43s for 12.2s"
+     },
+     {
+      "id": "555139091576391882",
+      "why": "too short 4.7s for 12.2s"
+     },
+     {
+      "id": "47076758603651545",
+      "why": "on-screen text: 'MOMA; OAT'"
+     },
+     {
+      "id": "1101763496388019437",
+      "why": "on-screen text: '?; S; Twisted messy curly bun; \u4e00; \u798f'"
+     },
+     {
+      "id": "1143281055387259981",
+      "why": "on-screen text: 'D; m'"
+     },
+     {
+      "id": "524317581619166348",
+      "why": "unusable crop 404x404"
+     },
+     {
+      "id": "5207355811409142",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "351912465171605",
+      "why": "unusable crop 712x1266"
+     },
+     {
+      "id": "8866530511322471",
+      "why": "on-screen text: 'D; KS; \u4e09; \u4ee5'"
+     },
+     {
+      "id": "373658100355464544",
+      "why": "too short 10.1s for 12.2s"
+     },
+     {
+      "id": "75153887523831378",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "422281212107137",
+      "why": "too short 7.5s for 12.2s"
+     },
+     {
+      "id": "5699937022418326",
+      "why": "on-screen text: '/; Aanb; C; JeAn; Opl'"
+     },
+     {
+      "id": "1145814330175145963",
+      "why": "unusable crop 486x864"
+     },
+     {
+      "id": "16747829862634900",
+      "why": "on-screen text: '2 ways to tuck your; 2.shoelace; @laurenkkim0; @la'"
+     },
+     {
+      "id": "423127327510562203",
+      "why": "on-screen text: 'FashionTIP; ef'"
+     },
+     {
+      "id": "2814818511828497",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "19492210983662692",
+      "why": "unusable crop 240x240"
+     },
+     {
+      "id": "10414642882229869",
+      "why": "too short 9.27s for 12.2s"
+     },
+     {
+      "id": "4855512090430689",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "1148277236219278186",
+      "why": "unusable crop 580x920"
+     },
+     {
+      "id": "803259283543240371",
+      "why": "unusable crop 442x402"
+     },
+     {
+      "id": "10273905394250019",
+      "why": "too short 6.3s for 12.2s"
+     },
+     {
+      "id": "767582330236622823",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "676173331576692497",
+      "why": "on-screen text: '\u65e5'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['coffee', 'home'] (+10); scene words ['coffee'] (+4)",
+       "points": 14
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 15.0s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 70,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Morning coffee at home"
+   }
+  },
+  "audio": {
+   "bytes": 4034324,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T144429Z-d882f1/assets/track_6817665484234688514.m4a",
+   "pin_url": null,
+   "sha256": "2b54a1036596032c513d2082c146cebe3dfe5522e3b4439d730484000960f955",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6817665484234688514",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 9.9,
+    "high": 0.0,
+    "mid": 90.1
+   },
+   "duration_s": 246.57,
+   "file": "track_6817665484234688514.m4a",
+   "key_estimate": "D# major",
+   "loudness_curve_db": [
+    -26.6,
+    -26.9,
+    -28.0
+   ],
+   "onset_density_per_s": 2.22,
+   "peak_db": -8.9,
+   "rms_db": -27.1,
+   "spectral_centroid_hz": 613.6,
+   "tempo_bpm": 112.3,
+   "zero_crossing_rate": 0.0497
+  },
+  "background": {
+   "bytes": 3160222,
+   "creator": "Meus Pins salvos",
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T144429Z-d882f1/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/772930354793043032/",
+   "sha256": "08717f79c967c2d50611bdc08cc27c935ed54a52c1d380b5ecc28e449534b401",
+   "source": "pinterest",
+   "stable_id": "772930354793043032",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "You just want a flat white, but ordering it feels like performing confidence for strangers.",
+    "observable_behaviour": "You mouth your order twice, step forward too early, step back, then laugh a little too hard when the barista says your name",
+    "private_worry": "That you look hesitant, hold up the queue, and everyone can tell you rehearsed this",
+    "situation": "Tuesday 8:19am, second in the queue at the coffee counter, staring at a menu board you already know by heart"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 4,
+    "evidence": "\"Mouth your flat white twice\"; \"Read a menu you memorised\"; \"Step forward before your turn\"; \"Laugh too hard at your name\" \u2014 seven items, correct count, distinct, matched to the 8:19am counter.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Payoff 'The queue forgot it before you did' reassures rather than naming the queue-holding worry; item 7 'Replay the laugh to the corner' slightly repeats item 5's laugh.",
+    "scene_specificity": 5,
+    "sendability_who": "A close friend who rehearses their coffee order and over-laughs at their name, sent with 'me at 8:19am' or 'the flat white performance'.",
+    "shareability": 5,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "tuesday-819am-coffee-queue-performance"
+  },
+  "delivery": {
+   "at": "2026-11-12T14:55:15Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -3.81,
+   "yavg_delta": 17.7
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 10.88,
+    "yavg": 120.7
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 10.39,
+   "yavg": 122.7
+  },
+  "output": {
+   "bytes": 11069347,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261112T144429Z-d882f1.mp4",
+   "sha256": "f4766fb1fa109d4cc91eeeb4465dfcffd5db704296908b20565f2b4cfd5b0bcc"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6817665484234688514",
+    "title": "Chopin Nocturne No. 2 Piano Playing"
+   },
+   "background_query": "person standing second in coffee shop queue looking at menu board",
+   "caption": "7 ways the 8:19am coffee queue turns a flat white into a performance:\n1. Mouth your flat white twice\n2. Read a menu you memorised\n3. Step forward before your turn\n4. Step back and apologise to queue\n5. Laugh too hard at your name\n6. Thank the barista three times\n7. Replay the laugh to the corner",
+   "closing": "The queue forgot it before you did.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A brisk, cheeky, stop-start rhythm that turns everyday awkwardness into a punchy comedic performance.",
+     "tiktok_query": "quirky",
+     "tiktok_search_query": "quirky"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "morning coffee aesthetic",
+     "pinterest_search_query": "morning coffee aesthetic",
+     "semantic_analysis": "A sunlit morning cafe where ordering a flat white feels like a small, watched stage performance."
+    }
+   },
+   "headline": "7 ways the 8:19am coffee queue turns a flat white into a performance",
+   "list_items": [
+    "Mouth your flat white twice",
+    "Read a menu you memorised",
+    "Step forward before your turn",
+    "Step back and apologise to queue",
+    "Laugh too hard at your name",
+    "Thank the barista three times",
+    "Replay the laugh to the corner"
+   ],
+   "provenance": {
+    "creator": "Meus Pins salvos",
+    "pin_id": "772930354793043032",
+    "pin_url": "https://www.pinterest.com/pin/772930354793043032/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 121): warm off-white"
+   },
+   "titleLines": [
+    "7 ways the 8:19am",
+    "coffee queue turns a",
+    "flat white into a",
+    "performance"
+   ],
+   "topic_id": "tuesday-819am-coffee-queue-performance"
+  },
+  "publish": {
+   "alt_text": "Person standing second in coffee shop queue looking at menu board. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-12T14:56:46Z",
+   "caption": "7 ways the 8:19am coffee queue turns a flat white into a performance:\n1. Mouth your flat white twice\n2. Read a menu you memorised\n3. Step forward before your turn\n4. Step back and apologise to queue\n5. Laugh too hard at your name\n6. Thank the barista three times\n7. Replay the laugh to the corner\n\nThe queue forgot it before you did.",
+   "channel": "instagram",
+   "container_id": "17919120186538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "17915837673507855",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://n.uguu.se/TjPEddGD.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -3.81,
+    "yavg_delta": 17.7
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261112T144429Z-d882f1/caption_list_title_v1-live-20261112T144429Z-d882f1.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 11069347,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 10.39,
+    "yavg": 122.7
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.2431,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 63.0
+  },
+  "rendered_at": "2026-11-12T14:55:11Z",
+  "run_id": "20261112T144429Z-d882f1",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person waiting to order a flat white overthinks every small move in the queue and performs politeness for the people around them.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person in coffee shop queue looking",
+     "over shoulder view of coffee queue",
+     "person smiling and looking down in"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.4829,
+    "keywords": [
+     {
+      "keyword": "quirky",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6817665484234688514",
+    "title": "Chopin Nocturne No. 2 Piano Playing"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.4829
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 4,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 3,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "tuesday-819am-coffee-queue-performance"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "quirky",
+    "vendor": "meta-api",
+    "why": "A brisk, cheeky, stop-start rhythm that turns everyday awkwardness into a punchy comedic performance."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "morning coffee aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261112T144429Z-d882f1.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot 'Morning coffee at home' paired with 'Chopin Nocturne No. 2 Piano Playing' for caption_list_title_v1.",
+    "score": 52
+   },
+   "pinterest": {
+    "candidates": 2,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 10.88,
+     "yavg": 120.7
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "772930354793043032",
+    "query": "morning coffee",
+    "review_status": "accept",
+    "score": 70,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Morning coffee at home"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 63.0
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261112T144429Z-d882f1/caption_list_title_v1-live-20261112T144429Z-d882f1.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 11069347,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 121): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -3.81,
+     "yavg_delta": 17.7
+    },
+    "measured": {
+     "sat": 10.39,
+     "yavg": 122.7
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.2431,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "tuesday-819am-coffee-queue-performance"
  }
 ]
