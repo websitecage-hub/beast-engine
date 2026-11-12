@@ -1,6 +1,6 @@
 """template_renderer.py — the two cloned formats as engine renderers.
 
-Implements the shared `renderers.Renderer` interface so the orchestrator treats
+Implements the shared `renderer_base.Renderer` interface so the runner treats
 these exactly like the v3/v2 adapters:
 
     validate_blueprint · build_timeline · render · qa
@@ -32,7 +32,7 @@ from pathlib import Path
 
 from .. import config, render_gate
 from . import template_payloads
-from .renderers import Renderer
+from .renderer_base import Renderer
 
 ROOT = Path(__file__).resolve().parents[2]
 TEMPLATES = ROOT / "templates"
