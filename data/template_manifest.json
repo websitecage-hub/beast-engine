@@ -17237,5 +17237,1572 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "friday-817pm-arrive-alone-party"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.15,
+    "avoid": [
+     "upbeat dance beat",
+     "dramatic string swell",
+     "comedy boing sound effects",
+     "loud bass drop",
+     "cheerful ukulele"
+    ],
+    "emotional_role": "Hold a quiet, slightly wistful pause that makes overthinking feel relatable rather than dramatic",
+    "energy": 0.15,
+    "instrumentation": [
+     "soft piano",
+     "gentle synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "hazy",
+     "low-key"
+    ],
+    "trend_hashtags": [
+     "#overthinking",
+     "#groupchat",
+     "#relatable"
+    ],
+    "trend_keywords": [
+     "late night overthinking",
+     "group chat reply",
+     "typing and deleting"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-12T14:11:40Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "wednesday-947pm-group-chat-retype",
+   "core_human_moment": "A person sits alone on a bed late at night stuck rewriting a short reply to friends planning Friday instead of sending it.",
+   "degraded": false,
+   "emotional_primary": "hesitant",
+   "emotional_secondary": "wistful",
+   "format_id": "caption_list_title_v1",
+   "human_action": "typing, deleting, and re-reading a message on a phone",
+   "humour": 0.2,
+   "intentional_contrast": null,
+   "literal_scene": "A person sits on a bed in a dim bedroom at night holding a phone with both thumbs hovering over the keyboard while the screen glows on their face.",
+   "literalness": "literal",
+   "motion_intent": "Almost still, with only slow small thumb movements, pauses, and a glance down",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "dim warm lamplight",
+    "cool blue phone glow"
+   ],
+   "rationale": "A calm bed-at-night shot makes the endless retyping feel ordinary and relatable, and soft slow instrumental music keeps the pause tender rather than dramatic.",
+   "scene_entities": [
+    "smartphone",
+    "bed",
+    "bedroom"
+   ],
+   "schema_version": "1.0",
+   "setting": "bedroom, sitting on bed",
+   "tension": 0.5,
+   "text_safe_zone": "Keep central band 41-59% height clear for title, keep phone and face in lower third away from text",
+   "time_of_day": "late evening",
+   "valence": -0.2,
+   "video_queries": [
+    "person sitting on bed typing on phone at night",
+    "close up of hands typing on phone in dark bedroom",
+    "person lying on bed looking at phone screen at night"
+   ],
+   "visual_mood": [
+    "quiet",
+    "intimate"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.3
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "The Beatles Revival Band",
+    "candidates": [
+     {
+      "artist": "The Beatles Revival Band",
+      "distance": 0.3654,
+      "fresh": false,
+      "id": "7127247846985713666",
+      "score": 72,
+      "title": "And I Love Her (live)",
+      "video_count": 324500
+     }
+    ],
+    "distance": 0.3654,
+    "fresh": false,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7097039090628970497",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7211414788142794754",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7377183468658903056",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7200846574183221250",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "used recently",
+       "points": 0
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 324500",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 72
+    },
+    "stable_id": "7127247846985713666",
+    "title": "And I Love Her (live)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 5
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot 'Through the space' paired with 'And I Love Her (live)' for caption_list_title_v1.",
+    "total": 40
+   },
+   "visual": {
+    "band_busy": 0.0302,
+    "candidates": [
+     {
+      "band_busy": 0.0302,
+      "height": 1280,
+      "pin_id": "901001469178705578",
+      "query": "night phone glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['the'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 30.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.049,
+      "height": 1280,
+      "pin_id": "1113022495430462498",
+      "query": "night glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['the'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 23.7s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.063,
+      "height": 1280,
+      "pin_id": "891994269936291411",
+      "query": "night phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 20.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0006,
+      "height": 1280,
+      "pin_id": "1054053487768429141",
+      "query": "night phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 19.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.32,
+         "rows": [
+          76,
+          281
+         ]
+        },
+        {
+         "fraction_of_height": 0.294,
+         "rows": [
+          0,
+          188
+         ]
+        },
+        {
+         "fraction_of_height": 0.202,
+         "rows": [
+          194,
+          323
+         ]
+        },
+        {
+         "fraction_of_height": 0.087,
+         "rows": [
+          0,
+          56
+         ]
+        },
+        {
+         "fraction_of_height": 0.381,
+         "rows": [
+          83,
+          327
+         ]
+        },
+        {
+         "fraction_of_height": 0.123,
+         "rows": [
+          388,
+          467
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(76, 281), (0, 188)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         76,
+         281
+        ],
+        [
+         0,
+         188
+        ],
+        [
+         194,
+         323
+        ],
+        [
+         0,
+         56
+        ],
+        [
+         83,
+         327
+        ],
+        [
+         388,
+         467
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0001,
+      "height": 1328,
+      "pin_id": "856176579159724049",
+      "query": "night phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1328, 52.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.107,
+         "rows": [
+          63,
+          134
+         ]
+        },
+        {
+         "fraction_of_height": 0.092,
+         "rows": [
+          603,
+          664
+         ]
+        },
+        {
+         "fraction_of_height": 0.095,
+         "rows": [
+          63,
+          126
+         ]
+        },
+        {
+         "fraction_of_height": 0.093,
+         "rows": [
+          62,
+          124
+         ]
+        },
+        {
+         "fraction_of_height": 0.089,
+         "rows": [
+          605,
+          664
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(63, 134), (603, 664)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         63,
+         134
+        ],
+        [
+         603,
+         664
+        ],
+        [
+         63,
+         126
+        ],
+        [
+         62,
+         124
+        ],
+        [
+         605,
+         664
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0154,
+      "height": 1280,
+      "pin_id": "375487687705335432",
+      "query": "night phone",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.114,
+         "rows": [
+          448,
+          521
+         ]
+        },
+        {
+         "fraction_of_height": 0.233,
+         "rows": [
+          491,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(448, 521), (491, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         448,
+         521
+        ],
+        [
+         491,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0718,
+      "height": 1280,
+      "pin_id": "683562049718083937",
+      "query": "night phone",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0976,
+      "height": 1280,
+      "pin_id": "649644315056411836",
+      "query": "night phone",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.327,
+         "rows": [
+          0,
+          209
+         ]
+        },
+        {
+         "fraction_of_height": 0.177,
+         "rows": [
+          527,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 209), (527, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         209
+        ],
+        [
+         527,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0286,
+      "height": 1280,
+      "pin_id": "825073594272776686",
+      "query": "night glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['blue hour'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.423,
+         "rows": [
+          369,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(369, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         369,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.01,
+      "height": 1280,
+      "pin_id": "871798440358605462",
+      "query": "night glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 18.6s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.219,
+         "rows": [
+          0,
+          140
+         ]
+        },
+        {
+         "fraction_of_height": 0.222,
+         "rows": [
+          498,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.219,
+         "rows": [
+          0,
+          140
+         ]
+        },
+        {
+         "fraction_of_height": 0.222,
+         "rows": [
+          498,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.219,
+         "rows": [
+          0,
+          140
+         ]
+        },
+        {
+         "fraction_of_height": 0.222,
+         "rows": [
+          498,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 140), (498, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         140
+        ],
+        [
+         498,
+         640
+        ],
+        [
+         0,
+         140
+        ],
+        [
+         498,
+         640
+        ],
+        [
+         0,
+         140
+        ],
+        [
+         498,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Space \ud83c\udf0c\ud83c\udf20\ud83c\udf86",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0156,
+     "motion": 0.0155,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "901001469178705578",
+    "pin_url": "https://www.pinterest.com/pin/901001469178705578/",
+    "query": "night phone glow",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "night phone glow",
+      "returned": 25
+     },
+     {
+      "kept": 20,
+      "lane": "metaphor",
+      "query": "night phone",
+      "returned": 25
+     },
+     {
+      "kept": 21,
+      "lane": "metaphor",
+      "query": "night glow",
+      "returned": 23
+     },
+     {
+      "kept": 17,
+      "lane": "metaphor",
+      "query": "phone glow",
+      "returned": 25
+     },
+     {
+      "kept": 23,
+      "lane": "adjacent",
+      "query": "close up of hands typing on",
+      "returned": 25
+     },
+     {
+      "kept": 21,
+      "lane": "emotional",
+      "query": "person lying on bed looking at",
+      "returned": 25
+     },
+     {
+      "kept": 21,
+      "lane": "literal",
+      "query": "person sitting on bed typing on",
+      "returned": 24
+     }
+    ],
+    "rejected": [
+     {
+      "id": "280630620526683035",
+      "why": "on-screen text: 'C; bestwallpapers.net'"
+     },
+     {
+      "id": "280630620526687948",
+      "why": "too short 10.06s for 12.2s"
+     },
+     {
+      "id": "1148066130048159987",
+      "lane": "metaphor",
+      "query": "night phone glow",
+      "why": "advertising call-to-action: 'Link in Bio'"
+     },
+     {
+      "id": "642044490675079370",
+      "lane": "emotional",
+      "query": "person lying on bed looking at",
+      "why": "stock/repost source: 'Stock video'"
+     },
+     {
+      "id": "280630620526674006",
+      "why": "on-screen text: 'L; bestwallpapers.net'"
+     },
+     {
+      "id": "961026007997661807",
+      "why": "on-screen text: 'F; IXNOK; Mobile SolutionPvt Ltd; MobileSolutionPv'"
+     },
+     {
+      "id": "47428602323774039",
+      "lane": "metaphor",
+      "query": "night phone",
+      "why": "advertising call-to-action: 'link in BIO'"
+     },
+     {
+      "id": "991988255411107268",
+      "why": "on-screen text: '0,0; 0,5; 12,9x; 1x; 84%o OFF New Year Sale'"
+     },
+     {
+      "id": "1134555331135348286",
+      "why": "too short 10.1s for 12.2s"
+     },
+     {
+      "id": "307089268361822599",
+      "why": "on-screen text: 'H.M; \u751f\u5149\u6e90'"
+     },
+     {
+      "id": "639651953345428152",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "396035360984723282",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "21884748183486934",
+      "why": "on-screen text: '%; .Protects; 3C; 5ea105; A'"
+     },
+     {
+      "id": "905927281298679897",
+      "why": "too short 5.4s for 12.2s"
+     },
+     {
+      "id": "16325617396534862",
+      "why": "too short 5.93s for 12.2s"
+     },
+     {
+      "id": "633811347593866206",
+      "why": "too short 10.1s for 12.2s"
+     },
+     {
+      "id": "360147301469240602",
+      "why": "on-screen text: '(OT; -30; A21; AUTO; AWB'"
+     },
+     {
+      "id": "1086563847655312900",
+      "why": "too short 7.18s for 12.2s"
+     },
+     {
+      "id": "996421486281152067",
+      "lane": "metaphor",
+      "query": "night glow",
+      "why": "advertising call-to-action: 'SUBSCRIBE'"
+     },
+     {
+      "id": "1039416789003308591",
+      "why": "too short 10.47s for 12.2s"
+     },
+     {
+      "id": "899312619343617077",
+      "why": "on-screen text: 'ARE; AS HE; AT NIGHT; IT; THE WATER'"
+     },
+     {
+      "id": "785315253763078722",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "988962399461892055",
+      "why": "too short 7.18s for 12.2s"
+     },
+     {
+      "id": "955326139731921697",
+      "why": "on-screen text: 'Formoret; candor; eep moving; healtheducation; tip'"
+     },
+     {
+      "id": "1147855023767968486",
+      "why": "on-screen text: '1!!; 100%ARAB; 100%ARABI; 11!; 7.079'"
+     },
+     {
+      "id": "1018869115717964525",
+      "lane": "adjacent",
+      "query": "close up of hands typing on",
+      "why": "advertising call-to-action: 'Link in bio'"
+     },
+     {
+      "id": "10062799162521079",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1087267535063521941",
+      "why": "too short 6.04s for 12.2s"
+     },
+     {
+      "id": "1093248878316837818",
+      "lane": "metaphor",
+      "query": "night phone glow",
+      "why": "advertising call-to-action: 'Link in Bio'"
+     },
+     {
+      "id": "776378423259225516",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "25543922884411824",
+      "why": "on-screen text: '+; 1x; 1\u00d7; 2s; 4:3'"
+     },
+     {
+      "id": "617837642704063256",
+      "why": "on-screen text: '\u517b\u7f8e'"
+     },
+     {
+      "id": "1117174251333224427",
+      "why": "on-screen text: \"BMB'RICT\""
+     },
+     {
+      "id": "13933080090982811",
+      "why": "on-screen text: '10s; 1s; 1x; CINEMATIC; Hold still.'"
+     },
+     {
+      "id": "920001030121069269",
+      "why": "too short 7.32s for 12.2s"
+     },
+     {
+      "id": "711920653632097669",
+      "why": "too short 10.61s for 12.2s"
+     },
+     {
+      "id": "583427326734742384",
+      "why": "too short 5.17s for 12.2s"
+     },
+     {
+      "id": "659918151781052695",
+      "why": "on-screen text: '000; 0000; 000O'"
+     },
+     {
+      "id": "851602610805337200",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "8514686790848537",
+      "why": "unusable crop 576x1024"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words ['the'] (+4)",
+       "points": 4
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 30.0s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 60,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Through the space"
+   }
+  },
+  "audio": {
+   "bytes": 1000994,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T140806Z-0ffbb6/assets/track_7127247846985713666.m4a",
+   "pin_url": null,
+   "sha256": "9e7b416734cb16fb4da2d05fec5fae240ba916cd19d0d9d75f17a231969e61a8",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7127247846985713666",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 62.8,
+    "high": 0.8,
+    "mid": 36.4
+   },
+   "duration_s": 60.0,
+   "file": "track_7127247846985713666.m4a",
+   "key_estimate": "C minor",
+   "loudness_curve_db": [
+    -22.6,
+    -22.3,
+    -21.9
+   ],
+   "onset_density_per_s": 3.43,
+   "peak_db": -8.2,
+   "rms_db": -22.3,
+   "spectral_centroid_hz": 1457.8,
+   "tempo_bpm": 123.0,
+   "zero_crossing_rate": 0.0513
+  },
+  "background": {
+   "bytes": 17171724,
+   "creator": "Space \ud83c\udf0c\ud83c\udf20\ud83c\udf86",
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T140806Z-0ffbb6/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/901001469178705578/",
+   "sha256": "54efcaf19cbe278a4bd2f7cab280f79608f53b1df2e3dc2246c59ab94f9a0e2e",
+   "source": "pinterest",
+   "stable_id": "901001469178705578",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "texting and group chats",
+    "emotional_tension": "wants to sound effortless while putting more effort into one message than the whole plan",
+    "observable_behaviour": "types a reply, deletes it, retypes it shorter, locks phone, picks it up again to check if anyone has replied",
+    "private_worry": "that a long message looks too keen and a short one looks cold",
+    "situation": "Wednesday 9:47pm, bedroom, group chat with three friends planning Friday"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Stare at three friends planning Friday\"; \"Retype it shorter, then shorter again\"; \"Reread it for too keen, too cold\" \u2014 six items, correct count, distinct, matched to the 9:47pm chat.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Item 1 'Stare at three friends planning Friday' is setup rather than an action; payoff 'not being difficult' is slightly generic versus the precise 'too keen, too cold' wording.",
+    "scene_specificity": 5,
+    "sendability_who": "A close friend in the same group chat who agonises over reply tone, sent with 'me every time we plan Friday' or 'the 9:47pm rewrite'.",
+    "shareability": 5,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "wednesday-947pm-group-chat-retype"
+  },
+  "delivery": {
+   "at": "2026-11-12T14:21:22Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -13.75,
+   "yavg_delta": -77.2
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 0.0,
+    "yavg": 21.5
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 0.45,
+   "yavg": 27.8
+  },
+  "output": {
+   "bytes": 19668324,
+   "duration_s": 11.977,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261112T140806Z-0ffbb6.mp4",
+   "sha256": "319cd4735c5e909f82f48c69392c736bc9ed589d3376baec9bb8a10f87fb101f"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7127247846985713666",
+    "title": "And I Love Her (live)"
+   },
+   "background_query": "person sitting on bed typing on phone at night",
+   "caption": "6 ways your 9:47pm group chat reply gets rewritten before sending:\n1. Stare at three friends planning Friday\n2. Type a long reply, delete it\n3. Retype it shorter, then shorter again\n4. Reread it for too keen, too cold\n5. Lock phone, pick it up again\n6. Check for replies that have not arrived",
+   "closing": "You were not being difficult, you were trying to get it right.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Late-night, looped overthinking needs a tense, ticking, cinematic build that escalates with each rewrite and snaps on the unanswered check.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "night phone glow",
+     "pinterest_search_query": "night phone glow",
+     "semantic_analysis": "A quiet, cinematic late-night moment of hesitation lit only by phone glow and soft city stillness."
+    }
+   },
+   "headline": "6 ways your 9:47pm group chat reply gets rewritten before sending",
+   "list_items": [
+    "Stare at three friends planning Friday",
+    "Type a long reply, delete it",
+    "Retype it shorter, then shorter again",
+    "Reread it for too keen, too cold",
+    "Lock phone, pick it up again",
+    "Check for replies that have not arrived"
+   ],
+   "provenance": {
+    "creator": "Space \ud83c\udf0c\ud83c\udf20\ud83c\udf86",
+    "pin_id": "901001469178705578",
+    "pin_url": "https://www.pinterest.com/pin/901001469178705578/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 22 < 92): warm yellow"
+   },
+   "titleLines": [
+    "6 ways your 9:47pm",
+    "group chat reply gets",
+    "rewritten before sending"
+   ],
+   "topic_id": "wednesday-947pm-group-chat-retype"
+  },
+  "publish": {
+   "alt_text": "Person sitting on bed typing on phone at night. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-12T14:22:08Z",
+   "caption": "6 ways your 9:47pm group chat reply gets rewritten before sending:\n1. Stare at three friends planning Friday\n2. Type a long reply, delete it\n3. Retype it shorter, then shorter again\n4. Reread it for too keen, too cold\n5. Lock phone, pick it up again\n6. Check for replies that have not arrived\n\nYou were not being difficult, you were trying to get it right.",
+   "channel": "instagram",
+   "container_id": "17919115008538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18000309074831186",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://n.uguu.se/HpENfGWC.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -13.75,
+    "yavg_delta": -77.2
+   },
+   "duration_s": 11.977,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 11.977,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261112T140806Z-0ffbb6/caption_list_title_v1-live-20261112T140806Z-0ffbb6.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": false,
+    "moov_tail": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 19668324,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 0.45,
+    "yavg": 27.8
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0814,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 58.9
+  },
+  "rendered_at": "2026-11-12T14:21:17Z",
+  "run_id": "20261112T140806Z-0ffbb6",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person sits alone on a bed late at night stuck rewriting a short reply to friends planning Friday instead of sending it.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person sitting on bed typing on",
+     "close up of hands typing on",
+     "person lying on bed looking at"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3654,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 72,
+    "stable_id": "7127247846985713666",
+    "title": "And I Love Her (live)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3654
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 3,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "wednesday-947pm-group-chat-retype"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "Late-night, looped overthinking needs a tense, ticking, cinematic build that escalates with each rewrite and snaps on the unanswered check."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "night phone glow",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261112T140806Z-0ffbb6.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot 'Through the space' paired with 'And I Love Her (live)' for caption_list_title_v1.",
+    "score": 40
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 0.0,
+     "yavg": 21.5
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "901001469178705578",
+    "query": "night phone glow",
+    "review_status": "accept",
+    "score": 60,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Through the space"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 58.9
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 11.977,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261112T140806Z-0ffbb6/caption_list_title_v1-live-20261112T140806Z-0ffbb6.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": false,
+     "moov_tail": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 19668324,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 22 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -13.75,
+     "yavg_delta": -77.2
+    },
+    "measured": {
+     "sat": 0.45,
+     "yavg": 27.8
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0814,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "wednesday-947pm-group-chat-retype"
  }
 ]
