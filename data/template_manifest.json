@@ -14792,5 +14792,1326 @@
    "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
   },
   "topic_id": "full-bottle-still-filling"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "loud bass drop",
+     "upbeat dance beat",
+     "dramatic orchestral swell",
+     "comedy sound effect",
+     "confident rap vocal"
+    ],
+    "emotional_role": "Hold the quiet anticipation without making it dramatic, letting the hello feel small and warm.",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft piano",
+     "gentle guitar",
+     "light synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "hazy"
+    ],
+    "trend_hashtags": [
+     "#morningbus",
+     "#quietmoment",
+     "#buswindow"
+    ],
+    "trend_keywords": [
+     "morning bus",
+     "soft indie",
+     "quiet moment"
+    ],
+    "valence": 0.2,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-11-12T10:53:51Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "monday-823am-bus-window-seat",
+   "core_human_moment": "A student waits by the bus window, pretending to listen to music while rehearsing a hello for a classmate who has not boarded yet.",
+   "degraded": false,
+   "emotional_primary": "nervous",
+   "emotional_secondary": "tender",
+   "format_id": "social_moment_loop_v1",
+   "human_action": "Sitting in the window seat, glancing toward the door then back out the window, holding a ready smile.",
+   "humour": 0.2,
+   "intentional_contrast": null,
+   "literal_scene": "A window-seat view from inside a morning bus, backpack on a lap, one earphone in, street and buildings sliding past outside the glass.",
+   "literalness": "literal",
+   "motion_intent": "Gentle continuous motion: bus moving, street passing, slight handheld sway, no cuts.",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "pale morning light",
+    "muted blue-grey"
+   ],
+   "rationale": "The POV bus window keeps the viewer inside the wait instead of watching it, and soft, sparse music lets the late smile land as tender rather than dramatic.",
+   "scene_entities": [
+    "backpack",
+    "earphone",
+    "city bus"
+   ],
+   "schema_version": "1.0",
+   "setting": "inside a morning city bus, window seat",
+   "tension": 0.5,
+   "text_safe_zone": "centre 30-61% vertical, keep bus window and lap clear so pale text stays legible",
+   "time_of_day": "morning",
+   "valence": 0.1,
+   "video_queries": [
+    "bus window seat morning street passing by",
+    "backpack on lap in moving bus morning",
+    "one earphone in ear looking out bus window"
+   ],
+   "visual_mood": [
+    "quiet",
+    "tender"
+   ],
+   "visual_profile_target": {
+    "luma": "78.6+-20",
+    "saturation": "8.34+-4"
+   },
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "zay\u2020",
+    "candidates": [
+     {
+      "artist": "Narvent",
+      "distance": 0.4709,
+      "fresh": true,
+      "id": "7693919040771065862",
+      "score": 64,
+      "title": "Recall",
+      "video_count": 341
+     },
+     {
+      "artist": "ciaociaomarigoldd",
+      "distance": 0.3505,
+      "fresh": true,
+      "id": "7315231082264446978",
+      "score": 64,
+      "title": "Epipremnum Aureum NJoy",
+      "video_count": 1141
+     },
+     {
+      "artist": "Audiostock",
+      "distance": 0.6598,
+      "fresh": false,
+      "id": "6886912570821707777",
+      "score": 80,
+      "title": "Calm LoFi song(882353)",
+      "video_count": 1200000
+     },
+     {
+      "artist": "zay\u2020",
+      "distance": 0.2868,
+      "fresh": true,
+      "id": "7226365708959123458",
+      "score": 92,
+      "title": "die4you (melody only)",
+      "video_count": 109700
+     },
+     {
+      "artist": "J.Folk",
+      "distance": 0.2865,
+      "fresh": true,
+      "id": "7229802620331083777",
+      "score": 64,
+      "title": "Longest Wait",
+      "video_count": 71
+     }
+    ],
+    "distance": 0.2868,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "lofi",
+      "rows": 5
+     }
+    ],
+    "rejected": [],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "52.8s vs 7.0s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 109700",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "7226365708959123458",
+    "title": "die4you (melody only)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 21
+     }
+    },
+    "passes": true,
+    "rationale": "metaphor lane shot 'SUNRISE' paired with 'die4you (melody only)' for social_moment_loop_v1.",
+    "total": 56
+   },
+   "visual": {
+    "band_busy": 0.2694,
+    "candidates": [
+     {
+      "band_busy": 0.2694,
+      "height": 1082,
+      "pin_id": "625789310718733317",
+      "query": "morning bus",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['bus'] (+5); scene words ['bus', 'morning', 'the'] (+12)",
+         "points": 17
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "828x1082, 9.9s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 73,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 828
+     },
+     {
+      "band_busy": 0.0152,
+      "height": 1280,
+      "pin_id": "97882991893538191",
+      "query": "morning window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['and', 'morning', 'the'] (+12)",
+         "points": 12
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 12.2s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 68,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.144,
+         "rows": [
+          4,
+          96
+         ]
+        },
+        {
+         "fraction_of_height": 0.317,
+         "rows": [
+          74,
+          277
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(4, 96), (74, 277)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         4,
+         96
+        ],
+        [
+         74,
+         277
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0247,
+      "height": 1280,
+      "pin_id": "870179959261614432",
+      "query": "bus window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['bus'] (+5); scene words ['and', 'bus', 'the'] (+12)",
+         "points": 17
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.0s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 73,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0251,
+      "height": 1280,
+      "pin_id": "33636328462393674",
+      "query": "morning window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['from', 'the'] (+8)",
+         "points": 8
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.2s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 64,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0135,
+      "height": 1280,
+      "pin_id": "656681189409005424",
+      "query": "bus window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['aesthetic', 'bus', 'home', 'train'] (+20); scene words ['back', 'bus'] (+8)",
+         "points": 28
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.3s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 84,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0154,
+      "height": 1280,
+      "pin_id": "1132655375024186991",
+      "query": "one earphone in ear looking out",
+      "query_lane": "emotional",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['and', 'one'] (+8)",
+         "points": 8
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 12.1s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 64,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0341,
+      "height": 1236,
+      "pin_id": "346355027607339802",
+      "query": "morning bus window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['view'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1236, 13.4s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.18,
+         "rows": [
+          0,
+          111
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 111)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         111
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.018,
+      "height": 1280,
+      "pin_id": "886505507892261892",
+      "query": "morning bus",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['bus'] (+5); scene words ['bus'] (+4)",
+         "points": 9
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 36.4s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 65,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.214,
+         "rows": [
+          0,
+          137
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 137)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         137
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0671,
+      "height": 1280,
+      "pin_id": "23573598045395873",
+      "query": "morning window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['morning'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 8.7s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.098,
+         "rows": [
+          0,
+          63
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 63)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         63
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0223,
+      "height": 1280,
+      "pin_id": "836121487090304583",
+      "query": "morning window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['morning'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 8.8s (need 7.0s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "my stuff",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.1902,
+     "motion": 0.1495,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "625789310718733317",
+    "pin_url": "https://www.pinterest.com/pin/625789310718733317/",
+    "query": "morning bus",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "morning bus window",
+      "returned": 25
+     },
+     {
+      "kept": 13,
+      "lane": "metaphor",
+      "query": "morning bus",
+      "returned": 25
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "morning window",
+      "returned": 25
+     },
+     {
+      "kept": 18,
+      "lane": "metaphor",
+      "query": "bus window",
+      "returned": 24
+     },
+     {
+      "kept": 1,
+      "lane": "adjacent",
+      "query": "backpack on lap in moving bus",
+      "returned": 1
+     },
+     {
+      "kept": 25,
+      "lane": "emotional",
+      "query": "one earphone in ear looking out",
+      "returned": 25
+     },
+     {
+      "kept": 3,
+      "lane": "literal",
+      "query": "bus window seat morning street passing",
+      "returned": 4
+     }
+    ],
+    "rejected": [
+     {
+      "id": "364721269846574616",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "465067099041235966",
+      "why": "on-screen text: 'VAY'"
+     },
+     {
+      "id": "1071364198864659160",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "998743654864184009",
+      "why": "on-screen text: \"(don't cancel everything out in the process); Add \""
+     },
+     {
+      "id": "681662093600864392",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "805862927111824534",
+      "why": "on-screen text: 'Available at Discount; Bb; Biuefooth; Bluetooth; G'"
+     },
+     {
+      "id": "810436895487145382",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "582794008071252091",
+      "why": "on-screen text: 'CO; COOL BUS; COOL BUSF; COOL BUSFUN SISTEIN; With'"
+     },
+     {
+      "id": "1012606297488623531",
+      "why": "on-screen text: 'IMET; MET; RIMET; WAIT BEHIND LINE; \u54c1'"
+     },
+     {
+      "id": "939774647212463632",
+      "why": "on-screen text: 'C'"
+     },
+     {
+      "id": "409968372351346398",
+      "why": "unusable crop 720x480"
+     },
+     {
+      "id": "706642997793091323",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "109212359706467561",
+      "why": "on-screen text: 'b'"
+     },
+     {
+      "id": "947655946614202245",
+      "why": "on-screen text: 'C; m'"
+     },
+     {
+      "id": "1066438386776067327",
+      "lane": "emotional",
+      "query": "one earphone in ear looking out",
+      "why": "advertising call-to-action: 'discount'"
+     },
+     {
+      "id": "293508100735200483",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "1122029694697664894",
+      "why": "on-screen text: 'Vamos hacia la parada; Vamos_'"
+     },
+     {
+      "id": "304555993574117852",
+      "why": "on-screen text: 'Credit:Pickplus; PoV the school buses; SUSPENSIONF'"
+     },
+     {
+      "id": "257127459970527065",
+      "why": "on-screen text: '433; Laradlo; P; PeortedOre; Porte dOrleans'"
+     },
+     {
+      "id": "55732114132361805",
+      "why": "on-screen text: 'ER'"
+     },
+     {
+      "id": "337981147044740130",
+      "why": "on-screen text: '\u2190\u56fd'"
+     },
+     {
+      "id": "580190364501443974",
+      "why": "on-screen text: 'pamu'"
+     },
+     {
+      "id": "958563101942761980",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "100275529198090636",
+      "why": "on-screen text: 'SANT; TANIMU'"
+     },
+     {
+      "id": "1150599404808135282",
+      "why": "too short 6.9s for 7.0s"
+     },
+     {
+      "id": "649503577503691461",
+      "why": "unusable crop 220x390"
+     },
+     {
+      "id": "1128925831624973775",
+      "why": "on-screen text: '60168; 60198; ALLAMERICAN SCHOOL BUS CORP; EME; Go'"
+     },
+     {
+      "id": "1080723241838503925",
+      "why": "on-screen text: 'B; D; HOOD; M; MOOD'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['bus'] (+5); scene words ['bus', 'morning', 'the'] (+12)",
+       "points": 17
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "828x1082, 9.9s (need 7.0s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 73,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "SUNRISE"
+   }
+  },
+  "audio": {
+   "bytes": 859709,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T105014Z-df9eae/assets/track_7226365708959123458.m4a",
+   "pin_url": null,
+   "sha256": "caea6b58614ba5576847613c6f25ff4f3838ba51aa1a05cd317c7fc3da71602d",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7226365708959123458",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 73.8,
+    "high": 0.2,
+    "mid": 26.0
+   },
+   "duration_s": 52.8,
+   "file": "track_7226365708959123458.m4a",
+   "key_estimate": "A minor",
+   "loudness_curve_db": [
+    -21.1,
+    -21.2,
+    -21.7
+   ],
+   "onset_density_per_s": 0.61,
+   "peak_db": -7.7,
+   "rms_db": -21.4,
+   "spectral_centroid_hz": 1180.4,
+   "tempo_bpm": 73.8,
+   "zero_crossing_rate": 0.0345
+  },
+  "background": {
+   "bytes": 6795584,
+   "creator": "my stuff",
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T105014Z-df9eae/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/625789310718733317/",
+   "sha256": "474e2fc7c2d0292ed8f0eea10d3c51b26e63559f4bb7a2f7d4449229022d33cf",
+   "source": "pinterest",
+   "stable_id": "625789310718733317",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 3,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "wants to be friendly and also wants to look unbothered about whether they are friendly back",
+    "observable_behaviour": "looks out the window, puts in one earphone that is not playing anything, smiles half a second too late when they look over",
+    "private_worry": "that saying hi looks clingy and not saying hi looks rude",
+    "situation": "Monday 8:23am, bus, window seat, someone you vaguely know from class boards"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 4,
+    "evidence": "\"classmate boards. earphone in, nothing playing. hi ready. smile late. back to the window.\" and caption \"hi was ready three stops ago\" \u2014 concrete beats, closes on the window.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Nothing failed structurally. Payoff's clipped fragments read slightly staccato; 'smile late' could become 'smile half a second too late' to name the exact beat and carry the private worry.",
+    "scene_specificity": 5,
+    "sendability_who": "A close friend or classmate who rehearses hellos with vague acquaintances, sent with 'the bus tomorrow, hi ready' or 'literally us at 8:23am'.",
+    "shareability": 5,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 3,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=False"
+     ]
+    }
+   ],
+   "topic_id": "monday-823am-bus-window-seat"
+  },
+  "delivery": {
+   "at": "2026-11-12T10:59:34Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -1.16,
+   "yavg_delta": 21.0
+  },
+  "format_id": "social_moment_loop_v1",
+  "grade": {
+   "brightness": 0.8,
+   "corrected": true,
+   "natural_fit": false,
+   "saturate": 0.9276974416017797
+  },
+  "measured": {
+   "sat": 7.18,
+   "yavg": 99.6
+  },
+  "output": {
+   "bytes": 16772738,
+   "duration_s": 7.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261112T105014Z-df9eae.mp4",
+   "sha256": "60939cffb3777190fba478fd5a135d6623953b429c0f4d05f16eb223181e1fc8"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7226365708959123458",
+    "title": "die4you (melody only)"
+   },
+   "background_query": "bus window seat, morning bus interior, backpack on lap, one earphone, street passing outside window",
+   "caption": "hi was ready three stops ago",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Quiet, intimate, and wistfully suspended, the sound should breathe around the short fragments and late smile like a soft lo-fi loop under an unplayed earphone.",
+     "tiktok_query": "lofi",
+     "tiktok_search_query": "lofi"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "morning bus window",
+     "pinterest_search_query": "morning bus window",
+     "semantic_analysis": "A soft, wistful morning commute where a shy, unspoken crush is rehearsed, missed, and quietly carried while staring out a sunlit bus window."
+    }
+   },
+   "hookLines": [
+    "monday 8:23am, bus",
+    "window seat."
+   ],
+   "loop_hypothesis": "back to the window lands straight back on the opening window seat, so replay restarts the same 8:23am bus moment",
+   "payoffLines": [
+    "classmate boards.",
+    "earphone in,",
+    "nothing playing.",
+    "hi ready. smile late.",
+    "back to the window."
+   ],
+   "provenance": {
+    "creator": "my stuff",
+    "pin_id": "625789310718733317",
+    "pin_url": "https://www.pinterest.com/pin/625789310718733317/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 108): warm off-white"
+   },
+   "topic_id": "monday-823am-bus-window-seat"
+  },
+  "qa": {
+   "attempts": 2,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -1.16,
+    "yavg_delta": 21.0
+   },
+   "duration_s": 7.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     6.4,
+     7.8
+    ],
+    "duration_s": 7.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261112T105014Z-df9eae/social_moment_loop_v1-live-20261112T105014Z-df9eae.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 16772738,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 7.18,
+    "yavg": 99.6
+   },
+   "ok": false,
+   "targets": {
+    "sat": 8.34,
+    "sat_tol": 4.0,
+    "yavg": 78.6,
+    "yavg_tol": 20.0
+   },
+   "text_frame0": {
+    "band": [
+     0.3,
+     0.61
+    ],
+    "bright_fraction": 0.2839,
+    "ok": true,
+    "threshold": 165
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 32.7
+  },
+  "rendered_at": "2026-11-12T10:59:29Z",
+  "run_id": "20261112T105014Z-df9eae",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A student waits by the bus window, pretending to listen to music while rehearsing a hello for a classmate who has not boarded yet.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "bus window seat morning street passing",
+     "backpack on lap in moving bus",
+     "one earphone in ear looking out"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.2868,
+    "keywords": [
+     {
+      "keyword": "lofi",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "7226365708959123458",
+    "title": "die4you (melody only)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.2868
+   },
+   "content": {
+    "attempts": 3,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 4,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 3,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 2,
+    "ok": true,
+    "topic_id": "monday-823am-bus-window-seat"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "lofi",
+    "vendor": "meta-api",
+    "why": "Quiet, intimate, and wistfully suspended, the sound should breathe around the short fragments and late smile like a soft lo-fi loop under an unplayed earphone."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "morning bus window",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "social_moment_loop_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/social_moment_loop_v1-live-20261112T105014Z-df9eae.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "metaphor lane shot 'SUNRISE' paired with 'die4you (melody only)' for social_moment_loop_v1.",
+    "score": 56
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 10.32,
+     "yavg": 108.2
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "625789310718733317",
+    "query": "morning bus",
+    "review_status": "accept",
+    "score": 73,
+    "size": "828x1082",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "SUNRISE"
+   },
+   "render": {
+    "attempts": 2,
+    "corrections": true,
+    "ok": true,
+    "seconds": 32.7
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      6.4,
+      7.8
+     ],
+     "duration_s": 7.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261112T105014Z-df9eae/social_moment_loop_v1-live-20261112T105014Z-df9eae.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 16772738,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 108): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -1.16,
+     "yavg_delta": 21.0
+    },
+    "measured": {
+     "sat": 7.18,
+     "yavg": 99.6
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.3,
+      0.61
+     ],
+     "bright_fraction": 0.2839,
+     "ok": true,
+     "threshold": 165
+    }
+   }
+  },
+  "status": "rendered",
+  "template": {
+   "dir": "templates/social_moment_loop_v1",
+   "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
+  },
+  "topic_id": "monday-823am-bus-window-seat"
  }
 ]
