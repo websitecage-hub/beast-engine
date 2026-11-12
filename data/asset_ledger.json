@@ -16,6 +16,14 @@
    "status": "delivered",
    "used_by": "20261111T172212Z-97f8f4"
   },
+  "6982541212746008578": {
+   "first_seen_at": "2026-11-12T12:34:10Z",
+   "last_used_at": null,
+   "review_status": "pending",
+   "sha256": "16a669e463a10c0c72b525adc51c27ab786b876a2fddfedd6d86ee86d7bb3fa5",
+   "status": "released",
+   "used_by": null
+  },
   "6997838557607888898": {
    "first_seen_at": "2026-11-10T12:09:55Z",
    "last_used_at": "2026-11-10T12:11:09Z",
@@ -58,7 +66,7 @@
   }
  },
  "reservations": {},
- "updated_at": "2026-11-12T10:59:34Z",
+ "updated_at": "2026-11-12T12:34:16Z",
  "version": 1,
  "visual": {
   "pin:1089448966121181963": {
@@ -93,6 +101,17 @@
    "sha256": "474e2fc7c2d0292ed8f0eea10d3c51b26e63559f4bb7a2f7d4449229022d33cf",
    "status": "delivered",
    "used_by": "20261112T105014Z-df9eae"
+  },
+  "pin:639581584573604016": {
+   "first_seen_at": "2026-11-12T12:33:35Z",
+   "lane": "metaphor",
+   "last_used_at": null,
+   "pin_id": "639581584573604016",
+   "query": "golden hour",
+   "review_status": "accept",
+   "sha256": "0e85293979848ff9dfd8ea7045fd7344092d06bd771eb2439149ee2efad32fc4",
+   "status": "released",
+   "used_by": null
   },
   "pin:961096376746383572": {
    "first_seen_at": "2026-11-11T23:33:46Z",
