@@ -19777,5 +19777,1392 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "tuesday-819am-coffee-queue-performance"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "upbeat pop drop",
+     "loud drums",
+     "confident rap vocal",
+     "dramatic swelling strings",
+     "comedy sound effects"
+    ],
+    "emotional_role": "hold the shy, unspoken tension steady without turning it into a joke or a confession",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "gentle synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "hushed",
+     "slightly lo-fi"
+    ],
+    "trend_hashtags": [
+     "#quietmoments",
+     "#612pm"
+    ],
+    "trend_keywords": [
+     "soft piano",
+     "quiet evening moment"
+    ],
+    "valence": 0.2,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-12T17:13:20Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "little-jobs-612pm-lift-down",
+   "core_human_moment": "A person times their lift ride to be near someone they like, then invents small busy jobs to avoid looking at them and to hide how nervous they are.",
+   "degraded": false,
+   "emotional_primary": "shy",
+   "emotional_secondary": "tender",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing in lift gripping phone with both hands and watching floor numbers",
+   "humour": 0.35,
+   "intentional_contrast": null,
+   "literal_scene": "A person alone in an office lift, holding a phone with both hands, eyes on the floor numbers ticking down from seven.",
+   "literalness": "literal",
+   "motion_intent": "almost still, calm locked shot with only the slow descent and changing floor numbers",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "cool fluorescent lift light",
+    "muted grey metal"
+   ],
+   "rationale": "The still lift shot makes the invented busywork read as shy avoidance, and soft sparse piano keeps the 6:12pm moment tender and unspoken rather than turning it into a punchline.",
+   "scene_entities": [
+    "phone",
+    "elevator floor display",
+    "office lift"
+   ],
+   "schema_version": "1.0",
+   "setting": "office building lift",
+   "tension": 0.55,
+   "text_safe_zone": "centre band 41-59% vertical, keep lift interior uncluttered behind title",
+   "time_of_day": "early evening",
+   "valence": 0.2,
+   "video_queries": [
+    "person standing in office lift holding phone",
+    "elevator floor numbers counting down from seven",
+    "empty office corridor at 6:12pm evening light"
+   ],
+   "visual_mood": [
+    "quiet",
+    "tender"
+   ],
+   "visual_profile_target": {
+    "luma": "105 +/- 14",
+    "saturation": "14.2 +/- 5"
+   },
+   "warmth": 0.6
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Synthwave Goose",
+    "candidates": [
+     {
+      "artist": "Eldar Kedem",
+      "distance": 0.7529,
+      "fresh": true,
+      "id": "6982541212746008578",
+      "score": 100,
+      "title": "Walking Around - Instrumental Version",
+      "video_count": 4800000
+     },
+     {
+      "artist": "Synthwave Goose",
+      "distance": 0.3009,
+      "fresh": true,
+      "id": "6839324086548563969",
+      "score": 100,
+      "title": "Blade Runner 2049",
+      "video_count": 1500000
+     },
+     {
+      "artist": "Tony Renis",
+      "distance": 0.6883,
+      "fresh": true,
+      "id": "7059319524918560770",
+      "score": 64,
+      "title": "Quando, Quando, Quando",
+      "video_count": 768
+     },
+     {
+      "artist": "kapa",
+      "distance": 0.5653,
+      "fresh": true,
+      "id": "7155038561467648002",
+      "score": 92,
+      "title": "Fine line (Instrumental)",
+      "video_count": 378500
+     }
+    ],
+    "distance": 0.3009,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7545945306422626321",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 1500000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6839324086548563969",
+    "title": "Blade Runner 2049"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 15
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot 'FIERCE' paired with 'Blade Runner 2049' for caption_list_title_v1.",
+    "total": 50
+   },
+   "visual": {
+    "band_busy": 0.0426,
+    "candidates": [
+     {
+      "band_busy": 0.0426,
+      "height": 900,
+      "pin_id": "112449321938237353",
+      "query": "elevator golden hour",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['and', 'from', 'the'] (+12)",
+         "points": 12
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x900, 12.6s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 65,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.08,
+         "rows": [
+          414,
+          450
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(414, 450)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         414,
+         450
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0669,
+      "height": 1920,
+      "pin_id": "639581584573604016",
+      "query": "golden hour",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['sunset'] (+5); scene words ['the'] (+4)",
+         "points": 9
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "1080x1920, 62.0s (need 12.2s)",
+         "points": 20
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 69,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.202,
+         "rows": [
+          0,
+          129
+         ]
+        },
+        {
+         "fraction_of_height": 0.2,
+         "rows": [
+          0,
+          128
+         ]
+        },
+        {
+         "fraction_of_height": 0.245,
+         "rows": [
+          0,
+          157
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 129), (0, 128)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         129
+        ],
+        [
+         0,
+         128
+        ],
+        [
+         0,
+         157
+        ]
+       ]
+      },
+      "width": 1080
+     },
+     {
+      "band_busy": 0.1097,
+      "height": 1280,
+      "pin_id": "5277724559366224",
+      "query": "elevator golden",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.052,
+      "height": 1280,
+      "pin_id": "977492294105681436",
+      "query": "elevator hour",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 12.6s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0094,
+      "height": 1280,
+      "pin_id": "10062799162681629",
+      "query": "golden hour",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 89.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.381,
+         "rows": [
+          326,
+          570
+         ]
+        },
+        {
+         "fraction_of_height": 0.438,
+         "rows": [
+          360,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.263,
+         "rows": [
+          373,
+          541
+         ]
+        },
+        {
+         "fraction_of_height": 0.1,
+         "rows": [
+          576,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(326, 570), (360, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         326,
+         570
+        ],
+        [
+         360,
+         640
+        ],
+        [
+         373,
+         541
+        ],
+        [
+         576,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0559,
+      "height": 1280,
+      "pin_id": "605593481172002932",
+      "query": "golden hour",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 39.7s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.01,
+      "height": 1280,
+      "pin_id": "1039979738954738254",
+      "query": "golden hour",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['aesthetic'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.0s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 58,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0833,
+      "height": 1280,
+      "pin_id": "942941240751159497",
+      "query": "golden hour",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 22.6s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0142,
+      "height": 1280,
+      "pin_id": "25262447902582183",
+      "query": "person standing in office lift holding",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "FW23",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 2,
+     "max_jump": 0.2411,
+     "motion": 0.1926,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "112449321938237353",
+    "pin_url": "https://www.pinterest.com/pin/112449321938237353/",
+    "query": "elevator golden hour",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 14,
+      "lane": "metaphor",
+      "query": "elevator golden hour",
+      "returned": 14
+     },
+     {
+      "kept": 21,
+      "lane": "metaphor",
+      "query": "elevator golden",
+      "returned": 25
+     },
+     {
+      "kept": 20,
+      "lane": "metaphor",
+      "query": "elevator hour",
+      "returned": 25
+     },
+     {
+      "kept": 23,
+      "lane": "metaphor",
+      "query": "golden hour",
+      "returned": 23
+     },
+     {
+      "kept": 1,
+      "lane": "adjacent",
+      "query": "elevator floor numbers counting down from",
+      "returned": 1
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "empty office corridor at 6:12pm evening",
+      "returned": 0
+     },
+     {
+      "kept": 16,
+      "lane": "literal",
+      "query": "person standing in office lift holding",
+      "returned": 16
+     }
+    ],
+    "rejected": [
+     {
+      "id": "360850988913099266",
+      "why": "too short 9.08s for 12.2s"
+     },
+     {
+      "id": "606226799886894435",
+      "why": "on-screen text: 'The fences are covered in; The terraces around; To'"
+     },
+     {
+      "id": "1099159852843092398",
+      "why": "on-screen text: '26th floor; 8\u67086\u65e5\u65f6\u4ee5\u964d\u5229\u7528\u518d; AND CAFE AREA; Best time:v'"
+     },
+     {
+      "id": "297589487901467809",
+      "why": "on-screen text: '100; 1352; DECEMBE; GVON; PACIFIC PLACE'"
+     },
+     {
+      "id": "1138707087069492158",
+      "why": "on-screen text: 'ZE; \u53e3\u53e3; \u53e3\u53e3\u65e5; \u65e5\u53e3'"
+     },
+     {
+      "id": "1114570607799235679",
+      "why": "on-screen text: 'ELEVATORS; aaron; \u65e5'"
+     },
+     {
+      "id": "1149262398696689654",
+      "why": "on-screen text: 'ELEVATOR; HALLUCINATIONS, A; HERAUDITORY; HOSPITAL'"
+     },
+     {
+      "id": "254171972718815343",
+      "why": "too short 12.0s for 12.2s"
+     },
+     {
+      "id": "498562621268105230",
+      "why": "too short 8.8s for 12.2s"
+     },
+     {
+      "id": "498562621273851773",
+      "lane": "metaphor",
+      "query": "elevator hour",
+      "why": "advertising call-to-action: 'discount'"
+     },
+     {
+      "id": "360710251413015536",
+      "why": "unusable crop 480x480"
+     },
+     {
+      "id": "710020697550110496",
+      "why": "too short 11.08s for 12.2s"
+     },
+     {
+      "id": "1084523154051886468",
+      "why": "on-screen text: '111; 1111; 2O:OO\u00b7STOP4\u00b7EASTSHINJUKUNEON; 3DGiant C'"
+     },
+     {
+      "id": "827536500334348225",
+      "why": "on-screen text: 'COu; Every; RO; This; be'"
+     },
+     {
+      "id": "861313497516146301",
+      "why": "on-screen text: '@poster6262; Beats; Mr.Guy; PoliceFill ElevatorSil'"
+     },
+     {
+      "id": "975592338120652895",
+      "lane": "metaphor",
+      "query": "elevator hour",
+      "why": "advertising call-to-action: 'discount'"
+     },
+     {
+      "id": "471541023517157916",
+      "why": "on-screen text: '(m; (museums.foed,vintage+thrift shopping!); 1095-'"
+     },
+     {
+      "id": "868491109414032486",
+      "why": "on-screen text: 'Switzerland is just one; When you realize that; Wh'"
+     },
+     {
+      "id": "670473463320563635",
+      "why": "too short 10.98s for 12.2s"
+     },
+     {
+      "id": "953496552374760847",
+      "lane": "literal",
+      "query": "person standing in office lift holding",
+      "why": "commerce/affiliate domain: 'amazon.com'"
+     },
+     {
+      "id": "43910165112182892",
+      "why": "on-screen text: 'SAVE; This is...; Would YoU ride an elevator that;'"
+     },
+     {
+      "id": "578008933433819643",
+      "why": "on-screen text: 'AT; BEAUTY THAT; ES; HYBON; PERSONIFIES'"
+     },
+     {
+      "id": "1089519334863663920",
+      "why": "too short 11.08s for 12.2s"
+     },
+     {
+      "id": "1127307350519711907",
+      "why": "too short 10.01s for 12.2s"
+     },
+     {
+      "id": "618541330112879716",
+      "why": "unusable crop 640x360"
+     },
+     {
+      "id": "677228862751634874",
+      "why": "on-screen text: 'C; E; \u516b; \u5f69'"
+     },
+     {
+      "id": "995858536352051109",
+      "why": "unusable crop 592x1056"
+     },
+     {
+      "id": "924645367250603192",
+      "lane": "metaphor",
+      "query": "elevator golden",
+      "why": "advertising call-to-action: 'Shop now'"
+     },
+     {
+      "id": "653233120993813210",
+      "why": "unusable crop 540x960"
+     },
+     {
+      "id": "29343835066174705",
+      "why": "too short 8.23s for 12.2s"
+     },
+     {
+      "id": "977492294114763051",
+      "why": "on-screen text: 'A; I'"
+     },
+     {
+      "id": "928867491887442321",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "852939616919187348",
+      "why": "unusable crop 540x960"
+     },
+     {
+      "id": "211174978329859",
+      "why": "on-screen text: 'TheBrainAndTheBrawn.com; \u4e09'"
+     },
+     {
+      "id": "21603273205127897",
+      "lane": "literal",
+      "query": "person standing in office lift holding",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "703335666829511231",
+      "why": "on-screen text: 'M; PR; TO; WELCOME'"
+     },
+     {
+      "id": "1054686806538454394",
+      "why": "unusable crop 720x580"
+     },
+     {
+      "id": "1058064506201217569",
+      "why": "unusable crop 352x640"
+     },
+     {
+      "id": "1058064506201423540",
+      "why": "unusable crop 352x640"
+     },
+     {
+      "id": "1058064506201084799",
+      "why": "on-screen text: '(2210f6); X; XIDR; itllm; \u4e8c'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words ['and', 'from', 'the'] (+12)",
+       "points": 12
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x900, 12.6s (need 12.2s)",
+       "points": 13
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 65,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.08,
+       "rows": [
+        414,
+        450
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(414, 450)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       414,
+       450
+      ]
+     ]
+    },
+    "title": "FIERCE"
+   }
+  },
+  "audio": {
+   "bytes": 982126,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T171101Z-73273e/assets/track_6839324086548563969.m4a",
+   "pin_url": null,
+   "sha256": "4816a9487dc601f20f28aca8050f5b3629ab1000f93fa06d21fb155cfb0e4417",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6839324086548563969",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 84.9,
+    "high": 0.1,
+    "mid": 15.0
+   },
+   "duration_s": 60.0,
+   "file": "track_6839324086548563969.m4a",
+   "key_estimate": "G minor",
+   "loudness_curve_db": [
+    -23.0,
+    -19.2,
+    -19.2
+   ],
+   "onset_density_per_s": 2.05,
+   "peak_db": -8.4,
+   "rms_db": -20.1,
+   "spectral_centroid_hz": 724.7,
+   "tempo_bpm": 117.5,
+   "zero_crossing_rate": 0.0293
+  },
+  "background": {
+   "bytes": 2469387,
+   "creator": "FW23",
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T171101Z-73273e/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/112449321938237353/",
+   "sha256": "ef959c72017226aff2abaeeb23dc89717aa3b478c4bfd68b94dfd0bd458114df",
+   "source": "pinterest",
+   "stable_id": "112449321938237353",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "You want to seem easy and approachable, but trying to look relaxed is exactly what makes you tense.",
+    "observable_behaviour": "Watching the floor numbers, phone held in both hands, stepping aside twice even though there is space, smiling at the doors",
+    "private_worry": "That standing still and silent makes you look cold or stuck-up, and speaking up will sound forced",
+    "situation": "Thursday 6:12pm, in the lift at work, doors closing with two colleagues you barely know"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Grip phone with both hands like a ticket\"; \"Step aside twice though no one needs room\"; \"Smile at the doors instead of them\"; \"Blurt see you tomorrow after they have gone\" \u2014 seven items, count correct, lift-specific.",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Item 1 'Time your walk to arrive just after them' is a pre-lift scene; item 7 'Plan a different exit for tomorrow' shifts to future, slightly restating item 1's avoidance.",
+    "scene_specificity": 5,
+    "sendability_who": "A close colleague or friend who invents errands to avoid lift small talk, sent with 'me at 6:12' or 'the lift-down jobs'.",
+    "shareability": 5,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "little-jobs-612pm-lift-down"
+  },
+  "delivery": {
+   "at": "2026-11-12T17:24:11Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -5.83,
+   "yavg_delta": -6.0
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 8.51,
+    "yavg": 99.2
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 8.37,
+   "yavg": 99.0
+  },
+  "output": {
+   "bytes": 10969798,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261112T171101Z-73273e.mp4",
+   "sha256": "3d524ef972c96e650dd98c8ca34ef6db66df23b580420758eaef0dbdf405fa83"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6839324086548563969",
+    "title": "Blade Runner 2049"
+   },
+   "background_query": "person standing in office lift holding phone watching floor numbers",
+   "caption": "7 little jobs you invent for the 6:12pm lift down:\n1. Time your walk to arrive just after them\n2. Grip phone with both hands like a ticket\n3. Track floor numbers down from seven\n4. Step aside twice though no one needs room\n5. Smile at the doors instead of them\n6. Blurt see you tomorrow after they have gone\n7. Plan a different exit for tomorrow at 6:12",
+   "closing": "You were not being cold, you were just trying not to be in the way.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A looping, ticking, quietly obsessive build that swells with restrained longing and releases on the repeated 6:12 ritual.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "elevator golden hour",
+     "pinterest_search_query": "elevator golden hour",
+     "semantic_analysis": "A hushed, golden-lit evening ritual in a small shared space where lingering, looking away, and small invented routines become the whole story."
+    }
+   },
+   "headline": "7 little jobs you invent for the 6:12pm lift down",
+   "list_items": [
+    "Time your walk to arrive just after them",
+    "Grip phone with both hands like a ticket",
+    "Track floor numbers down from seven",
+    "Step aside twice though no one needs room",
+    "Smile at the doors instead of them",
+    "Blurt see you tomorrow after they have gone",
+    "Plan a different exit for tomorrow at 6:12"
+   ],
+   "provenance": {
+    "creator": "FW23",
+    "pin_id": "112449321938237353",
+    "pin_url": "https://www.pinterest.com/pin/112449321938237353/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 99): warm off-white"
+   },
+   "titleLines": [
+    "7 little jobs you",
+    "invent for the",
+    "6:12pm lift down"
+   ],
+   "topic_id": "little-jobs-612pm-lift-down"
+  },
+  "publish": {
+   "alt_text": "Person standing in office lift holding phone watching floor numbers. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-12T17:24:48Z",
+   "caption": "7 little jobs you invent for the 6:12pm lift down:\n1. Time your walk to arrive just after them\n2. Grip phone with both hands like a ticket\n3. Track floor numbers down from seven\n4. Step aside twice though no one needs room\n5. Smile at the doors instead of them\n6. Blurt see you tomorrow after they have gone\n7. Plan a different exit for tomorrow at 6:12\n\nYou were not being cold, you were just trying not to be in the way.",
+   "channel": "instagram",
+   "container_id": "17919140730538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18062696813552780",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://n.uguu.se/kfhdhvWZ.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -5.83,
+    "yavg_delta": -6.0
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261112T171101Z-73273e/caption_list_title_v1-live-20261112T171101Z-73273e.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 10969798,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 8.37,
+    "yavg": 99.0
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0541,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 50.2
+  },
+  "rendered_at": "2026-11-12T17:24:08Z",
+  "run_id": "20261112T171101Z-73273e",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person times their lift ride to be near someone they like, then invents small busy jobs to avoid looking at them and to hide how nervous they are.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person standing in office lift holding",
+     "elevator floor numbers counting down from",
+     "empty office corridor at 6:12pm evening"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3009,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6839324086548563969",
+    "title": "Blade Runner 2049"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3009
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 3,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "little-jobs-612pm-lift-down"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "A looping, ticking, quietly obsessive build that swells with restrained longing and releases on the repeated 6:12 ritual."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "elevator golden hour",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261112T171101Z-73273e.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot 'FIERCE' paired with 'Blade Runner 2049' for caption_list_title_v1.",
+    "score": 50
+   },
+   "pinterest": {
+    "candidates": 9,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 8.51,
+     "yavg": 99.2
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "112449321938237353",
+    "query": "elevator golden hour",
+    "review_status": "accept",
+    "score": 65,
+    "size": "720x900",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "FIERCE"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 50.2
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261112T171101Z-73273e/caption_list_title_v1-live-20261112T171101Z-73273e.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 10969798,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 99): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -5.83,
+     "yavg_delta": -6.0
+    },
+    "measured": {
+     "sat": 8.37,
+     "yavg": 99.0
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0541,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "little-jobs-612pm-lift-down"
  }
 ]
