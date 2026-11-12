@@ -119,7 +119,23 @@ def test_staging_writes_only_the_copy(monkeypatch, tmp_path):
 
 
 # ------------------------------------------------------------------- grading
-def test_grade_is_bounded_even_for_an_extreme_clip():
+def test_no_grade_is_applied_by_default(monkeypatch):
+    """Owner's instruction: the footage ships as shot.
+
+    An extreme clip must NOT be colour-corrected - it is reported, not fixed.
+    """
+    monkeypatch.delenv("BEAST_BG_GRADE", raising=False)
+    css, vals = template_renderer.grade_for("caption_list_title_v1",
+                                            {"yavg": 5.0, "sat": 60.0})
+    assert css == "none", "a filter was applied to the background"
+    assert vals["applied"] is False
+    assert vals["brightness"] == 1.0 and vals["saturate"] == 1.0
+    assert vals["delta"]["yavg"] < 0        # the drift is recorded for the manifest
+
+
+def test_the_bounded_grade_still_exists_behind_the_switch(monkeypatch):
+    """BEAST_BG_GRADE=1 restores the old bounded correction, unchanged."""
+    monkeypatch.setenv("BEAST_BG_GRADE", "1")
     css, vals = template_renderer.grade_for("caption_list_title_v1",
                                             {"yavg": 5.0, "sat": 60.0})
     lim = template_renderer.PROFILES["caption_list_title_v1"]["grade_limits"]

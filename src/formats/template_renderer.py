@@ -117,14 +117,51 @@ def measure_luma_sat(path) -> dict:
             "sat": round(sum(ss) / len(ss), 2) if ss else None}
 
 
-def grade_for(format_id: str, metrics: dict) -> tuple[str, dict]:
-    """A bounded grade that lands the clip inside the measured band.
+def _background_grade_enabled() -> bool:
+    """Is the old bounded background correction switched on?
 
-    Natural-fit clips need ~1.0. Clips outside the declared limits are reported
-    as stretch picks by the caller; the grade is still bounded here rather than
-    silently pushing a dark clip until the blacks lift.
+    Off by default: the footage ships as shot. `BEAST_BG_GRADE=1` restores it, and
+    `data/config.json`'s `bg_grade` is honoured when it is explicitly true, so the
+    same switch governs the two-format pipeline and the older renderer.
+    """
+    import os
+    env = os.environ.get("BEAST_BG_GRADE")
+    if env is not None:
+        return env.strip().lower() in ("1", "true", "yes", "on")
+    try:
+        from .. import config
+        return bool(config.load_config().get("bg_grade", False))
+    except Exception:                                     # noqa: BLE001
+        return False
+
+
+def grade_for(format_id: str, metrics: dict) -> tuple[str, dict]:
+    """The background ships AS SHOT: no grade, by default.
+
+    Owner's instruction: no colour layer over the footage - the clip that the search
+    returned is the clip the viewer sees, with the copy and the music on top. The
+    measured band is still reported (and still recorded on every run) so drift is
+    visible in the manifest, but nothing is applied to the picture.
+
+    Set BEAST_BG_GRADE=1 to restore the old bounded correction, which pulled the clip
+    toward the format's measured band inside declared limits. It never pushed a dark
+    clip until the blacks lifted; clips outside the limits were reported as stretch
+    picks rather than silently forced.
     """
     p = PROFILES[format_id]
+    if not _background_grade_enabled():
+        y = metrics.get("yavg")
+        s = metrics.get("sat")
+        delta = {}
+        if isinstance(y, (int, float)):
+            delta["yavg"] = round(float(y) - float(p["yavg"]), 1)
+        if isinstance(s, (int, float)):
+            delta["sat"] = round(float(s) - float(p["sat"]), 2)
+        return "none", {"brightness": 1.0, "saturate": 1.0, "applied": False,
+                        "natural_fit": True, "raw": {"yavg": y, "sat": s},
+                        "target": {"yavg": p["yavg"], "sat": p["sat"]},
+                        "delta": delta,
+                        "why": "no grade applied; band recorded only"}
     lim = p["grade_limits"]
     y = metrics.get("yavg") or p["yavg"]
     s = metrics.get("sat") or p["sat"]
@@ -134,6 +171,7 @@ def grade_for(format_id: str, metrics: dict) -> tuple[str, dict]:
     s_c = max(lim["saturate"][0], min(lim["saturate"][1], sat))
     css = f"brightness({b_c:.3f}) saturate({s_c:.3f}) contrast(1.02)"
     return css, {"brightness": round(b_c, 3), "saturate": round(s_c, 3),
+                 "applied": True,
                  "natural_fit": (b_c == b and s_c == sat),
                  "raw": {"brightness": round(b, 3), "saturate": round(sat, 3)}}
 
