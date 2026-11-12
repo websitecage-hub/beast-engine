@@ -120,9 +120,10 @@ def test_staging_injects_content_and_never_a_filter(tmp_path, monkeypatch):
     vid, aud = _tiny_media(tmp_path)
     payload = {"titleLines": ["a", "b"], "caption": "c",
                "background_query": "night window", "topic_id": "t"}
-    proj, info = template_renderer.stage_project("caption_list_title_v1", payload,
-                                                 run_id="stage-check",
-                                                 background=vid, audio=aud)
+    import uuid
+    proj, info = template_renderer.stage_project(
+        "caption_list_title_v1", payload, run_id=f"stage-{uuid.uuid4().hex[:8]}",
+        background=vid, audio=aud)
     html = (proj / "index.html").read_text()
     assert "const CONTENT" in html
     assert "filter" not in html.lower().replace("filter: none", "")
