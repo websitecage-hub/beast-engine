@@ -21164,5 +21164,1043 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "little-jobs-612pm-lift-down"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "loud upbeat pop",
+     "dramatic swelling strings",
+     "comedy sound effects",
+     "bass drops",
+     "fast spoken lyrics"
+    ],
+    "emotional_role": "hold the awkward pause gently without turning it sad or dramatic",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft piano",
+     "light acoustic guitar"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "low-key"
+    ],
+    "trend_hashtags": [
+     "#relatable",
+     "#quietmoments",
+     "#kitchenhover"
+    ],
+    "trend_keywords": [
+     "kitchen hover",
+     "relatable moment",
+     "quiet evening"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-12T22:42:12Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "saturday-kitchen-hover-mug-moment",
+   "core_human_moment": "Everyone else has sat down to relax, and she keeps standing in the kitchen, unsure how to join them, staying busy with an empty mug so she has a reason to linger.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "uneasy",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing at the counter holding an empty mug, rinsing and wiping, not sitting down",
+   "humour": 0.4,
+   "intentional_contrast": null,
+   "literal_scene": "A person standing alone at a kitchen counter holding an empty mug while others sit on a sofa in the adjoining room, softly out of focus.",
+   "literalness": "literal",
+   "motion_intent": "almost still, small fidgeting hand movements with the mug, no camera movement",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm lamplight",
+    "muted neutrals"
+   ],
+   "rationale": "The still kitchen shot lets the small mug fidgets carry the feeling of not knowing where to sit, and soft slow music keeps it tender and funny rather than heavy.",
+   "scene_entities": [
+    "empty mug",
+    "kitchen counter",
+    "kitchen"
+   ],
+   "schema_version": "1.0",
+   "setting": "home kitchen opening onto living room",
+   "tension": 0.4,
+   "text_safe_zone": "centre vertical band 41-59%, keep background soft and uncluttered for white title",
+   "time_of_day": "late evening",
+   "valence": -0.2,
+   "video_queries": [
+    "person standing at kitchen counter holding empty mug",
+    "over shoulder view of kitchen counter and mug",
+    "empty mug on kitchen counter at night"
+   ],
+   "visual_mood": [
+    "quiet",
+    "lived-in"
+   ],
+   "visual_profile_target": {
+    "luma": "105 +/-14",
+    "saturation": "14.2 +/-5"
+   },
+   "warmth": 0.3
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "inanmusic",
+    "candidates": [
+     {
+      "artist": "\ud835\udc79\ud835\udc9a\ud835\udc90\ud835\udc91\ud835\udc8a\ud835\udc82\ud835\udc8f\ud835\udc90\ud835\udc87\ud835\udc90\ud835\udc93\ud835\udc95\ud835\udc86\u0c68\u09ce",
+      "distance": 0.4146,
+      "fresh": true,
+      "id": "6964436213998553089",
+      "score": 84,
+      "title": "Toner CMVP system Transparent piano Refreshing(1016869)",
+      "video_count": 33400
+     },
+     {
+      "artist": "inanmusic",
+      "distance": 0.5366,
+      "fresh": true,
+      "id": "7433371598969653265",
+      "score": 92,
+      "title": "comfort chain (Ambient)",
+      "video_count": 361800
+     },
+     {
+      "artist": "jalenngonda",
+      "distance": 0.5591,
+      "fresh": true,
+      "id": "7205675073137543169",
+      "score": 92,
+      "title": "If You Don't Want My Love",
+      "video_count": 221400
+     }
+    ],
+    "distance": 0.5366,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7097039090628970497",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7381297275933427728",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 361800",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "7433371598969653265",
+    "title": "comfort chain (Ambient)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 17
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'comfort chain (Ambient)' for caption_list_title_v1.",
+    "total": 52
+   },
+   "visual": {
+    "band_busy": 0.038,
+    "candidates": [
+     {
+      "band_busy": 0.038,
+      "height": 1280,
+      "pin_id": "1031254014687421050",
+      "query": "quiet kitchen",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['and', 'living', 'out', 'the'] (+14)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 72.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.15,
+         "rows": [
+          0,
+          96
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 96)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         96
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0592,
+      "height": 1280,
+      "pin_id": "1266706140968551",
+      "query": "quiet kitchen",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 31.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0247,
+      "height": 1280,
+      "pin_id": "208995238950932683",
+      "query": "person standing at kitchen counter holding",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 59.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Social",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 5,
+     "max_jump": 0.3306,
+     "motion": 0.2494,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "1031254014687421050",
+    "pin_url": "https://www.pinterest.com/pin/1031254014687421050/",
+    "query": "quiet kitchen",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "quiet kitchen aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "quiet kitchen",
+      "returned": 25
+     },
+     {
+      "lane": "metaphor",
+      "query": "quiet aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "kitchen aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 6,
+      "lane": "adjacent",
+      "query": "over shoulder view of kitchen counter",
+      "returned": 6
+     },
+     {
+      "kept": 24,
+      "lane": "emotional",
+      "query": "empty mug on kitchen counter at",
+      "returned": 24
+     },
+     {
+      "kept": 17,
+      "lane": "literal",
+      "query": "person standing at kitchen counter holding",
+      "returned": 20
+     }
+    ],
+    "rejected": [
+     {
+      "id": "1087971222500530171",
+      "why": "unusable crop 720x480"
+     },
+     {
+      "id": "68748766230",
+      "why": "on-screen text: 'HOWTO; Next; O; PROPERLY; SET ABUFFET'"
+     },
+     {
+      "id": "90283167527253403",
+      "why": "on-screen text: 'MINUTE; MINUTES IN A DAY; MINUTESINADAY; O; THE MO'"
+     },
+     {
+      "id": "962081539173806603",
+      "why": "on-screen text: '**; \u7c73\u7c73'"
+     },
+     {
+      "id": "1147784655066410865",
+      "why": "too short 9.22s for 12.2s"
+     },
+     {
+      "id": "1056868237559637601",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "914582636848020612",
+      "why": "on-screen text: 'I; UL'"
+     },
+     {
+      "id": "907616131197874067",
+      "why": "on-screen text: 'T; V; \u25a0'"
+     },
+     {
+      "id": "128211920639475204",
+      "why": "on-screen text: 'Cup; MIA'"
+     },
+     {
+      "id": "21603273205127897",
+      "lane": "literal",
+      "query": "person standing at kitchen counter holding",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "1100919071902308337",
+      "why": "on-screen text: 'Egg'"
+     },
+     {
+      "id": "318489004921279021",
+      "lane": "emotional",
+      "query": "empty mug on kitchen counter at",
+      "why": "real-estate/tour content: 'listing'"
+     },
+     {
+      "id": "948289265311637036",
+      "why": "too short 10.52s for 12.2s"
+     },
+     {
+      "id": "789678115950729201",
+      "why": "unusable crop 592x1072"
+     },
+     {
+      "id": "7740630605464636",
+      "why": "too short 11.27s for 12.2s"
+     },
+     {
+      "id": "114912227989655271",
+      "why": "on-screen text: '234:; Aoral curtains; CAYENNE; CUMIN; F'"
+     },
+     {
+      "id": "1123437069571107993",
+      "why": "on-screen text: '\"68'"
+     },
+     {
+      "id": "1030339221021244228",
+      "lane": "metaphor",
+      "query": "quiet kitchen",
+      "why": "advertising call-to-action: '% off'"
+     },
+     {
+      "id": "582864376809122036",
+      "why": "on-screen text: 'HOMES; ROBERTSON'"
+     },
+     {
+      "id": "655766395790244992",
+      "why": "too short 5.18s for 12.2s"
+     },
+     {
+      "id": "642044490668807941",
+      "lane": "literal",
+      "query": "person standing at kitchen counter holding",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "853009985677363595",
+      "lane": "adjacent",
+      "query": "over shoulder view of kitchen counter",
+      "why": "real-estate/tour content: 'interior design'"
+     },
+     {
+      "id": "116038127894142424",
+      "why": "on-screen text: '3 ways to style a lamp in; FRAICHE; FULLERHE; back'"
+     },
+     {
+      "id": "926263848353079507",
+      "why": "on-screen text: 'How to style; Kettencourtotp; Ktten courtertops; K'"
+     },
+     {
+      "id": "1134625699893288861",
+      "why": "too short 12.1s for 12.2s"
+     },
+     {
+      "id": "1129981362777029721",
+      "why": "on-screen text: 'Natural Log Cabin; Natural Log Cabir; \u798f'"
+     },
+     {
+      "id": "911627149590144687",
+      "why": "too short 10.77s for 12.2s"
+     },
+     {
+      "id": "457045062210643523",
+      "why": "on-screen text: 'Le Millet Boutigae; Le Millet Boutique; LeMillet B'"
+     },
+     {
+      "id": "1122240800870792624",
+      "why": "too short 6.27s for 12.2s"
+     },
+     {
+      "id": "566257353166160277",
+      "why": "too short 5.0s for 12.2s"
+     },
+     {
+      "id": "965318501380068565",
+      "why": "on-screen text: 'BARTESIAN; IARTTESIAN; ILARTTASIAN; Layered; SHELF'"
+     },
+     {
+      "id": "3448137209659462",
+      "why": "on-screen text: \"12.50; E13; FLOATING PANTRY; FLOATINGPANTRY; LET'S\""
+     },
+     {
+      "id": "297448750413606787",
+      "why": "too short 8.34s for 12.2s"
+     },
+     {
+      "id": "982418106269746681",
+      "why": "on-screen text: '&capCut; 8CapCut; CapCut'"
+     },
+     {
+      "id": "222998619044690007",
+      "why": "too short 8.24s for 12.2s"
+     },
+     {
+      "id": "1028017052435090395",
+      "lane": "literal",
+      "query": "person standing at kitchen counter holding",
+      "why": "real-estate/tour content: 'Interior Design'"
+     },
+     {
+      "id": "211174978329859",
+      "why": "on-screen text: 'TheBrainAndTheBrawn.com; \u4e09'"
+     },
+     {
+      "id": "360710251413015536",
+      "why": "unusable crop 480x480"
+     },
+     {
+      "id": "484488872429395183",
+      "why": "on-screen text: '$229 each; $65 each; 2 IKEA Langfjall Chairs; 4 IK'"
+     },
+     {
+      "id": "593912269658655356",
+      "why": "on-screen text: '1 tsp cinnamon; 1 tsp vanilla extract; 1/6 tsp sal'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words ['and', 'living', 'out', 'the'] (+14)",
+       "points": 14
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 72.9s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 70,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.15,
+       "rows": [
+        0,
+        96
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(0, 96)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       0,
+       96
+      ]
+     ]
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 977112,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T223957Z-20fbdc/assets/track_7433371598969653265.m4a",
+   "pin_url": null,
+   "sha256": "003a09eb2616c266e24c576e06d4239c5672d9b4f502f7f01e90687b673c0f10",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7433371598969653265",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 87.6,
+    "high": 0.0,
+    "mid": 12.4
+   },
+   "duration_s": 60.0,
+   "file": "track_7433371598969653265.m4a",
+   "key_estimate": "E major",
+   "loudness_curve_db": [
+    -19.6,
+    -20.0,
+    -20.2
+   ],
+   "onset_density_per_s": 4.87,
+   "peak_db": -8.3,
+   "rms_db": -19.9,
+   "spectral_centroid_hz": 340.1,
+   "tempo_bpm": 172.3,
+   "zero_crossing_rate": 0.0161
+  },
+  "background": {
+   "bytes": 11085608,
+   "creator": "Social",
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T223957Z-20fbdc/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/1031254014687421050/",
+   "sha256": "133cc369e93988a967a412184011a90985c82709c95c888aae6c894c8b86de7b",
+   "source": "pinterest",
+   "stable_id": "1031254014687421050",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "Wants to just join in, but feels like every small move is being read as a clue about whether they belong.",
+    "observable_behaviour": "Stands at the counter holding an empty mug, rinses it twice, wipes the same spot, checks phone, puts the mug down and picks it up again",
+    "private_worry": "That hovering looks lost, but walking over empty handed looks like expecting to be looked after",
+    "situation": "Saturday 1:23pm, in a friend's kitchen while everyone else has just moved to the sofa"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Rinse an already empty mug twice\"; \"Wipe the same clean spot again\"; \"Put mug down then pick it up\"; \"Rehearse walking over empty-handed\" \u2014 seven items, correct count, kitchen-hover specific.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 4,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Item 1 'Notice everyone else heading to sofa' is setup, not an action; item 7 'Replay the hover on the bus home' shifts scene and repeats the loop. Title's random capitals read awkwardly.",
+    "scene_specificity": 5,
+    "sendability_who": "A close friend who lingers in kitchens at gatherings, sent with 'me at every party' or 'the kitchen hover'.",
+    "shareability": 5,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "saturday-kitchen-hover-mug-moment"
+  },
+  "delivery": {
+   "at": "2026-11-12T22:53:14Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -9.1,
+   "yavg_delta": -3.5
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 5.23,
+    "yavg": 105.6
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 5.1,
+   "yavg": 101.5
+  },
+  "output": {
+   "bytes": 7826177,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261112T223957Z-20fbdc.mp4",
+   "sha256": "de2156933b3a5d78c4a2400e410af6aa4f747284a10eb8d9c7bc31b1d7e96ba4"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7433371598969653265",
+    "title": "comfort chain (Ambient)"
+   },
+   "background_query": "person standing at kitchen counter holding empty mug",
+   "caption": "7 things you do when everyone sits down and you end up hovering in the kitchen:\n1. Notice everyone else heading to sofa\n2. Rinse an already empty mug twice\n3. Wipe the same clean spot again\n4. Check phone with nothing to check\n5. Put mug down then pick it up\n6. Rehearse walking over empty-handed\n7. Replay the hover on the bus home",
+   "closing": "You weren't lost, you were just trying not to be a bother.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A quiet, pause-heavy build with soft tension that loops like an intrusive thought and never quite lets you sit down.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "quiet kitchen aesthetic",
+     "pinterest_search_query": "quiet kitchen aesthetic",
+     "semantic_analysis": "Soft warm light in a quiet kitchen where someone lingers just outside the living room's togetherness."
+    }
+   },
+   "headline": "7 things you do when everyone sits down and you end up hovering in the kitchen",
+   "list_items": [
+    "Notice everyone else heading to sofa",
+    "Rinse an already empty mug twice",
+    "Wipe the same clean spot again",
+    "Check phone with nothing to check",
+    "Put mug down then pick it up",
+    "Rehearse walking over empty-handed",
+    "Replay the hover on the bus home"
+   ],
+   "provenance": {
+    "creator": "Social",
+    "pin_id": "1031254014687421050",
+    "pin_url": "https://www.pinterest.com/pin/1031254014687421050/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 106): warm off-white"
+   },
+   "titleLines": [
+    "7 Things you do when",
+    "Everyone sits down",
+    "And you end up",
+    "Hovering in the kitchen"
+   ],
+   "topic_id": "saturday-kitchen-hover-mug-moment"
+  },
+  "publish": {
+   "alt_text": "Person standing at kitchen counter holding empty mug. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-12T22:54:47Z",
+   "caption": "7 things you do when everyone sits down and you end up hovering in the kitchen:\n1. Notice everyone else heading to sofa\n2. Rinse an already empty mug twice\n3. Wipe the same clean spot again\n4. Check phone with nothing to check\n5. Put mug down then pick it up\n6. Rehearse walking over empty-handed\n7. Replay the hover on the bus home\n\nYou weren't lost, you were just trying not to be a bother.",
+   "channel": "instagram",
+   "container_id": "17919171573538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18171379210414477",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://n.uguu.se/JDJayOaR.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -9.1,
+    "yavg_delta": -3.5
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261112T223957Z-20fbdc/caption_list_title_v1-live-20261112T223957Z-20fbdc.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 7826177,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 5.1,
+    "yavg": 101.5
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1567,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 53.1
+  },
+  "rendered_at": "2026-11-12T22:53:10Z",
+  "run_id": "20261112T223957Z-20fbdc",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "Everyone else has sat down to relax, and she keeps standing in the kitchen, unsure how to join them, staying busy with an empty mug so she has a reason to linger.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person standing at kitchen counter holding",
+     "over shoulder view of kitchen counter",
+     "empty mug on kitchen counter at"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.5366,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "7433371598969653265",
+    "title": "comfort chain (Ambient)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.5366
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 4,
+     "product_trust": 3,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "saturday-kitchen-hover-mug-moment"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "A quiet, pause-heavy build with soft tension that loops like an intrusive thought and never quite lets you sit down."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "quiet kitchen aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261112T223957Z-20fbdc.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'comfort chain (Ambient)' for caption_list_title_v1.",
+    "score": 52
+   },
+   "pinterest": {
+    "candidates": 3,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 5.23,
+     "yavg": 105.6
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "1031254014687421050",
+    "query": "quiet kitchen",
+    "review_status": "accept",
+    "score": 70,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 53.1
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261112T223957Z-20fbdc/caption_list_title_v1-live-20261112T223957Z-20fbdc.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 7826177,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 106): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -9.1,
+     "yavg_delta": -3.5
+    },
+    "measured": {
+     "sat": 5.1,
+     "yavg": 101.5
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1567,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "saturday-kitchen-hover-mug-moment"
  }
 ]

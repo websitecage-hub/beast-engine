@@ -80,6 +80,14 @@
    "status": "delivered",
    "used_by": "20261112T130719Z-8ac098"
   },
+  "7433371598969653265": {
+   "first_seen_at": "2026-11-12T22:52:12Z",
+   "last_used_at": "2026-11-12T22:53:14Z",
+   "review_status": "pending",
+   "sha256": "003a09eb2616c266e24c576e06d4239c5672d9b4f502f7f01e90687b673c0f10",
+   "status": "delivered",
+   "used_by": "20261112T223957Z-20fbdc"
+  },
   "7504860701932914698": {
    "first_seen_at": "2026-11-03T17:21:04Z",
    "last_used_at": "2026-11-03T17:22:14Z",
@@ -90,9 +98,20 @@
   }
  },
  "reservations": {},
- "updated_at": "2026-11-12T17:24:11Z",
+ "updated_at": "2026-11-12T22:53:14Z",
  "version": 1,
  "visual": {
+  "pin:1031254014687421050": {
+   "first_seen_at": "2026-11-12T22:51:37Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-12T22:53:14Z",
+   "pin_id": "1031254014687421050",
+   "query": "quiet kitchen",
+   "review_status": "accept",
+   "sha256": "133cc369e93988a967a412184011a90985c82709c95c888aae6c894c8b86de7b",
+   "status": "delivered",
+   "used_by": "20261112T223957Z-20fbdc"
+  },
   "pin:1089448966121181963": {
    "first_seen_at": "2026-11-11T17:30:55Z",
    "lane": "metaphor",
