@@ -17,38 +17,32 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 # --------------------------------------------------------------- colour layer
-def test_no_colour_layer_is_applied_to_the_background(monkeypatch):
-    """The clip the search returned is the clip the viewer sees."""
-    monkeypatch.delenv("BEAST_BG_GRADE", raising=False)
-    css, vals = template_renderer.grade_for("caption_list_title_v1",
-                                            {"yavg": 5.0, "sat": 60.0})
-    assert css == "none", "a filter was applied to the footage"
-    assert vals["applied"] is False
-    assert vals["brightness"] == 1.0 and vals["saturate"] == 1.0
-    assert vals["delta"]["yavg"] < 0        # drift is still reported
+def test_there_is_no_colour_grading_at_all():
+    """The owner's instruction: search -> OCR filter -> download the best -> compose.
 
-
-def test_the_bounded_grade_still_exists_behind_the_switch(monkeypatch):
-    monkeypatch.setenv("BEAST_BG_GRADE", "1")
-    css, vals = template_renderer.grade_for("caption_list_title_v1",
-                                            {"yavg": 5.0, "sat": 60.0})
-    lim = template_renderer.PROFILES["caption_list_title_v1"]["grade_limits"]
-    assert lim["brightness"][0] <= vals["brightness"] <= lim["brightness"][1]
-    assert lim["saturate"][0] <= vals["saturate"] <= lim["saturate"][1]
-    assert "brightness(" in css and vals["applied"] is True
-
-
-def test_templates_apply_the_filter_from_the_engine(monkeypatch):
-    """The template's only grade hook is --bg-filter; with no grade it resolves none."""
+    No grade, no saturation pass, no brightness correction, and no hook left in the
+    templates that could apply one.
+    """
+    assert not hasattr(template_renderer, "grade_for"), "grade_for still exists"
+    assert not hasattr(template_renderer, "_background_grade_enabled")
     for fmt in ("caption_list_title_v1", "social_moment_loop_v1"):
         html = (ROOT / "templates" / fmt / "index.html").read_text()
-        assert "var(--bg-filter, none)" in html, f"{fmt} is not using the engine hook"
+        assert "bg-filter" not in html, f"{fmt} still has a filter hook"
+        assert "filter:" not in html, f"{fmt} still applies a filter"
+
+
+def test_the_renderer_injects_media_and_no_filter():
+    src = (ROOT / "src" / "formats" / "template_renderer.py").read_text()
+    assert "saturate(" not in src and "brightness(" not in src, \
+        "a colour transform is still being written into the render"
+    assert "no colour grading" in src
+    assert "fixed_grade" not in src, "a correction pass still exists"
 
 
 def test_text_colour_follows_the_raw_footage():
-    assert text_style.for_background({"yavg": 60.0}, {"brightness": 1.0})["fill"] == "#E0D29B"
-    assert text_style.for_background({"yavg": 150.0}, {"brightness": 1.0})["fill"] == "#FFFFFF"
-    assert text_style.for_background({"yavg": 105.0}, {"brightness": 1.0})["fill"] == "#F7F0D2"
+    assert text_style.for_background({"yavg": 60.0})["fill"] == "#E0D29B"
+    assert text_style.for_background({"yavg": 150.0})["fill"] == "#FFFFFF"
+    assert text_style.for_background({"yavg": 105.0})["fill"] == "#F7F0D2"
 
 
 # ------------------------------------------------------------------- state

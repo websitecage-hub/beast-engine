@@ -193,11 +193,9 @@ def main(argv=None) -> int:
     _stage(stages, "pair_fit", True, advisory=True, passes=pair["passes"],
            score=pair["total"], rationale=pair["rationale"][:200])
 
-    # Text colour follows the footage: yellow on dark, white on bright. The grade
-    # is the bounded one the renderer will apply, so this is the luma the viewer
-    # actually sees, not the raw source.
-    _css, _grade = template_renderer.grade_for(fmt, bg.get("metrics") or {})
-    payload["text_style"] = text_style.for_background(bg.get("metrics") or {}, _grade)
+    # Text colour follows the footage: yellow on dark, white on bright. There is no
+    # grade, so the raw luma IS what the viewer sees.
+    payload["text_style"] = text_style.for_background(bg.get("metrics") or {})
     _stage(stages, "text_style", True, **payload["text_style"])
 
     # 7-10: render + QA (the renderer owns the one correction pass).
