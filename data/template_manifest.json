@@ -16113,5 +16113,1129 @@
    "sha256": "bc4e39271a4ef864c02d1c0e1c929695acacc0315ea169ff4de0700a46590dbc"
   },
   "topic_id": "monday-823am-bus-window-seat"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "loud party music",
+     "high-energy EDM drop",
+     "melancholic piano swell",
+     "laugh track"
+    ],
+    "emotional_role": "hold the awkward pause with gentle warmth, not punch it up",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "gentle synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "slightly hazy"
+    ],
+    "trend_hashtags": [
+     "#relatable",
+     "#partymoment"
+    ],
+    "trend_keywords": [
+     "quiet arrival",
+     "relatable party moment"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-12T13:08:37Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "friday-817pm-arrive-alone-party",
+   "core_human_moment": "She arrives alone at a party and takes a small pause to steady herself before acting like she belongs.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "lonely",
+   "format_id": "caption_list_title_v1",
+   "human_action": "pausing outside the door, then walking to the kitchen counter and setting a bag down",
+   "humour": 0.35,
+   "intentional_contrast": null,
+   "literal_scene": "A person pauses outside an apartment door, then walks in and sets a bag down on a kitchen counter.",
+   "literalness": "literal",
+   "motion_intent": "low, slow steady movement, one continuous walk in and settle",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm indoor light",
+    "muted neutrals"
+   ],
+   "rationale": "The kitchen-counter arrival is the exact stall the list describes, so the footage lets the text land as lived experience. Soft, slow music keeps the awkwardness tender and funny instead of anxious or loud.",
+   "scene_entities": [
+    "bag",
+    "phone",
+    "apartment kitchen"
+   ],
+   "schema_version": "1.0",
+   "setting": "apartment kitchen just inside the front door at a house party",
+   "tension": 0.45,
+   "text_safe_zone": "centre band 41-59% kept clear for white 4-line title from frame 0",
+   "time_of_day": "late evening",
+   "valence": -0.15,
+   "video_queries": [
+    "person entering kitchen putting bag on counter",
+    "over shoulder view entering apartment hallway evening",
+    "person standing alone by kitchen counter evening"
+   ],
+   "visual_mood": [
+    "quiet",
+    "lived-in"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.35
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Cleo Sol",
+    "candidates": [
+     {
+      "artist": "Judah Earl",
+      "distance": 0.384,
+      "fresh": true,
+      "id": "7410721101360449537",
+      "score": 92,
+      "title": "Sand Drawing",
+      "video_count": 432800
+     },
+     {
+      "artist": "Eldar Kedem",
+      "distance": 0.7529,
+      "fresh": true,
+      "id": "6982541212746008578",
+      "score": 100,
+      "title": "Walking Around - Instrumental Version",
+      "video_count": 4800000
+     },
+     {
+      "artist": "Cleo Sol",
+      "distance": 0.6166,
+      "fresh": true,
+      "id": "7288041310028302338",
+      "score": 100,
+      "title": "Life Will Be",
+      "video_count": 975500
+     }
+    ],
+    "distance": 0.6166,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7545945306422626321",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "6705632888106256386",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 975500",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7288041310028302338",
+    "title": "Life Will Be"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 21
+     }
+    },
+    "passes": true,
+    "rationale": "adjacent lane shot 'Shadow Perspective' paired with 'Life Will Be' for caption_list_title_v1.",
+    "total": 56
+   },
+   "visual": {
+    "band_busy": 0.1648,
+    "candidates": [
+     {
+      "band_busy": 0.1648,
+      "height": 810,
+      "pin_id": "731483164523597931",
+      "query": "over shoulder view entering",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['shadow'] (+5); scene words ['just', 'person', 'the'] (+12)",
+         "points": 17
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x810, 12.5s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 70,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         224,
+         232
+        ],
+        [
+         88,
+         96
+        ],
+        [
+         120,
+         128
+        ],
+        [
+         368,
+         384
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (224, 232)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1689,
+      "height": 1280,
+      "pin_id": "976999712961353683",
+      "query": "person entering kitchen putting",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['house'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         288,
+         320
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (288, 320)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0089,
+      "height": 1280,
+      "pin_id": "22940279345762914",
+      "query": "person standing alone by kitchen",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 21.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.102,
+         "rows": [
+          0,
+          65
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 65)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         65
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0142,
+      "height": 1280,
+      "pin_id": "25262447902582183",
+      "query": "person standing alone by kitchen",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "dise\u00f1o de personajes, bocetos y estructuras",
+    "flags": [
+     "source domain: tee.pub"
+    ],
+    "lane_expansions": 1,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0599,
+     "motion": 0.0451,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "731483164523597931",
+    "pin_url": "https://www.pinterest.com/pin/731483164523597931/",
+    "query": "over shoulder view entering",
+    "query_lane": "adjacent",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "cinematic party aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic party",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "party aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 0,
+      "lane": "adjacent",
+      "query": "over shoulder view entering apartment hallway",
+      "returned": 0
+     },
+     {
+      "kept": 25,
+      "lane": "emotional",
+      "query": "person standing alone by kitchen counter",
+      "returned": 25
+     },
+     {
+      "kept": 8,
+      "lane": "literal",
+      "query": "person entering kitchen putting bag on",
+      "returned": 8
+     },
+     {
+      "kept": 10,
+      "lane": "adjacent",
+      "query": "over shoulder view entering",
+      "returned": 10
+     },
+     {
+      "kept": 25,
+      "lane": "emotional",
+      "query": "person standing alone by kitchen",
+      "returned": 25
+     },
+     {
+      "kept": 15,
+      "lane": "literal",
+      "query": "person entering kitchen putting",
+      "returned": 16
+     }
+    ],
+    "rejected": [
+     {
+      "id": "502292164714420736",
+      "why": "on-screen text: 'Aa; H'"
+     },
+     {
+      "id": "1017109897128780342",
+      "why": "too short 11.87s for 12.2s"
+     },
+     {
+      "id": "541839398938828528",
+      "why": "on-screen text: 'Your feedneedsmore sparkle&shine; \u738b'"
+     },
+     {
+      "id": "155866837096526134",
+      "why": "too short 8.0s for 12.2s"
+     },
+     {
+      "id": "487373990949631726",
+      "lane": "emotional",
+      "query": "person standing alone by kitchen counter",
+      "why": "advertising call-to-action: 'visit our'"
+     },
+     {
+      "id": "111112315803949698",
+      "why": "on-screen text: 'BACKSPLASHPANELS; HEADACHE.; KITCHEN; MAKEOVER; SH'"
+     },
+     {
+      "id": "1050183206859453816",
+      "why": "too short 11.03s for 12.2s"
+     },
+     {
+      "id": "191684527888574568",
+      "lane": "emotional",
+      "query": "person standing alone by kitchen counter",
+      "why": "real-estate/tour content: 'interior design'"
+     },
+     {
+      "id": "689965605446697494",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "621567186093606318",
+      "why": "on-screen text: '>SA; DOD; Digestive; ESOPHAGUS; FOOD'"
+     },
+     {
+      "id": "1028017052435090395",
+      "lane": "emotional",
+      "query": "person standing alone by kitchen counter",
+      "why": "real-estate/tour content: 'Interior Design'"
+     },
+     {
+      "id": "828451293983676430",
+      "lane": "emotional",
+      "query": "person standing alone by kitchen counter",
+      "why": "advertising call-to-action: 'shop now'"
+     },
+     {
+      "id": "237001999136845999",
+      "why": "on-screen text: \"When you don't follow trends instead you style; Wh\""
+     },
+     {
+      "id": "1087689747481922955",
+      "why": "unusable crop 596x336"
+     },
+     {
+      "id": "21603273205127897",
+      "lane": "emotional",
+      "query": "person standing alone by kitchen counter",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "959407526879970983",
+      "why": "on-screen text: 'Kitchen; KitchenA; KitchenAi; KitchenAl; Kleehtoli'"
+     },
+     {
+      "id": "510595676524557709",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "703335666829511231",
+      "why": "on-screen text: 'M; PR; TO; WELCOME'"
+     },
+     {
+      "id": "158681586864894488",
+      "why": "on-screen text: 'BEDROOM!; EDROON; NOMAD\"HOME; RNER STYLAN; SIYAIN'"
+     },
+     {
+      "id": "1970393583334826",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1266706140482060",
+      "why": "too short 9.47s for 12.2s"
+     },
+     {
+      "id": "882494489491768625",
+      "lane": "emotional",
+      "query": "person standing alone by kitchen counter",
+      "why": "real-estate/tour content: 'interior design'"
+     },
+     {
+      "id": "1090715603513563582",
+      "why": "on-screen text: '08:6'"
+     },
+     {
+      "id": "1407443629639981",
+      "why": "on-screen text: '\u4e2d'"
+     },
+     {
+      "id": "4996249581618993",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "2885187255660548",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1142436630518597767",
+      "why": "on-screen text: 'Folding a note middle; ONLY!; PRINO; TR7NO; eyes'"
+     },
+     {
+      "id": "728175833542321452",
+      "why": "too short 7.59s for 12.2s"
+     },
+     {
+      "id": "924715736001525997",
+      "why": "too short 6.57s for 12.2s"
+     },
+     {
+      "id": "1040824163893267480",
+      "why": "on-screen text: '$10 contact paper hack; 0D00; F; S'"
+     },
+     {
+      "id": "37154765670214652",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "960814901771988862",
+      "why": "static image, not motion video (motion 0.0006)"
+     },
+     {
+      "id": "328270260358926692",
+      "why": "on-screen text: 'CRATSTAYS; ESLANDS; ISLANDS; JEWELRYG; JEWELRYGUID'"
+     },
+     {
+      "id": "1116470563901530398",
+      "why": "too short 10.85s for 12.2s"
+     },
+     {
+      "id": "968414726144205975",
+      "why": "on-screen text: '8 Kitchen Layout; BOLOGNEY; MISTAKES that will rui'"
+     },
+     {
+      "id": "1017109897128780342",
+      "why": "too short 11.87s for 12.2s"
+     },
+     {
+      "id": "334392341108290350",
+      "why": "on-screen text: 'AUN; LE CREUSET; LECREUBET; LEOAP; LEORE'"
+     },
+     {
+      "id": "986429124611731385",
+      "why": "too short 8.03s for 12.2s"
+     },
+     {
+      "id": "211174977889748",
+      "lane": "literal",
+      "query": "person entering kitchen putting",
+      "why": "real-estate/tour content: 'open concept'"
+     },
+     {
+      "id": "803822233534453211",
+      "why": "too short 9.68s for 12.2s"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['shadow'] (+5); scene words ['just', 'person', 'the'] (+12)",
+       "points": 17
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x810, 12.5s (need 12.2s)",
+       "points": 13
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 70,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [
+      [
+       224,
+       232
+      ],
+      [
+       88,
+       96
+      ],
+      [
+       120,
+       128
+      ],
+      [
+       368,
+       384
+      ]
+     ],
+     "framing": [],
+     "reason": "persistent glyph-like band (224, 232)",
+     "text_suspected": true,
+     "uniform": []
+    },
+    "title": "Shadow Perspective"
+   }
+  },
+  "audio": {
+   "bytes": 984346,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T130719Z-8ac098/assets/track_7288041310028302338.m4a",
+   "pin_url": null,
+   "sha256": "4384b172328a77f5c716cf51c1416b5840ae5912e9d8f1ea17527569fb56ea08",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7288041310028302338",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 85.2,
+    "high": 0.5,
+    "mid": 14.4
+   },
+   "duration_s": 60.0,
+   "file": "track_7288041310028302338.m4a",
+   "key_estimate": "A minor",
+   "loudness_curve_db": [
+    -20.9,
+    -20.8,
+    -20.6
+   ],
+   "onset_density_per_s": 4.23,
+   "peak_db": -9.5,
+   "rms_db": -20.8,
+   "spectral_centroid_hz": 1194.6,
+   "tempo_bpm": 198.8,
+   "zero_crossing_rate": 0.0362
+  },
+  "background": {
+   "bytes": 959091,
+   "creator": "dise\u00f1o de personajes, bocetos y estructuras",
+   "path": "/home/runner/work/_temp/beast-scratch/20261112T130719Z-8ac098/assets/cand_1_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/731483164523597931/",
+   "sha256": "f9b7c585519fdc599e55a31424b5e81432484f7d503b4c78bbe2120e1712ca6b",
+   "source": "pinterest",
+   "stable_id": "731483164523597931",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "group conversation entry",
+    "emotional_tension": "You wanted to come, but arriving feels like stepping on stage without knowing your line.",
+    "observable_behaviour": "You pause with one hand still on the door handle, glance at your phone for four seconds, smile at no one in particular, then walk straight to the kitchen counter and put your bag down",
+    "private_worry": "that everyone noticed the pause and read it as you having no one to go to",
+    "situation": "Friday 8:17pm, doorway of a friend's flat, house party already going, you arrive alone"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Wait one breath outside the door\"; \"Check phone like you got a text\"; \"Walk straight to the kitchen counter\"; \"Set bag down to buy time\" \u2014 eight items, count correct, mapped to the doorway arrival.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Item 8 'Replay the pause at midnight' shifts to a later scene and restates the doorway moment; payoff 'which is the whole point' is a little abstract versus the vivid list.",
+    "scene_specificity": 5,
+    "sendability_who": "A friend who arrives alone at parties and does the kitchen-counter walk, sent with 'me at every party' or 'the doorway pause'.",
+    "shareability": 5,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    }
+   ],
+   "topic_id": "friday-817pm-arrive-alone-party"
+  },
+  "delivery": {
+   "at": "2026-11-12T13:15:20Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -13.23,
+   "yavg_delta": -34.0
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 0.83,
+    "yavg": 56.2
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 0.97,
+   "yavg": 71.0
+  },
+  "output": {
+   "bytes": 3081655,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261112T130719Z-8ac098.mp4",
+   "sha256": "48c57b877abe5bb7e0f65ba156be19efdcabda8649f08dfcfec43f7baff9ff36"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7288041310028302338",
+    "title": "Life Will Be"
+   },
+   "background_query": "person walking into apartment kitchen putting bag on counter",
+   "caption": "8 things you do to look like you have somewhere to be at a party:\n1. Wait one breath outside the door\n2. Check phone like you got a text\n3. Smile at no one in particular\n4. Walk straight to the kitchen counter\n5. Set bag down to buy time\n6. Hold a drink you barely sip\n7. Hover near the snacks, not people\n8. Replay the pause at midnight",
+   "closing": "You came anyway, which is the whole point.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Needs a slow-burn cinematic tension that feels cool and detached on the surface but quietly lonely underneath, with space for each pause to land.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "cinematic party aesthetic",
+     "pinterest_search_query": "cinematic party aesthetic",
+     "semantic_analysis": "The visual should feel like quiet, cinematic solitude inside a warm, crowded house party \u2014 composed, observant, and slightly detached."
+    }
+   },
+   "headline": "8 things you do to look like you have somewhere to be at a party",
+   "list_items": [
+    "Wait one breath outside the door",
+    "Check phone like you got a text",
+    "Smile at no one in particular",
+    "Walk straight to the kitchen counter",
+    "Set bag down to buy time",
+    "Hold a drink you barely sip",
+    "Hover near the snacks, not people",
+    "Replay the pause at midnight"
+   ],
+   "provenance": {
+    "creator": "dise\u00f1o de personajes, bocetos y estructuras",
+    "pin_id": "731483164523597931",
+    "pin_url": "https://www.pinterest.com/pin/731483164523597931/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 56 < 92): warm yellow"
+   },
+   "titleLines": [
+    "8 things you do",
+    "to look like you",
+    "have somewhere",
+    "to be at a party"
+   ],
+   "topic_id": "friday-817pm-arrive-alone-party"
+  },
+  "publish": {
+   "alt_text": "Person walking into apartment kitchen putting bag on counter. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-12T13:15:59Z",
+   "caption": "8 things you do to look like you have somewhere to be at a party:\n1. Wait one breath outside the door\n2. Check phone like you got a text\n3. Smile at no one in particular\n4. Walk straight to the kitchen counter\n5. Set bag down to buy time\n6. Hold a drink you barely sip\n7. Hover near the snacks, not people\n8. Replay the pause at midnight\n\nYou came anyway, which is the whole point.",
+   "channel": "instagram",
+   "container_id": "17919104070538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18022156271736237",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://d.uguu.se/HDMTrDvf.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -13.23,
+    "yavg_delta": -34.0
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261112T130719Z-8ac098/caption_list_title_v1-live-20261112T130719Z-8ac098.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 3081655,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 0.97,
+    "yavg": 71.0
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.2437,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 30.2
+  },
+  "rendered_at": "2026-11-12T13:15:17Z",
+  "run_id": "20261112T130719Z-8ac098",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "She arrives alone at a party and takes a small pause to steady herself before acting like she belongs.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person entering kitchen putting bag on",
+     "over shoulder view entering apartment hallway",
+     "person standing alone by kitchen counter"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.6166,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7288041310028302338",
+    "title": "Life Will Be"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.6166
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 3,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "friday-817pm-arrive-alone-party"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "Needs a slow-burn cinematic tension that feels cool and detached on the surface but quietly lonely underneath, with space for each pause to land."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "cinematic party aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261112T130719Z-8ac098.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "adjacent lane shot 'Shadow Perspective' paired with 'Life Will Be' for caption_list_title_v1.",
+    "score": 56
+   },
+   "pinterest": {
+    "candidates": 4,
+    "hls": false,
+    "lane": "adjacent",
+    "metrics": {
+     "sat": 0.83,
+     "yavg": 56.2
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "731483164523597931",
+    "query": "over shoulder view entering",
+    "review_status": "accept",
+    "score": 70,
+    "size": "720x810",
+    "stretch_pick": false,
+    "text_suspected": true,
+    "title": "Shadow Perspective"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 30.2
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261112T130719Z-8ac098/caption_list_title_v1-live-20261112T130719Z-8ac098.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 3081655,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 56 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -13.23,
+     "yavg_delta": -34.0
+    },
+    "measured": {
+     "sat": 0.97,
+     "yavg": 71.0
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.2437,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "friday-817pm-arrive-alone-party"
  }
 ]
