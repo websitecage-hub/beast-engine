@@ -7,3 +7,6 @@ __pycache__/
 outputs/sample_confession.mp4
 outputs/sample_still.jpg
 outputs/proof/
+
+# reference clips live in the GitHub release (reference-videos-v1), not in the repo
+reference-videos/

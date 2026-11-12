@@ -95,6 +95,7 @@ Everything else in `src/` exists to serve those steps. The tree is deliberately 
 | `scripts/repair_data_json.py` | pre-commit repair of conflicted state files |
 | `tests/` | 80 tests: pipeline, assets, render gate, music, audio contract, production-line contracts |
 | `docs/BEAST-ENGINE.md` | this document — the single authoritative description |
+| `docs/API-REFERENCE.md` | every external service: base URLs, endpoints, parameters, measured quirks, failure signatures and where each credential lives |
 | `docs/strategy/` | the source specs the formats and copy rules were built from (STRATEGY, ENGINE_SPEC, PROMPTS, LANGUAGE) |
 | `docs/research/` | the frame/OCR research audit behind the format clones |
 | `docs/hermes/` | historical experiment notes |
