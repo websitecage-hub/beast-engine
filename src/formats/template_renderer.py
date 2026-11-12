@@ -161,7 +161,7 @@ def stage_project(format_id: str, payload: dict, *, run_id: str | None = None,
     (dest / "index.html").write_text(html, encoding="utf-8")
 
     info = {"run_id": run_id, "project_dir": str(dest), "grade": gvals,
-            "grade_css": css, "bg_metrics": bg_metrics,
+            "grade_css": None, "bg_metrics": bg_metrics,
             "source_template": str(src)}
     return dest, info
 
