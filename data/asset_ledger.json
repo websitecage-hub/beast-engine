@@ -26,11 +26,11 @@
   },
   "6886912570821707777": {
    "first_seen_at": "2026-11-11T17:31:34Z",
-   "last_used_at": "2026-11-11T17:33:34Z",
+   "last_used_at": "2026-11-13T22:38:00Z",
    "review_status": "pending",
    "sha256": "fd4a12e89b10c744b7dd12eebcee25e24d8775bae1f907620184638cb6a1bfce",
    "status": "delivered",
-   "used_by": "20261111T172212Z-97f8f4"
+   "used_by": "20261113T222632Z-47f6f1"
   },
   "6982541212746008578": {
    "first_seen_at": "2026-11-12T12:34:10Z",
@@ -106,7 +106,7 @@
   }
  },
  "reservations": {},
- "updated_at": "2026-11-13T16:56:54Z",
+ "updated_at": "2026-11-13T22:38:00Z",
  "version": 1,
  "visual": {
   "pin:1031254014687421050": {
@@ -119,6 +119,17 @@
    "sha256": "133cc369e93988a967a412184011a90985c82709c95c888aae6c894c8b86de7b",
    "status": "delivered",
    "used_by": "20261112T223957Z-20fbdc"
+  },
+  "pin:107030928641360935": {
+   "first_seen_at": "2026-11-13T22:35:56Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-13T22:38:00Z",
+   "pin_id": "107030928641360935",
+   "query": "midnight glow",
+   "review_status": "accept",
+   "sha256": "19dd848704fedf2a852c31351689768c7e156b29227c3b51ed4662ee7d87b73e",
+   "status": "delivered",
+   "used_by": "20261113T222632Z-47f6f1"
   },
   "pin:1089448966121181963": {
    "first_seen_at": "2026-11-11T17:30:55Z",

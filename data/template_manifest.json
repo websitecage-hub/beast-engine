@@ -23288,5 +23288,1508 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "friday-847pm-doorbell-hover"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "upbeat pop",
+     "dramatic strings",
+     "loud bass drop",
+     "comedy sound effects",
+     "cheerful vocals"
+    ],
+    "emotional_role": "keep the wait feeling soft and suspended, not dramatic, so the unbothered joke stays gentle",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft piano",
+     "gentle synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "hazy"
+    ],
+    "trend_hashtags": [
+     "#sundaynight",
+     "#unbothered",
+     "#groupchat"
+    ],
+    "trend_keywords": [
+     "sunday night",
+     "unbothered",
+     "group chat"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-13T22:28:25Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "sunday-947pm-group-chat-unbothered",
+   "core_human_moment": "She is lying in bed pretending to be unbothered while anxiously waiting to see if anyone replies in the group chat.",
+   "degraded": false,
+   "emotional_primary": "anxious",
+   "emotional_secondary": "amused",
+   "format_id": "caption_list_title_v1",
+   "human_action": "lying in bed holding a phone, scrolling briefly then setting it face-down",
+   "humour": 0.35,
+   "intentional_contrast": null,
+   "literal_scene": "A person lying in bed under a warm bedside lamp, holding a glowing phone with the duvet pulled up around them.",
+   "literalness": "literal",
+   "motion_intent": "almost still, one continuous calm shot with only small thumb scrolls and slow breathing",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm amber lamplight",
+    "muted navy bedding"
+   ],
+   "rationale": "A dim bedroom with a phone glow makes the performance of not caring believable, while soft, sparse piano keeps the Sunday-night wait feeling tender rather than tense.",
+   "scene_entities": [
+    "phone",
+    "duvet",
+    "bedroom"
+   ],
+   "schema_version": "1.0",
+   "setting": "bedroom, in bed at night",
+   "tension": 0.55,
+   "text_safe_zone": "centre band 41-59% vertical, over darker duvet, keep phone and face clear of text",
+   "time_of_day": "late evening",
+   "valence": -0.2,
+   "video_queries": [
+    "person in bed holding phone under bedside lamp",
+    "phone face down on duvet beside bedside lamp",
+    "person lying awake staring at ceiling at night"
+   ],
+   "visual_mood": [
+    "quiet",
+    "intimate"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.45
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Audiostock",
+    "candidates": [
+     {
+      "artist": "Audiostock",
+      "distance": 0.5776,
+      "fresh": false,
+      "id": "6817193198436255745",
+      "score": 80,
+      "title": "Suspense, horror, piano and music box",
+      "video_count": 5300000
+     },
+     {
+      "artist": "Audiostock",
+      "distance": 0.2332,
+      "fresh": false,
+      "id": "6886912570821707777",
+      "score": 80,
+      "title": "Calm LoFi song(882353)",
+      "video_count": 1200000
+     },
+     {
+      "artist": "ciaociaomarigoldd",
+      "distance": 0.6706,
+      "fresh": true,
+      "id": "7315231082264446978",
+      "score": 64,
+      "title": "Epipremnum Aureum NJoy",
+      "video_count": 1144
+     },
+     {
+      "artist": "Narvent",
+      "distance": 0.712,
+      "fresh": true,
+      "id": "7693919040771065862",
+      "score": 64,
+      "title": "Recall",
+      "video_count": 345
+     },
+     {
+      "artist": "J.Folk",
+      "distance": 0.4267,
+      "fresh": true,
+      "id": "7229802620331083777",
+      "score": 64,
+      "title": "Longest Wait",
+      "video_count": 71
+     }
+    ],
+    "distance": 0.2332,
+    "fresh": false,
+    "keywords_tried": [
+     {
+      "keyword": "lofi",
+      "rows": 5
+     }
+    ],
+    "rejected": [],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "used recently",
+       "points": 0
+      },
+      "loopable": {
+       "evidence": "130.1s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 1200000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 80
+    },
+    "stable_id": "6886912570821707777",
+    "title": "Calm LoFi song(882353)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 33
+     }
+    },
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'Calm LoFi song(882353)' for caption_list_title_v1.",
+    "total": 68
+   },
+   "visual": {
+    "band_busy": 0.021,
+    "candidates": [
+     {
+      "band_busy": 0.021,
+      "height": 1280,
+      "pin_id": "107030928641360935",
+      "query": "midnight glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['night', 'quiet', 'solitude'] (+15); scene words ['night', 'the', 'under'] (+12)",
+         "points": 27
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 83,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0336,
+      "height": 1008,
+      "pin_id": "868772584418430000",
+      "query": "person in bed holding phone under",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['phone', 'the'] (+8)",
+         "points": 8
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "728x1008, 13.1s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 728
+     },
+     {
+      "band_busy": 0.0105,
+      "height": 1920,
+      "pin_id": "455919162283724879",
+      "query": "bedroom glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['bedroom', 'lights'] (+10); scene words ['bedroom'] (+4)",
+         "points": 14
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "1080x1920, 14.0s (need 12.2s)",
+         "points": 20
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 74,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.455,
+         "rows": [
+          349,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.211,
+         "rows": [
+          265,
+          400
+         ]
+        },
+        {
+         "fraction_of_height": 0.233,
+         "rows": [
+          491,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(349, 640), (265, 400)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         349,
+         640
+        ],
+        [
+         265,
+         400
+        ],
+        [
+         491,
+         640
+        ]
+       ]
+      },
+      "width": 1080
+     },
+     {
+      "band_busy": 0.0988,
+      "height": 1280,
+      "pin_id": "19281104651858681",
+      "query": "midnight bedroom glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0217,
+      "height": 1280,
+      "pin_id": "665899494944154131",
+      "query": "midnight bedroom glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 38.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.458,
+         "rows": [
+          0,
+          293
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 293)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         293
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0154,
+      "height": 1280,
+      "pin_id": "375487687705335432",
+      "query": "midnight bedroom",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.114,
+         "rows": [
+          448,
+          521
+         ]
+        },
+        {
+         "fraction_of_height": 0.233,
+         "rows": [
+          491,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(448, 521), (491, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         448,
+         521
+        ],
+        [
+         491,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0006,
+      "height": 1280,
+      "pin_id": "1054053487768429141",
+      "query": "midnight glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 19.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.32,
+         "rows": [
+          76,
+          281
+         ]
+        },
+        {
+         "fraction_of_height": 0.294,
+         "rows": [
+          0,
+          188
+         ]
+        },
+        {
+         "fraction_of_height": 0.202,
+         "rows": [
+          194,
+          323
+         ]
+        },
+        {
+         "fraction_of_height": 0.087,
+         "rows": [
+          0,
+          56
+         ]
+        },
+        {
+         "fraction_of_height": 0.381,
+         "rows": [
+          83,
+          327
+         ]
+        },
+        {
+         "fraction_of_height": 0.123,
+         "rows": [
+          388,
+          467
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(76, 281), (0, 188)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         76,
+         281
+        ],
+        [
+         0,
+         188
+        ],
+        [
+         194,
+         323
+        ],
+        [
+         0,
+         56
+        ],
+        [
+         83,
+         327
+        ],
+        [
+         388,
+         467
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0286,
+      "height": 1280,
+      "pin_id": "825073594272776686",
+      "query": "midnight glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['blue hour'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.423,
+         "rows": [
+          369,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(369, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         369,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0048,
+      "height": 1280,
+      "pin_id": "839217711821236980",
+      "query": "bedroom glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.1s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.252,
+         "rows": [
+          313,
+          474
+         ]
+        },
+        {
+         "fraction_of_height": 0.113,
+         "rows": [
+          568,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(313, 474), (568, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         313,
+         474
+        ],
+        [
+         568,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0139,
+      "height": 1188,
+      "pin_id": "296674694213808602",
+      "query": "bedroom glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1188, 14.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "otros",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0406,
+     "motion": 0.028,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "107030928641360935",
+    "pin_url": "https://www.pinterest.com/pin/107030928641360935/",
+    "query": "midnight glow",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "midnight bedroom glow",
+      "returned": 25
+     },
+     {
+      "kept": 20,
+      "lane": "metaphor",
+      "query": "midnight bedroom",
+      "returned": 25
+     },
+     {
+      "kept": 23,
+      "lane": "metaphor",
+      "query": "midnight glow",
+      "returned": 25
+     },
+     {
+      "kept": 23,
+      "lane": "metaphor",
+      "query": "bedroom glow",
+      "returned": 25
+     },
+     {
+      "kept": 4,
+      "lane": "adjacent",
+      "query": "person lying awake staring at ceiling",
+      "returned": 6
+     },
+     {
+      "kept": 23,
+      "lane": "literal",
+      "query": "person in bed holding phone under",
+      "returned": 24
+     }
+    ],
+    "rejected": [
+     {
+      "id": "871657702861438033",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1147643917691534702",
+      "lane": "metaphor",
+      "query": "bedroom glow",
+      "why": "real-estate/tour content: 'interior design'"
+     },
+     {
+      "id": "960040845582224575",
+      "why": "too short 10.43s for 12.2s"
+     },
+     {
+      "id": "1136947868455608088",
+      "why": "too short 8.06s for 12.2s"
+     },
+     {
+      "id": "1116681670149657871",
+      "why": "too short 10.27s for 12.2s"
+     },
+     {
+      "id": "1114359501576867446",
+      "lane": "metaphor",
+      "query": "midnight bedroom",
+      "why": "commerce/affiliate domain: 'etsy.com'"
+     },
+     {
+      "id": "543106036340855635",
+      "why": "on-screen text: '(224)610-058; UPHOLSTEYCECHCNO'"
+     },
+     {
+      "id": "467600373831184238",
+      "why": "too short 8.96s for 12.2s"
+     },
+     {
+      "id": "423901383690943990",
+      "why": "on-screen text: 'GC'"
+     },
+     {
+      "id": "563018698140014",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "995928905098835213",
+      "why": "too short 5.25s for 12.2s"
+     },
+     {
+      "id": "1054897912697699252",
+      "why": "too short 9.47s for 12.2s"
+     },
+     {
+      "id": "970525788430211654",
+      "why": "too short 10.08s for 12.2s"
+     },
+     {
+      "id": "842454674104325671",
+      "why": "on-screen text: 'OMMENDED TOOL; \u4e8c'"
+     },
+     {
+      "id": "6051780743172456",
+      "why": "on-screen text: 'Lamp?; Yeah; You hate the AuroraGlow; Youhate the '"
+     },
+     {
+      "id": "782570872797906052",
+      "why": "on-screen text: 'CASA; CASA De Design; CHARCOAL; De Design; EMERALD'"
+     },
+     {
+      "id": "1066930967987518578",
+      "why": "static image, not motion video (motion 0.0003)"
+     },
+     {
+      "id": "914934480564812102",
+      "why": "on-screen text: 'DARK KANGEN; Save this post for your; The coolest '"
+     },
+     {
+      "id": "1116681670148431706",
+      "lane": "metaphor",
+      "query": "bedroom glow",
+      "why": "real-estate/tour content: 'Room tour'"
+     },
+     {
+      "id": "1124211125761760509",
+      "why": "too short 10.06s for 12.2s"
+     },
+     {
+      "id": "1098878377838388479",
+      "why": "on-screen text: 'O'"
+     },
+     {
+      "id": "591801207331271130",
+      "why": "too short 5.27s for 12.2s"
+     },
+     {
+      "id": "1125055550652867888",
+      "why": "on-screen text: '20% Off; 20%Off; LIGHT; Light; N'"
+     },
+     {
+      "id": "591801207331271302",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "98727416825496956",
+      "why": "on-screen text: 'InshOt; inshOt; nshOt'"
+     },
+     {
+      "id": "812196114095392156",
+      "why": "on-screen text: 'Veo'"
+     },
+     {
+      "id": "1054053487790116202",
+      "why": "too short 8.87s for 12.2s"
+     },
+     {
+      "id": "1054053487793356364",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1026609677566809469",
+      "why": "too short 8.6s for 12.2s"
+     },
+     {
+      "id": "1148136498784985707",
+      "why": "too short 10.01s for 12.2s"
+     },
+     {
+      "id": "1054405331523087691",
+      "why": "unusable crop 720x576"
+     },
+     {
+      "id": "978055244094928839",
+      "why": "too short 10.57s for 12.2s"
+     },
+     {
+      "id": "307089268361822599",
+      "why": "on-screen text: 'H.M; \u751f\u5149\u6e90'"
+     },
+     {
+      "id": "887209195329358283",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "322500023334775553",
+      "lane": "literal",
+      "query": "person in bed holding phone under",
+      "why": "stock/repost source: '4k footage'"
+     },
+     {
+      "id": "659495939192793672",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1104507877390252282",
+      "why": "on-screen text: 'O; \u53e3\u53e3\u53e3\u53e3; \u672a\u6765\u4ed5\u4eca; \u6c34; \u8b66\u544a\u4e4b'"
+     },
+     {
+      "id": "AWDDgXMAg2PnqP60nuJlovr8sVEcNdDLrI8AJDYyFch8BAD27g6lfWZyjGhW-m5w280mYzgbHcHi0KZzUWrrbKU",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "997617755011297920",
+      "lane": "metaphor",
+      "query": "midnight bedroom glow",
+      "why": "advertising call-to-action: 'Link in bio'"
+     },
+     {
+      "id": "731905376982120078",
+      "why": "too short 6.73s for 12.2s"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['night', 'quiet', 'solitude'] (+15); scene words ['night', 'the', 'under'] (+12)",
+       "points": 27
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 17.3s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 83,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 2116653,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261113T222632Z-47f6f1/assets/track_6886912570821707777.m4a",
+   "pin_url": null,
+   "sha256": "fd4a12e89b10c744b7dd12eebcee25e24d8775bae1f907620184638cb6a1bfce",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6886912570821707777",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 84.0,
+    "high": 0.1,
+    "mid": 16.0
+   },
+   "duration_s": 130.08,
+   "file": "track_6886912570821707777.m4a",
+   "key_estimate": "C minor",
+   "loudness_curve_db": [
+    -20.0,
+    -21.2,
+    -22.5
+   ],
+   "onset_density_per_s": 3.15,
+   "peak_db": -1.3,
+   "rms_db": -21.1,
+   "spectral_centroid_hz": 1153.0,
+   "tempo_bpm": 152.0,
+   "zero_crossing_rate": 0.0508
+  },
+  "background": {
+   "bytes": 3893741,
+   "creator": "otros",
+   "path": "/home/runner/work/_temp/beast-scratch/20261113T222632Z-47f6f1/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/107030928641360935/",
+   "sha256": "19dd848704fedf2a852c31351689768c7e156b29227c3b51ed4662ee7d87b73e",
+   "source": "pinterest",
+   "stable_id": "107030928641360935",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "texting and group chats",
+    "emotional_tension": "They want to be included and also want to look like they wouldn't mind if they weren't.",
+    "observable_behaviour": "Types 'sounds good!!', deletes it, types 'yeah I'm in', deletes one exclamation mark, locks phone, unlocks it 40 seconds later to check if anyone replied",
+    "private_worry": "That sounding too keen looks desperate, and sounding too casual looks like I don't actually want to come",
+    "situation": "Sunday 9:47pm, in bed with phone screen still lit, group chat with three friends deciding tomorrow's plans"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 3,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 4,
+    "evidence": "\"Leave phone face-down on duvet\"; \"Scroll news app, read nothing\"; \"Plug charger in, keep screen lit\" \u2014 five items, count correct, in-bed 9:47pm framing.",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 4,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 4,
+    "rewrite_notes": "Items drift from the assigned observable behaviour (typing, deleting, unlocking to check): only item 3 touches it. Item 4 'Practice tomorrow's casual hello silently' introduces a second, unrelated scene.",
+    "scene_specificity": 4,
+    "sendability_who": "A close friend who plays it cool in the group chat while clearly checking, sent with 'me Sunday 9:47pm' or 'unbothered but screen lit'.",
+    "shareability": 4,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=False"
+     ]
+    }
+   ],
+   "topic_id": "sunday-947pm-group-chat-unbothered"
+  },
+  "delivery": {
+   "at": "2026-11-13T22:38:00Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -8.1,
+   "yavg_delta": -52.4
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 6.48,
+    "yavg": 46.9
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 6.1,
+   "yavg": 52.6
+  },
+  "output": {
+   "bytes": 13991728,
+   "duration_s": 11.977,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261113T222632Z-47f6f1.mp4",
+   "sha256": "f65f2bf2cc9a8f1e5e40781685a79c2207ef55a6f8f122910bf6b5315a8c47db"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6886912570821707777",
+    "title": "Calm LoFi song(882353)"
+   },
+   "background_query": "person in bed holding phone under bedside lamp",
+   "caption": "5 ways you look unbothered in the Sunday 9:47pm group chat:\n1. Leave phone face-down on duvet\n2. Scroll news app, read nothing\n3. Check who of three read it\n4. Practice tomorrow's casual hello silently\n5. Plug charger in, keep screen lit",
+   "closing": "You wanted to go, and you wanted it to look easy.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Quiet late-night tension under a calm facade, with staccato beats and long pauses that need a soft, looping, slightly uneasy late-night atmosphere.",
+     "tiktok_query": "lofi",
+     "tiktok_search_query": "lofi"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "midnight bedroom glow",
+     "pinterest_search_query": "midnight bedroom glow",
+     "semantic_analysis": "Dim, cozy Sunday-night stillness with soft phone light on rumpled bedding, where doing nothing looks intentional and quietly unbothered."
+    }
+   },
+   "headline": "5 ways you look unbothered in the Sunday 9:47pm group chat",
+   "list_items": [
+    "Leave phone face-down on duvet",
+    "Scroll news app, read nothing",
+    "Check who of three read it",
+    "Practice tomorrow's casual hello silently",
+    "Plug charger in, keep screen lit"
+   ],
+   "provenance": {
+    "creator": "otros",
+    "pin_id": "107030928641360935",
+    "pin_url": "https://www.pinterest.com/pin/107030928641360935/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 47 < 92): warm yellow"
+   },
+   "titleLines": [
+    "5 ways you look",
+    "unbothered in the",
+    "Sunday 9:47pm",
+    "group chat"
+   ],
+   "topic_id": "sunday-947pm-group-chat-unbothered"
+  },
+  "publish": {
+   "alt_text": "Person in bed holding phone under bedside lamp. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-13T22:38:36Z",
+   "caption": "5 ways you look unbothered in the Sunday 9:47pm group chat:\n1. Leave phone face-down on duvet\n2. Scroll news app, read nothing\n3. Check who of three read it\n4. Practice tomorrow's casual hello silently\n5. Plug charger in, keep screen lit\n\nYou wanted to go, and you wanted it to look easy.",
+   "channel": "instagram",
+   "container_id": "17919328815538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18124433203940105",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/DBJPWlGJ.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -8.1,
+    "yavg_delta": -52.4
+   },
+   "duration_s": 11.977,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 11.977,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261113T222632Z-47f6f1/caption_list_title_v1-live-20261113T222632Z-47f6f1.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": false,
+    "moov_tail": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 13991728,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 6.1,
+    "yavg": 52.6
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0733,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 59.8
+  },
+  "rendered_at": "2026-11-13T22:37:56Z",
+  "run_id": "20261113T222632Z-47f6f1",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "She is lying in bed pretending to be unbothered while anxiously waiting to see if anyone replies in the group chat.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person in bed holding phone under",
+     "person lying awake staring at ceiling"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.2332,
+    "keywords": [
+     {
+      "keyword": "lofi",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 80,
+    "stable_id": "6886912570821707777",
+    "title": "Calm LoFi song(882353)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.2332
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 3,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 4,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 4,
+     "product_trust": 3,
+     "recognition_authenticity": 4,
+     "scene_specificity": 4,
+     "shareability": 4
+    },
+    "ladder": 2,
+    "ok": true,
+    "topic_id": "sunday-947pm-group-chat-unbothered"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "lofi",
+    "vendor": "meta-api",
+    "why": "Quiet late-night tension under a calm facade, with staccato beats and long pauses that need a soft, looping, slightly uneasy late-night atmosphere."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "midnight bedroom glow",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261113T222632Z-47f6f1.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'Calm LoFi song(882353)' for caption_list_title_v1.",
+    "score": 68
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 6.48,
+     "yavg": 46.9
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "107030928641360935",
+    "query": "midnight glow",
+    "review_status": "accept",
+    "score": 83,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 59.8
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 11.977,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261113T222632Z-47f6f1/caption_list_title_v1-live-20261113T222632Z-47f6f1.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": false,
+     "moov_tail": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 13991728,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 47 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -8.1,
+     "yavg_delta": -52.4
+    },
+    "measured": {
+     "sat": 6.1,
+     "yavg": 52.6
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0733,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "sunday-947pm-group-chat-unbothered"
  }
 ]
