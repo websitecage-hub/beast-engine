@@ -22202,5 +22202,1091 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "saturday-kitchen-hover-mug-moment"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "loud drops",
+     "comedy sound effects",
+     "dramatic thriller stings",
+     "high-energy EDM",
+     "melancholic solo piano clich\u00e9"
+    ],
+    "emotional_role": "Hold the pause with gentle warmth so the hesitation feels normal and tender rather than dramatic",
+    "energy": 0.25,
+    "instrumentation": [
+     "gentle piano",
+     "soft synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "unhurried"
+    ],
+    "trend_hashtags": [
+     "#arrivingalone",
+     "#quietmoments",
+     "#softpause"
+    ],
+    "trend_keywords": [
+     "arriving alone",
+     "quiet evening",
+     "doorbell pause"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-13T16:51:19Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "friday-847pm-doorbell-hover",
+   "core_human_moment": "A person pauses outside a friend's flat, stalling for a few seconds to steady themselves before ringing the bell and walking in alone.",
+   "degraded": false,
+   "emotional_primary": "nervous",
+   "emotional_secondary": "wistful",
+   "format_id": "caption_list_title_v1",
+   "human_action": "Standing still by a front door, checking phone and hovering finger over doorbell",
+   "humour": 0.25,
+   "intentional_contrast": null,
+   "literal_scene": "A person stands alone in a dim apartment hallway, phone in one hand, finger hovering just in front of a doorbell beside a closed front door.",
+   "literalness": "literal",
+   "motion_intent": "Almost still, one continuous calm shot with only small shifts of weight, finger, and gaze",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm hallway light",
+    "muted neutral walls"
+   ],
+   "rationale": "The still hallway and hovering hand make the ten-second pause literal and relatable, while soft slow music keeps it tender and lightly funny instead of heavy.",
+   "scene_entities": [
+    "phone",
+    "doorbell",
+    "apartment hallway"
+   ],
+   "schema_version": "1.0",
+   "setting": "apartment hallway outside a front door",
+   "tension": 0.55,
+   "text_safe_zone": "centre band 41-59% vertical, keep background calm and uncluttered there",
+   "time_of_day": "late evening",
+   "valence": -0.15,
+   "video_queries": [
+    "person standing in apartment hallway by front door",
+    "close view of hand hovering over doorbell",
+    "quiet hallway at night with warm door light"
+   ],
+   "visual_mood": [
+    "quiet",
+    "lived-in"
+   ],
+   "visual_profile_target": {
+    "luma": "105 +-14",
+    "saturation": "14.2 +-5"
+   },
+   "warmth": 0.45
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "antentmusic",
+    "candidates": [
+     {
+      "artist": "antentmusic",
+      "distance": 0.3381,
+      "fresh": true,
+      "id": "7192031803832551425",
+      "score": 84,
+      "title": "hope to see you again",
+      "video_count": 81100
+     },
+     {
+      "artist": "The Beatles Revival Band",
+      "distance": 0.3654,
+      "fresh": false,
+      "id": "7127247846985713666",
+      "score": 72,
+      "title": "And I Love Her (live)",
+      "video_count": 324500
+     },
+     {
+      "artist": "Sewerslvt",
+      "distance": 0.7027,
+      "fresh": true,
+      "id": "7013083301988534274",
+      "score": 84,
+      "title": "the last thing she sent me",
+      "video_count": 32500
+     }
+    ],
+    "distance": 0.3381,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6705064530143086593",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7260691033574098946",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 81100",
+       "points": 44
+      }
+     },
+     "passes": true,
+     "total": 84
+    },
+    "stable_id": "7192031803832551425",
+    "title": "hope to see you again"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 0
+     }
+    },
+    "passes": false,
+    "rationale": "literal lane shot 'Lonely man' paired with 'hope to see you again' for caption_list_title_v1.",
+    "total": 35
+   },
+   "visual": {
+    "band_busy": 0.0142,
+    "candidates": [
+     {
+      "band_busy": 0.0142,
+      "height": 1280,
+      "pin_id": "25262447902582183",
+      "query": "person standing in apartment hallway by",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0304,
+      "height": 1280,
+      "pin_id": "1759287348533226",
+      "query": "person standing in apartment hallway by",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 19.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.136,
+         "rows": [
+          0,
+          87
+         ]
+        },
+        {
+         "fraction_of_height": 0.114,
+         "rows": [
+          0,
+          73
+         ]
+        },
+        {
+         "fraction_of_height": 0.113,
+         "rows": [
+          0,
+          72
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 87), (0, 73)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         87
+        ],
+        [
+         0,
+         73
+        ],
+        [
+         0,
+         72
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0292,
+      "height": 1280,
+      "pin_id": "501025527314781921",
+      "query": "person standing in apartment hallway by",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['walk'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.027,
+      "height": 1280,
+      "pin_id": "891994269928916437",
+      "query": "quiet hallway at night with warm",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Salvamentos r\u00e1pidos",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0823,
+     "motion": 0.0341,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "25262447902582183",
+    "pin_url": "https://www.pinterest.com/pin/25262447902582183/",
+    "query": "person standing in apartment hallway by",
+    "query_lane": "literal",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "cinematic solitude aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic solitude",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "solitude aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 5,
+      "lane": "adjacent",
+      "query": "close view of hand hovering over",
+      "returned": 5
+     },
+     {
+      "kept": 14,
+      "lane": "emotional",
+      "query": "quiet hallway at night with warm",
+      "returned": 14
+     },
+     {
+      "kept": 25,
+      "lane": "literal",
+      "query": "person standing in apartment hallway by",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "422281211373286",
+      "lane": "literal",
+      "query": "person standing in apartment hallway by",
+      "why": "advertising call-to-action: '% off'"
+     },
+     {
+      "id": "21673641951673554",
+      "why": "on-screen text: 'Mindse; \u52ff'"
+     },
+     {
+      "id": "1152851204652198931",
+      "why": "on-screen text: 'O'"
+     },
+     {
+      "id": "1028017052435090395",
+      "lane": "literal",
+      "query": "person standing in apartment hallway by",
+      "why": "real-estate/tour content: 'Interior Design'"
+     },
+     {
+      "id": "696298792436814617",
+      "why": "unusable crop 486x864"
+     },
+     {
+      "id": "1111615120533876778",
+      "lane": "emotional",
+      "query": "quiet hallway at night with warm",
+      "why": "advertising call-to-action: 'Follow us'"
+     },
+     {
+      "id": "Adpc8FrWGtdMlkInYLmqkg2n_IiwBPLeDNhvdiWtt1OKZuVeS7eOAXESERc0hRTUUZ94sz8Wudd13s5DaYl0K4s",
+      "lane": "emotional",
+      "query": "quiet hallway at night with warm",
+      "why": "advertising call-to-action: 'Shop Now'"
+     },
+     {
+      "id": "926263848356137654",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "139893132168958946",
+      "why": "unusable crop 486x864"
+     },
+     {
+      "id": "281543725196947",
+      "why": "too short 10.87s for 12.2s"
+     },
+     {
+      "id": "773563673525043209",
+      "why": "on-screen text: 'CABINET; ENTRANCE; can also put some flowers; conv'"
+     },
+     {
+      "id": "914862421048687",
+      "why": "on-screen text: 'B; Boji; Group; O; WELdWORK.COm'"
+     },
+     {
+      "id": "476326098105653979",
+      "why": "too short 8.97s for 12.2s"
+     },
+     {
+      "id": "422281211202415",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "211174978329859",
+      "why": "on-screen text: 'TheBrainAndTheBrawn.com; \u4e09'"
+     },
+     {
+      "id": "1759287347629428",
+      "why": "on-screen text: \"0\u53e3\u53e3; CHANEL; IT'; IT7; T\""
+     },
+     {
+      "id": "202310208258704323",
+      "why": "unusable crop 540x960"
+     },
+     {
+      "id": "900086675506219023",
+      "why": "on-screen text: '1. Arms too wide; 1. Hands shoulder width apart; 1'"
+     },
+     {
+      "id": "1015350678505497050",
+      "why": "on-screen text: 'ALSIT; BAOONE; BOBDE; BOLLLA; CLONOR'"
+     },
+     {
+      "id": "849210073511792944",
+      "why": "too short 7.98s for 12.2s"
+     },
+     {
+      "id": "545428204892892562",
+      "why": "too short 8.13s for 12.2s"
+     },
+     {
+      "id": "659495939192793672",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "914862421338454",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "667377238542102352",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "4996249581618993",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "887983251509534041",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "2392606047471513",
+      "why": "too short 7.41s for 12.2s"
+     },
+     {
+      "id": "432908582945850359",
+      "why": "unusable crop 576x1072"
+     },
+     {
+      "id": "736760820336587723",
+      "why": "on-screen text: 'DIYwallfan; DlYewallfan; Dlrwallfan; ROB\u738b; RODT'"
+     },
+     {
+      "id": "1114218764069029821",
+      "why": "on-screen text: '-part3; L; RECCESSED SHELF; Seeingthepiecesfit; Th'"
+     },
+     {
+      "id": "815714551280698179",
+      "why": "on-screen text: '\u2190; \u5382'"
+     },
+     {
+      "id": "366550857187396439",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "288723026130725783",
+      "why": "on-screen text: '2025; JANUARY; UARY; \u53e3; \u798f'"
+     },
+     {
+      "id": "1007961960376356094",
+      "why": "too short 10.15s for 12.2s"
+     },
+     {
+      "id": "14073817577317762",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "127578601938610172",
+      "lane": "adjacent",
+      "query": "close view of hand hovering over",
+      "why": "advertising call-to-action: 'Subscribe'"
+     },
+     {
+      "id": "95208979616605845",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "510243832803348354",
+      "why": "on-screen text: 'M; S; mgms'"
+     },
+     {
+      "id": "914862421219935",
+      "why": "on-screen text: 'no place like home'"
+     },
+     {
+      "id": "1045890713438251502",
+      "why": "unusable crop 576x1024"
+     }
+    ],
+    "review_status": "reject",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words [] (+0)",
+       "points": 0
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 16.0s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": false,
+     "review_status": "reject",
+     "total": 56,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Lonely man"
+   }
+  },
+  "audio": {
+   "bytes": 979885,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261113T164938Z-be8f25/assets/track_7192031803832551425.m4a",
+   "pin_url": null,
+   "sha256": "4af761b274b58159aa58dca0fc42b898522c8b3bc4ab6c458d7e237ae91b05e4",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7192031803832551425",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 46.3,
+    "high": 0.0,
+    "mid": 53.7
+   },
+   "duration_s": 60.0,
+   "file": "track_7192031803832551425.m4a",
+   "key_estimate": "B major",
+   "loudness_curve_db": [
+    -20.4,
+    -22.0,
+    -22.9
+   ],
+   "onset_density_per_s": 1.88,
+   "peak_db": -5.8,
+   "rms_db": -21.6,
+   "spectral_centroid_hz": 412.7,
+   "tempo_bpm": 152.0,
+   "zero_crossing_rate": 0.0324
+  },
+  "background": {
+   "bytes": 1129062,
+   "creator": "Salvamentos r\u00e1pidos",
+   "path": "/home/runner/work/_temp/beast-scratch/20261113T164938Z-be8f25/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/25262447902582183/",
+   "sha256": "43c9dd2060b9da38e35c8d403736d3a6080e9b35a89c34273919cde3aab0df2b",
+   "source": "pinterest",
+   "stable_id": "25262447902582183",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "parties and social events",
+    "emotional_tension": "You want to be inside with them, but the ten seconds outside feel like the part you will be judged on.",
+    "observable_behaviour": "hand hovers over the doorbell, checks the flat number on the phone again, smooths jacket, steps back half a step, then steps forward",
+    "private_worry": "that walking in alone will look like you have no one to arrive with, and everyone inside will notice the pause",
+    "situation": "Friday 8:47pm, hallway outside a friend's flat before birthday drinks"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Check flat number twice on phone\"; \"Hover finger over doorbell\"; \"Apologise for arriving on time\"; \"Replay the ten-second pause later\" \u2014 eight items, correct count, doorway-arrival specific.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Close to the earlier party-doorway list ('8 things you do to look like you have somewhere to be at a party'); item 8's replay repeats the loop and item 6 slightly jars with a birthday-drinks scene.",
+    "scene_specificity": 5,
+    "sendability_who": "A close friend who dreads walking into parties alone, sent with 'me outside your flat Friday' or 'the ten-second pause'.",
+    "shareability": 5,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    }
+   ],
+   "topic_id": "friday-847pm-doorbell-hover"
+  },
+  "delivery": {
+   "at": "2026-11-13T16:56:54Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -7.24,
+   "yavg_delta": -37.9
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 7.59,
+    "yavg": 62.7
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 6.96,
+   "yavg": 67.1
+  },
+  "output": {
+   "bytes": 4436320,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261113T164938Z-be8f25.mp4",
+   "sha256": "d5f2533e9914c5eb42056baf1965cd2a07b8afe3d5706baad18391ddacb2a25e"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7192031803832551425",
+    "title": "hope to see you again"
+   },
+   "background_query": "person standing in apartment hallway by front door",
+   "caption": "8 things you do when arriving alone feels like an entrance:\n1. Check flat number twice on phone\n2. Fix hair in phone reflection\n3. Pretend to text while waiting\n4. Hover finger over doorbell\n5. Rehearse hello in your head\n6. Apologise for arriving on time\n7. Scan room for someone you know\n8. Replay the ten-second pause later",
+   "closing": "The pause felt huge outside, invisible once you were in.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "The edit needs a slow-building cinematic swell that turns awkward waiting into a dramatic entrance with punchy, cut-friendly tension.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "cinematic solitude aesthetic",
+     "pinterest_search_query": "cinematic solitude aesthetic",
+     "semantic_analysis": "The visual should feel like a soft, cinematic moment of quiet anticipation and self-conscious poise before entering a room alone."
+    }
+   },
+   "headline": "8 things you do when arriving alone feels like an entrance",
+   "list_items": [
+    "Check flat number twice on phone",
+    "Fix hair in phone reflection",
+    "Pretend to text while waiting",
+    "Hover finger over doorbell",
+    "Rehearse hello in your head",
+    "Apologise for arriving on time",
+    "Scan room for someone you know",
+    "Replay the ten-second pause later"
+   ],
+   "provenance": {
+    "creator": "Salvamentos r\u00e1pidos",
+    "pin_id": "25262447902582183",
+    "pin_url": "https://www.pinterest.com/pin/25262447902582183/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 63 < 92): warm yellow"
+   },
+   "titleLines": [
+    "8 things you do",
+    "when arriving alone",
+    "feels like an entrance"
+   ],
+   "topic_id": "friday-847pm-doorbell-hover"
+  },
+  "publish": {
+   "alt_text": "Person standing in apartment hallway by front door. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-13T16:58:17Z",
+   "caption": "8 things you do when arriving alone feels like an entrance:\n1. Check flat number twice on phone\n2. Fix hair in phone reflection\n3. Pretend to text while waiting\n4. Hover finger over doorbell\n5. Rehearse hello in your head\n6. Apologise for arriving on time\n7. Scan room for someone you know\n8. Replay the ten-second pause later\n\nThe pause felt huge outside, invisible once you were in.",
+   "channel": "instagram",
+   "container_id": "17919292788538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18100942979537309",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://n.uguu.se/gtJuwAYN.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -7.24,
+    "yavg_delta": -37.9
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261113T164938Z-be8f25/caption_list_title_v1-live-20261113T164938Z-be8f25.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 4436320,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 6.96,
+    "yavg": 67.1
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1106,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 41.8
+  },
+  "rendered_at": "2026-11-13T16:56:50Z",
+  "run_id": "20261113T164938Z-be8f25",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person pauses outside a friend's flat, stalling for a few seconds to steady themselves before ringing the bell and walking in alone.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person standing in apartment hallway by",
+     "close view of hand hovering over",
+     "quiet hallway at night with warm"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3381,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 84,
+    "stable_id": "7192031803832551425",
+    "title": "hope to see you again"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3381
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 3,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "friday-847pm-doorbell-hover"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "The edit needs a slow-building cinematic swell that turns awkward waiting into a dramatic entrance with punchy, cut-friendly tension."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "cinematic solitude aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261113T164938Z-be8f25.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "literal lane shot 'Lonely man' paired with 'hope to see you again' for caption_list_title_v1.",
+    "score": 35
+   },
+   "pinterest": {
+    "candidates": 4,
+    "hls": false,
+    "lane": "literal",
+    "metrics": {
+     "sat": 7.59,
+     "yavg": 62.7
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "25262447902582183",
+    "query": "person standing in apartment hallway by",
+    "review_status": "reject",
+    "score": 56,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Lonely man"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 41.8
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261113T164938Z-be8f25/caption_list_title_v1-live-20261113T164938Z-be8f25.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 4436320,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 63 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -7.24,
+     "yavg_delta": -37.9
+    },
+    "measured": {
+     "sat": 6.96,
+     "yavg": 67.1
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1106,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "friday-847pm-doorbell-hover"
  }
 ]
