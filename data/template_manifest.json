@@ -25730,5 +25730,976 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "tuesday-112pm-coffee-order-apologies"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "loud EDM drop",
+     "dramatic orchestral swell",
+     "comedy sound effects",
+     "tense thriller pulse",
+     "fast rap vocals"
+    ],
+    "emotional_role": "keep the small awkward pause feeling light and relatable without turning it into drama",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "light synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "unobtrusive"
+    ],
+    "trend_hashtags": [
+     "#morningroutine",
+     "#relatable",
+     "#quietmoments"
+    ],
+    "trend_keywords": [
+     "morning routine",
+     "elevator",
+     "relatable"
+    ],
+    "valence": 0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-14T21:16:12Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "tuesday-812am-lift-floor-4-negotiations",
+   "core_human_moment": "A person is quietly negotiating space and politeness with a familiar neighbor in a morning lift, trying not to seem awkward.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "bashful",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing in the far corner of the lift holding a tote bag close",
+   "humour": 0.4,
+   "intentional_contrast": null,
+   "literal_scene": "A person stands in a small apartment lift holding a tote bag, shifted to the far corner as the doors close.",
+   "literalness": "literal",
+   "motion_intent": "one continuous calm shot, almost still, with only the slow close of lift doors and a small shift in posture",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "soft neutral metal",
+    "warm morning light"
+   ],
+   "rationale": "The lift and tote bag place the viewer inside the exact 8:12am moment, and soft, slow instrumental music keeps the tiny negotiations feeling wry and everyday rather than heavy.",
+   "scene_entities": [
+    "tote bag",
+    "elevator mirror",
+    "apartment lift"
+   ],
+   "schema_version": "1.0",
+   "setting": "apartment lift",
+   "tension": 0.5,
+   "text_safe_zone": "centre band 41-59% vertical, keep background calm and uncluttered behind white title",
+   "time_of_day": "early morning",
+   "valence": 0.1,
+   "video_queries": [
+    "person standing in apartment lift holding tote bag",
+    "elevator doors closing in apartment hallway morning",
+    "person glancing at lift mirror holding bag"
+   ],
+   "visual_mood": [
+    "quiet",
+    "self-conscious"
+   ],
+   "visual_profile_target": {
+    "luma": "105 +/- 14",
+    "saturation": "14.2 +/- 5"
+   },
+   "warmth": 0.3
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Eddie EWI",
+    "candidates": [
+     {
+      "artist": "Eddie EWI",
+      "distance": 0.5934,
+      "fresh": true,
+      "id": "7319672867565225985",
+      "score": 92,
+      "title": "Bloopin",
+      "video_count": 133000
+     },
+     {
+      "artist": "smg & djr3an & \ud835\udc6a\ud835\udc89\ud835\udc82\ud835\udc8f \ud835\udc73\ud835\udc90\ud835\udc8f\ud835\udc88 \ud835\udc6b\ud835\udc96\u031b\u0301\ud835\udc84\u0c68\u09ce & \u30b7\uff38\uff33\uff2b\uff21\uff39\u00b9\u00b9",
+      "distance": 0.5879,
+      "fresh": true,
+      "id": "7650072705703561232",
+      "score": 84,
+      "title": "ELA PEIDA FUNK - Ultra Slowed",
+      "video_count": 47200
+     },
+     {
+      "artist": "CupcakKe",
+      "distance": 0.8894,
+      "fresh": true,
+      "id": "7383005747859392529",
+      "score": 74,
+      "title": "Queef",
+      "video_count": 19000
+     }
+    ],
+    "distance": 0.5934,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "funky",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7648818707803753229",
+      "why": "shorter than 12.2s"
+     },
+     {
+      "id": "223184246755180544",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 133000",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "7319672867565225985",
+    "title": "Bloopin"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 0
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot '\u2708\ufe0f' paired with 'Bloopin' for caption_list_title_v1.",
+    "total": 35
+   },
+   "visual": {
+    "band_busy": 0.052,
+    "candidates": [
+     {
+      "band_busy": 0.052,
+      "height": 1280,
+      "pin_id": "977492294105681436",
+      "query": "morning elevator",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 12.6s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0292,
+      "height": 1280,
+      "pin_id": "501025527314781921",
+      "query": "elevator doors closing in apartment hallway",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['walk'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Travel aesthetic",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0571,
+     "motion": 0.0505,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "977492294105681436",
+    "pin_url": "https://www.pinterest.com/pin/977492294105681436/",
+    "query": "morning elevator",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "morning elevator aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 24,
+      "lane": "metaphor",
+      "query": "morning elevator",
+      "returned": 24
+     },
+     {
+      "lane": "metaphor",
+      "query": "morning aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "elevator aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 16,
+      "lane": "adjacent",
+      "query": "elevator doors closing in apartment hallway",
+      "returned": 17
+     },
+     {
+      "kept": 1,
+      "lane": "emotional",
+      "query": "person glancing at lift mirror holding",
+      "returned": 1
+     },
+     {
+      "kept": 8,
+      "lane": "literal",
+      "query": "person standing in apartment lift holding",
+      "returned": 10
+     }
+    ],
+    "rejected": [
+     {
+      "id": "936748791280692220",
+      "why": "unusable crop 352x640"
+     },
+     {
+      "id": "920001030146780286",
+      "why": "on-screen text: '\",The elevator to success is out oforder, but; ,Th'"
+     },
+     {
+      "id": "1089448966135033294",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "453808099975801729",
+      "why": "too short 8.13s for 12.2s"
+     },
+     {
+      "id": "295267319346671606",
+      "why": "on-screen text: 'OF THIS IMMERSIVE NYC OBSERVATORY; OFTHIS IMMERSIV'"
+     },
+     {
+      "id": "989525349398747892",
+      "why": "on-screen text: '03Elevator; 06Panoramic city; City Staycatio; HOME'"
+     },
+     {
+      "id": "1091348922231481153",
+      "why": "on-screen text: '0100; MY LFE IN ITALY; TH; morning coffee; of the '"
+     },
+     {
+      "id": "1122170432169442288",
+      "why": "on-screen text: 'CHILJIEDAY; DA; ELEVATOR; GOTS; HILL THI'"
+     },
+     {
+      "id": "1089448966121100103",
+      "why": "on-screen text: 'o; \u5370; \u5382; \u56cd'"
+     },
+     {
+      "id": "1089448966135232337",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "1112178070513793681",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "449374869091089570",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "424042121188007905",
+      "why": "on-screen text: '(941) 218-9961; 1423 Mediterranean Drive Unit B; 1'"
+     },
+     {
+      "id": "AZzYixNPpUqbM6DNZmA-M-NshR3gAppznjGepUtBpqvD1wwBGDXY7smwoqE4VpBjSCoFCnKwR7Kzw6IyXDjF570",
+      "why": "too short 11.59s for 12.2s"
+     },
+     {
+      "id": "66005950784619386",
+      "why": "on-screen text: '.....; 8RS8S; MORJAS'"
+     },
+     {
+      "id": "707698529006028143",
+      "why": "on-screen text: '668; AND BREAKFASTIN BED; CALGARY; CHARCUT; CHECKI'"
+     },
+     {
+      "id": "995365955160403317",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1029635533569459218",
+      "why": "on-screen text: '102; 105; 107; 108; 124'"
+     },
+     {
+      "id": "460774605646227444",
+      "why": "on-screen text: 'ANOS DE omelete; ANOS DEomelete; ANOSDEomelete; Th'"
+     },
+     {
+      "id": "1122803750887519715",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "1089448966134492297",
+      "why": "too short 12.15s for 12.2s"
+     },
+     {
+      "id": "211174978329859",
+      "why": "on-screen text: 'TheBrainAndTheBrawn.com; \u4e09'"
+     },
+     {
+      "id": "953496552374760847",
+      "lane": "literal",
+      "query": "person standing in apartment lift holding",
+      "why": "commerce/affiliate domain: 'amazon.com'"
+     },
+     {
+      "id": "977492294114763051",
+      "why": "on-screen text: 'A; I'"
+     },
+     {
+      "id": "974607175631520986",
+      "why": "on-screen text: \"'basic'to; 'brilliant' in seconds.; . you see this\""
+     },
+     {
+      "id": "1000362135983923009",
+      "why": "too short 7.97s for 12.2s"
+     },
+     {
+      "id": "1069956823957620219",
+      "why": "unusable crop 464x848"
+     },
+     {
+      "id": "828873506436009244",
+      "why": "too short 5.55s for 12.2s"
+     },
+     {
+      "id": "890446157595490010",
+      "why": "on-screen text: '000; CUERRICIA'"
+     },
+     {
+      "id": "40743571625093807",
+      "why": "on-screen text: 'B; DOODO; W; \u56fd\u53f8; \u56fd\u540c'"
+     },
+     {
+      "id": "554998354101318807",
+      "why": "too short 6.62s for 12.2s"
+     },
+     {
+      "id": "890868370048294543",
+      "why": "too short 8.5s for 12.2s"
+     },
+     {
+      "id": "1028017052435090395",
+      "lane": "literal",
+      "query": "person standing in apartment lift holding",
+      "why": "real-estate/tour content: 'Interior Design'"
+     },
+     {
+      "id": "288723026130725783",
+      "why": "on-screen text: '2025; JANUARY; UARY; \u53e3; \u798f'"
+     },
+     {
+      "id": "21603273205127897",
+      "lane": "literal",
+      "query": "person standing in apartment lift holding",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "5488830792588269",
+      "why": "on-screen text: 'Automatic Stairs'"
+     },
+     {
+      "id": "703335666829511231",
+      "why": "on-screen text: 'M; PR; TO; WELCOME'"
+     },
+     {
+      "id": "361413938868942324",
+      "why": "on-screen text: 'L'"
+     },
+     {
+      "id": "916201117944587578",
+      "why": "too short 7.92s for 12.2s"
+     },
+     {
+      "id": "402579654205364726",
+      "why": "too short 7.32s for 12.2s"
+     }
+    ],
+    "review_status": "reject",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words [] (+0)",
+       "points": 0
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 12.6s (need 12.2s)",
+       "points": 13
+      }
+     },
+     "minimum": 60,
+     "passes": false,
+     "review_status": "reject",
+     "total": 53,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "\u2708\ufe0f"
+   }
+  },
+  "audio": {
+   "bytes": 1050632,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261114T211343Z-0de6c6/assets/track_7319672867565225985.m4a",
+   "pin_url": null,
+   "sha256": "758f173f092da9a00edfff29b168c16f21299cbda0c7bae67918c7566bf2b043",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7319672867565225985",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 77.9,
+    "high": 1.5,
+    "mid": 20.6
+   },
+   "duration_s": 60.0,
+   "file": "track_7319672867565225985.m4a",
+   "key_estimate": "B minor",
+   "loudness_curve_db": [
+    -21.1,
+    -21.2,
+    -21.4
+   ],
+   "onset_density_per_s": 2.88,
+   "peak_db": -4.8,
+   "rms_db": -21.2,
+   "spectral_centroid_hz": 1973.6,
+   "tempo_bpm": 95.7,
+   "zero_crossing_rate": 0.0467
+  },
+  "background": {
+   "bytes": 4632926,
+   "creator": "Travel aesthetic",
+   "path": "/home/runner/work/_temp/beast-scratch/20261114T211343Z-0de6c6/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/977492294105681436/",
+   "sha256": "41f2673f34f7a7d8f96a95a94803a98807d944f4e10424f2d5600854aa62dea6",
+   "source": "pinterest",
+   "stable_id": "977492294105681436",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "You want to seem easy and friendly, but watching yourself try makes every second feel staged.",
+    "observable_behaviour": "Stares at the floor numbers, holds the phone but does not actually read it, gives a quick tight smile then looks away",
+    "private_worry": "That the silence makes you look cold, and the smile makes you look like you are trying too hard",
+    "situation": "Tuesday 8:12am, alone in the lift with the neighbour from floor 4 you only know by sight"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Hear the ding and pause in hallway\"; \"Angle your tote bag like a wall\"; \"Catch yourself in the lift mirror\"; \"Plan to leave at 8:11 tomorrow\" \u2014 six items, count correct, lift-specific.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Item 1 ('pause in hallway') and item 6 ('leave at 8:11 tomorrow') sit outside the lift itself; neither hits the assigned stare-at-floor-numbers, phone-not-read, tight-smile behaviour.",
+    "scene_specificity": 4,
+    "sendability_who": "A friend who times their exits to dodge neighbours, sent with 'me and floor 4' or 'leaving at 8:11 tomorrow'.",
+    "shareability": 4,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=False"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=False"
+     ]
+    }
+   ],
+   "topic_id": "tuesday-812am-lift-floor-4-negotiations"
+  },
+  "delivery": {
+   "at": "2026-11-14T21:21:32Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -11.68,
+   "yavg_delta": -58.8
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 2.35,
+    "yavg": 41.6
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 2.52,
+   "yavg": 46.2
+  },
+  "output": {
+   "bytes": 10697778,
+   "duration_s": 11.977,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261114T211343Z-0de6c6.mp4",
+   "sha256": "e1dd9b0589c819b30a9108587d6c8ac64e0f47d5a6bec7438915a9246c0e698a"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7319672867565225985",
+    "title": "Bloopin"
+   },
+   "background_query": "person standing in apartment lift holding tote bag",
+   "caption": "6 tiny negotiations you run in the 8:12am lift with floor 4:\n1. Hear the ding and pause in hallway\n2. Shift to the far corner first\n3. Angle your tote bag like a wall\n4. Catch yourself in the lift mirror\n5. Step out first and say thanks too fast\n6. Plan to leave at 8:11 tomorrow",
+   "closing": "You were never cold, just careful with someone you barely know.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Tight, bouncy, slightly awkward groove with staccato hits that builds micro-tension through each tiny negotiation then releases with a relatable, comedic exhale.",
+     "tiktok_query": "funky",
+     "tiktok_search_query": "funky"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "morning elevator aesthetic",
+     "pinterest_search_query": "morning elevator aesthetic",
+     "semantic_analysis": "A quiet, cinematic morning moment of strangers sharing a small, reflective lift without speaking."
+    }
+   },
+   "headline": "6 tiny negotiations you run in the 8:12am lift with floor 4",
+   "list_items": [
+    "Hear the ding and pause in hallway",
+    "Shift to the far corner first",
+    "Angle your tote bag like a wall",
+    "Catch yourself in the lift mirror",
+    "Step out first and say thanks too fast",
+    "Plan to leave at 8:11 tomorrow"
+   ],
+   "provenance": {
+    "creator": "Travel aesthetic",
+    "pin_id": "977492294105681436",
+    "pin_url": "https://www.pinterest.com/pin/977492294105681436/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 42 < 92): warm yellow"
+   },
+   "titleLines": [
+    "6 tiny negotiations",
+    "you run in the",
+    "8:12am lift with",
+    "floor 4"
+   ],
+   "topic_id": "tuesday-812am-lift-floor-4-negotiations"
+  },
+  "publish": {
+   "alt_text": "Person standing in apartment lift holding tote bag. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-14T21:22:53Z",
+   "caption": "6 tiny negotiations you run in the 8:12am lift with floor 4:\n1. Hear the ding and pause in hallway\n2. Shift to the far corner first\n3. Angle your tote bag like a wall\n4. Catch yourself in the lift mirror\n5. Step out first and say thanks too fast\n6. Plan to leave at 8:11 tomorrow\n\nYou were never cold, just careful with someone you barely know.",
+   "channel": "instagram",
+   "container_id": "17919488616538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "17917398414491428",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/ZkuuxJKdziXa.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -11.68,
+    "yavg_delta": -58.8
+   },
+   "duration_s": 11.977,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 11.977,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261114T211343Z-0de6c6/caption_list_title_v1-live-20261114T211343Z-0de6c6.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": false,
+    "moov_tail": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 10697778,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 2.52,
+    "yavg": 46.2
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.07,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 44.2
+  },
+  "rendered_at": "2026-11-14T21:21:29Z",
+  "run_id": "20261114T211343Z-0de6c6",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person is quietly negotiating space and politeness with a familiar neighbor in a morning lift, trying not to seem awkward.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person standing in apartment lift holding",
+     "elevator doors closing in apartment hallway",
+     "person glancing at lift mirror holding"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.5934,
+    "keywords": [
+     {
+      "keyword": "funky",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "7319672867565225985",
+    "title": "Bloopin"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.5934
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 3,
+     "recognition_authenticity": 5,
+     "scene_specificity": 4,
+     "shareability": 4
+    },
+    "ladder": 2,
+    "ok": true,
+    "topic_id": "tuesday-812am-lift-floor-4-negotiations"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "funky",
+    "vendor": "meta-api",
+    "why": "Tight, bouncy, slightly awkward groove with staccato hits that builds micro-tension through each tiny negotiation then releases with a relatable, comedic exhale."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "morning elevator aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261114T211343Z-0de6c6.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot '\u2708\ufe0f' paired with 'Bloopin' for caption_list_title_v1.",
+    "score": 35
+   },
+   "pinterest": {
+    "candidates": 2,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 2.35,
+     "yavg": 41.6
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "977492294105681436",
+    "query": "morning elevator",
+    "review_status": "reject",
+    "score": 53,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "\u2708\ufe0f"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 44.2
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 11.977,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261114T211343Z-0de6c6/caption_list_title_v1-live-20261114T211343Z-0de6c6.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": false,
+     "moov_tail": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 10697778,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 42 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -11.68,
+     "yavg_delta": -58.8
+    },
+    "measured": {
+     "sat": 2.52,
+     "yavg": 46.2
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.07,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "tuesday-812am-lift-floor-4-negotiations"
  }
 ]
