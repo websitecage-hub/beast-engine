@@ -24791,5 +24791,944 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "sunday-947pm-group-chat-unbothered"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "dramatic strings",
+     "heavy bass drops",
+     "sad piano",
+     "comedy sound effects",
+     "loud cafe chatter"
+    ],
+    "emotional_role": "soften the self-conscious edge and keep the moment warm and relatable",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "light acoustic guitar"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "unhurried"
+    ],
+    "trend_hashtags": [
+     "#coffeetok",
+     "#relatable"
+    ],
+    "trend_keywords": [
+     "coffee shop calm",
+     "soft lo-fi"
+    ],
+    "valence": 0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-14T15:26:32Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "tuesday-112pm-coffee-order-apologies",
+   "core_human_moment": "A person is quietly over-apologising through a routine coffee order because they feel like they are holding up the queue.",
+   "degraded": false,
+   "emotional_primary": "embarrassed",
+   "emotional_secondary": "tender",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing at the counter ordering coffee and holding out a payment card",
+   "humour": 0.3,
+   "intentional_contrast": null,
+   "literal_scene": "A person standing at a cafe counter under a menu board, holding a card out while ordering a coffee.",
+   "literalness": "literal",
+   "motion_intent": "one continuous calm shot with minimal movement, a slight natural shift as the person orders",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm neutrals",
+    "soft daylight"
+   ],
+   "rationale": "The counter shot makes the eight tiny apologies believable as one ordinary order, and the soft unhurried music keeps the self-consciousness gentle rather than heavy.",
+   "scene_entities": [
+    "coffee counter",
+    "menu board",
+    "cafe"
+   ],
+   "schema_version": "1.0",
+   "setting": "inside an everyday cafe at the counter",
+   "tension": 0.5,
+   "text_safe_zone": "centre band 41-59% vertical, keep faces and busy menu text out of the middle",
+   "time_of_day": "early afternoon",
+   "valence": -0.1,
+   "video_queries": [
+    "person standing at cafe counter under menu board",
+    "behind customer at coffee counter ordering",
+    "close up hands holding coffee cup in cafe"
+   ],
+   "visual_mood": [
+    "quiet",
+    "everyday"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Michael Nau",
+    "candidates": [
+     {
+      "artist": "Marina and the Kats",
+      "distance": 0.8102,
+      "fresh": true,
+      "id": "6731153409589643265",
+      "score": 64,
+      "title": "Stick to What You Got",
+      "video_count": 324
+     },
+     {
+      "artist": "Michael Nau",
+      "distance": 0.5984,
+      "fresh": true,
+      "id": "6792417786132957186",
+      "score": 92,
+      "title": "I Root",
+      "video_count": 103700
+     }
+    ],
+    "distance": 0.5984,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6920125567752734722",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7423631072213485585",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7507295759072774160",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 103700",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "6792417786132957186",
+    "title": "I Root"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 10
+     }
+    },
+    "passes": false,
+    "rationale": "adjacent lane shot '' paired with 'I Root' for caption_list_title_v1.",
+    "total": 45
+   },
+   "visual": {
+    "band_busy": 0.0689,
+    "candidates": [
+     {
+      "band_busy": 0.0689,
+      "height": 1280,
+      "pin_id": "657525614376081936",
+      "query": "behind customer at coffee counter ordering",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['and', 'the'] (+8)",
+         "points": 8
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 24.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 64,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Digital marketing",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 4,
+     "max_jump": 0.2887,
+     "motion": 0.2211,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "657525614376081936",
+    "pin_url": "https://www.pinterest.com/pin/657525614376081936/",
+    "query": "behind customer at coffee counter ordering",
+    "query_lane": "adjacent",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "coffee shop aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "coffee shop",
+      "returned": 25
+     },
+     {
+      "lane": "metaphor",
+      "query": "coffee aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "shop aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 18,
+      "lane": "adjacent",
+      "query": "behind customer at coffee counter ordering",
+      "returned": 18
+     },
+     {
+      "kept": 24,
+      "lane": "emotional",
+      "query": "close up hands holding coffee cup",
+      "returned": 25
+     },
+     {
+      "kept": 19,
+      "lane": "literal",
+      "query": "person standing at cafe counter under",
+      "returned": 21
+     }
+    ],
+    "rejected": [
+     {
+      "id": "1104859721113686772",
+      "why": "on-screen text: 'A; A BARISTA?; A CAFEWITHOUT; ABARISTA?; BELACK'"
+     },
+     {
+      "id": "642044490660957264",
+      "lane": "literal",
+      "query": "person standing at cafe counter under",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "1050253575628404792",
+      "why": "on-screen text: '*; -DREUX; 0218; 2 RUE DU GL DE GAULLE; 2 RUE DU G'"
+     },
+     {
+      "id": "642044490668019321",
+      "lane": "emotional",
+      "query": "close up hands holding coffee cup",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "642044490662311799",
+      "lane": "emotional",
+      "query": "close up hands holding coffee cup",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "28921622601393742",
+      "why": "on-screen text: '+ideas; CPPYOO; ERMEER; Head Hi; MEXICANART'"
+     },
+     {
+      "id": "979392250236755191",
+      "why": "on-screen text: '... cookies &; Add a little crunch to your; back f'"
+     },
+     {
+      "id": "994451161476680918",
+      "why": "too short 4.23s for 12.2s"
+     },
+     {
+      "id": "642044490669092158",
+      "lane": "emotional",
+      "query": "close up hands holding coffee cup",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "783133822746605186",
+      "why": "too short 10.0s for 12.2s"
+     },
+     {
+      "id": "1111544751767369520",
+      "why": "too short 5.83s for 12.2s"
+     },
+     {
+      "id": "1134484962383420655",
+      "why": "too short 4.43s for 12.2s"
+     },
+     {
+      "id": "9077636739159353",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "292874782043185439",
+      "lane": "metaphor",
+      "query": "coffee shop",
+      "why": "advertising call-to-action: 'LINK IN BIO'"
+     },
+     {
+      "id": "70368812923900709",
+      "why": "too short 10.15s for 12.2s"
+     },
+     {
+      "id": "558305685075647703",
+      "why": "on-screen text: \"Captain's Bar; MSOAUT; from the 1960s\""
+     },
+     {
+      "id": "633387443746645",
+      "why": "on-screen text: 'Daoud; MaVRK?; Meet; What; a'"
+     },
+     {
+      "id": "89720217571200705",
+      "why": "on-screen text: '599; CATERING; CATTRING; M; MN'"
+     },
+     {
+      "id": "155866837096526134",
+      "why": "too short 8.0s for 12.2s"
+     },
+     {
+      "id": "738731145149650805",
+      "why": "too short 12.01s for 12.2s"
+     },
+     {
+      "id": "1087689747482376284",
+      "why": "unusable crop 596x336"
+     },
+     {
+      "id": "67483694411929362",
+      "why": "too short 9.64s for 12.2s"
+     },
+     {
+      "id": "997758492446242358",
+      "why": "too short 7.41s for 12.2s"
+     },
+     {
+      "id": "377809856269282361",
+      "why": "too short 8.04s for 12.2s"
+     },
+     {
+      "id": "162551867799355375",
+      "why": "on-screen text: 'COM; COQM; KNOCK; KOW; MOBILeBAR IN 3STePS'"
+     },
+     {
+      "id": "1029142952335104946",
+      "why": "too short 12.08s for 12.2s"
+     },
+     {
+      "id": "642044490658340872",
+      "lane": "emotional",
+      "query": "close up hands holding coffee cup",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "642044490659906593",
+      "lane": "emotional",
+      "query": "close up hands holding coffee cup",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "891783163691426448",
+      "lane": "emotional",
+      "query": "close up hands holding coffee cup",
+      "why": "stock/repost source: '4k footage'"
+     },
+     {
+      "id": "642044490659333875",
+      "lane": "emotional",
+      "query": "close up hands holding coffee cup",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "642044490657850600",
+      "lane": "emotional",
+      "query": "close up hands holding coffee cup",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "736549714058050646",
+      "why": "too short 9.37s for 12.2s"
+     },
+     {
+      "id": "92042386130237715",
+      "why": "on-screen text: '\"Elegance; \"Elegance\" bar \"; \"Elegance\"bar; \"Elega'"
+     },
+     {
+      "id": "828451293983676430",
+      "lane": "literal",
+      "query": "person standing at cafe counter under",
+      "why": "advertising call-to-action: 'shop now'"
+     },
+     {
+      "id": "747879081914719999",
+      "why": "on-screen text: '(parttwo); DIY; DTY; arttwo; de stand'"
+     },
+     {
+      "id": "1100919071902308337",
+      "why": "on-screen text: 'Egg'"
+     },
+     {
+      "id": "1337074888769279",
+      "why": "on-screen text: '12-2o dozen decorated; BVKEK; Baking all the pastr'"
+     },
+     {
+      "id": "3025924744472674",
+      "why": "on-screen text: '101; 218; Gen; O; SH'"
+     },
+     {
+      "id": "910219774660373146",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "2955556002714470",
+      "lane": "metaphor",
+      "query": "coffee shop",
+      "why": "real-estate/tour content: 'interior design'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words ['and', 'the'] (+8)",
+       "points": 8
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 24.0s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 64,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 978248,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261114T152347Z-e5f429/assets/track_6792417786132957186.m4a",
+   "pin_url": null,
+   "sha256": "7bbe6cd57e724c9a865c6c5c5a3f1bd96d11217508f901d6ecea8f1921c58c37",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6792417786132957186",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 65.3,
+    "high": 0.2,
+    "mid": 34.5
+   },
+   "duration_s": 60.0,
+   "file": "track_6792417786132957186.m4a",
+   "key_estimate": "A# major",
+   "loudness_curve_db": [
+    -23.1,
+    -21.8,
+    -22.0
+   ],
+   "onset_density_per_s": 3.28,
+   "peak_db": -10.8,
+   "rms_db": -22.3,
+   "spectral_centroid_hz": 1227.2,
+   "tempo_bpm": 58.7,
+   "zero_crossing_rate": 0.0368
+  },
+  "background": {
+   "bytes": 3522962,
+   "creator": "Digital marketing",
+   "path": "/home/runner/work/_temp/beast-scratch/20261114T152347Z-e5f429/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/657525614376081936/",
+   "sha256": "c59b3defa4dddb7394867f6bdddd62065208cdd3f928ad0eb3761730071da508",
+   "source": "pinterest",
+   "stable_id": "657525614376081936",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "You want to be easy to serve and easy to be around, but trying to look effortless is what makes you feel most watched.",
+    "observable_behaviour": "You rehearse your order under your breath, check the menu twice even though you already know it, then say it too fast when you reach the till",
+    "private_worry": "That you sounded abrupt, or like you wasted their time by hesitating",
+    "situation": "Tuesday 1:12pm, second in queue at the cafe counter, menu board above you"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 4,
+    "evidence": "\"Say sorry before you even order\"; \"Blurt the order in one breath\"; \"Apologise for asking for oat milk\"; \"Thank them three times at till\" \u2014 eight items, count correct, counter-specific.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Items 7-8 (reread receipt, replay tone walking back) leave the counter moment; item 1 and item 4 both do apologising, slightly restating. Payoff is the strongest part and could sit in the hook.",
+    "scene_specificity": 4,
+    "sendability_who": "A close friend who over-apologises when ordering, sent with 'me at the till' or 'eight apologies, one latte'.",
+    "shareability": 4,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=False"
+     ]
+    }
+   ],
+   "topic_id": "tuesday-112pm-coffee-order-apologies"
+  },
+  "delivery": {
+   "at": "2026-11-14T15:35:40Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -0.03,
+   "yavg_delta": -13.6
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 16.97,
+    "yavg": 102.6
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 14.17,
+   "yavg": 91.4
+  },
+  "output": {
+   "bytes": 11060054,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261114T152347Z-e5f429.mp4",
+   "sha256": "3df1bbc644b66e92812420793f2f35558f55b667d1b6a4b610fcc03424974304"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6792417786132957186",
+    "title": "I Root"
+   },
+   "background_query": "person standing at cafe counter under menu board",
+   "caption": "8 tiny apologies hiding in your 1:12pm coffee order:\n1. Say sorry before you even order\n2. Hold card out before they ask\n3. Blurt the order in one breath\n4. Apologise for asking for oat milk\n5. Thank them three times at till\n6. Glance behind to check the queue\n7. Reread the receipt at your table\n8. Replay your tone on the walk back",
+   "closing": "The barista heard one order, you heard eight apologies.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Staccato, self-aware cringe-comedy with ticking coffee-shop tension that builds with each tiny apology and lands on a relatable overthinking punch.",
+     "tiktok_query": "indie",
+     "tiktok_search_query": "indie"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "coffee shop aesthetic",
+     "pinterest_search_query": "coffee shop aesthetic",
+     "semantic_analysis": "A soft, sunlit cafe moment that feels quietly self-conscious, tender, and caught in a small everyday ritual."
+    }
+   },
+   "headline": "8 tiny apologies hiding in your 1:12pm coffee order",
+   "list_items": [
+    "Say sorry before you even order",
+    "Hold card out before they ask",
+    "Blurt the order in one breath",
+    "Apologise for asking for oat milk",
+    "Thank them three times at till",
+    "Glance behind to check the queue",
+    "Reread the receipt at your table",
+    "Replay your tone on the walk back"
+   ],
+   "provenance": {
+    "creator": "Digital marketing",
+    "pin_id": "657525614376081936",
+    "pin_url": "https://www.pinterest.com/pin/657525614376081936/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 103): warm off-white"
+   },
+   "titleLines": [
+    "8 tiny apologies",
+    "hiding in your",
+    "1:12pm coffee",
+    "order"
+   ],
+   "topic_id": "tuesday-112pm-coffee-order-apologies"
+  },
+  "publish": {
+   "alt_text": "Person standing at cafe counter under menu board. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-14T15:36:21Z",
+   "caption": "8 tiny apologies hiding in your 1:12pm coffee order:\n1. Say sorry before you even order\n2. Hold card out before they ask\n3. Blurt the order in one breath\n4. Apologise for asking for oat milk\n5. Thank them three times at till\n6. Glance behind to check the queue\n7. Reread the receipt at your table\n8. Replay your tone on the walk back\n\nThe barista heard one order, you heard eight apologies.",
+   "channel": "instagram",
+   "container_id": "17919448956538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "17908062045600675",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://n.uguu.se/KyaXjPSgCtTS.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -0.03,
+    "yavg_delta": -13.6
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261114T152347Z-e5f429/caption_list_title_v1-live-20261114T152347Z-e5f429.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 11060054,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 14.17,
+    "yavg": 91.4
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.108,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 55.2
+  },
+  "rendered_at": "2026-11-14T15:35:35Z",
+  "run_id": "20261114T152347Z-e5f429",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person is quietly over-apologising through a routine coffee order because they feel like they are holding up the queue.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person standing at cafe counter under",
+     "behind customer at coffee counter ordering",
+     "close up hands holding coffee cup"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.5984,
+    "keywords": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "6792417786132957186",
+    "title": "I Root"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.5984
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 4,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 3,
+     "recognition_authenticity": 5,
+     "scene_specificity": 4,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "tuesday-112pm-coffee-order-apologies"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "indie",
+    "vendor": "meta-api",
+    "why": "Staccato, self-aware cringe-comedy with ticking coffee-shop tension that builds with each tiny apology and lands on a relatable overthinking punch."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "coffee shop aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261114T152347Z-e5f429.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "adjacent lane shot '' paired with 'I Root' for caption_list_title_v1.",
+    "score": 45
+   },
+   "pinterest": {
+    "candidates": 1,
+    "hls": false,
+    "lane": "adjacent",
+    "metrics": {
+     "sat": 16.97,
+     "yavg": 102.6
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "657525614376081936",
+    "query": "behind customer at coffee counter ordering",
+    "review_status": "accept",
+    "score": 64,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 55.2
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261114T152347Z-e5f429/caption_list_title_v1-live-20261114T152347Z-e5f429.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 11060054,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 103): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": true,
+    "drift": {
+     "sat_delta": -0.03,
+     "yavg_delta": -13.6
+    },
+    "measured": {
+     "sat": 14.17,
+     "yavg": 91.4
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.108,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "tuesday-112pm-coffee-order-apologies"
  }
 ]
