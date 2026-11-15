@@ -26701,5 +26701,1031 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "tuesday-812am-lift-floor-4-negotiations"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "dramatic orchestral swells",
+     "tense thriller pulses",
+     "high-energy EDM drops",
+     "sad heavy piano ballad",
+     "loud motivational beats"
+    ],
+    "emotional_role": "Keep the awkward wait feeling light and relatable, not stressful, so the humour lands",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft piano",
+     "light acoustic guitar"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "unhurried"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#relatable",
+     "#workhumour"
+    ],
+    "trend_keywords": [
+     "office life",
+     "awkward moment",
+     "workplace humour"
+    ],
+    "valence": 0.2,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-15T15:58:29Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "borrowing-a-charger-office-kitchen",
+   "core_human_moment": "A person is psyching themselves up to ask a coworker for a phone charger.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "amused",
+   "format_id": "caption_list_title_v1",
+   "human_action": "Standing by the kettle holding a water bottle and hesitating before asking",
+   "humour": 0.7,
+   "intentional_contrast": null,
+   "literal_scene": "A person standing by the kettle in a small office kitchen, holding a water bottle and glancing at their phone.",
+   "literalness": "literal",
+   "motion_intent": "Almost still, one calm continuous shot with only small fidgeting shifts and weight shifting while waiting",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "neutral office whites",
+    "muted warm wood"
+   ],
+   "rationale": "The still kitchen wait makes the overthinking believable, and soft unhurried music lets the list read as funny self-recognition rather than real distress.",
+   "scene_entities": [
+    "water bottle",
+    "electric kettle",
+    "office kitchen"
+   ],
+   "schema_version": "1.0",
+   "setting": "office kitchen",
+   "tension": 0.5,
+   "text_safe_zone": "Centre band 41-59% vertical must stay clear for the 4-line white title, keep subject and kettle below the title band",
+   "time_of_day": "midday",
+   "valence": 0.1,
+   "video_queries": [
+    "person in office kitchen holding water bottle",
+    "hand plugging phone charger into kitchen outlet",
+    "person waiting quietly by office kettle alone"
+   ],
+   "visual_mood": [
+    "quiet",
+    "awkward"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Mint",
+    "candidates": [
+     {
+      "artist": "Mint",
+      "distance": 0.3418,
+      "fresh": true,
+      "id": "7200474975428577281",
+      "score": 100,
+      "title": "Mozart/Requiem \"Lacrimosa\"(1394506)",
+      "video_count": 720700
+     },
+     {
+      "artist": "Fat",
+      "distance": 0.5747,
+      "fresh": true,
+      "id": "7106043342055540737",
+      "score": 84,
+      "title": "Dad Rock",
+      "video_count": 34000
+     },
+     {
+      "artist": "instrumentalpopsongsband",
+      "distance": 0.3598,
+      "fresh": true,
+      "id": "6717507725380552706",
+      "score": 92,
+      "title": "You Found Me",
+      "video_count": 331800
+     },
+     {
+      "artist": "Etsuo Kawasaki",
+      "distance": 0.7157,
+      "fresh": true,
+      "id": "6839725012430096386",
+      "score": 92,
+      "title": "Comical and a little silly carefree music(831995)",
+      "video_count": 106300
+     }
+    ],
+    "distance": 0.3418,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "quirky",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6792322639105886210",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "187.1s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 720700",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7200474975428577281",
+    "title": "Mozart/Requiem \"Lacrimosa\"(1394506)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 30
+     }
+    },
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'Mozart/Requiem \"Lacrimosa\"(1394506)' for caption_list_title_v1.",
+    "total": 65
+   },
+   "visual": {
+    "band_busy": 0.0736,
+    "candidates": [
+     {
+      "band_busy": 0.0736,
+      "height": 1280,
+      "pin_id": "56365432833417039",
+      "query": "office kitchen",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['kitchen', 'street'] (+10); scene words ['and', 'kitchen', 'office', 'the'] (+14)",
+         "points": 24
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 40.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 80,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1023,
+      "height": 1280,
+      "pin_id": "1111755858063113549",
+      "query": "office kitchen",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['home', 'kitchen'] (+10); scene words ['and', 'kitchen', 'office', 'the'] (+14)",
+         "points": 24
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 61.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 80,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1944,
+      "height": 1280,
+      "pin_id": "1026328202585017447",
+      "query": "office kitchen",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['and', 'office', 'the'] (+12)",
+         "points": 12
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 55.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 68,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0247,
+      "height": 1280,
+      "pin_id": "208995238950932683",
+      "query": "person in office kitchen holding water",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 59.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "The best of Dezeen",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 6,
+     "max_jump": 0.2905,
+     "motion": 0.2431,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "56365432833417039",
+    "pin_url": "https://www.pinterest.com/pin/56365432833417039/",
+    "query": "office kitchen",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "office kitchen aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 24,
+      "lane": "metaphor",
+      "query": "office kitchen",
+      "returned": 24
+     },
+     {
+      "lane": "metaphor",
+      "query": "office aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "kitchen aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 0,
+      "lane": "adjacent",
+      "query": "hand plugging phone charger into kitchen",
+      "returned": 0
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "person waiting quietly by office kettle",
+      "returned": 0
+     },
+     {
+      "kept": 14,
+      "lane": "literal",
+      "query": "person in office kitchen holding water",
+      "returned": 14
+     }
+    ],
+    "rejected": [
+     {
+      "id": "337981147059068632",
+      "why": "on-screen text: \"Hello I'm Neil from Elfin; Kitchens and this is wh\""
+     },
+     {
+      "id": "1109996639391938403",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "21603273202273713",
+      "why": "too short 11.83s for 12.2s"
+     },
+     {
+      "id": "620230179982251552",
+      "why": "on-screen text: 'LEICHT; LEICHT 2O27; THE ARCHITECTURAL KITCHEN'"
+     },
+     {
+      "id": "12525705207332131",
+      "why": "unusable crop 538x958"
+     },
+     {
+      "id": "888123989023020214",
+      "why": "on-screen text: 'Follow Us; For More Information; Kitc; Kitchen; of'"
+     },
+     {
+      "id": "1100919071902308337",
+      "why": "on-screen text: 'Egg'"
+     },
+     {
+      "id": "337981147057439084",
+      "why": "too short 8.01s for 12.2s"
+     },
+     {
+      "id": "1077838123339943782",
+      "why": "too short 7.41s for 12.2s"
+     },
+     {
+      "id": "828873506448663929",
+      "why": "too short 7.04s for 12.2s"
+     },
+     {
+      "id": "914862420337472",
+      "why": "on-screen text: '\u7530; \u8058'"
+     },
+     {
+      "id": "695946948691835725",
+      "why": "on-screen text: 'I111; WITH US,ALLTECHNOLOGIESAREHIDDEN; \u4e09; \u7535'"
+     },
+     {
+      "id": "88031367715757983",
+      "why": "on-screen text: 'actually keeps you; actually.keeps you; beans and '"
+     },
+     {
+      "id": "21603273205127897",
+      "lane": "literal",
+      "query": "person in office kitchen holding water",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "593912269658655356",
+      "why": "on-screen text: '1 tsp cinnamon; 1 tsp vanilla extract; 1/6 tsp sal'"
+     },
+     {
+      "id": "621567186093606318",
+      "why": "on-screen text: '>SA; DOD; Digestive; ESOPHAGUS; FOOD'"
+     },
+     {
+      "id": "1266706140482060",
+      "why": "too short 9.47s for 12.2s"
+     },
+     {
+      "id": "703124560567623867",
+      "why": "too short 5.37s for 12.2s"
+     },
+     {
+      "id": "981432943788159603",
+      "why": "too short 12.01s for 12.2s"
+     },
+     {
+      "id": "328481366593529245",
+      "why": "on-screen text: '2 ponytails + 1 bun; 2ponytails + 1 bun; FP MOVEME'"
+     },
+     {
+      "id": "703335666829511231",
+      "why": "on-screen text: 'M; PR; TO; WELCOME'"
+     },
+     {
+      "id": "1062075524609658237",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "563018699111803",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "728175833542321452",
+      "why": "too short 7.59s for 12.2s"
+     },
+     {
+      "id": "1017321003339664278",
+      "why": "on-screen text: 'A-; \u03b2-'"
+     },
+     {
+      "id": "728175833540101771",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "416512665557241000",
+      "why": "too short 10.29s for 12.2s"
+     },
+     {
+      "id": "1141732943080452264",
+      "why": "too short 9.45s for 12.2s"
+     },
+     {
+      "id": "640637115790971235",
+      "why": "on-screen text: 'BORDEVICE; BORMEVILE; I11; SUNU'"
+     },
+     {
+      "id": "5699937022418326",
+      "why": "on-screen text: '/; Aanb; C; JeAn; Opl'"
+     },
+     {
+      "id": "1006484216732051374",
+      "why": "on-screen text: 'EVERYTHD; Hoai Nanu; Hoan Nanu; OKAY; Thank forwat'"
+     },
+     {
+      "id": "920001030132743301",
+      "why": "on-screen text: 'Garlic Butter; PIZZA CUPCAKES; PIZZACUPCAKES; \u798f'"
+     },
+     {
+      "id": "1125759238130416295",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "5911043262748346",
+      "why": "on-screen text: '@venelinkondakov; TikToK; TikTok; venelinkondakov'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['kitchen', 'street'] (+10); scene words ['and', 'kitchen', 'office', 'the'] (+14)",
+       "points": 24
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 40.9s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 80,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 3034058,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261115T155627Z-da2770/assets/track_7200474975428577281.m4a",
+   "pin_url": null,
+   "sha256": "11bf9f85482eac14600bbdb0f583512e902cd9510de699b47f575842958cc68a",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7200474975428577281",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 12.1,
+    "high": 0.2,
+    "mid": 87.7
+   },
+   "duration_s": 187.13,
+   "file": "track_7200474975428577281.m4a",
+   "key_estimate": "D minor",
+   "loudness_curve_db": [
+    -24.4,
+    -25.6,
+    -24.4
+   ],
+   "onset_density_per_s": 1.85,
+   "peak_db": -7.6,
+   "rms_db": -24.8,
+   "spectral_centroid_hz": 1465.4,
+   "tempo_bpm": 136.0,
+   "zero_crossing_rate": 0.0758
+  },
+  "background": {
+   "bytes": 6082563,
+   "creator": "The best of Dezeen",
+   "path": "/home/runner/work/_temp/beast-scratch/20261115T155627Z-da2770/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/56365432833417039/",
+   "sha256": "11099b504dadba891ca3892245404702bf413620b81de2fd81d05568c0731dc3",
+   "source": "pinterest",
+   "stable_id": "56365432833417039",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "asking and needing help",
+    "emotional_tension": "You want a ten-second favour, but your brain is staging it like a job interview.",
+    "observable_behaviour": "you hover by the kettle, refill your bottle twice, check your battery percentage three times, and rehearse the sentence under your breath before you say it",
+    "private_worry": "that asking will make you look unprepared and needy, and trap them in a conversation they didn't sign up for",
+    "situation": "Monday 4:47pm, office kitchen, you need to ask a colleague you barely know if you can borrow their charger for ten minutes"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 4,
+    "evidence": "\"Check your battery percentage three times\"; \"Refill your water bottle twice\"; \"Hover by the kettle waiting for a gap\"; \"Return it after nine minutes exactly\" \u2014 seven items, count correct, kitchen-specific.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 3,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Items 6-7 move past the asking moment into returning and thanking; the title's 'job interview' frame is generic. Payoff 'the charger was the easy part' is clever but oblique to the needy worry.",
+    "scene_specificity": 5,
+    "sendability_who": "An office friend who dreads asking favours, sent with 'me borrowing anything' or 'the charger job interview'.",
+    "shareability": 4,
+    "supporting_min": 3.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "borrowing-a-charger-office-kitchen"
+  },
+  "delivery": {
+   "at": "2026-11-15T16:03:42Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -2.67,
+   "yavg_delta": 12.9
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 15.26,
+    "yavg": 104.1
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 11.53,
+   "yavg": 117.9
+  },
+  "output": {
+   "bytes": 16772049,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261115T155627Z-da2770.mp4",
+   "sha256": "26219655818361d56e6928a041a6f63004406a4ac96e43c4d1be8cf42198e28f"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7200474975428577281",
+    "title": "Mozart/Requiem \"Lacrimosa\"(1394506)"
+   },
+   "background_query": "person standing in office kitchen by kettle holding water bottle",
+   "caption": "7 things you do when borrowing a charger in the office kitchen feels like a job interview:\n1. Check your battery percentage three times\n2. Refill your water bottle twice\n3. Hover by the kettle waiting for a gap\n4. Rehearse the sentence under your breath\n5. Apologise before you even ask\n6. Return it after nine minutes exactly\n7. Thank them again on Slack later",
+   "closing": "The charger was the easy part.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Playful cringe-comedy with quick-cut, overthinking tension that needs a bouncy, slightly dramatic build to make a tiny office ask feel hilariously high-stakes.",
+     "tiktok_query": "quirky",
+     "tiktok_search_query": "quirky"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "office kitchen aesthetic",
+     "pinterest_search_query": "office kitchen aesthetic",
+     "semantic_analysis": "A soft, quietly awkward office-kitchen limbo where hovering by the kettle makes a tiny ask feel strangely formal."
+    }
+   },
+   "headline": "7 things you do when borrowing a charger in the office kitchen feels like a job interview",
+   "list_items": [
+    "Check your battery percentage three times",
+    "Refill your water bottle twice",
+    "Hover by the kettle waiting for a gap",
+    "Rehearse the sentence under your breath",
+    "Apologise before you even ask",
+    "Return it after nine minutes exactly",
+    "Thank them again on Slack later"
+   ],
+   "provenance": {
+    "creator": "The best of Dezeen",
+    "pin_id": "56365432833417039",
+    "pin_url": "https://www.pinterest.com/pin/56365432833417039/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 104): warm off-white"
+   },
+   "titleLines": [
+    "7 things you do when",
+    "borrowing a charger in",
+    "the office kitchen feels",
+    "like a job interview"
+   ],
+   "topic_id": "borrowing-a-charger-office-kitchen"
+  },
+  "publish": {
+   "alt_text": "Person standing in office kitchen by kettle holding water bottle. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-15T16:04:27Z",
+   "caption": "7 things you do when borrowing a charger in the office kitchen feels like a job interview:\n1. Check your battery percentage three times\n2. Refill your water bottle twice\n3. Hover by the kettle waiting for a gap\n4. Rehearse the sentence under your breath\n5. Apologise before you even ask\n6. Return it after nine minutes exactly\n7. Thank them again on Slack later\n\nThe charger was the easy part.",
+   "channel": "instagram",
+   "container_id": "17919640110538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18454457860133759",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/nKhUMhcdUnTy.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -2.67,
+    "yavg_delta": 12.9
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261115T155627Z-da2770/caption_list_title_v1-live-20261115T155627Z-da2770.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 16772049,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 11.53,
+    "yavg": 117.9
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.3367,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 45.1
+  },
+  "rendered_at": "2026-11-15T16:03:37Z",
+  "run_id": "20261115T155627Z-da2770",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person is psyching themselves up to ask a coworker for a phone charger.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person in office kitchen holding water",
+     "hand plugging phone charger into kitchen",
+     "person waiting quietly by office kettle"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3418,
+    "keywords": [
+     {
+      "keyword": "quirky",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7200474975428577281",
+    "title": "Mozart/Requiem \"Lacrimosa\"(1394506)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3418
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 4,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 3,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "borrowing-a-charger-office-kitchen"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "quirky",
+    "vendor": "meta-api",
+    "why": "Playful cringe-comedy with quick-cut, overthinking tension that needs a bouncy, slightly dramatic build to make a tiny office ask feel hilariously high-stakes."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "office kitchen aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261115T155627Z-da2770.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'Mozart/Requiem \"Lacrimosa\"(1394506)' for caption_list_title_v1.",
+    "score": 65
+   },
+   "pinterest": {
+    "candidates": 4,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 15.26,
+     "yavg": 104.1
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "56365432833417039",
+    "query": "office kitchen",
+    "review_status": "accept",
+    "score": 80,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 45.1
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261115T155627Z-da2770/caption_list_title_v1-live-20261115T155627Z-da2770.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 16772049,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 104): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": true,
+    "drift": {
+     "sat_delta": -2.67,
+     "yavg_delta": 12.9
+    },
+    "measured": {
+     "sat": 11.53,
+     "yavg": 117.9
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.3367,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "borrowing-a-charger-office-kitchen"
  }
 ]

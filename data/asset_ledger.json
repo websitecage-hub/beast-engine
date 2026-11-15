@@ -72,6 +72,14 @@
    "status": "delivered",
    "used_by": "20261113T164938Z-be8f25"
   },
+  "7200474975428577281": {
+   "first_seen_at": "2026-11-15T16:02:48Z",
+   "last_used_at": "2026-11-15T16:03:42Z",
+   "review_status": "pending",
+   "sha256": "11bf9f85482eac14600bbdb0f583512e902cd9510de699b47f575842958cc68a",
+   "status": "delivered",
+   "used_by": "20261115T155627Z-da2770"
+  },
   "7226365708959123458": {
    "first_seen_at": "2026-11-12T10:58:24Z",
    "last_used_at": "2026-11-12T10:59:34Z",
@@ -122,7 +130,7 @@
   }
  },
  "reservations": {},
- "updated_at": "2026-11-14T21:21:32Z",
+ "updated_at": "2026-11-15T16:03:42Z",
  "version": 1,
  "visual": {
   "pin:1031254014687421050": {
@@ -190,6 +198,17 @@
    "sha256": "43c9dd2060b9da38e35c8d403736d3a6080e9b35a89c34273919cde3aab0df2b",
    "status": "delivered",
    "used_by": "20261113T164938Z-be8f25"
+  },
+  "pin:56365432833417039": {
+   "first_seen_at": "2026-11-15T16:02:15Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-15T16:03:42Z",
+   "pin_id": "56365432833417039",
+   "query": "office kitchen",
+   "review_status": "accept",
+   "sha256": "11099b504dadba891ca3892245404702bf413620b81de2fd81d05568c0731dc3",
+   "status": "delivered",
+   "used_by": "20261115T155627Z-da2770"
   },
   "pin:625789310718733317": {
    "first_seen_at": "2026-11-12T10:57:58Z",
