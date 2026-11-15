@@ -27727,5 +27727,1117 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "borrowing-a-charger-office-kitchen"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.35,
+   "audio_intent": {
+    "arousal": 0.3,
+    "avoid": [
+     "loud party music",
+     "upbeat pop drop",
+     "comedy sound effects",
+     "dramatic sting",
+     "fast drums"
+    ],
+    "emotional_role": "hold the pause warm and steady without rushing it into celebration",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "warm strings"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "unhurried"
+    ],
+    "trend_hashtags": [
+     "#quietmoments",
+     "#birthdaynight"
+    ],
+    "trend_keywords": [
+     "soft piano",
+     "quiet anticipation",
+     "evening entrance"
+    ],
+    "valence": 0.3,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-15T21:38:09Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "thursday-723pm-hallway-birthday-door",
+   "core_human_moment": "A person pauses for six seconds in a restaurant hallway at 7:23, steadying himself before pushing through the door to a birthday gathering.",
+   "degraded": false,
+   "emotional_primary": "nervous",
+   "emotional_secondary": "hopeful",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing with hand on door, checking phone, exhaling, then pushing door open",
+   "humour": 0.1,
+   "intentional_contrast": null,
+   "literal_scene": "A person standing alone in a quiet restaurant hallway with one hand resting on a glass door, phone in the other hand, before pushing inside.",
+   "literalness": "literal",
+   "motion_intent": "almost still, one continuous calm shot with only small hand, breath, and door movement",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm amber hallway light",
+    "muted dark glass"
+   ],
+   "rationale": "The still hallway shot keeps the six-second pause believable, and soft piano holds its nervous warmth without turning it into a party before the door opens.",
+   "scene_entities": [
+    "glass door",
+    "phone",
+    "restaurant hallway"
+   ],
+   "schema_version": "1.0",
+   "setting": "restaurant entrance hallway",
+   "tension": 0.6,
+   "text_safe_zone": "centre band 41-59% vertical, keep that area darker and uncluttered for white title",
+   "time_of_day": "early evening",
+   "valence": 0.2,
+   "video_queries": [
+    "person hand on restaurant glass door evening",
+    "man checking phone in restaurant hallway evening",
+    "empty restaurant hallway warm lights evening"
+   ],
+   "visual_mood": [
+    "quiet",
+    "warm"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.6
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "The Beatles Revival Band",
+    "candidates": [
+     {
+      "artist": "The Beatles Revival Band",
+      "distance": 0.3654,
+      "fresh": false,
+      "id": "7127247846985713666",
+      "score": 72,
+      "title": "And I Love Her (live)",
+      "video_count": 324700
+     }
+    ],
+    "distance": 0.3654,
+    "fresh": false,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6913654857325643777",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7200846574183221250",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "6928394843181811714",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "6755976969352906753",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "used recently",
+       "points": 0
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 324700",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 72
+    },
+    "stable_id": "7127247846985713666",
+    "title": "And I Love Her (live)"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 0
+     }
+    },
+    "passes": false,
+    "rationale": "literal lane shot 'bubbles \ud83e\udd42' paired with 'And I Love Her (live)' for caption_list_title_v1.",
+    "total": 35
+   },
+   "visual": {
+    "band_busy": 0.022,
+    "candidates": [
+     {
+      "band_busy": 0.022,
+      "height": 1280,
+      "pin_id": "15340454975627008",
+      "query": "person hand on restaurant glass",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.094,
+         "rows": [
+          190,
+          250
+         ]
+        },
+        {
+         "fraction_of_height": 0.102,
+         "rows": [
+          163,
+          228
+         ]
+        },
+        {
+         "fraction_of_height": 0.091,
+         "rows": [
+          160,
+          218
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(190, 250), (163, 228)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         190,
+         250
+        ],
+        [
+         163,
+         228
+        ],
+        [
+         160,
+         218
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.022,
+      "height": 1280,
+      "pin_id": "15340454975627008",
+      "query": "person hand on restaurant glass",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.094,
+         "rows": [
+          190,
+          250
+         ]
+        },
+        {
+         "fraction_of_height": 0.102,
+         "rows": [
+          163,
+          228
+         ]
+        },
+        {
+         "fraction_of_height": 0.091,
+         "rows": [
+          160,
+          218
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(190, 250), (163, 228)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         190,
+         250
+        ],
+        [
+         163,
+         228
+        ],
+        [
+         160,
+         218
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "All th GIF in the world",
+    "flags": [],
+    "lane_expansions": 3,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0352,
+     "motion": 0.0205,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": false,
+    "pin_id": "15340454975627008",
+    "pin_url": "https://www.pinterest.com/pin/15340454975627008/",
+    "query": "person hand on restaurant glass",
+    "query_lane": "literal",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "cinematic hallway aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic hallway",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "hallway aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 2,
+      "lane": "adjacent",
+      "query": "man checking phone in restaurant hallway",
+      "returned": 2
+     },
+     {
+      "kept": 3,
+      "lane": "emotional",
+      "query": "empty restaurant hallway warm lights evening",
+      "returned": 3
+     },
+     {
+      "kept": 15,
+      "lane": "literal",
+      "query": "person hand on restaurant glass door",
+      "returned": 16
+     },
+     {
+      "kept": 15,
+      "lane": "adjacent",
+      "query": "man checking phone in restaurant",
+      "returned": 15
+     },
+     {
+      "kept": 6,
+      "lane": "emotional",
+      "query": "empty restaurant hallway warm",
+      "returned": 6
+     },
+     {
+      "kept": 23,
+      "lane": "literal",
+      "query": "person hand on restaurant glass",
+      "returned": 25
+     },
+     {
+      "kept": 15,
+      "lane": "adjacent",
+      "query": "man checking phone in restaurant",
+      "returned": 15
+     },
+     {
+      "kept": 6,
+      "lane": "emotional",
+      "query": "empty restaurant hallway warm",
+      "returned": 6
+     },
+     {
+      "kept": 23,
+      "lane": "literal",
+      "query": "person hand on restaurant glass",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "552887291775072352",
+      "why": "too short 10.24s for 12.2s"
+     },
+     {
+      "id": "337981147044740130",
+      "why": "too short 10.98s for 12.2s"
+     },
+     {
+      "id": "914862421023994",
+      "why": "too short 11.08s for 12.2s"
+     },
+     {
+      "id": "21603273205127897",
+      "lane": "literal",
+      "query": "person hand on restaurant glass door",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "809803576734022042",
+      "why": "too short 10.03s for 12.2s"
+     },
+     {
+      "id": "780248704235518498",
+      "why": "on-screen text: '1OOO SNEAKER; Atomi; Atomic; Atomic Habits; KOR'"
+     },
+     {
+      "id": "703335666829511231",
+      "why": "on-screen text: 'M; PR; TO; WELCOME'"
+     },
+     {
+      "id": "6262886976873244",
+      "why": "on-screen text: 'BLUESPIRITGAMING; HOWTOBUILDACUTETABLE; Spruce Fen'"
+     },
+     {
+      "id": "890446157595490010",
+      "why": "on-screen text: '000; CUERRICIA'"
+     },
+     {
+      "id": "28006828926782164",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "672373419409552892",
+      "why": "on-screen text: 'MWWW; W; WM; WW; WWW'"
+     },
+     {
+      "id": "674765956691872849",
+      "why": "too short 10.91s for 12.2s"
+     },
+     {
+      "id": "668080926019111233",
+      "why": "on-screen text: '000; 006E; 00\u4e2a; 0102; \u798f'"
+     },
+     {
+      "id": "514536326198810786",
+      "why": "on-screen text: '?+; Black; Blue; DIY floating butterflies; FromPin'"
+     },
+     {
+      "id": "998321442470103465",
+      "why": "on-screen text: 'Calfabetizacaooficial; Cl; Cu; EITME; GIVG'"
+     },
+     {
+      "id": "434878907776213703",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1073264154937796131",
+      "why": "on-screen text: 'Minecraft; Oak Flanks; epoob; nor; sofa'"
+     },
+     {
+      "id": "25262447902582183",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "864691197258135596",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "512988213828928446",
+      "why": "on-screen text: 'a little more whimsical; pov: the cabinets asked f'"
+     },
+     {
+      "id": "552887291775072352",
+      "why": "too short 10.24s for 12.2s"
+     },
+     {
+      "id": "1132303531342415438",
+      "why": "on-screen text: 'SMALL CAFE INITALY; SMALL CAFEINITALY; SMALLCAFEIN'"
+     },
+     {
+      "id": "337981147044740130",
+      "why": "too short 10.98s for 12.2s"
+     },
+     {
+      "id": "923097254873588098",
+      "why": "too short 7.23s for 12.2s"
+     },
+     {
+      "id": "514606694945887068",
+      "why": "too short 5.41s for 12.2s"
+     },
+     {
+      "id": "7177680650994839",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "4433299629243983",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "809803576734022042",
+      "why": "too short 10.03s for 12.2s"
+     },
+     {
+      "id": "21603273205127897",
+      "lane": "emotional",
+      "query": "empty restaurant hallway warm",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "2322237302200030",
+      "why": "too short 10.15s for 12.2s"
+     },
+     {
+      "id": "810859107939824668",
+      "why": "unusable crop 384x480"
+     },
+     {
+      "id": "3729612269132289",
+      "lane": "literal",
+      "query": "person hand on restaurant glass",
+      "why": "advertising call-to-action: 'our website'"
+     },
+     {
+      "id": "6262886976873244",
+      "why": "on-screen text: 'BLUESPIRITGAMING; HOWTOBUILDACUTETABLE; Spruce Fen'"
+     },
+     {
+      "id": "1046805507144552792",
+      "why": "too short 4.86s for 12.2s"
+     },
+     {
+      "id": "240450067604005756",
+      "why": "too short 12.1s for 12.2s"
+     },
+     {
+      "id": "1106689308445708625",
+      "lane": "adjacent",
+      "query": "man checking phone in restaurant",
+      "why": "advertising call-to-action: 'Follow us'"
+     },
+     {
+      "id": "890446157595490010",
+      "why": "on-screen text: '000; CUERRICIA'"
+     },
+     {
+      "id": "985231164811270",
+      "why": "too short 8.43s for 12.2s"
+     },
+     {
+      "id": "1119989001107564242",
+      "why": "too short 9.41s for 12.2s"
+     },
+     {
+      "id": "924715736001525997",
+      "why": "too short 6.57s for 12.2s"
+     }
+    ],
+    "review_status": "needs_human_review",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words [] (+0)",
+       "points": 0
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 14.8s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": false,
+     "review_status": "reject",
+     "total": 56,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.094,
+       "rows": [
+        190,
+        250
+       ]
+      },
+      {
+       "fraction_of_height": 0.102,
+       "rows": [
+        163,
+        228
+       ]
+      },
+      {
+       "fraction_of_height": 0.091,
+       "rows": [
+        160,
+        218
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(190, 250), (163, 228)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       190,
+       250
+      ],
+      [
+       163,
+       228
+      ],
+      [
+       160,
+       218
+      ]
+     ]
+    },
+    "title": "bubbles \ud83e\udd42"
+   }
+  },
+  "audio": {
+   "bytes": 1000994,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261115T213430Z-c27636/assets/track_7127247846985713666.m4a",
+   "pin_url": null,
+   "sha256": "9e7b416734cb16fb4da2d05fec5fae240ba916cd19d0d9d75f17a231969e61a8",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7127247846985713666",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 62.8,
+    "high": 0.8,
+    "mid": 36.4
+   },
+   "duration_s": 60.0,
+   "file": "track_7127247846985713666.m4a",
+   "key_estimate": "C minor",
+   "loudness_curve_db": [
+    -22.6,
+    -22.3,
+    -21.9
+   ],
+   "onset_density_per_s": 3.43,
+   "peak_db": -8.2,
+   "rms_db": -22.3,
+   "spectral_centroid_hz": 1457.8,
+   "tempo_bpm": 123.0,
+   "zero_crossing_rate": 0.0513
+  },
+  "background": {
+   "bytes": 2098961,
+   "creator": "All th GIF in the world",
+   "path": "/home/runner/work/_temp/beast-scratch/20261115T213430Z-c27636/assets/cand_1_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/15340454975627008/",
+   "sha256": "d2ac53a612f55151bb950fd20ed95e0582121d389be616d242dffe50d4804045",
+   "source": "pinterest",
+   "stable_id": "15340454975627008",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 3,
+   "audience_moment": {
+    "audience_cluster": "parties and social events",
+    "emotional_tension": "They want to be in the room, but the three seconds before entering feel louder than the whole dinner.",
+    "observable_behaviour": "pauses, checks the reservation name on their phone twice, smooths their jacket in the glass, then pushes the door open and scans for a familiar face",
+    "private_worry": "that walking in alone and a minute late will look like they don't belong and no one was waiting for them",
+    "situation": "Thursday 7:23pm, in the hallway outside a friend's birthday dinner, hand already on the restaurant door"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 4.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Hand on door, not pushing yet\" / \"Check reservation name on phone twice\" / \"Smooth jacket in restaurant glass\" / \"Rehearse happy birthday under breath\" \u2014 concrete, observed, non-clinical.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 4,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Voice is slightly soft on items 4\u20135 ('Exhale once', 'Rehearse happy birthday') \u2014 could use one sharper physical detail to match the specificity of items 1\u20133.",
+    "scene_specificity": 5,
+    "sendability_who": "A close friend who over-prepares for social entrances would send this to another friend who does the same, captioning 'this is literally us.'",
+    "shareability": 5,
+    "supporting_min": 5.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    },
+    {
+     "attempt": 3,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "thursday-723pm-hallway-birthday-door"
+  },
+  "delivery": {
+   "at": "2026-11-15T21:48:41Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -10.96,
+   "yavg_delta": -69.9
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 3.79,
+    "yavg": 28.9
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 3.24,
+   "yavg": 35.1
+  },
+  "output": {
+   "bytes": 3809946,
+   "duration_s": 11.977,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261115T213430Z-c27636.mp4",
+   "sha256": "233c6a72c17f98a3a1cbb346ab85d03259153b814402bbe77467b4163a0fd46c"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7127247846985713666",
+    "title": "And I Love Her (live)"
+   },
+   "background_query": "person standing in restaurant hallway hand on glass door evening",
+   "caption": "6 hallway seconds at 7:23 that turn a birthday door into a stage:\n1. Hand on door, not pushing yet\n2. Check reservation name on phone twice\n3. Smooth jacket in restaurant glass\n4. Exhale once in empty hallway\n5. Rehearse happy birthday under breath\n6. Push door, scan for familiar face",
+   "closing": "You already wanted to be in the room, the hallway just needed a second.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A hushed, slow-building tension of held breath and small rituals that snaps into warm release when the door opens.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "cinematic hallway aesthetic",
+     "pinterest_search_query": "cinematic hallway aesthetic",
+     "semantic_analysis": "A quiet, warm-lit hallway pause where stillness, soft light, and a hand on the door turn an ordinary entrance into a cinematic stage."
+    }
+   },
+   "headline": "6 hallway seconds at 7:23 that turn a birthday door into a stage",
+   "list_items": [
+    "Hand on door, not pushing yet",
+    "Check reservation name on phone twice",
+    "Smooth jacket in restaurant glass",
+    "Exhale once in empty hallway",
+    "Rehearse happy birthday under breath",
+    "Push door, scan for familiar face"
+   ],
+   "provenance": {
+    "creator": "All th GIF in the world",
+    "pin_id": "15340454975627008",
+    "pin_url": "https://www.pinterest.com/pin/15340454975627008/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 29 < 92): warm yellow"
+   },
+   "titleLines": [
+    "6 hallway seconds",
+    "at 7:23 that turn a",
+    "birthday door into",
+    "a stage"
+   ],
+   "topic_id": "thursday-723pm-hallway-birthday-door"
+  },
+  "publish": {
+   "alt_text": "Person standing in restaurant hallway hand on glass door evening. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-15T21:50:18Z",
+   "caption": "6 hallway seconds at 7:23 that turn a birthday door into a stage:\n1. Hand on door, not pushing yet\n2. Check reservation name on phone twice\n3. Smooth jacket in restaurant glass\n4. Exhale once in empty hallway\n5. Rehearse happy birthday under breath\n6. Push door, scan for familiar face\n\nYou already wanted to be in the room, the hallway just needed a second.",
+   "channel": "instagram",
+   "container_id": "17919679125538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18036860384850793",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/skBAyvyOYWks.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -10.96,
+    "yavg_delta": -69.9
+   },
+   "duration_s": 11.977,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 11.977,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261115T213430Z-c27636/caption_list_title_v1-live-20261115T213430Z-c27636.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": false,
+    "moov_tail": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 3809946,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 3.24,
+    "yavg": 35.1
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.077,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 40.9
+  },
+  "rendered_at": "2026-11-15T21:48:37Z",
+  "run_id": "20261115T213430Z-c27636",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person pauses for six seconds in a restaurant hallway at 7:23, steadying himself before pushing through the door to a birthday gathering.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person hand on restaurant glass door",
+     "man checking phone in restaurant hallway",
+     "empty restaurant hallway warm lights evening"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3654,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 72,
+    "stable_id": "7127247846985713666",
+    "title": "And I Love Her (live)"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3654
+   },
+   "content": {
+    "attempts": 3,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 4,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "thursday-723pm-hallway-birthday-door"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "A hushed, slow-building tension of held breath and small rituals that snaps into warm release when the door opens."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "cinematic hallway aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261115T213430Z-c27636.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "literal lane shot 'bubbles \ud83e\udd42' paired with 'And I Love Her (live)' for caption_list_title_v1.",
+    "score": 35
+   },
+   "pinterest": {
+    "candidates": 2,
+    "hls": false,
+    "lane": "literal",
+    "metrics": {
+     "sat": 3.79,
+     "yavg": 28.9
+    },
+    "ok": true,
+    "passes_minimum": false,
+    "pin_id": "15340454975627008",
+    "query": "person hand on restaurant glass",
+    "review_status": "needs_human_review",
+    "score": 56,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "bubbles \ud83e\udd42"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 40.9
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 11.977,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261115T213430Z-c27636/caption_list_title_v1-live-20261115T213430Z-c27636.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": false,
+     "moov_tail": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 3809946,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 29 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -10.96,
+     "yavg_delta": -69.9
+    },
+    "measured": {
+     "sat": 3.24,
+     "yavg": 35.1
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.077,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "thursday-723pm-hallway-birthday-door"
  }
 ]
