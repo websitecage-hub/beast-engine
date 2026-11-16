@@ -88,6 +88,14 @@
    "status": "delivered",
    "used_by": "20261112T105014Z-df9eae"
   },
+  "7235662417353738242": {
+   "first_seen_at": "2026-11-16T19:07:55Z",
+   "last_used_at": "2026-11-16T19:09:01Z",
+   "review_status": "pending",
+   "sha256": "b9a48553aaffdec6ba0a6ed3aa9507d4855f8f4a0f8fc647d6e78fa1779b87d6",
+   "status": "delivered",
+   "used_by": "20261116T185946Z-178dac"
+  },
   "7247207913034614785": {
    "first_seen_at": "2026-11-11T23:34:48Z",
    "last_used_at": "2026-11-11T23:35:31Z",
@@ -130,7 +138,7 @@
   }
  },
  "reservations": {},
- "updated_at": "2026-11-15T21:48:41Z",
+ "updated_at": "2026-11-16T19:09:01Z",
  "version": 1,
  "visual": {
   "pin:1031254014687421050": {
@@ -176,6 +184,17 @@
    "sha256": "ef959c72017226aff2abaeeb23dc89717aa3b478c4bfd68b94dfd0bd458114df",
    "status": "delivered",
    "used_by": "20261112T171101Z-73273e"
+  },
+  "pin:1130051731534905615": {
+   "first_seen_at": "2026-11-16T19:07:21Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-16T19:09:01Z",
+   "pin_id": "1130051731534905615",
+   "query": "office walk",
+   "review_status": "reject",
+   "sha256": "006c983c663419b2f82b6f1b88df4fd5bb9cd197c05d935a5a009df5fe8449a6",
+   "status": "delivered",
+   "used_by": "20261116T185946Z-178dac"
   },
   "pin:1135118281104627627": {
    "first_seen_at": "2026-11-11T17:46:26Z",

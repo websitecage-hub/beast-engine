@@ -28839,5 +28839,1042 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "thursday-723pm-hallway-birthday-door"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "loud triumphant brass",
+     "fast EDM drop",
+     "dramatic thriller sting",
+     "comedy boing effect",
+     "upbeat corporate motivational track"
+    ],
+    "emotional_role": "hold the awkward pause without turning it dramatic, so the relatable humour lands softly",
+    "energy": 0.3,
+    "instrumentation": [
+     "soft piano",
+     "light acoustic guitar"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft piano",
+     "gentle room tone"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#relatable",
+     "#workhumour"
+    ],
+    "trend_keywords": [
+     "late to meeting",
+     "office life",
+     "relatable work moment"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-16T19:01:56Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "walk-in-after-everyone-sat-down",
+   "core_human_moment": "She is arriving late to a meeting that has already started and bracing herself to walk in while everyone is already settled.",
+   "degraded": false,
+   "emotional_primary": "embarrassed",
+   "emotional_secondary": "awkward",
+   "format_id": "caption_list_title_v1",
+   "human_action": "pausing outside the door holding a laptop and fixing her face before entering",
+   "humour": 0.5,
+   "intentional_contrast": null,
+   "literal_scene": "A person standing still in an office hallway just outside a meeting room door, holding a laptop, hesitating before entering.",
+   "literalness": "literal",
+   "motion_intent": "one continuous calm shot, almost still with slight handheld sway while she pauses",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "soft neutral office light",
+    "muted grey tones"
+   ],
+   "rationale": "The pause outside the door is the whole joke and the whole ache: everyone inside is already settled, so a still hallway shot lets the viewer feel that held breath before the nod. Soft, unhurried music keeps it human and funny instead of stressful.",
+   "scene_entities": [
+    "laptop",
+    "meeting room door",
+    "office hallway"
+   ],
+   "schema_version": "1.0",
+   "setting": "office hallway outside a meeting room",
+   "tension": 0.55,
+   "text_safe_zone": "centre 41-59% vertical band, keep face and door clear of text",
+   "time_of_day": "morning",
+   "valence": -0.2,
+   "video_queries": [
+    "person pausing outside meeting room door holding laptop",
+    "office hallway view of closed meeting room door",
+    "person looking down fixing expression before entering"
+   ],
+   "visual_mood": [
+    "quiet",
+    "awkward"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.35
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "G Sounds",
+    "candidates": [
+     {
+      "artist": "Eldar Kedem",
+      "distance": 0.7529,
+      "fresh": true,
+      "id": "6982541212746008578",
+      "score": 100,
+      "title": "Walking Around - Instrumental Version",
+      "video_count": 4800000
+     },
+     {
+      "artist": "Marla Bevins",
+      "distance": 0.4647,
+      "fresh": true,
+      "id": "7684128961911081011",
+      "score": 74,
+      "title": "Black String Tempest",
+      "video_count": 13500
+     },
+     {
+      "artist": "G Sounds",
+      "distance": 0.4376,
+      "fresh": true,
+      "id": "7235662417353738242",
+      "score": 100,
+      "title": "champagne",
+      "video_count": 967500
+     }
+    ],
+    "distance": 0.4376,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6907423692133763074",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7097039090628970497",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 967500",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7235662417353738242",
+    "title": "champagne"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 0
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot '\u0422\u0432\u043e\u0439 \u0441\u0442\u0438\u043b\u044c \u043d\u0430 \u043a\u0430\u0436\u0434\u044b\u0439 \u0434\u0435\u043d\u044c\ud83c\udfd9\ufe0f' paired with 'champagne' for caption_list_title_v1.",
+    "total": 35
+   },
+   "visual": {
+    "band_busy": 0.0262,
+    "candidates": [
+     {
+      "band_busy": 0.0262,
+      "height": 1280,
+      "pin_id": "1130051731534905615",
+      "query": "office walk",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.097,
+         "rows": [
+          218,
+          280
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(218, 280)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         218,
+         280
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.2031,
+      "height": 1280,
+      "pin_id": "494340496616615701",
+      "query": "office walk",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['walk'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [
+        [
+         288,
+         296
+        ],
+        [
+         296,
+         304
+        ]
+       ],
+       "framing": [],
+       "reason": "persistent glyph-like band (288, 296)",
+       "text_suspected": true,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0192,
+      "height": 1280,
+      "pin_id": "868772584404135918",
+      "query": "person looking down fixing expression before",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 63.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "\u0411\u044b\u0441\u0442\u0440\u043e\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 7,
+     "max_jump": 0.3033,
+     "motion": 0.2452,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "1130051731534905615",
+    "pin_url": "https://www.pinterest.com/pin/1130051731534905615/",
+    "query": "office walk",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "cinematic office walk",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic office",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic walk",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 24,
+      "lane": "metaphor",
+      "query": "office walk",
+      "returned": 24
+     },
+     {
+      "kept": 1,
+      "lane": "adjacent",
+      "query": "office hallway view of closed meeting",
+      "returned": 1
+     },
+     {
+      "kept": 25,
+      "lane": "emotional",
+      "query": "person looking down fixing expression before",
+      "returned": 25
+     },
+     {
+      "kept": 9,
+      "lane": "literal",
+      "query": "person pausing outside meeting room door",
+      "returned": 9
+     }
+    ],
+    "rejected": [
+     {
+      "id": "654851602114979932",
+      "why": "too short 7.69s for 12.2s"
+     },
+     {
+      "id": "731483164523597931",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "839921399301431812",
+      "why": "on-screen text: 'How to Draw Anime Side Face; LaTA; \u8336'"
+     },
+     {
+      "id": "583849539231517221",
+      "why": "on-screen text: '+; 100%; Background; Clear White (Color); Clear Wh'"
+     },
+     {
+      "id": "596375175680578753",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "879750108463596214",
+      "why": "too short 11.03s for 12.2s"
+     },
+     {
+      "id": "891783163689542797",
+      "lane": "metaphor",
+      "query": "office walk",
+      "why": "stock/repost source: 'stock footage'"
+     },
+     {
+      "id": "47780446039632388",
+      "why": "on-screen text: '\u5408; \u5b89'"
+     },
+     {
+      "id": "966725876283124736",
+      "why": "on-screen text: 'ONE; WAY; \u5c0f'"
+     },
+     {
+      "id": "906279124991661190",
+      "why": "unusable crop 960x540"
+     },
+     {
+      "id": "906279124991741856",
+      "why": "unusable crop 960x540"
+     },
+     {
+      "id": "906279124990843865",
+      "why": "unusable crop 960x540"
+     },
+     {
+      "id": "817544138642271074",
+      "why": "too short 10.1s for 12.2s"
+     },
+     {
+      "id": "301811612548919128",
+      "why": "on-screen text: '\u516c'"
+     },
+     {
+      "id": "1147995761284762869",
+      "why": "on-screen text: 'BUCKS; CFEE; CHANEL; FEE; HANEL'"
+     },
+     {
+      "id": "690880399152124388",
+      "why": "too short 12.19s for 12.2s"
+     },
+     {
+      "id": "1068267974116718233",
+      "why": "on-screen text: 'TL'"
+     },
+     {
+      "id": "335588609729117844",
+      "why": "unusable crop 540x960"
+     },
+     {
+      "id": "256564510018799838",
+      "why": "too short 10.73s for 12.2s"
+     },
+     {
+      "id": "946741152932288959",
+      "lane": "metaphor",
+      "query": "office walk",
+      "why": "advertising call-to-action: 'Subscribe'"
+     },
+     {
+      "id": "899312619315713507",
+      "why": "unusable crop 1024x576"
+     },
+     {
+      "id": "1021472759246049260",
+      "why": "on-screen text: 'P9; Pickies'"
+     },
+     {
+      "id": "298574650318329921",
+      "why": "too short 10.06s for 12.2s"
+     },
+     {
+      "id": "1124703706961804952",
+      "why": "on-screen text: 'Having confidence; freaking a**holes; freaking mak'"
+     },
+     {
+      "id": "25825397858482304",
+      "why": "unusable crop 480x480"
+     },
+     {
+      "id": "725431452498071080",
+      "why": "too short 7.8s for 12.2s"
+     },
+     {
+      "id": "7529524371902013",
+      "why": "too short 11.34s for 12.2s"
+     },
+     {
+      "id": "692639617712426659",
+      "why": "unusable crop 240x424"
+     },
+     {
+      "id": "668080926019111233",
+      "why": "on-screen text: '000; 006E; 00\u4e2a; 0102; \u798f'"
+     },
+     {
+      "id": "1045890713438251502",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "767019380341162740",
+      "why": "on-screen text: 'OLV; QIV; X; lebruary'"
+     },
+     {
+      "id": "16677461114850062",
+      "why": "unusable crop 228x288"
+     },
+     {
+      "id": "887983251509534041",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "327425835425299558",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "985655068419894048",
+      "why": "on-screen text: 'NEW Y; \u4e1a; \uff01'"
+     },
+     {
+      "id": "39828777961754013",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "318277898680672849",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "21673641952713897",
+      "why": "unusable crop 480x852"
+     },
+     {
+      "id": "259660734759660447",
+      "why": "too short 12.13s for 12.2s"
+     },
+     {
+      "id": "238127899036980161",
+      "why": "unusable crop 726x506"
+     }
+    ],
+    "review_status": "reject",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words [] (+0)",
+       "points": 0
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 16.3s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": false,
+     "review_status": "reject",
+     "total": 56,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.097,
+       "rows": [
+        218,
+        280
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(218, 280)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       218,
+       280
+      ]
+     ]
+    },
+    "title": "\u0422\u0432\u043e\u0439 \u0441\u0442\u0438\u043b\u044c \u043d\u0430 \u043a\u0430\u0436\u0434\u044b\u0439 \u0434\u0435\u043d\u044c\ud83c\udfd9\ufe0f"
+   }
+  },
+  "audio": {
+   "bytes": 975617,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261116T185946Z-178dac/assets/track_7235662417353738242.m4a",
+   "pin_url": null,
+   "sha256": "b9a48553aaffdec6ba0a6ed3aa9507d4855f8f4a0f8fc647d6e78fa1779b87d6",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7235662417353738242",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 83.7,
+    "high": 0.2,
+    "mid": 16.1
+   },
+   "duration_s": 60.0,
+   "file": "track_7235662417353738242.m4a",
+   "key_estimate": "B minor",
+   "loudness_curve_db": [
+    -21.3,
+    -21.1,
+    -21.3
+   ],
+   "onset_density_per_s": 3.77,
+   "peak_db": -6.5,
+   "rms_db": -21.2,
+   "spectral_centroid_hz": 1033.4,
+   "tempo_bpm": 99.4,
+   "zero_crossing_rate": 0.0296
+  },
+  "background": {
+   "bytes": 2943371,
+   "creator": "\u0411\u044b\u0441\u0442\u0440\u043e\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435",
+   "path": "/home/runner/work/_temp/beast-scratch/20261116T185946Z-178dac/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/1130051731534905615/",
+   "sha256": "006c983c663419b2f82b6f1b88df4fd5bb9cd197c05d935a5a009df5fe8449a6",
+   "source": "pinterest",
+   "stable_id": "1130051731534905615",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "group conversation entry",
+    "emotional_tension": "Wants to belong to the room without having to perform arriving in it.",
+    "observable_behaviour": "hovers half a step inside, nods at the table, slides into the chair while opening laptop like a small shield",
+    "private_worry": "that everyone clocked the late entrance and is now rating the apology they didn't give",
+    "situation": "Monday 1:18pm, meeting room door, five colleagues already seated, one empty chair by the window"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Count the five chairs already taken\" / \"Open laptop before you sit down\" / \"Draft an apology you never say\" \u2014 sharp, observed, no diagnosis. But \"Replay it again in the shower\" breaks the room scene.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 4,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 4,
+    "rewrite_notes": "Item 7 ('Replay it again in the shower') leaves the assigned meeting-room scene \u2014 keep all seven inside the 1:18pm entrance moment. \"Fix your face\" is the weakest phrasing.",
+    "scene_specificity": 4,
+    "sendability_who": "An office friend who over-thinks late arrivals would send this to another colleague who does the same, with 'this is you at standup.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    }
+   ],
+   "topic_id": "walk-in-after-everyone-sat-down"
+  },
+  "delivery": {
+   "at": "2026-11-16T19:09:01Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -5.24,
+   "yavg_delta": 12.7
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 9.44,
+    "yavg": 100.4
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 8.96,
+   "yavg": 117.7
+  },
+  "output": {
+   "bytes": 12774175,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261116T185946Z-178dac.mp4",
+   "sha256": "1fe2a9f405ae834b958dfce6267dddc81160317217529f1e40331a679f6b8694"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7235662417353738242",
+    "title": "champagne"
+   },
+   "background_query": "person pausing outside meeting room door holding laptop",
+   "caption": "7 things you do when you walk in after everyone already sat down:\n1. Pause outside to fix your face\n2. Count the five chairs already taken\n3. Nod at the table instead of hello\n4. Open laptop before you sit down\n5. Miss the first sentence while rechecking\n6. Draft an apology you never say\n7. Replay it again in the shower",
+   "closing": "You wanted to belong, not to perform arriving.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "The vibe is cringe-comedy tension with a slow, awkward build that snaps into a relatable overthinking loop.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "cinematic office walk",
+     "pinterest_search_query": "cinematic office walk",
+     "semantic_analysis": "The visual should feel like quietly slipping into a room already in motion while trying to look composed and unnoticed."
+    }
+   },
+   "headline": "7 things you do when you walk in after everyone already sat down",
+   "list_items": [
+    "Pause outside to fix your face",
+    "Count the five chairs already taken",
+    "Nod at the table instead of hello",
+    "Open laptop before you sit down",
+    "Miss the first sentence while rechecking",
+    "Draft an apology you never say",
+    "Replay it again in the shower"
+   ],
+   "provenance": {
+    "creator": "\u0411\u044b\u0441\u0442\u0440\u043e\u0435 \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435",
+    "pin_id": "1130051731534905615",
+    "pin_url": "https://www.pinterest.com/pin/1130051731534905615/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 100): warm off-white"
+   },
+   "titleLines": [
+    "7 things you do when",
+    "you walk in after",
+    "everyone already",
+    "sat down"
+   ],
+   "topic_id": "walk-in-after-everyone-sat-down"
+  },
+  "publish": {
+   "alt_text": "Person pausing outside meeting room door holding laptop. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-16T19:09:47Z",
+   "caption": "7 things you do when you walk in after everyone already sat down:\n1. Pause outside to fix your face\n2. Count the five chairs already taken\n3. Nod at the table instead of hello\n4. Open laptop before you sit down\n5. Miss the first sentence while rechecking\n6. Draft an apology you never say\n7. Replay it again in the shower\n\nYou wanted to belong, not to perform arriving.",
+   "channel": "instagram",
+   "container_id": "17919839325538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "17901651618393773",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/nuRpjhXafYmx.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -5.24,
+    "yavg_delta": 12.7
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261116T185946Z-178dac/caption_list_title_v1-live-20261116T185946Z-178dac.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 12774175,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 8.96,
+    "yavg": 117.7
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.2143,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 58.0
+  },
+  "rendered_at": "2026-11-16T19:08:56Z",
+  "run_id": "20261116T185946Z-178dac",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "She is arriving late to a meeting that has already started and bracing herself to walk in while everyone is already settled.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person pausing outside meeting room door",
+     "office hallway view of closed meeting",
+     "person looking down fixing expression before"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.4376,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7235662417353738242",
+    "title": "champagne"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.4376
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 4,
+     "product_trust": null,
+     "recognition_authenticity": 4,
+     "scene_specificity": 4,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "walk-in-after-everyone-sat-down"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "The vibe is cringe-comedy tension with a slow, awkward build that snaps into a relatable overthinking loop."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "cinematic office walk",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261116T185946Z-178dac.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot '\u0422\u0432\u043e\u0439 \u0441\u0442\u0438\u043b\u044c \u043d\u0430 \u043a\u0430\u0436\u0434\u044b\u0439 \u0434\u0435\u043d\u044c\ud83c\udfd9\ufe0f' paired with 'champagne' for caption_list_title_v1.",
+    "score": 35
+   },
+   "pinterest": {
+    "candidates": 3,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 9.44,
+     "yavg": 100.4
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "1130051731534905615",
+    "query": "office walk",
+    "review_status": "reject",
+    "score": 56,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "\u0422\u0432\u043e\u0439 \u0441\u0442\u0438\u043b\u044c \u043d\u0430 \u043a\u0430\u0436\u0434\u044b\u0439 \u0434\u0435\u043d\u044c\ud83c\udfd9\ufe0f"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 58.0
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261116T185946Z-178dac/caption_list_title_v1-live-20261116T185946Z-178dac.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 12774175,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 100): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -5.24,
+     "yavg_delta": 12.7
+    },
+    "measured": {
+     "sat": 8.96,
+     "yavg": 117.7
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.2143,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "walk-in-after-everyone-sat-down"
  }
 ]
