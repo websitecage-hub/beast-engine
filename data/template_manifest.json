@@ -29876,5 +29876,1547 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "walk-in-after-everyone-sat-down"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "upbeat pop",
+     "dramatic strings",
+     "sad ballad piano",
+     "loud beats",
+     "comedy sound effects"
+    ],
+    "emotional_role": "keep the wait feeling light and awkward, not sad or dramatic",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "light synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "mellow"
+    ],
+    "trend_hashtags": [
+     "#leftonread",
+     "#overthinking"
+    ],
+    "trend_keywords": [
+     "left on read",
+     "late night overthinking"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-17T00:45:53Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "sunday-847pm-meme-no-reply-babysit",
+   "core_human_moment": "A person sent a meme at 8:47pm, got no reply, and is still checking the chat and replaying the joke at midnight.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "restless",
+   "format_id": "caption_list_title_v1",
+   "human_action": "lying in bed scrolling and rechecking phone",
+   "humour": 0.4,
+   "intentional_contrast": null,
+   "literal_scene": "A person lying in bed in a dark bedroom, face lit by a phone screen, scrolling and rechecking a chat.",
+   "literalness": "literal",
+   "motion_intent": "very low movement, slow thumb scrolls and long still pauses",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "deep blue night",
+    "warm phone glow"
+   ],
+   "rationale": "The bed-at-night phone check is exactly what the list describes, and soft, sparse music lets the awkward humour land without making it feel like heartbreak.",
+   "scene_entities": [
+    "smartphone",
+    "pillow",
+    "bedroom"
+   ],
+   "schema_version": "1.0",
+   "setting": "bedroom at night",
+   "tension": 0.5,
+   "text_safe_zone": "centre 41-59% vertical band over darker bedding, keep phone glow out of text area",
+   "time_of_day": "night",
+   "valence": -0.2,
+   "video_queries": [
+    "person lying in bed scrolling phone at night",
+    "close up of phone screen in dark bedroom at night",
+    "person staring at phone in dark quiet room"
+   ],
+   "visual_mood": [
+    "quiet",
+    "dim"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.3
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "\ua730\u1d1c\u1d1b\u1d1c\u0280\u1d07\u1d20\u026a\u029f\u029f\u1d07",
+    "candidates": [
+     {
+      "artist": "Flawed Mangoes",
+      "distance": 0.5247,
+      "fresh": true,
+      "id": "7306198274627635201",
+      "score": 92,
+      "title": "The Beginning",
+      "video_count": 218500
+     },
+     {
+      "artist": "\ua730\u1d1c\u1d1b\u1d1c\u0280\u1d07\u1d20\u026a\u029f\u029f\u1d07",
+      "distance": 0.4043,
+      "fresh": true,
+      "id": "7489031318131918849",
+      "score": 92,
+      "title": "realization",
+      "video_count": 288700
+     },
+     {
+      "artist": "fadinglight",
+      "distance": 0.4889,
+      "fresh": true,
+      "id": "7439542776280451089",
+      "score": 92,
+      "title": "angels",
+      "video_count": 191600
+     }
+    ],
+    "distance": 0.4043,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7381297275933427728",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "6907423692133763074",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 288700",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "7489031318131918849",
+    "title": "realization"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 42
+     }
+    },
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'realization' for caption_list_title_v1.",
+    "total": 77
+   },
+   "visual": {
+    "band_busy": 0.0779,
+    "candidates": [
+     {
+      "band_busy": 0.0779,
+      "height": 1280,
+      "pin_id": "1028861477392867239",
+      "query": "midnight glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['aesthetic', 'cinematic', 'night', 'quiet', 'slow'] (+26); scene words ['and', 'night'] (+8)",
+         "points": 34
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 21.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 90,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0006,
+      "height": 1280,
+      "pin_id": "1054053487768429141",
+      "query": "midnight phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 19.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.32,
+         "rows": [
+          76,
+          281
+         ]
+        },
+        {
+         "fraction_of_height": 0.294,
+         "rows": [
+          0,
+          188
+         ]
+        },
+        {
+         "fraction_of_height": 0.202,
+         "rows": [
+          194,
+          323
+         ]
+        },
+        {
+         "fraction_of_height": 0.087,
+         "rows": [
+          0,
+          56
+         ]
+        },
+        {
+         "fraction_of_height": 0.381,
+         "rows": [
+          83,
+          327
+         ]
+        },
+        {
+         "fraction_of_height": 0.123,
+         "rows": [
+          388,
+          467
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(76, 281), (0, 188)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         76,
+         281
+        ],
+        [
+         0,
+         188
+        ],
+        [
+         194,
+         323
+        ],
+        [
+         0,
+         56
+        ],
+        [
+         83,
+         327
+        ],
+        [
+         388,
+         467
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0283,
+      "height": 1280,
+      "pin_id": "944770828097672765",
+      "query": "midnight phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 30.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.089,
+         "rows": [
+          583,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.108,
+         "rows": [
+          571,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.133,
+         "rows": [
+          555,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(583, 640), (571, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         583,
+         640
+        ],
+        [
+         571,
+         640
+        ],
+        [
+         555,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0559,
+      "height": 1280,
+      "pin_id": "605593481172002932",
+      "query": "midnight phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 39.7s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1342,
+      "height": 1280,
+      "pin_id": "445363850669082595",
+      "query": "midnight phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.6s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0075,
+      "height": 1280,
+      "pin_id": "935482153865479744",
+      "query": "midnight phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 34.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0,
+      "height": 1280,
+      "pin_id": "611152611957490538",
+      "query": "midnight phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 12.6s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 1.0,
+         "rows": [
+          0,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.275,
+         "rows": [
+          0,
+          176
+         ]
+        },
+        {
+         "fraction_of_height": 0.264,
+         "rows": [
+          471,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 1.0,
+         "rows": [
+          0,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 640), (0, 176)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         640
+        ],
+        [
+         0,
+         176
+        ],
+        [
+         471,
+         640
+        ],
+        [
+         0,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0154,
+      "height": 1280,
+      "pin_id": "375487687705335432",
+      "query": "midnight phone",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.114,
+         "rows": [
+          448,
+          521
+         ]
+        },
+        {
+         "fraction_of_height": 0.233,
+         "rows": [
+          491,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(448, 521), (491, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         448,
+         521
+        ],
+        [
+         491,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0286,
+      "height": 1280,
+      "pin_id": "825073594272776686",
+      "query": "midnight glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['blue hour'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.423,
+         "rows": [
+          369,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(369, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         369,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0976,
+      "height": 1280,
+      "pin_id": "649644315056411836",
+      "query": "person lying in bed scrolling phone",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.327,
+         "rows": [
+          0,
+          209
+         ]
+        },
+        {
+         "fraction_of_height": 0.177,
+         "rows": [
+          527,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 209), (527, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         209
+        ],
+        [
+         527,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Social",
+    "flags": [
+     "source domain: instagram.com",
+     "curated-looking tag: 'cinematic'"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0224,
+     "motion": 0.0174,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "1028861477392867239",
+    "pin_url": "https://www.pinterest.com/pin/1028861477392867239/",
+    "query": "midnight glow",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "midnight phone glow",
+      "returned": 25
+     },
+     {
+      "kept": 18,
+      "lane": "metaphor",
+      "query": "midnight phone",
+      "returned": 25
+     },
+     {
+      "kept": 18,
+      "lane": "metaphor",
+      "query": "midnight glow",
+      "returned": 25
+     },
+     {
+      "kept": 19,
+      "lane": "metaphor",
+      "query": "phone glow",
+      "returned": 25
+     },
+     {
+      "kept": 22,
+      "lane": "adjacent",
+      "query": "close up of phone screen in",
+      "returned": 24
+     },
+     {
+      "kept": 15,
+      "lane": "emotional",
+      "query": "person staring at phone in dark",
+      "returned": 24
+     },
+     {
+      "kept": 15,
+      "lane": "literal",
+      "query": "person lying in bed scrolling phone",
+      "returned": 23
+     }
+    ],
+    "rejected": [
+     {
+      "id": "280630620526674014",
+      "why": "on-screen text: 'H; KRUSTY; LAIR; LAiR; bestwallpapers.net'"
+     },
+     {
+      "id": "891783163690578889",
+      "lane": "adjacent",
+      "query": "close up of phone screen in",
+      "why": "stock/repost source: 'After Effects'"
+     },
+     {
+      "id": "931048922997045731",
+      "why": "on-screen text: 'ARCADIA; ARCADIASILENCE; ART\u00b7APPAREL\u00b7DESIGN; AS; W'"
+     },
+     {
+      "id": "1065453224397155239",
+      "why": "too short 5.37s for 12.2s"
+     },
+     {
+      "id": "536350636888926859",
+      "lane": "adjacent",
+      "query": "close up of phone screen in",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "650277633719501421",
+      "why": "too short 4.62s for 12.2s"
+     },
+     {
+      "id": "891783163692294608",
+      "lane": "adjacent",
+      "query": "close up of phone screen in",
+      "why": "stock/repost source: '4k footage'"
+     },
+     {
+      "id": "2462974793247628",
+      "lane": "adjacent",
+      "query": "close up of phone screen in",
+      "why": "advertising call-to-action: 'visit our'"
+     },
+     {
+      "id": "982347737600712338",
+      "lane": "metaphor",
+      "query": "midnight phone",
+      "why": "advertising call-to-action: 'Shop now'"
+     },
+     {
+      "id": "107030928641360935",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "711498441167779026",
+      "why": "too short 7.03s for 12.2s"
+     },
+     {
+      "id": "961026007997661807",
+      "why": "on-screen text: 'F; IXNOK; Mobile SolutionPvt Ltd; MobileSolutionPv'"
+     },
+     {
+      "id": "1124211125761760509",
+      "why": "too short 10.06s for 12.2s"
+     },
+     {
+      "id": "16958936095262692",
+      "why": "too short 5.43s for 12.2s"
+     },
+     {
+      "id": "749075350559821950",
+      "lane": "adjacent",
+      "query": "close up of phone screen in",
+      "why": "stock/repost source: 'pexels'"
+     },
+     {
+      "id": "647181408969874665",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "583427326734742384",
+      "why": "too short 5.17s for 12.2s"
+     },
+     {
+      "id": "906701337493455799",
+      "lane": "metaphor",
+      "query": "midnight phone glow",
+      "why": "advertising call-to-action: 'link in bio'"
+     },
+     {
+      "id": "906701337493537015",
+      "lane": "metaphor",
+      "query": "midnight phone glow",
+      "why": "advertising call-to-action: 'Link in bio'"
+     },
+     {
+      "id": "1132585006309686055",
+      "why": "on-screen text: 'ANEPARRISH; CLEAR; Did they hear that; HINKIN; POV'"
+     },
+     {
+      "id": "1126814769304708056",
+      "lane": "metaphor",
+      "query": "midnight phone",
+      "why": "advertising call-to-action: '% OFF'"
+     },
+     {
+      "id": "149955862598231338",
+      "why": "on-screen text: '10s; 1x; 2s; CINEMATIC; Hold still.'"
+     },
+     {
+      "id": "967218457482059872",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "1135892337250654368",
+      "why": "on-screen text: '061; 133; 170; 190; 210'"
+     },
+     {
+      "id": "920001030121069269",
+      "why": "too short 7.32s for 12.2s"
+     },
+     {
+      "id": "1054405331523087691",
+      "why": "unusable crop 720x576"
+     },
+     {
+      "id": "658862620507751782",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "15762667441911187",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "751045675359697745",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "1027313365014149919",
+      "why": "on-screen text: 'ANDROSEWAT; HOLY BASIL; \u516b'"
+     },
+     {
+      "id": "382102349661690490",
+      "why": "on-screen text: '&tiny waist; &tinywaist; 45sec; Belly fatloss; Bel'"
+     },
+     {
+      "id": "774124929848254",
+      "why": "on-screen text: '4x20; Lazy Girl Workout; SAVEIT; Thighs & Abs; leg'"
+     },
+     {
+      "id": "871798440357143379",
+      "why": "too short 7.2s for 12.2s"
+     },
+     {
+      "id": "796996465349722182",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "283375001552847641",
+      "why": "on-screen text: 'T'"
+     },
+     {
+      "id": "605593481176903638",
+      "why": "on-screen text: '\u798f'"
+     },
+     {
+      "id": "60517188735385871",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "313211349095786264",
+      "why": "too short 8.62s for 12.2s"
+     },
+     {
+      "id": "844493676669064",
+      "why": "too short 7.04s for 12.2s"
+     },
+     {
+      "id": "188236459416151728",
+      "why": "unusable crop 540x960"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['aesthetic', 'cinematic', 'night', 'quiet', 'slow'] (+26); scene words ['and', 'night'] (+8)",
+       "points": 34
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 21.0s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 90,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 975930,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261117T004309Z-786f1e/assets/track_7489031318131918849.m4a",
+   "pin_url": null,
+   "sha256": "c5d5c64163ad36d67dc69e6166ca7c7dbe0a1ada672bff3efe856e4b49918787",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7489031318131918849",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 80.0,
+    "high": 0.0,
+    "mid": 20.0
+   },
+   "duration_s": 60.0,
+   "file": "track_7489031318131918849.m4a",
+   "key_estimate": "B minor",
+   "loudness_curve_db": [
+    -22.5,
+    -22.5,
+    -22.2
+   ],
+   "onset_density_per_s": 1.0,
+   "peak_db": -9.5,
+   "rms_db": -22.4,
+   "spectral_centroid_hz": 443.3,
+   "tempo_bpm": 152.0,
+   "zero_crossing_rate": 0.0204
+  },
+  "background": {
+   "bytes": 2387792,
+   "creator": "Social",
+   "path": "/home/runner/work/_temp/beast-scratch/20261117T004309Z-786f1e/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/1028861477392867239/",
+   "sha256": "16ca0ac73245197bbfb96b8d7c94d81168c588f36d6a1fdfbc163d8d8d3790b4",
+   "source": "pinterest",
+   "stable_id": "1028861477392867239",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "texting and group chats",
+    "emotional_tension": "You wanted to be the person who lightens the chat, but now you are the person refreshing it like it is a grade.",
+    "observable_behaviour": "You open the chat, close it, open it again, check who has seen it, type 'anyway lol' and delete it before sending",
+    "private_worry": "That the silence means everyone thought it was weird and is now quietly judging your taste",
+    "situation": "Sunday 8:47pm, in bed, you drop a meme into the group chat and watch the read receipts tick up with no replies"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 5.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Open chat, close chat, open chat\" / \"Type 'anyway lol', delete it unsent\" / \"Reread your meme for the weird bit\" / \"Still thinking about it at midnight\" \u2014 all inside the assigned 8:47pm bed scene.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Strongest pass so far. \"Babysitting moves\" in the hook is slightly odd phrasing versus the cleaner list, but every item lands in-scene and distinct.",
+    "scene_specificity": 5,
+    "sendability_who": "A friend who over-reads group-chat silence would send this to the group or to one close friend, captioning 'me last night.'",
+    "shareability": 5,
+    "supporting_min": 5.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    }
+   ],
+   "topic_id": "sunday-847pm-meme-no-reply-babysit"
+  },
+  "delivery": {
+   "at": "2026-11-17T00:54:32Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -7.05,
+   "yavg_delta": -49.9
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 7.58,
+    "yavg": 52.4
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 7.15,
+   "yavg": 55.1
+  },
+  "output": {
+   "bytes": 5354735,
+   "duration_s": 11.977,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261117T004309Z-786f1e.mp4",
+   "sha256": "d7d78a4c15ffa5773b98fa405552d9f568cd1d502e567f2b6da3e41c68dc74bf"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7489031318131918849",
+    "title": "realization"
+   },
+   "background_query": "person lying in bed scrolling phone at night",
+   "caption": "7 babysitting moves for the meme no one answered:\n1. Send the meme at 8:47pm\n2. Watch read receipts tick up silently\n3. Open chat, close chat, open chat\n4. Type 'anyway lol', delete it unsent\n5. Reread your meme for the weird bit\n6. Scroll another app, drift straight back\n7. Still thinking about it at midnight",
+   "closing": "You were just trying to lighten the chat, and that still counts.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A looping, ticking late-night tension that builds with every unread check and never resolves, turning mundane overthinking into dramatic comedy.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "midnight phone glow",
+     "pinterest_search_query": "midnight phone glow",
+     "semantic_analysis": "The visual should feel like a quiet late-night loop of glowing screen light in a dark room, waiting and rechecking with soft, restless stillness."
+    }
+   },
+   "headline": "7 babysitting moves for the meme no one answered",
+   "list_items": [
+    "Send the meme at 8:47pm",
+    "Watch read receipts tick up silently",
+    "Open chat, close chat, open chat",
+    "Type 'anyway lol', delete it unsent",
+    "Reread your meme for the weird bit",
+    "Scroll another app, drift straight back",
+    "Still thinking about it at midnight"
+   ],
+   "provenance": {
+    "creator": "Social",
+    "pin_id": "1028861477392867239",
+    "pin_url": "https://www.pinterest.com/pin/1028861477392867239/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 52 < 92): warm yellow"
+   },
+   "titleLines": [
+    "7 babysitting moves",
+    "for the meme no one",
+    "answered"
+   ],
+   "topic_id": "sunday-847pm-meme-no-reply-babysit"
+  },
+  "publish": {
+   "alt_text": "Person lying in bed scrolling phone at night. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-17T00:56:05Z",
+   "caption": "7 babysitting moves for the meme no one answered:\n1. Send the meme at 8:47pm\n2. Watch read receipts tick up silently\n3. Open chat, close chat, open chat\n4. Type 'anyway lol', delete it unsent\n5. Reread your meme for the weird bit\n6. Scroll another app, drift straight back\n7. Still thinking about it at midnight\n\nYou were just trying to lighten the chat, and that still counts.",
+   "channel": "instagram",
+   "container_id": "17919876888538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18059893442805388",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://n.uguu.se/hXLdwTyJodgr.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -7.05,
+    "yavg_delta": -49.9
+   },
+   "duration_s": 11.977,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 11.977,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261117T004309Z-786f1e/caption_list_title_v1-live-20261117T004309Z-786f1e.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": false,
+    "moov_tail": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 5354735,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 7.15,
+    "yavg": 55.1
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0615,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 51.1
+  },
+  "rendered_at": "2026-11-17T00:54:28Z",
+  "run_id": "20261117T004309Z-786f1e",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person sent a meme at 8:47pm, got no reply, and is still checking the chat and replaying the joke at midnight.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person lying in bed scrolling phone",
+     "close up of phone screen in",
+     "person staring at phone in dark"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.4043,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "7489031318131918849",
+    "title": "realization"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.4043
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "sunday-847pm-meme-no-reply-babysit"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "A looping, ticking late-night tension that builds with every unread check and never resolves, turning mundane overthinking into dramatic comedy."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "midnight phone glow",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261117T004309Z-786f1e.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'realization' for caption_list_title_v1.",
+    "score": 77
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 7.58,
+     "yavg": 52.4
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "1028861477392867239",
+    "query": "midnight glow",
+    "review_status": "accept",
+    "score": 90,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 51.1
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 11.977,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261117T004309Z-786f1e/caption_list_title_v1-live-20261117T004309Z-786f1e.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": false,
+     "moov_tail": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 5354735,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 52 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -7.05,
+     "yavg_delta": -49.9
+    },
+    "measured": {
+     "sat": 7.15,
+     "yavg": 55.1
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0615,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "sunday-847pm-meme-no-reply-babysit"
  }
 ]
