@@ -56,6 +56,14 @@
    "status": "delivered",
    "used_by": "20261110T115818Z-ce9ad6"
   },
+  "7117534993563256834": {
+   "first_seen_at": "2026-11-17T18:02:34Z",
+   "last_used_at": "2026-11-17T18:03:28Z",
+   "review_status": "pending",
+   "sha256": "e01f045750a759dbe7dee89553b258e3fc31c0ae6f070c6ccb496083a7f03c16",
+   "status": "delivered",
+   "used_by": "20261117T175657Z-b0ed1a"
+  },
   "7127247846985713666": {
    "first_seen_at": "2026-11-03T18:00:07Z",
    "last_used_at": "2026-11-15T21:48:41Z",
@@ -146,7 +154,7 @@
   }
  },
  "reservations": {},
- "updated_at": "2026-11-17T00:54:32Z",
+ "updated_at": "2026-11-17T18:03:28Z",
  "version": 1,
  "visual": {
   "pin:1028861477392867239": {
@@ -258,6 +266,17 @@
    "sha256": "11099b504dadba891ca3892245404702bf413620b81de2fd81d05568c0731dc3",
    "status": "delivered",
    "used_by": "20261115T155627Z-da2770"
+  },
+  "pin:581245895684977426": {
+   "first_seen_at": "2026-11-17T18:02:11Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-17T18:03:28Z",
+   "pin_id": "581245895684977426",
+   "query": "bus window",
+   "review_status": "reject",
+   "sha256": "50678de7202b671607a5f1e25b314018eb9ae278a4a00a2b4b6874b416e38575",
+   "status": "delivered",
+   "used_by": "20261117T175657Z-b0ed1a"
   },
   "pin:625789310718733317": {
    "first_seen_at": "2026-11-12T10:57:58Z",

@@ -31418,5 +31418,1094 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "sunday-847pm-meme-no-reply-babysit"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "dramatic orchestral swells",
+     "loud trap beats",
+     "comedy sound effects",
+     "sad minor-key swell"
+    ],
+    "emotional_role": "keep it light and gentle, like an internal smile, without turning the awkward pause into drama",
+    "energy": 0.3,
+    "instrumentation": [
+     "soft piano",
+     "light acoustic guitar"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "unhurried"
+    ],
+    "trend_hashtags": [
+     "#morningcommute",
+     "#busride",
+     "#relatablemoments"
+    ],
+    "trend_keywords": [
+     "morning commute",
+     "bus ride",
+     "quiet moment"
+    ],
+    "valence": 0.3,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-17T17:59:26Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "752-bus-last-seat",
+   "core_human_moment": "A commuter is overthinking a small, ordinary moment as they try to take the last free seat next to a stranger on the morning bus.",
+   "degraded": false,
+   "emotional_primary": "self-conscious",
+   "emotional_secondary": "amused",
+   "format_id": "caption_list_title_v1",
+   "human_action": "pausing in the aisle and looking toward the empty window seat",
+   "humour": 0.6,
+   "intentional_contrast": null,
+   "literal_scene": "A person standing paused in the aisle of a moving bus, looking toward an empty window seat beside a seated passenger.",
+   "literalness": "literal",
+   "motion_intent": "almost still, with gentle handheld sway from the moving bus",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "soft morning light",
+    "muted blue-grey bus interior"
+   ],
+   "rationale": "The footage stays on the small pause in the aisle so the list reads as lived experience, and the soft, unhurried music keeps the awkwardness warm and funny.",
+   "scene_entities": [
+    "empty bus seat",
+    "backpack",
+    "bus aisle"
+   ],
+   "schema_version": "1.0",
+   "setting": "inside a city bus",
+   "tension": 0.5,
+   "text_safe_zone": "centre vertical band 41-59%, over the darker aisle and seat backs",
+   "time_of_day": "early morning",
+   "valence": 0.2,
+   "video_queries": [
+    "person standing in bus aisle looking at empty seat",
+    "view down bus aisle toward window seat",
+    "passenger looking out bus window morning light"
+   ],
+   "visual_mood": [
+    "quiet",
+    "ordinary"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Desmond Cheese",
+    "candidates": [
+     {
+      "artist": "sekimane & ZMAJOR & Prey",
+      "distance": 0.566,
+      "fresh": true,
+      "id": "7690496319396726836",
+      "score": 64,
+      "title": "BAIXO SONICO (Slowed)",
+      "video_count": 1451
+     },
+     {
+      "artist": "Desmond Cheese",
+      "distance": 0.2794,
+      "fresh": true,
+      "id": "7117534993563256834",
+      "score": 92,
+      "title": "Cycad Slumber",
+      "video_count": 105100
+     }
+    ],
+    "distance": 0.2794,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7670069535470848017",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7606110222529513473",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7423631072213485585",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 105100",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "7117534993563256834",
+    "title": "Cycad Slumber"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 0
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot 'Zoom zoom' paired with 'Cycad Slumber' for caption_list_title_v1.",
+    "total": 35
+   },
+   "visual": {
+    "band_busy": 0.156,
+    "candidates": [
+     {
+      "band_busy": 0.156,
+      "height": 1280,
+      "pin_id": "581245895684977426",
+      "query": "bus window",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 18.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0071,
+      "height": 1280,
+      "pin_id": "786933734934367394",
+      "query": "bus window",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 45.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0196,
+      "height": 1280,
+      "pin_id": "585256914092366185",
+      "query": "bus window",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.0s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0351,
+      "height": 1280,
+      "pin_id": "3377768462603074",
+      "query": "bus window",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['train'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.094,
+         "rows": [
+          412,
+          472
+         ]
+        },
+        {
+         "fraction_of_height": 0.087,
+         "rows": [
+          404,
+          460
+         ]
+        },
+        {
+         "fraction_of_height": 0.084,
+         "rows": [
+          403,
+          457
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(412, 472), (404, 460)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         412,
+         472
+        ],
+        [
+         404,
+         460
+        ],
+        [
+         403,
+         457
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1264,
+      "height": 1280,
+      "pin_id": "21532904463460804",
+      "query": "passenger looking out bus window morning",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 25.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": ":D",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.1256,
+     "motion": 0.0897,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "581245895684977426",
+    "pin_url": "https://www.pinterest.com/pin/581245895684977426/",
+    "query": "bus window",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "cinematic bus window",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic bus",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic window",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "bus window",
+      "returned": 25
+     },
+     {
+      "kept": 0,
+      "lane": "adjacent",
+      "query": "view down bus aisle toward window",
+      "returned": 0
+     },
+     {
+      "kept": 11,
+      "lane": "emotional",
+      "query": "passenger looking out bus window morning",
+      "returned": 12
+     },
+     {
+      "kept": 1,
+      "lane": "literal",
+      "query": "person standing in bus aisle looking",
+      "returned": 1
+     }
+    ],
+    "rejected": [
+     {
+      "id": "293508100735200483",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "337981147044740130",
+      "why": "too short 10.98s for 12.2s"
+     },
+     {
+      "id": "1024006034032082621",
+      "why": "too short 10.24s for 12.2s"
+     },
+     {
+      "id": "820218150913148917",
+      "why": "too short 9.0s for 12.2s"
+     },
+     {
+      "id": "619315386252948912",
+      "why": "unusable crop 540x960"
+     },
+     {
+      "id": "100275529198090636",
+      "why": "too short 8.73s for 12.2s"
+     },
+     {
+      "id": "22025485673193154",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "581457001902652546",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "34199278416124720",
+      "why": "too short 10.97s for 12.2s"
+     },
+     {
+      "id": "162551867788924132",
+      "why": "unusable crop 656x1232"
+     },
+     {
+      "id": "585256914089859348",
+      "why": "unusable crop 512x640"
+     },
+     {
+      "id": "294071050687614518",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "18014467252868897",
+      "why": "unusable crop 464x848"
+     },
+     {
+      "id": "3166662228920893",
+      "why": "unusable crop 240x300"
+     },
+     {
+      "id": "579416308329061458",
+      "why": "too short 4.73s for 12.2s"
+     },
+     {
+      "id": "948007790289014885",
+      "why": "too short 6.83s for 12.2s"
+     },
+     {
+      "id": "7810999345622848",
+      "why": "on-screen text: 'Qe; VO; VOLV; VOT; \u5531'"
+     },
+     {
+      "id": "779333910541210811",
+      "why": "on-screen text: 'AltGr; AumLk; Backspace; Ctrl; End'"
+     },
+     {
+      "id": "539306124147518232",
+      "why": "too short 6.03s for 12.2s"
+     },
+     {
+      "id": "748723506824512013",
+      "why": "too short 7.27s for 12.2s"
+     },
+     {
+      "id": "593771532144430496",
+      "why": "too short 6.03s for 12.2s"
+     },
+     {
+      "id": "39828777962635352",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "30540103717978855",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "143200463143304397",
+      "why": "too short 11.4s for 12.2s"
+     },
+     {
+      "id": "39828777961754013",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "283023157823541681",
+      "why": "too short 10.54s for 12.2s"
+     },
+     {
+      "id": "867646684431395245",
+      "why": "unusable crop 1280x864"
+     },
+     {
+      "id": "180355160073103968",
+      "why": "on-screen text: 'DP; EAT; \u2014; \u8c46'"
+     },
+     {
+      "id": "49961877109822707",
+      "why": "too short 9.92s for 12.2s"
+     },
+     {
+      "id": "398357529557062967",
+      "why": "too short 11.0s for 12.2s"
+     },
+     {
+      "id": "105060603801220191",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "223702306483871024",
+      "why": "on-screen text: 'AA; RA; \u4e2a\u4e2a'"
+     }
+    ],
+    "review_status": "reject",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words [] (+0)",
+       "points": 0
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 18.1s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": false,
+     "review_status": "reject",
+     "total": 56,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Zoom zoom"
+   }
+  },
+  "audio": {
+   "bytes": 975064,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261117T175657Z-b0ed1a/assets/track_7117534993563256834.m4a",
+   "pin_url": null,
+   "sha256": "e01f045750a759dbe7dee89553b258e3fc31c0ae6f070c6ccb496083a7f03c16",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7117534993563256834",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 15.7,
+    "high": 0.1,
+    "mid": 84.2
+   },
+   "duration_s": 60.0,
+   "file": "track_7117534993563256834.m4a",
+   "key_estimate": "A major",
+   "loudness_curve_db": [
+    -24.4,
+    -22.4,
+    -25.3
+   ],
+   "onset_density_per_s": 1.93,
+   "peak_db": -5.7,
+   "rms_db": -23.9,
+   "spectral_centroid_hz": 1269.1,
+   "tempo_bpm": 136.0,
+   "zero_crossing_rate": 0.0684
+  },
+  "background": {
+   "bytes": 8355001,
+   "creator": ":D",
+   "path": "/home/runner/work/_temp/beast-scratch/20261117T175657Z-b0ed1a/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/581245895684977426/",
+   "sha256": "50678de7202b671607a5f1e25b314018eb9ae278a4a00a2b4b6874b416e38575",
+   "source": "pinterest",
+   "stable_id": "581245895684977426",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "She wants the ride to feel normal while treating a normal seat like a small performance with an audience of one.",
+    "observable_behaviour": "Pauses in the aisle, smiles too wide, asks 'is this taken?' while already sitting, then spends the ride deciding whether to take her headphones out to seem friendly",
+    "private_worry": "that sitting down without a perfect opener makes her look rude, and talking will make her look weird for talking to a stranger",
+    "situation": "Monday 7:52am, on the bus, one empty seat left next to a stranger by the window"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 5.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Pause in the aisle holding your breath\" / \"Ask 'is this taken?' while sitting down\" / \"Debate taking one headphone out to seem friendly\" \u2014 all inside the assigned 7:52am bus seat moment.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Hook title says 6 and delivers 6 \u2014 clean. Slight weak spot: item 6 'Replay the smile at the next stop' is the softest, most generic of an otherwise tight in-scene list.",
+    "scene_specificity": 5,
+    "sendability_who": "A commuter friend who over-thinks sitting next to strangers would send this to another bus-taking friend, captioning 'this is me every morning.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=False"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=False"
+     ]
+    }
+   ],
+   "topic_id": "752-bus-last-seat"
+  },
+  "delivery": {
+   "at": "2026-11-17T18:03:28Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -10.97,
+   "yavg_delta": -21.0
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 3.54,
+    "yavg": 77.9
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 3.23,
+   "yavg": 84.0
+  },
+  "output": {
+   "bytes": 15272722,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261117T175657Z-b0ed1a.mp4",
+   "sha256": "2887db8bb19be5623beb2fa5c0a0afb5908b00f4f7a7a3deddca3ab0b9fa856e"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7117534993563256834",
+    "title": "Cycad Slumber"
+   },
+   "background_query": "person standing in bus aisle looking at empty window seat",
+   "caption": "6 tiny performances before you take the last seat on the 7:52 bus:\n1. Pause in the aisle holding your breath\n2. Smile too wide at the window stranger\n3. Ask 'is this taken?' while sitting down\n4. Clutch your bag on your lap too long\n5. Debate taking one headphone out to seem friendly\n6. Replay the smile at the next stop",
+   "closing": "You wanted a normal seat, not an audition.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Soft, held-breath tension with a playful, slightly awkward swell that builds through each tiny performance and releases when the seat is taken.",
+     "tiktok_query": "indie",
+     "tiktok_search_query": "indie"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "cinematic bus window",
+     "pinterest_search_query": "cinematic bus window",
+     "semantic_analysis": "A soft, voyeuristic morning-commute mood where tiny awkward gestures feel tender, cinematic, and quietly intimate."
+    }
+   },
+   "headline": "6 tiny performances before you take the last seat on the 7:52 bus",
+   "list_items": [
+    "Pause in the aisle holding your breath",
+    "Smile too wide at the window stranger",
+    "Ask 'is this taken?' while sitting down",
+    "Clutch your bag on your lap too long",
+    "Debate taking one headphone out to seem friendly",
+    "Replay the smile at the next stop"
+   ],
+   "provenance": {
+    "creator": ":D",
+    "pin_id": "581245895684977426",
+    "pin_url": "https://www.pinterest.com/pin/581245895684977426/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 78 < 92): warm yellow"
+   },
+   "titleLines": [
+    "6 tiny performances",
+    "before you take",
+    "the last seat on",
+    "the 7:52 bus"
+   ],
+   "topic_id": "752-bus-last-seat"
+  },
+  "publish": {
+   "alt_text": "Person standing in bus aisle looking at empty window seat. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-17T18:04:06Z",
+   "caption": "6 tiny performances before you take the last seat on the 7:52 bus:\n1. Pause in the aisle holding your breath\n2. Smile too wide at the window stranger\n3. Ask 'is this taken?' while sitting down\n4. Clutch your bag on your lap too long\n5. Debate taking one headphone out to seem friendly\n6. Replay the smile at the next stop\n\nYou wanted a normal seat, not an audition.",
+   "channel": "instagram",
+   "container_id": "17920003056538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "17912006952570594",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/rUOQfPaPWFln.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -10.97,
+    "yavg_delta": -21.0
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261117T175657Z-b0ed1a/caption_list_title_v1-live-20261117T175657Z-b0ed1a.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 15272722,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 3.23,
+    "yavg": 84.0
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1708,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 46.6
+  },
+  "rendered_at": "2026-11-17T18:03:24Z",
+  "run_id": "20261117T175657Z-b0ed1a",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A commuter is overthinking a small, ordinary moment as they try to take the last free seat next to a stranger on the morning bus.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person standing in bus aisle looking",
+     "view down bus aisle toward window",
+     "passenger looking out bus window morning"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.2794,
+    "keywords": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "7117534993563256834",
+    "title": "Cycad Slumber"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.2794
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "752-bus-last-seat"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "indie",
+    "vendor": "meta-api",
+    "why": "Soft, held-breath tension with a playful, slightly awkward swell that builds through each tiny performance and releases when the seat is taken."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "cinematic bus window",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261117T175657Z-b0ed1a.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot 'Zoom zoom' paired with 'Cycad Slumber' for caption_list_title_v1.",
+    "score": 35
+   },
+   "pinterest": {
+    "candidates": 5,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 3.54,
+     "yavg": 77.9
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "581245895684977426",
+    "query": "bus window",
+    "review_status": "reject",
+    "score": 56,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Zoom zoom"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 46.6
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261117T175657Z-b0ed1a/caption_list_title_v1-live-20261117T175657Z-b0ed1a.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 15272722,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 78 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -10.97,
+     "yavg_delta": -21.0
+    },
+    "measured": {
+     "sat": 3.23,
+     "yavg": 84.0
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1708,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "752-bus-last-seat"
  }
 ]
