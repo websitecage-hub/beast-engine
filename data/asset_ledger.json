@@ -128,6 +128,14 @@
    "status": "delivered",
    "used_by": "20261114T211343Z-0de6c6"
   },
+  "7410721101360449537": {
+   "first_seen_at": "2026-11-18T17:44:31Z",
+   "last_used_at": "2026-11-18T17:45:21Z",
+   "review_status": "pending",
+   "sha256": "c3aaa148f7f52ef39531b19e140b58ca359ebdeb84e1ba94b432d9a0b0058c08",
+   "status": "delivered",
+   "used_by": "20261118T173904Z-2b4f0f"
+  },
   "7433371598969653265": {
    "first_seen_at": "2026-11-12T22:52:12Z",
    "last_used_at": "2026-11-12T22:53:14Z",
@@ -162,7 +170,7 @@
   }
  },
  "reservations": {},
- "updated_at": "2026-11-18T00:00:44Z",
+ "updated_at": "2026-11-18T17:45:21Z",
  "version": 1,
  "visual": {
   "pin:1028861477392867239": {
@@ -351,6 +359,17 @@
    "sha256": "08717f79c967c2d50611bdc08cc27c935ed54a52c1d380b5ecc28e449534b401",
    "status": "delivered",
    "used_by": "20261112T144429Z-d882f1"
+  },
+  "pin:793337290658349178": {
+   "first_seen_at": "2026-11-18T17:44:06Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-18T17:45:21Z",
+   "pin_id": "793337290658349178",
+   "query": "elevator mirror",
+   "review_status": "accept",
+   "sha256": "9e10654ac815e76919dd726b354cf3b6ded34fa876b931efaf248b9147ac76c5",
+   "status": "delivered",
+   "used_by": "20261118T173904Z-2b4f0f"
   },
   "pin:901001469178705578": {
    "first_seen_at": "2026-11-12T14:19:29Z",

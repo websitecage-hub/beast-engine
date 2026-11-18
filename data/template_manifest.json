@@ -33520,5 +33520,962 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "tuesday-112pm-office-kitchen-kettle"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.25,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "loud drops",
+     "dramatic strings",
+     "comedy sound effects",
+     "upbeat dance beat",
+     "lyrics about anxiety"
+    ],
+    "emotional_role": "hold the awkward quiet without making it dramatic, then soften as the doors close",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft piano",
+     "light synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "airy",
+     "minimal"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#relatable",
+     "#morningroutine"
+    ],
+    "trend_keywords": [
+     "office lift",
+     "morning commute",
+     "quiet moments"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-18T17:40:49Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "lift-847am-double-press",
+   "core_human_moment": "A person tries to stay unnoticed and composed during a brief, awkward elevator ride to work.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "tense",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing still and watching the floor numbers climb",
+   "humour": 0.35,
+   "intentional_contrast": null,
+   "literal_scene": "A person standing alone in a small office lift, holding a tote, glancing at the floor display above the doors.",
+   "literalness": "literal",
+   "motion_intent": "almost still, only subtle lift movement and small posture shifts",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "muted grey metal",
+    "soft warm office light"
+   ],
+   "rationale": "The still lift shot keeps the 22-second moment believable and lets the list carry the humour, while soft sparse music holds the awkward pause without turning it heavy.",
+   "scene_entities": [
+    "tote bag",
+    "lift doors",
+    "office lift"
+   ],
+   "schema_version": "1.0",
+   "setting": "inside an office lift in the morning",
+   "tension": 0.6,
+   "text_safe_zone": "centre band 41-59% over darker lift interior, clear of floor display",
+   "time_of_day": "early morning",
+   "valence": -0.2,
+   "video_queries": [
+    "person standing in office lift watching floor numbers",
+    "close view of lift buttons and hand pressing 4",
+    "person exhaling alone in quiet office hallway"
+   ],
+   "visual_mood": [
+    "quiet",
+    "ordinary"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.25
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Judah Earl",
+    "candidates": [
+     {
+      "artist": "Judah Earl",
+      "distance": 0.384,
+      "fresh": true,
+      "id": "7410721101360449537",
+      "score": 92,
+      "title": "Sand Drawing",
+      "video_count": 438700
+     },
+     {
+      "artist": "Narvent",
+      "distance": 0.712,
+      "fresh": true,
+      "id": "7693919040771065862",
+      "score": 64,
+      "title": "Recall",
+      "video_count": 469
+     },
+     {
+      "artist": "Capital Cities",
+      "distance": 0.4966,
+      "fresh": true,
+      "id": "7409816941726435345",
+      "score": 92,
+      "title": "Safe and Sound",
+      "video_count": 172300
+     },
+     {
+      "artist": "Flawed Mangoes",
+      "distance": 0.405,
+      "fresh": true,
+      "id": "7259807950528333826",
+      "score": 92,
+      "title": "Killswitch Lullaby",
+      "video_count": 133500
+     }
+    ],
+    "distance": 0.384,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6914711053674760193",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 438700",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "7410721101360449537",
+    "title": "Sand Drawing"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 10
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot 'That Level of Confidence | Liftech Global Elevator' paired with 'Sand Drawing' for caption_list_title_v1.",
+    "total": 45
+   },
+   "visual": {
+    "band_busy": 0.0192,
+    "candidates": [
+     {
+      "band_busy": 0.0192,
+      "height": 1296,
+      "pin_id": "793337290658349178",
+      "query": "elevator mirror",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['and', 'the'] (+8)",
+         "points": 8
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "744x1296, 15.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 64,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 744
+     },
+     {
+      "band_busy": 0.0454,
+      "height": 1280,
+      "pin_id": "546835579793492092",
+      "query": "elevator mirror",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['and', 'the'] (+8)",
+         "points": 8
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 32.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 64,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Elevator Engineering & Planning",
+    "flags": [
+     "description contains a link",
+     "source domain: elevatorescalators.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.192,
+     "motion": 0.1543,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "793337290658349178",
+    "pin_url": "https://www.pinterest.com/pin/793337290658349178/",
+    "query": "elevator mirror",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "elevator mirror aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 24,
+      "lane": "metaphor",
+      "query": "elevator mirror",
+      "returned": 24
+     },
+     {
+      "lane": "metaphor",
+      "query": "elevator aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "mirror aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 6,
+      "lane": "adjacent",
+      "query": "close view of lift buttons and",
+      "returned": 6
+     },
+     {
+      "kept": 1,
+      "lane": "emotional",
+      "query": "person exhaling alone in quiet office",
+      "returned": 1
+     },
+     {
+      "kept": 7,
+      "lane": "literal",
+      "query": "person standing in office lift watching",
+      "returned": 8
+     }
+    ],
+    "rejected": [
+     {
+      "id": "927108273351196034",
+      "why": "on-screen text: 'ANTI-PINCH; ANTI-PINCH SENSOR TEST; LIVINGCULTURE;'"
+     },
+     {
+      "id": "66005950784619386",
+      "why": "on-screen text: '.....; 8RS8S; MORJAS'"
+     },
+     {
+      "id": "1122170432180624483",
+      "lane": "metaphor",
+      "query": "elevator mirror",
+      "why": "real-estate/tour content: 'Interior Design'"
+     },
+     {
+      "id": "1122170432187403569",
+      "why": "on-screen text: 'ELEVATOR; GOTS'"
+     },
+     {
+      "id": "1124351863244398426",
+      "why": "on-screen text: 'B2'"
+     },
+     {
+      "id": "703756188509021",
+      "why": "on-screen text: 'A; I'"
+     },
+     {
+      "id": "928867491887442321",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "656258976982413020",
+      "lane": "adjacent",
+      "query": "close view of lift buttons and",
+      "why": "commerce/affiliate domain: 'amazon.com'"
+     },
+     {
+      "id": "794392821817133869",
+      "why": "on-screen text: '..; 000000000; W.; Y; n\uff1a'"
+     },
+     {
+      "id": "45458277483444429",
+      "why": "too short 5.37s for 12.2s"
+     },
+     {
+      "id": "328481366593529245",
+      "why": "on-screen text: '2 ponytails + 1 bun; 2ponytails + 1 bun; FP MOVEME'"
+     },
+     {
+      "id": "21603273205127897",
+      "lane": "literal",
+      "query": "person standing in office lift watching",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "914862421975331",
+      "lane": "literal",
+      "query": "person standing in office lift watching",
+      "why": "commerce/affiliate domain: 'etsy.com'"
+     },
+     {
+      "id": "281543724346813",
+      "why": "on-screen text: '1. Cat cow; 7. Thread needle; Daily Morning Stretc'"
+     },
+     {
+      "id": "703335666829511231",
+      "why": "on-screen text: 'M; PR; TO; WELCOME'"
+     },
+     {
+      "id": "620159811218018987",
+      "lane": "metaphor",
+      "query": "elevator mirror",
+      "why": "advertising call-to-action: 'Visit our'"
+     },
+     {
+      "id": "1051238738029422745",
+      "why": "too short 7.78s for 12.2s"
+     },
+     {
+      "id": "747949450641408132",
+      "why": "too short 11.23s for 12.2s"
+     },
+     {
+      "id": "147774431531646972",
+      "why": "on-screen text: '60D ISA; GRAPHER; MEPRACTICINGHOWTOTELLMYWIFE; PHO'"
+     },
+     {
+      "id": "130604457940226257",
+      "why": "unusable crop 480x848"
+     },
+     {
+      "id": "345088390212011015",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "918171442760128780",
+      "why": "on-screen text: 'CV3IN; GEMESVTCV; GENERALCABIN; GENERALCAGIN; GENE'"
+     },
+     {
+      "id": "639651953366946504",
+      "why": "too short 8.11s for 12.2s"
+     },
+     {
+      "id": "1111755858028840880",
+      "why": "too short 8.24s for 12.2s"
+     },
+     {
+      "id": "1045257394766332917",
+      "why": "on-screen text: '00:55:40:00; 00:55:40:09; 00:55:41:05; 00:55:42:04'"
+     },
+     {
+      "id": "579134833373675009",
+      "why": "too short 10.43s for 12.2s"
+     },
+     {
+      "id": "896005288381815187",
+      "why": "on-screen text: '20-3; 27\u2191; 27\u4e2a; CASTAPN; EAUTYESFYUL'"
+     },
+     {
+      "id": "345440233938330949",
+      "why": "on-screen text: 'o'"
+     },
+     {
+      "id": "71635450324390473",
+      "why": "too short 9.64s for 12.2s"
+     },
+     {
+      "id": "175851560443636509",
+      "why": "too short 4.0s for 12.2s"
+     },
+     {
+      "id": "1141803311759552723",
+      "why": "too short 9.43s for 12.2s"
+     },
+     {
+      "id": "25262447902582183",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "450641506485578737",
+      "why": "on-screen text: \"(Let's create this\u201cphotobboth\u201dpage); (Let's create\""
+     },
+     {
+      "id": "101331060403882099",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "563018695384829",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "4362930882784845",
+      "why": "unusable crop 234x416"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words ['and', 'the'] (+8)",
+       "points": 8
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "744x1296, 15.1s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 64,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "That Level of Confidence | Liftech Global Elevators & Escalators"
+   }
+  },
+  "audio": {
+   "bytes": 973552,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261118T173904Z-2b4f0f/assets/track_7410721101360449537.m4a",
+   "pin_url": null,
+   "sha256": "c3aaa148f7f52ef39531b19e140b58ca359ebdeb84e1ba94b432d9a0b0058c08",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7410721101360449537",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 82.4,
+    "high": 0.1,
+    "mid": 17.5
+   },
+   "duration_s": 60.0,
+   "file": "track_7410721101360449537.m4a",
+   "key_estimate": "C minor",
+   "loudness_curve_db": [
+    -23.6,
+    -22.3,
+    -23.1
+   ],
+   "onset_density_per_s": 0.97,
+   "peak_db": -8.5,
+   "rms_db": -23.0,
+   "spectral_centroid_hz": 1288.1,
+   "tempo_bpm": 152.0,
+   "zero_crossing_rate": 0.0456
+  },
+  "background": {
+   "bytes": 1950952,
+   "creator": "Elevator Engineering & Planning",
+   "path": "/home/runner/work/_temp/beast-scratch/20261118T173904Z-2b4f0f/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/793337290658349178/",
+   "sha256": "9e10654ac815e76919dd726b354cf3b6ded34fa876b931efaf248b9147ac76c5",
+   "source": "pinterest",
+   "stable_id": "793337290658349178",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "You want to seem easy to be around, but monitoring every second makes it feel staged",
+    "observable_behaviour": "You watch the floor numbers climb, hold your bag with both hands, and press the already-lit 4 button again",
+    "private_worry": "That the silence makes you look cold, or that speaking will make it weirder",
+    "situation": "8:47am lift ride to the 4th floor with two coworkers you only sort of know"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Stare at climbing floor numbers\" / \"Hug your tote with both hands\" / \"Re-press the already-lit 4\" \u2014 all inside the assigned 8:47am lift moment.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Items 2\u20136 are tight and in-scene. Items 1 and 7 ('Time your arrival', 'Replay the silence at your desk') step outside the lift, and item 1 edges into the recently-used hallway-avoidance angle.",
+    "scene_specificity": 5,
+    "sendability_who": "An office friend who dreads the morning lift ride would send this to a fellow coworker, captioning 'this is our 8:47 lift.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "lift-847am-double-press"
+  },
+  "delivery": {
+   "at": "2026-11-18T17:45:21Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -9.17,
+   "yavg_delta": 6.2
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 5.38,
+    "yavg": 111.1
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 5.03,
+   "yavg": 111.2
+  },
+  "output": {
+   "bytes": 9577071,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261118T173904Z-2b4f0f.mp4",
+   "sha256": "9fbb178ef8f3b59c16dbefe7206d83f4927d3a0100cb33baebe82ac91d882042"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7410721101360449537",
+    "title": "Sand Drawing"
+   },
+   "background_query": "person standing in office lift watching floor numbers",
+   "caption": "7 things you do when a 22-second lift feels like an audition:\n1. Time your arrival to avoid sharing lift\n2. Check your reflection in lift doors\n3. Stare at climbing floor numbers\n4. Hug your tote with both hands\n5. Re-press the already-lit 4\n6. Exhale when doors close behind you\n7. Replay the silence at your desk",
+   "closing": "Everyone else was watching the numbers too.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Tense, hushed build with awkward pauses and a soft release that mirrors holding your breath in a silent lift.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "elevator mirror aesthetic",
+     "pinterest_search_query": "elevator mirror aesthetic",
+     "semantic_analysis": "The visual should feel like a quiet, cinematic in-between moment of self-conscious stillness inside a reflective, confined space."
+    }
+   },
+   "headline": "7 things you do when a 22-second lift feels like an audition",
+   "list_items": [
+    "Time your arrival to avoid sharing lift",
+    "Check your reflection in lift doors",
+    "Stare at climbing floor numbers",
+    "Hug your tote with both hands",
+    "Re-press the already-lit 4",
+    "Exhale when doors close behind you",
+    "Replay the silence at your desk"
+   ],
+   "provenance": {
+    "creator": "Elevator Engineering & Planning",
+    "pin_id": "793337290658349178",
+    "pin_url": "https://www.pinterest.com/pin/793337290658349178/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 111): warm off-white"
+   },
+   "titleLines": [
+    "7 things you do when",
+    "a 22-second lift",
+    "feels like",
+    "an audition"
+   ],
+   "topic_id": "lift-847am-double-press"
+  },
+  "publish": {
+   "alt_text": "Person standing in office lift watching floor numbers. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-18T17:46:04Z",
+   "caption": "7 things you do when a 22-second lift feels like an audition:\n1. Time your arrival to avoid sharing lift\n2. Check your reflection in lift doors\n3. Stare at climbing floor numbers\n4. Hug your tote with both hands\n5. Re-press the already-lit 4\n6. Exhale when doors close behind you\n7. Replay the silence at your desk\n\nEveryone else was watching the numbers too.",
+   "channel": "instagram",
+   "container_id": "17920137024538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18025877738930330",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/ErKnjLekYJfV.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -9.17,
+    "yavg_delta": 6.2
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261118T173904Z-2b4f0f/caption_list_title_v1-live-20261118T173904Z-2b4f0f.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 9577071,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 5.03,
+    "yavg": 111.2
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0759,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 42.4
+  },
+  "rendered_at": "2026-11-18T17:45:16Z",
+  "run_id": "20261118T173904Z-2b4f0f",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person tries to stay unnoticed and composed during a brief, awkward elevator ride to work.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person standing in office lift watching",
+     "close view of lift buttons and",
+     "person exhaling alone in quiet office"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.384,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "7410721101360449537",
+    "title": "Sand Drawing"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.384
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "lift-847am-double-press"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "Tense, hushed build with awkward pauses and a soft release that mirrors holding your breath in a silent lift."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "elevator mirror aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261118T173904Z-2b4f0f.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot 'That Level of Confidence | Liftech Global Elevator' paired with 'Sand Drawing' for caption_list_title_v1.",
+    "score": 45
+   },
+   "pinterest": {
+    "candidates": 2,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 5.38,
+     "yavg": 111.1
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "793337290658349178",
+    "query": "elevator mirror",
+    "review_status": "accept",
+    "score": 64,
+    "size": "744x1296",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "That Level of Confidence | Liftech Global Elevators & Escalators"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 42.4
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261118T173904Z-2b4f0f/caption_list_title_v1-live-20261118T173904Z-2b4f0f.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 9577071,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 111): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -9.17,
+     "yavg_delta": 6.2
+    },
+    "measured": {
+     "sat": 5.03,
+     "yavg": 111.2
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0759,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "lift-847am-double-press"
  }
 ]
