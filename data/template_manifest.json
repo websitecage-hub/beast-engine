@@ -32507,5 +32507,1018 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "752-bus-last-seat"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "sad piano ballad",
+     "dramatic cinematic strings",
+     "loud trap or EDM drop",
+     "tense thriller score",
+     "emotional vocal ballad"
+    ],
+    "emotional_role": "keep it light and self-aware, soften the awkwardness without turning it sad or dramatic",
+    "energy": 0.3,
+    "instrumentation": [
+     "soft piano",
+     "light electric piano",
+     "gentle bass"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "moderate",
+    "texture": [
+     "soft",
+     "warm",
+     "unobtrusive"
+    ],
+    "trend_hashtags": [
+     "#officelife",
+     "#relatable",
+     "#workhumor"
+    ],
+    "trend_keywords": [
+     "office life",
+     "relatable work humour",
+     "kitchen small talk"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-17T23:50:36Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "tuesday-112pm-office-kitchen-kettle",
+   "core_human_moment": "A person lingers in the office kitchen pretending to be busy with a water bottle so they do not have to stand there looking alone.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "wry",
+   "format_id": "caption_list_title_v1",
+   "human_action": "refilling an already-full water bottle while lingering by the counter",
+   "humour": 0.6,
+   "intentional_contrast": null,
+   "literal_scene": "A person stands at an office kitchen counter slowly refilling a water bottle while a kettle boils nearby.",
+   "literalness": "literal",
+   "motion_intent": "Minimal, calm movement: slow pour, small shifts in weight, kettle steam",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "muted neutrals",
+    "soft daylight"
+   ],
+   "rationale": "The refilling shot is the exact stalling behaviour in the list, so the title reads as happening in real time. A soft, lightly amused instrumental keeps the awkwardness relatable instead of lonely or dramatic.",
+   "scene_entities": [
+    "water bottle",
+    "kettle",
+    "office kitchen"
+   ],
+   "schema_version": "1.0",
+   "setting": "office kitchen",
+   "tension": 0.4,
+   "text_safe_zone": "centre 41-59% vertical band kept clear for white title",
+   "time_of_day": "early afternoon",
+   "valence": -0.2,
+   "video_queries": [
+    "person filling water bottle in office kitchen",
+    "close up of hands refilling water bottle at sink",
+    "person standing alone by office kitchen counter"
+   ],
+   "visual_mood": [
+    "quiet",
+    "everyday"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.3
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "voi",
+    "candidates": [
+     {
+      "artist": "Person",
+      "distance": 0.503,
+      "fresh": true,
+      "id": "7169331497986426882",
+      "score": 64,
+      "title": "Win Win Win",
+      "video_count": 139
+     },
+     {
+      "artist": "voi",
+      "distance": 0.435,
+      "fresh": true,
+      "id": "7497684209668229137",
+      "score": 92,
+      "title": "blissful lights",
+      "video_count": 263800
+     },
+     {
+      "artist": "someonecalledsage3",
+      "distance": 0.5251,
+      "fresh": true,
+      "id": "7551129764654368769",
+      "score": 64,
+      "title": "Lay My Head Down",
+      "video_count": 204
+     },
+     {
+      "artist": "Edivieira",
+      "distance": 0.4037,
+      "fresh": true,
+      "id": "7648848938196633601",
+      "score": 84,
+      "title": "The Sound Coming From Below",
+      "video_count": 38300
+     },
+     {
+      "artist": "Putrisalam Salam",
+      "distance": 0.4849,
+      "fresh": true,
+      "id": "7507865309341812752",
+      "score": 84,
+      "title": "Wasted Love",
+      "video_count": 27700
+     }
+    ],
+    "distance": 0.435,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "rejected": [],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 263800",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "7497684209668229137",
+    "title": "blissful lights"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 27
+     }
+    },
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'blissful lights' for caption_list_title_v1.",
+    "total": 62
+   },
+   "visual": {
+    "band_busy": 0.1023,
+    "candidates": [
+     {
+      "band_busy": 0.1023,
+      "height": 1280,
+      "pin_id": "1111755858063113549",
+      "query": "office kitchen",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['home', 'kitchen'] (+10); scene words ['kitchen', 'office', 'the'] (+12)",
+         "points": 22
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 61.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 78,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1944,
+      "height": 1280,
+      "pin_id": "1026328202585017447",
+      "query": "office kitchen",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['office', 'the'] (+8)",
+         "points": 8
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 55.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 64,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0247,
+      "height": 1280,
+      "pin_id": "208995238950932683",
+      "query": "person filling water bottle in office",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 59.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Social",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 2,
+     "max_jump": 0.2755,
+     "motion": 0.1727,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "1111755858063113549",
+    "pin_url": "https://www.pinterest.com/pin/1111755858063113549/",
+    "query": "office kitchen",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "office kitchen aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 24,
+      "lane": "metaphor",
+      "query": "office kitchen",
+      "returned": 24
+     },
+     {
+      "lane": "metaphor",
+      "query": "office aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "kitchen aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 5,
+      "lane": "adjacent",
+      "query": "close up of hands refilling water",
+      "returned": 5
+     },
+     {
+      "kept": 23,
+      "lane": "emotional",
+      "query": "person standing alone by office kitchen",
+      "returned": 25
+     },
+     {
+      "kept": 11,
+      "lane": "literal",
+      "query": "person filling water bottle in office",
+      "returned": 11
+     }
+    ],
+    "rejected": [
+     {
+      "id": "1146799492651816480",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "337981147062644555",
+      "why": "on-screen text: 'CONTACT US; E; ELFIN; ELFIN KITCHE; ELFIN KITCHENS'"
+     },
+     {
+      "id": "337981147059068632",
+      "why": "on-screen text: \"Hello I'm Neil from Elfin; Kitchens and this is wh\""
+     },
+     {
+      "id": "881227852063843079",
+      "why": "too short 5.0s for 12.2s"
+     },
+     {
+      "id": "56365432833417039",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "1109996639391938403",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "44613852553213543",
+      "why": "on-screen text: '10022; Standing Pretty!'"
+     },
+     {
+      "id": "181692166208008655",
+      "why": "unusable crop 598x1066"
+     },
+     {
+      "id": "888123989025663998",
+      "why": "on-screen text: 'O; iD'"
+     },
+     {
+      "id": "1041598220086044117",
+      "why": "on-screen text: 'CM'"
+     },
+     {
+      "id": "726768458664370400",
+      "why": "on-screen text: '0\u4e8c0000000; 8568881'"
+     },
+     {
+      "id": "1041598220086146787",
+      "why": "on-screen text: 'LIR'"
+     },
+     {
+      "id": "884112970627220189",
+      "why": "on-screen text: 'Comment recipe for the full; With almost one and a'"
+     },
+     {
+      "id": "703335666829435221",
+      "why": "on-screen text: 'Egg'"
+     },
+     {
+      "id": "1407443629843205",
+      "why": "too short 12.05s for 12.2s"
+     },
+     {
+      "id": "1098737640379348929",
+      "why": "too short 10.01s for 12.2s"
+     },
+     {
+      "id": "2674081025767995",
+      "lane": "emotional",
+      "query": "person standing alone by office kitchen",
+      "why": "advertising call-to-action: 'link in bio'"
+     },
+     {
+      "id": "21673641951673554",
+      "why": "on-screen text: 'Mindse; \u52ff'"
+     },
+     {
+      "id": "249809110575845129",
+      "why": "on-screen text: 'Setting up my new offic; Setting up my new office;'"
+     },
+     {
+      "id": "980518150114076441",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1970393583901731",
+      "why": "on-screen text: '@GRO; @GROVEWOODJ; @GROVEWOODJOINERY; Fo; Hom'"
+     },
+     {
+      "id": "2040762328612223",
+      "why": "on-screen text: 'Full Tutorial; When your husband dreams; a standin'"
+     },
+     {
+      "id": "337981147057439084",
+      "why": "too short 8.01s for 12.2s"
+     },
+     {
+      "id": "1266706140482060",
+      "why": "too short 9.47s for 12.2s"
+     },
+     {
+      "id": "703124560567623867",
+      "why": "too short 5.37s for 12.2s"
+     },
+     {
+      "id": "914862420337472",
+      "why": "on-screen text: '\u7530; \u8058'"
+     },
+     {
+      "id": "1064397693181331903",
+      "why": "too short 11.03s for 12.2s"
+     },
+     {
+      "id": "68748860561",
+      "why": "on-screen text: 'FOR HELPING ME; STANLEY; THANKS; gnow!; my fav.'"
+     },
+     {
+      "id": "1006906429167781329",
+      "why": "on-screen text: 'ANDONLY; But into bite sized pieces; Cook the milk'"
+     },
+     {
+      "id": "890164682590211219",
+      "why": "on-screen text: '10 minute lunchfrom a dietitian; 10 minute lunchfr'"
+     },
+     {
+      "id": "914862421048687",
+      "why": "on-screen text: 'B; Boji; Group; O; WELdWORK.COm'"
+     },
+     {
+      "id": "81346337013687766",
+      "lane": "emotional",
+      "query": "person standing alone by office kitchen",
+      "why": "real-estate/tour content: 'renovation'"
+     },
+     {
+      "id": "584623595413079340",
+      "why": "on-screen text: 'ARBEIT; BUROKUCHE; DIE; FAKTOR; MIT'"
+     },
+     {
+      "id": "416512665557241000",
+      "why": "too short 10.29s for 12.2s"
+     },
+     {
+      "id": "563018699111803",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1062075524609658237",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "728175833542321452",
+      "why": "too short 7.59s for 12.2s"
+     },
+     {
+      "id": "728175833540101771",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "1077838123339943782",
+      "why": "too short 7.41s for 12.2s"
+     },
+     {
+      "id": "1017321003339664278",
+      "why": "on-screen text: 'A-; \u03b2-'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['home', 'kitchen'] (+10); scene words ['kitchen', 'office', 'the'] (+12)",
+       "points": 22
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 61.3s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 78,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 977379,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261117T234857Z-d26a78/assets/track_7497684209668229137.m4a",
+   "pin_url": null,
+   "sha256": "c754cf4c0cb90e24a0648cd6ba2b06a3c6a9aa4e89bf58b54a70f6dfa9942aa8",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7497684209668229137",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 82.5,
+    "high": 0.1,
+    "mid": 17.4
+   },
+   "duration_s": 60.0,
+   "file": "track_7497684209668229137.m4a",
+   "key_estimate": "E minor",
+   "loudness_curve_db": [
+    -22.1,
+    -22.4,
+    -22.5
+   ],
+   "onset_density_per_s": 3.47,
+   "peak_db": -6.0,
+   "rms_db": -22.3,
+   "spectral_centroid_hz": 1139.5,
+   "tempo_bpm": 103.4,
+   "zero_crossing_rate": 0.0311
+  },
+  "background": {
+   "bytes": 11573863,
+   "creator": "Social",
+   "path": "/home/runner/work/_temp/beast-scratch/20261117T234857Z-d26a78/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/1111755858063113549/",
+   "sha256": "c9f2824151437d93dea05003cd6905f613914386ad5603a60dd00ab1b8d1172c",
+   "source": "pinterest",
+   "stable_id": "1111755858063113549",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "You want to feel part of the room without being seen trying to join it",
+    "observable_behaviour": "Refilling an already-full water bottle, scrolling the same phone screen, timing a sip to look occupied",
+    "private_worry": "That standing here makes it look like you have no one to talk to and are listening in",
+    "situation": "Tuesday 1:12pm, office kitchen, kettle boiling while two colleagues chat by the fridge"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Refill an already-full water bottle\" / \"Scroll the same screen twice\" / \"Time a sip to look busy\" \u2014 all inside the assigned Tuesday 1:12pm kitchen moment.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Items 1\u20135 are sharp and in-scene. Items 6\u20137 ('Replay your face by the fridge', 'Rehearse a fridge joke at desk') drift out of the kitchen and repeat the replay/desk filler pattern.",
+    "scene_specificity": 4,
+    "sendability_who": "An office friend who dreads the kitchen small-talk gauntlet would send this to a fellow colleague, captioning 'the kettle is my enemy.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "tuesday-112pm-office-kitchen-kettle"
+  },
+  "delivery": {
+   "at": "2026-11-18T00:00:44Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 2.54,
+   "yavg_delta": 8.3
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 14.05,
+    "yavg": 121.9
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 16.74,
+   "yavg": 113.3
+  },
+  "output": {
+   "bytes": 18935179,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261117T234857Z-d26a78.mp4",
+   "sha256": "c68c062e3fbed9f4baa46cebe6bf1a76fca0d25f0e79fd35738ff5672eca84bd"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7497684209668229137",
+    "title": "blissful lights"
+   },
+   "background_query": "person filling water bottle in office kitchen kettle boiling",
+   "caption": "7 things you do in the office kitchen to avoid looking alone:\n1. Hover outside kitchen door first\n2. Refill an already-full water bottle\n3. Scroll the same screen twice\n4. Time a sip to look busy\n5. Nod along to their conversation\n6. Replay your face by the fridge\n7. Rehearse a fridge joke at desk",
+   "closing": "You weren't eavesdropping, you just wanted to belong in the room.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Quick-cut, awkwardly relatable cringe-comedy that needs a bouncy, slightly tense underscore to build anticipation through each confession and land the punchline without turning sad.",
+     "tiktok_query": "indie",
+     "tiktok_search_query": "indie"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "office kitchen aesthetic",
+     "pinterest_search_query": "office kitchen aesthetic",
+     "semantic_analysis": "The visual should feel like a quiet, fluorescent, in-between office moment where someone lingers by the kitchen to look occupied."
+    }
+   },
+   "headline": "7 things you do in the office kitchen to avoid looking alone",
+   "list_items": [
+    "Hover outside kitchen door first",
+    "Refill an already-full water bottle",
+    "Scroll the same screen twice",
+    "Time a sip to look busy",
+    "Nod along to their conversation",
+    "Replay your face by the fridge",
+    "Rehearse a fridge joke at desk"
+   ],
+   "provenance": {
+    "creator": "Social",
+    "pin_id": "1111755858063113549",
+    "pin_url": "https://www.pinterest.com/pin/1111755858063113549/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 122): warm off-white"
+   },
+   "titleLines": [
+    "7 things you do in",
+    "the office kitchen to",
+    "avoid looking alone"
+   ],
+   "topic_id": "tuesday-112pm-office-kitchen-kettle"
+  },
+  "publish": {
+   "alt_text": "Person filling water bottle in office kitchen kettle boiling. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-18T00:01:45Z",
+   "caption": "7 things you do in the office kitchen to avoid looking alone:\n1. Hover outside kitchen door first\n2. Refill an already-full water bottle\n3. Scroll the same screen twice\n4. Time a sip to look busy\n5. Nod along to their conversation\n6. Replay your face by the fridge\n7. Rehearse a fridge joke at desk\n\nYou weren't eavesdropping, you just wanted to belong in the room.",
+   "channel": "instagram",
+   "container_id": "17920028073538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "17965284309216128",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://d.uguu.se/KtjrzuvRpSco.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": 2.54,
+    "yavg_delta": 8.3
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261117T234857Z-d26a78/caption_list_title_v1-live-20261117T234857Z-d26a78.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 18935179,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 16.74,
+    "yavg": 113.3
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0793,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 75.1
+  },
+  "rendered_at": "2026-11-18T00:00:40Z",
+  "run_id": "20261117T234857Z-d26a78",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person lingers in the office kitchen pretending to be busy with a water bottle so they do not have to stand there looking alone.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person filling water bottle in office",
+     "close up of hands refilling water",
+     "person standing alone by office kitchen"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.435,
+    "keywords": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "7497684209668229137",
+    "title": "blissful lights"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.435
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 4,
+     "shareability": 4
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "tuesday-112pm-office-kitchen-kettle"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "indie",
+    "vendor": "meta-api",
+    "why": "Quick-cut, awkwardly relatable cringe-comedy that needs a bouncy, slightly tense underscore to build anticipation through each confession and land the punchline without turning sad."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "office kitchen aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261117T234857Z-d26a78.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "metaphor lane shot '' paired with 'blissful lights' for caption_list_title_v1.",
+    "score": 62
+   },
+   "pinterest": {
+    "candidates": 3,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 14.05,
+     "yavg": 121.9
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "1111755858063113549",
+    "query": "office kitchen",
+    "review_status": "accept",
+    "score": 78,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 75.1
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261117T234857Z-d26a78/caption_list_title_v1-live-20261117T234857Z-d26a78.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 18935179,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 122): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": true,
+    "drift": {
+     "sat_delta": 2.54,
+     "yavg_delta": 8.3
+    },
+    "measured": {
+     "sat": 16.74,
+     "yavg": 113.3
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0793,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "tuesday-112pm-office-kitchen-kettle"
  }
 ]
