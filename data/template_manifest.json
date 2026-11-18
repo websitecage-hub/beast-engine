@@ -34477,5 +34477,1207 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "lift-847am-double-press"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "loud bass drops",
+     "dramatic tense strings",
+     "fast rap vocals",
+     "club beats"
+    ],
+    "emotional_role": "Keep the moment light and warm, letting the awkwardness feel funny and relatable rather than stressful",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft piano",
+     "light acoustic guitar"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "warm",
+     "gentle"
+    ],
+    "trend_hashtags": [
+     "#relatable",
+     "#awkwardmoments",
+     "#arrivinglate"
+    ],
+    "trend_keywords": [
+     "awkward arrival",
+     "relatable moment",
+     "arriving late"
+    ],
+    "valence": 0.3,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "wide environmental shot",
+   "compiled_at": "2026-11-18T23:22:07Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "tuesday-doorway-crisps-arrival",
+   "core_human_moment": "She arrives while everyone is already talking and freezes in the doorway, unsure how to join in without interrupting.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "amused",
+   "format_id": "caption_list_title_v1",
+   "human_action": "Hovering in the doorway holding crisps while watching a conversation already in progress",
+   "humour": 0.7,
+   "intentional_contrast": null,
+   "literal_scene": "A person pauses in a living room doorway holding a bag of crisps, with a sofa and a group already mid-conversation behind them.",
+   "literalness": "literal",
+   "motion_intent": "Almost still, one continuous calm shot with only small hesitant shifts in posture",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm indoor light",
+    "muted beige"
+   ],
+   "rationale": "The doorway hover with crisps is the exact moment the list describes, so a calm, lived-in shot lets viewers recognise themselves in it, while soft, unhurried music keeps the awkwardness warm and funny instead of tense.",
+   "scene_entities": [
+    "bag of crisps",
+    "sofa",
+    "living room doorway"
+   ],
+   "schema_version": "1.0",
+   "setting": "living room doorway at a casual house gathering",
+   "tension": 0.5,
+   "text_safe_zone": "centre band 41-59% kept clear for white title",
+   "time_of_day": "evening",
+   "valence": 0.2,
+   "video_queries": [
+    "person standing in doorway holding crisps",
+    "sofa and friends talking in living room evening",
+    "person alone in hallway before entering room"
+   ],
+   "visual_mood": [
+    "warm",
+    "awkward"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.5
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "\ud835\udc79\ud835\udc9a\ud835\udc90\ud835\udc91\ud835\udc8a\ud835\udc82\ud835\udc8f\ud835\udc90\ud835\udc87\ud835\udc90\ud835\udc93\ud835\udc95\ud835\udc86\u0c68\u09ce",
+    "candidates": [
+     {
+      "artist": "\ud835\udc79\ud835\udc9a\ud835\udc90\ud835\udc91\ud835\udc8a\ud835\udc82\ud835\udc8f\ud835\udc90\ud835\udc87\ud835\udc90\ud835\udc93\ud835\udc95\ud835\udc86\u0c68\u09ce",
+      "distance": 0.6842,
+      "fresh": true,
+      "id": "6817195494956075009",
+      "score": 100,
+      "title": "Piano famous song Chopin Deep deep clear beauty",
+      "video_count": 2100000
+     },
+     {
+      "artist": "Etsuo Kawasaki",
+      "distance": 0.7157,
+      "fresh": true,
+      "id": "6839725012430096386",
+      "score": 92,
+      "title": "Comical and a little silly carefree music(831995)",
+      "video_count": 106200
+     },
+     {
+      "artist": "Otis Grubbs",
+      "distance": 0.5896,
+      "fresh": true,
+      "id": "7694839372474222619",
+      "score": 64,
+      "title": "Sombras En Fila",
+      "video_count": 1835
+     },
+     {
+      "artist": "sd_alfredo_2002",
+      "distance": 0.6833,
+      "fresh": false,
+      "id": "6997838557607888898",
+      "score": 80,
+      "title": "Creepy and simple horror background music(1070744)",
+      "video_count": 2900000
+     },
+     {
+      "artist": "BabyChiefDoit",
+      "distance": 0.87,
+      "fresh": true,
+      "id": "7650170144695027713",
+      "score": 92,
+      "title": "Ghetto Love Story",
+      "video_count": 103700
+     }
+    ],
+    "distance": 0.6842,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "quirky",
+      "rows": 5
+     }
+    ],
+    "rejected": [],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "342.1s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 2100000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6817195494956075009",
+    "title": "Piano famous song Chopin Deep deep clear beauty"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 22
+     }
+    },
+    "passes": true,
+    "rationale": "emotional lane shot '' paired with 'Piano famous song Chopin Deep deep clear' for caption_list_title_v1.",
+    "total": 57
+   },
+   "visual": {
+    "band_busy": 0.0759,
+    "candidates": [
+     {
+      "band_busy": 0.0759,
+      "height": 1280,
+      "pin_id": "3659243440634766",
+      "query": "person alone in hallway before entering",
+      "query_lane": "emotional",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['cozy', 'home'] (+10); scene words ['and', 'the'] (+8)",
+         "points": 18
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 45.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 74,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.153,
+         "rows": [
+          0,
+          98
+         ]
+        },
+        {
+         "fraction_of_height": 0.097,
+         "rows": [
+          120,
+          182
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 98), (120, 182)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         98
+        ],
+        [
+         120,
+         182
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0367,
+      "height": 1280,
+      "pin_id": "753438212659377769",
+      "query": "candid party",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['sunset'] (+5); scene words ['the'] (+4)",
+         "points": 9
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 32.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 65,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.227,
+         "rows": [
+          0,
+          145
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 145)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         145
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.028,
+      "height": 1280,
+      "pin_id": "1149473504915177843",
+      "query": "person alone in hallway before entering",
+      "query_lane": "emotional",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['the'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 54.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0131,
+      "height": 1280,
+      "pin_id": "603763893809682654",
+      "query": "candid party",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 12.8s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0,
+      "height": 1280,
+      "pin_id": "318348267426315296",
+      "query": "sofa and friends talking in living",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.153,
+         "rows": [
+          0,
+          98
+         ]
+        },
+        {
+         "fraction_of_height": 0.203,
+         "rows": [
+          0,
+          130
+         ]
+        },
+        {
+         "fraction_of_height": 0.189,
+         "rows": [
+          0,
+          121
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 98), (0, 130)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         98
+        ],
+        [
+         0,
+         130
+        ],
+        [
+         0,
+         121
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Villa",
+    "flags": [
+     "source domain: instagram.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 1,
+     "max_jump": 0.2473,
+     "motion": 0.2033,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "3659243440634766",
+    "pin_url": "https://www.pinterest.com/pin/3659243440634766/",
+    "query": "person alone in hallway before entering",
+    "query_lane": "emotional",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "candid party cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "candid party",
+      "returned": 25
+     },
+     {
+      "lane": "metaphor",
+      "query": "candid cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "party cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 24,
+      "lane": "adjacent",
+      "query": "sofa and friends talking in living",
+      "returned": 24
+     },
+     {
+      "kept": 24,
+      "lane": "emotional",
+      "query": "person alone in hallway before entering",
+      "returned": 24
+     },
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "person standing in doorway holding crisps",
+      "returned": 0
+     }
+    ],
+    "rejected": [
+     {
+      "id": "924997210983981519",
+      "why": "on-screen text: 'Hello.; Introducing the; Lionel; You can bend it a'"
+     },
+     {
+      "id": "972073900839595967",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "772930354845474313",
+      "why": "on-screen text: 'AND SIDE QUESTS; AND SIDEOUESTS; BIRTHDAY NIGHT:; '"
+     },
+     {
+      "id": "498984833733227524",
+      "why": "too short 10.91s for 12.2s"
+     },
+     {
+      "id": "929782285563339423",
+      "why": "on-screen text: '\"Sorry I have plans\"; CATIWALK; CATWALK; CAYWALK; '"
+     },
+     {
+      "id": "1117174251284324119",
+      "lane": "adjacent",
+      "query": "sofa and friends talking in living",
+      "why": "real-estate/tour content: 'interior design'"
+     },
+     {
+      "id": "863354191102541501",
+      "lane": "adjacent",
+      "query": "sofa and friends talking in living",
+      "why": "advertising call-to-action: 'Link in Bio'"
+     },
+     {
+      "id": "514536326199290798",
+      "lane": "adjacent",
+      "query": "sofa and friends talking in living",
+      "why": "advertising call-to-action: 'coupon'"
+     },
+     {
+      "id": "773563673525043209",
+      "why": "on-screen text: 'CABINET; ENTRANCE; can also put some flowers; conv'"
+     },
+     {
+      "id": "545428204892892562",
+      "why": "too short 8.13s for 12.2s"
+     },
+     {
+      "id": "144818944271285545",
+      "why": "on-screen text: \"don't have to be boring; proof that small spaces; \""
+     },
+     {
+      "id": "1091489659726241985",
+      "why": "on-screen text: 'M'"
+     },
+     {
+      "id": "1900024838830768",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "45599014978443356",
+      "why": "on-screen text: 'V'"
+     },
+     {
+      "id": "496873771406374957",
+      "why": "on-screen text: \"'ER; AW; AWESC; AWESOI; AWESOM\""
+     },
+     {
+      "id": "772789617356203799",
+      "lane": "emotional",
+      "query": "person alone in hallway before entering",
+      "why": "advertising call-to-action: 'link in bio'"
+     },
+     {
+      "id": "14636767535709488",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "926263848356137654",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "932878510339317897",
+      "why": "too short 6.12s for 12.2s"
+     },
+     {
+      "id": "1090715603510441353",
+      "why": "on-screen text: 'CAT; Dlor; NIKE; Puma; UU HOmE'"
+     },
+     {
+      "id": "920071398905248257",
+      "lane": "adjacent",
+      "query": "sofa and friends talking in living",
+      "why": "advertising call-to-action: '% off'"
+     },
+     {
+      "id": "187954984445706572",
+      "why": "on-screen text: '\"Sel\"; \"gi\"; 123; 50%OFF; =A'"
+     },
+     {
+      "id": "361413938868942324",
+      "why": "on-screen text: 'L'"
+     },
+     {
+      "id": "129760033004598493",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "932878510339347796",
+      "why": "too short 9.54s for 12.2s"
+     },
+     {
+      "id": "1057220081255584811",
+      "why": "too short 8.9s for 12.2s"
+     },
+     {
+      "id": "166070305002914427",
+      "why": "too short 7.76s for 12.2s"
+     },
+     {
+      "id": "1017602478277808507",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "999447342286422345",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1136384918456387733",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "980729256339498476",
+      "why": "unusable crop 672x1232"
+     },
+     {
+      "id": "1010706341356354231",
+      "why": "too short 7.59s for 12.2s"
+     },
+     {
+      "id": "850265604677488721",
+      "why": "too short 6.83s for 12.2s"
+     },
+     {
+      "id": "814307176381718667",
+      "why": "unusable crop 640x1138"
+     },
+     {
+      "id": "280489883039442011",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "727542514810791499",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "51298883249321669",
+      "why": "unusable crop 540x1016"
+     },
+     {
+      "id": "18295942227865332",
+      "why": "too short 10.67s for 12.2s"
+     },
+     {
+      "id": "14003448835957965",
+      "why": "too short 6.4s for 12.2s"
+     },
+     {
+      "id": "712905816018855800",
+      "why": "unusable crop 640x1138"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['cozy', 'home'] (+10); scene words ['and', 'the'] (+8)",
+       "points": 18
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 45.8s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 74,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.153,
+       "rows": [
+        0,
+        98
+       ]
+      },
+      {
+       "fraction_of_height": 0.097,
+       "rows": [
+        120,
+        182
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(0, 98), (120, 182)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       0,
+       98
+      ],
+      [
+       120,
+       182
+      ]
+     ]
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 5517496,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261118T232042Z-048130/assets/track_6817195494956075009.m4a",
+   "pin_url": null,
+   "sha256": "79b241558ac50af38b46f5581e2050fe96fcedaede048b03d2658234e17bd386",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6817195494956075009",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 17.2,
+    "high": 0.0,
+    "mid": 82.8
+   },
+   "duration_s": 342.15,
+   "file": "track_6817195494956075009.m4a",
+   "key_estimate": "D# major",
+   "loudness_curve_db": [
+    -23.3,
+    -23.7,
+    -25.2
+   ],
+   "onset_density_per_s": 1.74,
+   "peak_db": -7.9,
+   "rms_db": -24.0,
+   "spectral_centroid_hz": 557.2,
+   "tempo_bpm": 78.3,
+   "zero_crossing_rate": 0.0449
+  },
+  "background": {
+   "bytes": 7717922,
+   "creator": "Villa",
+   "path": "/home/runner/work/_temp/beast-scratch/20261118T232042Z-048130/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/3659243440634766/",
+   "sha256": "c8c4b15003d5b85b30d047072c2b5c63761a4baabacea37f84ea5f5a04e7b73c",
+   "source": "pinterest",
+   "stable_id": "3659243440634766",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "group conversation entry",
+    "emotional_tension": "You want to just drop the crisps and sit down, but you keep directing yourself like someone is watching the entrance.",
+    "observable_behaviour": "pauses in the doorway holding a bag of crisps, smiles too wide, waits for a gap that never comes, then perches on the arm of the chair instead of the empty seat",
+    "private_worry": "if I sit down now I'll interrupt, if I stay standing I'll look like I'm about to leave",
+    "situation": "Tuesday 7:42pm, in the doorway of a friend's living room while four people are already mid-conversation on the sofa"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Hover in the doorway holding crisps\" / \"Wait for a gap that never comes\" / \"Perch on the arm, not the seat\" / \"Laugh late at a joke you missed\" \u2014 all inside the assigned 7:42pm living-room doorway moment.",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Items 1 and 8 leave the doorway ('Rehearse your hello in the hallway', 'Replay your entrance on the drive home'). Hook says 8, list delivers 8 \u2014 clean. Tighten items 1/8 to stay in-scene.",
+    "scene_specificity": 4,
+    "sendability_who": "A friend who dreads arriving late to a party already in flow would send this to a fellow over-thinker, captioning 'me walking into every party.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    }
+   ],
+   "topic_id": "tuesday-doorway-crisps-arrival"
+  },
+  "delivery": {
+   "at": "2026-11-18T23:31:12Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -0.75,
+   "yavg_delta": 9.9
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 13.82,
+    "yavg": 112.0
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 13.45,
+   "yavg": 114.9
+  },
+  "output": {
+   "bytes": 14860040,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261118T232042Z-048130.mp4",
+   "sha256": "5c96b4d00ead65edc7be68b6a44b2692e5db1bcb468e9cbb8f6f80dade0813d5"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6817195494956075009",
+    "title": "Piano famous song Chopin Deep deep clear beauty"
+   },
+   "background_query": "person standing in living room doorway holding bag of crisps sofa behind",
+   "caption": "8 things you do when you arrive mid-conversation and forget how to sit down:\n1. Rehearse your hello in the hallway\n2. Hover in the doorway holding crisps\n3. Smile too wide at nobody in particular\n4. Wait for a gap that never comes\n5. Perch on the arm, not the seat\n6. Offer the crisps to avoid talking first\n7. Laugh late at a joke you missed\n8. Replay your entrance on the drive home",
+   "closing": "You were already invited, the doorway just made it feel like an audition.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "The vibe needs a quirky, bouncy, slightly off-kilter beat that keeps the awkward tension playful and punchy through rapid-fire cuts.",
+     "tiktok_query": "quirky",
+     "tiktok_search_query": "quirky"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "candid party cinematic",
+     "pinterest_search_query": "candid party cinematic",
+     "semantic_analysis": "A warm, slightly out-of-focus house party where one person lingers on the edges, half-in and half-out of a conversation they haven't joined yet."
+    }
+   },
+   "headline": "8 things you do when you arrive mid-conversation and forget how to sit down",
+   "list_items": [
+    "Rehearse your hello in the hallway",
+    "Hover in the doorway holding crisps",
+    "Smile too wide at nobody in particular",
+    "Wait for a gap that never comes",
+    "Perch on the arm, not the seat",
+    "Offer the crisps to avoid talking first",
+    "Laugh late at a joke you missed",
+    "Replay your entrance on the drive home"
+   ],
+   "provenance": {
+    "creator": "Villa",
+    "pin_id": "3659243440634766",
+    "pin_url": "https://www.pinterest.com/pin/3659243440634766/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 112): warm off-white"
+   },
+   "titleLines": [
+    "8 things you do when",
+    "you arrive mid-",
+    "conversation and forget",
+    "how to sit down"
+   ],
+   "topic_id": "tuesday-doorway-crisps-arrival"
+  },
+  "publish": {
+   "alt_text": "Person standing in living room doorway holding bag of crisps sofa behind. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-18T23:32:34Z",
+   "caption": "8 things you do when you arrive mid-conversation and forget how to sit down:\n1. Rehearse your hello in the hallway\n2. Hover in the doorway holding crisps\n3. Smile too wide at nobody in particular\n4. Wait for a gap that never comes\n5. Perch on the arm, not the seat\n6. Offer the crisps to avoid talking first\n7. Laugh late at a joke you missed\n8. Replay your entrance on the drive home\n\nYou were already invited, the doorway just made it feel like an audition.",
+   "channel": "instagram",
+   "container_id": "17920163226538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18129462139903482",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/iZRxojGxpAmD.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": true,
+   "drift": {
+    "sat_delta": -0.75,
+    "yavg_delta": 9.9
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261118T232042Z-048130/caption_list_title_v1-live-20261118T232042Z-048130.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 14860040,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 13.45,
+    "yavg": 114.9
+   },
+   "ok": true,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.2295,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": true,
+  "render": {
+   "quality": "delivery",
+   "seconds": 69.6
+  },
+  "rendered_at": "2026-11-18T23:31:08Z",
+  "run_id": "20261118T232042Z-048130",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "She arrives while everyone is already talking and freezes in the doorway, unsure how to join in without interrupting.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person standing in doorway holding crisps",
+     "sofa and friends talking in living",
+     "person alone in hallway before entering"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.6842,
+    "keywords": [
+     {
+      "keyword": "quirky",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6817195494956075009",
+    "title": "Piano famous song Chopin Deep deep clear beauty"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.6842
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 4,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "tuesday-doorway-crisps-arrival"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "quirky",
+    "vendor": "meta-api",
+    "why": "The vibe needs a quirky, bouncy, slightly off-kilter beat that keeps the awkward tension playful and punchy through rapid-fire cuts."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "candid party cinematic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261118T232042Z-048130.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "emotional lane shot '' paired with 'Piano famous song Chopin Deep deep clear' for caption_list_title_v1.",
+    "score": 57
+   },
+   "pinterest": {
+    "candidates": 5,
+    "hls": false,
+    "lane": "emotional",
+    "metrics": {
+     "sat": 13.82,
+     "yavg": 112.0
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "3659243440634766",
+    "query": "person alone in hallway before entering",
+    "review_status": "accept",
+    "score": 74,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 69.6
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261118T232042Z-048130/caption_list_title_v1-live-20261118T232042Z-048130.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 14860040,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 112): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": true,
+    "drift": {
+     "sat_delta": -0.75,
+     "yavg_delta": 9.9
+    },
+    "measured": {
+     "sat": 13.45,
+     "yavg": 114.9
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.2295,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "tuesday-doorway-crisps-arrival"
  }
 ]
