@@ -175,10 +175,18 @@
    "sha256": "b32b7b58b841539da9d2c70f911a8b2c7c9ba2234488b720a1da2bdc1982caf1",
    "status": "delivered",
    "used_by": "20261103T171257Z-ced374"
+  },
+  "7650072705703561232": {
+   "first_seen_at": "2026-11-19T23:38:17Z",
+   "last_used_at": "2026-11-19T23:39:48Z",
+   "review_status": "pending",
+   "sha256": "14f2569e9f100fb6d4fa30f6b0ab83f842ab67c77cebeeb735ed70a2fc40a2a7",
+   "status": "delivered",
+   "used_by": "20261119T232819Z-e07434"
   }
  },
  "reservations": {},
- "updated_at": "2026-11-18T23:31:12Z",
+ "updated_at": "2026-11-19T23:39:48Z",
  "version": 1,
  "visual": {
   "pin:1028861477392867239": {
@@ -389,6 +397,17 @@
    "sha256": "9e10654ac815e76919dd726b354cf3b6ded34fa876b931efaf248b9147ac76c5",
    "status": "delivered",
    "used_by": "20261118T173904Z-2b4f0f"
+  },
+  "pin:891994269936291411": {
+   "first_seen_at": "2026-11-19T23:37:44Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-19T23:39:48Z",
+   "pin_id": "891994269936291411",
+   "query": "night phone glow",
+   "review_status": "reject",
+   "sha256": "cc81beb5f2324df0d4ba862f944252abd29b1dcbd334c8c40b313f43ebdc5535",
+   "status": "delivered",
+   "used_by": "20261119T232819Z-e07434"
   },
   "pin:901001469178705578": {
    "first_seen_at": "2026-11-12T14:19:29Z",

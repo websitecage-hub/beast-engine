@@ -35679,5 +35679,1641 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "tuesday-doorway-crisps-arrival"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "loud upbeat pop",
+     "dramatic cinematic swells",
+     "comedy boings or typing sound effects",
+     "fast rap vocals",
+     "motivational speech"
+    ],
+    "emotional_role": "hold the quiet late-night pause without turning it dramatic or sad",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "muted synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "hazy",
+     "lo-fi"
+    ],
+    "trend_hashtags": [
+     "#latenight",
+     "#groupchat"
+    ],
+    "trend_keywords": [
+     "late night lofi",
+     "quiet bedroom piano"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-19T23:29:38Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "thursday-947pm-group-chat-draft",
+   "core_human_moment": "She keeps rewriting a simple reply while the group chat moves on without her.",
+   "degraded": false,
+   "emotional_primary": "hesitant",
+   "emotional_secondary": "wistful",
+   "format_id": "caption_list_title_v1",
+   "human_action": "lying in bed typing, deleting, and pausing on a phone",
+   "humour": 0.4,
+   "intentional_contrast": null,
+   "literal_scene": "A person lying in bed in dim lamplight, holding a glowing phone with thumbs hovering over the keyboard.",
+   "literalness": "literal",
+   "motion_intent": "almost still, only thumbs moving and phone glow shifting",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm lamp amber",
+    "cool phone glow"
+   ],
+   "rationale": "The dim bedroom and still phone shot keeps the moment small and believable, while soft, slow piano lets the hesitation feel light and relatable instead of heavy.",
+   "scene_entities": [
+    "phone",
+    "bedside lamp",
+    "bedroom"
+   ],
+   "schema_version": "1.0",
+   "setting": "bedroom at night",
+   "tension": 0.6,
+   "text_safe_zone": "centre band 41-59% must stay dark and uncluttered for white title",
+   "time_of_day": "late evening",
+   "valence": -0.1,
+   "video_queries": [
+    "person lying in bed holding phone beside bedside lamp",
+    "over shoulder view of phone typing in dark bedroom",
+    "phone screen glow on face in dark bedroom at night"
+   ],
+   "visual_mood": [
+    "quiet",
+    "dim"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "smg & djr3an & \ud835\udc6a\ud835\udc89\ud835\udc82\ud835\udc8f \ud835\udc73\ud835\udc90\ud835\udc8f\ud835\udc88 \ud835\udc6b\ud835\udc96\u031b\u0301\ud835\udc84\u0c68\u09ce & \u30b7\uff38\uff33\uff2b\uff21\uff39\u00b9\u00b9",
+    "candidates": [
+     {
+      "artist": "smg & djr3an & \ud835\udc6a\ud835\udc89\ud835\udc82\ud835\udc8f \ud835\udc73\ud835\udc90\ud835\udc8f\ud835\udc88 \ud835\udc6b\ud835\udc96\u031b\u0301\ud835\udc84\u0c68\u09ce & \u30b7\uff38\uff33\uff2b\uff21\uff39\u00b9\u00b9",
+      "distance": 0.5879,
+      "fresh": true,
+      "id": "7650072705703561232",
+      "score": 84,
+      "title": "ELA PEIDA FUNK - Ultra Slowed",
+      "video_count": 48800
+     },
+     {
+      "artist": "heapper",
+      "distance": 0.6008,
+      "fresh": true,
+      "id": "7643896345279629313",
+      "score": 74,
+      "title": "MONTAGEM CHATEADO - Super Slowed",
+      "video_count": 12300
+     },
+     {
+      "artist": "Auren_J & VLNCRSH",
+      "distance": 0.6798,
+      "fresh": true,
+      "id": "7691988519371933702",
+      "score": 84,
+      "title": "MEGALOVANIA (Hardtekk)",
+      "video_count": 58300
+     }
+    ],
+    "distance": 0.5879,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "phonk",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7465912567133899525",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7337638661108533249",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "59.9s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 48800",
+       "points": 44
+      }
+     },
+     "passes": true,
+     "total": 84
+    },
+    "stable_id": "7650072705703561232",
+    "title": "ELA PEIDA FUNK - Ultra Slowed"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 0
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'ELA PEIDA FUNK - Ultra Slowed' for caption_list_title_v1.",
+    "total": 35
+   },
+   "visual": {
+    "band_busy": 0.063,
+    "candidates": [
+     {
+      "band_busy": 0.063,
+      "height": 1280,
+      "pin_id": "891994269936291411",
+      "query": "night phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 20.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0006,
+      "height": 1280,
+      "pin_id": "1054053487768429141",
+      "query": "night phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 19.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.32,
+         "rows": [
+          76,
+          281
+         ]
+        },
+        {
+         "fraction_of_height": 0.294,
+         "rows": [
+          0,
+          188
+         ]
+        },
+        {
+         "fraction_of_height": 0.202,
+         "rows": [
+          194,
+          323
+         ]
+        },
+        {
+         "fraction_of_height": 0.087,
+         "rows": [
+          0,
+          56
+         ]
+        },
+        {
+         "fraction_of_height": 0.381,
+         "rows": [
+          83,
+          327
+         ]
+        },
+        {
+         "fraction_of_height": 0.123,
+         "rows": [
+          388,
+          467
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(76, 281), (0, 188)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         76,
+         281
+        ],
+        [
+         0,
+         188
+        ],
+        [
+         194,
+         323
+        ],
+        [
+         0,
+         56
+        ],
+        [
+         83,
+         327
+        ],
+        [
+         388,
+         467
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0976,
+      "height": 1280,
+      "pin_id": "649644315056411836",
+      "query": "night phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.327,
+         "rows": [
+          0,
+          209
+         ]
+        },
+        {
+         "fraction_of_height": 0.177,
+         "rows": [
+          527,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 209), (527, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         209
+        ],
+        [
+         527,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0001,
+      "height": 1328,
+      "pin_id": "856176579159724049",
+      "query": "night phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1328, 52.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.107,
+         "rows": [
+          63,
+          134
+         ]
+        },
+        {
+         "fraction_of_height": 0.092,
+         "rows": [
+          603,
+          664
+         ]
+        },
+        {
+         "fraction_of_height": 0.095,
+         "rows": [
+          63,
+          126
+         ]
+        },
+        {
+         "fraction_of_height": 0.093,
+         "rows": [
+          62,
+          124
+         ]
+        },
+        {
+         "fraction_of_height": 0.089,
+         "rows": [
+          605,
+          664
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(63, 134), (603, 664)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         63,
+         134
+        ],
+        [
+         603,
+         664
+        ],
+        [
+         63,
+         126
+        ],
+        [
+         62,
+         124
+        ],
+        [
+         605,
+         664
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0044,
+      "height": 1280,
+      "pin_id": "845973111279941184",
+      "query": "night phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 21.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.18,
+         "rows": [
+          0,
+          115
+         ]
+        },
+        {
+         "fraction_of_height": 0.191,
+         "rows": [
+          518,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 115), (518, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         115
+        ],
+        [
+         518,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0718,
+      "height": 1280,
+      "pin_id": "683562049718083937",
+      "query": "night phone",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0154,
+      "height": 1280,
+      "pin_id": "375487687705335432",
+      "query": "night phone",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.114,
+         "rows": [
+          448,
+          521
+         ]
+        },
+        {
+         "fraction_of_height": 0.233,
+         "rows": [
+          491,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(448, 521), (491, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         448,
+         521
+        ],
+        [
+         491,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0286,
+      "height": 1280,
+      "pin_id": "825073594272776686",
+      "query": "night glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['blue hour'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.423,
+         "rows": [
+          369,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(369, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         369,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0004,
+      "height": 1280,
+      "pin_id": "283375001553063456",
+      "query": "night glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.15,
+         "rows": [
+          544,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.183,
+         "rows": [
+          0,
+          117
+         ]
+        },
+        {
+         "fraction_of_height": 0.242,
+         "rows": [
+          476,
+          631
+         ]
+        },
+        {
+         "fraction_of_height": 0.191,
+         "rows": [
+          518,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(544, 640), (0, 117)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         544,
+         640
+        ],
+        [
+         0,
+         117
+        ],
+        [
+         476,
+         631
+        ],
+        [
+         518,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.022,
+      "height": 900,
+      "pin_id": "903464375252738246",
+      "query": "night glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x900, 39.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.207,
+         "rows": [
+          50,
+          143
+         ]
+        },
+        {
+         "fraction_of_height": 0.18,
+         "rows": [
+          334,
+          415
+         ]
+        },
+        {
+         "fraction_of_height": 0.224,
+         "rows": [
+          26,
+          127
+         ]
+        },
+        {
+         "fraction_of_height": 0.433,
+         "rows": [
+          255,
+          450
+         ]
+        },
+        {
+         "fraction_of_height": 0.233,
+         "rows": [
+          0,
+          105
+         ]
+        },
+        {
+         "fraction_of_height": 0.149,
+         "rows": [
+          286,
+          353
+         ]
+        },
+        {
+         "fraction_of_height": 0.084,
+         "rows": [
+          360,
+          398
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(50, 143), (334, 415)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         50,
+         143
+        ],
+        [
+         334,
+         415
+        ],
+        [
+         26,
+         127
+        ],
+        [
+         255,
+         450
+        ],
+        [
+         0,
+         105
+        ],
+        [
+         286,
+         353
+        ],
+        [
+         360,
+         398
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "moon",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0734,
+     "motion": 0.0616,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "891994269936291411",
+    "pin_url": "https://www.pinterest.com/pin/891994269936291411/",
+    "query": "night phone glow",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "night phone glow",
+      "returned": 25
+     },
+     {
+      "kept": 17,
+      "lane": "metaphor",
+      "query": "night phone",
+      "returned": 25
+     },
+     {
+      "kept": 21,
+      "lane": "metaphor",
+      "query": "night glow",
+      "returned": 25
+     },
+     {
+      "kept": 15,
+      "lane": "metaphor",
+      "query": "phone glow",
+      "returned": 25
+     },
+     {
+      "kept": 24,
+      "lane": "adjacent",
+      "query": "over shoulder view of phone typing",
+      "returned": 24
+     },
+     {
+      "kept": 21,
+      "lane": "literal",
+      "query": "person lying in bed holding phone",
+      "returned": 24
+     }
+    ],
+    "rejected": [
+     {
+      "id": "960111214324392247",
+      "why": "on-screen text: 'C; O; P'"
+     },
+     {
+      "id": "647181408969874665",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "1003106517032966632",
+      "why": "too short 8.0s for 12.2s"
+     },
+     {
+      "id": "684054630922189173",
+      "why": "unusable crop 702x396"
+     },
+     {
+      "id": "961026007997661807",
+      "why": "on-screen text: 'F; IXNOK; Mobile SolutionPvt Ltd; MobileSolutionPv'"
+     },
+     {
+      "id": "703335666829435221",
+      "why": "on-screen text: 'Egg'"
+     },
+     {
+      "id": "986710599616464104",
+      "why": "on-screen text: \"3x8; HERE'SHOW; TO FIXIT; TOFIXIT; scrolling on\""
+     },
+     {
+      "id": "305541155992144717",
+      "why": "on-screen text: '30 sec (each); if your goal is THIS; leg hold; sli'"
+     },
+     {
+      "id": "1086563847655312900",
+      "why": "too short 7.18s for 12.2s"
+     },
+     {
+      "id": "1054405331523087691",
+      "why": "unusable crop 720x576"
+     },
+     {
+      "id": "1124211125761760509",
+      "why": "too short 10.06s for 12.2s"
+     },
+     {
+      "id": "16958936095262692",
+      "why": "too short 5.43s for 12.2s"
+     },
+     {
+      "id": "305541155989942996",
+      "lane": "adjacent",
+      "query": "over shoulder view of phone typing",
+      "why": "stock/repost source: 'B-Roll'"
+     },
+     {
+      "id": "926897167082370930",
+      "why": "too short 12.01s for 12.2s"
+     },
+     {
+      "id": "406731410121107790",
+      "why": "on-screen text: 'A; C; Finally, my favorite: cast shadow.; How; How'"
+     },
+     {
+      "id": "703335666829511231",
+      "why": "on-screen text: 'M; PR; TO; WELCOME'"
+     },
+     {
+      "id": "901001469178705578",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "1087267535063521941",
+      "why": "too short 6.04s for 12.2s"
+     },
+     {
+      "id": "1093248878316837818",
+      "lane": "metaphor",
+      "query": "night phone glow",
+      "why": "advertising call-to-action: 'Link in Bio'"
+     },
+     {
+      "id": "1117174251333224427",
+      "why": "on-screen text: \"BMB'RICT\""
+     },
+     {
+      "id": "570549846544692070",
+      "why": "too short 7.5s for 12.2s"
+     },
+     {
+      "id": "776378423259225516",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "283375001553396047",
+      "why": "on-screen text: 'H; K; M'"
+     },
+     {
+      "id": "996421486281152067",
+      "lane": "metaphor",
+      "query": "night glow",
+      "why": "advertising call-to-action: 'SUBSCRIBE'"
+     },
+     {
+      "id": "597852919292973367",
+      "why": "too short 6.21s for 12.2s"
+     },
+     {
+      "id": "1039416789003308591",
+      "why": "too short 10.47s for 12.2s"
+     },
+     {
+      "id": "920001030121069269",
+      "why": "too short 7.32s for 12.2s"
+     },
+     {
+      "id": "583427326734742384",
+      "why": "too short 5.17s for 12.2s"
+     },
+     {
+      "id": "751045675359697745",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "3377768466641079",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "422281209633424",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "857935797799900452",
+      "why": "on-screen text: 'OPENWHE; OPENWHENLETTERS; Open when you need a HUG'"
+     },
+     {
+      "id": "503558802098077481",
+      "why": "on-screen text: 'onelittleproject.com'"
+     },
+     {
+      "id": "720364902938504606",
+      "why": "on-screen text: 'TM'"
+     },
+     {
+      "id": "710935491183571647",
+      "why": "unusable crop 368x640"
+     },
+     {
+      "id": "871798440357143379",
+      "why": "too short 7.2s for 12.2s"
+     },
+     {
+      "id": "1000854717207488555",
+      "why": "on-screen text: 'El mensaje fue un; El mensaje fue un descuido.; El'"
+     },
+     {
+      "id": "794111346788276055",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "617837642704542789",
+      "why": "too short 9.22s for 12.2s"
+     },
+     {
+      "id": "670191988294628982",
+      "why": "unusable crop 540x960"
+     }
+    ],
+    "review_status": "reject",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words [] (+0)",
+       "points": 0
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 20.0s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": false,
+     "review_status": "reject",
+     "total": 56,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 979045,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261119T232819Z-e07434/assets/track_7650072705703561232.m4a",
+   "pin_url": null,
+   "sha256": "14f2569e9f100fb6d4fa30f6b0ab83f842ab67c77cebeeb735ed70a2fc40a2a7",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7650072705703561232",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 76.7,
+    "high": 0.2,
+    "mid": 23.1
+   },
+   "duration_s": 59.91,
+   "file": "track_7650072705703561232.m4a",
+   "key_estimate": "A major",
+   "loudness_curve_db": [
+    -19.2,
+    -20.0,
+    -19.5
+   ],
+   "onset_density_per_s": 4.59,
+   "peak_db": -7.9,
+   "rms_db": -19.5,
+   "spectral_centroid_hz": 1455.7,
+   "tempo_bpm": 92.3,
+   "zero_crossing_rate": 0.0619
+  },
+  "background": {
+   "bytes": 6175886,
+   "creator": "moon",
+   "path": "/home/runner/work/_temp/beast-scratch/20261119T232819Z-e07434/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/891994269936291411/",
+   "sha256": "cc81beb5f2324df0d4ba862f944252abd29b1dcbd334c8c40b313f43ebdc5535",
+   "source": "pinterest",
+   "stable_id": "891994269936291411",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "texting and group chats",
+    "emotional_tension": "You want to sound effortless, so you put the most effort into sounding like you did not try.",
+    "observable_behaviour": "Types a full reply, deletes it to one line, adds an emoji, deletes the emoji, locks the phone, picks it up again 40 seconds later",
+    "private_worry": "That a long reply looks desperate and a short reply looks cold",
+    "situation": "Thursday 9:47pm, in bed, group chat of 6 friends planning Saturday while three messages land as you type"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Type three paragraphs about Saturday\" / \"Delete it down to one line\" / \"Add an emoji, then delete it\" / \"Lock phone while typing dots appear\" / \"Pick it up again 40 seconds later\" \u2014 all inside the assigned 9:47pm bed moment.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Items 1\u20136 are tight and in-scene. Item 7 ('Watch Saturday plan itself without you') drifts past the drafting moment, and the bed/group-chat angle echoes the recently-used 8:47pm meme reel.",
+    "scene_specificity": 5,
+    "sendability_who": "A friend who over-crafts group-chat replies would send this to a close friend or the group itself, captioning 'me drafting every message.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "thursday-947pm-group-chat-draft"
+  },
+  "delivery": {
+   "at": "2026-11-19T23:39:48Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 2.43,
+   "yavg_delta": -47.1
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 20.5,
+    "yavg": 63.7
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 16.63,
+   "yavg": 57.9
+  },
+  "output": {
+   "bytes": 12514788,
+   "duration_s": 11.977,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261119T232819Z-e07434.mp4",
+   "sha256": "41d4ad96806aa3ade42b1ffcaedc505fdc5fa9734d0c80d6ff48e43faa5d5f62"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7650072705703561232",
+    "title": "ELA PEIDA FUNK - Ultra Slowed"
+   },
+   "background_query": "person lying in bed holding phone beside bedside lamp",
+   "caption": "7 things you do drafting one group chat reply at 9:47pm:\n1. See three messages land mid-type\n2. Type three paragraphs about Saturday\n3. Delete it down to one line\n4. Add an emoji, then delete it\n5. Lock phone while typing dots appear\n6. Pick it up again 40 seconds later\n7. Watch Saturday plan itself without you",
+   "closing": "You wanted it to sound effortless, so you worked the hardest at it.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A tight, ticking loop with a driving pulse that builds under rapid cuts and then drops out, leaving the moment hanging.",
+     "tiktok_query": "phonk",
+     "tiktok_search_query": "phonk"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "night phone glow",
+     "pinterest_search_query": "night phone glow",
+     "semantic_analysis": "A quiet late-night moment lit only by a phone screen, suspended between typing and letting go."
+    }
+   },
+   "headline": "7 things you do drafting one group chat reply at 9:47pm",
+   "list_items": [
+    "See three messages land mid-type",
+    "Type three paragraphs about Saturday",
+    "Delete it down to one line",
+    "Add an emoji, then delete it",
+    "Lock phone while typing dots appear",
+    "Pick it up again 40 seconds later",
+    "Watch Saturday plan itself without you"
+   ],
+   "provenance": {
+    "creator": "moon",
+    "pin_id": "891994269936291411",
+    "pin_url": "https://www.pinterest.com/pin/891994269936291411/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 64 < 92): warm yellow"
+   },
+   "titleLines": [
+    "7 things you do",
+    "Drafting one reply",
+    "In the group chat",
+    "At 9:47pm"
+   ],
+   "topic_id": "thursday-947pm-group-chat-draft"
+  },
+  "publish": {
+   "alt_text": "Person lying in bed holding phone beside bedside lamp. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-19T23:41:36Z",
+   "caption": "7 things you do drafting one group chat reply at 9:47pm:\n1. See three messages land mid-type\n2. Type three paragraphs about Saturday\n3. Delete it down to one line\n4. Add an emoji, then delete it\n5. Lock phone while typing dots appear\n6. Pick it up again 40 seconds later\n7. Watch Saturday plan itself without you\n\nYou wanted it to sound effortless, so you worked the hardest at it.",
+   "channel": "instagram",
+   "container_id": "17920285902538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18095276135280150",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://d.uguu.se/GleRoqxGtqAv.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": 2.43,
+    "yavg_delta": -47.1
+   },
+   "duration_s": 11.977,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 11.977,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261119T232819Z-e07434/caption_list_title_v1-live-20261119T232819Z-e07434.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": false,
+    "moov_tail": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 12514788,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 16.63,
+    "yavg": 57.9
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.075,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 66.9
+  },
+  "rendered_at": "2026-11-19T23:39:43Z",
+  "run_id": "20261119T232819Z-e07434",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "She keeps rewriting a simple reply while the group chat moves on without her.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person lying in bed holding phone",
+     "over shoulder view of phone typing"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.5879,
+    "keywords": [
+     {
+      "keyword": "phonk",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 84,
+    "stable_id": "7650072705703561232",
+    "title": "ELA PEIDA FUNK - Ultra Slowed"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.5879
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "thursday-947pm-group-chat-draft"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "phonk",
+    "vendor": "meta-api",
+    "why": "A tight, ticking loop with a driving pulse that builds under rapid cuts and then drops out, leaving the moment hanging."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "night phone glow",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261119T232819Z-e07434.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'ELA PEIDA FUNK - Ultra Slowed' for caption_list_title_v1.",
+    "score": 35
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 20.5,
+     "yavg": 63.7
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "891994269936291411",
+    "query": "night phone glow",
+    "review_status": "reject",
+    "score": 56,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 66.9
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 11.977,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261119T232819Z-e07434/caption_list_title_v1-live-20261119T232819Z-e07434.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": false,
+     "moov_tail": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 12514788,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 64 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": 2.43,
+     "yavg_delta": -47.1
+    },
+    "measured": {
+     "sat": 16.63,
+     "yavg": 57.9
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.075,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "thursday-947pm-group-chat-draft"
  }
 ]
