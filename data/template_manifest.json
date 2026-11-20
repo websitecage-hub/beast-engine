@@ -38788,5 +38788,976 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "friday-office-doorway-bye-twice"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.2,
+    "avoid": [
+     "loud party EDM",
+     "punchy bass drop",
+     "comedic boing effects",
+     "dramatic sad strings",
+     "hype motivational beat"
+    ],
+    "emotional_role": "hold the quiet pause without making it dramatic, letting the moment feel small and relatable",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "gentle synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "hazy"
+    ],
+    "trend_hashtags": [
+     "#quietmoment",
+     "#softlofi"
+    ],
+    "trend_keywords": [
+     "quiet kitchen",
+     "soft lo-fi",
+     "calm background"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-20T23:01:58Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "kitchen-hiding-spot-party",
+   "core_human_moment": "She slips into the kitchen at a party to get a quiet minute alone without having to leave.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "relieved",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing by fridge holding empty cup, pausing",
+   "humour": 0.3,
+   "intentional_contrast": null,
+   "literal_scene": "A person alone in a lived-in kitchen at a house party, holding an empty cup by the fridge while guests laugh in the next room.",
+   "literalness": "literal",
+   "motion_intent": "almost still, slight shift of weight, small hand movement",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm kitchen light",
+    "muted neutrals"
+   ],
+   "rationale": "The kitchen pause is ordinary and funny because it is familiar, so a calm, lived-in shot with soft, unhurried sound keeps it relatable instead of turning it into a crisis.",
+   "scene_entities": [
+    "empty cup",
+    "fridge",
+    "kitchen"
+   ],
+   "schema_version": "1.0",
+   "setting": "house party kitchen",
+   "tension": 0.5,
+   "text_safe_zone": "centre 41-59% band kept clear, title over calm background",
+   "time_of_day": "late evening",
+   "valence": -0.1,
+   "video_queries": [
+    "person in kitchen holding empty cup by fridge",
+    "kitchen counter view from behind person at party",
+    "empty kitchen at night with warm light on counter"
+   ],
+   "visual_mood": [
+    "quiet",
+    "lived-in"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.4
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Two Door Cinema Club",
+    "candidates": [
+     {
+      "artist": "Person",
+      "distance": 0.503,
+      "fresh": true,
+      "id": "7169331497986426882",
+      "score": 64,
+      "title": "Win Win Win",
+      "video_count": 140
+     },
+     {
+      "artist": "After Louise",
+      "distance": 0.5454,
+      "fresh": true,
+      "id": "7639578560479217665",
+      "score": 64,
+      "title": "No Fun",
+      "video_count": 74
+     },
+     {
+      "artist": "Two Door Cinema Club",
+      "distance": 0.3928,
+      "fresh": true,
+      "id": "6987091891615451137",
+      "score": 92,
+      "title": "What You Know",
+      "video_count": 123700
+     },
+     {
+      "artist": "The Prodigy",
+      "distance": 0.604,
+      "fresh": true,
+      "id": "6751217461237909505",
+      "score": 74,
+      "title": "Poison",
+      "video_count": 13600
+     }
+    ],
+    "distance": 0.3928,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7507295759072774160",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 123700",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "6987091891615451137",
+    "title": "What You Know"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 11
+     }
+    },
+    "passes": false,
+    "rationale": "emotional lane shot 'Crock Pot Chicken Pot Pie Pasta' paired with 'What You Know' for caption_list_title_v1.",
+    "total": 46
+   },
+   "visual": {
+    "band_busy": 0.0311,
+    "candidates": [
+     {
+      "band_busy": 0.0311,
+      "height": 1280,
+      "pin_id": "1103874558702898249",
+      "query": "empty kitchen at night with warm",
+      "query_lane": "emotional",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['slow'] (+5); scene words ['the'] (+4)",
+         "points": 9
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 40.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 65,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0592,
+      "height": 1280,
+      "pin_id": "1266706140968551",
+      "query": "kitchen counter view from behind person",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 31.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Crockpot Recipes",
+    "flags": [
+     "source domain: slowcookermeals.com"
+    ],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 3,
+     "max_jump": 0.2857,
+     "motion": 0.2118,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "1103874558702898249",
+    "pin_url": "https://www.pinterest.com/pin/1103874558702898249/",
+    "query": "empty kitchen at night with warm",
+    "query_lane": "emotional",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "warm kitchen cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "warm kitchen",
+      "returned": 25
+     },
+     {
+      "lane": "metaphor",
+      "query": "warm cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "kitchen cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "adjacent",
+      "query": "kitchen counter view from behind person",
+      "returned": 25
+     },
+     {
+      "kept": 22,
+      "lane": "emotional",
+      "query": "empty kitchen at night with warm",
+      "returned": 24
+     },
+     {
+      "kept": 10,
+      "lane": "literal",
+      "query": "person in kitchen holding empty cup",
+      "returned": 14
+     }
+    ],
+    "rejected": [
+     {
+      "id": "450852612718638451",
+      "why": "too short 5.5s for 12.2s"
+     },
+     {
+      "id": "193232640260047142",
+      "why": "too short 8.38s for 12.2s"
+     },
+     {
+      "id": "1122522275917037109",
+      "why": "on-screen text: 'Brown; Dolomite; Fantasy; Fantasy Brown; GRANITE &'"
+     },
+     {
+      "id": "1111755858064678816",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "966655507529246597",
+      "why": "on-screen text: '108; PRO; PROT; \u56fd'"
+     },
+     {
+      "id": "1097119159278048556",
+      "why": "too short 11.15s for 12.2s"
+     },
+     {
+      "id": "274227064806160107",
+      "why": "too short 7.08s for 12.2s"
+     },
+     {
+      "id": "1128996200365441830",
+      "why": "on-screen text: 'SCF'"
+     },
+     {
+      "id": "38139928097629496",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1970393582194300",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "1018165428263891733",
+      "why": "on-screen text: '(all in the caption; KIECHENDETAILS; KITCIENDETAIL'"
+     },
+     {
+      "id": "1101763496388974815",
+      "lane": "metaphor",
+      "query": "warm kitchen",
+      "why": "real-estate/tour content: 'renovation'"
+     },
+     {
+      "id": "103231016453454113",
+      "why": "too short 8.5s for 12.2s"
+     },
+     {
+      "id": "21603273205127897",
+      "lane": "adjacent",
+      "query": "kitchen counter view from behind person",
+      "why": "real-estate/tour content: 'Open Concept'"
+     },
+     {
+      "id": "145381894219463328",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "985231163767100",
+      "why": "too short 12.18s for 12.2s"
+     },
+     {
+      "id": "929782285565369085",
+      "why": "on-screen text: 'How to keep your room clean; PGLOWOIL; Use drawer '"
+     },
+     {
+      "id": "68747817686",
+      "why": "too short 10.75s for 12.2s"
+     },
+     {
+      "id": "876653883744949196",
+      "why": "on-screen text: \"A Smart; A Smart Kitchen Isn't Ju; A SmartKitchen \""
+     },
+     {
+      "id": "667236501115975039",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "5207355813908489",
+      "why": "unusable crop 240x320"
+     },
+     {
+      "id": "876653883739004314",
+      "why": "on-screen text: 'Biee'"
+     },
+     {
+      "id": "334673816082512357",
+      "why": "too short 10.04s for 12.2s"
+     },
+     {
+      "id": "1120340844827786409",
+      "why": "on-screen text: '\u56fd'"
+     },
+     {
+      "id": "1140466305672192561",
+      "why": "on-screen text: '2. Moody Sage; 3 KITCHEN LOOKS; 3. Classic Black &'"
+     },
+     {
+      "id": "981432943788159603",
+      "why": "too short 12.01s for 12.2s"
+     },
+     {
+      "id": "211174977105733",
+      "why": "on-screen text: '4-ingredients; Dust with icing sugar; Nutella toas'"
+     },
+     {
+      "id": "621567186093606318",
+      "why": "on-screen text: '>SA; DOD; Digestive; ESOPHAGUS; FOOD'"
+     },
+     {
+      "id": "945122671822186343",
+      "lane": "adjacent",
+      "query": "kitchen counter view from behind person",
+      "why": "real-estate/tour content: 'interior design'"
+     },
+     {
+      "id": "300615343903012248",
+      "why": "on-screen text: '#HOW TO MAKE; A POV DRAWING; HOW TO MAKE; and I tr'"
+     },
+     {
+      "id": "191684527888574568",
+      "lane": "adjacent",
+      "query": "kitchen counter view from behind person",
+      "why": "real-estate/tour content: 'interior design'"
+     },
+     {
+      "id": "1029002214844568254",
+      "why": "on-screen text: 'CANGGU; GYUKA; GYUKATSU; GYUKATSU.IZAK; SHICHIRIN'"
+     },
+     {
+      "id": "811070214174348086",
+      "why": "on-screen text: '33.5 million views; 4.29pm; 4h30mStartedat3.00pm; '"
+     },
+     {
+      "id": "476326098105653979",
+      "why": "too short 8.97s for 12.2s"
+     },
+     {
+      "id": "158540849379045657",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "68748720773",
+      "why": "too short 6.0s for 12.2s"
+     },
+     {
+      "id": "1110700326851273725",
+      "lane": "adjacent",
+      "query": "kitchen counter view from behind person",
+      "why": "not video (image)"
+     },
+     {
+      "id": "967992513661174294",
+      "why": "too short 9.37s for 12.2s"
+     },
+     {
+      "id": "1123225963392695888",
+      "why": "on-screen text: '.1 Tsp Basil; .1 Tsp Garlic Powder; .1 Tsp Ginger '"
+     },
+     {
+      "id": "485192559872893521",
+      "why": "on-screen text: 'Paint and decorate; mushrooms; toilet paper'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['slow'] (+5); scene words ['the'] (+4)",
+       "points": 9
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 40.0s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 65,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Crock Pot Chicken Pot Pie Pasta"
+   }
+  },
+  "audio": {
+   "bytes": 1012768,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261120T230029Z-a47666/assets/track_6987091891615451137.m4a",
+   "pin_url": null,
+   "sha256": "56dbf50a7726ad642e5807cd64d42d8412388ae6e2f9ab42f94ac014a67244ea",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6987091891615451137",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 56.3,
+    "high": 3.0,
+    "mid": 40.7
+   },
+   "duration_s": 60.0,
+   "file": "track_6987091891615451137.m4a",
+   "key_estimate": "F# minor",
+   "loudness_curve_db": [
+    -21.0,
+    -22.3,
+    -20.3
+   ],
+   "onset_density_per_s": 3.42,
+   "peak_db": -4.9,
+   "rms_db": -21.1,
+   "spectral_centroid_hz": 2642.5,
+   "tempo_bpm": 136.0,
+   "zero_crossing_rate": 0.1266
+  },
+  "background": {
+   "bytes": 14465599,
+   "creator": "Crockpot Recipes",
+   "path": "/home/runner/work/_temp/beast-scratch/20261120T230029Z-a47666/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/1103874558702898249/",
+   "sha256": "c523e2c3c8a8556bcc031187be15212c61695145d9e64e01b25ba7dca7edfe9c",
+   "source": "pinterest",
+   "stable_id": "1103874558702898249",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "parties and social events",
+    "emotional_tension": "Wants to be in the room but needs a prop to justify re-entering it.",
+    "observable_behaviour": "refills water slowly, checks phone, wipes an already clean counter, stays by the fridge",
+    "private_worry": "that walking back in empty-handed will look like I have no one to talk to",
+    "situation": "Saturday 8:12pm, in a friend's kitchen at a house party, holding an empty cup while everyone else laughs in the living room"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Refill water you don't need\" / \"Wipe a counter that's already clean\" / \"Lean on fridge like you belong there\" / \"Wait for laughter to cover re-entry\" \u2014 all inside the assigned Saturday 8:12pm kitchen moment.",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Items 1\u20136 are in-scene. Items 7\u20138 ('Re-enter holding cup with both hands', 'Replay the kitchen pause at midnight') leave the kitchen, and items 2/3 ('Refill water', 'Wipe counter') echo the recent office-kitchen reel.",
+    "scene_specificity": 4,
+    "sendability_who": "A party-wallflower friend who gravitates to the kitchen would send this to a fellow introvert, captioning 'the kitchen is my safe zone.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "kitchen-hiding-spot-party"
+  },
+  "delivery": {
+   "at": "2026-11-20T23:13:34Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": 8.56,
+   "yavg_delta": 18.0
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 23.84,
+    "yavg": 121.7
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 22.76,
+   "yavg": 123.0
+  },
+  "output": {
+   "bytes": 18747483,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261120T230029Z-a47666.mp4",
+   "sha256": "f056983c395a995cd0860b260b9d8d5c3d86881a1ec37b2541638688b4ed5451"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6987091891615451137",
+    "title": "What You Know"
+   },
+   "background_query": "person standing in kitchen holding empty cup near fridge",
+   "caption": "8 things you do when the kitchen becomes your hiding spot at a party:\n1. Offer to get ice to slip away\n2. Refill water you don't need\n3. Wipe a counter that's already clean\n4. Check phone with no new messages\n5. Lean on fridge like you belong there\n6. Wait for laughter to cover re-entry\n7. Re-enter holding cup with both hands\n8. Replay the kitchen pause at midnight",
+   "closing": "You weren't hiding from people, you were looking for a way back to them.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A soft, low-volume indie loop with a held, steady pulse that keeps the list moving without breaking the quiet.",
+     "tiktok_query": "indie",
+     "tiktok_search_query": "indie"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "warm kitchen cinematic",
+     "pinterest_search_query": "warm kitchen cinematic",
+     "semantic_analysis": "A warm, softly lit kitchen at night, slightly apart from blurred party lights, capturing a quiet in-between pause."
+    }
+   },
+   "headline": "8 things you do when the kitchen becomes your hiding spot at a party",
+   "list_items": [
+    "Offer to get ice to slip away",
+    "Refill water you don't need",
+    "Wipe a counter that's already clean",
+    "Check phone with no new messages",
+    "Lean on fridge like you belong there",
+    "Wait for laughter to cover re-entry",
+    "Re-enter holding cup with both hands",
+    "Replay the kitchen pause at midnight"
+   ],
+   "provenance": {
+    "creator": "Crockpot Recipes",
+    "pin_id": "1103874558702898249",
+    "pin_url": "https://www.pinterest.com/pin/1103874558702898249/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 122): warm off-white"
+   },
+   "titleLines": [
+    "8 things you do",
+    "when the kitchen",
+    "becomes your hiding",
+    "spot at a party"
+   ],
+   "topic_id": "kitchen-hiding-spot-party"
+  },
+  "publish": {
+   "alt_text": "Person standing in kitchen holding empty cup near fridge. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-20T23:14:12Z",
+   "caption": "8 things you do when the kitchen becomes your hiding spot at a party:\n1. Offer to get ice to slip away\n2. Refill water you don't need\n3. Wipe a counter that's already clean\n4. Check phone with no new messages\n5. Lean on fridge like you belong there\n6. Wait for laughter to cover re-entry\n7. Re-enter holding cup with both hands\n8. Replay the kitchen pause at midnight\n\nYou weren't hiding from people, you were looking for a way back to them.",
+   "channel": "instagram",
+   "container_id": "17920412868538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18119028463825221",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://d.uguu.se/upzHqAmUemqm.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": 8.56,
+    "yavg_delta": 18.0
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261120T230029Z-a47666/caption_list_title_v1-live-20261120T230029Z-a47666.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 18747483,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 22.76,
+    "yavg": 123.0
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.2119,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 73.4
+  },
+  "rendered_at": "2026-11-20T23:13:30Z",
+  "run_id": "20261120T230029Z-a47666",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "She slips into the kitchen at a party to get a quiet minute alone without having to leave.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person in kitchen holding empty cup",
+     "kitchen counter view from behind person",
+     "empty kitchen at night with warm"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3928,
+    "keywords": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "6987091891615451137",
+    "title": "What You Know"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3928
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 4,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "kitchen-hiding-spot-party"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "indie",
+    "vendor": "meta-api",
+    "why": "A soft, low-volume indie loop with a held, steady pulse that keeps the list moving without breaking the quiet."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "warm kitchen cinematic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261120T230029Z-a47666.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "emotional lane shot 'Crock Pot Chicken Pot Pie Pasta' paired with 'What You Know' for caption_list_title_v1.",
+    "score": 46
+   },
+   "pinterest": {
+    "candidates": 2,
+    "hls": false,
+    "lane": "emotional",
+    "metrics": {
+     "sat": 23.84,
+     "yavg": 121.7
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "1103874558702898249",
+    "query": "empty kitchen at night with warm",
+    "review_status": "accept",
+    "score": 65,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Crock Pot Chicken Pot Pie Pasta"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 73.4
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261120T230029Z-a47666/caption_list_title_v1-live-20261120T230029Z-a47666.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 18747483,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 122): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": 8.56,
+     "yavg_delta": 18.0
+    },
+    "measured": {
+     "sat": 22.76,
+     "yavg": 123.0
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.2119,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "kitchen-hiding-spot-party"
  }
 ]
