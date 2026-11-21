@@ -40756,5 +40756,982 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "pasta-beep-performer"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.2,
+   "audio_intent": {
+    "arousal": 0.15,
+    "avoid": [
+     "dramatic orchestral swell",
+     "upbeat dance beat",
+     "comedy sound effects",
+     "sad weeping piano",
+     "loud trap drums"
+    ],
+    "emotional_role": "hold the awkward pause without making it sad or dramatic",
+    "energy": 0.2,
+    "instrumentation": [
+     "soft piano",
+     "gentle pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "room tone"
+    ],
+    "trend_hashtags": [
+     "#quietmoment",
+     "#rainyday"
+    ],
+    "trend_keywords": [
+     "soft piano",
+     "quiet lofi",
+     "rainy day calm"
+    ],
+    "valence": -0.05,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-21T22:10:16Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "wet-umbrella-hallway-guest",
+   "core_human_moment": "A guest stands just inside the doorway holding a dripping umbrella, stuck on the small polite question of where to put it instead of just asking.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "hesitant",
+   "format_id": "caption_list_title_v1",
+   "human_action": "holding wet umbrella away from coat, glancing at doormat",
+   "humour": 0.3,
+   "intentional_contrast": null,
+   "literal_scene": "A person just inside an apartment doorway holding a wet, closed umbrella away from their coat, glancing between the doormat and the friend by the door.",
+   "literalness": "literal",
+   "motion_intent": "almost still, small hand shifts and slow drips only",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "muted grey",
+    "warm hallway wood"
+   ],
+   "rationale": "The still hallway shot keeps the moment believable and small, and the soft, sparse audio lets the hesitation feel relatable without turning it into a joke or a drama.",
+   "scene_entities": [
+    "wet umbrella",
+    "doormat",
+    "apartment hallway"
+   ],
+   "schema_version": "1.0",
+   "setting": "apartment hallway just inside front door",
+   "tension": 0.5,
+   "text_safe_zone": "centre band 41-59% over plain hallway wall",
+   "time_of_day": "indeterminate",
+   "valence": -0.1,
+   "video_queries": [
+    "guest holding wet umbrella in hallway by doormat",
+    "close up wet umbrella dripping over hallway floor",
+    "person standing at front door holding umbrella"
+   ],
+   "visual_mood": [
+    "quiet",
+    "awkward"
+   ],
+   "visual_profile_target": {
+    "luma": "105 +-14",
+    "saturation": "14.2 +-5"
+   },
+   "warmth": 0.3
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Feliciafoxpaws (FOXXI)",
+    "candidates": [
+     {
+      "artist": "Soul Meeting",
+      "distance": 0.5282,
+      "fresh": true,
+      "id": "7435683480464754705",
+      "score": 74,
+      "title": "Cozy Christmas Stroll",
+      "video_count": 16800
+     },
+     {
+      "artist": "emilogue",
+      "distance": 0.4034,
+      "fresh": true,
+      "id": "7655879688709015553",
+      "score": 92,
+      "title": "Happy Plate",
+      "video_count": 157000
+     },
+     {
+      "artist": "Feliciafoxpaws (FOXXI)",
+      "distance": 0.6546,
+      "fresh": true,
+      "id": "6768726019651143682",
+      "score": 100,
+      "title": "BORN FOR THIS",
+      "video_count": 2700000
+     }
+    ],
+    "distance": 0.6546,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "quirky",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7507230950846957569",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "222575584369905664",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "196.2s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 2700000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6768726019651143682",
+    "title": "BORN FOR THIS"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 0
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'BORN FOR THIS' for caption_list_title_v1.",
+    "total": 35
+   },
+   "visual": {
+    "band_busy": 0.027,
+    "candidates": [
+     {
+      "band_busy": 0.027,
+      "height": 1280,
+      "pin_id": "891994269928916437",
+      "query": "rainy hallway",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0074,
+      "height": 1288,
+      "pin_id": "9218374232294818",
+      "query": "rainy hallway",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['night', 'rainy'] (+10); scene words [] (+0)",
+         "points": 10
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "728x1288, 21.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 66,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.112,
+         "rows": [
+          0,
+          71
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 71)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         71
+        ]
+       ]
+      },
+      "width": 728
+     }
+    ],
+    "creator": "solitude",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0164,
+     "motion": 0.014,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "891994269928916437",
+    "pin_url": "https://www.pinterest.com/pin/891994269928916437/",
+    "query": "rainy hallway",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "rainy hallway aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "rainy hallway",
+      "returned": 25
+     },
+     {
+      "lane": "metaphor",
+      "query": "rainy aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "hallway aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 0,
+      "lane": "adjacent",
+      "query": "close up wet umbrella dripping over",
+      "returned": 0
+     },
+     {
+      "kept": 23,
+      "lane": "emotional",
+      "query": "person standing at front door holding",
+      "returned": 24
+     },
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "guest holding wet umbrella in hallway",
+      "returned": 0
+     }
+    ],
+    "rejected": [
+     {
+      "id": "995928905110369838",
+      "why": "on-screen text: 'Comment RUG to shop!; H'"
+     },
+     {
+      "id": "170222060910901288",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "342906959152523643",
+      "lane": "metaphor",
+      "query": "rainy hallway",
+      "why": "advertising call-to-action: 'link in bio'"
+     },
+     {
+      "id": "629307747974564058",
+      "why": "on-screen text: 'A7; AR; Everyday; Everyday is a ne; Everyday is a '"
+     },
+     {
+      "id": "973903488167662123",
+      "why": "on-screen text: 'afternoon; pov:; you love a rainy cosy'"
+     },
+     {
+      "id": "367043438405529391",
+      "lane": "emotional",
+      "query": "person standing at front door holding",
+      "why": "advertising call-to-action: '% off'"
+     },
+     {
+      "id": "337981147044740130",
+      "why": "too short 10.98s for 12.2s"
+     },
+     {
+      "id": "648025833932873776",
+      "why": "on-screen text: 'INS; \u4e8b; \uff01'"
+     },
+     {
+      "id": "422142165073219612",
+      "why": "unusable crop 480x600"
+     },
+     {
+      "id": "598978819194264783",
+      "why": "on-screen text: '\u516c\u8def\u7684\u753b\u6cd5'"
+     },
+     {
+      "id": "849210073511792944",
+      "why": "too short 7.98s for 12.2s"
+     },
+     {
+      "id": "492649954242604",
+      "lane": "emotional",
+      "query": "person standing at front door holding",
+      "why": "advertising call-to-action: 'Follow us'"
+     },
+     {
+      "id": "360147301470339244",
+      "lane": "emotional",
+      "query": "person standing at front door holding",
+      "why": "advertising call-to-action: 'link in BIO'"
+     },
+     {
+      "id": "211174978329859",
+      "why": "on-screen text: 'TheBrainAndTheBrawn.com; \u4e09'"
+     },
+     {
+      "id": "579275570844853016",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "15129348741520604",
+      "why": "too short 8.72s for 12.2s"
+     },
+     {
+      "id": "1021472759217356436",
+      "why": "on-screen text: 'D; \u56cd'"
+     },
+     {
+      "id": "792492865733537685",
+      "why": "on-screen text: '&quieres saber como me; Andito estaba dormido; Gru'"
+     },
+     {
+      "id": "892979432364752701",
+      "why": "on-screen text: 'COL; Cot; IOP; MI; MIL'"
+     },
+     {
+      "id": "1149543873659648052",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "337981147061181979",
+      "why": "too short 6.71s for 12.2s"
+     },
+     {
+      "id": "1020909809251467929",
+      "why": "too short 10.15s for 12.2s"
+     },
+     {
+      "id": "28358672650327253",
+      "why": "too short 7.07s for 12.2s"
+     },
+     {
+      "id": "1132655375063464973",
+      "why": "unusable crop 352x640"
+     },
+     {
+      "id": "936396947521278801",
+      "why": "on-screen text: '\u53e3; \u6cb3'"
+     },
+     {
+      "id": "692639617712426659",
+      "why": "unusable crop 240x424"
+     },
+     {
+      "id": "25262447902582183",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "921900986204280661",
+      "why": "unusable crop 540x960"
+     },
+     {
+      "id": "898608931888780205",
+      "why": "unusable crop 240x320"
+     },
+     {
+      "id": "778067273142514001",
+      "why": "unusable crop 702x396"
+     },
+     {
+      "id": "10344274146111208",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "1117455726272162540",
+      "why": "too short 9.53s for 12.2s"
+     },
+     {
+      "id": "238127899036140313",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "889742470211071311",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "966725876232308375",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "7177680650906886",
+      "why": "unusable crop 576x576"
+     },
+     {
+      "id": "754493743873921369",
+      "why": "identical file already used"
+     },
+     {
+      "id": "521784306831657787",
+      "why": "unusable crop 238x408"
+     },
+     {
+      "id": "5488830792588269",
+      "why": "on-screen text: 'Automatic Stairs'"
+     },
+     {
+      "id": "767019380341162740",
+      "why": "on-screen text: 'OLV; QIV; X; lebruary'"
+     }
+    ],
+    "review_status": "reject",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words [] (+0)",
+       "points": 0
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 13.9s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": false,
+     "review_status": "reject",
+     "total": 56,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 3235703,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261121T220616Z-e97d74/assets/track_6768726019651143682.m4a",
+   "pin_url": null,
+   "sha256": "856db96643a229ae1d6622e3233eaa93a16e61c832e7ee87804ef551a68b8191",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6768726019651143682",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 73.8,
+    "high": 1.6,
+    "mid": 24.6
+   },
+   "duration_s": 196.21,
+   "file": "track_6768726019651143682.m4a",
+   "key_estimate": "B minor",
+   "loudness_curve_db": [
+    -20.2,
+    -21.7,
+    -22.7
+   ],
+   "onset_density_per_s": 4.02,
+   "peak_db": -4.6,
+   "rms_db": -21.4,
+   "spectral_centroid_hz": 2303.3,
+   "tempo_bpm": 103.4,
+   "zero_crossing_rate": 0.0969
+  },
+  "background": {
+   "bytes": 4250116,
+   "creator": "solitude",
+   "path": "/home/runner/work/_temp/beast-scratch/20261121T220616Z-e97d74/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/891994269928916437/",
+   "sha256": "4e2d3cd1d3c0ba9d9ac8f02e911a4192193a5cafa4c0076c21bbf46920aa9311",
+   "source": "pinterest",
+   "stable_id": "891994269928916437",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "asking and needing help",
+    "emotional_tension": "You want to be an easy guest, but not asking creates the exact mess you were trying to avoid.",
+    "observable_behaviour": "holding the umbrella away from your coat, switching it from hand to hand, glancing at the doormat then back at your friend",
+    "private_worry": "that asking about something this small makes you look fussy, but leaving it dripping makes you look careless",
+    "situation": "Tuesday 6:18pm, in a friend's hallway, holding a wet umbrella and needing to ask where to put it so it doesn't drip on their floor"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Shake it twice outside the door\" / \"Hold it away from your coat\" / \"Glance at doormat, then at friend\" / \"Check the floor for drips twice\" \u2014 all inside the assigned 6:18pm wet-umbrella hallway moment.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Items 2\u20137 are in-scene and distinct. Items 1 and 8 ('Shake it twice outside the door', 'Replay the ask on the way home') step outside the hallway, and item 8 echoes the recurring 'replay on the way home' closer.",
+    "scene_specificity": 4,
+    "sendability_who": "An over-polite friend who dreads small asks would send this to a close friend whose floor they've dripped on, captioning 'this is me with my umbrella every time.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    }
+   ],
+   "topic_id": "wet-umbrella-hallway-guest"
+  },
+  "delivery": {
+   "at": "2026-11-21T22:16:55Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -12.38,
+   "yavg_delta": -50.2
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 1.79,
+    "yavg": 49.4
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 1.82,
+   "yavg": 54.8
+  },
+  "output": {
+   "bytes": 8342123,
+   "duration_s": 11.977,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261121T220616Z-e97d74.mp4",
+   "sha256": "c4b06242e399fe9b8ca510c99730e837851add7bf36fe38787c6cb83560fa56a"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6768726019651143682",
+    "title": "BORN FOR THIS"
+   },
+   "background_query": "person holding wet umbrella in apartment hallway near doormat",
+   "caption": "8 things you do when you won't ask where the wet umbrella goes:\n1. Shake it twice outside the door\n2. Hold it away from your coat\n3. Switch it from hand to hand\n4. Glance at doormat, then at friend\n5. Rehearse 'where should I put this'\n6. Say sorry before you even ask\n7. Check the floor for drips twice\n8. Replay the ask on the way home",
+   "closing": "You were trying to leave no trace, not cause a scene.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A light, slightly off-kilter loop with a stop-start pulse that holds a small, unresolved tension across each quick cut.",
+     "tiktok_query": "quirky",
+     "tiktok_search_query": "quirky"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "rainy hallway aesthetic",
+     "pinterest_search_query": "rainy hallway aesthetic",
+     "semantic_analysis": "A damp, quiet arrival at a doorway, soft overcast light and lingering stillness that makes a small everyday pause feel cinematic."
+    }
+   },
+   "headline": "8 things you do when you won't ask where the wet umbrella goes",
+   "list_items": [
+    "Shake it twice outside the door",
+    "Hold it away from your coat",
+    "Switch it from hand to hand",
+    "Glance at doormat, then at friend",
+    "Rehearse 'where should I put this'",
+    "Say sorry before you even ask",
+    "Check the floor for drips twice",
+    "Replay the ask on the way home"
+   ],
+   "provenance": {
+    "creator": "solitude",
+    "pin_id": "891994269928916437",
+    "pin_url": "https://www.pinterest.com/pin/891994269928916437/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 49 < 92): warm yellow"
+   },
+   "titleLines": [
+    "8 things you do when",
+    "you won't ask where",
+    "the wet umbrella goes"
+   ],
+   "topic_id": "wet-umbrella-hallway-guest"
+  },
+  "publish": {
+   "alt_text": "Person holding wet umbrella in apartment hallway near doormat. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-21T22:17:38Z",
+   "caption": "8 things you do when you won't ask where the wet umbrella goes:\n1. Shake it twice outside the door\n2. Hold it away from your coat\n3. Switch it from hand to hand\n4. Glance at doormat, then at friend\n5. Rehearse 'where should I put this'\n6. Say sorry before you even ask\n7. Check the floor for drips twice\n8. Replay the ask on the way home\n\nYou were trying to leave no trace, not cause a scene.",
+   "channel": "instagram",
+   "container_id": "17920547976538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18094555706689424",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/sXuTgXeMHSkE.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -12.38,
+    "yavg_delta": -50.2
+   },
+   "duration_s": 11.977,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 11.977,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261121T220616Z-e97d74/caption_list_title_v1-live-20261121T220616Z-e97d74.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": false,
+    "moov_tail": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 8342123,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 1.82,
+    "yavg": 54.8
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1459,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 51.1
+  },
+  "rendered_at": "2026-11-21T22:16:51Z",
+  "run_id": "20261121T220616Z-e97d74",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A guest stands just inside the doorway holding a dripping umbrella, stuck on the small polite question of where to put it instead of just asking.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "guest holding wet umbrella in hallway",
+     "close up wet umbrella dripping over",
+     "person standing at front door holding"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.6546,
+    "keywords": [
+     {
+      "keyword": "quirky",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6768726019651143682",
+    "title": "BORN FOR THIS"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.6546
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 4,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "wet-umbrella-hallway-guest"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "quirky",
+    "vendor": "meta-api",
+    "why": "A light, slightly off-kilter loop with a stop-start pulse that holds a small, unresolved tension across each quick cut."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "rainy hallway aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261121T220616Z-e97d74.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'BORN FOR THIS' for caption_list_title_v1.",
+    "score": 35
+   },
+   "pinterest": {
+    "candidates": 2,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 1.79,
+     "yavg": 49.4
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "891994269928916437",
+    "query": "rainy hallway",
+    "review_status": "reject",
+    "score": 56,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 51.1
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 11.977,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261121T220616Z-e97d74/caption_list_title_v1-live-20261121T220616Z-e97d74.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": false,
+     "moov_tail": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 8342123,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 49 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -12.38,
+     "yavg_delta": -50.2
+    },
+    "measured": {
+     "sat": 1.82,
+     "yavg": 54.8
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1459,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "wet-umbrella-hallway-guest"
  }
 ]
