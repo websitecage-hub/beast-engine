@@ -39759,5 +39759,1002 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "kitchen-hiding-spot-party"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.3,
+    "avoid": [
+     "dramatic orchestral swell",
+     "loud bass drop",
+     "sad piano ballad",
+     "tense thriller pulse",
+     "high-energy dance beat"
+    ],
+    "emotional_role": "keep it light and slightly awkward, letting the beep moment feel funny not heavy",
+    "energy": 0.3,
+    "instrumentation": [
+     "soft piano",
+     "light percussion"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "moderate",
+    "texture": [
+     "soft",
+     "looped"
+    ],
+    "trend_hashtags": [
+     "#relatable",
+     "#selfcheckout"
+    ],
+    "trend_keywords": [
+     "self checkout moment",
+     "relatable checkout fail"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "pov",
+   "compiled_at": "2026-11-21T16:30:14Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "pasta-beep-performer",
+   "core_human_moment": "She is stuck mid-checkout, suddenly aware of being watched while a routine beep makes her perform the task again.",
+   "degraded": false,
+   "emotional_primary": "self-conscious",
+   "emotional_secondary": "awkward",
+   "format_id": "caption_list_title_v1",
+   "human_action": "hovering pasta over bagging area, pausing after the beep",
+   "humour": 0.4,
+   "intentional_contrast": null,
+   "literal_scene": "A hand holding a bag of pasta hovering over a self-checkout bagging area while the scanner beeps.",
+   "literalness": "literal",
+   "motion_intent": "almost still, small hesitant hover with a tiny hand pause",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "cool fluorescent white",
+    "muted beige shelving"
+   ],
+   "rationale": "The hovering pasta and beep keep the joke in one real checkout moment, while soft, light music lets the performer feeling read as funny and familiar rather than heavy.",
+   "scene_entities": [
+    "bag of pasta",
+    "self-checkout scanner",
+    "supermarket"
+   ],
+   "schema_version": "1.0",
+   "setting": "supermarket self-checkout lane",
+   "tension": 0.6,
+   "text_safe_zone": "centre 41-59% band, keep bagging area uncluttered",
+   "time_of_day": "indeterminate",
+   "valence": -0.1,
+   "video_queries": [
+    "hand holding pasta bag over self-checkout scanner",
+    "person frozen at supermarket self-checkout machine",
+    "empty supermarket aisle late evening fluorescent light"
+   ],
+   "visual_mood": [
+    "ordinary",
+    "quiet"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.2
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "aAp Vision",
+    "candidates": [
+     {
+      "artist": "Theatric",
+      "distance": 0.6485,
+      "fresh": true,
+      "id": "7704721487676573748",
+      "score": 64,
+      "title": "Theatric Jacket",
+      "video_count": 126
+     },
+     {
+      "artist": "aAp Vision",
+      "distance": 0.5113,
+      "fresh": true,
+      "id": "6941249468143306754",
+      "score": 100,
+      "title": "How`s Your Day",
+      "video_count": 1400000
+     }
+    ],
+    "distance": 0.5113,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "theatrical",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7130708608194463746",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7362317730454308880",
+      "why": "copyrighted, not commercial"
+     },
+     {
+      "id": "7645168637741729808",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "171.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 1400000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "6941249468143306754",
+    "title": "How`s Your Day"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 0
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'How`s Your Day' for caption_list_title_v1.",
+    "total": 35
+   },
+   "visual": {
+    "band_busy": 0.1195,
+    "candidates": [
+     {
+      "band_busy": 0.1195,
+      "height": 1280,
+      "pin_id": "1151232723478779665",
+      "query": "supermarket aisle",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 19.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0234,
+      "height": 1280,
+      "pin_id": "1014998834790406421",
+      "query": "hand holding pasta bag over",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 30.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "reason": "frames undecodable",
+       "text_suspected": null,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0234,
+      "height": 1280,
+      "pin_id": "1014998834790406421",
+      "query": "hand holding pasta bag over",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 30.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "reason": "frames undecodable",
+       "text_suspected": null,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Own",
+    "flags": [],
+    "lane_expansions": 3,
+    "motion": {
+     "cuts": 1,
+     "max_jump": 0.2492,
+     "motion": 0.1902,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": false,
+    "pin_id": "1151232723478779665",
+    "pin_url": "https://www.pinterest.com/pin/1151232723478779665/",
+    "query": "supermarket aisle",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "supermarket aisle cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "supermarket aisle",
+      "returned": 25
+     },
+     {
+      "lane": "metaphor",
+      "query": "supermarket cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "aisle cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 0,
+      "lane": "literal",
+      "query": "hand holding pasta bag over self-checkout",
+      "returned": 0
+     },
+     {
+      "kept": 25,
+      "lane": "literal",
+      "query": "hand holding pasta bag over",
+      "returned": 25
+     },
+     {
+      "kept": 25,
+      "lane": "literal",
+      "query": "hand holding pasta bag over",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "947304102889223427",
+      "why": "on-screen text: 'RASPBERRY; insulyn; ulwslner'"
+     },
+     {
+      "id": "767371224016915470",
+      "lane": "metaphor",
+      "query": "supermarket aisle",
+      "why": "stock/repost source: 'Stock video'"
+     },
+     {
+      "id": "1019080221967715709",
+      "why": "on-screen text: '$0.15a; Aiwain; Broke; Bronre; COOKIES'"
+     },
+     {
+      "id": "1069534611516155403",
+      "why": "too short 4.5s for 12.2s"
+     },
+     {
+      "id": "1065523593077749248",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "1065523593077812711",
+      "why": "unusable crop 1278x674"
+     },
+     {
+      "id": "1116189088931038872",
+      "why": "too short 10.04s for 12.2s"
+     },
+     {
+      "id": "382524562118268516",
+      "why": "too short 4.8s for 12.2s"
+     },
+     {
+      "id": "312366924172301955",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "386887424257078293",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "914090055600317795",
+      "why": "unusable crop 480x852"
+     },
+     {
+      "id": "864831934705480928",
+      "why": "on-screen text: '22g de PR; 315; COFFEE; COLITO; MILY CARE'"
+     },
+     {
+      "id": "1019080221967458194",
+      "why": "on-screen text: '100; Amul; CALCIUM; CHANA; DA'"
+     },
+     {
+      "id": "839006605581815333",
+      "why": "on-screen text: '-278,; 128; 198; 198.; 228'"
+     },
+     {
+      "id": "976999712926234520",
+      "why": "unusable crop 490x896"
+     },
+     {
+      "id": "120752833751597673",
+      "why": "too short 10.64s for 12.2s"
+     },
+     {
+      "id": "1093952565709119133",
+      "why": "too short 11.23s for 12.2s"
+     },
+     {
+      "id": "791507703306395868",
+      "why": "too short 12.01s for 12.2s"
+     },
+     {
+      "id": "1149262398688104958",
+      "why": "unusable crop 360x640"
+     },
+     {
+      "id": "93027548547591110",
+      "why": "unusable crop 404x720"
+     },
+     {
+      "id": "1019080221963409535",
+      "why": "on-screen text: '$0.15a; Aiwain; Broke; Bronre; COOKIES'"
+     },
+     {
+      "id": "1000713979717440824",
+      "why": "on-screen text: '$49; .9Z; 26+; 261; 948'"
+     },
+     {
+      "id": "626422629441405228",
+      "why": "on-screen text: 'I; K'"
+     },
+     {
+      "id": "1145673592694134600",
+      "why": "unusable crop 1278x852"
+     },
+     {
+      "id": "950400327653150116",
+      "why": "on-screen text: \"A letter to self; DearMe,; Fealked under Autumn's \""
+     },
+     {
+      "id": "555561304054369014",
+      "why": "too short 5.83s for 12.2s"
+     },
+     {
+      "id": "1145392117743103116",
+      "why": "on-screen text: '00YY62/144; GOYY62/144; Tea &Honny; Tea&Honey; wra'"
+     },
+     {
+      "id": "621567186093606318",
+      "why": "on-screen text: '>SA; DOD; Digestive; ESOPHAGUS; FOOD'"
+     },
+     {
+      "id": "457889487130248197",
+      "why": "on-screen text: 'M; \u5317'"
+     },
+     {
+      "id": "930274866768106603",
+      "why": "on-screen text: 'Letter fotd; TeL; d; er; letter fold'"
+     },
+     {
+      "id": "453315518754663316",
+      "why": "on-screen text: 'CHARCUTERIE; CUDL; CUPL'"
+     },
+     {
+      "id": "3025924746336139",
+      "why": "on-screen text: 'BbI 3Haeme; KodakP; VIVA LA VIKA; lmo; mo'"
+     },
+     {
+      "id": "703335666829511231",
+      "why": "on-screen text: 'M; PR; TO; WELCOME'"
+     },
+     {
+      "id": "920001030132743301",
+      "why": "on-screen text: 'Garlic Butter; PIZZA CUPCAKES; PIZZACUPCAKES; \u798f'"
+     },
+     {
+      "id": "2462974792321104",
+      "why": "too short 10.48s for 12.2s"
+     },
+     {
+      "id": "996280748840115012",
+      "why": "on-screen text: '3\u00b7+; Accuracy & Easier Use; DIY Rintrest Trinket b'"
+     },
+     {
+      "id": "358599189093736145",
+      "why": "unusable crop 700x1036"
+     },
+     {
+      "id": "667447607296157151",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "967640669987386831",
+      "why": "on-screen text: '\u5c0f'"
+     },
+     {
+      "id": "982629212437873138",
+      "why": "on-screen text: '\"SAREEY; 19202122; 2003; 7327; Caud nith all my he'"
+     }
+    ],
+    "review_status": "needs_human_review",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words [] (+0)",
+       "points": 0
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 19.3s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": false,
+     "review_status": "reject",
+     "total": 56,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 2796223,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261121T162835Z-c0f97c/assets/track_6941249468143306754.m4a",
+   "pin_url": null,
+   "sha256": "50c3ca767a39916446fccfed58f46705892174f79ebec6c59e7ad27affd80168",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "6941249468143306754",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 71.7,
+    "high": 0.0,
+    "mid": 28.3
+   },
+   "duration_s": 170.99,
+   "file": "track_6941249468143306754.m4a",
+   "key_estimate": "A# major",
+   "loudness_curve_db": [
+    -21.6,
+    -21.9,
+    -21.1
+   ],
+   "onset_density_per_s": 3.88,
+   "peak_db": -6.4,
+   "rms_db": -21.5,
+   "spectral_centroid_hz": 909.4,
+   "tempo_bpm": 89.1,
+   "zero_crossing_rate": 0.0551
+  },
+  "background": {
+   "bytes": 12152825,
+   "creator": "Own",
+   "path": "/home/runner/work/_temp/beast-scratch/20261121T162835Z-c0f97c/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/1151232723478779665/",
+   "sha256": "81df60e85622c87ff0ff7368635bfc21c300d689cbf12f711224a65dc0106793",
+   "source": "pinterest",
+   "stable_id": "1151232723478779665",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "You want to look completely unbothered while every beep feels like an announcement about you.",
+    "observable_behaviour": "You freeze with a bag of pasta in your hand, re-scan the same item, glance at the attendant, then smile at no one and put it back exactly where it was",
+    "private_worry": "That everyone behind you thinks you are holding up the queue on purpose or trying to steal pasta",
+    "situation": "Saturday 6:12pm, at the self-checkout in the supermarket, the machine says 'unexpected item in bagging area' while two people wait behind you"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Hover pasta over the bagging area\" / \"Freeze when the machine beeps\" / \"Glance at the attendant, then away\" / \"Put pasta back exactly where it was\" \u2014 all inside the assigned 6:12pm bagging-area moment.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": null,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "All six items stay in-scene and are distinct \u2014 cleanest pass yet. Only weakness: the self-checkout angle duplicates the recent lane-3 oat-milk reel, so distinctiveness caps at 4.",
+    "scene_specificity": 5,
+    "sendability_who": "A friend who panics at self-checkout would send this to another supermarket-going friend, captioning 'unexpected item in bagging area ruins me.'",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=False",
+      "the headline itself carries no concrete anchor"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    }
+   ],
+   "topic_id": "pasta-beep-performer"
+  },
+  "delivery": {
+   "at": "2026-11-21T16:42:03Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -4.09,
+   "yavg_delta": 24.5
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 9.3,
+    "yavg": 129.9
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 10.11,
+   "yavg": 129.5
+  },
+  "output": {
+   "bytes": 21938044,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261121T162835Z-c0f97c.mp4",
+   "sha256": "05e001831a378bf6b79c2c5aa43167ec0e2f0dabaf482e5c946adfdd6c863872"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "6941249468143306754",
+    "title": "How`s Your Day"
+   },
+   "background_query": "hand holding bag of pasta over supermarket self-checkout bagging area",
+   "caption": "6 signs the pasta beep turns you into a performer:\n1. Hover pasta over the bagging area\n2. Freeze when the machine beeps\n3. Re-scan the same bag of pasta\n4. Glance at the attendant, then away\n5. Smile at no one behind you\n6. Put pasta back exactly where it was",
+   "closing": "The beep was about the pasta, not about you.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A tight, staccato build with held pauses and a spotlight swell that turns each small checkout beat into a staged moment.",
+     "tiktok_query": "theatrical",
+     "tiktok_search_query": "theatrical"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "supermarket aisle cinematic",
+     "pinterest_search_query": "supermarket aisle cinematic",
+     "semantic_analysis": "A quiet grocery checkout becomes an unintentional stage, where fluorescent light and small, repeated gestures make an ordinary moment feel watched and slightly theatrical."
+    }
+   },
+   "headline": "6 signs the pasta beep turns you into a performer",
+   "list_items": [
+    "Hover pasta over the bagging area",
+    "Freeze when the machine beeps",
+    "Re-scan the same bag of pasta",
+    "Glance at the attendant, then away",
+    "Smile at no one behind you",
+    "Put pasta back exactly where it was"
+   ],
+   "provenance": {
+    "creator": "Own",
+    "pin_id": "1151232723478779665",
+    "pin_url": "https://www.pinterest.com/pin/1151232723478779665/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#FFFFFF",
+    "stroke_px": 3,
+    "why": "bright footage (luma 130 > 122): white"
+   },
+   "titleLines": [
+    "6 signs the pasta beep",
+    "turns you into",
+    "a performer"
+   ],
+   "topic_id": "pasta-beep-performer"
+  },
+  "publish": {
+   "alt_text": "Hand holding bag of pasta over supermarket self-checkout bagging area. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-21T16:42:45Z",
+   "caption": "6 signs the pasta beep turns you into a performer:\n1. Hover pasta over the bagging area\n2. Freeze when the machine beeps\n3. Re-scan the same bag of pasta\n4. Glance at the attendant, then away\n5. Smile at no one behind you\n6. Put pasta back exactly where it was\n\nThe beep was about the pasta, not about you.",
+   "channel": "instagram",
+   "container_id": "17920520913538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "17994483686859614",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://d.uguu.se/mHVonBloSddp.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -4.09,
+    "yavg_delta": 24.5
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261121T162835Z-c0f97c/caption_list_title_v1-live-20261121T162835Z-c0f97c.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 21938044,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 10.11,
+    "yavg": 129.5
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.3147,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 63.9
+  },
+  "rendered_at": "2026-11-21T16:41:58Z",
+  "run_id": "20261121T162835Z-c0f97c",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "She is stuck mid-checkout, suddenly aware of being watched while a routine beep makes her perform the task again.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "hand holding pasta bag over self-checkout"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.5113,
+    "keywords": [
+     {
+      "keyword": "theatrical",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "6941249468143306754",
+    "title": "How`s Your Day"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.5113
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": null,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 4
+    },
+    "ladder": 2,
+    "ok": true,
+    "topic_id": "pasta-beep-performer"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "theatrical",
+    "vendor": "meta-api",
+    "why": "A tight, staccato build with held pauses and a spotlight swell that turns each small checkout beat into a staged moment."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "supermarket aisle cinematic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261121T162835Z-c0f97c.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'How`s Your Day' for caption_list_title_v1.",
+    "score": 35
+   },
+   "pinterest": {
+    "candidates": 3,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 9.3,
+     "yavg": 129.9
+    },
+    "ok": true,
+    "passes_minimum": false,
+    "pin_id": "1151232723478779665",
+    "query": "supermarket aisle",
+    "review_status": "needs_human_review",
+    "score": 56,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 63.9
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261121T162835Z-c0f97c/caption_list_title_v1-live-20261121T162835Z-c0f97c.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 21938044,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#FFFFFF",
+    "ok": true,
+    "stroke_px": 3,
+    "why": "bright footage (luma 130 > 122): white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -4.09,
+     "yavg_delta": 24.5
+    },
+    "measured": {
+     "sat": 10.11,
+     "yavg": 129.5
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.3147,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "pasta-beep-performer"
  }
 ]
