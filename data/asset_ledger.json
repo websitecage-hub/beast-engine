@@ -88,6 +88,14 @@
    "status": "delivered",
    "used_by": "20261110T115818Z-ce9ad6"
   },
+  "7072513628145977346": {
+   "first_seen_at": "2026-11-22T22:34:01Z",
+   "last_used_at": "2026-11-22T22:35:11Z",
+   "review_status": "pending",
+   "sha256": "a5ca8808254d68e526dac31bc963874ac2fae43852aa1da7028a921e252c5909",
+   "status": "delivered",
+   "used_by": "20261122T222231Z-7adc62"
+  },
   "7117534993563256834": {
    "first_seen_at": "2026-11-17T18:02:34Z",
    "last_used_at": "2026-11-17T18:03:28Z",
@@ -226,7 +234,7 @@
   }
  },
  "reservations": {},
- "updated_at": "2026-11-22T17:00:44Z",
+ "updated_at": "2026-11-22T22:35:11Z",
  "version": 1,
  "visual": {
   "pin:1028861477392867239": {
@@ -393,6 +401,17 @@
    "sha256": "39d200c3bd2cd09b0303b18dfae636e456f7ff279935a2043e1af5c012b0bbd5",
    "status": "delivered",
    "used_by": "20261120T172417Z-1e808c"
+  },
+  "pin:4855512093704632": {
+   "first_seen_at": "2026-11-22T22:33:23Z",
+   "lane": "emotional",
+   "last_used_at": "2026-11-22T22:35:11Z",
+   "pin_id": "4855512093704632",
+   "query": "empty bus stop after bus drives",
+   "review_status": "accept",
+   "sha256": "558f392b0233998d67f4812699979aceace1032d16a6ec32d53ca4b7e4ab697c",
+   "status": "delivered",
+   "used_by": "20261122T222231Z-7adc62"
   },
   "pin:56365432833417039": {
    "first_seen_at": "2026-11-15T16:02:15Z",

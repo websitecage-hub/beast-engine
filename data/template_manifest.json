@@ -42881,5 +42881,1223 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "four-floors-pure-silence"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "dramatic orchestral swell",
+     "upbeat dance beat",
+     "sad crying piano",
+     "cartoon sound effects",
+     "motivational voiceover"
+    ],
+    "emotional_role": "hold the awkward pause without making it dramatic",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "gentle synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "airy"
+    ],
+    "trend_hashtags": [
+     "#busstop",
+     "#awkwardmoment"
+    ],
+    "trend_keywords": [
+     "bus stop moment",
+     "awkward pause sound"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-22T22:23:42Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "bus-stop-stage",
+   "core_human_moment": "A person wants to catch the bus but hesitates over the signal, lets it pass, and then acts as if missing it was intentional.",
+   "degraded": false,
+   "emotional_primary": "hesitant",
+   "emotional_secondary": "exposed",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing back from the kerb, half-lifting a hand then lowering it",
+   "humour": 0.5,
+   "intentional_contrast": null,
+   "literal_scene": "A lone person standing at a roadside bus stop sign, half-raising a hand as a bus approaches and then passes without stopping.",
+   "literalness": "literal",
+   "motion_intent": "minimal movement, bus passing in background while person stays mostly still with small shifts",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "muted grey",
+    "soft daylight"
+   ],
+   "rationale": "The footage stays on the ordinary wait so the list reads as recognisable, not performed, and the soft, low-energy sound holds the pause without turning hesitation into drama.",
+   "scene_entities": [
+    "bus stop sign",
+    "bus",
+    "roadside pavement"
+   ],
+   "schema_version": "1.0",
+   "setting": "bus stop on an ordinary street",
+   "tension": 0.6,
+   "text_safe_zone": "centre 41-59% vertical band, keep subject and bus clear of text",
+   "time_of_day": "indeterminate",
+   "valence": -0.2,
+   "video_queries": [
+    "person standing alone at bus stop as bus passes",
+    "side view person at bus stop watching bus pass",
+    "empty bus stop after bus drives away"
+   ],
+   "visual_mood": [
+    "quiet",
+    "exposed"
+   ],
+   "visual_profile_target": {
+    "luma": "105 +/-14",
+    "saturation": "14.2 +/-5"
+   },
+   "warmth": 0.3
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Tollan Kim\ud83c\udf38",
+    "candidates": [
+     {
+      "artist": "Tollan Kim\ud83c\udf38",
+      "distance": 0.4772,
+      "fresh": true,
+      "id": "7072513628145977346",
+      "score": 100,
+      "title": "Aesthetic",
+      "video_count": 23300000
+     },
+     {
+      "artist": "Hayden Everett",
+      "distance": 0.5761,
+      "fresh": true,
+      "id": "7483193419709777936",
+      "score": 64,
+      "title": "Mt. Shuksan (feat. Jemima Coulter)",
+      "video_count": 41
+     },
+     {
+      "artist": "purc",
+      "distance": 0.3432,
+      "fresh": true,
+      "id": "7699197312380799028",
+      "score": 74,
+      "title": "two faced",
+      "video_count": 7992
+     },
+     {
+      "artist": "amirfabiani",
+      "distance": 0.2853,
+      "fresh": true,
+      "id": "7699600831231346740",
+      "score": 64,
+      "title": "i've been here",
+      "video_count": 27
+     }
+    ],
+    "distance": 0.4772,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6909894580121683969",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 23300000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7072513628145977346",
+    "title": "Aesthetic"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 21
+     }
+    },
+    "passes": true,
+    "rationale": "emotional lane shot 'Ultimate Road Trip Adventures for Your Next Escape' paired with 'Aesthetic' for caption_list_title_v1.",
+    "total": 56
+   },
+   "visual": {
+    "band_busy": 0.0289,
+    "candidates": [
+     {
+      "band_busy": 0.0289,
+      "height": 1280,
+      "pin_id": "4855512093704632",
+      "query": "empty bus stop after bus drives",
+      "query_lane": "emotional",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['aesthetic'] (+5); scene words ['and', 'from', 'the'] (+12)",
+         "points": 17
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 15.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 73,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.138,
+         "rows": [
+          0,
+          88
+         ]
+        },
+        {
+         "fraction_of_height": 0.128,
+         "rows": [
+          110,
+          192
+         ]
+        },
+        {
+         "fraction_of_height": 0.108,
+         "rows": [
+          0,
+          69
+         ]
+        },
+        {
+         "fraction_of_height": 0.087,
+         "rows": [
+          220,
+          276
+         ]
+        },
+        {
+         "fraction_of_height": 0.098,
+         "rows": [
+          577,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.322,
+         "rows": [
+          0,
+          206
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 88), (110, 192)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         88
+        ],
+        [
+         110,
+         192
+        ],
+        [
+         0,
+         69
+        ],
+        [
+         220,
+         276
+        ],
+        [
+         577,
+         640
+        ],
+        [
+         0,
+         206
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0816,
+      "height": 1280,
+      "pin_id": "449374869084052412",
+      "query": "side view person at bus stop",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 36.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.089,
+         "rows": [
+          0,
+          57
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 57)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         57
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0038,
+      "height": 1280,
+      "pin_id": "741264419918316243",
+      "query": "empty bus stop after bus drives",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 12.8s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.123,
+      "height": 1280,
+      "pin_id": "618470961349914073",
+      "query": "empty bus stop after bus drives",
+      "query_lane": "emotional",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 23.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.203,
+         "rows": [
+          510,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.122,
+         "rows": [
+          562,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(510, 640), (562, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         510,
+         640
+        ],
+        [
+         562,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Bucket List for the Empty Nest!",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0548,
+     "motion": 0.0346,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "4855512093704632",
+    "pin_url": "https://www.pinterest.com/pin/4855512093704632/",
+    "query": "empty bus stop after bus drives",
+    "query_lane": "emotional",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "cinematic bus stop",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic bus",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic stop",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 24,
+      "lane": "metaphor",
+      "query": "bus stop",
+      "returned": 24
+     },
+     {
+      "kept": 25,
+      "lane": "adjacent",
+      "query": "side view person at bus stop",
+      "returned": 25
+     },
+     {
+      "kept": 22,
+      "lane": "emotional",
+      "query": "empty bus stop after bus drives",
+      "returned": 25
+     },
+     {
+      "kept": 19,
+      "lane": "literal",
+      "query": "person standing alone at bus stop",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "307300374596324263",
+      "why": "on-screen text: 'RideKCBUS S176; RideKCBUS\u00b75176; RideKCBUS\u00b7S176; on'"
+     },
+     {
+      "id": "860750547542294971",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "846395323759106648",
+      "why": "too short 5.04s for 12.2s"
+     },
+     {
+      "id": "1128151775441435403",
+      "why": "too short 10.03s for 12.2s"
+     },
+     {
+      "id": "388787380352460881",
+      "why": "too short 8.62s for 12.2s"
+     },
+     {
+      "id": "1111544751766338901",
+      "why": "unusable crop 480x864"
+     },
+     {
+      "id": "14988611248627730",
+      "why": "unusable crop 404x720"
+     },
+     {
+      "id": "337981147044740130",
+      "why": "too short 10.98s for 12.2s"
+     },
+     {
+      "id": "103160647703709624",
+      "why": "too short 5.0s for 12.2s"
+     },
+     {
+      "id": "348677196153383010",
+      "why": "unusable crop 480x720"
+     },
+     {
+      "id": "404549979034157473",
+      "why": "on-screen text: '187; R; Who new the bus stop; cute!; photo shoots '"
+     },
+     {
+      "id": "127578601937603420",
+      "lane": "metaphor",
+      "query": "bus stop",
+      "why": "advertising call-to-action: 'Follow us'"
+     },
+     {
+      "id": "1003106517033404894",
+      "why": "too short 7.96s for 12.2s"
+     },
+     {
+      "id": "1148629079960689989",
+      "why": "on-screen text: 'O'"
+     },
+     {
+      "id": "960392689265090286",
+      "why": "unusable crop 540x960"
+     },
+     {
+      "id": "261349584617955501",
+      "why": "too short 9.93s for 12.2s"
+     },
+     {
+      "id": "1055531231386463989",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "123989795981628633",
+      "why": "on-screen text: '2\uff01; 376-5425; HO 1C1010; OH; \u540c'"
+     },
+     {
+      "id": "390968811422746304",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "160933386679552765",
+      "why": "on-screen text: '+fortriost; pose ideas; thekabedon'"
+     },
+     {
+      "id": "1024006034032082621",
+      "why": "too short 10.24s for 12.2s"
+     },
+     {
+      "id": "293508100735200483",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "1036953882946241057",
+      "why": "on-screen text: '0MPG317m; 100; 120; 127698m; 140'"
+     },
+     {
+      "id": "693202567668802459",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "904871750125072931",
+      "why": "too short 6.47s for 12.2s"
+     },
+     {
+      "id": "292593307058912178",
+      "why": "on-screen text: 'OGUERIA; Z50'"
+     },
+     {
+      "id": "904871750125091999",
+      "why": "too short 8.77s for 12.2s"
+     },
+     {
+      "id": "108508672265700129",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "1136384918457391123",
+      "why": "on-screen text: 'M'"
+     },
+     {
+      "id": "948007790289014885",
+      "why": "too short 6.83s for 12.2s"
+     },
+     {
+      "id": "706009679091619905",
+      "why": "unusable crop 540x540"
+     },
+     {
+      "id": "34199278416124720",
+      "why": "too short 10.97s for 12.2s"
+     },
+     {
+      "id": "852939616937039949",
+      "why": "on-screen text: 'OG\u996e; RArabag; Rh Puraban; Rtiom Aurat; Rtm Arabi'"
+     },
+     {
+      "id": "690598924149191887",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "842384305324630008",
+      "why": "on-screen text: '107S; 344/MT; 344/NT; A612; AB920'"
+     },
+     {
+      "id": "871868809126595828",
+      "why": "too short 10.01s for 12.2s"
+     },
+     {
+      "id": "55732114132361124",
+      "why": "too short 4.0s for 12.2s"
+     },
+     {
+      "id": "947022627899597064",
+      "why": "on-screen text: '(Expense-30Lakhs); (lstApril); ->EDUCATIONLOANEMI;'"
+     },
+     {
+      "id": "834714112221780813",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "8866530510103265",
+      "why": "unusable crop 234x416"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['aesthetic'] (+5); scene words ['and', 'from', 'the'] (+12)",
+       "points": 17
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 15.0s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 73,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.138,
+       "rows": [
+        0,
+        88
+       ]
+      },
+      {
+       "fraction_of_height": 0.128,
+       "rows": [
+        110,
+        192
+       ]
+      },
+      {
+       "fraction_of_height": 0.108,
+       "rows": [
+        0,
+        69
+       ]
+      },
+      {
+       "fraction_of_height": 0.087,
+       "rows": [
+        220,
+        276
+       ]
+      },
+      {
+       "fraction_of_height": 0.098,
+       "rows": [
+        577,
+        640
+       ]
+      },
+      {
+       "fraction_of_height": 0.322,
+       "rows": [
+        0,
+        206
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(0, 88), (110, 192)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       0,
+       88
+      ],
+      [
+       110,
+       192
+      ],
+      [
+       0,
+       69
+      ],
+      [
+       220,
+       276
+      ],
+      [
+       577,
+       640
+      ],
+      [
+       0,
+       206
+      ]
+     ]
+    },
+    "title": "Ultimate Road Trip Adventures for Your Next Escape! \ud83d\ude97\ud83d\udee3\ufe0fRoad Trip Aesthetic"
+   }
+  },
+  "audio": {
+   "bytes": 1007147,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261122T222231Z-7adc62/assets/track_7072513628145977346.m4a",
+   "pin_url": null,
+   "sha256": "a5ca8808254d68e526dac31bc963874ac2fae43852aa1da7028a921e252c5909",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7072513628145977346",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 55.1,
+    "high": 0.6,
+    "mid": 44.3
+   },
+   "duration_s": 60.0,
+   "file": "track_7072513628145977346.m4a",
+   "key_estimate": "D major",
+   "loudness_curve_db": [
+    -23.5,
+    -20.4,
+    -21.0
+   ],
+   "onset_density_per_s": 2.43,
+   "peak_db": -4.6,
+   "rms_db": -21.4,
+   "spectral_centroid_hz": 1004.6,
+   "tempo_bpm": 86.1,
+   "zero_crossing_rate": 0.0447
+  },
+  "background": {
+   "bytes": 4624987,
+   "creator": "Bucket List for the Empty Nest!",
+   "path": "/home/runner/work/_temp/beast-scratch/20261122T222231Z-7adc62/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/4855512093704632/",
+   "sha256": "558f392b0233998d67f4812699979aceace1032d16a6ec32d53ca4b7e4ab697c",
+   "source": "pinterest",
+   "stable_id": "4855512093704632",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "you desperately want to get on, but you don't want to be seen getting on wrong.",
+    "observable_behaviour": "half-lifts hand, drops it, takes one step toward the kerb then steps back and looks at phone",
+    "private_worry": "that the driver and everyone waiting will think you don't know how to catch a bus",
+    "situation": "8:14am at the bus stop, the bus is already slowing down and you still haven't decided if you should wave"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 4,
+    "evidence": "\"Half-lift your hand, then drop it\" / \"Step to the kerb, then step back\" / \"Nod like you meant to miss it\" \u2014 exact bus-stop behaviours, no diagnosis.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Payoff 'negotiating being watched' drifts clinical/abstract; make the turn plain, e.g. the half-wave wasn't indecision about the bus. Items 3 and 4 close but distinct enough.",
+    "scene_specificity": 5,
+    "sendability_who": "A commuter sends this to a friend who also gets the morning bus, caption 'why is this us'.",
+    "shareability": 5,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "bus-stop-stage"
+  },
+  "delivery": {
+   "at": "2026-11-22T22:35:10Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -8.72,
+   "yavg_delta": 16.1
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 6.01,
+    "yavg": 119.9
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 5.48,
+   "yavg": 121.1
+  },
+  "output": {
+   "bytes": 11524084,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261122T222231Z-7adc62.mp4",
+   "sha256": "858e5bbac79a3570857399a19f60a6870c631e3f44bd152f946dd917959707d5"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7072513628145977346",
+    "title": "Aesthetic"
+   },
+   "background_query": "person standing alone at bus stop as bus passes",
+   "caption": "8 things you do when the bus stop feels like a stage:\n1. Check the timetable you already memorised\n2. Stand a step too far back\n3. Half-lift your hand, then drop it\n4. Step to the kerb, then step back\n5. Unlock your phone for no reason\n6. Watch the bus go past without you\n7. Nod like you meant to miss it\n8. Replay the half-wave on the next bus",
+   "closing": "You weren't confused about the bus, you were negotiating being watched while trying to get on it.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A stop-start, held-breath pacing with looping, swelling instrumentation that mirrors rehearsing a small gesture then pulling back.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "cinematic bus stop",
+     "pinterest_search_query": "cinematic bus stop",
+     "semantic_analysis": "A quiet, cinematic stillness at the edge of the street, where waiting feels exposed under soft urban light."
+    }
+   },
+   "headline": "8 things you do when the bus stop feels like a stage",
+   "list_items": [
+    "Check the timetable you already memorised",
+    "Stand a step too far back",
+    "Half-lift your hand, then drop it",
+    "Step to the kerb, then step back",
+    "Unlock your phone for no reason",
+    "Watch the bus go past without you",
+    "Nod like you meant to miss it",
+    "Replay the half-wave on the next bus"
+   ],
+   "provenance": {
+    "creator": "Bucket List for the Empty Nest!",
+    "pin_id": "4855512093704632",
+    "pin_url": "https://www.pinterest.com/pin/4855512093704632/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "stroke_px": 2,
+    "why": "mid footage (luma 120): warm off-white"
+   },
+   "titleLines": [
+    "8 things you do",
+    "when the bus stop",
+    "feels like a stage"
+   ],
+   "topic_id": "bus-stop-stage"
+  },
+  "publish": {
+   "alt_text": "Person standing alone at bus stop as bus passes. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-22T22:35:50Z",
+   "caption": "8 things you do when the bus stop feels like a stage:\n1. Check the timetable you already memorised\n2. Stand a step too far back\n3. Half-lift your hand, then drop it\n4. Step to the kerb, then step back\n5. Unlock your phone for no reason\n6. Watch the bus go past without you\n7. Nod like you meant to miss it\n8. Replay the half-wave on the next bus\n\nYou weren't confused about the bus, you were negotiating being watched while trying to get on it.",
+   "channel": "instagram",
+   "container_id": "17920691226538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "17974171233195977",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://n.uguu.se/PBcPAYzHYUxn.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -8.72,
+    "yavg_delta": 16.1
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261122T222231Z-7adc62/caption_list_title_v1-live-20261122T222231Z-7adc62.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 11524084,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 5.48,
+    "yavg": 121.1
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.6699,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 62.5
+  },
+  "rendered_at": "2026-11-22T22:35:07Z",
+  "run_id": "20261122T222231Z-7adc62",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "A person wants to catch the bus but hesitates over the signal, lets it pass, and then acts as if missing it was intentional.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person standing alone at bus stop",
+     "side view person at bus stop",
+     "empty bus stop after bus drives"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.4772,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7072513628145977346",
+    "title": "Aesthetic"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.4772
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 4,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "bus-stop-stage"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "A stop-start, held-breath pacing with looping, swelling instrumentation that mirrors rehearsing a small gesture then pulling back."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "cinematic bus stop",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261122T222231Z-7adc62.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "emotional lane shot 'Ultimate Road Trip Adventures for Your Next Escape' paired with 'Aesthetic' for caption_list_title_v1.",
+    "score": 56
+   },
+   "pinterest": {
+    "candidates": 4,
+    "hls": false,
+    "lane": "emotional",
+    "metrics": {
+     "sat": 6.01,
+     "yavg": 119.9
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "4855512093704632",
+    "query": "empty bus stop after bus drives",
+    "review_status": "accept",
+    "score": 73,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Ultimate Road Trip Adventures for Your Next Escape! \ud83d\ude97\ud83d\udee3\ufe0fRoad Trip Aesthetic"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 62.5
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261122T222231Z-7adc62/caption_list_title_v1-live-20261122T222231Z-7adc62.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 11524084,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#F7F0D2",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "mid footage (luma 120): warm off-white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -8.72,
+     "yavg_delta": 16.1
+    },
+    "measured": {
+     "sat": 5.48,
+     "yavg": 121.1
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.6699,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "bus-stop-stage"
  }
 ]
