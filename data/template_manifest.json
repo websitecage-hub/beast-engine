@@ -41733,5 +41733,1153 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "wet-umbrella-hallway-guest"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "punchy drums",
+     "dramatic orchestral swell",
+     "laugh track",
+     "loud vocal hook",
+     "motivational build"
+    ],
+    "emotional_role": "hold the quiet tension without turning it into drama",
+    "energy": 0.2,
+    "instrumentation": [
+     "piano",
+     "soft synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "minimal"
+    ],
+    "trend_hashtags": [
+     "#quietmoments",
+     "#officelife"
+    ],
+    "trend_keywords": [
+     "quiet elevator",
+     "office morning",
+     "soft piano"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-22T16:49:53Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "four-floors-pure-silence",
+   "core_human_moment": "She is sharing a silent elevator ride with a coworker and quietly managing where to look and how to stand until the doors open.",
+   "degraded": false,
+   "emotional_primary": "tense",
+   "emotional_secondary": "awkward",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing still holding a dark phone and watching floor numbers change",
+   "humour": 0.3,
+   "intentional_contrast": null,
+   "literal_scene": "A person standing still in a small office elevator, phone dark in hand, eyes on the floor numbers above the doors.",
+   "literalness": "literal",
+   "motion_intent": "almost still, only floor numbers changing and doors sliding open",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "cool grey metal",
+    "soft morning light"
+   ],
+   "rationale": "A still elevator shot lets the floor numbers do the storytelling while soft, sparse piano keeps the silence feeling awkward and light, not heavy.",
+   "scene_entities": [
+    "floor number display",
+    "phone",
+    "office elevator"
+   ],
+   "schema_version": "1.0",
+   "setting": "office elevator",
+   "tension": 0.6,
+   "text_safe_zone": "centre band 41-59% kept clear for white title",
+   "time_of_day": "morning",
+   "valence": -0.2,
+   "video_queries": [
+    "person standing in elevator watching floor numbers",
+    "view from inside elevator at closing doors",
+    "quiet office corridor in morning light"
+   ],
+   "visual_mood": [
+    "quiet",
+    "still"
+   ],
+   "visual_profile_target": {
+    "luma": "105 +-14",
+    "saturation": "14.2 +-5"
+   },
+   "warmth": 0.2
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "medasin",
+    "candidates": [
+     {
+      "artist": "GABRIEL PEREZ",
+      "distance": 0.3421,
+      "fresh": true,
+      "id": "7689607970291828737",
+      "score": 74,
+      "title": "two faced",
+      "video_count": 9838
+     },
+     {
+      "artist": "dxxm & Raingen",
+      "distance": 0.5724,
+      "fresh": true,
+      "id": "7652939482376194064",
+      "score": 64,
+      "title": "get away (Slowed)",
+      "video_count": 4414
+     },
+     {
+      "artist": "medasin",
+      "distance": 0.3593,
+      "fresh": true,
+      "id": "7338248034884618241",
+      "score": 100,
+      "title": "magic",
+      "video_count": 723500
+     },
+     {
+      "artist": "The Beatles Revival Band",
+      "distance": 0.3654,
+      "fresh": false,
+      "id": "7127247846985713666",
+      "score": 72,
+      "title": "And I Love Her (live)",
+      "video_count": 325200
+     },
+     {
+      "artist": "Narvent",
+      "distance": 0.712,
+      "fresh": true,
+      "id": "7693919040771065862",
+      "score": 64,
+      "title": "Recall",
+      "video_count": 532
+     }
+    ],
+    "distance": 0.3593,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 723500",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7338248034884618241",
+    "title": "magic"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 22
+     }
+    },
+    "passes": true,
+    "rationale": "literal lane shot 'Self-Installable Stair Lift for Home and Seniors' paired with 'magic' for caption_list_title_v1.",
+    "total": 57
+   },
+   "visual": {
+    "band_busy": 0.1079,
+    "candidates": [
+     {
+      "band_busy": 0.1079,
+      "height": 1280,
+      "pin_id": "1098878377848424250",
+      "query": "person standing in elevator",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['home', 'simple'] (+10); scene words ['and', 'the'] (+8)",
+         "points": 18
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 74,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1578,
+      "height": 1280,
+      "pin_id": "722053752761901889",
+      "query": "view from inside elevator at",
+      "query_lane": "adjacent",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['aesthetic', 'city', 'lights', 'night'] (+20); scene words ['elevator'] (+4)",
+         "points": 24
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 30.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 80,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.097,
+         "rows": [
+          0,
+          62
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 62)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         62
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0089,
+      "height": 1280,
+      "pin_id": "22940279345762914",
+      "query": "person standing in elevator",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 21.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.102,
+         "rows": [
+          0,
+          65
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 65)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         65
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0492,
+      "height": 1280,
+      "pin_id": "421931058861571325",
+      "query": "view from inside elevator at",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.7s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.042,
+      "height": 1280,
+      "pin_id": "421931058861571108",
+      "query": "view from inside elevator at",
+      "query_lane": "adjacent",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Mobility & Daily Living Aids",
+    "flags": [
+     "source domain: nuvofinds.com"
+    ],
+    "lane_expansions": 1,
+    "motion": {
+     "cuts": 2,
+     "max_jump": 0.3019,
+     "motion": 0.1774,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "1098878377848424250",
+    "pin_url": "https://www.pinterest.com/pin/1098878377848424250/",
+    "query": "person standing in elevator",
+    "query_lane": "literal",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "elevator cinematic aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "elevator cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "elevator aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cinematic aesthetic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "adjacent",
+      "query": "view from inside elevator at closing",
+      "returned": 25
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "quiet office corridor in morning light",
+      "returned": 0
+     },
+     {
+      "kept": 5,
+      "lane": "literal",
+      "query": "person standing in elevator watching floor",
+      "returned": 5
+     },
+     {
+      "kept": 24,
+      "lane": "adjacent",
+      "query": "view from inside elevator at",
+      "returned": 24
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "quiet office corridor in morning",
+      "returned": 0
+     },
+     {
+      "kept": 25,
+      "lane": "literal",
+      "query": "person standing in elevator",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "993747474053357458",
+      "why": "too short 4.07s for 12.2s"
+     },
+     {
+      "id": "1117455726291806758",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "263038434482687009",
+      "why": "too short 7.5s for 12.2s"
+     },
+     {
+      "id": "772719248600826987",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "456130268531822483",
+      "why": "on-screen text: 'GOUP&DOWNA PATERNOSTER; GOUP&DOWNAPATERNOSTER'"
+     },
+     {
+      "id": "930204498029978763",
+      "why": "too short 11.47s for 12.2s"
+     },
+     {
+      "id": "498562621268105230",
+      "why": "too short 8.8s for 12.2s"
+     },
+     {
+      "id": "989525349392122561",
+      "why": "on-screen text: '(Real Life Avatar); 3 Day Guide To; Bailong Elevat'"
+     },
+     {
+      "id": "451556300144175720",
+      "why": "too short 5.0s for 12.2s"
+     },
+     {
+      "id": "456130268531822496",
+      "why": "too short 6.7s for 12.2s"
+     },
+     {
+      "id": "7248049388580569",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "1084452785293828900",
+      "why": "too short 6.89s for 12.2s"
+     },
+     {
+      "id": "772719248604807355",
+      "why": "on-screen text: 'Amazing Underwater Base; ManDooMi; ManDooMiN; OF'"
+     },
+     {
+      "id": "890446157595490010",
+      "why": "on-screen text: '000; CUERRICIA'"
+     },
+     {
+      "id": "361413938868942324",
+      "why": "on-screen text: 'L'"
+     },
+     {
+      "id": "1053983119057300387",
+      "why": "too short 11.4s for 12.2s"
+     },
+     {
+      "id": "828873506436009244",
+      "why": "too short 5.55s for 12.2s"
+     },
+     {
+      "id": "427982770860278599",
+      "why": "on-screen text: '&Ca; AREAOF; REFUGE'"
+     },
+     {
+      "id": "674765956691872849",
+      "why": "too short 10.91s for 12.2s"
+     },
+     {
+      "id": "1000362135983923009",
+      "why": "too short 7.97s for 12.2s"
+     },
+     {
+      "id": "5488830792588269",
+      "why": "on-screen text: 'Automatic Stairs'"
+     },
+     {
+      "id": "887983251509534041",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "703756187673824",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "767019380341162740",
+      "why": "on-screen text: 'OLV; QIV; X; lebruary'"
+     },
+     {
+      "id": "587860557619472858",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "58406126410140428",
+      "why": "on-screen text: 'Bllellul; ellellal; \u606d'"
+     },
+     {
+      "id": "914862420337701",
+      "why": "on-screen text: 'I; \u5c71'"
+     },
+     {
+      "id": "456411743503066783",
+      "why": "too short 6.87s for 12.2s"
+     },
+     {
+      "id": "73113193942760614",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "357825132919141693",
+      "why": "on-screen text: '?; A; D; O; \u00ae'"
+     },
+     {
+      "id": "1117455726291806758",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "891783163689671804",
+      "lane": "adjacent",
+      "query": "view from inside elevator at",
+      "why": "stock/repost source: 'stock footage'"
+     },
+     {
+      "id": "1145110643556339607",
+      "why": "unusable crop 594x1056"
+     },
+     {
+      "id": "790381803347607626",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "422281211991852",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "620159811217835841",
+      "lane": "literal",
+      "query": "person standing in elevator",
+      "why": "advertising call-to-action: 'Visit our'"
+     },
+     {
+      "id": "763360205629355653",
+      "why": "on-screen text: 'Hllton; \u4e0a; \u4fe1'"
+     },
+     {
+      "id": "525021269070636797",
+      "why": "on-screen text: '\u53e3'"
+     },
+     {
+      "id": "532550724710236534",
+      "why": "on-screen text: '\u6c5f'"
+     },
+     {
+      "id": "98727416827217863",
+      "why": "unusable crop 576x1024"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['home', 'simple'] (+10); scene words ['and', 'the'] (+8)",
+       "points": 18
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 17.4s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 74,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Self-Installable Stair Lift for Home and Seniors"
+   }
+  },
+  "audio": {
+   "bytes": 980889,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261122T164438Z-75a13c/assets/track_7338248034884618241.m4a",
+   "pin_url": null,
+   "sha256": "8a228e3bacc702109a1548c9ab0a100b0033cffe15d5fb0d351258b197c2cc93",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7338248034884618241",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 73.6,
+    "high": 0.0,
+    "mid": 26.4
+   },
+   "duration_s": 60.0,
+   "file": "track_7338248034884618241.m4a",
+   "key_estimate": "F major",
+   "loudness_curve_db": [
+    -21.6,
+    -22.0,
+    -25.3
+   ],
+   "onset_density_per_s": 0.87,
+   "peak_db": -9.8,
+   "rms_db": -22.7,
+   "spectral_centroid_hz": 680.2,
+   "tempo_bpm": 129.2,
+   "zero_crossing_rate": 0.0331
+  },
+  "background": {
+   "bytes": 3705341,
+   "creator": "Mobility & Daily Living Aids",
+   "path": "/home/runner/work/_temp/beast-scratch/20261122T164438Z-75a13c/assets/cand_1_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/1098878377848424250/",
+   "sha256": "56692e87b7ed1fcae503c15ea6d949881b1d41a288b02b4630313ffe71425ad1",
+   "source": "pinterest",
+   "stable_id": "1098878377848424250",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "wants to seem warm and easy, but any small talk feels louder than the silence",
+    "observable_behaviour": "watches the floor numbers go up, holds phone with the screen off, smiles at the doors",
+    "private_worry": "that saying nothing makes you look cold, and saying something makes you look forced",
+    "situation": "Tuesday 8:47am, in the office lift, alone with a coworker you only know by first name, four floors to go"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Hear ding, hope he takes stairs\" / \"Watch 2 turn to 3 turn to 4\" / \"Replay 8:47 silence at desk\" \u2014 concrete lift behaviours and the private replay, no diagnosis or shaming.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Caption items 1 and 5 are close (hope he takes stairs / exhale at four) \u2014 trim one so all six land distinct. Otherwise leave wording alone.",
+    "scene_specificity": 5,
+    "sendability_who": "A young office worker sends this to their desk-neighbour or group chat of work friends, saying 'this is literally me every morning'.",
+    "shareability": 5,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    }
+   ],
+   "topic_id": "four-floors-pure-silence"
+  },
+  "delivery": {
+   "at": "2026-11-22T17:00:44Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -7.67,
+   "yavg_delta": 34.3
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 7.03,
+    "yavg": 142.3
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 6.53,
+   "yavg": 139.3
+  },
+  "output": {
+   "bytes": 16109575,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261122T164438Z-75a13c.mp4",
+   "sha256": "3188bb73bbb57c49dd3554ba01bba76e1858a17f22c190441ed9989a0834377a"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7338248034884618241",
+    "title": "magic"
+   },
+   "background_query": "person standing in office lift holding phone watching floor numbers",
+   "caption": "6 negotiations in four floors of pure silence:\n1. Hear ding, hope he takes stairs\n2. Hold phone with screen still off\n3. Watch 2 turn to 3 turn to 4\n4. Smile at doors, not at him\n5. Exhale when doors open at four\n6. Replay 8:47 silence at desk",
+   "closing": "Nothing was said, and nothing was cold.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "Quiet, ticking minimalism with a long held pause that finally exhales when the doors open.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "elevator cinematic aesthetic",
+     "pinterest_search_query": "elevator cinematic aesthetic",
+     "semantic_analysis": "A cold, still liminal interior where shared silence stretches between floors and every small movement feels magnified."
+    }
+   },
+   "headline": "6 negotiations in four floors of pure silence",
+   "list_items": [
+    "Hear ding, hope he takes stairs",
+    "Hold phone with screen still off",
+    "Watch 2 turn to 3 turn to 4",
+    "Smile at doors, not at him",
+    "Exhale when doors open at four",
+    "Replay 8:47 silence at desk"
+   ],
+   "provenance": {
+    "creator": "Mobility & Daily Living Aids",
+    "pin_id": "1098878377848424250",
+    "pin_url": "https://www.pinterest.com/pin/1098878377848424250/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#FFFFFF",
+    "stroke_px": 3,
+    "why": "bright footage (luma 142 > 122): white"
+   },
+   "titleLines": [
+    "6 negotiations in",
+    "four floors of",
+    "pure silence"
+   ],
+   "topic_id": "four-floors-pure-silence"
+  },
+  "publish": {
+   "alt_text": "Person standing in office lift holding phone watching floor numbers. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-22T17:01:21Z",
+   "caption": "6 negotiations in four floors of pure silence:\n1. Hear ding, hope he takes stairs\n2. Hold phone with screen still off\n3. Watch 2 turn to 3 turn to 4\n4. Smile at doors, not at him\n5. Exhale when doors open at four\n6. Replay 8:47 silence at desk\n\nNothing was said, and nothing was cold.",
+   "channel": "instagram",
+   "container_id": "17920663911538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18129695219313657",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/DuJhmAALeUep.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -7.67,
+    "yavg_delta": 34.3
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261122T164438Z-75a13c/caption_list_title_v1-live-20261122T164438Z-75a13c.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 16109575,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 6.53,
+    "yavg": 139.3
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.1661,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 67.6
+  },
+  "rendered_at": "2026-11-22T17:00:39Z",
+  "run_id": "20261122T164438Z-75a13c",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "She is sharing a silent elevator ride with a coworker and quietly managing where to look and how to stand until the doors open.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person standing in elevator watching floor",
+     "view from inside elevator at closing",
+     "quiet office corridor in morning light"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3593,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7338248034884618241",
+    "title": "magic"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3593
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 2,
+    "ok": true,
+    "topic_id": "four-floors-pure-silence"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "Quiet, ticking minimalism with a long held pause that finally exhales when the doors open."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "elevator cinematic aesthetic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261122T164438Z-75a13c.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "literal lane shot 'Self-Installable Stair Lift for Home and Seniors' paired with 'magic' for caption_list_title_v1.",
+    "score": 57
+   },
+   "pinterest": {
+    "candidates": 5,
+    "hls": false,
+    "lane": "literal",
+    "metrics": {
+     "sat": 7.03,
+     "yavg": 142.3
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "1098878377848424250",
+    "query": "person standing in elevator",
+    "review_status": "accept",
+    "score": 74,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Self-Installable Stair Lift for Home and Seniors"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 67.6
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261122T164438Z-75a13c/caption_list_title_v1-live-20261122T164438Z-75a13c.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 16109575,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#FFFFFF",
+    "ok": true,
+    "stroke_px": 3,
+    "why": "bright footage (luma 142 > 122): white"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -7.67,
+     "yavg_delta": 34.3
+    },
+    "measured": {
+     "sat": 6.53,
+     "yavg": 139.3
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.1661,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "four-floors-pure-silence"
  }
 ]
