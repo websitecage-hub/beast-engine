@@ -231,10 +231,18 @@
    "sha256": "14f2569e9f100fb6d4fa30f6b0ab83f842ab67c77cebeeb735ed70a2fc40a2a7",
    "status": "delivered",
    "used_by": "20261119T232819Z-e07434"
+  },
+  "7684150368565250075": {
+   "first_seen_at": "2026-11-23T20:51:31Z",
+   "last_used_at": "2026-11-23T20:52:51Z",
+   "review_status": "pending",
+   "sha256": "efaf33c8a64ef4e057dc3f580b4585a495b96aaa3e183eb9bfaab5c05a3965e7",
+   "status": "delivered",
+   "used_by": "20261123T203926Z-a7323f"
   }
  },
  "reservations": {},
- "updated_at": "2026-11-22T22:35:11Z",
+ "updated_at": "2026-11-23T20:52:51Z",
  "version": 1,
  "visual": {
   "pin:1028861477392867239": {
@@ -533,6 +541,17 @@
    "sha256": "54efcaf19cbe278a4bd2f7cab280f79608f53b1df2e3dc2246c59ab94f9a0e2e",
    "status": "delivered",
    "used_by": "20261112T140806Z-0ffbb6"
+  },
+  "pin:908953138012544463": {
+   "first_seen_at": "2026-11-23T20:50:55Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-23T20:52:51Z",
+   "pin_id": "908953138012544463",
+   "query": "doorway golden",
+   "review_status": "accept",
+   "sha256": "417479cbb7f519fc60d7afc668c3fd2aa812032000153506b52423687466fd84",
+   "status": "delivered",
+   "used_by": "20261123T203926Z-a7323f"
   },
   "pin:961096376746383572": {
    "first_seen_at": "2026-11-11T23:33:46Z",

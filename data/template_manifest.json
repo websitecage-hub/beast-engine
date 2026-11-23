@@ -44099,5 +44099,1703 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "bus-stop-stage"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.3,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "dramatic sad strings",
+     "fast dance beat",
+     "comedy boing effects",
+     "tense thriller pulse",
+     "loud vocal hook"
+    ],
+    "emotional_role": "hold the warm, lingering goodbye without turning it sad or frantic",
+    "energy": 0.3,
+    "instrumentation": [
+     "soft piano",
+     "gentle guitar"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "roomy"
+    ],
+    "trend_hashtags": [
+     "#doorwaygoodbye",
+     "#justonemorething"
+    ],
+    "trend_keywords": [
+     "doorway goodbye",
+     "lingering goodbye"
+    ],
+    "valence": 0.6,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-23T20:40:44Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "doorway-goodbye-loop",
+   "core_human_moment": "She has already said bye twice but keeps lingering in the doorway, finding one more thing to say before she actually leaves.",
+   "degraded": false,
+   "emotional_primary": "fond",
+   "emotional_secondary": "awkward",
+   "format_id": "caption_list_title_v1",
+   "human_action": "standing in doorway with hand on frame, turning back to add one more thing",
+   "humour": 0.5,
+   "intentional_contrast": null,
+   "literal_scene": "A person in a half-on coat stands in an apartment doorway with one hand on the frame, turned back toward the room.",
+   "literalness": "literal",
+   "motion_intent": "nearly still, small weight shifts and a half-turn back",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm hallway light",
+    "muted coat neutrals"
+   ],
+   "rationale": "The doorway shot keeps the joke grounded in a real leaving moment, and the soft, unhurried sound lets the repeated goodbye feel fond rather than frantic.",
+   "scene_entities": [
+    "coat",
+    "door frame",
+    "apartment doorway"
+   ],
+   "schema_version": "1.0",
+   "setting": "apartment doorway",
+   "tension": 0.4,
+   "text_safe_zone": "centre 41-59% band, keep face and doorway clear above and below",
+   "time_of_day": "late evening",
+   "valence": 0.6,
+   "video_queries": [
+    "person in coat standing in apartment doorway",
+    "hand on door frame coat half on hallway",
+    "person waving goodbye in hallway at night"
+   ],
+   "visual_mood": [
+    "warm",
+    "lived-in"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.8
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "Marnie Cusk",
+    "candidates": [
+     {
+      "artist": "Marnie Cusk",
+      "distance": 0.2098,
+      "fresh": true,
+      "id": "7684150368565250075",
+      "score": 100,
+      "title": "Paper Moon Static",
+      "video_count": 3000000
+     },
+     {
+      "artist": "nesyaindespair",
+      "distance": 0.8083,
+      "fresh": true,
+      "id": "7311392286842210305",
+      "score": 100,
+      "title": "delulu",
+      "video_count": 1100000
+     },
+     {
+      "artist": "Ryn Kid",
+      "distance": 0.4299,
+      "fresh": true,
+      "id": "7607547794739529744",
+      "score": 64,
+      "title": "TONGUE",
+      "video_count": 101
+     },
+     {
+      "artist": "Mac DeMarco",
+      "distance": 0.6002,
+      "fresh": true,
+      "id": "6786709074546280450",
+      "score": 92,
+      "title": "My Kind of Woman - Instrumental",
+      "video_count": 198000
+     }
+    ],
+    "distance": 0.2098,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7649831955442141185",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "55.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 3000000",
+       "points": 60
+      }
+     },
+     "passes": true,
+     "total": 100
+    },
+    "stable_id": "7684150368565250075",
+    "title": "Paper Moon Static"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 15
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot 'A figure of golden light standing inside a vast do' paired with 'Paper Moon Static' for caption_list_title_v1.",
+    "total": 50
+   },
+   "visual": {
+    "band_busy": 0.0725,
+    "candidates": [
+     {
+      "band_busy": 0.0725,
+      "height": 1280,
+      "pin_id": "908953138012544463",
+      "query": "doorway golden",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['doorway', 'standing', 'the'] (+12)",
+         "points": 12
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 120.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 68,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.142,
+         "rows": [
+          0,
+          91
+         ]
+        },
+        {
+         "fraction_of_height": 0.153,
+         "rows": [
+          542,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.13,
+         "rows": [
+          0,
+          83
+         ]
+        },
+        {
+         "fraction_of_height": 0.148,
+         "rows": [
+          545,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.145,
+         "rows": [
+          0,
+          93
+         ]
+        },
+        {
+         "fraction_of_height": 0.155,
+         "rows": [
+          541,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 91), (542, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         91
+        ],
+        [
+         542,
+         640
+        ],
+        [
+         0,
+         83
+        ],
+        [
+         545,
+         640
+        ],
+        [
+         0,
+         93
+        ],
+        [
+         541,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0511,
+      "height": 1280,
+      "pin_id": "908953138012242435",
+      "query": "doorway golden",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['doorway', 'standing', 'the'] (+12)",
+         "points": 12
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 120.0s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 68,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.163,
+         "rows": [
+          0,
+          104
+         ]
+        },
+        {
+         "fraction_of_height": 0.169,
+         "rows": [
+          532,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.164,
+         "rows": [
+          0,
+          105
+         ]
+        },
+        {
+         "fraction_of_height": 0.169,
+         "rows": [
+          532,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.164,
+         "rows": [
+          0,
+          105
+         ]
+        },
+        {
+         "fraction_of_height": 0.17,
+         "rows": [
+          531,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 104), (532, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         104
+        ],
+        [
+         532,
+         640
+        ],
+        [
+         0,
+         105
+        ],
+        [
+         532,
+         640
+        ],
+        [
+         0,
+         105
+        ],
+        [
+         531,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1062,
+      "height": 1280,
+      "pin_id": "991143830504312923",
+      "query": "person in coat standing in apartment",
+      "query_lane": "literal",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['bedroom', 'cosy', 'home'] (+15); scene words ['door', 'the', 'with'] (+12)",
+         "points": 27
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 18.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 83,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0914,
+      "height": 1280,
+      "pin_id": "552535448057010637",
+      "query": "doorway golden hour",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words ['the'] (+4)",
+         "points": 4
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 20.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 60,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0359,
+      "height": 1280,
+      "pin_id": "367324913372339048",
+      "query": "doorway golden hour",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.7s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.095,
+         "rows": [
+          17,
+          78
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(17, 78)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         17,
+         78
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0559,
+      "height": 1280,
+      "pin_id": "942519028252587407",
+      "query": "golden hour",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 39.7s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0094,
+      "height": 1280,
+      "pin_id": "10062799162681629",
+      "query": "golden hour",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 89.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.381,
+         "rows": [
+          326,
+          570
+         ]
+        },
+        {
+         "fraction_of_height": 0.438,
+         "rows": [
+          360,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.263,
+         "rows": [
+          373,
+          541
+         ]
+        },
+        {
+         "fraction_of_height": 0.1,
+         "rows": [
+          576,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(326, 570), (360, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         326,
+         570
+        ],
+        [
+         360,
+         640
+        ],
+        [
+         373,
+         541
+        ],
+        [
+         576,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.01,
+      "height": 1280,
+      "pin_id": "1039979738954738254",
+      "query": "golden hour",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['aesthetic'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.0s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 58,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0276,
+      "height": 1280,
+      "pin_id": "36380709483172925",
+      "query": "golden hour",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 30.2s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.292,
+         "rows": [
+          0,
+          187
+         ]
+        },
+        {
+         "fraction_of_height": 0.097,
+         "rows": [
+          236,
+          298
+         ]
+        },
+        {
+         "fraction_of_height": 0.323,
+         "rows": [
+          0,
+          207
+         ]
+        },
+        {
+         "fraction_of_height": 0.322,
+         "rows": [
+          0,
+          206
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 187), (236, 298)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         187
+        ],
+        [
+         236,
+         298
+        ],
+        [
+         0,
+         207
+        ],
+        [
+         0,
+         206
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0066,
+      "height": 1280,
+      "pin_id": "90564642500629730",
+      "query": "golden hour",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 20.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.341,
+         "rows": [
+          0,
+          218
+         ]
+        },
+        {
+         "fraction_of_height": 0.105,
+         "rows": [
+          573,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.323,
+         "rows": [
+          0,
+          207
+         ]
+        },
+        {
+         "fraction_of_height": 0.156,
+         "rows": [
+          540,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.33,
+         "rows": [
+          0,
+          211
+         ]
+        },
+        {
+         "fraction_of_height": 0.106,
+         "rows": [
+          447,
+          515
+         ]
+        },
+        {
+         "fraction_of_height": 0.172,
+         "rows": [
+          530,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 218), (573, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         218
+        ],
+        [
+         573,
+         640
+        ],
+        [
+         0,
+         207
+        ],
+        [
+         540,
+         640
+        ],
+        [
+         0,
+         211
+        ],
+        [
+         447,
+         515
+        ],
+        [
+         530,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Trippy",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0538,
+     "motion": 0.0499,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "908953138012544463",
+    "pin_url": "https://www.pinterest.com/pin/908953138012544463/",
+    "query": "doorway golden",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "doorway golden hour",
+      "returned": 25
+     },
+     {
+      "kept": 13,
+      "lane": "metaphor",
+      "query": "doorway golden",
+      "returned": 25
+     },
+     {
+      "kept": 6,
+      "lane": "metaphor",
+      "query": "doorway hour",
+      "returned": 25
+     },
+     {
+      "kept": 24,
+      "lane": "metaphor",
+      "query": "golden hour",
+      "returned": 24
+     },
+     {
+      "kept": 21,
+      "lane": "adjacent",
+      "query": "hand on door frame coat half",
+      "returned": 21
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "person waving goodbye in hallway at",
+      "returned": 0
+     },
+     {
+      "kept": 12,
+      "lane": "literal",
+      "query": "person in coat standing in apartment",
+      "returned": 19
+     }
+    ],
+    "rejected": [
+     {
+      "id": "500110733645122504",
+      "why": "on-screen text: 'C; r'"
+     },
+     {
+      "id": "748371663119584137",
+      "why": "too short 7.97s for 12.2s"
+     },
+     {
+      "id": "434878907792606764",
+      "why": "on-screen text: 'BLOSSOMS HOUSE; FLOWERS; OFFLOWERS; oO; \u201cTHE LANGU'"
+     },
+     {
+      "id": "1099300590366973940",
+      "why": "unusable crop 720x720"
+     },
+     {
+      "id": "168392473566562414",
+      "why": "on-screen text: 'TRAIN LIKE AN ATHLETEATHOME; TRAIN LIKEAN ATHLETEA'"
+     },
+     {
+      "id": "1069393874017398324",
+      "why": "on-screen text: 'Ready; and; apartment; entrance?; feel'"
+     },
+     {
+      "id": "996702961290094768",
+      "why": "unusable crop 748x418"
+     },
+     {
+      "id": "1020276490605742148",
+      "why": "on-screen text: 'A'"
+     },
+     {
+      "id": "21884748185618032",
+      "why": "too short 10.07s for 12.2s"
+     },
+     {
+      "id": "211174978329859",
+      "why": "on-screen text: 'TheBrainAndTheBrawn.com; \u4e09'"
+     },
+     {
+      "id": "773563673525043209",
+      "why": "on-screen text: 'CABINET; ENTRANCE; can also put some flowers; conv'"
+     },
+     {
+      "id": "704109723036759065",
+      "why": "too short 8.24s for 12.2s"
+     },
+     {
+      "id": "351912465463726",
+      "why": "on-screen text: 'EAT OR SK NAP; Y; alcove shelvin; alcove shelving;'"
+     },
+     {
+      "id": "5207355812311886",
+      "why": "on-screen text: 'C; KC'"
+     },
+     {
+      "id": "868842953092138544",
+      "why": "too short 11.07s for 12.2s"
+     },
+     {
+      "id": "465630048991164020",
+      "why": "too short 7.36s for 12.2s"
+     },
+     {
+      "id": "748371663119166968",
+      "why": "too short 9.97s for 12.2s"
+     },
+     {
+      "id": "748371663124214334",
+      "why": "too short 7.97s for 12.2s"
+     },
+     {
+      "id": "126382333287830364",
+      "why": "too short 6.73s for 12.2s"
+     },
+     {
+      "id": "751116044157195807",
+      "why": "too short 5.6s for 12.2s"
+     },
+     {
+      "id": "4151824651468782",
+      "why": "unusable crop 576x1032"
+     },
+     {
+      "id": "378724649918654568",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "1037024251694295923",
+      "why": "too short 10.06s for 12.2s"
+     },
+     {
+      "id": "351912466207310",
+      "why": "on-screen text: 'ATHENS; MARVEL; \u5174; \u54c1'"
+     },
+     {
+      "id": "281543725306892",
+      "lane": "adjacent",
+      "query": "hand on door frame coat half",
+      "why": "advertising call-to-action: 'discount'"
+     },
+     {
+      "id": "281543725473225",
+      "why": "too short 9.0s for 12.2s"
+     },
+     {
+      "id": "337981147044740130",
+      "why": "too short 10.98s for 12.2s"
+     },
+     {
+      "id": "1059682987322431169",
+      "why": "on-screen text: '6 clusters; Add a water-filled; Balloon Arch; PARZ'"
+     },
+     {
+      "id": "328481366596120803",
+      "why": "on-screen text: 'O; for my slick back haters'"
+     },
+     {
+      "id": "1039416789004065371",
+      "why": "too short 10.01s for 12.2s"
+     },
+     {
+      "id": "772789617356203799",
+      "lane": "metaphor",
+      "query": "doorway golden",
+      "why": "advertising call-to-action: 'link in bio'"
+     },
+     {
+      "id": "1063623637005140506",
+      "why": "on-screen text: 'Orwnadise'"
+     },
+     {
+      "id": "748371663119184639",
+      "why": "too short 9.97s for 12.2s"
+     },
+     {
+      "id": "223913412719150549",
+      "why": "too short 6.03s for 12.2s"
+     },
+     {
+      "id": "1010495235113144856",
+      "why": "too short 9.7s for 12.2s"
+     },
+     {
+      "id": "1031254014643904023",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "770748923777713332",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "140806234181274",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "825355069253363239",
+      "why": "on-screen text: 'A-59; I doubled the size of; cOSr; my closet for U'"
+     },
+     {
+      "id": "325103666868788387",
+      "why": "on-screen text: 'H'"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words ['doorway', 'standing', 'the'] (+12)",
+       "points": 12
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 120.0s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 68,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.142,
+       "rows": [
+        0,
+        91
+       ]
+      },
+      {
+       "fraction_of_height": 0.153,
+       "rows": [
+        542,
+        640
+       ]
+      },
+      {
+       "fraction_of_height": 0.13,
+       "rows": [
+        0,
+        83
+       ]
+      },
+      {
+       "fraction_of_height": 0.148,
+       "rows": [
+        545,
+        640
+       ]
+      },
+      {
+       "fraction_of_height": 0.145,
+       "rows": [
+        0,
+        93
+       ]
+      },
+      {
+       "fraction_of_height": 0.155,
+       "rows": [
+        541,
+        640
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(0, 91), (542, 640)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       0,
+       91
+      ],
+      [
+       542,
+       640
+      ],
+      [
+       0,
+       83
+      ],
+      [
+       545,
+       640
+      ],
+      [
+       0,
+       93
+      ],
+      [
+       541,
+       640
+      ]
+     ]
+    },
+    "title": "A figure of golden light standing inside a vast doorway of sacred geometry"
+   }
+  },
+  "audio": {
+   "bytes": 895821,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261123T203926Z-a7323f/assets/track_7684150368565250075.m4a",
+   "pin_url": null,
+   "sha256": "efaf33c8a64ef4e057dc3f580b4585a495b96aaa3e183eb9bfaab5c05a3965e7",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7684150368565250075",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 57.2,
+    "high": 0.1,
+    "mid": 42.7
+   },
+   "duration_s": 55.01,
+   "file": "track_7684150368565250075.m4a",
+   "key_estimate": "C major",
+   "loudness_curve_db": [
+    -22.8,
+    -22.5,
+    -22.1
+   ],
+   "onset_density_per_s": 3.2,
+   "peak_db": -10.5,
+   "rms_db": -22.4,
+   "spectral_centroid_hz": 1176.9,
+   "tempo_bpm": 136.0,
+   "zero_crossing_rate": 0.0513
+  },
+  "background": {
+   "bytes": 19008734,
+   "creator": "Trippy",
+   "path": "/home/runner/work/_temp/beast-scratch/20261123T203926Z-a7323f/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/908953138012544463/",
+   "sha256": "417479cbb7f519fc60d7afc668c3fd2aa812032000153506b52423687466fd84",
+   "source": "pinterest",
+   "stable_id": "908953138012544463",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "making and maintaining friends",
+    "emotional_tension": "Wants to leave warmly but keeps restarting the goodbye so it doesn't land flat",
+    "observable_behaviour": "One foot in the hallway, hand still on the door frame, leaning back in to add one more 'oh also\u2014'",
+    "private_worry": "That walking out fast looks rude and lingering looks needy",
+    "situation": "Sunday 4pm, friend's front doorway, coat half on, after saying bye twice already"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 5,
+    "critical_min": 5.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Coat half on, hand on frame\" / \"Add one more 'oh also\u2014'\" / \"Wave again from the hallway\" \u2014 exact doorway choreography; payoff \"didn't want the warm bit to end\" names the tension without shaming.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Nothing significant failed. Minor: item 1 ('Rehearse I should go twice') is more inner-thought than observable action; could swap for a physical tell at the door.",
+    "scene_specificity": 5,
+    "sendability_who": "Someone sends this to their closest friend right after a long goodbye, caption 'this was literally me at yours an hour ago'.",
+    "shareability": 5,
+    "supporting_min": 5.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 4,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True"
+     ]
+    }
+   ],
+   "topic_id": "doorway-goodbye-loop"
+  },
+  "delivery": {
+   "at": "2026-11-23T20:52:51Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -3.69,
+   "yavg_delta": -74.4
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 21.43,
+    "yavg": 22.6
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 10.51,
+   "yavg": 30.6
+  },
+  "output": {
+   "bytes": 7483451,
+   "duration_s": 11.977,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261123T203926Z-a7323f.mp4",
+   "sha256": "0ac18c7a2cc8ad246816c84950d6b3701a657c1f79475786caa523e299f81b6d"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7684150368565250075",
+    "title": "Paper Moon Static"
+   },
+   "background_query": "person in coat standing in apartment doorway holding door frame",
+   "caption": "7 things you do when you already said bye twice in the doorway:\n1. Rehearse 'I should go' twice\n2. Coat half on, hand on frame\n3. Add one more 'oh also\u2014'\n4. Laugh at the third goodbye\n5. Wave again from the hallway\n6. Text 'home safe, had fun'\n7. Replay the exit on the bus",
+   "closing": "You weren't stuck, you just didn't want the warm bit to end.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A light, looping beat with a soft, lingering tail that makes the doorway goodbye stretch a second too long.",
+     "tiktok_query": "indie",
+     "tiktok_search_query": "indie"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "doorway golden hour",
+     "pinterest_search_query": "doorway golden hour",
+     "semantic_analysis": "A warm, lingering goodbye unfolding in soft doorway light, suspended between staying a little longer and finally stepping out."
+    }
+   },
+   "headline": "7 things you do when you already said bye twice in the doorway",
+   "list_items": [
+    "Rehearse 'I should go' twice",
+    "Coat half on, hand on frame",
+    "Add one more 'oh also\u2014'",
+    "Laugh at the third goodbye",
+    "Wave again from the hallway",
+    "Text 'home safe, had fun'",
+    "Replay the exit on the bus"
+   ],
+   "provenance": {
+    "creator": "Trippy",
+    "pin_id": "908953138012544463",
+    "pin_url": "https://www.pinterest.com/pin/908953138012544463/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 23 < 92): warm yellow"
+   },
+   "titleLines": [
+    "7 things you do",
+    "when you already",
+    "said bye twice",
+    "in the doorway"
+   ],
+   "topic_id": "doorway-goodbye-loop"
+  },
+  "publish": {
+   "alt_text": "Person in coat standing in apartment doorway holding door frame. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-23T20:53:56Z",
+   "caption": "7 things you do when you already said bye twice in the doorway:\n1. Rehearse 'I should go' twice\n2. Coat half on, hand on frame\n3. Add one more 'oh also\u2014'\n4. Laugh at the third goodbye\n5. Wave again from the hallway\n6. Text 'home safe, had fun'\n7. Replay the exit on the bus\n\nYou weren't stuck, you just didn't want the warm bit to end.",
+   "channel": "instagram",
+   "container_id": "17920829823538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "18108380684421156",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://d.uguu.se/ijUEZutjJEQd.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -3.69,
+    "yavg_delta": -74.4
+   },
+   "duration_s": 11.977,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 11.977,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261123T203926Z-a7323f/caption_list_title_v1-live-20261123T203926Z-a7323f.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": false,
+    "moov_tail": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 7483451,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 10.51,
+    "yavg": 30.6
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0741,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 56.6
+  },
+  "rendered_at": "2026-11-23T20:52:47Z",
+  "run_id": "20261123T203926Z-a7323f",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "She has already said bye twice but keeps lingering in the doorway, finding one more thing to say before she actually leaves.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person in coat standing in apartment",
+     "hand on door frame coat half",
+     "person waving goodbye in hallway at"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.2098,
+    "keywords": [
+     {
+      "keyword": "indie",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 100,
+    "stable_id": "7684150368565250075",
+    "title": "Paper Moon Static"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.2098
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 5,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 4,
+    "ok": true,
+    "topic_id": "doorway-goodbye-loop"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "indie",
+    "vendor": "meta-api",
+    "why": "A light, looping beat with a soft, lingering tail that makes the doorway goodbye stretch a second too long."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "doorway golden hour",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261123T203926Z-a7323f.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot 'A figure of golden light standing inside a vast do' paired with 'Paper Moon Static' for caption_list_title_v1.",
+    "score": 50
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 21.43,
+     "yavg": 22.6
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "908953138012544463",
+    "query": "doorway golden",
+    "review_status": "accept",
+    "score": 68,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "A figure of golden light standing inside a vast doorway of sacred geometry"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 56.6
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 11.977,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261123T203926Z-a7323f/caption_list_title_v1-live-20261123T203926Z-a7323f.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": false,
+     "moov_tail": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 7483451,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 23 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -3.69,
+     "yavg_delta": -74.4
+    },
+    "measured": {
+     "sat": 10.51,
+     "yavg": 30.6
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0741,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "doorway-goodbye-loop"
  }
 ]
