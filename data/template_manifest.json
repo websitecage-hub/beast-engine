@@ -45797,5 +45797,1576 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "doorway-goodbye-loop"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.35,
+   "audio_intent": {
+    "arousal": 0.25,
+    "avoid": [
+     "loud upbeat pop",
+     "dramatic swelling strings",
+     "comedy sound effects",
+     "fast trap beat",
+     "spoken motivational vocals"
+    ],
+    "emotional_role": "hold the quiet waiting without turning it dramatic, a soft pulse under the list",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "gentle synth pad"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft",
+     "hazy",
+     "muffled"
+    ],
+    "trend_hashtags": [
+     "#latenight",
+     "#quietmoments"
+    ],
+    "trend_keywords": [
+     "late night lofi",
+     "quiet night piano"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-24T03:15:17Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "group-chat-three-dots",
+   "core_human_moment": "She is lying in bed late at night stuck waiting for a reply, rereading the plan and rehearsing what to say instead of sleeping.",
+   "degraded": false,
+   "emotional_primary": "restless",
+   "emotional_secondary": "wistful",
+   "format_id": "caption_list_title_v1",
+   "human_action": "holding phone in bed and staring at the screen, locking it then picking it up again",
+   "humour": 0.2,
+   "intentional_contrast": null,
+   "literal_scene": "A hand holding a glowing phone in a dark bedroom, thumb hovering over the keyboard while the screen lights a pillow and blanket.",
+   "literalness": "literal",
+   "motion_intent": "almost still, only small thumb movement and slow screen glow shift",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "soft blue screen glow",
+    "dark warm bedding"
+   ],
+   "rationale": "The bed-at-night phone shot makes the waiting literal and ordinary, and the soft, sparse music keeps it tender and a little funny instead of heavy.",
+   "scene_entities": [
+    "smartphone",
+    "pillow",
+    "bedroom"
+   ],
+   "schema_version": "1.0",
+   "setting": "in bed in a bedroom",
+   "tension": 0.6,
+   "text_safe_zone": "centre band 41-59% vertical, keep phone glow below title and top and bottom clear",
+   "time_of_day": "late night",
+   "valence": -0.2,
+   "video_queries": [
+    "hand holding phone in bed at night",
+    "person lying in bed looking at phone screen",
+    "dark bedroom ceiling at night from bed"
+   ],
+   "visual_mood": [
+    "quiet",
+    "dim"
+   ],
+   "visual_profile_target": {
+    "luma": "105 +/- 14",
+    "saturation": "14.2 +/- 5"
+   },
+   "warmth": 0.3
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "thereal5an",
+    "candidates": [
+     {
+      "artist": "dxxm & Raingen",
+      "distance": 0.5724,
+      "fresh": true,
+      "id": "7652939482376194064",
+      "score": 74,
+      "title": "get away (Slowed)",
+      "video_count": 5319
+     },
+     {
+      "artist": "Tollan Kim\ud83c\udf38",
+      "distance": 0.4772,
+      "fresh": false,
+      "id": "7072513628145977346",
+      "score": 80,
+      "title": "Aesthetic",
+      "video_count": 23300000
+     },
+     {
+      "artist": "thereal5an",
+      "distance": 0.6663,
+      "fresh": true,
+      "id": "7484894439233095681",
+      "score": 92,
+      "title": "LOVE GALORE - Sped Up",
+      "video_count": 251400
+     },
+     {
+      "artist": "antentmusic",
+      "distance": 0.3381,
+      "fresh": false,
+      "id": "7192031803832551425",
+      "score": 64,
+      "title": "hope to see you again",
+      "video_count": 81800
+     }
+    ],
+    "distance": 0.6663,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "7270043916493637633",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 251400",
+       "points": 52
+      }
+     },
+     "passes": true,
+     "total": 92
+    },
+    "stable_id": "7484894439233095681",
+    "title": "LOVE GALORE - Sped Up"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 33
+     }
+    },
+    "passes": true,
+    "rationale": "emotional lane shot 'Sleeping in the Campervan with Heavy Rain and Thun' paired with 'LOVE GALORE - Sped Up' for caption_list_title_v1.",
+    "total": 68
+   },
+   "visual": {
+    "band_busy": 0.0211,
+    "candidates": [
+     {
+      "band_busy": 0.0211,
+      "height": 1280,
+      "pin_id": "815151601324898600",
+      "query": "dark bedroom ceiling at night from",
+      "query_lane": "emotional",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['cozy', 'night', 'rain'] (+15); scene words ['and', 'the', 'while'] (+12)",
+         "points": 27
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 17.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 83,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0354,
+      "height": 1920,
+      "pin_id": "43347215156399286",
+      "query": "dark bedroom ceiling at night from",
+      "query_lane": "emotional",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['lights'] (+5); scene words ['lights'] (+4)",
+         "points": 9
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "1080x1920, 19.5s (need 12.2s)",
+         "points": 20
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 69,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.298,
+         "rows": [
+          0,
+          191
+         ]
+        },
+        {
+         "fraction_of_height": 0.123,
+         "rows": [
+          192,
+          271
+         ]
+        },
+        {
+         "fraction_of_height": 0.22,
+         "rows": [
+          298,
+          439
+         ]
+        },
+        {
+         "fraction_of_height": 0.123,
+         "rows": [
+          498,
+          577
+         ]
+        },
+        {
+         "fraction_of_height": 0.091,
+         "rows": [
+          582,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.361,
+         "rows": [
+          0,
+          231
+         ]
+        },
+        {
+         "fraction_of_height": 0.539,
+         "rows": [
+          295,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.35,
+         "rows": [
+          0,
+          224
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 191), (192, 271)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         191
+        ],
+        [
+         192,
+         271
+        ],
+        [
+         298,
+         439
+        ],
+        [
+         498,
+         577
+        ],
+        [
+         582,
+         640
+        ],
+        [
+         0,
+         231
+        ],
+        [
+         295,
+         640
+        ],
+        [
+         0,
+         224
+        ]
+       ]
+      },
+      "width": 1080
+     },
+     {
+      "band_busy": 0.0006,
+      "height": 1280,
+      "pin_id": "1054053487768429141",
+      "query": "midnight phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 19.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.32,
+         "rows": [
+          76,
+          281
+         ]
+        },
+        {
+         "fraction_of_height": 0.294,
+         "rows": [
+          0,
+          188
+         ]
+        },
+        {
+         "fraction_of_height": 0.202,
+         "rows": [
+          194,
+          323
+         ]
+        },
+        {
+         "fraction_of_height": 0.087,
+         "rows": [
+          0,
+          56
+         ]
+        },
+        {
+         "fraction_of_height": 0.381,
+         "rows": [
+          83,
+          327
+         ]
+        },
+        {
+         "fraction_of_height": 0.123,
+         "rows": [
+          388,
+          467
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(76, 281), (0, 188)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         76,
+         281
+        ],
+        [
+         0,
+         188
+        ],
+        [
+         194,
+         323
+        ],
+        [
+         0,
+         56
+        ],
+        [
+         83,
+         327
+        ],
+        [
+         388,
+         467
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.1342,
+      "height": 1280,
+      "pin_id": "445363850669082595",
+      "query": "midnight phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.6s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0283,
+      "height": 1280,
+      "pin_id": "944770828097672765",
+      "query": "midnight phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 30.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.089,
+         "rows": [
+          583,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.108,
+         "rows": [
+          571,
+          640
+         ]
+        },
+        {
+         "fraction_of_height": 0.133,
+         "rows": [
+          555,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(583, 640), (571, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         583,
+         640
+        ],
+        [
+         571,
+         640
+        ],
+        [
+         555,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0075,
+      "height": 1280,
+      "pin_id": "935482153865479744",
+      "query": "midnight phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 34.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0154,
+      "height": 1280,
+      "pin_id": "872572496620749046",
+      "query": "midnight phone",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 14.3s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.114,
+         "rows": [
+          448,
+          521
+         ]
+        },
+        {
+         "fraction_of_height": 0.233,
+         "rows": [
+          491,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(448, 521), (491, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         448,
+         521
+        ],
+        [
+         491,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0108,
+      "height": 1280,
+      "pin_id": "5770305768511856",
+      "query": "midnight phone",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.2s (need 12.2s)",
+         "points": 13
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 53,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0286,
+      "height": 1280,
+      "pin_id": "825073594272776686",
+      "query": "midnight glow",
+      "query_lane": "metaphor",
+      "review_status": "accept",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words ['blue hour'] (+5); scene words [] (+0)",
+         "points": 5
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.5s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": true,
+       "review_status": "accept",
+       "total": 61,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.423,
+         "rows": [
+          369,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(369, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         369,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0041,
+      "height": 1280,
+      "pin_id": "373446994120317076",
+      "query": "phone glow",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 21.1s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.18,
+         "rows": [
+          0,
+          115
+         ]
+        },
+        {
+         "fraction_of_height": 0.192,
+         "rows": [
+          517,
+          640
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 115), (517, 640)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         115
+        ],
+        [
+         517,
+         640
+        ]
+       ]
+      },
+      "width": 720
+     }
+    ],
+    "creator": "Som de Chuva",
+    "flags": [],
+    "lane_expansions": 0,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0273,
+     "motion": 0.0186,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": true,
+    "pin_id": "815151601324898600",
+    "pin_url": "https://www.pinterest.com/pin/815151601324898600/",
+    "query": "dark bedroom ceiling at night from",
+    "query_lane": "emotional",
+    "query_log": [
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "midnight phone glow",
+      "returned": 25
+     },
+     {
+      "kept": 14,
+      "lane": "metaphor",
+      "query": "midnight phone",
+      "returned": 25
+     },
+     {
+      "kept": 17,
+      "lane": "metaphor",
+      "query": "midnight glow",
+      "returned": 25
+     },
+     {
+      "kept": 20,
+      "lane": "metaphor",
+      "query": "phone glow",
+      "returned": 25
+     },
+     {
+      "kept": 23,
+      "lane": "adjacent",
+      "query": "person lying in bed looking at",
+      "returned": 25
+     },
+     {
+      "kept": 24,
+      "lane": "emotional",
+      "query": "dark bedroom ceiling at night from",
+      "returned": 24
+     },
+     {
+      "kept": 20,
+      "lane": "literal",
+      "query": "hand holding phone in bed at",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "1090504497310130514",
+      "why": "on-screen text: 'FITS 4.5-12.9 INCHES; HANDS-FREEIN BED; PHONE IN B'"
+     },
+     {
+      "id": "169166529750330538",
+      "lane": "literal",
+      "query": "hand holding phone in bed at",
+      "why": "commerce/affiliate domain: 'link.amazon'"
+     },
+     {
+      "id": "492159065548349370",
+      "why": "on-screen text: '+; + Add ending; 00:02; 00:03/00:0300; B'"
+     },
+     {
+      "id": "280630620526685535",
+      "why": "on-screen text: 'C; bestwallpapers.net; \u5927U'"
+     },
+     {
+      "id": "960111214324392247",
+      "why": "on-screen text: 'C; O; P'"
+     },
+     {
+      "id": "961026007997661807",
+      "why": "on-screen text: 'F; IXNOK; Mobile SolutionPvt Ltd; MobileSolutionPv'"
+     },
+     {
+      "id": "1024076402791103440",
+      "lane": "literal",
+      "query": "hand holding phone in bed at",
+      "why": "advertising call-to-action: 'Link in Bio'"
+     },
+     {
+      "id": "1054405331523087691",
+      "why": "unusable crop 720x576"
+     },
+     {
+      "id": "467600373831184238",
+      "why": "too short 8.96s for 12.2s"
+     },
+     {
+      "id": "3799980930315187",
+      "why": "too short 7.13s for 12.2s"
+     },
+     {
+      "id": "768497123917557459",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "1148136498784985707",
+      "why": "too short 10.01s for 12.2s"
+     },
+     {
+      "id": "107030928641360935",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "617696905167799635",
+      "why": "too short 6.0s for 12.2s"
+     },
+     {
+      "id": "851602610805337200",
+      "why": "unusable crop 640x640"
+     },
+     {
+      "id": "970525788430211654",
+      "why": "too short 10.08s for 12.2s"
+     },
+     {
+      "id": "583427326734742384",
+      "why": "too short 5.17s for 12.2s"
+     },
+     {
+      "id": "796996465349722182",
+      "why": "unusable crop 640x1136"
+     },
+     {
+      "id": "1039416789001273625",
+      "why": "too short 10.47s for 12.2s"
+     },
+     {
+      "id": "1039416789000448712",
+      "why": "too short 10.47s for 12.2s"
+     },
+     {
+      "id": "806003664582885854",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "1034772451891022297",
+      "why": "on-screen text: 'Scroll.; Swipe.; T; Tap.; Wasted meaning.'"
+     },
+     {
+      "id": "1039416789003308591",
+      "why": "too short 10.47s for 12.2s"
+     },
+     {
+      "id": "294000681937655526",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "1087267535063521941",
+      "why": "too short 6.04s for 12.2s"
+     },
+     {
+      "id": "901001469178705578",
+      "why": "used inside the no-repeat window"
+     },
+     {
+      "id": "189432728071797180",
+      "why": "too short 10.03s for 12.2s"
+     },
+     {
+      "id": "1033716920703488853",
+      "why": "on-screen text: 'AUGUST31|THURSDAY7:OOPMPST; CHRONIC PAIN; CHRONIC '"
+     },
+     {
+      "id": "1124211125761760509",
+      "why": "too short 10.06s for 12.2s"
+     },
+     {
+      "id": "80150068360451947",
+      "why": "unusable crop 216x390"
+     },
+     {
+      "id": "310889180546243375",
+      "why": "too short 6.62s for 12.2s"
+     },
+     {
+      "id": "60517188735385871",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "871798440357143379",
+      "why": "too short 7.2s for 12.2s"
+     },
+     {
+      "id": "188236459416151728",
+      "why": "unusable crop 540x960"
+     },
+     {
+      "id": "283375001552847641",
+      "why": "on-screen text: 'T'"
+     },
+     {
+      "id": "605593481176903638",
+      "why": "on-screen text: '\u798f'"
+     },
+     {
+      "id": "666673551104459131",
+      "why": "unusable crop 1280x960"
+     },
+     {
+      "id": "844493676669064",
+      "why": "too short 7.04s for 12.2s"
+     },
+     {
+      "id": "726064771196950590",
+      "why": "too short 8.0s for 12.2s"
+     },
+     {
+      "id": "1125968710108816",
+      "why": "too short 10.47s for 12.2s"
+     }
+    ],
+    "review_status": "accept",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words ['cozy', 'night', 'rain'] (+15); scene words ['and', 'the', 'while'] (+12)",
+       "points": 27
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 17.8s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": true,
+     "review_status": "accept",
+     "total": 83,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [],
+     "reason": "no persistent glyph-like band",
+     "text_suspected": false,
+     "uniform": []
+    },
+    "title": "Sleeping in the Campervan with Heavy Rain and Thunder at Night"
+   }
+  },
+  "audio": {
+   "bytes": 1006884,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261124T031314Z-58bc15/assets/track_7484894439233095681.m4a",
+   "pin_url": null,
+   "sha256": "6561511e0b7052ee2c978fc000192dec164cb59854131f4f1d500ab838400144",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7484894439233095681",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 74.6,
+    "high": 1.3,
+    "mid": 24.1
+   },
+   "duration_s": 60.0,
+   "file": "track_7484894439233095681.m4a",
+   "key_estimate": "D# minor",
+   "loudness_curve_db": [
+    -20.8,
+    -21.4,
+    -24.2
+   ],
+   "onset_density_per_s": 3.72,
+   "peak_db": -9.3,
+   "rms_db": -21.9,
+   "spectral_centroid_hz": 2123.0,
+   "tempo_bpm": 99.4,
+   "zero_crossing_rate": 0.0748
+  },
+  "background": {
+   "bytes": 8575584,
+   "creator": "Som de Chuva",
+   "path": "/home/runner/work/_temp/beast-scratch/20261124T031314Z-58bc15/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/815151601324898600/",
+   "sha256": "ba62f2b00b9cb31b9d3fa56c7319771ab83b03c8debd3198e75f1271e2d8aab1",
+   "source": "pinterest",
+   "stable_id": "815151601324898600",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 2,
+   "audience_moment": {
+    "audience_cluster": "texting and group chats",
+    "emotional_tension": "You want to sound light and easy to be around, but every draft feels like it gives you away.",
+    "observable_behaviour": "types 'I'm good with anything!', deletes it, types 'ooh yes!!', deletes that too, then just watches the chat",
+    "private_worry": "that easygoing makes you look like you have no opinions, and having an opinion makes you look difficult",
+    "situation": "10:47pm, in bed, group chat with three friends deciding Saturday plans, your name just popped up as typing"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 4,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Type a reply, delete it unsent\" / \"Watch their three dots blink\" / \"Rehearse your Saturday excuse in bed\" \u2014 concrete drafting behaviours; hook \"three dots talk for you\" is fresh phrasing.",
+    "format_fit": 5,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 4,
+    "rewrite_notes": "Items 3 and 4 both = waiting on the phone; item 5 repeats the checking. Missing the specific 'sounding easy' draft ('I'm good with anything!'). Tighten so all six are distinct.",
+    "scene_specificity": 4,
+    "sendability_who": "A friend sends this to the group chat it describes, or to one friend who always takes forever to reply to plans, saying 'literally you'.",
+    "shareability": 4,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=False",
+      "turn=True"
+     ]
+    },
+    {
+     "attempt": 2,
+     "level": 3,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=True",
+      "the headline itself carries no concrete anchor"
+     ]
+    }
+   ],
+   "topic_id": "group-chat-three-dots"
+  },
+  "delivery": {
+   "at": "2026-11-24T03:22:19Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -2.6,
+   "yavg_delta": -40.9
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 11.42,
+    "yavg": 60.9
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 11.6,
+   "yavg": 64.1
+  },
+  "output": {
+   "bytes": 11431365,
+   "duration_s": 12.0,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261124T031314Z-58bc15.mp4",
+   "sha256": "7b3a8d44adeace10c13ff41cea577ebe93cf442f54574fdba4bbe63c339afe6c"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7484894439233095681",
+    "title": "LOVE GALORE - Sped Up"
+   },
+   "background_query": "hand holding phone in bed at night",
+   "caption": "6 things you do when the three dots talk for you:\n1. Reread the Saturday plan twice\n2. Type a reply, delete it unsent\n3. Watch their three dots blink\n4. Lock the phone, pick it up again\n5. Check at 11pm if they noticed\n6. Rehearse your Saturday excuse in bed",
+   "closing": "You never sent a word and still spent the evening in the conversation.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A taut, looping late-night pulse that stretches each pause between the three dots into held-breath suspense without ever resolving.",
+     "tiktok_query": "cinematic",
+     "tiktok_search_query": "cinematic"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "midnight phone glow",
+     "pinterest_search_query": "midnight phone glow",
+     "semantic_analysis": "A hushed late-night stillness where soft screen light keeps a quiet room suspended in waiting."
+    }
+   },
+   "headline": "6 things you do when the three dots talk for you",
+   "list_items": [
+    "Reread the Saturday plan twice",
+    "Type a reply, delete it unsent",
+    "Watch their three dots blink",
+    "Lock the phone, pick it up again",
+    "Check at 11pm if they noticed",
+    "Rehearse your Saturday excuse in bed"
+   ],
+   "provenance": {
+    "creator": "Som de Chuva",
+    "pin_id": "815151601324898600",
+    "pin_url": "https://www.pinterest.com/pin/815151601324898600/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 61 < 92): warm yellow"
+   },
+   "titleLines": [
+    "6 things you do",
+    "when the three dots",
+    "talk for you"
+   ],
+   "topic_id": "group-chat-three-dots"
+  },
+  "publish": {
+   "alt_text": "Hand holding phone in bed at night. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-24T03:23:07Z",
+   "caption": "6 things you do when the three dots talk for you:\n1. Reread the Saturday plan twice\n2. Type a reply, delete it unsent\n3. Watch their three dots blink\n4. Lock the phone, pick it up again\n5. Check at 11pm if they noticed\n6. Rehearse your Saturday excuse in bed\n\nYou never sent a word and still spent the evening in the conversation.",
+   "channel": "instagram",
+   "container_id": "17920867137538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "17981456400137732",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://n.uguu.se/vNfCstTLqrgG.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -2.6,
+    "yavg_delta": -40.9
+   },
+   "duration_s": 12.0,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 12.0,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261124T031314Z-58bc15/caption_list_title_v1-live-20261124T031314Z-58bc15.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 11431365,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 11.6,
+    "yavg": 64.1
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.056,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 48.4
+  },
+  "rendered_at": "2026-11-24T03:22:15Z",
+  "run_id": "20261124T031314Z-58bc15",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "She is lying in bed late at night stuck waiting for a reply, rereading the plan and rehearsing what to say instead of sleeping.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "hand holding phone in bed at",
+     "person lying in bed looking at",
+     "dark bedroom ceiling at night from"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.6663,
+    "keywords": [
+     {
+      "keyword": "cinematic",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 92,
+    "stable_id": "7484894439233095681",
+    "title": "LOVE GALORE - Sped Up"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.6663
+   },
+   "content": {
+    "attempts": 2,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 4,
+     "emotional_truth_dignity": 5,
+     "format_fit": 5,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 4,
+     "scene_specificity": 4,
+     "shareability": 4
+    },
+    "ladder": 3,
+    "ok": true,
+    "topic_id": "group-chat-three-dots"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "cinematic",
+    "vendor": "meta-api",
+    "why": "A taut, looping late-night pulse that stretches each pause between the three dots into held-breath suspense without ever resolving."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "midnight phone glow",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261124T031314Z-58bc15.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": true,
+    "rationale": "emotional lane shot 'Sleeping in the Campervan with Heavy Rain and Thun' paired with 'LOVE GALORE - Sped Up' for caption_list_title_v1.",
+    "score": 68
+   },
+   "pinterest": {
+    "candidates": 10,
+    "hls": false,
+    "lane": "emotional",
+    "metrics": {
+     "sat": 11.42,
+     "yavg": 60.9
+    },
+    "ok": true,
+    "passes_minimum": true,
+    "pin_id": "815151601324898600",
+    "query": "dark bedroom ceiling at night from",
+    "review_status": "accept",
+    "score": 83,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": "Sleeping in the Campervan with Heavy Rain and Thunder at Night"
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 48.4
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 12.0,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261124T031314Z-58bc15/caption_list_title_v1-live-20261124T031314Z-58bc15.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 11431365,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 61 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -2.6,
+     "yavg_delta": -40.9
+    },
+    "measured": {
+     "sat": 11.6,
+     "yavg": 64.1
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.056,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "group-chat-three-dots"
  }
 ]
