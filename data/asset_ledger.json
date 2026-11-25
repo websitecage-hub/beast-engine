@@ -248,6 +248,14 @@
    "status": "delivered",
    "used_by": "20261119T232819Z-e07434"
   },
+  "7673789140375472145": {
+   "first_seen_at": "2026-11-25T19:06:18Z",
+   "last_used_at": "2026-11-25T19:07:17Z",
+   "review_status": "pending",
+   "sha256": "2b33c0c817fe4cb2c332f8d3fa45c62fb498b1b001a0bcb869c40d7377a67d14",
+   "status": "delivered",
+   "used_by": "20261125T185246Z-c1404d"
+  },
   "7684150368565250075": {
    "first_seen_at": "2026-11-23T20:51:31Z",
    "last_used_at": "2026-11-23T20:52:51Z",
@@ -258,7 +266,7 @@
   }
  },
  "reservations": {},
- "updated_at": "2026-11-25T01:30:19Z",
+ "updated_at": "2026-11-25T19:07:17Z",
  "version": 1,
  "visual": {
   "pin:1028861477392867239": {
@@ -535,6 +543,17 @@
    "sha256": "9e10654ac815e76919dd726b354cf3b6ded34fa876b931efaf248b9147ac76c5",
    "status": "delivered",
    "used_by": "20261118T173904Z-2b4f0f"
+  },
+  "pin:811351689139004712": {
+   "first_seen_at": "2026-11-25T19:05:15Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-25T19:07:17Z",
+   "pin_id": "811351689139004712",
+   "query": "cozy morning",
+   "review_status": "accept",
+   "sha256": "342c98f13947e8e597719424099b0d619f4d6082e73eb53697b0d216c1a159d3",
+   "status": "delivered",
+   "used_by": "20261125T185246Z-c1404d"
   },
   "pin:815151601324898600": {
    "first_seen_at": "2026-11-24T03:20:54Z",
