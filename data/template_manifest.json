@@ -47368,5 +47368,1254 @@
    "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
   },
   "topic_id": "group-chat-three-dots"
+ },
+ {
+  "asset_intent": {
+   "arousal": 0.35,
+   "audio_intent": {
+    "arousal": 0.3,
+    "avoid": [
+     "dramatic string swell",
+     "loud beat drop",
+     "sad piano climax",
+     "comedy boing or record scratch",
+     "tense thriller pulse"
+    ],
+    "emotional_role": "hold the small awkward pause without making it dramatic or sad",
+    "energy": 0.25,
+    "instrumentation": [
+     "soft piano",
+     "gentle acoustic guitar"
+    ],
+    "rhythmic_density": "sparse",
+    "tempo_preference": "slow",
+    "texture": [
+     "soft room tone",
+     "light cafe hum"
+    ],
+    "trend_hashtags": [
+     "#cafecore",
+     "#quietmoments"
+    ],
+    "trend_keywords": [
+     "cafe ambience",
+     "quiet coffee shop background"
+    ],
+    "valence": -0.1,
+    "vocal_policy": "instrumental_preferred"
+   },
+   "camera_perspective": "observer",
+   "compiled_at": "2026-11-25T01:19:48Z",
+   "compiled_by": "llm:meta-api",
+   "content_id": "cafe-name-call",
+   "core_human_moment": "You think you heard your name at the counter, half-stand, then realize it wasn't you and have to sit back down like nothing happened.",
+   "degraded": false,
+   "emotional_primary": "awkward",
+   "emotional_secondary": "wary",
+   "format_id": "caption_list_title_v1",
+   "human_action": "half-rising from chair then sitting back down while glancing toward counter",
+   "humour": 0.6,
+   "intentional_contrast": null,
+   "literal_scene": "A person sits at a small cafe table with a coffee cup, glancing toward the pickup counter, half-rising then settling back into the chair.",
+   "literalness": "literal",
+   "motion_intent": "almost still, one small hesitant half-rise and settle",
+   "negative_visuals": [
+    "embedded captions",
+    "watermarks",
+    "split-screen",
+    "logos"
+   ],
+   "palette_intent": [
+    "warm neutrals",
+    "soft daylight"
+   ],
+   "rationale": "The still cafe table keeps the half-stand believable, and quiet, low-energy sound lets the awkward pause feel funny rather than heavy.",
+   "scene_entities": [
+    "coffee cup",
+    "cafe table",
+    "cafe counter"
+   ],
+   "schema_version": "1.0",
+   "setting": "cafe near pickup counter",
+   "tension": 0.5,
+   "text_safe_zone": "centre 41-59% band, keep it over calm table or wall area away from faces",
+   "time_of_day": "indeterminate",
+   "valence": -0.1,
+   "video_queries": [
+    "person sitting at cafe table with coffee cup",
+    "barista calling order at cafe pickup counter",
+    "person glancing toward cafe counter quietly"
+   ],
+   "visual_mood": [
+    "quiet",
+    "everyday"
+   ],
+   "visual_profile_target": {
+    "luma": "105+-14",
+    "saturation": "14.2+-5"
+   },
+   "warmth": 0.45
+  },
+  "asset_selection": {
+   "audio": {
+    "artist": "SCARIONIX",
+    "candidates": [
+     {
+      "artist": "prodyunmaho & MC MN",
+      "distance": 0.4565,
+      "fresh": true,
+      "id": "7698433384338786356",
+      "score": 74,
+      "title": "TSELUY FUNK",
+      "video_count": 14500
+     },
+     {
+      "artist": "SCARIONIX",
+      "distance": 0.3744,
+      "fresh": true,
+      "id": "7548063111194937360",
+      "score": 84,
+      "title": "Sem Tempo - Super Slowed",
+      "video_count": 40200
+     },
+     {
+      "artist": "Young Madz & Mc Delux",
+      "distance": 0.6021,
+      "fresh": true,
+      "id": "7633515372824119297",
+      "score": 74,
+      "title": "FUNK TGIF",
+      "video_count": 7004
+     },
+     {
+      "artist": "DJ N\u00c1UTICO",
+      "distance": 0.5419,
+      "fresh": true,
+      "id": "7693272603641628724",
+      "score": 64,
+      "title": "COMFORT FUNK VIBES - Super Slowed",
+      "video_count": 2204
+     }
+    ],
+    "distance": 0.3744,
+    "fresh": true,
+    "keywords_tried": [
+     {
+      "keyword": "funk",
+      "rows": 5
+     }
+    ],
+    "rejected": [
+     {
+      "id": "6891415231038228481",
+      "why": "copyrighted, not commercial"
+     }
+    ],
+    "score": {
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 20
+      },
+      "loopable": {
+       "evidence": "60.0s vs 12.2s",
+       "points": 20
+      },
+      "trend": {
+       "evidence": "video_count 40200",
+       "points": 44
+      }
+     },
+     "passes": true,
+     "total": 84
+    },
+    "stable_id": "7548063111194937360",
+    "title": "Sem Tempo - Super Slowed"
+   },
+   "pair": {
+    "dimensions": {
+     "legibility": {
+      "evidence": "text-band busyness None",
+      "points": 20
+     },
+     "sound": {
+      "evidence": "trend score",
+      "points": 15
+     },
+     "text_to_scene": {
+      "evidence": "look_fit from metadata",
+      "points": 0
+     }
+    },
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'Sem Tempo - Super Slowed' for caption_list_title_v1.",
+    "total": 35
+   },
+   "visual": {
+    "band_busy": 0.1105,
+    "candidates": [
+     {
+      "band_busy": 0.1105,
+      "height": 1280,
+      "pin_id": "576671927318228781",
+      "query": "cozy cafe",
+      "query_lane": "metaphor",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 16.8s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [
+        {
+         "fraction_of_height": 0.192,
+         "rows": [
+          0,
+          123
+         ]
+        },
+        {
+         "fraction_of_height": 0.166,
+         "rows": [
+          0,
+          106
+         ]
+        },
+        {
+         "fraction_of_height": 0.145,
+         "rows": [
+          0,
+          93
+         ]
+        }
+       ],
+       "reason": "no persistent glyph-like band; uniform framing bands [(0, 123), (0, 106)]",
+       "text_suspected": false,
+       "uniform": [
+        [
+         0,
+         123
+        ],
+        [
+         0,
+         106
+        ],
+        [
+         0,
+         93
+        ]
+       ]
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0169,
+      "height": 1280,
+      "pin_id": "141863457006153783",
+      "query": "person sitting at cafe table with",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0169,
+      "height": 1280,
+      "pin_id": "141863457006153783",
+      "query": "person sitting at cafe table",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.053,
+      "height": 1280,
+      "pin_id": "3799980929328938",
+      "query": "person sitting at cafe table",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.0169,
+      "height": 1280,
+      "pin_id": "141863457006153783",
+      "query": "person sitting at cafe table",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.9s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     },
+     {
+      "band_busy": 0.053,
+      "height": 1280,
+      "pin_id": "3799980929328938",
+      "query": "person sitting at cafe table",
+      "query_lane": "literal",
+      "review_status": "reject",
+      "score": {
+       "blockers": [],
+       "dimensions": {
+        "freshness": {
+         "evidence": "fresh",
+         "points": 10
+        },
+        "look_fit": {
+         "evidence": "look words [] (+0); scene words [] (+0)",
+         "points": 0
+        },
+        "no_on_screen_text": {
+         "evidence": "OCR: no on-screen text or logo",
+         "points": 30
+        },
+        "technical": {
+         "evidence": "720x1280, 13.4s (need 12.2s)",
+         "points": 16
+        }
+       },
+       "minimum": 60,
+       "passes": false,
+       "review_status": "reject",
+       "total": 56,
+       "unknown_dimensions": []
+      },
+      "stretch_pick": false,
+      "text": {
+       "bands": [],
+       "framing": [],
+       "reason": "no persistent glyph-like band",
+       "text_suspected": false,
+       "uniform": []
+      },
+      "width": 720
+     }
+    ],
+    "creator": "insta",
+    "flags": [],
+    "lane_expansions": 3,
+    "motion": {
+     "cuts": 0,
+     "max_jump": 0.0575,
+     "motion": 0.0497,
+     "ok": true,
+     "samples": 8
+    },
+    "ocr": {
+     "by": "rapidocr",
+     "has_logo": null,
+     "has_text": false,
+     "reason": "0 detections, 0 strong, 0 repeated across frames",
+     "text_said": ""
+    },
+    "passes_minimum": false,
+    "pin_id": "576671927318228781",
+    "pin_url": "https://www.pinterest.com/pin/576671927318228781/",
+    "query": "cozy cafe",
+    "query_lane": "metaphor",
+    "query_log": [
+     {
+      "lane": "metaphor",
+      "query": "cozy cafe cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 25,
+      "lane": "metaphor",
+      "query": "cozy cafe",
+      "returned": 25
+     },
+     {
+      "lane": "metaphor",
+      "query": "cozy cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "lane": "metaphor",
+      "query": "cafe cinematic",
+      "why": "banned mood slogan"
+     },
+     {
+      "kept": 2,
+      "lane": "adjacent",
+      "query": "barista calling order at cafe pickup",
+      "returned": 2
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "person glancing toward cafe counter quietly",
+      "returned": 0
+     },
+     {
+      "kept": 23,
+      "lane": "literal",
+      "query": "person sitting at cafe table with",
+      "returned": 24
+     },
+     {
+      "kept": 6,
+      "lane": "adjacent",
+      "query": "barista calling order at cafe",
+      "returned": 6
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "person glancing toward cafe",
+      "returned": 0
+     },
+     {
+      "kept": 25,
+      "lane": "literal",
+      "query": "person sitting at cafe table",
+      "returned": 25
+     },
+     {
+      "kept": 6,
+      "lane": "adjacent",
+      "query": "barista calling order at cafe",
+      "returned": 6
+     },
+     {
+      "kept": 0,
+      "lane": "emotional",
+      "query": "person glancing toward cafe",
+      "returned": 0
+     },
+     {
+      "kept": 25,
+      "lane": "literal",
+      "query": "person sitting at cafe table",
+      "returned": 25
+     }
+    ],
+    "rejected": [
+     {
+      "id": "444237950767591440",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "642044490657862154",
+      "lane": "literal",
+      "query": "person sitting at cafe table with",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "885520345465839238",
+      "why": "on-screen text: '000; 000.; 000\u00b7; 800; NO SMOKING'"
+     },
+     {
+      "id": "9077636739159353",
+      "why": "unusable crop 736x414"
+     },
+     {
+      "id": "891783163691426289",
+      "lane": "literal",
+      "query": "person sitting at cafe table with",
+      "why": "stock/repost source: '4k footage'"
+     },
+     {
+      "id": "642044490667625993",
+      "lane": "literal",
+      "query": "person sitting at cafe table with",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "642044490669052484",
+      "lane": "literal",
+      "query": "person sitting at cafe table with",
+      "why": "stock/repost source: 'stock video'"
+     },
+     {
+      "id": "1111544751767369520",
+      "why": "too short 5.83s for 12.2s"
+     },
+     {
+      "id": "1044975919822818688",
+      "lane": "adjacent",
+      "query": "barista calling order at cafe pickup",
+      "why": "advertising call-to-action: 'promo'"
+     },
+     {
+      "id": "28921622601393742",
+      "why": "on-screen text: '+ideas; CPPYOO; ERMEER; Head Hi; MEXICANART'"
+     },
+     {
+      "id": "206743439134198992",
+      "why": "too short 11.9s for 12.2s"
+     },
+     {
+      "id": "43347215158061901",
+      "why": "too short 6.0s for 12.2s"
+     },
+     {
+      "id": "429953095694861978",
+      "why": "on-screen text: 'H; MA; VA; \u5e7f; \u7ca4\u9152'"
+     },
+     {
+      "id": "1900024838985115",
+      "why": "on-screen text: 'Cafe; M; XI; \u559c'"
+     },
+     {
+      "id": "608267493467049723",
+      "why": "unusable crop 352x624"
+     },
+     {
+      "id": "698972804691814737",
+      "why": "unusable crop 1280x720"
+     },
+     {
+      "id": "845902742542237435",
+      "why": "too short 7.87s for 12.2s"
+     },
+     {
+      "id": "959477895679953449",
+      "why": "unusable crop 704x1280"
+     },
+     {
+      "id": "1129770256517702524",
+      "why": "too short 5.04s for 12.2s"
+     },
+     {
+      "id": "449163762858567642",
+      "why": "on-screen text: '7g leiming fir; BAAUSALAN; Cpoeament; DARUSSALAN; '"
+     },
+     {
+      "id": "924715736001525997",
+      "why": "too short 6.57s for 12.2s"
+     },
+     {
+      "id": "602849100140655318",
+      "why": "too short 5.21s for 12.2s"
+     },
+     {
+      "id": "868913321837632767",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "8866530511322471",
+      "why": "on-screen text: 'D; KS; \u4e09; \u4ee5'"
+     },
+     {
+      "id": "1970393580408384",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "19492210983801811",
+      "why": "on-screen text: 'H; \u00b7; \u00b7.\u00b7; \u00b7.\u5c0f'"
+     },
+     {
+      "id": "1149543873643907115",
+      "why": "too short 11.18s for 12.2s"
+     },
+     {
+      "id": "129830401753090406",
+      "why": "on-screen text: 'fol; ona; tolod'"
+     },
+     {
+      "id": "57843176455782204",
+      "why": "too short 7.4s for 12.2s"
+     },
+     {
+      "id": "584693964147678527",
+      "why": "too short 10.77s for 12.2s"
+     },
+     {
+      "id": "420594052720859053",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "1057220081257221153",
+      "why": "too short 6.0s for 12.2s"
+     },
+     {
+      "id": "211174977843916",
+      "why": "too short 4.07s for 12.2s"
+     },
+     {
+      "id": "584693964148405860",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "265430971781005801",
+      "why": "unusable crop 576x1024"
+     },
+     {
+      "id": "584693964147649970",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "23081016834916064",
+      "why": "unusable crop 234x416"
+     },
+     {
+      "id": "1075867798452976366",
+      "why": "unusable crop 640x800"
+     },
+     {
+      "id": "1139762618185478018",
+      "why": "too short 9.45s for 12.2s"
+     },
+     {
+      "id": "1618549864342358",
+      "why": "too short 8.76s for 12.2s"
+     }
+    ],
+    "review_status": "needs_human_review",
+    "score": {
+     "blockers": [],
+     "dimensions": {
+      "freshness": {
+       "evidence": "fresh",
+       "points": 10
+      },
+      "look_fit": {
+       "evidence": "look words [] (+0); scene words [] (+0)",
+       "points": 0
+      },
+      "no_on_screen_text": {
+       "evidence": "OCR: no on-screen text or logo",
+       "points": 30
+      },
+      "technical": {
+       "evidence": "720x1280, 16.8s (need 12.2s)",
+       "points": 16
+      }
+     },
+     "minimum": 60,
+     "passes": false,
+     "review_status": "reject",
+     "total": 56,
+     "unknown_dimensions": []
+    },
+    "stretch_pick": false,
+    "text": {
+     "bands": [],
+     "framing": [
+      {
+       "fraction_of_height": 0.192,
+       "rows": [
+        0,
+        123
+       ]
+      },
+      {
+       "fraction_of_height": 0.166,
+       "rows": [
+        0,
+        106
+       ]
+      },
+      {
+       "fraction_of_height": 0.145,
+       "rows": [
+        0,
+        93
+       ]
+      }
+     ],
+     "reason": "no persistent glyph-like band; uniform framing bands [(0, 123), (0, 106)]",
+     "text_suspected": false,
+     "uniform": [
+      [
+       0,
+       123
+      ],
+      [
+       0,
+       106
+      ],
+      [
+       0,
+       93
+      ]
+     ]
+    },
+    "title": ""
+   }
+  },
+  "audio": {
+   "bytes": 978471,
+   "creator": null,
+   "path": "/home/runner/work/_temp/beast-scratch/20261125T011825Z-f30299/assets/track_7548063111194937360.m4a",
+   "pin_url": null,
+   "sha256": "211107fcf44ddc6806a8be5b1349f568daa0c956087ca27807f6a9bcb3456f84",
+   "source": "audi0-scraper:/v1/trending",
+   "stable_id": "7548063111194937360",
+   "usage_clearance": "unknown"
+  },
+  "audio_features": {
+   "band_energy_pct": {
+    "bass": 86.2,
+    "high": 1.0,
+    "mid": 12.9
+   },
+   "duration_s": 60.0,
+   "file": "track_7548063111194937360.m4a",
+   "key_estimate": "B major",
+   "loudness_curve_db": [
+    -19.6,
+    -20.6,
+    -22.2
+   ],
+   "onset_density_per_s": 3.42,
+   "peak_db": -10.9,
+   "rms_db": -20.7,
+   "spectral_centroid_hz": 1872.7,
+   "tempo_bpm": 129.2,
+   "zero_crossing_rate": 0.0623
+  },
+  "background": {
+   "bytes": 3866786,
+   "creator": "insta",
+   "path": "/home/runner/work/_temp/beast-scratch/20261125T011825Z-f30299/assets/cand_0_0.mp4",
+   "pin_url": "https://www.pinterest.com/pin/576671927318228781/",
+   "sha256": "80305091572320a1c4a95b1530fc06047c30910a8d7ce32d98a2850a30934442",
+   "source": "pinterest",
+   "stable_id": "576671927318228781",
+   "usage_clearance": "unknown"
+  },
+  "content": {
+   "attempts": 1,
+   "audience_moment": {
+    "audience_cluster": "everyday performance moments",
+    "emotional_tension": "You want to claim your place quickly but you also want to look like you weren't waiting for it at all.",
+    "observable_behaviour": "half-rising from the chair, scanning the other tables to see if anyone else moves first, holding your phone like a prop",
+    "private_worry": "that standing up for the wrong drink will show everyone how much you wanted to be picked",
+    "situation": "Saturday morning caf\u00e9 counter, barista calls a name that sounds like yours and you freeze between sitting and standing"
+   },
+   "card_compiled_by": "llm:meta-api",
+   "card_degraded": false,
+   "critic": {
+    "caption_value": 4,
+    "critical_min": 4.0,
+    "distinctiveness": 5,
+    "emotional_truth_dignity": 5,
+    "evidence": "\"Half-rise when a similar name sounds\" / \"Sit back down too quickly\" / \"Pretend you just meant to stretch\" \u2014 vivid caf\u00e9 micro-behaviour; payoff \"chosen without looking like you were waiting\" names the tension unshamed.",
+    "format_fit": 4,
+    "hard_fail": null,
+    "natural_voice": 5,
+    "passed": true,
+    "product_trust": 5,
+    "recognition_authenticity": 5,
+    "rewrite_notes": "Items 2 and 4 both = scanning/watching before moving, and 3/6/7 all orbit the half-rise; several restate the same beat. Spread across more distinct moments in the scene.",
+    "scene_specificity": 5,
+    "sendability_who": "A friend sends this to the person they always get coffee with, caption 'this was you on Saturday and it was me too'.",
+    "shareability": 5,
+    "supporting_min": 4.0
+   },
+   "ladder": [
+    {
+     "attempt": 1,
+     "level": 2,
+     "why": [
+      "anchor=True",
+      "private=True",
+      "turn=False",
+      "the headline itself carries no concrete anchor"
+     ]
+    }
+   ],
+   "topic_id": "cafe-name-call"
+  },
+  "delivery": {
+   "at": "2026-11-25T01:30:19Z",
+   "channel": "telegram",
+   "ok": true
+  },
+  "drift": {
+   "sat_delta": -10.61,
+   "yavg_delta": -66.0
+  },
+  "format_id": "caption_list_title_v1",
+  "grade": {
+   "applied": false,
+   "brightness": 1.0,
+   "raw": {
+    "sat": 4.62,
+    "yavg": 21.6
+   },
+   "saturate": 1.0,
+   "why": "no colour grading"
+  },
+  "measured": {
+   "sat": 3.59,
+   "yavg": 39.0
+  },
+  "output": {
+   "bytes": 9600629,
+   "duration_s": 11.977,
+   "path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261125T011825Z-f30299.mp4",
+   "sha256": "f77569b4d81f39bae309361df387156466029d87c86e1ed58e1e6e273119c457"
+  },
+  "payload": {
+   "_schema_version": "1.0",
+   "audio": {
+    "rights": "preview_only",
+    "source": "audi0-scraper:/v1/trending",
+    "stable_id": "7548063111194937360",
+    "title": "Sem Tempo - Super Slowed"
+   },
+   "background_query": "person sitting at cafe table with coffee cup near counter",
+   "caption": "8 things you do when the barista calls a name that sounds like yours:\n1. Rehearse your order under your breath\n2. Watch the counter without looking up\n3. Half-rise when a similar name sounds\n4. Scan three tables before moving\n5. Hold your phone like a prop\n6. Sit back down too quickly\n7. Pretend you just meant to stretch\n8. Replay the half-stand on the walk home",
+   "closing": "You wanted to be chosen without looking like you were waiting to be chosen.",
+   "director": {
+    "audio": {
+     "director_vendor": "meta-api",
+     "sonic_analysis": "A light bouncy groove with sharp pauses lets each near-miss land before the list snaps back into rhythm.",
+     "tiktok_query": "funk",
+     "tiktok_search_query": "funk"
+    },
+    "visual": {
+     "director_vendor": "meta-api",
+     "pinterest_query": "cozy cafe cinematic",
+     "pinterest_search_query": "cozy cafe cinematic",
+     "semantic_analysis": "A warm, softly lit cafe moment of quiet watchfulness and small, hesitant movement around the counter."
+    }
+   },
+   "headline": "8 things you do when the barista calls a name that sounds like yours",
+   "list_items": [
+    "Rehearse your order under your breath",
+    "Watch the counter without looking up",
+    "Half-rise when a similar name sounds",
+    "Scan three tables before moving",
+    "Hold your phone like a prop",
+    "Sit back down too quickly",
+    "Pretend you just meant to stretch",
+    "Replay the half-stand on the walk home"
+   ],
+   "provenance": {
+    "creator": "insta",
+    "pin_id": "576671927318228781",
+    "pin_url": "https://www.pinterest.com/pin/576671927318228781/",
+    "source": "pinterest",
+    "usage_clearance": "unknown"
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "stroke_px": 2,
+    "why": "dark footage (luma 22 < 92): warm yellow"
+   },
+   "titleLines": [
+    "8 things you do when",
+    "the barista calls a",
+    "name that sounds",
+    "like yours"
+   ],
+   "topic_id": "cafe-name-call"
+  },
+  "publish": {
+   "alt_text": "Person sitting at cafe table with coffee cup near counter. Social anxiety content about overthinking every interaction. From Unleash The Beast.",
+   "at": "2026-11-25T01:31:24Z",
+   "caption": "8 things you do when the barista calls a name that sounds like yours:\n1. Rehearse your order under your breath\n2. Watch the counter without looking up\n3. Half-rise when a similar name sounds\n4. Scan three tables before moving\n5. Hold your phone like a prop\n6. Sit back down too quickly\n7. Pretend you just meant to stretch\n8. Replay the half-stand on the walk home\n\nYou wanted to be chosen without looking like you were waiting to be chosen.",
+   "channel": "instagram",
+   "container_id": "17920996194538210",
+   "hide_like_count": true,
+   "host": "uguu",
+   "ig_id": "35157222637226667",
+   "manual_steps": [
+    "Hide like count: Instagram app -> the reel -> ... -> \"Hide like and view counts\""
+   ],
+   "media_id": "17912672418656945",
+   "status": "FINISHED",
+   "test": false,
+   "video_url": "https://h.uguu.se/VxWkoHQRqJal.mp4"
+  },
+  "qa": {
+   "attempts": 1,
+   "band_ok": false,
+   "drift": {
+    "sat_delta": -10.61,
+    "yavg_delta": -66.0
+   },
+   "duration_s": 11.977,
+   "gate": {
+    "audio": true,
+    "audio_channels": 2,
+    "audio_codec": "aac",
+    "codec": "h264",
+    "decode_ok": true,
+    "decode_stderr": "",
+    "duration_bounds": [
+     11.6,
+     12.8
+    ],
+    "duration_s": 11.977,
+    "failures": [],
+    "file": "/home/runner/work/_temp/beast-scratch/20261125T011825Z-f30299/caption_list_title_v1-live-20261125T011825Z-f30299.mp4",
+    "fps": 30.0,
+    "fps_raw": "30/1",
+    "height": 1920,
+    "moov_head": false,
+    "moov_tail": true,
+    "ok": true,
+    "pix_fmt": "yuv420p",
+    "probe_error": null,
+    "sar": "1:1",
+    "size_bytes": 9600629,
+    "width": 1080
+   },
+   "gate_ok": true,
+   "measured": {
+    "sat": 3.59,
+    "yavg": 39.0
+   },
+   "ok": false,
+   "targets": {
+    "sat": 14.2,
+    "sat_tol": 5.0,
+    "yavg": 105.0,
+    "yavg_tol": 14.0
+   },
+   "text_frame0": {
+    "band": [
+     0.22,
+     0.58
+    ],
+    "bright_fraction": 0.0895,
+    "ok": true,
+    "threshold": 190
+   }
+  },
+  "qa_ok": false,
+  "render": {
+   "quality": "delivery",
+   "seconds": 54.4
+  },
+  "rendered_at": "2026-11-25T01:30:14Z",
+  "run_id": "20261125T011825Z-f30299",
+  "schema_version": "1.0",
+  "stages": {
+   "asset_intent": {
+    "compiled_by": "llm:meta-api",
+    "core_human_moment": "You think you heard your name at the counter, half-stand, then realize it wasn't you and have to sit back down like nothing happened.",
+    "degraded": false,
+    "ok": true,
+    "queries": [
+     "person sitting at cafe table with",
+     "barista calling order at cafe pickup",
+     "person glancing toward cafe counter quietly"
+    ]
+   },
+   "audio": {
+    "clearance": "unknown",
+    "distance": 0.3744,
+    "keywords": [
+     {
+      "keyword": "funk",
+      "rows": 5
+     }
+    ],
+    "ok": true,
+    "score": 84,
+    "stable_id": "7548063111194937360",
+    "title": "Sem Tempo - Super Slowed"
+   },
+   "audio_validation": {
+    "has_audio": true,
+    "ok": true,
+    "track_distance": 0.3744
+   },
+   "content": {
+    "attempts": 1,
+    "card": "llm:meta-api",
+    "card_degraded": false,
+    "critic": {
+     "caption_value": 4,
+     "distinctiveness": 5,
+     "emotional_truth_dignity": 5,
+     "format_fit": 4,
+     "hard_fail": null,
+     "natural_voice": 5,
+     "product_trust": 5,
+     "recognition_authenticity": 5,
+     "scene_specificity": 5,
+     "shareability": 5
+    },
+    "ladder": 2,
+    "ok": true,
+    "topic_id": "cafe-name-call"
+   },
+   "delivery": {
+    "delivered": true,
+    "ok": true
+   },
+   "director_audio": {
+    "ok": true,
+    "query": "funk",
+    "vendor": "meta-api",
+    "why": "A light bouncy groove with sharp pauses lets each near-miss land before the list snaps back into rhythm."
+   },
+   "director_visual": {
+    "ok": true,
+    "query": "cozy cafe cinematic",
+    "vendor": "meta-api",
+    "why": null
+   },
+   "format_selection": {
+    "format_id": "caption_list_title_v1",
+    "ok": true,
+    "requested": "auto"
+   },
+   "manifest": {
+    "final_path": "/home/runner/work/beast-engine/beast-engine/outputs/previews/caption_list_title_v1-live-20261125T011825Z-f30299.mp4",
+    "ok": true,
+    "path": "/home/runner/work/beast-engine/beast-engine/data/template_manifest.json",
+    "persisted": true
+   },
+   "pair_fit": {
+    "advisory": true,
+    "ok": true,
+    "passes": false,
+    "rationale": "metaphor lane shot '' paired with 'Sem Tempo - Super Slowed' for caption_list_title_v1.",
+    "score": 35
+   },
+   "pinterest": {
+    "candidates": 6,
+    "hls": false,
+    "lane": "metaphor",
+    "metrics": {
+     "sat": 4.62,
+     "yavg": 21.6
+    },
+    "ok": true,
+    "passes_minimum": false,
+    "pin_id": "576671927318228781",
+    "query": "cozy cafe",
+    "review_status": "needs_human_review",
+    "score": 56,
+    "size": "720x1280",
+    "stretch_pick": false,
+    "text_suspected": false,
+    "title": ""
+   },
+   "render": {
+    "attempts": 1,
+    "corrections": false,
+    "ok": true,
+    "seconds": 54.4
+   },
+   "structural_qa": {
+    "gate": {
+     "audio": true,
+     "audio_channels": 2,
+     "audio_codec": "aac",
+     "codec": "h264",
+     "decode_ok": true,
+     "decode_stderr": "",
+     "duration_bounds": [
+      11.6,
+      12.8
+     ],
+     "duration_s": 11.977,
+     "failures": [],
+     "file": "/home/runner/work/_temp/beast-scratch/20261125T011825Z-f30299/caption_list_title_v1-live-20261125T011825Z-f30299.mp4",
+     "fps": 30.0,
+     "fps_raw": "30/1",
+     "height": 1920,
+     "moov_head": false,
+     "moov_tail": true,
+     "ok": true,
+     "pix_fmt": "yuv420p",
+     "probe_error": null,
+     "sar": "1:1",
+     "size_bytes": 9600629,
+     "width": 1080
+    },
+    "ok": true
+   },
+   "text_style": {
+    "fill": "#E0D29B",
+    "ok": true,
+    "stroke_px": 2,
+    "why": "dark footage (luma 22 < 92): warm yellow"
+   },
+   "visual_qa": {
+    "advisory": true,
+    "band_ok": false,
+    "drift": {
+     "sat_delta": -10.61,
+     "yavg_delta": -66.0
+    },
+    "measured": {
+     "sat": 3.59,
+     "yavg": 39.0
+    },
+    "ok": true,
+    "text_frame0": {
+     "band": [
+      0.22,
+      0.58
+     ],
+     "bright_fraction": 0.0895,
+     "ok": true,
+     "threshold": 190
+    }
+   }
+  },
+  "status": "published",
+  "template": {
+   "dir": "templates/caption_list_title_v1",
+   "sha256": "e5ed8d764675dde569328de127981ac904b49e975204749ff8045ca9e356a9c7"
+  },
+  "topic_id": "cafe-name-call"
  }
 ]

@@ -232,6 +232,14 @@
    "status": "delivered",
    "used_by": "20261103T171257Z-ced374"
   },
+  "7548063111194937360": {
+   "first_seen_at": "2026-11-25T01:29:03Z",
+   "last_used_at": "2026-11-25T01:30:19Z",
+   "review_status": "pending",
+   "sha256": "211107fcf44ddc6806a8be5b1349f568daa0c956087ca27807f6a9bcb3456f84",
+   "status": "delivered",
+   "used_by": "20261125T011825Z-f30299"
+  },
   "7650072705703561232": {
    "first_seen_at": "2026-11-19T23:38:17Z",
    "last_used_at": "2026-11-19T23:39:48Z",
@@ -250,7 +258,7 @@
   }
  },
  "reservations": {},
- "updated_at": "2026-11-24T03:22:19Z",
+ "updated_at": "2026-11-25T01:30:19Z",
  "version": 1,
  "visual": {
   "pin:1028861477392867239": {
@@ -439,6 +447,17 @@
    "sha256": "11099b504dadba891ca3892245404702bf413620b81de2fd81d05568c0731dc3",
    "status": "delivered",
    "used_by": "20261115T155627Z-da2770"
+  },
+  "pin:576671927318228781": {
+   "first_seen_at": "2026-11-25T01:28:29Z",
+   "lane": "metaphor",
+   "last_used_at": "2026-11-25T01:30:19Z",
+   "pin_id": "576671927318228781",
+   "query": "cozy cafe",
+   "review_status": "reject",
+   "sha256": "80305091572320a1c4a95b1530fc06047c30910a8d7ce32d98a2850a30934442",
+   "status": "delivered",
+   "used_by": "20261125T011825Z-f30299"
   },
   "pin:581245895684977426": {
    "first_seen_at": "2026-11-17T18:02:11Z",
